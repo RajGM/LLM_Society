@@ -5,6 +5,10 @@ const FrameAuditor = require("./FrameAuditor");
 const BeliefEngine = require("./BeliefEngine");
 const InterventionEngine = require("./InterventionEngine");
 const MetricsEngine = require("./MetricsEngine");
+const InstitutionalTrust = require("./InstitutionalTrust");
+const NetworkEvolution = require("./NetworkEvolution");
+const OpinionDynamics = require("./OpinionDynamics");
+const ProvenanceEngine = require("./ProvenanceEngine");
 const { readJSON, writeJSON, ensureDir, fileExists } = require("./fileIO");
 const { DEFAULTS } = require("../config/experiment");
 
@@ -55,6 +59,13 @@ class Simulation {
       for (const nodeId of Object.keys(this.graph.nodes)) {
         BeliefEngine.init(nodeId, this.experimentDir);
       }
+    }
+
+    // Initialise institutional trust layer if enabled
+    if (this.config.enableInstitutionalTrust) {
+      InstitutionalTrust.initialize(
+        this.graph.getNodePersonaMap(), this.personaMap, this.experimentDir
+      );
     }
 
     this.interventionEngine = new InterventionEngine(
@@ -146,7 +157,7 @@ class Simulation {
   // ── Phase 1: Propagation ───────────────────────────────────────────────────
 
   async _runPropagationPhase(simState) {
-    const enableBeliefs = !!this.config.enableBeliefs;
+    const enableBeliefs = !!this.config.enableBeliefs; // kept for log context only
 
     // Standard sequential articles
     const articlesToRun = this._flatArticleIds().filter(
@@ -202,7 +213,7 @@ class Simulation {
   }
 
   // Core propagation loop — handles one or more articles simultaneously (competitive mode).
-  async _propagateGroup(articles, simState, enableBeliefs, seedNodeIds = null) {
+  async _propagateGroup(articles, simState, _enableBeliefs, seedNodeIds = null) {
     const resolvedParams = this._resolveParams();
     const seeds = seedNodeIds || this.config.seedNodes;
 
@@ -214,12 +225,14 @@ class Simulation {
           continue;
         }
         this.graph.nodes[nodeId].deliverMessage({
-          articleId: article.id,
-          sourceNodeId: "ORIGIN",
-          content: article.text,
+          articleId:       article.id,
+          sourceNodeId:    "ORIGIN",
+          senderPersonaId: null,
+          content:         article.text,
           originalContent: article.text,
-          hops: 0,
-          tick: 0,
+          provenance:      [],
+          hops:            0,
+          tick:            0,
         });
       }
     }
@@ -248,7 +261,9 @@ class Simulation {
           `[Simulation]     ${nodeId} (${persona.name}): ${state.inbox.length} message(s)`
         );
 
-        const outgoing = await nodeInst.processTick(tick, persona, nodeParams, enableBeliefs);
+        const outgoing = await nodeInst.processTick(
+          tick, persona, nodeParams, this._buildExtensions()
+        );
         tickOutgoing.push(...outgoing);
       }
 
@@ -269,7 +284,7 @@ class Simulation {
 
   async _runAuditPhase(simState) {
     const resolvedParams = this._resolveParams();
-    const allArticleIds = this._allAuditableArticleIds();
+    const allArticleIds  = this._allAuditableArticleIds();
 
     const articlesToAudit = allArticleIds.filter(
       (id) => !simState.audit.completedArticles.includes(id)
@@ -294,11 +309,65 @@ class Simulation {
         });
       }
 
-      this._writeArticleResults(article.id);
+      // Network co-evolution after each article's audit (requires beliefs for opinion signals)
+      let networkEvolutionMetrics = null;
+      if (this.config.enableNetworkEvolution && this.config.enableBeliefs) {
+        console.log(`[Simulation]   Running network evolution for ${articleId}`);
+        const evoResult = NetworkEvolution.evolve(
+          this.graph, articleId, this.experimentDir,
+          this.config.networkEvolutionParams || {}
+        );
+        networkEvolutionMetrics = {
+          ...evoResult,
+          ...NetworkEvolution.computeMetrics(this.graph, this.personaMap),
+        };
+        console.log(
+          `[Simulation]   Network: +${evoResult.edgesAdded} edges, ` +
+          `-${evoResult.edgesRemoved} edges`
+        );
+      }
+
+      this._writeArticleResults(article.id, networkEvolutionMetrics);
 
       simState.audit.completedArticles.push(articleId);
       simState.audit.currentArticle = null;
       this._saveState(simState);
+    }
+
+    // Opinion dynamics — run once after all articles are audited
+    if (this.config.enableOpinionDynamics && this.config.enableBeliefs) {
+      const beliefsDir  = path.join(this.experimentDir, "beliefs");
+      const trustMatrix = this.graph.toRowStochasticMatrix();
+      const adjacency   = this.graph.toAdjacencyMap();
+
+      for (const articleId of allArticleIds) {
+        if (!this.articleMap[articleId]) continue;
+        console.log(`[Simulation]   Running opinion dynamics for ${articleId}`);
+        const opinions = OpinionDynamics.extractOpinions(
+          Object.keys(this.graph.nodes), beliefsDir, articleId
+        );
+        const odResult = OpinionDynamics.compare(
+          opinions, trustMatrix, adjacency,
+          this.config.opinionDynamicsParams || {}
+        );
+        writeJSON(
+          path.join(this.experimentDir, `opinion_dynamics_${articleId}.json`),
+          odResult
+        );
+      }
+    }
+
+    // Update institutional trust based on final audit results
+    if (this.config.enableInstitutionalTrust) {
+      const trustData = InstitutionalTrust.read(this.experimentDir);
+      if (trustData) {
+        const auditResults = this._collectResults();
+        InstitutionalTrust.update(
+          trustData, auditResults, this.personaMap,
+          this.config.institutionalTrustParams || {}
+        );
+        InstitutionalTrust.write(trustData, this.experimentDir);
+      }
     }
   }
 
@@ -313,14 +382,20 @@ class Simulation {
     return results;
   }
 
-  _writeArticleResults(articleId) {
-    const nodesData = this._readAllNodeStates();
+  _writeArticleResults(articleId, networkEvolutionMetrics = null) {
+    const nodesData     = this._readAllNodeStates();
     const nodeSummaries = this._buildNodeSummaries(articleId, nodesData);
-    const metrics = MetricsEngine.computeAll(
+    const metrics       = MetricsEngine.computeAll(
       nodesData, this.graph, articleId, this.config.maxTicks
     );
+    const provenanceMetrics = ProvenanceEngine.metricsFromHistory(nodesData, articleId);
 
-    const result = { nodeSummaries, metrics };
+    const result = {
+      nodeSummaries,
+      metrics,
+      provenanceMetrics,
+      networkEvolution: networkEvolutionMetrics,
+    };
     writeJSON(
       path.join(this.experimentDir, `results_${articleId}.json`),
       result
@@ -544,6 +619,21 @@ class Simulation {
     }
     strippedPersona._strippedPrompt = prompt;
     return strippedPersona;
+  }
+
+  // Build the extensions object passed to every processTick call.
+  // institutionalTrust is re-read from disk each time so mid-sim file edits are reflected.
+  _buildExtensions() {
+    return {
+      enableBeliefs:             !!this.config.enableBeliefs,
+      enableProvenance:          !!this.config.enableProvenance,
+      provenanceRecencyDiscount: this.config.provenanceRecencyDiscount ?? 0.9,
+      enableStrategicAgents:     !!this.config.enableStrategicAgents,
+      personaMap:                this.personaMap,
+      institutionalTrust:        this.config.enableInstitutionalTrust
+        ? InstitutionalTrust.read(this.experimentDir)
+        : null,
+    };
   }
 
   _resolveParams() {

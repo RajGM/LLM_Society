@@ -19,6 +19,48 @@ const DEFAULTS = {
   // Frame detection + sentiment drift + claim injection (extra LLM call per audit event)
   enableFrameAnalysis: false,
 
+  // ── Extension 1: Provenance-aware trust ────────────────────────────────────
+  // Chain trust T_chain = ∏ t(r,p_i) · δ^(n-1-i). Drops messages whose chain
+  // trust falls below trustThreshold. Adds ~0 LLM calls.
+  enableProvenance: false,
+  provenanceRecencyDiscount: 0.9,
+
+  // ── Extension 4: Strategic agents ─────────────────────────────────────────
+  // Personas with a "strategy" field use utility-maximising action selection.
+  // strategies: maximize_downstream_mi | maximize_reach |
+  //             minimize_downstream_mi | maximize_alignment
+  enableStrategicAgents: false,
+
+  // ── Extension 3: Network co-evolution ─────────────────────────────────────
+  // After each article audit, create opinion-similar edges and sever
+  // low-alignment / low-trust edges. Requires enableBeliefs: true.
+  enableNetworkEvolution: false,
+  networkEvolutionParams: {
+    creationProb:      0.05,  // P_create = α × creationProb
+    severingThreshold: 0.25,  // alignment below which edge is a sever candidate
+    maxNewEdges:       3,     // cap on new edges per article per round
+    trustForNewEdge:   0.40,  // trust assigned to newly created edges
+  },
+
+  // ── Extension 8: Population-level opinion dynamics ─────────────────────────
+  // Runs DeGroot / Bounded-Confidence / Voter models on final belief states.
+  // Results saved to opinion_dynamics_{articleId}.json. Requires enableBeliefs.
+  enableOpinionDynamics: false,
+  opinionDynamicsParams: {
+    steps:     50,
+    epsilon:   0.3,  // Bounded Confidence threshold
+    voterRuns: 10,
+  },
+
+  // ── Extension 9: Institutional trust ──────────────────────────────────────
+  // Per-node trust toward media / science / government / corporate institutions.
+  // Adjusts effective edge trust via a multiplier; erodes when nodes spread MI.
+  enableInstitutionalTrust: false,
+  institutionalTrustParams: {
+    erosionRate:  0.03,
+    recoveryRate: 0.01,
+  },
+
   // ── Layer 3: Competitive propagation ────────────────────────────────────────
   // Each group runs its articles simultaneously through the same tick loop,
   // so they compete for node attention rather than propagating in isolation.

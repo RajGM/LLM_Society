@@ -360,6 +360,66 @@ class SocietyGraph {
     return graph;
   }
 
+  // ── Edge removal ──────────────────────────────────────────────────────────
+
+  removeEdge(fromId, toId) {
+    if (this.adjacency[fromId]) {
+      this.adjacency[fromId] = this.adjacency[fromId].filter((id) => id !== toId);
+    }
+    const fromNode = this.nodes[fromId];
+    if (fromNode) {
+      const state = fromNode.read();
+      delete state.relations[toId];
+      writeJSON(fromNode.filePath, state);
+    }
+  }
+
+  // ── Graph inspection helpers ───────────────────────────────────────────────
+
+  getNodeIds() {
+    return Object.keys(this.nodes);
+  }
+
+  getNeighbors(nodeId) {
+    return this.adjacency[nodeId] || [];
+  }
+
+  // Row-stochastic trust matrix for DeGroot model.
+  // { [fromId]: { [toId]: normalised trust } }
+  toRowStochasticMatrix() {
+    const matrix = {};
+    for (const nodeId of Object.keys(this.nodes)) {
+      const state     = this.nodes[nodeId].read();
+      const relations = state.relations || {};
+      const total     = Object.values(relations).reduce((s, v) => s + v, 0);
+      matrix[nodeId]  = {};
+      if (total > 0) {
+        for (const [toId, trust] of Object.entries(relations)) {
+          matrix[nodeId][toId] = trust / total;
+        }
+      }
+    }
+    return matrix;
+  }
+
+  // Unweighted adjacency map { [nodeId]: [neighborId, ...] }
+  toAdjacencyMap() {
+    const adj = {};
+    for (const nodeId of Object.keys(this.nodes)) {
+      adj[nodeId] = [...(this.adjacency[nodeId] || [])];
+    }
+    return adj;
+  }
+
+  // { [nodeId]: personaId }
+  getNodePersonaMap() {
+    const map = {};
+    for (const [nodeId, node] of Object.entries(this.nodes)) {
+      map[nodeId] = node.read().personaId;
+    }
+    return map;
+  }
+
   // ── Resume support ─────────────────────────────────────────────────────────
 
   // Rebuild a SocietyGraph from an existing experiment directory without

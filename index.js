@@ -28,6 +28,11 @@ const ABTestRunner = require("./src/ABTestRunner");
 async function main() {
   const args = process.argv.slice(2);
 
+  // Must check --test-extensions before --dry-run so we can set DRY_RUN ourselves
+  if (args.includes("--test-extensions")) {
+    return testExtensions();
+  }
+
   if (args.includes("--dry-run")) {
     process.env.DRY_RUN = "1";
     console.log("[Dry-run] No LLM calls will be made.");
@@ -114,6 +119,76 @@ async function main() {
   const sim = new Simulation(runConfig);
   const results = await sim.run();
   printSummary(results);
+}
+
+async function testExtensions() {
+  process.env.DRY_RUN = "1";
+  console.log("[test-extensions] DRY_RUN=1. Running all extensions on a 3-node chain.\n");
+
+  const testConfig = {
+    topology: "linear_chain",
+    topologyParams: { numNodes: 3 },
+    maxTicks: 3,
+    seedArticles: ["crime_0"],
+    enableBeliefs:           true,
+    enableFrameAnalysis:     true,
+    enableProvenance:        true,
+    enableStrategicAgents:   true,
+    enableNetworkEvolution:  true,
+    enableOpinionDynamics:   true,
+    enableInstitutionalTrust: true,
+  };
+
+  const sim = new Simulation(testConfig);
+  await sim.run();
+
+  const expectedFiles = [
+    "state.json",
+    "graph_topology.json",
+    "metadata.json",
+    "institutional_trust.json",
+    "human_eval_template.csv",
+  ];
+  const expectedDirs  = ["nodes", "beliefs"];
+  const expectedGlobs = [
+    ["results_crime_0.json"],
+    ["opinion_dynamics_crime_0.json"],
+  ];
+
+  let allPass = true;
+  console.log("\n[test-extensions] Checking outputs:");
+
+  for (const f of expectedFiles) {
+    const ok = fs.existsSync(path.join(sim.experimentDir, f));
+    console.log(`  [${ok ? "PASS" : "FAIL"}] ${f}`);
+    if (!ok) allPass = false;
+  }
+  for (const d of expectedDirs) {
+    const ok = fs.existsSync(path.join(sim.experimentDir, d));
+    console.log(`  [${ok ? "PASS" : "FAIL"}] ${d}/`);
+    if (!ok) allPass = false;
+  }
+  for (const [f] of expectedGlobs) {
+    const ok = fs.existsSync(path.join(sim.experimentDir, f));
+    console.log(`  [${ok ? "PASS" : "FAIL"}] ${f}`);
+    if (!ok) allPass = false;
+  }
+
+  // Spot-check provenance fields in node history
+  const nodesDir = path.join(sim.experimentDir, "nodes");
+  const nodeFiles = fs.readdirSync(nodesDir).filter((f) => f.endsWith(".json"));
+  let hasProvenance = false;
+  for (const nf of nodeFiles) {
+    const state = JSON.parse(fs.readFileSync(path.join(nodesDir, nf), "utf8"));
+    if ((state.history || []).some((e) => Array.isArray(e.provenance))) {
+      hasProvenance = true;
+      break;
+    }
+  }
+  console.log(`  [${hasProvenance ? "PASS" : "SKIP"}] provenance fields in node history`);
+
+  console.log(`\n[test-extensions] ${allPass ? "ALL CHECKS PASSED" : "SOME CHECKS FAILED"}`);
+  console.log(`[test-extensions] Experiment dir: ${sim.experimentDir}`);
 }
 
 function loadConfig(filePath) {

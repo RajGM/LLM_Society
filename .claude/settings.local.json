@@ -25,7 +25,8 @@
       "Bash(DRY_RUN=1 node -e ' *)",
       "Bash(node index.js --dry-run --ab-test --base examples/run_linear_chain.json --variant examples/run_echo_chamber.json)",
       "PowerShell($f = Get-ChildItem \"f:\\\\SocietySimulation\\\\ab_tests\" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; Get-Content $f | ConvertFrom-Json | Select-Object -ExpandProperty variants | ForEach-Object { Write-Host \"Variant $\\($_.variantIndex\\)\"; $_.effectSizes | ConvertTo-Json -Depth 5 })",
-      "PowerShell($exp = Get-ChildItem \"f:\\\\SocietySimulation\\\\experiments\" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; Get-Content \"$exp\\\\human_eval_template.csv\" | Select-Object -First 5)"
+      "PowerShell($exp = Get-ChildItem \"f:\\\\SocietySimulation\\\\experiments\" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; Get-Content \"$exp\\\\human_eval_template.csv\" | Select-Object -First 5)",
+      "Bash(node index.js --test-extensions)"
     ]
   }
 }

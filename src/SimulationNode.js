@@ -2,6 +2,9 @@ const path = require("path");
 const { readJSON, writeJSON, updateJSON, fileExists } = require("./fileIO");
 const { callLLM } = require("./llmClient");
 const BeliefEngine = require("./BeliefEngine");
+const ProvenanceEngine = require("./ProvenanceEngine");
+const StrategyEngine = require("./StrategyEngine");
+const InstitutionalTrust = require("./InstitutionalTrust");
 
 class SimulationNode {
   constructor(nodeId, experimentDir) {
@@ -48,9 +51,23 @@ class SimulationNode {
   }
 
   // ── Propagation tick ───────────────────────────────────────────────────────
-  // No auditor calls. misinfoIndex stays null until audit phase.
-  // Optional beliefEngine adds confirmation bias + emotional priming.
-  async processTick(tick, persona, resolvedParams, beliefEngine = null) {
+  // extensions object keys:
+  //   enableBeliefs, enableProvenance, provenanceRecencyDiscount,
+  //   enableStrategicAgents, personaMap, institutionalTrust
+  async processTick(tick, persona, resolvedParams, extensions = {}) {
+    // Accept plain boolean for backwards-compat (old callers passed enableBeliefs)
+    if (typeof extensions === "boolean") {
+      extensions = { enableBeliefs: extensions };
+    }
+    const {
+      enableBeliefs         = false,
+      enableProvenance      = false,
+      provenanceRecencyDiscount = 0.9,
+      enableStrategicAgents = false,
+      personaMap            = null,
+      institutionalTrust    = null,
+    } = extensions;
+
     const state = this.read();
 
     // Dormancy check — inactive nodes hold their inbox for the next active tick
@@ -65,7 +82,6 @@ class SimulationNode {
       if (msg.interventionType) {
         this._recordEvent(state, tick, msg, "forward", msg.content, null, "intervention");
         state.stats.forwarded++;
-        // Interventions don't propagate further
         continue;
       }
 
@@ -75,32 +91,65 @@ class SimulationNode {
         continue;
       }
 
-      const sourceTrust = msg.injectedTrust ?? (state.relations[msg.sourceNodeId] ?? 0.5);
+      // Raw direct trust
+      let sourceTrust = msg.injectedTrust ?? (state.relations[msg.sourceNodeId] ?? 0.5);
+
+      // Institutional trust multiplier — amplify or dampen based on sender's institution
+      if (institutionalTrust && msg.senderPersonaId && personaMap) {
+        sourceTrust = InstitutionalTrust.applyMultiplier(
+          sourceTrust, msg.senderPersonaId, this.nodeId, institutionalTrust, personaMap
+        );
+      }
+
       if (sourceTrust < resolvedParams.trustThreshold) {
         this._recordEvent(state, tick, msg, "drop", null, null, "trust_below_threshold");
         state.stats.dropped++;
         continue;
       }
 
+      // Provenance chain trust check
+      let chainTrust = null;
+      if (enableProvenance && msg.provenance && msg.provenance.length > 0) {
+        chainTrust = ProvenanceEngine.computeChainTrust(
+          msg.provenance, state.relations, provenanceRecencyDiscount, personaMap
+        );
+        if (chainTrust < resolvedParams.trustThreshold) {
+          this._recordEvent(state, tick, msg, "drop", null, null, "chain_trust_below_threshold");
+          state.stats.dropped++;
+          continue;
+        }
+      }
+
       state.stats.received++;
 
       // Confirmation bias: compute belief alignment and adjust action weights
       let actionWeights = resolvedParams.actionWeights;
-      if (beliefEngine) {
+      let beliefAlignment = 0.5;
+      if (enableBeliefs) {
         const beliefs = BeliefEngine.read(this.nodeId, this.experimentDir);
-        const alignment = await BeliefEngine.computeAlignment(
+        beliefAlignment = await BeliefEngine.computeAlignment(
           msg.content, msg.articleId, beliefs, persona, state.modelId
         );
         const emotionalIntensity = beliefs.emotionalState.intensity;
-        actionWeights = BeliefEngine.modifyActionWeights(actionWeights, alignment, emotionalIntensity);
+        actionWeights = BeliefEngine.modifyActionWeights(
+          actionWeights, beliefAlignment, emotionalIntensity
+        );
       }
 
-      const action = this._sampleAction(actionWeights);
+      // Strategic action selection overrides probabilistic sampling
+      let action = null;
+      if (enableStrategicAgents) {
+        const strategy = StrategyEngine.getStrategy(persona);
+        if (strategy) {
+          action = StrategyEngine.chooseAction(state, msg, strategy, beliefAlignment);
+        }
+      }
+      if (action === null) action = this._sampleAction(actionWeights);
 
       if (action === "drop") {
-        this._recordEvent(state, tick, msg, "drop", null, null, "action_sampled");
+        this._recordEvent(state, tick, msg, "drop", null, null, "action_sampled", chainTrust, msg.provenance);
         state.stats.dropped++;
-        if (beliefEngine) {
+        if (enableBeliefs) {
           await BeliefEngine.updateAfterAction(
             msg.content, msg.articleId, "drop",
             this.nodeId, this.experimentDir, persona, state.modelId, tick
@@ -122,32 +171,40 @@ class SimulationNode {
       } else if (action === "forward") {
         state.stats.forwarded++;
       } else {
-        // dump — record and stop; don't forward
-        this._recordEvent(state, tick, msg, "dump", outContent, null, null);
+        // dump — record locally; don't forward
+        this._recordEvent(state, tick, msg, "dump", outContent, null, null, chainTrust, msg.provenance);
         state.stats.dumped++;
         continue;
       }
 
       // misinfoIndex intentionally null — filled by auditPendingEvents()
-      this._recordEvent(state, tick, msg, action, outContent, null, null);
+      this._recordEvent(state, tick, msg, action, outContent, null, null, chainTrust, msg.provenance);
 
       // Update belief state after engaging with this message
-      if (beliefEngine) {
+      if (enableBeliefs) {
         await BeliefEngine.updateAfterAction(
           outContent, msg.articleId, action,
           this.nodeId, this.experimentDir, persona, state.modelId, tick
         );
       }
 
+      // Build updated provenance: append self so next recipient sees the full chain
+      const nextProvenance = [
+        ...(msg.provenance || []),
+        { nodeId: this.nodeId, personaId: persona.id },
+      ];
+
       for (const targetNodeId of Object.keys(state.relations)) {
         outgoing.push({
           targetNodeId,
           message: {
-            articleId: msg.articleId,
-            sourceNodeId: this.nodeId,
-            content: outContent,
-            hops: msg.hops + 1,
+            articleId:       msg.articleId,
+            sourceNodeId:    this.nodeId,
+            senderPersonaId: persona.id,
+            content:         outContent,
+            hops:            msg.hops + 1,
             originalContent: msg.originalContent,
+            provenance:      nextProvenance,
             tick,
           },
         });
@@ -155,7 +212,7 @@ class SimulationNode {
     }
 
     // Emotional decay at end of each tick
-    if (beliefEngine) {
+    if (enableBeliefs) {
       BeliefEngine.decayEmotion(this.nodeId, this.experimentDir, tick);
     }
 
@@ -268,19 +325,21 @@ class SimulationNode {
     return "dump";
   }
 
-  _recordEvent(state, tick, msg, action, contentOut, misinfoIndex, reason) {
+  _recordEvent(state, tick, msg, action, contentOut, misinfoIndex, reason, chainTrust, provenance) {
     state.history.push({
       tick,
-      articleId: msg.articleId,
+      articleId:   msg.articleId,
       sourceNodeId: msg.sourceNodeId,
-      hops: msg.hops,
+      hops:        msg.hops,
       action,
-      contentIn: msg.content,
-      contentOut: contentOut || null,
+      contentIn:   msg.content,
+      contentOut:  contentOut || null,
       misinfoIndex,
       frameAnalysis: null,
-      reason: reason || null,
-      timestamp: new Date().toISOString(),
+      reason:      reason || null,
+      chainTrust:  chainTrust ?? null,
+      provenance:  provenance || null,
+      timestamp:   new Date().toISOString(),
     });
   }
 }

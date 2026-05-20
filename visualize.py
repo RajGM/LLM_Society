@@ -323,13 +323,30 @@ def plot_propagation_wave(meta, ax):
                 transform=ax.transAxes, color="#e0e0e0")
         return
 
-    colors = plt.cm.tab10(np.linspace(0, 1, len(results)))
+    colors = plt.cm.tab10(np.linspace(0, 1, max(len(results), 1)))
+    plotted = False
     for (art_id, result), color in zip(results.items(), colors):
-        ticks  = [t["tick"] for t in result["tickResults"]]
-        counts = [t["messagesGenerated"] for t in result["tickResults"]]
+        # Prefer pre-computed tickResults; fall back to counting events from nodeSummaries
+        tick_results = result.get("tickResults")
+        if tick_results:
+            ticks  = [t["tick"] for t in tick_results]
+            counts = [t["messagesGenerated"] for t in tick_results]
+        else:
+            # Reconstruct from nodeSummaries stats (total forwarded+reinterpreted as proxy)
+            ns = result.get("nodeSummaries", {})
+            if not ns:
+                continue
+            total = sum(
+                v.get("stats", {}).get("forwarded", 0) +
+                v.get("stats", {}).get("reinterpreted", 0)
+                for v in ns.values()
+            )
+            ticks  = [1]
+            counts = [total]
         ax.plot(ticks, counts, marker="o", label=art_id, color=color,
                 linewidth=2, markersize=6)
         ax.fill_between(ticks, counts, alpha=0.15, color=color)
+        plotted = True
 
     ax.set_xlabel("Tick", fontsize=9)
     ax.set_ylabel("Messages generated", fontsize=9)
@@ -455,6 +472,167 @@ def plot_trust_evolution(topology, nodes_data, ax):
     ax.grid(axis="y", alpha=0.3)
     ax.set_axisbelow(True)
 
+# ── Plot 7: Network evolution ─────────────────────────────────────────────────
+
+def plot_network_evolution(meta, topology, persona_map, ax):
+    """Bar chart of networkEvolution metrics per article (edges added/removed,
+    modularity Q, homophily index). Falls back gracefully when extension not run."""
+    results = meta.get("results", {})
+
+    articles       = []
+    edges_added    = []
+    edges_removed  = []
+    modularity_q   = []
+    homophily_idx  = []
+
+    for art_id, res in results.items():
+        ne = res.get("networkEvolution") if res else None
+        if ne is None:
+            continue
+        articles.append(art_id)
+        edges_added.append(ne.get("edgesAdded", 0))
+        edges_removed.append(ne.get("edgesRemoved", 0))
+        modularity_q.append(ne.get("modularityQ") or 0)
+        homophily_idx.append(ne.get("homophilyIndex") or 0)
+
+    if not articles:
+        # Extension not enabled — show summary graph metrics from topology instead
+        num_nodes = len(topology.get("nodes", []))
+        num_edges = len(topology.get("edges", []))
+        ax.text(
+            0.5, 0.5,
+            f"Network Evolution extension not enabled.\n"
+            f"Static graph: {num_nodes} nodes, {num_edges} edges.",
+            ha="center", va="center", transform=ax.transAxes,
+            color="#e0e0e0", fontsize=10,
+        )
+        ax.set_title("Network Evolution (Extension 3)", fontsize=10, pad=8)
+        return
+
+    x = np.arange(len(articles))
+    w = 0.2
+    ax.bar(x - w*1.5, edges_added,   w, label="+Edges added",  color="#2ecc71", alpha=0.85)
+    ax.bar(x - w*0.5, edges_removed, w, label="-Edges removed", color="#e74c3c", alpha=0.85)
+    ax.bar(x + w*0.5, modularity_q,  w, label="Modularity Q",   color="#3498db", alpha=0.85)
+    ax.bar(x + w*1.5, homophily_idx, w, label="Homophily idx",  color="#9b59b6", alpha=0.85)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(articles, rotation=15, ha="right", fontsize=8)
+    ax.set_ylabel("Value", fontsize=9)
+    ax.set_title("Network Co-evolution Metrics (Extension 3)", fontsize=10, pad=8)
+    ax.legend(fontsize=7, facecolor="#1a1a2e", edgecolor="#555", labelcolor="#e0e0e0")
+    ax.grid(axis="y", alpha=0.3)
+    ax.set_axisbelow(True)
+
+# ── Plot 8: Opinion dynamics ──────────────────────────────────────────────────
+
+def plot_opinion_dynamics(exp_dir, meta, ax):
+    """Line chart of DeGroot trajectory per node (first article found).
+    Falls back if opinion dynamics extension not enabled."""
+    results = meta.get("results", {})
+    article_ids = list(results.keys())
+
+    od_data = None
+    od_article = None
+    for art_id in article_ids:
+        fp = exp_dir / f"opinion_dynamics_{art_id}.json"
+        if fp.exists():
+            with open(fp) as f:
+                od_data = json.load(f)
+            od_article = art_id
+            break
+
+    if od_data is None:
+        ax.text(
+            0.5, 0.5,
+            "Opinion Dynamics extension not enabled.\n"
+            "(enableOpinionDynamics: true + enableBeliefs: true)",
+            ha="center", va="center", transform=ax.transAxes,
+            color="#e0e0e0", fontsize=10,
+        )
+        ax.set_title("Opinion Dynamics (Extension 8)", fontsize=10, pad=8)
+        return
+
+    # Plot DeGroot convergence trajectory
+    traj = od_data.get("degroot", {}).get("trajectory", [])
+    if not traj:
+        ax.text(0.5, 0.5, "No trajectory data", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0")
+        ax.set_title("Opinion Dynamics — DeGroot", fontsize=10, pad=8)
+        return
+
+    node_ids = list(traj[0].keys()) if traj else []
+    colors   = plt.cm.tab10(np.linspace(0, 1, max(len(node_ids), 1)))
+
+    for node_id, col in zip(node_ids, colors):
+        vals = [step.get(node_id, 0.5) for step in traj]
+        ax.plot(vals, label=node_id, color=col, linewidth=1.5, marker="o", markersize=3)
+
+    conv_type = od_data.get("degroot", {}).get("convergenceType", "unknown")
+    ax.set_xlabel("Iteration", fontsize=9)
+    ax.set_ylabel("Opinion (confidence)", fontsize=9)
+    ax.set_title(
+        f"Opinion Dynamics — DeGroot  [{od_article}]  "
+        f"convergence: {conv_type}",
+        fontsize=10, pad=8,
+    )
+    ax.set_ylim(-0.05, 1.05)
+    ax.legend(fontsize=7, facecolor="#1a1a2e", edgecolor="#555", labelcolor="#e0e0e0",
+              ncol=max(1, len(node_ids) // 5))
+    ax.grid(True, alpha=0.3)
+    ax.set_axisbelow(True)
+
+# ── Plot 9: Institutional trust ───────────────────────────────────────────────
+
+def plot_institutional_trust(exp_dir, ax):
+    """Grouped bar chart of institutional trust per node.
+    Falls back if extension not enabled."""
+    fp = exp_dir / "institutional_trust.json"
+    if not fp.exists():
+        ax.text(
+            0.5, 0.5,
+            "Institutional Trust extension not enabled.\n"
+            "(enableInstitutionalTrust: true)",
+            ha="center", va="center", transform=ax.transAxes,
+            color="#e0e0e0", fontsize=10,
+        )
+        ax.set_title("Institutional Trust (Extension 9)", fontsize=10, pad=8)
+        return
+
+    with open(fp) as f:
+        trust_data = json.load(f)
+
+    nodes_dict = trust_data.get("nodes", {})
+    if not nodes_dict:
+        ax.text(0.5, 0.5, "No institutional trust data", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0")
+        return
+
+    institutions = ["media", "science", "government", "corporate"]
+    inst_colors  = {"media": "#2980b9", "science": "#27ae60",
+                    "government": "#8e44ad", "corporate": "#e67e22"}
+    node_ids     = list(nodes_dict.keys())
+
+    x = np.arange(len(node_ids))
+    n = len(institutions)
+    w = 0.7 / n
+
+    for i, inst in enumerate(institutions):
+        vals = [nodes_dict[nid].get(inst, 0.5) for nid in node_ids]
+        offset = (i - n / 2 + 0.5) * w
+        bars = ax.bar(x + offset, vals, w, label=inst.capitalize(),
+                      color=inst_colors[inst], alpha=0.85, edgecolor="#fff", linewidth=0.3)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(node_ids, rotation=15, ha="right", fontsize=8)
+    ax.set_ylim(0, 1.1)
+    ax.set_ylabel("Trust score", fontsize=9)
+    ax.set_title("Institutional Trust per Node (Extension 9)", fontsize=10, pad=8)
+    ax.axhline(0.5, color="#aaa", linestyle="--", linewidth=0.7, alpha=0.6)
+    ax.legend(fontsize=8, facecolor="#1a1a2e", edgecolor="#555", labelcolor="#e0e0e0")
+    ax.grid(axis="y", alpha=0.3)
+    ax.set_axisbelow(True)
+
 # ── Experiment info banner ────────────────────────────────────────────────────
 
 def make_banner(meta, ax):
@@ -497,15 +675,15 @@ def save_individual(fn, plot_fn, *args, out_dir):
 
 # ── Dashboard ─────────────────────────────────────────────────────────────────
 
-def build_dashboard(meta, topology, persona_map, nodes_data, out_dir):
+def build_dashboard(meta, topology, persona_map, nodes_data, exp_dir, out_dir):
     with plt.style.context(PLOT_STYLE):
-        fig = plt.figure(figsize=(22, 20), facecolor="#1a1a2e")
+        fig = plt.figure(figsize=(22, 30), facecolor="#1a1a2e")
         gs = gridspec.GridSpec(
-            4, 2,
+            6, 2,
             figure=fig,
-            hspace=0.48,
+            hspace=0.50,
             wspace=0.32,
-            height_ratios=[0.6, 1.8, 1.4, 1.4],
+            height_ratios=[0.5, 1.7, 1.3, 1.3, 1.3, 1.3],
         )
 
         # Row 0 — banner (spans both columns)
@@ -539,6 +717,24 @@ def build_dashboard(meta, topology, persona_map, nodes_data, out_dir):
         ax_trust = fig.add_subplot(gs[3, 1])
         ax_trust.set_facecolor("#16213e")
         plot_trust_evolution(topology, nodes_data, ax_trust)
+
+        # Row 4 — network evolution (left) + opinion dynamics (right)
+        ax_ne = fig.add_subplot(gs[4, 0])
+        ax_ne.set_facecolor("#16213e")
+        plot_network_evolution(meta, topology, persona_map, ax_ne)
+
+        ax_od = fig.add_subplot(gs[4, 1])
+        ax_od.set_facecolor("#16213e")
+        plot_opinion_dynamics(exp_dir, meta, ax_od)
+
+        # Row 5 — institutional trust (left) + empty / future (right)
+        ax_it = fig.add_subplot(gs[5, 0])
+        ax_it.set_facecolor("#16213e")
+        plot_institutional_trust(exp_dir, ax_it)
+
+        ax_empty = fig.add_subplot(gs[5, 1])
+        ax_empty.set_facecolor("#16213e")
+        ax_empty.axis("off")
 
         out_path = out_dir / "dashboard.png"
         fig.savefig(out_path, dpi=150, bbox_inches="tight",
@@ -598,10 +794,16 @@ def main():
                     nodes_data, meta, out_dir=out_dir)
     save_individual("06_trust_evolution.png", plot_trust_evolution,
                     topology, nodes_data, out_dir=out_dir)
+    save_individual("07_network_evolution.png", plot_network_evolution,
+                    meta, topology, persona_map, out_dir=out_dir)
+    save_individual("08_opinion_dynamics.png", plot_opinion_dynamics,
+                    exp_dir, meta, out_dir=out_dir)
+    save_individual("09_institutional_trust.png", plot_institutional_trust,
+                    exp_dir, out_dir=out_dir)
 
     # Dashboard
     print("  Building dashboard…")
-    build_dashboard(meta, topology, persona_map, nodes_data, out_dir)
+    build_dashboard(meta, topology, persona_map, nodes_data, exp_dir, out_dir)
 
     print(f"\nDone. All images in: {out_dir.resolve()}")
 
