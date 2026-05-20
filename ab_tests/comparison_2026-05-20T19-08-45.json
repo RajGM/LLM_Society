@@ -1,0 +1,572 @@
+{
+  "timestamp": "2026-05-20T19:08:45.028Z",
+  "runs": 1,
+  "baseline": {
+    "config": {
+      "topology": "linear_chain",
+      "topologyParams": {
+        "numNodes": 5
+      },
+      "maxTicks": 8,
+      "defaultModel": "gpt-4o-mini",
+      "auditorModel": "gpt-4o-mini",
+      "auditorQuestions": 5,
+      "seedArticles": [
+        "crime_0",
+        "technology_0"
+      ],
+      "seedNodes": [
+        "node_0"
+      ],
+      "defaultPersonaAssignment": "sequential",
+      "nodeParams": {
+        "trustThreshold": 0.2,
+        "actionWeights": {
+          "forward": 0.25,
+          "reinterpret": 0.55,
+          "drop": 0.15
+        },
+        "relationEvolution": true,
+        "trustDelta": 0.05,
+        "maxHops": 6,
+        "strippedProperties": []
+      }
+    },
+    "metrics": {
+      "crime_0": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "politically_biased_left",
+            "reach": 1,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "politically_biased_right",
+            "reach": 1,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "lifestyle_influencer",
+            "reach": 1,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "brand_collaborator",
+            "reach": 1,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "sensationalist_news",
+            "reach": 1,
+            "meanMI": 1,
+            "fidelity": 0.8
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 3,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 4,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 5,
+            "meanMI": 1,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        }
+      },
+      "technology_0": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "politically_biased_left",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "politically_biased_right",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "lifestyle_influencer",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.3333333333333333,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        }
+      }
+    }
+  },
+  "variants": [
+    {
+      "variantIndex": 1,
+      "config": {
+        "_description": "Three-cluster echo chamber. Dense intra-cluster connections with high trust; sparse inter-cluster bridges with low trust. Cluster 0 = left-leaning, Cluster 1 = right-leaning, Cluster 2 = expert/neutral. Models Facebook groups, subreddit communities, ideological silos.",
+        "topology": "echo_chamber",
+        "topologyParams": {
+          "numNodes": 18,
+          "numChambers": 3,
+          "intraEdgeProb": 0.7,
+          "interEdgeProb": 0.05,
+          "intraTrust": 0.85,
+          "interTrust": 0.15,
+          "personasByCluster": [
+            [
+              "politically_biased_left",
+              "lgbtq_advocate",
+              "environmentalist",
+              "lifestyle_influencer",
+              "conflict_creator"
+            ],
+            [
+              "politically_biased_right",
+              "religious_leader",
+              "young_parent",
+              "gadget_enthusiast",
+              "startup_founder"
+            ],
+            [
+              "neutral_news",
+              "investigative_journalist",
+              "medical_expert",
+              "tech_expert",
+              "peacekeeper"
+            ]
+          ]
+        },
+        "defaultPersonaAssignment": "by_cluster",
+        "maxTicks": 15,
+        "defaultModel": "gpt-4o-mini",
+        "auditorModel": "gpt-4o-mini",
+        "seedArticles": [
+          "politics_0",
+          "healthcare_0"
+        ],
+        "seedNodes": [
+          "node_0"
+        ],
+        "nodeParams": {
+          "trustThreshold": 0.2,
+          "actionWeights": {
+            "forward": 0.25,
+            "reinterpret": 0.55,
+            "drop": 0.15
+          },
+          "relationEvolution": true,
+          "trustDelta": 0.06,
+          "maxHops": 8
+        }
+      },
+      "metrics": {
+        "politics_0": {
+          "informationHalfLife": {
+            "perNode": {
+              "node_0": null,
+              "node_1": null,
+              "node_2": null,
+              "node_3": null,
+              "node_4": null,
+              "node_5": null,
+              "node_6": null,
+              "node_7": null,
+              "node_8": null,
+              "node_9": null,
+              "node_10": null,
+              "node_11": null,
+              "node_12": null,
+              "node_13": null,
+              "node_14": null,
+              "node_15": null,
+              "node_16": null,
+              "node_17": null
+            },
+            "networkMedian": null
+          },
+          "cascadeReachVsFidelity": [
+            {
+              "nodeId": "node_9",
+              "personaId": "conflict_creator",
+              "reach": 42,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_6",
+              "personaId": "lgbtq_advocate",
+              "reach": 41,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_12",
+              "personaId": "environmentalist",
+              "reach": 39,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_7",
+              "personaId": "young_parent",
+              "reach": 36,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_5",
+              "personaId": "neutral_news",
+              "reach": 30,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_14",
+              "personaId": "peacekeeper",
+              "reach": 30,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_11",
+              "personaId": "investigative_journalist",
+              "reach": 28,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_13",
+              "personaId": "gadget_enthusiast",
+              "reach": 28,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_15",
+              "personaId": "politically_biased_left",
+              "reach": 27,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_16",
+              "personaId": "religious_leader",
+              "reach": 27,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_17",
+              "personaId": "medical_expert",
+              "reach": 27,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_8",
+              "personaId": "tech_expert",
+              "reach": 23,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_10",
+              "personaId": "politically_biased_right",
+              "reach": 15,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_0",
+              "personaId": "politically_biased_left",
+              "reach": 12,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_3",
+              "personaId": "brand_collaborator",
+              "reach": 10,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_1",
+              "personaId": "politically_biased_right",
+              "reach": 8,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_4",
+              "personaId": "sensationalist_news",
+              "reach": 6,
+              "meanMI": 0,
+              "fidelity": 1
+            },
+            {
+              "nodeId": "node_2",
+              "personaId": "lifestyle_influencer",
+              "reach": 5,
+              "meanMI": 0,
+              "fidelity": 1
+            }
+          ],
+          "networkMIOverTime": [
+            {
+              "tick": 1,
+              "meanMI": 0,
+              "activeNodes": 1
+            },
+            {
+              "tick": 2,
+              "meanMI": 0,
+              "activeNodes": 1
+            },
+            {
+              "tick": 3,
+              "meanMI": 0,
+              "activeNodes": 2
+            },
+            {
+              "tick": 4,
+              "meanMI": 0,
+              "activeNodes": 7
+            },
+            {
+              "tick": 5,
+              "meanMI": 0,
+              "activeNodes": 25
+            },
+            {
+              "tick": 6,
+              "meanMI": 0,
+              "activeNodes": 76
+            },
+            {
+              "tick": 7,
+              "meanMI": 0,
+              "activeNodes": 134
+            },
+            {
+              "tick": 8,
+              "meanMI": 0,
+              "activeNodes": 188
+            }
+          ],
+          "giniCoefficient": 0,
+          "criticalMassThreshold": [
+            {
+              "tick": 1,
+              "fraction": 0,
+              "aboveThreshold": 0
+            },
+            {
+              "tick": 2,
+              "fraction": 0,
+              "aboveThreshold": 0
+            },
+            {
+              "tick": 3,
+              "fraction": 0,
+              "aboveThreshold": 0
+            },
+            {
+              "tick": 4,
+              "fraction": 0,
+              "aboveThreshold": 0
+            },
+            {
+              "tick": 5,
+              "fraction": 0,
+              "aboveThreshold": 0
+            },
+            {
+              "tick": 6,
+              "fraction": 0,
+              "aboveThreshold": 0
+            },
+            {
+              "tick": 7,
+              "fraction": 0,
+              "aboveThreshold": 0
+            },
+            {
+              "tick": 8,
+              "fraction": 0,
+              "aboveThreshold": 0
+            }
+          ],
+          "structuralVirality": 1.9019607843137254,
+          "frameMetrics": {
+            "meanFrameShift": null,
+            "meanSentimentDelta": null,
+            "totalNewClaims": 0,
+            "uniqueNewClaims": 0
+          }
+        },
+        "healthcare_0": {
+          "informationHalfLife": {
+            "perNode": {
+              "node_0": null,
+              "node_1": null,
+              "node_2": null,
+              "node_3": null,
+              "node_4": null,
+              "node_5": null,
+              "node_6": null,
+              "node_7": null,
+              "node_8": null,
+              "node_9": null,
+              "node_10": null,
+              "node_11": null,
+              "node_12": null,
+              "node_13": null,
+              "node_14": null,
+              "node_15": null,
+              "node_16": null,
+              "node_17": null
+            },
+            "networkMedian": null
+          },
+          "cascadeReachVsFidelity": [],
+          "networkMIOverTime": [],
+          "giniCoefficient": 0,
+          "criticalMassThreshold": [],
+          "structuralVirality": 0,
+          "frameMetrics": {
+            "meanFrameShift": null,
+            "meanSentimentDelta": null,
+            "totalNewClaims": 0,
+            "uniqueNewClaims": 0
+          }
+        }
+      },
+      "effectSizes": {}
+    }
+  ]
+}

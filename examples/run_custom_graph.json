@@ -1,0 +1,63 @@
+{
+  "_comment": "Custom graph: 4 nodes, explicit edges, each node can have its own model and persona",
+  "topology": "custom",
+  "maxTicks": 6,
+  "auditorModel": "gpt-4o-mini",
+  "seedArticles": ["politics_0"],
+  "seedNodes": ["origin"],
+
+  "nodes": [
+    {
+      "nodeId": "origin",
+      "personaId": "neutral",
+      "modelId": "gpt-4o-mini",
+      "params": {
+        "trustThreshold": 0.1,
+        "actionWeights": { "forward": 0.0, "reinterpret": 0.8, "drop": 0.1 },
+        "maxHops": 5
+      }
+    },
+    {
+      "nodeId": "left_wing",
+      "personaId": "politically_biased_left",
+      "modelId": "gpt-4o-mini",
+      "params": {
+        "trustThreshold": 0.2,
+        "actionWeights": { "forward": 0.2, "reinterpret": 0.6, "drop": 0.1 }
+      }
+    },
+    {
+      "nodeId": "right_wing",
+      "personaId": "politically_biased_right",
+      "modelId": "gpt-4o-mini",
+      "params": {
+        "trustThreshold": 0.2,
+        "actionWeights": { "forward": 0.2, "reinterpret": 0.6, "drop": 0.1 }
+      }
+    },
+    {
+      "nodeId": "journalist",
+      "personaId": "investigative_journalist",
+      "modelId": "gpt-4o-mini",
+      "params": {
+        "trustThreshold": 0.3,
+        "actionWeights": { "forward": 0.4, "reinterpret": 0.4, "drop": 0.1 }
+      }
+    }
+  ],
+
+  "edges": [
+    { "from": "origin",     "to": "left_wing",  "trust": 0.7 },
+    { "from": "origin",     "to": "right_wing", "trust": 0.7 },
+    { "from": "left_wing",  "to": "journalist", "trust": 0.5 },
+    { "from": "right_wing", "to": "journalist", "trust": 0.5 },
+    { "from": "left_wing",  "to": "right_wing", "trust": 0.2 },
+    { "from": "right_wing", "to": "left_wing",  "trust": 0.2 }
+  ],
+
+  "nodeParams": {
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 5
+  }
+}

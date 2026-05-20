@@ -1,0 +1,19 @@
+{
+  "topology": "linear_chain",
+  "topologyParams": { "numNodes": 5 },
+  "maxTicks": 8,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "auditorQuestions": 5,
+  "seedArticles": ["crime_0", "technology_0"],
+  "seedNodes": ["node_0"],
+  "defaultPersonaAssignment": "sequential",
+  "nodeParams": {
+    "trustThreshold": 0.2,
+    "actionWeights": { "forward": 0.25, "reinterpret": 0.55, "drop": 0.15 },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 6,
+    "strippedProperties": []
+  }
+}

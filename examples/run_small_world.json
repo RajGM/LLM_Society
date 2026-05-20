@@ -1,0 +1,22 @@
+{
+  "_description": "Watts-Strogatz small-world network. High local clustering (like real friend/colleague groups) with occasional long-range bridges. Models offline social networks, academic circles, workplace communities.",
+  "topology": "small_world",
+  "topologyParams": {
+    "numNodes": 15,
+    "k": 4,
+    "beta": 0.15
+  },
+  "defaultPersonaAssignment": "sequential",
+  "maxTicks": 12,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "seedArticles": ["crime_0", "healthcare_0"],
+  "seedNodes": ["node_0"],
+  "nodeParams": {
+    "trustThreshold": 0.25,
+    "actionWeights": { "forward": 0.30, "reinterpret": 0.50, "drop": 0.15 },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 10
+  }
+}

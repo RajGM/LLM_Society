@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node --check config/models.js)",
+      "Bash(node --check config/experiment.js)",
+      "Bash(node --check src/fileIO.js)",
+      "Bash(node --check src/llmClient.js)",
+      "Bash(node --check src/SimulationNode.js)",
+      "Bash(node index.js --list-personas)",
+      "Bash(node index.js --list-articles)",
+      "Bash(node --check index.js)",
+      "Bash(node index.js --dry-run --config examples/run_linear_chain.json)",
+      "Bash(node -e ' *)",
+      "PowerShell(cd \"f:\\\\SocietySimulation\"; $env:PYTHONIOENCODING=\"utf-8\"; python visualize.py --latest 2>&1)",
+      "PowerShell(Get-ChildItem \"f:\\\\SocietySimulation\\\\experiments\\\\exp_2026-05-20_16-58-40\\\\plots\" | Select-Object Name, @{N=\"KB\";E={[math]::Round\\($_.Length/1KB,1\\)}})",
+      "Bash(node --check src/SocietyGraph.js)",
+      "Bash(node --check src/Simulation.js)",
+      "Bash(node index.js --dry-run --config examples/run_small_world.json)",
+      "Bash(node index.js --dry-run --config examples/run_scale_free.json)",
+      "Bash(node index.js --dry-run --config examples/run_echo_chamber.json)",
+      "Bash(node index.js --dry-run --config examples/run_polarized.json)",
+      "Bash(node index.js --dry-run --config examples/run_hierarchical.json)",
+      "PowerShell($exp = Get-ChildItem \"f:\\\\SocietySimulation\\\\experiments\" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; Get-Content \"$exp\\\\state.json\")",
+      "PowerShell($exp = Get-ChildItem \"f:\\\\SocietySimulation\\\\experiments\" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; $state = Get-Content \"$exp\\\\state.json\" | ConvertFrom-Json; $state.status = \"failed\"; $state.phase = \"audit\"; $state.audit.completedArticles = @\\(\"crime_0\"\\); $state.audit.currentArticle = \"technology_0\"; $state.error = @{ phase=\"audit\"; articleId=\"technology_0\"; message=\"Simulated rate limit\"; timestamp=\"2026-05-20T18:00:00.000Z\" }; $state | ConvertTo-Json -Depth 10 | Set-Content \"$exp\\\\state.json\"; Write-Host \"Patched state.json to simulate mid-audit failure\")",
+      "Bash(DRY_RUN=1 node -e ' *)",
+      "Bash(node index.js --dry-run --ab-test --base examples/run_linear_chain.json --variant examples/run_echo_chamber.json)",
+      "PowerShell($f = Get-ChildItem \"f:\\\\SocietySimulation\\\\ab_tests\" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; Get-Content $f | ConvertFrom-Json | Select-Object -ExpandProperty variants | ForEach-Object { Write-Host \"Variant $\\($_.variantIndex\\)\"; $_.effectSizes | ConvertTo-Json -Depth 5 })",
+      "PowerShell($exp = Get-ChildItem \"f:\\\\SocietySimulation\\\\experiments\" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName; Get-Content \"$exp\\\\human_eval_template.csv\" | Select-Object -First 5)"
+    ]
+  }
+}

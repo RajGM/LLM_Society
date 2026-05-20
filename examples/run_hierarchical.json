@@ -1,0 +1,23 @@
+{
+  "_description": "Branching-factor-3 tree. Root = authoritative source (neutral news). Level 1 = editors/columnists. Level 2 = general reporters/influencers. Level 3 = audience (parents, students, consumers). High downward trust (authority to audience); low upward trust (audience feedback rarely believed). Models traditional media hierarchies, government info dissemination, organisational comms.",
+  "topology": "hierarchical",
+  "topologyParams": {
+    "numNodes": 13,
+    "branchingFactor": 3,
+    "downTrust": 0.82,
+    "upTrust": 0.25
+  },
+  "defaultPersonaAssignment": "by_cluster",
+  "maxTicks": 10,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "seedArticles": ["healthcare_0", "crime_0"],
+  "seedNodes": ["node_0"],
+  "nodeParams": {
+    "trustThreshold": 0.20,
+    "actionWeights": { "forward": 0.35, "reinterpret": 0.45, "drop": 0.15 },
+    "relationEvolution": true,
+    "trustDelta": 0.04,
+    "maxHops": 8
+  }
+}

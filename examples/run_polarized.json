@@ -1,0 +1,31 @@
+{
+  "_description": "Two heavily polarized ideological clusters with almost no cross-cluster edges and very low cross-cluster trust. Bridge nodes (neutral_news, investigative_journalist, peacekeeper) are the only realistic cross-cluster conduits. Models U.S. political Twitter, strongly partisan communities.",
+  "topology": "polarized",
+  "topologyParams": {
+    "numNodes": 14,
+    "intraEdgeProb": 0.78,
+    "interEdgeProb": 0.04,
+    "intraTrust": 0.90,
+    "interTrust": 0.08,
+    "bridgeNodeIds": ["node_6", "node_7"],
+    "personasByCluster": [
+      ["politically_biased_left", "environmentalist", "lgbtq_advocate",
+       "lifestyle_influencer", "conflict_creator", "sensationalist_news"],
+      ["politically_biased_right", "religious_leader", "young_parent",
+       "gadget_enthusiast", "startup_founder", "opinion_columnist"]
+    ]
+  },
+  "defaultPersonaAssignment": "by_cluster",
+  "maxTicks": 15,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "seedArticles": ["politics_0"],
+  "seedNodes": ["node_0"],
+  "nodeParams": {
+    "trustThreshold": 0.15,
+    "actionWeights": { "forward": 0.20, "reinterpret": 0.60, "drop": 0.15 },
+    "relationEvolution": true,
+    "trustDelta": 0.07,
+    "maxHops": 10
+  }
+}

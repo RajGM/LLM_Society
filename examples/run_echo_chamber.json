@@ -1,0 +1,30 @@
+{
+  "_description": "Three-cluster echo chamber. Dense intra-cluster connections with high trust; sparse inter-cluster bridges with low trust. Cluster 0 = left-leaning, Cluster 1 = right-leaning, Cluster 2 = expert/neutral. Models Facebook groups, subreddit communities, ideological silos.",
+  "topology": "echo_chamber",
+  "topologyParams": {
+    "numNodes": 18,
+    "numChambers": 3,
+    "intraEdgeProb": 0.70,
+    "interEdgeProb": 0.05,
+    "intraTrust": 0.85,
+    "interTrust": 0.15,
+    "personasByCluster": [
+      ["politically_biased_left", "lgbtq_advocate", "environmentalist", "lifestyle_influencer", "conflict_creator"],
+      ["politically_biased_right", "religious_leader", "young_parent", "gadget_enthusiast", "startup_founder"],
+      ["neutral_news", "investigative_journalist", "medical_expert", "tech_expert", "peacekeeper"]
+    ]
+  },
+  "defaultPersonaAssignment": "by_cluster",
+  "maxTicks": 15,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "seedArticles": ["politics_0", "healthcare_0"],
+  "seedNodes": ["node_0"],
+  "nodeParams": {
+    "trustThreshold": 0.20,
+    "actionWeights": { "forward": 0.25, "reinterpret": 0.55, "drop": 0.15 },
+    "relationEvolution": true,
+    "trustDelta": 0.06,
+    "maxHops": 8
+  }
+}
