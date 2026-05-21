@@ -30,6 +30,10 @@ const Simulation = require("./src/Simulation");
 const ABTestRunner = require("./src/ABTestRunner");
 const DSLCompiler = require("./src/DSLCompiler");
 const BotResilienceRunner = require("./src/BotResilienceRunner");
+const MultiCycleRunner       = require("./src/MultiCycleRunner");
+const DigitalTwinRunner      = require("./src/DigitalTwinRunner");
+const BatchValidationRunner  = require("./src/BatchValidationRunner");
+const SensitivityRunner      = require("./src/SensitivityRunner");
 
 async function main() {
   const args = process.argv.slice(2);
@@ -190,6 +194,257 @@ async function main() {
       articleId,
     });
     await runner.run();
+    return;
+  }
+
+  // ── Digital twin validation ────────────────────────────────────────────────
+  // Usage:
+  //   node index.js --digital-twin --cascade data/fakenewsnet/cascade.json
+  //       [--article-text "...text..."]
+  //       [--article-file path/to/article.txt]
+  //       [--domain crime]
+  //       [--runs 5]
+  //       [--inference inferred|follower_only|random|neutral]
+  //       [--config examples/run_digital_twin.json]
+  if (args.includes("--digital-twin")) {
+    const dtConfigIdx = args.indexOf("--config");
+    let dtConfig = {};
+    if (dtConfigIdx !== -1) {
+      dtConfig = loadConfig(args[dtConfigIdx + 1]);
+      console.log(`Loaded digital twin config from: ${args[dtConfigIdx + 1]}`);
+    }
+
+    const cascadeIdx  = args.indexOf("--cascade");
+    if (cascadeIdx === -1) {
+      console.error("--digital-twin requires --cascade <path>");
+      process.exit(1);
+    }
+    const cascadeFile = resolveArg(args[cascadeIdx + 1]);
+
+    let articleText = "";
+    const artTextIdx = args.indexOf("--article-text");
+    const artFileIdx = args.indexOf("--article-file");
+    if (artTextIdx !== -1) {
+      articleText = args[artTextIdx + 1];
+    } else if (artFileIdx !== -1) {
+      articleText = fs.readFileSync(resolveArg(args[artFileIdx + 1]), "utf8").trim();
+    } else {
+      // Try to extract from cascade JSON itself
+      try {
+        const cas = JSON.parse(fs.readFileSync(cascadeFile, "utf8"));
+        articleText = cas.article_text || cas.title || "Article text not provided.";
+      } catch (_) {
+        articleText = "Article text not provided.";
+      }
+    }
+
+    const domainIdx    = args.indexOf("--domain");
+    const domain       = domainIdx !== -1 ? args[domainIdx + 1] : (dtConfig.domain || "imported");
+    const runsIdx      = args.indexOf("--runs");
+    const numRuns      = runsIdx !== -1 ? parseInt(args[runsIdx + 1], 10) : (dtConfig.numRuns || 1);
+    const inferenceIdx = args.indexOf("--inference");
+    const inference    = inferenceIdx !== -1 ? args[inferenceIdx + 1] : (dtConfig.inference || "inferred");
+
+    const dtRunner = new DigitalTwinRunner({
+      modelId:           dtConfig.defaultModel || "gpt-4o-mini",
+      auditorModel:      dtConfig.auditorModel || "gpt-4o-mini",
+      maxTicks:          dtConfig.maxTicks || 12,
+      enableBeliefs:     dtConfig.enableBeliefs || false,
+      enableFrameAnalysis: dtConfig.enableFrameAnalysis !== false,
+      enableProvenance:  dtConfig.enableProvenance !== false,
+      numRuns,
+      inference,
+    });
+
+    await dtRunner.run(cascadeFile, articleText, domain);
+    return;
+  }
+
+  // ── Batch validation ───────────────────────────────────────────────────────
+  // Usage:
+  //   node index.js --validate-batch \
+  //       --cascade-dir data/fakenewsnet/ \
+  //       [--article-dir data/fakenewsnet/articles/] \
+  //       [--max-cascades 50]
+  //       [--inference inferred]
+  if (args.includes("--validate-batch")) {
+    const bvConfigIdx = args.indexOf("--config");
+    let bvConfig = {};
+    if (bvConfigIdx !== -1) {
+      bvConfig = loadConfig(args[bvConfigIdx + 1]);
+    }
+
+    const cascadeDirIdx = args.indexOf("--cascade-dir");
+    if (cascadeDirIdx === -1) {
+      console.error("--validate-batch requires --cascade-dir <path>");
+      process.exit(1);
+    }
+    const cascadeDir    = resolveArg(args[cascadeDirIdx + 1]);
+    const artDirIdx     = args.indexOf("--article-dir");
+    const articleDir    = artDirIdx !== -1 ? resolveArg(args[artDirIdx + 1]) : null;
+    const maxCasIdx     = args.indexOf("--max-cascades");
+    const maxCascades   = maxCasIdx !== -1 ? parseInt(args[maxCasIdx + 1], 10) : (bvConfig.maxCascades || 50);
+    const bvInfIdx      = args.indexOf("--inference");
+    const bvInference   = bvInfIdx !== -1 ? args[bvInfIdx + 1] : (bvConfig.inference || "inferred");
+
+    const bvRunner = new BatchValidationRunner({
+      modelId:      bvConfig.defaultModel || "gpt-4o-mini",
+      auditorModel: bvConfig.auditorModel || "gpt-4o-mini",
+      maxTicks:     bvConfig.maxTicks || 12,
+      maxCascades,
+      inference:    bvInference,
+    });
+    await bvRunner.run(cascadeDir, articleDir);
+    return;
+  }
+
+  // ── Sensitivity analysis ───────────────────────────────────────────────────
+  // Usage:
+  //   node index.js --validate-sensitivity \
+  //       --cascade data/fakenewsnet/cascade.json \
+  //       [--strategies inferred,random,follower_only,neutral]
+  //       [--runs-per-strategy 5]
+  //       [--article-text "..."]
+  if (args.includes("--validate-sensitivity")) {
+    const svCascadeIdx = args.indexOf("--cascade");
+    if (svCascadeIdx === -1) {
+      console.error("--validate-sensitivity requires --cascade <path>");
+      process.exit(1);
+    }
+    const svCascadeFile = resolveArg(args[svCascadeIdx + 1]);
+
+    let svArticleText = "";
+    const svArtTextIdx = args.indexOf("--article-text");
+    const svArtFileIdx = args.indexOf("--article-file");
+    if (svArtTextIdx !== -1) {
+      svArticleText = args[svArtTextIdx + 1];
+    } else if (svArtFileIdx !== -1) {
+      svArticleText = fs.readFileSync(resolveArg(args[svArtFileIdx + 1]), "utf8").trim();
+    } else {
+      try {
+        const cas = JSON.parse(fs.readFileSync(svCascadeFile, "utf8"));
+        svArticleText = cas.article_text || cas.title || "Article text not provided.";
+      } catch (_) {
+        svArticleText = "Article text not provided.";
+      }
+    }
+
+    const svStratsIdx   = args.indexOf("--strategies");
+    const svStrategies  = svStratsIdx !== -1
+      ? args[svStratsIdx + 1].split(",").map((s) => s.trim())
+      : ["inferred", "random", "follower_only", "neutral"];
+
+    const svRunsIdx     = args.indexOf("--runs-per-strategy");
+    const svRuns        = svRunsIdx !== -1 ? parseInt(args[svRunsIdx + 1], 10) : 3;
+
+    const svRunner = new SensitivityRunner({
+      modelId:         "gpt-4o-mini",
+      auditorModel:    "gpt-4o-mini",
+      maxTicks:        12,
+      runsPerStrategy: svRuns,
+    });
+    await svRunner.run(svCascadeFile, svArticleText, svStrategies);
+    return;
+  }
+
+  // ── Emergent polarization experiment ──────────────────────────────────────
+  // Usage:
+  //   node index.js --polarization --config examples/run_polarization.json
+  //       [--cycles 8]
+  //       [--sequence repeat_shuffle|controversy_gradient|alternating]
+  //       [--articles politics_0,technology_0,crime_0]
+  if (args.includes("--polarization")) {
+    const configIdx3 = args.indexOf("--config");
+    let polConfig = {};
+    if (configIdx3 !== -1) {
+      polConfig = loadConfig(args[configIdx3 + 1]);
+      console.log(`Loaded polarization config from: ${args[configIdx3 + 1]}`);
+    }
+
+    const cyclesIdx   = args.indexOf("--cycles");
+    const cycles      = cyclesIdx !== -1 ? parseInt(args[cyclesIdx + 1], 10) : undefined;
+
+    const seqIdx      = args.indexOf("--sequence");
+    const seqStrategy = seqIdx !== -1 ? args[seqIdx + 1] : undefined;
+
+    const artIdx      = args.indexOf("--articles");
+    const articles    = artIdx !== -1 ? args[artIdx + 1].split(",").map((s) => s.trim()) : undefined;
+
+    const runner = new MultiCycleRunner(polConfig, {
+      cycles:          cycles || polConfig.cycles || 5,
+      articleSequence: articles || polConfig.articleSequence || polConfig.seedArticles,
+      sequenceStrategy: seqStrategy || polConfig.sequenceStrategy || "repeat_shuffle",
+    });
+
+    const result = await runner.run();
+    MultiCycleRunner.printSummary(result.summary);
+    return;
+  }
+
+  // ── Polarization phase diagram ─────────────────────────────────────────────
+  // Usage:
+  //   node index.js --polarization-phase-diagram --config examples/run_polarization.json
+  //       [--cycles 5]
+  //       [--ideology-range 0.1,0.3,0.5,0.7]
+  //       [--expert-range 0.0,0.1,0.2,0.3]
+  if (args.includes("--polarization-phase-diagram")) {
+    const configIdx4 = args.indexOf("--config");
+    let pdConfig = {};
+    if (configIdx4 !== -1) {
+      pdConfig = loadConfig(args[configIdx4 + 1]);
+      console.log(`Loaded phase-diagram config from: ${args[configIdx4 + 1]}`);
+    }
+
+    const parseRange = (flag) => {
+      const i = args.indexOf(flag);
+      return i !== -1 ? args[i + 1].split(",").map(Number) : null;
+    };
+
+    const cyclesIdx2    = args.indexOf("--cycles");
+    const cycles2       = cyclesIdx2 !== -1 ? parseInt(args[cyclesIdx2 + 1], 10) : (pdConfig.cycles || 4);
+    const ideologyRange = parseRange("--ideology-range") || [0.1, 0.3, 0.5, 0.7];
+    const expertRange   = parseRange("--expert-range")   || [0.0, 0.1, 0.2, 0.3];
+
+    const runner2 = new MultiCycleRunner(pdConfig, {
+      cycles:          cycles2,
+      articleSequence: pdConfig.articleSequence || pdConfig.seedArticles,
+      sequenceStrategy: pdConfig.sequenceStrategy || "repeat_shuffle",
+    });
+
+    const pdResult = await runner2.runPhaseDiagram(ideologyRange, expertRange);
+    console.log(`\nPhase diagram written. ${pdResult.results.length} data points collected.`);
+    return;
+  }
+
+  // ── Polarization intervention timing ──────────────────────────────────────
+  // Usage:
+  //   node index.js --polarization-intervention --config examples/run_polarization.json
+  //       [--cycles 8]
+  //       [--intervention-cycles 1,2,3,4,5]
+  if (args.includes("--polarization-intervention")) {
+    const configIdx5 = args.indexOf("--config");
+    let intConfig = {};
+    if (configIdx5 !== -1) {
+      intConfig = loadConfig(args[configIdx5 + 1]);
+      console.log(`Loaded intervention config from: ${args[configIdx5 + 1]}`);
+    }
+
+    const cyclesIdx3  = args.indexOf("--cycles");
+    const cycles3     = cyclesIdx3 !== -1 ? parseInt(args[cyclesIdx3 + 1], 10) : (intConfig.cycles || 6);
+
+    const intCyclesIdx = args.indexOf("--intervention-cycles");
+    const interventionCycles = intCyclesIdx !== -1
+      ? args[intCyclesIdx + 1].split(",").map(Number)
+      : [1, 2, 3, 4];
+
+    const runner3 = new MultiCycleRunner(intConfig, {
+      cycles:          cycles3,
+      articleSequence: intConfig.articleSequence || intConfig.seedArticles,
+      sequenceStrategy: intConfig.sequenceStrategy || "repeat_shuffle",
+    });
+
+    const intResult = await runner3.runInterventionExperiment(interventionCycles);
+    console.log(`\nIntervention experiment done. ${intResult.results.length} conditions tested.`);
     return;
   }
 

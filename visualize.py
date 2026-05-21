@@ -795,6 +795,561 @@ def plot_bot_impact(exp_dir, ax=None):
     if standalone:
         plt.tight_layout()
 
+# ── Plot 16: Cascade structure comparison ─────────────────────────────────────
+
+def plot_cascade_comparison(exp_dir: Path, ax=None):
+    """Real vs simulated cascade structure side-by-side bar chart."""
+    report_path = exp_dir / "validation_report.json"
+    standalone  = ax is None
+    if standalone:
+        fig, ax = plt.subplots(figsize=(10, 5), facecolor="#1a1a2e")
+        ax.set_facecolor("#16213e")
+
+    if not report_path.exists():
+        ax.text(0.5, 0.5, "No validation_report.json", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Cascade Structure: Real vs Simulated", color="#e0e0e0", fontsize=10)
+        return
+
+    report      = json.loads(report_path.read_text())
+    real_m      = report.get("realMetrics", {})
+    sim_m       = report.get("simulatedMetrics", {})
+    scalar_cmp  = report.get("structuralComparison", {}).get("scalarComparison", {})
+    dtfs        = report.get("dtfs", {})
+
+    metrics = ["depth", "breadth", "structuralVirality"]
+    labels  = ["Depth", "Breadth", "Struct. Virality"]
+    real_vals = [real_m.get(m, 0) for m in metrics]
+    sim_vals  = [sim_m.get(m, 0)  for m in metrics]
+
+    x      = np.arange(len(labels))
+    width  = 0.35
+    bars1  = ax.bar(x - width/2, real_vals, width, label="Real",      color="#3498db", alpha=0.85)
+    bars2  = ax.bar(x + width/2, sim_vals,  width, label="Simulated", color="#e67e22", alpha=0.85)
+
+    # Annotate with match/mismatch
+    for i, key in enumerate(metrics):
+        m = scalar_cmp.get(key, {})
+        if m.get("match"):
+            ax.annotate("✓", xy=(x[i], max(real_vals[i], sim_vals[i]) + 0.1),
+                        ha="center", color="#27ae60", fontsize=10)
+        elif m:
+            ax.annotate("✗", xy=(x[i], max(real_vals[i], sim_vals[i]) + 0.1),
+                        ha="center", color="#e74c3c", fontsize=10)
+
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, fontsize=9)
+    ax.set_ylabel("Value", color="#e0e0e0", fontsize=9)
+    ax.legend(fontsize=8, facecolor="#16213e", labelcolor="#e0e0e0")
+    ax.set_title(
+        f"Cascade Structure: Real vs Simulated  "
+        f"[DTFS={dtfs.get('dtfs', '?')}  "
+        f"{'✓ Validated' if dtfs.get('isValidated') else '✗'}]",
+        color="#e0e0e0", fontsize=9
+    )
+    ax.grid(True, axis="y", alpha=0.3)
+    for spine in ax.spines.values():
+        spine.set_edgecolor("#e0e0e0")
+    ax.tick_params(colors="#e0e0e0", labelsize=8)
+
+    if standalone:
+        plt.tight_layout()
+
+
+# ── Plot 17: Distributional match ──────────────────────────────────────────────
+
+def plot_distribution_match(exp_dir: Path, ax=None):
+    """4-panel: depth/breadth/SV/size distributions real vs simulated (batch results)."""
+    summary_path = exp_dir / "batch_summary.json"
+    report_path  = exp_dir / "validation_report.json"
+    standalone   = ax is None
+    if standalone:
+        fig, axes = plt.subplots(2, 2, figsize=(12, 8), facecolor="#1a1a2e")
+        for a in axes.flat:
+            a.set_facecolor("#16213e")
+        ax = axes
+    else:
+        # Single-panel fallback if not standalone — show KS/JSD summary
+        data = None
+        if summary_path.exists():
+            data = json.loads(summary_path.read_text())
+        elif report_path.exists():
+            data = json.loads(report_path.read_text())
+        if data is None:
+            ax.text(0.5, 0.5, "No batch_summary.json or validation_report.json",
+                    ha="center", va="center", transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+            ax.set_title("Distribution Match", color="#e0e0e0", fontsize=10)
+            return
+        # Compact bar chart of KS statistics
+        dist_cmp = data.get("distributionalComparison", {})
+        keys  = [k for k in dist_cmp if not k.startswith("_")]
+        if not keys:
+            ax.text(0.5, 0.5, "No distributional comparison data",
+                    ha="center", va="center", transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+            ax.set_title("Distribution Match", color="#e0e0e0", fontsize=10)
+            return
+        ks_stats = [dist_cmp[k].get("ks", {}).get("statistic", 0) for k in keys]
+        colors   = ["#27ae60" if dist_cmp[k].get("distributionsMatch") else "#e74c3c" for k in keys]
+        ax.bar(keys, ks_stats, color=colors, alpha=0.85)
+        ax.axhline(y=0.1, color="#e0e0e0", linestyle="--", linewidth=1, alpha=0.5, label="KS=0.10")
+        ax.set_ylabel("KS statistic (lower=better)", color="#e0e0e0", fontsize=9)
+        ax.set_title("Distributional Match (KS statistics)", color="#e0e0e0", fontsize=10)
+        ax.legend(fontsize=7, facecolor="#16213e", labelcolor="#e0e0e0")
+        ax.tick_params(colors="#e0e0e0", labelsize=8)
+        for spine in ax.spines.values():
+            spine.set_edgecolor("#e0e0e0")
+        return
+
+    if not summary_path.exists():
+        for a in axes.flat:
+            a.text(0.5, 0.5, "No batch_summary.json\n(run --validate-batch first)",
+                   ha="center", va="center", transform=a.transAxes, color="#e0e0e0", fontsize=9)
+        axes[0, 0].set_title("Distribution Match", color="#e0e0e0", fontsize=10)
+        if standalone:
+            plt.tight_layout()
+        return
+
+    summary     = json.loads(summary_path.read_text())
+    per_cascade = summary.get("perCascadeResults", [])
+    dist_cmp    = summary.get("distributionalComparison", {})
+
+    METRICS = [
+        ("depth",              "Cascade Depth",              axes[0, 0]),
+        ("breadth",            "Cascade Breadth",            axes[0, 1]),
+        ("structuralVirality", "Structural Virality",        axes[1, 0]),
+        ("structuralSimilarity", "Struct. Similarity Score", axes[1, 1]),
+    ]
+
+    for key, title, panel in METRICS:
+        real_vals = [r.get("realMetrics", {}).get(key, 0) for r in per_cascade if "realMetrics" in r]
+        sim_vals  = [r.get("simulatedMetrics", {}).get(key, 0) for r in per_cascade if "simulatedMetrics" in r]
+
+        if key == "structuralSimilarity":
+            vals = [r.get("structuralSimilarity", 0) for r in per_cascade if "structuralSimilarity" in r]
+            panel.hist(vals, bins=10, color="#9b59b6", alpha=0.8, edgecolor="#e0e0e0", linewidth=0.4)
+            panel.axvline(np.mean(vals) if vals else 0, color="#e74c3c", linestyle="--",
+                          label=f"Mean={np.mean(vals):.2f}" if vals else "")
+            panel.set_xlabel("Structural Similarity", color="#e0e0e0", fontsize=8)
+            panel.set_ylabel("Count", color="#e0e0e0", fontsize=8)
+            panel.legend(fontsize=7, facecolor="#16213e", labelcolor="#e0e0e0")
+        else:
+            metric_stats = dist_cmp.get(key, {})
+            ks  = metric_stats.get("ks", {})
+            jsd = metric_stats.get("jsDivergence", "?")
+
+            bins = np.linspace(
+                min(real_vals + sim_vals + [0]),
+                max(real_vals + sim_vals + [1]) + 0.01,
+                15
+            )
+            panel.hist(real_vals, bins=bins, alpha=0.6, color="#3498db", label="Real",     edgecolor="none")
+            panel.hist(sim_vals,  bins=bins, alpha=0.6, color="#e67e22", label="Simulated", edgecolor="none")
+            panel.set_xlabel(title, color="#e0e0e0", fontsize=8)
+            panel.set_ylabel("Count", color="#e0e0e0", fontsize=8)
+            panel.legend(fontsize=7, facecolor="#16213e", labelcolor="#e0e0e0")
+            panel.set_title(
+                f"{title}  KS={ks.get('statistic', '?'):.3f}  JSD={float(jsd):.3f}",
+                color="#e0e0e0", fontsize=8
+            )
+
+        panel.grid(True, alpha=0.3)
+        for spine in panel.spines.values():
+            spine.set_edgecolor("#e0e0e0")
+        panel.tick_params(colors="#e0e0e0", labelsize=7)
+
+    if standalone:
+        plt.tight_layout()
+
+
+# ── Plot 18: Content drift comparison ──────────────────────────────────────────
+
+def plot_content_drift(exp_dir: Path, ax=None):
+    """Sentiment trajectory: real vs simulated at each cascade depth."""
+    report_path = exp_dir / "validation_report.json"
+    standalone  = ax is None
+    if standalone:
+        fig, ax = plt.subplots(figsize=(10, 4), facecolor="#1a1a2e")
+        ax.set_facecolor("#16213e")
+
+    if not report_path.exists():
+        ax.text(0.5, 0.5, "No validation_report.json", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Content Drift: Sentiment by Cascade Depth", color="#e0e0e0", fontsize=10)
+        return
+
+    report   = json.loads(report_path.read_text())
+    drift    = report.get("contentDrift", {})
+    sim_d    = drift.get("simulated", {})
+    real_d   = drift.get("real")
+    cmp_d    = drift.get("comparison", {})
+
+    sim_traj  = sim_d.get("sentimentTrajectory", [])
+    real_traj = real_d.get("sentimentTrajectory", []) if real_d else []
+
+    if sim_traj:
+        depths  = [p["depth"] for p in sim_traj]
+        means   = [p["mean"]  for p in sim_traj]
+        stds    = [p["std"]   for p in sim_traj]
+        ax.plot(depths, means, color="#e67e22", linewidth=2, marker="o", markersize=5, label="Simulated sentiment")
+        ax.fill_between(depths,
+                         [m - s for m, s in zip(means, stds)],
+                         [m + s for m, s in zip(means, stds)],
+                         alpha=0.2, color="#e67e22")
+
+    if real_traj:
+        r_depths = [p["depth"] for p in real_traj]
+        r_means  = [p["mean"]  for p in real_traj]
+        ax.plot(r_depths, r_means, color="#3498db", linewidth=2, marker="s", markersize=5,
+                linestyle="--", label="Real sentiment")
+
+    ax.axhline(y=0, color="#e0e0e0", linestyle=":", linewidth=0.8, alpha=0.5)
+
+    corr = cmp_d.get("contentCorrelation", "N/A")
+    label = cmp_d.get("matchLabel", "")
+    title_suffix = f"  ρ={corr}  {label}" if cmp_d.get("available") else "  (no real text)"
+
+    ax.set_xlabel("Cascade Depth", color="#e0e0e0", fontsize=9)
+    ax.set_ylabel("Mean Sentiment", color="#e0e0e0", fontsize=9)
+    ax.legend(fontsize=7, facecolor="#16213e", labelcolor="#e0e0e0")
+    ax.set_title(f"Content Drift: Sentiment by Depth{title_suffix}", color="#e0e0e0", fontsize=9)
+    ax.grid(True, alpha=0.3)
+    for spine in ax.spines.values():
+        spine.set_edgecolor("#e0e0e0")
+    ax.tick_params(colors="#e0e0e0", labelsize=8)
+
+    # Annotate reinterpret rate
+    ri = sim_d.get("reinterpretRate")
+    if ri is not None:
+        ax.annotate(f"Reinterpret rate: {ri:.1%}", xy=(0.02, 0.92),
+                    xycoords="axes fraction", color="#e0e0e0", fontsize=7)
+
+    if standalone:
+        plt.tight_layout()
+
+
+# ── Plot 19: Sensitivity analysis ──────────────────────────────────────────────
+
+def plot_sensitivity_analysis(exp_dir: Path, ax=None):
+    """Bar chart: structural similarity ± std per persona inference strategy."""
+    sens_path  = exp_dir / "sensitivity_report.json"
+    standalone = ax is None
+    if standalone:
+        fig, ax = plt.subplots(figsize=(8, 5), facecolor="#1a1a2e")
+        ax.set_facecolor("#16213e")
+
+    if not sens_path.exists():
+        ax.text(0.5, 0.5, "No sensitivity_report.json\n(run --validate-sensitivity first)",
+                ha="center", va="center", transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Sensitivity: Persona Inference Strategy", color="#e0e0e0", fontsize=10)
+        return
+
+    report  = json.loads(sens_path.read_text())
+    results = [r for r in report.get("results", []) if "error" not in r]
+    if not results:
+        ax.text(0.5, 0.5, "No results in sensitivity report", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Sensitivity Analysis", color="#e0e0e0", fontsize=10)
+        return
+
+    labels   = [r["strategy"] for r in results]
+    sim_vals = [r.get("avgStructuralSimilarity", 0) * 100 for r in results]
+    std_vals = [r.get("stdStructuralSimilarity",  0) * 100 for r in results]
+    best     = report.get("bestStrategy")
+
+    colors = ["#27ae60" if r["strategy"] == best else "#3498db" for r in results]
+    x      = np.arange(len(labels))
+
+    ax.bar(x, sim_vals, color=colors, alpha=0.85, yerr=std_vals,
+           error_kw={"ecolor": "#e0e0e0", "capsize": 4})
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, rotation=15, ha="right", fontsize=8)
+    ax.set_ylabel("Structural Similarity (%)", color="#e0e0e0", fontsize=9)
+    ax.set_ylim(0, 110)
+
+    dtfs_range = report.get("dtfsRange", 0) * 100
+    sensitivity_label = "HIGH sensitivity" if report.get("highSensitivity") else "LOW sensitivity"
+    ax.set_title(
+        f"Persona Inference Sensitivity  [{sensitivity_label}  ΔDTFS={dtfs_range:.1f}%]",
+        color="#e0e0e0", fontsize=9
+    )
+
+    # Annotate best
+    if best in labels:
+        best_idx = labels.index(best)
+        ax.annotate("best", xy=(best_idx, sim_vals[best_idx] + 3),
+                    ha="center", color="#27ae60", fontsize=8)
+
+    ax.grid(True, axis="y", alpha=0.3)
+    for spine in ax.spines.values():
+        spine.set_edgecolor("#e0e0e0")
+    ax.tick_params(colors="#e0e0e0", labelsize=7)
+
+    if standalone:
+        plt.tight_layout()
+
+
+# ── Plot 11: Polarization trajectory ──────────────────────────────────────────
+
+def plot_polarization_trajectory(exp_dir: Path, ax=None):
+    """PI over cycles with a vertical marker at the detected phase transition."""
+    summary_path = exp_dir / "polarization_summary.json"
+    standalone = ax is None
+    if standalone:
+        fig, ax = plt.subplots(figsize=(10, 4), facecolor="#1a1a2e")
+        ax.set_facecolor("#16213e")
+
+    if not summary_path.exists():
+        ax.text(0.5, 0.5, "No polarization_summary.json", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Polarization Index Trajectory", color="#e0e0e0", fontsize=10)
+        return
+
+    summary = json.loads(summary_path.read_text())
+    traj    = summary.get("piTrajectory", [])
+    if not traj:
+        ax.text(0.5, 0.5, "Empty PI trajectory", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Polarization Index Trajectory", color="#e0e0e0", fontsize=10)
+        return
+
+    cycles = list(range(1, len(traj) + 1))
+    ax.plot(cycles, traj, color="#9b59b6", linewidth=2.0, marker="o", markersize=5, label="PI")
+
+    transitions = summary.get("transitions", {})
+    tc = transitions.get("transitionCycle")
+    if tc and transitions.get("isSignificant"):
+        ax.axvline(x=tc, color="#e74c3c", linestyle="--", linewidth=1.5,
+                   label=f"Phase transition (c={tc})")
+        ax.annotate(
+            f"ΔPI={transitions['jumpMagnitude']:.3f}",
+            xy=(tc, traj[min(tc - 1, len(traj) - 1)]),
+            xytext=(tc + 0.3, traj[min(tc - 1, len(traj) - 1)] + 0.05),
+            color="#e74c3c", fontsize=7,
+        )
+
+    ax.set_xlabel("Cycle", color="#e0e0e0", fontsize=9)
+    ax.set_ylabel("Polarization Index", color="#e0e0e0", fontsize=9)
+    ax.set_ylim(0, 1)
+    ax.set_xticks(cycles)
+    ax.legend(fontsize=7, facecolor="#16213e", labelcolor="#e0e0e0")
+    ax.set_title("Polarization Index Trajectory", color="#e0e0e0", fontsize=10)
+    ax.grid(True, alpha=0.3)
+    for spine in ax.spines.values():
+        spine.set_edgecolor("#e0e0e0")
+
+    if standalone:
+        plt.tight_layout()
+
+
+# ── Plot 12: Opinion distribution evolution ────────────────────────────────────
+
+def plot_opinion_evolution(exp_dir: Path, ax=None):
+    """Stacked histogram of belief confidence at key cycle snapshots."""
+    summary_path = exp_dir / "polarization_summary.json"
+    standalone = ax is None
+    if standalone:
+        fig, ax = plt.subplots(figsize=(10, 4), facecolor="#1a1a2e")
+        ax.set_facecolor("#16213e")
+
+    if not summary_path.exists():
+        ax.text(0.5, 0.5, "No polarization_summary.json", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Opinion Distribution Evolution", color="#e0e0e0", fontsize=10)
+        return
+
+    summary   = json.loads(summary_path.read_text())
+    snapshots = summary.get("snapshots", [])
+    if not snapshots:
+        ax.text(0.5, 0.5, "No snapshots in summary", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Opinion Distribution Evolution", color="#e0e0e0", fontsize=10)
+        return
+
+    # Pick up to 4 evenly-spaced snapshots
+    indices = sorted(set([
+        0,
+        len(snapshots) // 3,
+        2 * len(snapshots) // 3,
+        len(snapshots) - 1,
+    ]))
+    palette = ["#3498db", "#e67e22", "#9b59b6", "#e74c3c"]
+    bins_x  = [i / 10 for i in range(11)]
+
+    for color_idx, snap_idx in enumerate(indices):
+        snap = snapshots[snap_idx]
+        hist = snap.get("clusters", {}).get("histogram", [])
+        if not hist:
+            continue
+        cycle = snap.get("cycle", snap_idx + 1)
+        centers = [(i + 0.5) / 10 for i in range(len(hist))]
+        ax.plot(centers, hist, color=palette[color_idx % len(palette)],
+                linewidth=1.5, marker=".", markersize=4, label=f"Cycle {cycle}")
+
+    ax.set_xlabel("Belief Confidence", color="#e0e0e0", fontsize=9)
+    ax.set_ylabel("Node Count", color="#e0e0e0", fontsize=9)
+    ax.legend(fontsize=7, facecolor="#16213e", labelcolor="#e0e0e0")
+    ax.set_title("Opinion Distribution Evolution", color="#e0e0e0", fontsize=10)
+    ax.grid(True, alpha=0.3)
+    for spine in ax.spines.values():
+        spine.set_edgecolor("#e0e0e0")
+
+    if standalone:
+        plt.tight_layout()
+
+
+# ── Plot 13: Trust network evolution (4 sub-panels) ───────────────────────────
+
+def plot_trust_network_evolution(exp_dir: Path, ax=None):
+    """4-panel trust network snapshots at selected cycles.
+    Shows edges coloured by trust (green=high, red=low)."""
+    summary_path = exp_dir / "polarization_summary.json"
+    standalone = ax is None
+    if standalone:
+        fig, ax = plt.subplots(figsize=(12, 5), facecolor="#1a1a2e")
+        ax.set_facecolor("#16213e")
+
+    if not summary_path.exists():
+        ax.text(0.5, 0.5, "No polarization_summary.json", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Trust Network Evolution", color="#e0e0e0", fontsize=10)
+        return
+
+    summary   = json.loads(summary_path.read_text())
+    snapshots = summary.get("snapshots", [])
+
+    if not snapshots:
+        ax.text(0.5, 0.5, "No snapshots", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Trust Network Evolution", color="#e0e0e0", fontsize=10)
+        return
+
+    # Show trust mean/variance evolution as a compact line chart
+    cycles     = [s.get("cycle", i + 1) for i, s in enumerate(snapshots)]
+    means      = [s.get("trustStats", {}).get("mean", 0)     for s in snapshots]
+    variances  = [s.get("trustStats", {}).get("variance", 0) for s in snapshots]
+    broken_frac = [s.get("trustStats", {}).get("fractionBroken", 0) for s in snapshots]
+
+    ax.plot(cycles, means,       color="#27ae60", linewidth=2, marker="o", markersize=4, label="Mean trust")
+    ax.plot(cycles, variances,   color="#e67e22", linewidth=1.5, linestyle="--", marker="s", markersize=3, label="Variance")
+    ax.plot(cycles, broken_frac, color="#e74c3c", linewidth=1.5, linestyle=":", marker="^", markersize=3, label="Broken edges (<0.2)")
+
+    ax.set_xlabel("Cycle", color="#e0e0e0", fontsize=9)
+    ax.set_ylabel("Trust metric", color="#e0e0e0", fontsize=9)
+    ax.set_ylim(0, 1)
+    ax.set_xticks(cycles)
+    ax.legend(fontsize=7, facecolor="#16213e", labelcolor="#e0e0e0")
+    ax.set_title("Trust Network Evolution", color="#e0e0e0", fontsize=10)
+    ax.grid(True, alpha=0.3)
+    for spine in ax.spines.values():
+        spine.set_edgecolor("#e0e0e0")
+
+    if standalone:
+        plt.tight_layout()
+
+
+# ── Plot 14: Phase diagram (ideology × expert → final PI) ─────────────────────
+
+def plot_phase_diagram(exp_dir: Path, ax=None):
+    """Contour/heat map of final PI as a function of ideology and expert fractions."""
+    pd_path  = exp_dir / "phase_diagram.json"
+    standalone = ax is None
+    if standalone:
+        fig, ax = plt.subplots(figsize=(7, 6), facecolor="#1a1a2e")
+        ax.set_facecolor("#16213e")
+
+    if not pd_path.exists():
+        ax.text(0.5, 0.5, "No phase_diagram.json", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Phase Diagram (ideology × expert → PI)", color="#e0e0e0", fontsize=10)
+        return
+
+    pd = json.loads(pd_path.read_text())
+    results = pd.get("results", [])
+    if not results:
+        ax.text(0.5, 0.5, "No data points", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Phase Diagram", color="#e0e0e0", fontsize=10)
+        return
+
+    ideology_vals = sorted(set(r["ideologyFrac"] for r in results))
+    expert_vals   = sorted(set(r["expertFrac"]   for r in results))
+
+    grid = np.full((len(expert_vals), len(ideology_vals)), np.nan)
+    for r in results:
+        xi = ideology_vals.index(r["ideologyFrac"])
+        yi = expert_vals.index(r["expertFrac"])
+        grid[yi, xi] = r["finalPI"]
+
+    cmap = LinearSegmentedColormap.from_list("polar", ["#2ecc71", "#e67e22", "#e74c3c"], N=256)
+    im   = ax.imshow(grid, origin="lower", aspect="auto", cmap=cmap, vmin=0, vmax=1,
+                     extent=[0, len(ideology_vals), 0, len(expert_vals)])
+
+    ax.set_xticks(np.arange(len(ideology_vals)) + 0.5)
+    ax.set_xticklabels([f"{v:.1f}" for v in ideology_vals], rotation=45, fontsize=7)
+    ax.set_yticks(np.arange(len(expert_vals)) + 0.5)
+    ax.set_yticklabels([f"{v:.1f}" for v in expert_vals], fontsize=7)
+    ax.set_xlabel("Ideology fraction", color="#e0e0e0", fontsize=9)
+    ax.set_ylabel("Expert fraction", color="#e0e0e0", fontsize=9)
+    ax.set_title("Phase Diagram (ideology × expert → PI)", color="#e0e0e0", fontsize=10)
+
+    cbar = plt.colorbar(im, ax=ax, fraction=0.046, pad=0.04)
+    cbar.set_label("Final PI", color="#e0e0e0", fontsize=8)
+    cbar.ax.yaxis.set_tick_params(color="#e0e0e0")
+    plt.setp(cbar.ax.yaxis.get_ticklabels(), color="#e0e0e0", fontsize=7)
+
+    for spine in ax.spines.values():
+        spine.set_edgecolor("#e0e0e0")
+
+    if standalone:
+        plt.tight_layout()
+
+
+# ── Plot 15: Intervention timing ───────────────────────────────────────────────
+
+def plot_intervention_window(exp_dir: Path, ax=None):
+    """Final PI vs expert-bridge injection cycle (lower = better intervention)."""
+    int_path  = exp_dir / "intervention_results.json"
+    standalone = ax is None
+    if standalone:
+        fig, ax = plt.subplots(figsize=(8, 4), facecolor="#1a1a2e")
+        ax.set_facecolor("#16213e")
+
+    if not int_path.exists():
+        ax.text(0.5, 0.5, "No intervention_results.json", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Intervention Timing Effectiveness", color="#e0e0e0", fontsize=10)
+        return
+
+    data    = json.loads(int_path.read_text())
+    results = data.get("results", [])
+    if not results:
+        ax.text(0.5, 0.5, "No results", ha="center", va="center",
+                transform=ax.transAxes, color="#e0e0e0", fontsize=9)
+        ax.set_title("Intervention Timing Effectiveness", color="#e0e0e0", fontsize=10)
+        return
+
+    labels    = [r.get("label", str(r.get("interventionCycle"))) for r in results]
+    final_pis = [r.get("finalPI", 0) for r in results]
+
+    # Colour baseline differently
+    colors = ["#7f8c8d" if r.get("interventionCycle") is None else "#27ae60" for r in results]
+
+    x = np.arange(len(labels))
+    ax.bar(x, final_pis, color=colors, alpha=0.85)
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, rotation=30, ha="right", fontsize=7)
+    ax.set_ylabel("Final Polarization Index", color="#e0e0e0", fontsize=9)
+    ax.set_ylim(0, 1)
+    ax.set_title("Intervention Timing Effectiveness", color="#e0e0e0", fontsize=10)
+    ax.grid(True, axis="y", alpha=0.3)
+    for spine in ax.spines.values():
+        spine.set_edgecolor("#e0e0e0")
+    ax.tick_params(colors="#e0e0e0", labelsize=7)
+
+    if standalone:
+        plt.tight_layout()
+
+
 # ── Individual savers ─────────────────────────────────────────────────────────
 
 def save_individual(fn, plot_fn, *args, out_dir):
@@ -937,6 +1492,24 @@ def main():
     save_individual("09_institutional_trust.png", plot_institutional_trust,
                     exp_dir, out_dir=out_dir)
     save_individual("10_bot_impact.png", plot_bot_impact,
+                    exp_dir, out_dir=out_dir)
+    save_individual("16_cascade_comparison.png", plot_cascade_comparison,
+                    exp_dir, out_dir=out_dir)
+    save_individual("17_distribution_match.png", plot_distribution_match,
+                    exp_dir, out_dir=out_dir)
+    save_individual("18_content_drift.png", plot_content_drift,
+                    exp_dir, out_dir=out_dir)
+    save_individual("19_sensitivity_analysis.png", plot_sensitivity_analysis,
+                    exp_dir, out_dir=out_dir)
+    save_individual("11_polarization_trajectory.png", plot_polarization_trajectory,
+                    exp_dir, out_dir=out_dir)
+    save_individual("12_opinion_evolution.png", plot_opinion_evolution,
+                    exp_dir, out_dir=out_dir)
+    save_individual("13_trust_network_evolution.png", plot_trust_network_evolution,
+                    exp_dir, out_dir=out_dir)
+    save_individual("14_phase_diagram.png", plot_phase_diagram,
+                    exp_dir, out_dir=out_dir)
+    save_individual("15_intervention_window.png", plot_intervention_window,
                     exp_dir, out_dir=out_dir)
 
     # Dashboard

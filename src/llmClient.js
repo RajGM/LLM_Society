@@ -24,6 +24,19 @@ function callLLMDryRun(systemPrompt, userPrompt) {
       JSON.stringify({ frameShift: 0.1, sentiment: 0.0, sentimentDelta: 0.0, newClaims: [], coherenceScore: 0.9 })
     );
   }
+  // Digital twin article QA generation (RealGraphImporter.prepareArticle)
+  if (userPrompt.includes("DT_ARTICLE_QA_QUERY")) {
+    return Promise.resolve(JSON.stringify({
+      questions: [
+        "Does the article discuss a verifiable event?",
+        "Are specific numerical facts stated in the article?",
+        "Is there a named person or organization mentioned?",
+        "Does the article make a factual claim that can be checked?",
+        "Is there a location or date referenced in the article?"
+      ],
+      groundTruth: [true, true, true, true, true],
+    }));
+  }
   // Node rewrite: return the article portion (last paragraph after blank line)
   const parts = userPrompt.split("\n\n");
   return Promise.resolve(parts[parts.length - 1].trim());

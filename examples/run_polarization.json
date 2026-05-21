@@ -1,0 +1,51 @@
+{
+  "_comment": "Emergent Polarization experiment — random ER topology, beliefs + institutional trust enabled.",
+
+  "topology": "random_er",
+  "topologyParams": {
+    "numNodes": 24,
+    "edgeProbability": 0.20
+  },
+
+  "maxTicks": 6,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "auditorQuestions": 3,
+
+  "defaultPersonaAssignment": "random",
+
+  "cycles": 8,
+  "sequenceStrategy": "repeat_shuffle",
+  "articleSequence": ["politics_0", "technology_0", "crime_0"],
+  "seedArticles":    ["politics_0", "technology_0", "crime_0"],
+
+  "nodeParams": {
+    "trustThreshold": 0.25,
+    "actionWeights": {
+      "forward": 0.40,
+      "reinterpret": 0.35,
+      "drop": 0.15,
+      "dump": 0.10
+    },
+    "maxHops": 5,
+    "trustDelta": 0.05,
+    "edgeDeletionThreshold": 0.05,
+    "activityPattern": "always"
+  },
+
+  "enableBeliefs":           true,
+  "enableProvenance":        false,
+  "enableFrameAnalysis":     false,
+  "enableStrategicAgents":   false,
+  "enableNetworkEvolution":  true,
+  "enableOpinionDynamics":   true,
+  "enableInstitutionalTrust": true,
+
+  "_usage": {
+    "basic":              "node index.js --polarization --config examples/run_polarization.json",
+    "custom_cycles":      "node index.js --polarization --config examples/run_polarization.json --cycles 10 --sequence controversy_gradient",
+    "phase_diagram":      "node index.js --polarization-phase-diagram --config examples/run_polarization.json --cycles 4 --ideology-range 0.1,0.3,0.5,0.7 --expert-range 0.0,0.1,0.2,0.3",
+    "intervention":       "node index.js --polarization-intervention --config examples/run_polarization.json --cycles 8 --intervention-cycles 1,2,3,4,5",
+    "dry_run":            "node index.js --dry-run --polarization --config examples/run_polarization.json --cycles 3"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "_comment": "Digital Twin Validation experiment — imports real cascade topology.",
+
+  "maxTicks":     12,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "auditorQuestions": 5,
+
+  "enableBeliefs":           false,
+  "enableFrameAnalysis":     true,
+  "enableProvenance":        true,
+  "enableNetworkEvolution":  false,
+  "enableOpinionDynamics":   false,
+  "enableInstitutionalTrust": false,
+
+  "_usage": {
+    "single_cascade":     "node index.js --digital-twin --cascade data/fakenewsnet/sample_cascade.json --article-text \"Viral post claims FBI crime report shows 47% surge in violent crime. FBI data actually shows 3% decrease.\" --domain crime",
+    "with_config":        "node index.js --digital-twin --config examples/run_digital_twin.json --cascade data/fakenewsnet/sample_cascade.json",
+    "with_article_file":  "node index.js --digital-twin --cascade data/fakenewsnet/sample_cascade.json --article-file data/fakenewsnet/article_001.txt",
+    "multiple_runs":      "node index.js --digital-twin --cascade data/fakenewsnet/sample_cascade.json --runs 5",
+    "batch":              "node index.js --validate-batch --cascade-dir data/fakenewsnet/ --max-cascades 20",
+    "batch_with_articles":"node index.js --validate-batch --cascade-dir data/fakenewsnet/ --article-dir data/fakenewsnet/articles/ --max-cascades 50",
+    "sensitivity":        "node index.js --validate-sensitivity --cascade data/fakenewsnet/sample_cascade.json --strategies inferred,random,follower_only,neutral --runs-per-strategy 3",
+    "dry_run":            "node index.js --dry-run --digital-twin --cascade data/fakenewsnet/sample_cascade.json"
+  }
+}
