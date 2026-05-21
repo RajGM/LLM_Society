@@ -18,7 +18,7 @@ The original paper used a fixed linear chain of 30 nodes × 21 homogeneous/heter
 - Every node's full event history is persisted to disk (file-backed, not in-memory)
 - The same QA-based **auditor** from the paper measures factual fidelity at every step
 - Six research layers and five extensions add cognitive, structural, strategic, and institutional modeling
-- A Python visualization pipeline converts every experiment run into publication-ready images
+- A Python visualization pipeline converts every experiment run into publication-ready images (19 plot types + dashboard)
 
 ---
 
@@ -57,10 +57,26 @@ SocietySimulation/
 │   ├── OpinionDynamics.js     # Extension 8 — DeGroot / BC / Voter model
 │   ├── InstitutionalTrust.js  # Extension 9 — per-node trust toward 4 institutions
 │   ├── BotEngine.js           # Extension 10 — bot detection, injection, centrality
-│   └── BotResilienceRunner.js # Extension 10 — 3-phase experiment automation
+│   ├── BotResilienceRunner.js # Extension 10 — 3-phase experiment automation
+│   │
+│   ├── PolarizationMetrics.js # Extension 11 — Polarization Index, phase transition detection
+│   ├── MultiCycleRunner.js    # Extension 11 — multi-cycle runner with belief carry-over
+│   │
+│   ├── RealGraphImporter.js   # Extension 12 — FakeNewsNet/PHEME cascade importer
+│   ├── ValidationMetrics.js   # Extension 12 — cascade structure metrics (depth, breadth, SV)
+│   ├── ValidationComparison.js # Extension 12 — KS test, JS divergence, DTFS
+│   ├── ContentDriftValidation.js # Extension 12 — sentiment trajectory comparison
+│   ├── DigitalTwinRunner.js   # Extension 12 — single-cascade digital twin experiment
+│   ├── BatchValidationRunner.js  # Extension 12 — N-cascade distributional validation
+│   └── SensitivityRunner.js   # Extension 12 — persona inference sensitivity analysis
 │
 ├── scenarios/
 │   └── climate_debate.yaml    # Example DSL scenario (202 nodes, all extensions)
+│
+├── data/
+│   └── fakenewsnet/           # Sample cascade files for Extension 12
+│       ├── sample_cascade.json      # 13-node fake-news cascade
+│       └── sample_cascade_real.json # 8-node real-news cascade
 │
 ├── examples/
 │   ├── run_linear_chain.json
@@ -70,7 +86,9 @@ SocietySimulation/
 │   ├── run_echo_chamber.json
 │   ├── run_polarized.json
 │   ├── run_hierarchical.json
-│   └── run_bot_resilience.json  # Bot resilience echo-chamber baseline config
+│   ├── run_bot_resilience.json  # Bot resilience echo-chamber baseline config
+│   ├── run_polarization.json    # Emergent polarization 24-node ER config (Extension 11)
+│   └── run_digital_twin.json    # Digital twin validation config (Extension 12)
 │
 ├── experiments/               # Created at runtime — one folder per run
 │   ├── exp_{timestamp}/
@@ -184,6 +202,29 @@ node index.js --bot-resilience --config examples/run_bot_resilience.json \
     --bot-placements random,hubs,bridges,periphery,targeted_cluster \
     --bot-removals none,remove_hubs,remove_random,remove_bridges,remove_all \
     --article politics_0
+
+# Extension 11 — Emergent Polarization
+node index.js --dry-run --polarization --config examples/run_polarization.json
+node index.js --dry-run --polarization --config examples/run_polarization.json \
+    --cycles 10 \
+    --sequence controversy_gradient \
+    --pi-weights '{"bimodality":0.3,"modularity":0.4}'
+node index.js --dry-run --polarization-phase-diagram \
+    --config examples/run_polarization.json \
+    --param interEdgeProb --values 0.01,0.05,0.10,0.20 --cycles 6
+node index.js --dry-run --polarization-intervention \
+    --config examples/run_polarization.json \
+    --intervention-tick 3 --intervention-type fact_checker_injection
+
+# Extension 12 — Digital Twin Validation
+node index.js --dry-run --digital-twin \
+    --cascade data/fakenewsnet/sample_cascade.json \
+    --config examples/run_digital_twin.json
+node index.js --dry-run --validate-batch \
+    --cascade-dir data/fakenewsnet/ --max-cascades 10 --inference inferred
+node index.js --dry-run --validate-sensitivity \
+    --cascade data/fakenewsnet/sample_cascade.json \
+    --strategies inferred,follower_only,random,neutral --runs-per-strategy 3
 ```
 
 `--resume` accepts both relative and absolute paths. If the experiment is already complete it prints the summary and exits without re-running anything.
@@ -411,6 +452,7 @@ Single `callLLM(modelId, systemPrompt, userPrompt)` function. Dispatches to the 
 | `BELIEF_ALIGNMENT_QUERY` | Alignment: `{"alignment":0.5}` |
 | `BELIEF_UPDATE_QUERY` | Stance update: `{"stance":"...", "confidence":0.5}` |
 | `FRAME_ANALYSIS_QUERY` | Frame data: `{"frameShift":0.1, ...}` |
+| `DT_ARTICLE_QA_QUERY` | Digital twin article QA: `{"questions":[...5 questions...], "groundTruth":[true,...]}` |
 | *(anything else)* | Node rewrite: returns last paragraph of user prompt |
 
 ---
@@ -1215,6 +1257,198 @@ Bot node IDs flow to `MetricsEngine.computeAll(nodesData, ..., botNodeIds)` whic
 
 ---
 
+---
+
+### Extension 11: Emergent Polarization (`src/PolarizationMetrics.js`, `src/MultiCycleRunner.js`)
+
+#### `src/PolarizationMetrics.js` — Pure static class
+
+| Method | Signature | Purpose |
+|---|---|---|
+| `snapshot(experimentDir, cycle, articleId)` | `→ PolarizationSnapshot` | Read graph + beliefs; compute all 4 PI components |
+| `polarizationIndex(snapshot, weights?)` | `→ float [0,1]` | Weighted composite PI |
+| `detectPhaseTransition(piTrajectory, windowSize?, threshold?)` | `→ TransitionResult` | Sliding-window change-point detection |
+| `bimodalityCoefficient(values)` | `→ float` | B = (skewness²+1)/kurtosis |
+| `trustBifurcation(values)` | `→ float` | variance / 0.083 (normalised) |
+| `modularityQ(graph, communities)` | `→ float` | Newman-Girvan Q |
+| `extremityFraction(values, threshold?)` | `→ float` | Fraction with \|v − 0.5\| > 0.35 |
+
+**Polarization Index formula:**
+```
+PI = w₁·bimodality + w₂·trustBifurcation + w₃·modularity + w₄·extremity
+```
+
+Default weights: `{ bimodality: 0.30, trustBifurcation: 0.20, modularity: 0.30, extremity: 0.20 }`
+
+**Phase transition detection:**
+```
+ΔPI = mean(PI[i:i+window]) − mean(PI[0:i]) > θ   (default window=3, θ=0.15)
+Returns { transitionCycle, jumpMagnitude, confidence, isSignificant }
+```
+
+**Bimodality normalisation:** B > 5/9 ≈ 0.555 is the accepted threshold for bimodal distributions. `bimodalityCoefficient` normalises by 0.555 so the threshold maps to 1.0.
+
+**Trust bifurcation:** maximum theoretical variance for U[0,1] is 1/12 ≈ 0.083. `trustBifurcation = clamp(variance / 0.083, 0, 1)`.
+
+#### `src/MultiCycleRunner.js` — Multi-cycle orchestrator
+
+**Core design:** each cycle creates a new `Simulation` instance. Carry-over is achieved by copying files into the new experimentDir before `sim.run()` is called, exploiting the idempotent init pattern in `BeliefEngine` and `InstitutionalTrust`.
+
+**Carry-over mechanism:**
+```
+prevExpDir → copy beliefs/*.json → nextExpDir/beliefs/   (BeliefEngine.init skips if fileExists)
+prevExpDir → copy institutional_trust.json → nextExpDir/  (InstitutionalTrust.initialize skips if fileExists)
+prevExpDir → read graph_topology.json → extract {nodeId, personaId, modelId, relations} → nextCycleConfig topology:"custom"
+```
+
+**`_buildCycleConfig(cycleIdx, articles, prevExpDir)`:**
+- Cycle 0: uses topology from base config (e.g. `random_er`)
+- Cycle 1+: `topology: "custom"`, nodes/edges from `_loadTopologyFromPrev(prevExpDir)`
+
+**Article sequence strategies:**
+
+| Strategy | Algorithm |
+|---|---|
+| `repeat_shuffle` | Fisher-Yates shuffle of `articles` array each cycle |
+| `controversy_gradient` | Cycle n uses `articles[0..n]` (one more per cycle, capped at all) |
+| `alternating` | Even cycles: first half; odd cycles: second half |
+
+**`runPhaseDiagram(baseConfig, param, values, cycles)`:**
+For each value, deep-clone base config, set `topologyParams[param]` to the value, run `this.run()`, collect final PI. Returns matrix: `{ value → piTrajectory[] }`.
+
+**`runInterventionExperiment(baseConfig, interventionTick, interventionType, cycles)`:**
+Runs baseline (no intervention) + test (intervention injected at `interventionTick`). Returns `{ baseline: piTrajectory, test: piTrajectory }`.
+
+**Output files:**
+```
+experiments/polarization_{ts}/
+├── polarization_report.json          # { cycles, piTrajectory, snapshots, phaseTransition }
+└── cycle_{n}/exp_{ts}/
+    └── polarization_snapshot.json    # { cycle, bimodality, trustBifurcation, modularity, extremity, pi }
+```
+
+---
+
+### Extension 12: Digital Twin Validation
+
+Seven modules across the importer, metrics, comparison, and runner layers.
+
+#### `src/RealGraphImporter.js` — Cascade importer
+
+| Method | Signature | Purpose |
+|---|---|---|
+| `importCascade(cascadeFile, inferenceStrategy?)` | `→ TopologyConfig` | Parse cascade JSON → simulation topology config |
+| `inferPersona(profile, strategy?)` | `→ personaId` | Map user profile to simulation persona |
+| `estimateTrust(fromProfile, toProfile)` | `→ float [0.10, 0.95]` | Heuristic edge trust from profile properties |
+| `prepareArticle(articleText, articleId, domain, modelId?)` | `→ ArticleObject` | LLM-generate QA questions for the article |
+
+**`inferPersona` strategies:**
+
+| Strategy | Algorithm |
+|---|---|
+| `inferred` | BIO_RULES array: ordered `[regex, minFollowers, personaId, requireVerified]` — first match wins; fallback to `follower_only` |
+| `follower_only` | Band by follower count thresholds |
+| `random` | Uniform random from 15 non-bot personas |
+| `neutral` | Always `"neutral"` |
+
+**`estimateTrust` formula:**
+```
+base 0.40
++ 0.15 if toProfile.verified
++ 0.15 if toProfile.followers > 100,000
++ 0.12 if fromProfile.tags ∩ toProfile.tags ≠ ∅  (homophily)
+clamp [0.10, 0.95]
+```
+
+**`prepareArticle` dry-run:** embeds `DT_ARTICLE_QA_QUERY` in the LLM prompt → intercepted by `callLLMDryRun` to return 5 yes/no questions and all-true ground truth.
+
+#### `src/ValidationMetrics.js` — Cascade structure metrics
+
+| Method | Purpose |
+|---|---|
+| `extractRealMetrics(cascade)` | Parse real cascade JSON → `{ depth, breadth, size, structuralVirality, speedHours, root }` |
+| `extractSimulatedMetrics(experimentDir, articleId)` | Read nodes/*.json, reconstruct tree from provenance chains → `{ depth, breadth, size, structuralVirality, speedTicks, meanMI }` |
+| `_structuralVirality(children, root)` | Goel et al. avg pairwise shortest path; capped at 500 nodes |
+
+**Structural virality algorithm:** BFS from each node to all reachable nodes, accumulate sum of distances, divide by n(n-1). Capped at 500 nodes for O(n²) cost management.
+
+#### `src/ValidationComparison.js` — Statistical comparison
+
+| Method | Purpose |
+|---|---|
+| `compare(realMetrics, simMetrics)` | Per-cascade ratio comparison → `{ structuralSimilarity, depthRatio, breadthRatio, svRatio, isValidated }` |
+| `distributionalComparison(realArray, simArray)` | KS test + JSD + Pearson R per metric across N cascades |
+| `computeDTFS(structSim, distScore, contentCorr, weights?)` | Weighted DTFS score → `{ dtfs, isValidated }` |
+| `_ksTest(sample1, sample2)` | Two-sample KS via tagged sort + CDF tracking; p-value via Kolmogorov approximation |
+| `_jsDivergence(sample1, sample2, numBins?)` | Histogram both → KL divergences → JSD = (KL_PM + KL_QM)/2 |
+
+**Structural Similarity Score:**
+```
+S = 1 − (1/K) Σ |m_sim/m_real − 1|    K = 3 (depth, breadth, structural virality)
+```
+
+**Distributional match criteria:** `p_ks > 0.05 AND jsd < 0.10` → distributions not significantly different.
+
+**DTFS formula:**
+```
+DTFS = w₁·S_struct + w₂·D_dist + w₃·ρ_content
+Default weights: structure=0.40, distribution=0.40, content=0.20
+Validated: DTFS ≥ 0.70
+```
+
+#### `src/ContentDriftValidation.js` — Sentiment trajectory
+
+| Method | Purpose |
+|---|---|
+| `extractSimDrift(experimentDir, articleId)` | Group frameAnalysis events by cascade depth → sentiment trajectory |
+| `extractRealDrift(cascade, articleText)` | Keyword heuristic on quote-tweet text → real sentiment trajectory |
+| `compare(simDrift, realDrift)` | Align by depth, compute Pearson R → `{ contentCorrelation, available, matchLabel }` |
+
+Sentiment keywords: positive list (agree, confirm, support, ...) and negative list (fake, wrong, mislead, ...). Score = (pos_count − neg_count) / (pos_count + neg_count + 1).
+
+#### `src/DigitalTwinRunner.js` — Single cascade experiment
+
+**Workflow:**
+```
+1. RealGraphImporter.importCascade(cascadeFile, inferenceStrategy) → topoConfig
+2. ValidationMetrics.extractRealMetrics(cascade) → realMetrics
+3. RealGraphImporter.prepareArticle(articleText, TEMP_ARTICLE_ID, domain) → article
+4. _injectArticle(article) → articles.json (atomic add)
+5. new Simulation(cycleConfig) → sim.run()  [in try/finally]
+6. _removeArticle(TEMP_ARTICLE_ID)          [always in finally]
+7. ValidationMetrics.extractSimulatedMetrics(sim.experimentDir, TEMP_ARTICLE_ID) → simMetrics
+8. ValidationComparison.compare(realMetrics, simMetrics)
+9. ContentDriftValidation.extractSimDrift + extractRealDrift + compare
+10. ValidationComparison.computeDTFS(...)
+11. Write validation_report.json
+```
+
+`TEMP_ARTICLE_ID = "_dt_real_article_temp"` — stable sentinel used for article injection and cleanup. The `try/finally` ensures `_removeArticle` runs even on simulation error.
+
+#### `src/BatchValidationRunner.js` — N-cascade batch
+
+Discovers all `*.json` files in `cascadeDir`, runs up to `maxCascades` via `DigitalTwinRunner`, collects `realMetrics[]` and `simMetrics[]` arrays, calls `ValidationComparison.distributionalComparison()`, writes `batch_summary.json`.
+
+#### `src/SensitivityRunner.js` — Inference sensitivity
+
+Runs the same cascade with each of 4 strategies × `runsPerStrategy` runs. Reports:
+
+```json
+{
+  "inferred":      { "avgStructuralSimilarity": 0.81, "stdStructuralSimilarity": 0.04, "avgDTFS": 0.73 },
+  "follower_only": { "avgStructuralSimilarity": 0.74, "stdStructuralSimilarity": 0.07, "avgDTFS": 0.68 },
+  "random":        { "avgStructuralSimilarity": 0.61, "stdStructuralSimilarity": 0.12, "avgDTFS": 0.55 },
+  "neutral":       { "avgStructuralSimilarity": 0.58, "stdStructuralSimilarity": 0.09, "avgDTFS": 0.51 },
+  "dtfsRange": 0.22,
+  "highSensitivity": true,
+  "bestStrategy": "inferred"
+}
+```
+
+`highSensitivity` = `dtfsRange > 0.15` (DTFS range across strategies exceeds 15 percentage points).
+
+---
+
 ## Visualization Pipeline (`visualize.py`)
 
 Reads every JSON file from an experiment run and produces 10 individual plots plus a dashboard.
@@ -1241,9 +1475,18 @@ python visualize.py --latest --out-dir paper_figures/
 | `08_opinion_dynamics.png` | Line chart | DeGroot convergence trajectory per node (Extension 8); shows "not enabled" message if extension off |
 | `09_institutional_trust.png` | Grouped bar | Per-node trust toward media / science / government / corporate (Extension 9); shows "not enabled" message if extension off |
 | `10_bot_impact.png` | 4-panel | (A) contamination vs density, (B) reach by placement, (C) causal MI by bot type, (D) removal effectiveness (Extension 10); shows placeholder if no bot resilience data |
-| `dashboard.png` | All panels | All 10 plots + metadata banner in a single 22×30 figure |
+| `11_polarization_trajectory.png` | Line chart | PI composite + 4 component lines across cycles; phase transition marker (Extension 11) |
+| `12_belief_distribution.png` | Histogram | Belief confidence distribution per cycle (stacked or overlaid) (Extension 11) |
+| `13_modularity_evolution.png` | Dual-axis | Newman-Girvan Q (left) and homophily index (right) across cycles (Extension 11) |
+| `14_phase_diagram.png` | Heatmap | PI value over swept parameter × cycle grid (phase diagram mode, Extension 11) |
+| `15_intervention_comparison.png` | Multi-line | PI trajectory for each intervention timing variant (Extension 11) |
+| `16_cascade_comparison.png` | Bar chart | Real vs simulated depth/breadth/structural-virality with ✓/✗ match markers (Extension 12) |
+| `17_distribution_match.png` | Histogram (×4) | Depth/breadth/SV/speed distributions overlaid real vs simulated; degrades to KS bar chart if not standalone (Extension 12) |
+| `18_content_drift.png` | Dual-line | Sentiment trajectory by cascade depth: real (solid) vs simulated (dashed), Pearson ρ annotated (Extension 12) |
+| `19_sensitivity_analysis.png` | Bar + error | DTFS per inference strategy with ±std error bars; best strategy highlighted green (Extension 12) |
+| `dashboard.png` | All panels | All plots + metadata banner in a single composite figure |
 
-Plots 07–10 **degrade gracefully** — if the corresponding extension data is absent, they display an informative placeholder rather than crashing.
+Plots 07–19 **degrade gracefully** — if the corresponding extension data is absent, they display an informative placeholder rather than crashing.
 
 `plot_bot_impact()` looks for `summary.json` in the experiment directory first, then searches sibling `bot_resilience_*` directories for the most recent run.
 
@@ -1476,6 +1719,8 @@ python visualize.py --latest
 - [x] `--test-extensions` CLI flag — 10-point smoke test for all five extensions
 - [x] Society DSL (`src/DSLCompiler.js`) — YAML scenario compiler: seeded PRNG, weighted persona sampling, 10-step pipeline, edge deduplication with precedence, per-node strategy override, `--scenario` / `--compile` / `--validate` CLI flags
 - [x] Extension 10: Bot Detection and Resilience Testing — 4 bot persona types, 5 placement strategies, 5 removal strategies, `BotEngine.js`, `BotResilienceRunner.js`, `botImpactMetrics`, `botCounterfactualMI`, `--bot-resilience` CLI, `bots:` DSL key, `10_bot_impact.png` visualization
+- [x] Extension 11: Emergent Polarization — `PolarizationMetrics.js` (PI formula, phase transition detection, bimodality/trust bifurcation/modularity/extremity), `MultiCycleRunner.js` (belief carry-over, topology carry-over, 3 article sequence strategies, phase diagram, intervention experiment), `--polarization` / `--polarization-phase-diagram` / `--polarization-intervention` CLI flags, plots 11–15
+- [x] Extension 12: Digital Twin Validation — `RealGraphImporter.js` (FakeNewsNet/PHEME importer, 4 persona inference strategies, trust heuristic), `ValidationMetrics.js` (depth/breadth/structural virality for real + simulated cascades), `ValidationComparison.js` (KS test, JS divergence, DTFS formula), `ContentDriftValidation.js` (sentiment trajectory Pearson R), `DigitalTwinRunner.js` (article injection/cleanup via TEMP_ARTICLE_ID), `BatchValidationRunner.js` (N-cascade distributional comparison), `SensitivityRunner.js` (4-strategy DTFS sensitivity), `--digital-twin` / `--validate-batch` / `--validate-sensitivity` CLI flags, `DT_ARTICLE_QA_QUERY` dry-run sentinel, sample cascade data, plots 16–19
 - [ ] Continuous MI scoring (0.0–1.0 float) replacing binary question answers
 - [ ] Multi-model ablation runner — same persona, N different models, compare MPRs
 - [ ] Temporal dynamics — trust decay over time, re-seeding articles mid-simulation

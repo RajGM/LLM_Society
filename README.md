@@ -15,7 +15,7 @@
 
 This repository implements a configurable, file-backed **LLM-agent society simulation** for studying how misinformation propagates through social networks. Each node in the network is a persona-conditioned LLM agent that receives information, decides how to act on it (forward, reinterpret, drop, or dump), and passes it to its neighbours. A QA-based auditor then scores factual fidelity at every hop.
 
-The base system reproduces the **CIKM 2025 outstanding paper** results. The EMNLP 2025 extension adds six research layers and five extensions covering node cognition, frame analysis, network co-evolution, strategic agents, opinion dynamics, and institutional trust.
+The base system reproduces the **CIKM 2025 outstanding paper** results. The EMNLP 2025 extension adds six research layers and seven extensions covering node cognition, frame analysis, network co-evolution, strategic agents, opinion dynamics, institutional trust, bot resilience testing, emergent polarization, and digital twin validation against real-world cascade datasets.
 
 ```
                         ORIGIN
@@ -59,13 +59,15 @@ The base system reproduces the **CIKM 2025 outstanding paper** results. The EMNL
 11. [Research Layers](#research-layers)
 12. [Extensions](#extensions)
 13. [Bot Detection & Resilience Testing](#bot-detection--resilience-testing)
-14. [Output Files](#output-files)
-15. [Visualization](#visualization)
-16. [Reproducing Paper Results](#reproducing-paper-results)
-17. [Project Structure](#project-structure)
-18. [Extending the System](#extending-the-system)
-19. [License](#license)
-20. [Acknowledgements](#acknowledgements)
+14. [Emergent Polarization](#emergent-polarization-extension-11)
+15. [Digital Twin Validation](#digital-twin-validation-extension-12)
+16. [Output Files](#output-files)
+17. [Visualization](#visualization)
+18. [Reproducing Paper Results](#reproducing-paper-results)
+19. [Project Structure](#project-structure)
+20. [Extending the System](#extending-the-system)
+21. [License](#license)
+22. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -154,7 +156,13 @@ node index.js --dry-run --scenario scenarios/climate_debate.yaml
 # Run a bot resilience experiment (echo chamber, 3-phase, dry-run)
 node index.js --dry-run --bot-resilience --config examples/run_bot_resilience.json
 
-# Visualize all 10 plots
+# Run an 8-cycle emergent polarization experiment (dry-run)
+node index.js --dry-run --polarization --config examples/run_polarization.json
+
+# Validate a single real-world cascade against the simulation (dry-run)
+node index.js --dry-run --digital-twin --cascade data/fakenewsnet/sample_cascade.json
+
+# Visualize all 19 plots
 python visualize.py --latest
 ```
 
@@ -225,6 +233,40 @@ Bot Resilience Testing:
     --bot-placements <p,p,...>     Placement strategies: random,hubs,bridges,periphery,targeted_cluster
     --bot-removals  <r,r,...>      Removal strategies: none,remove_hubs,remove_random,remove_bridges,remove_all
     --article <id>                 Article ID to track for bot metrics (default: first seed article)
+
+Emergent Polarization (Extension 11):
+  --polarization                   Run multi-cycle polarization experiment (requires --config)
+    --cycles <n>                   Number of simulation cycles (default: 8)
+    --articles <id,id,...>         Articles to cycle through (default: all from config)
+    --sequence <strategy>          Article ordering: repeat_shuffle | controversy_gradient | alternating
+    --pi-weights <json>            Polarization Index weights, e.g. '{"bimodality":0.3,"modularity":0.3}'
+  --polarization-phase-diagram     Sweep parameters to find polarization phase transitions
+    --param <name>                 Parameter to sweep (e.g. interEdgeProb)
+    --values <v,v,...>             Parameter values to sweep
+    --cycles <n>                   Cycles per parameter value
+  --polarization-intervention      Test intervention timing effects on polarization
+    --intervention-tick <n>        Tick to inject the intervention
+    --intervention-type <type>     Type: fact_checker_injection | inoculation | content_moderation
+
+Digital Twin Validation (Extension 12):
+  --digital-twin                   Validate simulation against a real-world cascade
+    --cascade <path>               Path to FakeNewsNet/PHEME cascade JSON
+    --article-text <text>          Article text for the cascade (auto-extracted if in cascade JSON)
+    --article-file <path>          Read article text from a file
+    --domain <domain>              Article domain label (default: "news")
+    --runs <n>                     Simulation runs per cascade (default: 1)
+    --inference <strategy>         Persona inference: inferred | follower_only | random | neutral
+    --config <path>                Base simulation config JSON
+  --validate-batch                 Run batch validation across N cascades
+    --cascade-dir <path>           Directory containing cascade JSON files
+    --article-dir <path>           Directory containing article text files (optional)
+    --max-cascades <n>             Maximum cascades to process (default: 10)
+    --inference <strategy>         Persona inference strategy
+  --validate-sensitivity           Test sensitivity to persona inference method
+    --cascade <path>               Path to cascade JSON
+    --strategies <s,s,...>         Strategies to compare (default: all four)
+    --runs-per-strategy <n>        Runs per strategy (default: 3)
+    --article-text <text>          Article text (or --article-file)
 ```
 
 ### Examples
@@ -264,6 +306,38 @@ node index.js --bot-resilience \
   --bot-types distorter \
   --bot-placements hubs \
   --article politics_0
+
+# Emergent polarization — 8-cycle repeat-shuffle experiment
+node index.js --dry-run --polarization --config examples/run_polarization.json
+
+# Emergent polarization — phase diagram across inter-group connectivity
+node index.js --dry-run --polarization-phase-diagram \
+  --config examples/run_polarization.json \
+  --param interEdgeProb \
+  --values 0.01,0.03,0.05,0.10,0.20 \
+  --cycles 6
+
+# Emergent polarization — test intervention timing
+node index.js --dry-run --polarization-intervention \
+  --config examples/run_polarization.json \
+  --intervention-tick 3 \
+  --intervention-type fact_checker_injection
+
+# Digital twin — single cascade validation (dry-run)
+node index.js --dry-run --digital-twin \
+  --cascade data/fakenewsnet/sample_cascade.json \
+  --config examples/run_digital_twin.json
+
+# Digital twin — batch validation across all cascades in a directory
+node index.js --dry-run --validate-batch \
+  --cascade-dir data/fakenewsnet/ \
+  --max-cascades 5 \
+  --inference inferred
+
+# Digital twin — sensitivity analysis (compare all 4 inference strategies)
+node index.js --dry-run --validate-sensitivity \
+  --cascade data/fakenewsnet/sample_cascade.json \
+  --runs-per-strategy 2
 ```
 
 ---
@@ -749,6 +823,237 @@ The compiler validates `type`, `placement`, `removal`, and `density` and emits a
 
 ---
 
+## Emergent Polarization (Extension 11)
+
+Extension 11 measures whether and when a network crosses a qualitative phase transition into a polarized state. It runs the simulation for multiple sequential cycles, carrying belief states and trust scores forward, and tracks a composite **Polarization Index (PI)** at each cycle.
+
+### Polarization Index
+
+PI is a weighted composite of four components, all normalized to [0, 1]:
+
+```
+PI = w₁·bimodality + w₂·trustBifurcation + w₃·modularity + w₄·extremity
+```
+
+| Component | Formula | Meaning |
+|---|---|---|
+| `bimodality` | B = (skewness² + 1) / kurtosis; normalized by 0.555 | Two-peak belief distribution |
+| `trustBifurcation` | variance / 0.083 (theoretical max variance for U[0,1]) | Trust splitting into two camps |
+| `modularity` | Newman-Girvan Q | Community separation by belief stance |
+| `extremity` | fraction of nodes with \|confidence − 0.5\| > 0.35 | Nodes holding strong views |
+
+Default weights: `bimodality: 0.30, trustBifurcation: 0.20, modularity: 0.30, extremity: 0.20`
+
+B > 5/9 ≈ 0.555 indicates bimodality; normalized so that threshold maps to 1.0.
+
+### Phase transition detection
+
+A sliding-window change-point detects when PI jumps abruptly:
+
+```
+ΔPI = mean(PI[i:i+window]) − mean(PI[0:i]) > θ  (default θ = 0.15)
+```
+
+Returns: `{ transitionCycle, jumpMagnitude, confidence, isSignificant }`
+
+### Multi-cycle carry-over
+
+Belief states and institutional trust persist across cycles using the idempotent init pattern:
+
+1. Run cycle 0 → produces `experimentDir_0/`
+2. Before cycle 1: copy `beliefs/*.json` and `institutional_trust.json` to `experimentDir_1/`
+3. `BeliefEngine.init` and `InstitutionalTrust.initialize` check `fileExists` before writing → skip re-init, preserving carried-over state
+4. Trust network topology is also carried forward: each cycle reads `graph_topology.json` from the previous cycle and uses `topology: "custom"` with evolved node/edge trust
+
+### Article sequences
+
+| Strategy | Behavior |
+|---|---|
+| `repeat_shuffle` | Re-shuffle the article list each cycle (default) |
+| `controversy_gradient` | Start with 1 article, add 1 more each cycle (ramp up) |
+| `alternating` | Alternate between first half and second half of articles per cycle |
+
+### CLI examples
+
+```bash
+# 8-cycle experiment with default repeat_shuffle sequence
+node index.js --dry-run --polarization --config examples/run_polarization.json
+
+# Custom PI weights (emphasize modularity)
+node index.js --dry-run --polarization \
+  --config examples/run_polarization.json \
+  --cycles 10 \
+  --pi-weights '{"bimodality":0.20,"trustBifurcation":0.10,"modularity":0.50,"extremity":0.20}'
+
+# Phase diagram: sweep inter-group edge probability from sparse to dense
+node index.js --dry-run --polarization-phase-diagram \
+  --config examples/run_polarization.json \
+  --param interEdgeProb \
+  --values 0.01,0.03,0.05,0.10,0.20 \
+  --cycles 6
+
+# Intervention timing: test whether fact-checking at cycle 3 prevents polarization
+node index.js --dry-run --polarization-intervention \
+  --config examples/run_polarization.json \
+  --intervention-tick 3 \
+  --intervention-type fact_checker_injection
+```
+
+### Output files
+
+```
+experiments/polarization_{timestamp}/
+├── cycle_1/exp_{ts}/   # Full simulation output for each cycle
+│   ├── ...             # Standard experiment files
+│   └── polarization_snapshot.json  # PI components for this cycle
+├── cycle_2/exp_{ts}/
+├── ...
+└── polarization_report.json   # PI trajectory, phase transition detection
+```
+
+`polarization_report.json` schema:
+```json
+{
+  "cycles": 8,
+  "piTrajectory": [0.12, 0.18, 0.31, 0.45, 0.62, 0.68, 0.70, 0.71],
+  "snapshots": [
+    { "cycle": 1, "bimodality": 0.10, "trustBifurcation": 0.15, "modularity": 0.08, "extremity": 0.18, "pi": 0.12 }
+  ],
+  "phaseTransition": {
+    "transitionCycle": 3, "jumpMagnitude": 0.24, "confidence": 0.91, "isSignificant": true
+  }
+}
+```
+
+### Visualizations (plots 11–15)
+
+| Plot | Description |
+|---|---|
+| `11_polarization_trajectory.png` | PI and 4 components across cycles, with phase transition marker |
+| `12_belief_distribution.png` | Histogram of belief confidence at each cycle |
+| `13_modularity_evolution.png` | Newman-Girvan Q and homophily index across cycles |
+| `14_phase_diagram.png` | PI heatmap over swept parameter values (phase diagram mode) |
+| `15_intervention_comparison.png` | PI trajectories for different intervention timings |
+
+---
+
+## Digital Twin Validation (Extension 12)
+
+Extension 12 validates the simulation against empirical cascade datasets by comparing structural, distributional, and content-level properties between real-world information cascades and their simulated counterparts.
+
+### Five validation levels
+
+| Level | Name | Method | Target |
+|---|---|---|---|
+| 1 | Qualitative | Visual inspection | Baseline |
+| **2** | **Distributional** | **KS test + Jensen-Shannon divergence** | **Primary** |
+| **3** | **Structural** | **Structural Similarity Score** | **Primary** |
+| **4** | **Content** | **Sentiment trajectory correlation** | **Preliminary** |
+| 5 | Predictive | Hold-out cascade prediction | Future |
+
+### Digital Twin Fidelity Score (DTFS)
+
+```
+DTFS = w₁·S_struct + w₂·D_dist + w₃·ρ_content
+```
+
+Default weights: `structure: 0.40, distribution: 0.40, content: 0.20`
+
+- **DTFS ≥ 0.70**: simulation validated against real data
+- **Structural Similarity Score** `S = 1 − (1/K) Σ|m_sim/m_real − 1|` over K = 3 metrics (depth, breadth, structural virality)
+- **Distributional match**: two-sample KS test p > 0.05 AND Jensen-Shannon divergence < 0.10
+- **Content correlation**: Pearson ρ between simulated and real sentiment trajectory by cascade depth
+
+### Structural virality
+
+Goel et al. (2016) formula for average pairwise shortest path distance in the cascade tree:
+
+```
+SV = (1 / n(n−1)) Σ_{i≠j} d(i,j)
+```
+
+Capped at 500 nodes for performance. Linear chain → SV = (n+1)/3. Star → SV ≈ 2.
+
+### Supported datasets
+
+| Dataset | Format | Notes |
+|---|---|---|
+| FakeNewsNet | JSON cascade with `user`, `retweet_edges`, `replies` | Fake/real news |
+| PHEME | JSON cascade with `source`, `reactions` | Rumour verification |
+| Custom | Any JSON with `users[]`, `edges[]` arrays | User-defined |
+
+### Persona inference strategies
+
+| Strategy | Algorithm |
+|---|---|
+| `inferred` | BIO_RULES: ordered regex rules on bio text + follower count (default) |
+| `follower_only` | Band by follower count (< 1K → low_education, > 100K → sensationalist_news, etc.) |
+| `random` | Uniformly random from 15 non-bot personas |
+| `neutral` | Always assigns `neutral` persona |
+
+BIO_RULES match from most to least specific (first match wins). Unmatched → `follower_only` fallback.
+
+### Workflow
+
+```bash
+# 1. Single cascade validation
+node index.js --digital-twin \
+  --cascade data/fakenewsnet/politifact_fake/cascade_001.json \
+  --config examples/run_digital_twin.json
+
+# 2. Batch validation (distributional comparison across N cascades)
+node index.js --validate-batch \
+  --cascade-dir data/fakenewsnet/politifact_fake/ \
+  --max-cascades 20 \
+  --inference inferred
+
+# 3. Sensitivity analysis (which inference method produces best DTFS?)
+node index.js --validate-sensitivity \
+  --cascade data/fakenewsnet/sample_cascade.json \
+  --strategies inferred,follower_only,random,neutral \
+  --runs-per-strategy 3
+```
+
+### Output files
+
+```
+experiments/digital_twin_{timestamp}/
+├── validation_report.json    # Per-cascade: real metrics, sim metrics, DTFS
+└── exp_{ts}/                 # Full simulation sub-experiment
+
+experiments/batch_validation_{timestamp}/
+├── batch_summary.json        # Distributional comparison across all cascades
+└── cascade_001/validation_report.json
+└── cascade_002/validation_report.json
+
+experiments/sensitivity_{timestamp}/
+└── sensitivity_report.json   # DTFS per strategy ± std, highSensitivity flag
+```
+
+`validation_report.json` schema:
+```json
+{
+  "cascadeFile": "sample_cascade.json",
+  "inferenceStrategy": "inferred",
+  "realMetrics":  { "depth": 4, "breadth": 4, "size": 13, "structuralVirality": 2.31, "speedHours": 6.2 },
+  "simMetrics":   { "depth": 3, "breadth": 3, "size": 9,  "structuralVirality": 1.88, "speedTicks": 4 },
+  "comparison":   { "structuralSimilarity": 0.82, "depthRatio": 0.75, "isValidated": false },
+  "dtfs":         { "dtfs": 0.71, "isValidated": true, "weights": { "structure": 0.4, "distribution": 0.4, "content": 0.2 } },
+  "contentDrift": { "contentCorrelation": 0.63, "available": true, "matchLabel": "moderate" }
+}
+```
+
+### Visualizations (plots 16–19)
+
+| Plot | Description |
+|---|---|
+| `16_cascade_comparison.png` | Bar chart: real vs simulated depth/breadth/SV with match markers |
+| `17_distribution_match.png` | 4-panel histograms: depth/breadth/SV/speed distributions (batch mode) or KS bar chart |
+| `18_content_drift.png` | Sentiment trajectory real vs simulated by cascade depth with Pearson ρ |
+| `19_sensitivity_analysis.png` | DTFS per inference strategy with error bars; best strategy highlighted |
+
+---
+
 ## Output Files
 
 Every run produces a self-contained experiment folder:
@@ -787,6 +1092,31 @@ experiments/bot_resilience_{timestamp}/
 ├── summary.json                      # Baseline, injection, and removal results
 └── exp_{timestamp}/                  # One sub-experiment per combination
     └── ...
+```
+
+Emergent polarization experiments produce:
+
+```
+experiments/polarization_{timestamp}/
+├── polarization_report.json          # PI trajectory + phase transition detection
+└── cycle_{n}/exp_{timestamp}/        # Full simulation output per cycle
+    └── polarization_snapshot.json    # PI components for this cycle
+```
+
+Digital twin validation experiments produce:
+
+```
+experiments/digital_twin_{timestamp}/
+├── validation_report.json            # Structural + content comparison + DTFS
+└── exp_{timestamp}/                  # Simulation sub-experiment
+
+experiments/batch_validation_{timestamp}/
+├── batch_summary.json                # Distributional KS/JSD/Pearson across N cascades
+└── {cascade_name}/
+    └── validation_report.json
+
+experiments/sensitivity_{timestamp}/
+└── sensitivity_report.json           # Per-strategy DTFS ± std, highSensitivity flag
 ```
 
 ### `results_{articleId}.json` schema
@@ -875,9 +1205,18 @@ python visualize.py --latest --out-dir paper_figures/
 | `08_opinion_dynamics.png` | DeGroot convergence trajectory per node (Extension 8) |
 | `09_institutional_trust.png` | Per-node trust toward media / science / government / corporate (Extension 9) |
 | `10_bot_impact.png` | 4-panel bot dashboard: contamination vs density, reach by placement, causal MI by bot type, removal effectiveness (Extension 10) |
-| `dashboard.png` | All 10 plots + experiment metadata in a single 22×30 figure |
+| `11_polarization_trajectory.png` | PI and 4 components across cycles, with phase transition marker (Extension 11) |
+| `12_belief_distribution.png` | Belief confidence histograms per cycle (Extension 11) |
+| `13_modularity_evolution.png` | Newman-Girvan Q and homophily index across cycles (Extension 11) |
+| `14_phase_diagram.png` | PI heatmap over swept parameter values (phase diagram mode, Extension 11) |
+| `15_intervention_comparison.png` | PI trajectories for different intervention timings (Extension 11) |
+| `16_cascade_comparison.png` | Bar chart real vs simulated depth/breadth/SV with match markers (Extension 12) |
+| `17_distribution_match.png` | 4-panel distributional histograms or compact KS bar chart (Extension 12) |
+| `18_content_drift.png` | Sentiment trajectory real vs simulated by cascade depth with Pearson ρ (Extension 12) |
+| `19_sensitivity_analysis.png` | DTFS per inference strategy with error bars; best strategy highlighted (Extension 12) |
+| `dashboard.png` | All plots + experiment metadata in a single composite figure |
 
-Plots 07–10 **degrade gracefully** — if the corresponding data is absent, they display an informative placeholder rather than raising an error.
+Plots 07–19 **degrade gracefully** — if the corresponding data is absent, they display an informative placeholder rather than raising an error.
 
 ---
 
@@ -953,13 +1292,31 @@ LLM_Society/
 │   ├── OpinionDynamics.js     # Extension 8: DeGroot / BC / Voter model
 │   ├── InstitutionalTrust.js  # Extension 9: per-node institutional trust
 │   ├── BotEngine.js           # Extension 10: bot detection, injection, centrality
-│   └── BotResilienceRunner.js # Extension 10: 3-phase bot resilience experiment runner
+│   ├── BotResilienceRunner.js # Extension 10: 3-phase bot resilience experiment runner
+│   │
+│   ├── PolarizationMetrics.js # Extension 11: Polarization Index + phase transition detection
+│   ├── MultiCycleRunner.js    # Extension 11: multi-cycle runner with belief carry-over
+│   │
+│   ├── RealGraphImporter.js   # Extension 12: FakeNewsNet/PHEME cascade importer
+│   ├── ValidationMetrics.js   # Extension 12: cascade structure metrics (depth, breadth, SV)
+│   ├── ValidationComparison.js# Extension 12: KS test, JS divergence, Pearson R, DTFS
+│   ├── ContentDriftValidation.js # Extension 12: sentiment trajectory comparison
+│   ├── DigitalTwinRunner.js   # Extension 12: single-cascade digital twin experiment
+│   ├── BatchValidationRunner.js  # Extension 12: N-cascade distributional validation
+│   └── SensitivityRunner.js   # Extension 12: persona inference sensitivity analysis
 │
 ├── scenarios/                 # YAML scenario files for the Society DSL
 │   └── climate_debate.yaml    # Example: 202 nodes, all extensions, 12 ticks
 │
+├── data/
+│   └── fakenewsnet/           # Sample cascade files (FakeNewsNet/PHEME format)
+│       ├── sample_cascade.json      # 13-node fake-news cascade (seed data)
+│       └── sample_cascade_real.json # 8-node real-news cascade (seed data)
+│
 ├── examples/                  # Ready-to-run config JSON files
-│   └── run_bot_resilience.json# Bot resilience echo-chamber config
+│   ├── run_bot_resilience.json      # Bot resilience echo-chamber config
+│   ├── run_polarization.json        # Emergent polarization 24-node ER config
+│   └── run_digital_twin.json        # Digital twin validation config
 ├── experiments/               # Experiment outputs (auto-created)
 ├── ab_tests/                  # A/B test reports (auto-created)
 │
