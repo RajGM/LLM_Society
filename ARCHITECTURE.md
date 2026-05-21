@@ -31,7 +31,7 @@ SocietySimulation/
 │   └── experiment.js          # Default parameters (all overridable per run)
 │
 ├── personas/
-│   └── personas.json          # 22 personas (21 from paper + neutral baseline)
+│   └── personas.json          # 26 personas (22 human + 4 bot personas)
 │
 ├── articles/
 │   └── articles.json          # 5 seed articles across 5 domains
@@ -48,14 +48,16 @@ SocietySimulation/
 │   ├── BeliefEngine.js        # Layer 1 — per-node belief state + confirmation bias
 │   ├── FrameAuditor.js        # Layer 2 — frame detection, sentiment drift, claim injection
 │   ├── InterventionEngine.js  # Layer 4 — fact-checker, inoculation, content moderation
-│   ├── MetricsEngine.js       # Layer 5 — extended metrics (Gini, SV, half-life, …)
+│   ├── MetricsEngine.js       # Layer 5 — extended metrics (Gini, SV, half-life, bot impact)
 │   ├── ABTestRunner.js        # Layer 6 — A/B testing harness with Cohen's d
 │   │
 │   ├── ProvenanceEngine.js    # Extension 1 — multi-hop chain trust
 │   ├── NetworkEvolution.js    # Extension 3 — homophily-driven edge creation/deletion
 │   ├── StrategyEngine.js      # Extension 4 — utility-maximising strategic agents
 │   ├── OpinionDynamics.js     # Extension 8 — DeGroot / BC / Voter model
-│   └── InstitutionalTrust.js  # Extension 9 — per-node trust toward 4 institutions
+│   ├── InstitutionalTrust.js  # Extension 9 — per-node trust toward 4 institutions
+│   ├── BotEngine.js           # Extension 10 — bot detection, injection, centrality
+│   └── BotResilienceRunner.js # Extension 10 — 3-phase experiment automation
 │
 ├── scenarios/
 │   └── climate_debate.yaml    # Example DSL scenario (202 nodes, all extensions)
@@ -67,36 +69,41 @@ SocietySimulation/
 │   ├── run_scale_free.json
 │   ├── run_echo_chamber.json
 │   ├── run_polarized.json
-│   └── run_hierarchical.json
+│   ├── run_hierarchical.json
+│   └── run_bot_resilience.json  # Bot resilience echo-chamber baseline config
 │
 ├── experiments/               # Created at runtime — one folder per run
-│   └── exp_{timestamp}/
-│       ├── state.json                        # Master state: phase, status, checkpoints
-│       ├── metadata.json                     # Config, status, final results
-│       ├── graph_topology.json               # Snapshot of all nodes and edges
-│       ├── nodes/
-│       │   └── {nodeId}.json                 # Per-node inbox, history, stats, relations
-│       ├── beliefs/
-│       │   └── {nodeId}.json                 # Per-node belief + emotional state (Layer 1)
-│       ├── institutional_trust.json          # Per-node institutional trust (Extension 9)
-│       ├── results_{articleId}.json          # Node summaries + Layer 5 metrics + provenance
-│       ├── opinion_dynamics_{articleId}.json # DeGroot / BC / Voter results (Extension 8)
-│       ├── human_eval_template.csv           # (original, rewritten) pairs for rating
-│       └── plots/
-│           ├── 01_graph_topology.png
-│           ├── 02_mpr_heatmap.png
-│           ├── 03_action_distribution.png
-│           ├── 04_propagation_wave.png
-│           ├── 05_mi_trajectory.png
-│           ├── 06_trust_evolution.png
-│           ├── 07_network_evolution.png
-│           ├── 08_opinion_dynamics.png
-│           ├── 09_institutional_trust.png
-│           └── dashboard.png
+│   ├── exp_{timestamp}/
+│   │   ├── state.json                        # Master state: phase, status, checkpoints
+│   │   ├── metadata.json                     # Config, status, final results
+│   │   ├── graph_topology.json               # Snapshot of all nodes and edges
+│   │   ├── nodes/
+│   │   │   └── {nodeId}.json                 # Per-node inbox, history, stats, relations
+│   │   ├── beliefs/
+│   │   │   └── {nodeId}.json                 # Per-node belief + emotional state (Layer 1)
+│   │   ├── institutional_trust.json          # Per-node institutional trust (Extension 9)
+│   │   ├── results_{articleId}.json          # Node summaries + Layer 5/10 metrics
+│   │   ├── opinion_dynamics_{articleId}.json # DeGroot / BC / Voter results (Extension 8)
+│   │   ├── human_eval_template.csv           # (original, rewritten) pairs for rating
+│   │   └── plots/
+│   │       ├── 01_graph_topology.png
+│   │       ├── 02_mpr_heatmap.png
+│   │       ├── 03_action_distribution.png
+│   │       ├── 04_propagation_wave.png
+│   │       ├── 05_mi_trajectory.png
+│   │       ├── 06_trust_evolution.png
+│   │       ├── 07_network_evolution.png
+│   │       ├── 08_opinion_dynamics.png
+│   │       ├── 09_institutional_trust.png
+│   │       ├── 10_bot_impact.png
+│   │       └── dashboard.png
+│   └── bot_resilience_{timestamp}/
+│       ├── summary.json                      # Cross-run baseline / injection / removal table
+│       └── exp_{timestamp}/                  # One sub-experiment per combination
 │
 ├── ab_tests/                  # Created by --ab-test runs
 │   └── comparison_{timestamp}.json
-├── visualize.py               # Python visualization pipeline (9 plots + dashboard)
+├── visualize.py               # Python visualization pipeline (10 plots + dashboard)
 ├── requirements_viz.txt
 └── index.js                   # CLI entry point
 ```
@@ -168,6 +175,15 @@ node index.js --dry-run --ab-test \
 # Extension smoke test — 3-node chain, all extensions on, DRY_RUN=1
 # Checks 10 output files and reports PASS/FAIL for each
 node index.js --test-extensions
+
+# Bot resilience — 3-phase experiment (baseline → injection → removal)
+node index.js --dry-run --bot-resilience --config examples/run_bot_resilience.json
+node index.js --bot-resilience --config examples/run_bot_resilience.json \
+    --bot-densities 0.05,0.10,0.20 \
+    --bot-types amplifier,distorter,agenda,flooder \
+    --bot-placements random,hubs,bridges,periphery,targeted_cluster \
+    --bot-removals none,remove_hubs,remove_random,remove_bridges,remove_all \
+    --article politics_0
 ```
 
 `--resume` accepts both relative and absolute paths. If the experiment is already complete it prints the summary and exits without re-running anything.
@@ -274,7 +290,9 @@ institutionalTrustParams: {
 
 ### `personas/personas.json` — Persona Library
 
-22 personas, all from the paper plus a neutral baseline. Each entry:
+26 personas — 22 human personas (all from the paper plus a neutral baseline) plus 4 bot personas (Extension 10).
+
+Human persona entry:
 
 ```json
 {
@@ -289,9 +307,38 @@ institutionalTrustParams: {
 }
 ```
 
-The `tags`, `emotionalTone`, `ideologicalBias`, and `expertiseDomain` fields support ablation — pass their keys in `strippedProperties` to remove their influence from the system prompt at runtime.
+Bot persona entry (additional fields):
 
-The optional `strategy` field (Extension 4) activates strategic action selection. Add it to any persona entry without code changes. Supported values: `maximize_downstream_mi`, `maximize_reach`, `minimize_downstream_mi`, `maximize_alignment`.
+```json
+{
+  "id": "bot_distorter",
+  "name": "Bot — Distorter",
+  "systemPrompt": "...",
+  "tags": ["bot", "distorter"],
+  "isBot": true,
+  "botType": "distorter",
+  "strategy": "maximize_downstream_mi",
+  "botConfig": {
+    "actionOverride": "reinterpret",
+    "bypassBeliefs": true,
+    "bypassProvenance": true,
+    "duplicateMessages": 1
+  }
+}
+```
+
+| Field | Human | Bot | Description |
+|---|---|---|---|
+| `isBot` | absent | `true` | Signals `BotEngine.isBot()` to activate the fast-path |
+| `botType` | absent | `amplifier` / `distorter` / `agenda` / `flooder` | Determines processing behavior in `BotEngine.processMessage()` |
+| `botConfig.actionOverride` | absent | `"forward"` / `"reinterpret"` | Deterministic action (bypasses probabilistic sampling) |
+| `botConfig.bypassBeliefs` | absent | bool | Skip `BeliefEngine` entirely |
+| `botConfig.bypassProvenance` | absent | bool | Skip provenance chain trust check |
+| `botConfig.duplicateMessages` | absent | int | Push this many copies per outgoing neighbor |
+
+The `tags`, `emotionalTone`, `ideologicalBias`, and `expertiseDomain` fields support ablation via `strippedProperties`.
+
+The optional `strategy` field (Extension 4) activates strategic action selection. Supported values: `maximize_downstream_mi`, `maximize_reach`, `minimize_downstream_mi`, `maximize_alignment`.
 
 **Full persona list:**
 
@@ -424,23 +471,30 @@ Each node is backed by a JSON file at `experiments/{id}/nodes/{nodeId}.json`:
 ```
 For each message in inbox:
   1. If interventionType: record as "forward", skip propagation
-  2. Check hops < maxHops                           -> drop if exceeded
-  3. Compute effective trust:
+  2. [Ext 10] If BotEngine.isBot(persona): BOT FAST-PATH
+       a. Call BotEngine.processMessage(msg, persona, nodeId)
+          → agenda bots drop ~33% of messages deterministically
+          → distorter bots corrupt content without LLM
+          → flooder/amplifier bots push duplicateCount copies per neighbor
+       b. Append provenance hop with isBot:true
+       c. Push duplicateCount copies to outgoing; continue (skip all checks below)
+  3. Check hops < maxHops                           -> drop if exceeded
+  4. Compute effective trust:
        a. Direct trust from relations map (or 0.5 fallback)
        b. [Ext 9] Multiply by institutional trust multiplier
-  4. Check effective trust >= trustThreshold        -> drop if too low
-  5. [Ext 1] Compute chain trust T_chain            -> drop if below threshold
-  6. [Layer 1] Compute belief alignment, adjust action weights
-  7. [Ext 4] If persona.strategy: use StrategyEngine.chooseAction()
+  5. Check effective trust >= trustThreshold        -> drop if too low
+  6. [Ext 1] Compute chain trust T_chain            -> drop if below threshold
+  7. [Layer 1] Compute belief alignment, adjust action weights
+  8. [Ext 4] If persona.strategy: use StrategyEngine.chooseAction()
              Else: probabilistic sample from (adjusted) action weights
-  8. If "drop": record, optionally update beliefs, continue
-  9. If "reinterpret": call LLM with persona system prompt
-  10. If "dump": record locally, do not forward
-  11. Record history event (misinfoIndex = null)
-  12. [Layer 1] Update belief state
-  13. Build outgoing messages with updated provenance chain
-  14. Deliver to neighbor inboxes
-  15. [Layer 1] Decay emotional state at tick end
+  9. If "drop": record, optionally update beliefs, continue
+  10. If "reinterpret": call LLM with persona system prompt
+  11. If "dump": record locally, do not forward
+  12. Record history event (misinfoIndex = null)
+  13. [Layer 1] Update belief state
+  14. Build outgoing messages with updated provenance chain
+  15. Deliver to neighbor inboxes
+  16. [Layer 1] Decay emotional state at tick end
 ```
 
 **Audit phase (`auditPendingEvents`):**
@@ -607,6 +661,12 @@ interventions:
     targets: [skeptics[0], skeptics[1], skeptics[2]]
     params:
       injected_trust: 0.80
+
+bots:                         # Extension 10 — optional; first entry is used
+  - type: distorter           # amplifier | distorter | agenda | flooder
+    density: 0.10             # Fraction of nodes to convert to bots
+    placement: hubs           # random | hubs | bridges | periphery | targeted_cluster
+    removal: none             # none | remove_hubs | remove_random | remove_bridges | remove_all
 
 extensions:
   beliefs: true
@@ -876,6 +936,8 @@ All computed post-audit and stored in `results_{articleId}.json` under `metrics`
 | Structural virality | Goel et al. avg pairwise distance in propagation tree |
 | Frame metrics | Aggregate frame shift, sentiment delta, total injected claims |
 | Human eval CSV | Sampled (original, rewritten) pairs with blank rating columns |
+| Bot impact metrics | `botMeanMI`, `humanMeanMI`, `botMIDelta`, `botReachFraction`, `botAmplificationFactor`, `cascadeContamination` (Extension 10) |
+| Bot counterfactual MI | `actualMeanMI`, `counterfactualMeanMI`, `botCausalContribution` — network MI excluding bot-contaminated provenance chains (Extension 10) |
 
 ---
 
@@ -1067,9 +1129,95 @@ adjustedTrust = clamp(directTrust × (0.5 + instTrust), 0, 1)
 
 ---
 
+---
+
+### Extension 10: Bot Detection and Resilience Testing (`src/BotEngine.js`, `src/BotResilienceRunner.js`)
+
+Enable by passing `botInjection` in the run config or via the DSL `bots:` key.
+
+#### `src/BotEngine.js` — Pure static class
+
+| Method | Signature | Purpose |
+|---|---|---|
+| `isBot(persona)` | `→ bool` | Returns `true` if persona has `isBot: true` |
+| `processMessage(msg, persona, nodeId)` | `→ {outContent, action, duplicateCount}` | Deterministic bot processing (no LLM) |
+| `injectBots(nodeIds, count, strategy, adjacency, rng)` | `→ string[]` | Selects bot nodes using placement strategy |
+| `applyRemoval(botNodeIds, strategy, adjacency, rng)` | `→ string[]` | Returns surviving bot IDs after removal |
+| `_computeDegrees(nodeIds, adjacency)` | `→ {id: int}` | Degree centrality for hub/periphery placement |
+| `_approximateBetweenness(nodeIds, adjacency)` | `→ {id: float}` | Brandes BFS betweenness (O(V·(V+E))) |
+| `_randomSample(arr, k, rng)` | `→ T[]` | Fisher-Yates shuffle, k draws |
+
+#### Bot types and behaviors
+
+| Type | `actionOverride` | Special behavior | `duplicateMessages` |
+|---|---|---|---|
+| `amplifier` | `forward` | None — pure forwarding | 3 |
+| `distorter` | `reinterpret` | `_distort()` corrupts content without LLM | 1 |
+| `agenda` | `forward` | djb2 hash drops ~33% of messages as "off-agenda" | 2 |
+| `flooder` | `forward` | None — volume attack | 5 |
+
+#### Placement strategies
+
+| Strategy | Algorithm |
+|---|---|
+| `random` | Fisher-Yates shuffle |
+| `hubs` | Sort by degree descending, take top N |
+| `bridges` | Brandes BFS betweenness, sort descending, take top N |
+| `periphery` | Sort by degree ascending, take top N |
+| `targeted_cluster` | Highest-degree seed + its neighbors, then fill from rest |
+
+#### Removal strategies (applied to the selected bot set)
+
+| Strategy | Effect |
+|---|---|
+| `none` | No bots removed |
+| `remove_hubs` | Remove top 50% by degree |
+| `remove_bridges` | Remove top 50% by betweenness |
+| `remove_random` | Remove 50% at random |
+| `remove_all` | Remove all bots before simulation |
+
+#### `src/BotResilienceRunner.js` — 3-phase automation
+
+```
+Phase 1 — Baseline: single clean run with no bots
+Phase 2 — Injection: full factorial loop
+    for density in [0.05, 0.10, 0.20]:
+      for botType in [amplifier, distorter, agenda, flooder]:
+        for placement in [random, hubs, bridges, periphery, targeted_cluster]:
+          run Simulation with botInjection={density, botType, placement}
+          collect: botImpact, botCounterfactual metrics
+Phase 3 — Removal: worst-case injection × each removal strategy
+    worstCase = {density=max, botType=distorter, placement=hubs}
+    for removal in [none, remove_hubs, remove_random, remove_bridges, remove_all]:
+      run worstCase + removal
+      collect metrics
+
+Output: experiments/bot_resilience_{ts}/summary.json
+```
+
+#### `Simulation._injectBots()` integration
+
+Called from `Simulation.run()` after `_buildGraph()`, before belief/trust initialization:
+
+1. Build adjacency map from all node files
+2. Call `BotEngine.injectBots(nodeIds, count, placement, adjacency, rng)`
+3. Apply removal strategy if set
+4. Overwrite `personaId` for selected nodes to `bot_{type}` in their JSON files
+5. Store `selected` IDs in `this.config._botNodeIds` for downstream metrics
+
+Bot node IDs flow to `MetricsEngine.computeAll(nodesData, ..., botNodeIds)` which adds `botImpact` and `botCounterfactual` to the results file.
+
+#### Provenance contamination tracking
+
+`SimulationNode` bot fast-path appends `{nodeId, personaId, isBot: true}` to the provenance chain. `MetricsEngine.botImpactMetrics()` scans all history events and marks any event whose provenance contains `isBot: true` OR whose source node ID is in the bot set as "contaminated", computing `cascadeContamination`.
+
+`MetricsEngine.botCounterfactualMI()` computes mean MI twice — once across all events and once excluding contaminated events — and reports `botCausalContribution = actualMeanMI − counterfactualMeanMI`.
+
+---
+
 ## Visualization Pipeline (`visualize.py`)
 
-Reads every JSON file from an experiment run and produces 9 individual plots plus a dashboard.
+Reads every JSON file from an experiment run and produces 10 individual plots plus a dashboard.
 
 ```bash
 pip install -r requirements_viz.txt
@@ -1092,9 +1240,12 @@ python visualize.py --latest --out-dir paper_figures/
 | `07_network_evolution.png` | Bar chart | Edges added/removed, modularity Q, homophily index per article (Extension 3); shows "not enabled" message if extension off |
 | `08_opinion_dynamics.png` | Line chart | DeGroot convergence trajectory per node (Extension 8); shows "not enabled" message if extension off |
 | `09_institutional_trust.png` | Grouped bar | Per-node trust toward media / science / government / corporate (Extension 9); shows "not enabled" message if extension off |
-| `dashboard.png` | All panels | All 9 plots + metadata banner in a single 22×30 figure |
+| `10_bot_impact.png` | 4-panel | (A) contamination vs density, (B) reach by placement, (C) causal MI by bot type, (D) removal effectiveness (Extension 10); shows placeholder if no bot resilience data |
+| `dashboard.png` | All panels | All 10 plots + metadata banner in a single 22×30 figure |
 
-All three extension plots (07-09) **degrade gracefully** — if the extension was not enabled, they display an informative "not enabled" message rather than crashing.
+Plots 07–10 **degrade gracefully** — if the corresponding extension data is absent, they display an informative placeholder rather than crashing.
+
+`plot_bot_impact()` looks for `summary.json` in the experiment directory first, then searches sibling `bot_resilience_*` directories for the most recent run.
 
 ---
 
@@ -1291,6 +1442,7 @@ python visualize.py --latest
 | What to add | Where |
 |---|---|
 | New persona | Append entry to `personas/personas.json` |
+| New bot persona | Append with `"isBot": true`, `"botType"`, `"strategy"`, and `"botConfig"` fields |
 | Strategic persona | Add `"strategy": "maximize_reach"` to a persona JSON entry |
 | New article | Append entry to `articles/articles.json` with `id`, `domain`, `title`, `text`, `questions`, `groundTruth` |
 | New scenario | Add a `.yaml` file in `scenarios/` using the DSL schema; validate with `--validate`, compile with `--compile --summary`, run with `--scenario` |
@@ -1323,6 +1475,7 @@ python visualize.py --latest
 - [x] Extension 9: Institutional trust modeling — per-node trust toward media/science/government/corporate
 - [x] `--test-extensions` CLI flag — 10-point smoke test for all five extensions
 - [x] Society DSL (`src/DSLCompiler.js`) — YAML scenario compiler: seeded PRNG, weighted persona sampling, 10-step pipeline, edge deduplication with precedence, per-node strategy override, `--scenario` / `--compile` / `--validate` CLI flags
+- [x] Extension 10: Bot Detection and Resilience Testing — 4 bot persona types, 5 placement strategies, 5 removal strategies, `BotEngine.js`, `BotResilienceRunner.js`, `botImpactMetrics`, `botCounterfactualMI`, `--bot-resilience` CLI, `bots:` DSL key, `10_bot_impact.png` visualization
 - [ ] Continuous MI scoring (0.0–1.0 float) replacing binary question answers
 - [ ] Multi-model ablation runner — same persona, N different models, compare MPRs
 - [ ] Temporal dynamics — trust decay over time, re-seeding articles mid-simulation

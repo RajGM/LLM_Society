@@ -39,7 +39,7 @@ The base system reproduces the **CIKM 2025 outstanding paper** results. The EMNL
 **Key properties:**
 - Zero RAM accumulation — all state on disk as JSON; restartable at any checkpoint
 - Dry-run mode — complete pipeline with no LLM API calls (instant, zero cost)
-- 22 personas × 9 graph topologies × 11 configurable flags
+- 26 personas × 9 graph topologies × 12 configurable flags (including 4 bot personas)
 - Two-phase execution: propagation first, batch audit second — LLM rewrites and QA scoring never interleaved
 
 ---
@@ -58,13 +58,14 @@ The base system reproduces the **CIKM 2025 outstanding paper** results. The EMNL
 10. [Graph Topologies](#graph-topologies)
 11. [Research Layers](#research-layers)
 12. [Extensions](#extensions)
-13. [Output Files](#output-files)
-14. [Visualization](#visualization)
-15. [Reproducing Paper Results](#reproducing-paper-results)
-16. [Project Structure](#project-structure)
-17. [Extending the System](#extending-the-system)
-18. [License](#license)
-19. [Acknowledgements](#acknowledgements)
+13. [Bot Detection & Resilience Testing](#bot-detection--resilience-testing)
+14. [Output Files](#output-files)
+15. [Visualization](#visualization)
+16. [Reproducing Paper Results](#reproducing-paper-results)
+17. [Project Structure](#project-structure)
+18. [Extending the System](#extending-the-system)
+19. [License](#license)
+20. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -150,7 +151,10 @@ node index.js --dry-run --config examples/run_linear_chain.json
 # Compile and dry-run the example YAML scenario (202 nodes, all extensions)
 node index.js --dry-run --scenario scenarios/climate_debate.yaml
 
-# Visualize all 9 plots
+# Run a bot resilience experiment (echo chamber, 3-phase, dry-run)
+node index.js --dry-run --bot-resilience --config examples/run_bot_resilience.json
+
+# Visualize all 10 plots
 python visualize.py --latest
 ```
 
@@ -213,6 +217,14 @@ Society DSL:
     --out <path>                   Write compiled JSON to this file (default: stdout)
     --summary                      Print a human-readable compilation report
   --validate <path>                Validate YAML scenario schema only; exit 0 if valid
+
+Bot Resilience Testing:
+  --bot-resilience                 Run 3-phase bot injection experiment (requires --config)
+    --bot-densities <n,n,...>      Bot densities to test, e.g. 0.05,0.10,0.20 (default)
+    --bot-types     <t,t,...>      Bot types: amplifier,distorter,agenda,flooder (default: all)
+    --bot-placements <p,p,...>     Placement strategies: random,hubs,bridges,periphery,targeted_cluster
+    --bot-removals  <r,r,...>      Removal strategies: none,remove_hubs,remove_random,remove_bridges,remove_all
+    --article <id>                 Article ID to track for bot metrics (default: first seed article)
 ```
 
 ### Examples
@@ -241,6 +253,17 @@ node index.js --compile  scenarios/climate_debate.yaml --summary
 node index.js --compile  scenarios/climate_debate.yaml --out compiled.json
 node index.js --dry-run  --scenario scenarios/climate_debate.yaml
 node index.js --scenario scenarios/climate_debate.yaml
+
+# Bot resilience — full factorial + removal, all defaults
+node index.js --dry-run --bot-resilience --config examples/run_bot_resilience.json
+
+# Bot resilience — targeted: two densities, distorter only, hub placement
+node index.js --bot-resilience \
+  --config examples/run_bot_resilience.json \
+  --bot-densities 0.05,0.15 \
+  --bot-types distorter \
+  --bot-placements hubs \
+  --article politics_0
 ```
 
 ---
@@ -294,6 +317,7 @@ Experiments are configured by passing a JSON file to `--config`. Any field not s
 | `opinionDynamicsParams` | `{steps:50, epsilon:0.3, voterRuns:10}` | `enableOpinionDynamics` |
 | `enableInstitutionalTrust` | `false` | — |
 | `institutionalTrustParams` | `{erosionRate:0.03, recoveryRate:0.01}` | `enableInstitutionalTrust` |
+| `botInjection` | `null` | Bot injection config; see [Bot Detection](#bot-detection--resilience-testing) |
 
 ### Minimal config
 ```json
@@ -458,7 +482,7 @@ See `scenarios/climate_debate.yaml` for a complete worked example (4 groups, 2 b
 
 ## Personas
 
-22 LLM-conditioned personas. The `strategy` field (optional) activates utility-maximising action selection for Extension 4.
+26 personas — 22 LLM-conditioned human personas plus 4 synthetic bot personas. The `strategy` field (optional) activates utility-maximising action selection for Extension 4. Bot personas carry additional fields: `isBot`, `botType`, `botConfig`.
 
 | ID | Name | Tags |
 |---|---|---|
@@ -484,6 +508,11 @@ See `scenarios/climate_debate.yaml` for a complete worked example (4 groups, 2 b
 | `environmentalist` | Environmentalist | advocacy, environment |
 | `startup_founder` | Tech Startup Founder | entrepreneurship, technology |
 | `neutral` | Neutral Agent (baseline) | neutral |
+| **Bot personas** | | |
+| `bot_amplifier` | Bot — Amplifier | bot, amplifier |
+| `bot_distorter` | Bot — Distorter | bot, distorter |
+| `bot_agenda` | Bot — Agenda Pusher | bot, agenda |
+| `bot_flooder` | Bot — Flooder | bot, flooder |
 
 List all at runtime: `node index.js --list-personas`
 
@@ -636,6 +665,90 @@ Each node maintains trust toward four institutions: **media**, **science**, **go
 
 ---
 
+## Bot Detection & Resilience Testing
+
+Extension 10 models adversarial automation in the network — measuring how synthetic bots amplify misinformation, identifying the most damaging bot configurations, and testing which removal strategies are most effective.
+
+### Bot personas
+
+Four synthetic bot personas in `personas/personas.json`, each with `isBot: true`, `botType`, and `botConfig`:
+
+| ID | Type | Behavior | duplicateMessages |
+|---|---|---|---|
+| `bot_amplifier` | `amplifier` | Forwards every message immediately, no modification | 3 |
+| `bot_distorter` | `distorter` | Always reinterprets (LLM-free corruption) | 1 |
+| `bot_agenda` | `agenda` | Forwards ~67% of messages (drops off-agenda); pushes 2 copies | 2 |
+| `bot_flooder` | `flooder` | Saturates by forwarding every message 5 times | 5 |
+
+Bots bypass trust checks, provenance checks, and belief computation — they use the `BotEngine.processMessage()` fast-path.
+
+### Placement strategies
+
+| Strategy | Targets |
+|---|---|
+| `random` | Uniformly random node selection |
+| `hubs` | Highest-degree nodes (maximises initial reach) |
+| `bridges` | Highest betweenness centrality (Brandes BFS approximation) |
+| `periphery` | Lowest-degree nodes (tests fringe infiltration) |
+| `targeted_cluster` | Highest-degree seed + its immediate neighbors |
+
+### Bot metrics (in `results_{articleId}.json`)
+
+| Metric | Meaning |
+|---|---|
+| `botMeanMI` | Mean MI score for events produced by bot nodes |
+| `humanMeanMI` | Mean MI score for events produced by human nodes |
+| `botMIDelta` | `botMeanMI − humanMeanMI` (positive = bots cause more distortion) |
+| `botReachFraction` | Fraction of all forwarding events attributed to bots |
+| `botAmplificationFactor` | `botForwards / humanForwards` ratio |
+| `cascadeContamination` | Fraction of all events with at least one bot in their provenance chain |
+| `botCausalContribution` | Counterfactual: `actualMeanMI − meanMI_without_bot_provenance` |
+
+### Three-phase experiment protocol
+
+`BotResilienceRunner` automates:
+
+1. **Baseline** — clean run with no bots
+2. **Injection** — full factorial: `density × botType × placement` combinations
+3. **Removal** — worst-case injection with each of 5 removal strategies tested in turn
+
+Results are written to `experiments/bot_resilience_{timestamp}/summary.json` and printed as a formatted table.
+
+### Running a bot resilience experiment
+
+```bash
+# Dry-run (no API calls)
+node index.js --dry-run --bot-resilience --config examples/run_bot_resilience.json
+
+# Full run
+node index.js --bot-resilience --config examples/run_bot_resilience.json
+
+# Custom: only test distorter at hub positions, two densities
+node index.js --bot-resilience \
+  --config examples/run_bot_resilience.json \
+  --bot-densities 0.05,0.10 \
+  --bot-types distorter \
+  --bot-placements hubs \
+  --bot-removals none,remove_hubs,remove_all \
+  --article politics_0
+```
+
+### DSL bot injection
+
+Inject bots directly from a YAML scenario with the `bots:` key:
+
+```yaml
+bots:
+  - type: distorter
+    density: 0.10
+    placement: hubs
+    removal: none
+```
+
+The compiler validates `type`, `placement`, `removal`, and `density` and emits a `botInjection` block in the compiled JSON.
+
+---
+
 ## Output Files
 
 Every run produces a self-contained experiment folder:
@@ -663,7 +776,17 @@ experiments/exp_{timestamp}/
     ├── 07_network_evolution.png
     ├── 08_opinion_dynamics.png
     ├── 09_institutional_trust.png
+    ├── 10_bot_impact.png
     └── dashboard.png
+```
+
+Bot resilience experiments produce an additional directory:
+
+```
+experiments/bot_resilience_{timestamp}/
+├── summary.json                      # Baseline, injection, and removal results
+└── exp_{timestamp}/                  # One sub-experiment per combination
+    └── ...
 ```
 
 ### `results_{articleId}.json` schema
@@ -695,6 +818,19 @@ experiments/exp_{timestamp}/
     "edgesRemoved": 0,
     "modularityQ": 0.312,
     "homophilyIndex": 0.67
+  },
+  "botImpact": {
+    "botMeanMI": 3.8,
+    "humanMeanMI": 1.9,
+    "botMIDelta": 1.9,
+    "botReachFraction": 0.34,
+    "botAmplificationFactor": 2.1,
+    "cascadeContamination": 0.61
+  },
+  "botCounterfactual": {
+    "actualMeanMI": 2.4,
+    "counterfactualMeanMI": 1.1,
+    "botCausalContribution": 1.3
   }
 }
 ```
@@ -738,9 +874,10 @@ python visualize.py --latest --out-dir paper_figures/
 | `07_network_evolution.png` | Edges added/removed, modularity Q, homophily index per article (Extension 3) |
 | `08_opinion_dynamics.png` | DeGroot convergence trajectory per node (Extension 8) |
 | `09_institutional_trust.png` | Per-node trust toward media / science / government / corporate (Extension 9) |
-| `dashboard.png` | All 9 plots + experiment metadata in a single 22×30 figure |
+| `10_bot_impact.png` | 4-panel bot dashboard: contamination vs density, reach by placement, causal MI by bot type, removal effectiveness (Extension 10) |
+| `dashboard.png` | All 10 plots + experiment metadata in a single 22×30 figure |
 
-Plots 07–09 **degrade gracefully** — if the corresponding extension was not enabled, they display an informative "not enabled" message rather than raising an error.
+Plots 07–10 **degrade gracefully** — if the corresponding data is absent, they display an informative placeholder rather than raising an error.
 
 ---
 
@@ -790,7 +927,7 @@ LLM_Society/
 │   └── experiment.js          # All default parameters
 │
 ├── personas/
-│   └── personas.json          # 22 persona definitions
+│   └── personas.json          # 26 persona definitions (22 human + 4 bot)
 │
 ├── articles/
 │   └── articles.json          # 5 seed articles with QA ground truth
@@ -807,19 +944,22 @@ LLM_Society/
 │   ├── BeliefEngine.js        # Layer 1: per-node belief state + confirmation bias
 │   ├── FrameAuditor.js        # Layer 2: frame shift, sentiment drift, claim injection
 │   ├── InterventionEngine.js  # Layer 4: fact-checker, inoculation, moderation
-│   ├── MetricsEngine.js       # Layer 5: Gini, structural virality, half-life, …
+│   ├── MetricsEngine.js       # Layer 5: Gini, structural virality, half-life, bot metrics
 │   ├── ABTestRunner.js        # Layer 6: A/B harness with Cohen's d
 │   │
 │   ├── ProvenanceEngine.js    # Extension 1: multi-hop chain trust
 │   ├── NetworkEvolution.js    # Extension 3: homophily edge creation/deletion
 │   ├── StrategyEngine.js      # Extension 4: utility-maximising strategic agents
 │   ├── OpinionDynamics.js     # Extension 8: DeGroot / BC / Voter model
-│   └── InstitutionalTrust.js  # Extension 9: per-node institutional trust
+│   ├── InstitutionalTrust.js  # Extension 9: per-node institutional trust
+│   ├── BotEngine.js           # Extension 10: bot detection, injection, centrality
+│   └── BotResilienceRunner.js # Extension 10: 3-phase bot resilience experiment runner
 │
 ├── scenarios/                 # YAML scenario files for the Society DSL
 │   └── climate_debate.yaml    # Example: 202 nodes, all extensions, 12 ticks
 │
 ├── examples/                  # Ready-to-run config JSON files
+│   └── run_bot_resilience.json# Bot resilience echo-chamber config
 ├── experiments/               # Experiment outputs (auto-created)
 ├── ab_tests/                  # A/B test reports (auto-created)
 │
@@ -839,6 +979,7 @@ For a deep dive into every design decision, data schema, and component interface
 | What | Where | How |
 |---|---|---|
 | New persona | `personas/personas.json` | Append a JSON entry; no code changes |
+| New bot persona | `personas/personas.json` | Append with `"isBot": true`, `"botType"`, and `"botConfig"` fields |
 | Strategic persona | `personas/personas.json` | Add `"strategy": "maximize_reach"` to any entry |
 | New article | `articles/articles.json` | Append with `id`, `domain`, `title`, `text`, `questions`, `groundTruth` |
 | New scenario | `scenarios/` | Write a `.yaml` file using the DSL schema; validate → compile → run |
@@ -860,7 +1001,7 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 This work builds on the CIKM 2025 outstanding paper. The society simulation framework and all extensions were developed as part of the EMNLP 2025 submission.
 
-The five articles used for evaluation are sourced from publicly available news and government reports. The 22 persona system prompts are original contributions of this work.
+The five articles used for evaluation are sourced from publicly available news and government reports. The 22 human persona system prompts and 4 bot personas are original contributions of this work.
 
 **LLM providers:** OpenAI GPT-4o / GPT-4o-mini, Anthropic Claude Sonnet 4.6, Ollama (local).
 
