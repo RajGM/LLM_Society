@@ -284,9 +284,118 @@ class MetricsEngine {
     return rows.join("\n");
   }
 
-  // ── Compute everything ─────────────────────────────────────────────────────
-  static computeAll(nodesData, topology, articleId, maxTicks) {
+  // ── Bot impact metrics ─────────────────────────────────────────────────────
+  // Compares MI between bot-sourced and human-sourced events.
+  //
+  // botNodeIds — Set or array of node IDs that are bots.
+  // Returns:
+  //   botMeanMI, humanMeanMI, botMIDelta, botReachFraction,
+  //   botAmplificationFactor, cascadeContamination
+  static botImpactMetrics(nodesData, botNodeIds, articleId) {
+    const bots = new Set(botNodeIds);
+
+    const botMIs = [];
+    const humanMIs = [];
+    let totalEvents = 0;
+    let contaminatedEvents = 0;
+    let botForwards = 0;
+    let humanForwards = 0;
+
+    for (const [nodeId, state] of Object.entries(nodesData)) {
+      const isBot = bots.has(nodeId);
+      for (const ev of state.history) {
+        if (ev.articleId !== articleId) continue;
+        if (ev.misinfoIndex === null || ev.misinfoIndex === undefined) continue;
+
+        totalEvents++;
+
+        // Cascade contamination: any event where provenance includes a bot hop
+        const provenance = ev.provenance || [];
+        if (provenance.some((hop) => hop.isBot || bots.has(hop.nodeId))) {
+          contaminatedEvents++;
+        }
+
+        if (isBot) {
+          botMIs.push(ev.misinfoIndex);
+          botForwards++;
+        } else {
+          humanMIs.push(ev.misinfoIndex);
+          humanForwards++;
+        }
+      }
+    }
+
+    const mean = (arr) =>
+      arr.length === 0 ? null : arr.reduce((s, v) => s + v, 0) / arr.length;
+
+    const botMeanMI    = mean(botMIs);
+    const humanMeanMI  = mean(humanMIs);
+    const botMIDelta   = botMeanMI !== null && humanMeanMI !== null
+      ? botMeanMI - humanMeanMI
+      : null;
+
+    const totalForwards = botForwards + humanForwards;
+    const botReachFraction = totalForwards > 0 ? botForwards / totalForwards : 0;
+    const botAmplificationFactor =
+      humanForwards > 0 ? botForwards / humanForwards : null;
+
+    const cascadeContamination =
+      totalEvents > 0 ? contaminatedEvents / totalEvents : 0;
+
     return {
+      botMeanMI,
+      humanMeanMI,
+      botMIDelta,
+      botReachFraction,
+      botAmplificationFactor,
+      cascadeContamination,
+    };
+  }
+
+  // ── Bot counterfactual MI ──────────────────────────────────────────────────
+  // Estimates what network mean MI would be without bot influence by excluding
+  // any event whose provenance chain includes at least one bot hop.
+  //
+  // Returns:
+  //   actualMeanMI, counterfactualMeanMI, botCausalContribution
+  static botCounterfactualMI(nodesData, botNodeIds, articleId) {
+    const bots = new Set(botNodeIds);
+
+    const allMIs = [];
+    const cleanMIs = [];
+
+    for (const [, state] of Object.entries(nodesData)) {
+      for (const ev of state.history) {
+        if (ev.articleId !== articleId) continue;
+        if (ev.misinfoIndex === null || ev.misinfoIndex === undefined) continue;
+
+        allMIs.push(ev.misinfoIndex);
+
+        const provenance = ev.provenance || [];
+        const touchedByBot = provenance.some((hop) => hop.isBot || bots.has(hop.nodeId));
+        if (!touchedByBot) {
+          cleanMIs.push(ev.misinfoIndex);
+        }
+      }
+    }
+
+    const mean = (arr) =>
+      arr.length === 0 ? null : arr.reduce((s, v) => s + v, 0) / arr.length;
+
+    const actualMeanMI        = mean(allMIs);
+    const counterfactualMeanMI = mean(cleanMIs);
+    const botCausalContribution =
+      actualMeanMI !== null && counterfactualMeanMI !== null
+        ? actualMeanMI - counterfactualMeanMI
+        : null;
+
+    return { actualMeanMI, counterfactualMeanMI, botCausalContribution };
+  }
+
+  // ── Compute everything ─────────────────────────────────────────────────────
+  // botNodeIds is optional; pass a non-empty array to include bot metrics.
+  static computeAll(nodesData, topology, articleId, maxTicks, botNodeIds = []) {
+    const result = {
       informationHalfLife:     MetricsEngine.informationHalfLife(nodesData, articleId),
       cascadeReachVsFidelity:  MetricsEngine.cascadeReachVsFidelity(nodesData, articleId),
       networkMIOverTime:       MetricsEngine.networkMIOverTime(nodesData, articleId, maxTicks),
@@ -295,6 +404,13 @@ class MetricsEngine {
       structuralVirality:      MetricsEngine.structuralVirality(nodesData, articleId),
       frameMetrics:            MetricsEngine.frameMetrics(nodesData, articleId),
     };
+
+    if (botNodeIds.length > 0) {
+      result.botImpact        = MetricsEngine.botImpactMetrics(nodesData, botNodeIds, articleId);
+      result.botCounterfactual = MetricsEngine.botCounterfactualMI(nodesData, botNodeIds, articleId);
+    }
+
+    return result;
   }
 }
 

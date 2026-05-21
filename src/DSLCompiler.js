@@ -454,6 +454,26 @@ class DSLCompiler {
       }
     }
 
+    // Bot injection (optional)
+    const VALID_BOT_TYPES       = new Set(["amplifier", "distorter", "agenda", "flooder"]);
+    const VALID_BOT_PLACEMENTS  = new Set(["random", "hubs", "bridges", "periphery", "targeted_cluster"]);
+    const VALID_BOT_REMOVALS    = new Set(["none", "remove_hubs", "remove_random", "remove_bridges", "remove_all"]);
+
+    for (const bspec of scenario.bots || []) {
+      if (bspec.type && !VALID_BOT_TYPES.has(bspec.type)) {
+        errors.push(`Bot spec: unknown type '${bspec.type}'`);
+      }
+      if (bspec.placement && !VALID_BOT_PLACEMENTS.has(bspec.placement)) {
+        errors.push(`Bot spec: unknown placement '${bspec.placement}'`);
+      }
+      if (bspec.removal && !VALID_BOT_REMOVALS.has(bspec.removal)) {
+        errors.push(`Bot spec: unknown removal strategy '${bspec.removal}'`);
+      }
+      if (bspec.density !== undefined && (bspec.density < 0 || bspec.density > 1)) {
+        errors.push(`Bot spec: density must be between 0 and 1 (got ${bspec.density})`);
+      }
+    }
+
     // Seed articles
     for (const a of (scenario.seed && scenario.seed.articles) || []) {
       if (!knownArticles.has(a)) {
@@ -745,6 +765,17 @@ class DSLCompiler {
       opinionDynamicsParams:     extP.opinion_dynamics    ?? {},
       enableInstitutionalTrust:  !!ext.institutional_trust,
       institutionalTrustParams:  extP.institutional_trust ?? {},
+
+      // Bot injection (from DSL `bots:` key, first entry wins)
+      ...(scenario.bots && scenario.bots.length > 0 ? {
+        botInjection: {
+          enabled:   true,
+          density:   scenario.bots[0].density   ?? 0.1,
+          botType:   scenario.bots[0].type       ?? "amplifier",
+          placement: scenario.bots[0].placement  ?? "random",
+          removal:   scenario.bots[0].removal    ?? "none",
+        },
+      } : {}),
 
       // Metadata preserved for documentation; not consumed by the engine
       _dsl: {

@@ -11,6 +11,7 @@ const OpinionDynamics = require("./OpinionDynamics");
 const ProvenanceEngine = require("./ProvenanceEngine");
 const { readJSON, writeJSON, ensureDir, fileExists } = require("./fileIO");
 const { DEFAULTS } = require("../config/experiment");
+const BotEngine = require("./BotEngine");
 
 const STATE_FILE = "state.json";
 
@@ -53,6 +54,11 @@ class Simulation {
 
     this.graph = this._buildGraph();
     this.graph.saveTopology();
+
+    // Bot injection — replace selected nodes' personas with bot personas
+    if (this.config.botInjection && this.config.botInjection.enabled) {
+      this._injectBots();
+    }
 
     // Initialise per-node belief files if enabled
     if (this.config.enableBeliefs) {
@@ -386,7 +392,8 @@ class Simulation {
     const nodesData     = this._readAllNodeStates();
     const nodeSummaries = this._buildNodeSummaries(articleId, nodesData);
     const metrics       = MetricsEngine.computeAll(
-      nodesData, this.graph, articleId, this.config.maxTicks
+      nodesData, this.graph, articleId, this.config.maxTicks,
+      this.config._botNodeIds || []
     );
     const provenanceMetrics = ProvenanceEngine.metricsFromHistory(nodesData, articleId);
 
@@ -543,6 +550,60 @@ class Simulation {
       default:
         throw new Error(`Unknown topology: ${topology}`);
     }
+  }
+
+  _injectBots() {
+    const { density, botType, placement, removal } = this.config.botInjection;
+    BotEngine.validateBotType(botType);
+    BotEngine.validatePlacementStrategy(placement || "random");
+
+    // Build adjacency map from graph for centrality computations
+    const nodeIds = Object.keys(this.graph.nodes);
+    const adjacency = {};
+    for (const nodeId of nodeIds) {
+      const state = this.graph.nodes[nodeId].read();
+      adjacency[nodeId] = Object.keys(state.relations);
+    }
+
+    const count = Math.max(1, Math.round(nodeIds.length * (density || 0.1)));
+
+    // Seeded RNG for reproducibility
+    let seed = 0xdeadbeef;
+    const rng = () => {
+      seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5;
+      return (seed >>> 0) / 0x100000000;
+    };
+
+    let selected = BotEngine.injectBots(nodeIds, count, placement || "random", adjacency, rng);
+
+    // Apply removal strategy if set
+    if (removal && removal !== "none") {
+      const survivors = BotEngine.applyRemoval(selected, removal, adjacency, rng);
+      const removed = new Set(selected.filter((id) => !survivors.includes(id)));
+      selected = survivors;
+      console.log(`[BotInjection] Removed ${removed.size} bots via strategy: ${removal}`);
+    }
+
+    const botPersonaId = `bot_${botType}`;
+    if (!this.personaMap[botPersonaId]) {
+      throw new Error(`Bot persona not found: ${botPersonaId}. Add it to personas.json.`);
+    }
+
+    for (const nodeId of selected) {
+      const nodeInst = this.graph.nodes[nodeId];
+      const state = nodeInst.read();
+      state.personaId = botPersonaId;
+      const { writeJSON: wj } = require("./fileIO");
+      wj(nodeInst.filePath, state);
+    }
+
+    console.log(
+      `[BotInjection] Injected ${selected.length} ${botType} bots` +
+      ` via ${placement || "random"} placement (density=${density})`
+    );
+
+    // Store bot node IDs in config for downstream metrics
+    this.config._botNodeIds = selected;
   }
 
   _makeNodeConfigs(n, topology, tp) {

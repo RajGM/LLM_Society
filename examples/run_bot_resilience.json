@@ -1,0 +1,52 @@
+{
+  "_comment": "Bot Resilience Experiment — echo-chamber topology with provenance + institutional trust.",
+  "topology": "echo_chamber",
+  "topologyParams": {
+    "numNodes": 40,
+    "numChambers": 2,
+    "intraEdgeProb": 0.65,
+    "interEdgeProb": 0.04,
+    "intraTrust": 0.85,
+    "interTrust": 0.15
+  },
+
+  "maxTicks": 8,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "auditorQuestions": 3,
+
+  "defaultPersonaAssignment": "by_cluster",
+
+  "seedArticles": ["politics_0", "technology_0"],
+  "seedNodes": ["node_0", "node_20"],
+
+  "nodeParams": {
+    "trustThreshold": 0.25,
+    "actionWeights": {
+      "forward": 0.40,
+      "reinterpret": 0.35,
+      "drop": 0.15,
+      "dump": 0.10
+    },
+    "maxHops": 6,
+    "trustDelta": 0.05,
+    "edgeDeletionThreshold": 0.05,
+    "activityPattern": "always"
+  },
+
+  "enableProvenance": true,
+  "provenanceRecencyDiscount": 0.9,
+  "enableBeliefs": false,
+  "enableFrameAnalysis": false,
+  "enableStrategicAgents": false,
+  "enableNetworkEvolution": false,
+  "enableOpinionDynamics": false,
+  "enableInstitutionalTrust": true,
+
+  "_usage": {
+    "dry_run":    "node index.js --dry-run --bot-resilience --config examples/run_bot_resilience.json",
+    "default":    "node index.js --bot-resilience --config examples/run_bot_resilience.json",
+    "custom":     "node index.js --bot-resilience --config examples/run_bot_resilience.json --bot-densities 0.05,0.10 --bot-types distorter,flooder --bot-placements hubs,bridges --article politics_0",
+    "compile":    "node index.js --compile scenarios/climate_debate.yaml --summary"
+  }
+}

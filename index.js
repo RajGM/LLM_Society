@@ -29,6 +29,7 @@ const path = require("path");
 const Simulation = require("./src/Simulation");
 const ABTestRunner = require("./src/ABTestRunner");
 const DSLCompiler = require("./src/DSLCompiler");
+const BotResilienceRunner = require("./src/BotResilienceRunner");
 
 async function main() {
   const args = process.argv.slice(2);
@@ -148,6 +149,47 @@ async function main() {
     }
     const results = await Simulation.resume(absDir);
     printSummary(results);
+    return;
+  }
+
+  // ── Bot resilience experiment ──────────────────────────────────────────────
+  // Usage:
+  //   node index.js --bot-resilience --config examples/run_bot_resilience.json
+  //       [--bot-densities 0.05,0.10,0.20]
+  //       [--bot-types amplifier,distorter]
+  //       [--bot-placements random,hubs]
+  //       [--bot-removals none,remove_all]
+  //       [--article crime_0]
+  if (args.includes("--bot-resilience")) {
+    const configIdx2 = args.indexOf("--config");
+    let baseConfig = {};
+    if (configIdx2 !== -1) {
+      baseConfig = loadConfig(args[configIdx2 + 1]);
+      console.log(`Loaded base config from: ${args[configIdx2 + 1]}`);
+    }
+
+    const parseList = (flag) => {
+      const idx = args.indexOf(flag);
+      return idx !== -1 ? args[idx + 1].split(",").map((s) => s.trim()) : null;
+    };
+
+    const densityStrs = parseList("--bot-densities");
+    const densities   = densityStrs ? densityStrs.map(Number) : undefined;
+    const botTypes    = parseList("--bot-types")    || undefined;
+    const placements  = parseList("--bot-placements") || undefined;
+    const removals    = parseList("--bot-removals")   || undefined;
+
+    const articleIdx  = args.indexOf("--article");
+    const articleId   = articleIdx !== -1 ? args[articleIdx + 1] : undefined;
+
+    const runner = new BotResilienceRunner(baseConfig, {
+      densities,
+      botTypes,
+      placements,
+      removals,
+      articleId,
+    });
+    await runner.run();
     return;
   }
 

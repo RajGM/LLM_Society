@@ -80,6 +80,7 @@ TAG_COLORS = {
     "family":          "#ad1457",
     "religion":        "#4a148c",
     "opinion":         "#0277bd",
+    "bot":             "#ff0000",
 }
 
 PLOT_STYLE = {
@@ -659,6 +660,141 @@ def make_banner(meta, ax):
     ax.set_title("Society Simulation — Experiment Summary", fontsize=12,
                  fontweight="bold", color="#e0e0e0", pad=6)
 
+# ── Plot 10: Bot impact dashboard ────────────────────────────────────────────
+# Expects a bot_resilience summary.json in the experiment directory.
+# Falls back gracefully if the file is absent or no bot runs were recorded.
+
+def plot_bot_impact(exp_dir, ax=None):
+    summary_path = Path(exp_dir) / "summary.json"
+
+    # Try sibling bot_resilience directory if not directly in exp_dir
+    if not summary_path.exists():
+        root = Path(exp_dir).parent
+        candidates = sorted(root.glob("bot_resilience_*"))
+        if candidates:
+            summary_path = candidates[-1] / "summary.json"
+
+    if not summary_path.exists():
+        if ax is not None:
+            ax.text(0.5, 0.5, "No bot resilience data found.\nRun --bot-resilience first.",
+                    ha="center", va="center", transform=ax.transAxes,
+                    fontsize=10, color="#e0e0e0")
+            ax.set_title("Bot Impact (no data)", fontsize=10, color="#e0e0e0")
+        return
+
+    with open(summary_path) as f:
+        summary = json.load(f)
+
+    injection = summary.get("injection", [])
+    removal   = summary.get("removal", [])
+
+    if ax is None:
+        fig, axes = plt.subplots(2, 2, figsize=(14, 10), facecolor="#1a1a2e")
+        axes = axes.flatten()
+        standalone = True
+    else:
+        # Split the single ax into a 2×2 inset grid
+        from mpl_toolkits.axes_grid1.inset_locator import InsetPosition
+        pos = ax.get_position()
+        ax.set_visible(False)
+        fig = ax.get_figure()
+        axes = []
+        for row in range(2):
+            for col in range(2):
+                new_ax = fig.add_axes([
+                    pos.x0 + col * pos.width / 2,
+                    pos.y0 + (1 - row) * pos.height / 2 - pos.height / 2,
+                    pos.width / 2 * 0.9,
+                    pos.height / 2 * 0.85,
+                ])
+                new_ax.set_facecolor("#16213e")
+                axes.append(new_ax)
+        standalone = False
+
+    BG = "#16213e"
+    for a in axes:
+        a.set_facecolor(BG)
+
+    # Panel A — cascade contamination by bot type (bar chart)
+    ax_a = axes[0]
+    if injection:
+        bot_types = sorted({r["botType"] for r in injection})
+        for bt in bot_types:
+            rows = [r for r in injection if r["botType"] == bt]
+            densities = [r["density"] for r in rows]
+            contams   = [r.get("cascadeContamination") or 0 for r in rows]
+            ax_a.plot(densities, contams, marker="o", label=bt)
+        ax_a.set_xlabel("Bot density", color="#e0e0e0", fontsize=8)
+        ax_a.set_ylabel("Cascade contamination", color="#e0e0e0", fontsize=8)
+        ax_a.set_title("A — Contamination vs Density", color="#e0e0e0", fontsize=9)
+        ax_a.legend(fontsize=7, facecolor="#0f3460", labelcolor="#e0e0e0")
+    else:
+        ax_a.text(0.5, 0.5, "No injection data", ha="center", va="center",
+                  transform=ax_a.transAxes, color="#e0e0e0", fontsize=9)
+        ax_a.set_title("A — Contamination vs Density", color="#e0e0e0", fontsize=9)
+
+    # Panel B — bot reach fraction by placement strategy (grouped bar)
+    ax_b = axes[1]
+    if injection:
+        placements = sorted({r["placement"] for r in injection})
+        x = np.arange(len(placements))
+        reach_vals = [
+            np.mean([r.get("botReachFraction") or 0
+                     for r in injection if r["placement"] == p])
+            for p in placements
+        ]
+        bars = ax_b.bar(x, reach_vals, color="#e91e63", alpha=0.8)
+        ax_b.set_xticks(x)
+        ax_b.set_xticklabels(placements, rotation=30, ha="right", fontsize=7)
+        ax_b.set_ylabel("Mean bot reach fraction", color="#e0e0e0", fontsize=8)
+        ax_b.set_title("B — Reach by Placement", color="#e0e0e0", fontsize=9)
+    else:
+        ax_b.text(0.5, 0.5, "No injection data", ha="center", va="center",
+                  transform=ax_b.transAxes, color="#e0e0e0", fontsize=9)
+        ax_b.set_title("B — Reach by Placement", color="#e0e0e0", fontsize=9)
+
+    # Panel C — bot causal MI contribution by bot type
+    ax_c = axes[2]
+    if injection:
+        bot_types2 = sorted({r["botType"] for r in injection})
+        contrib_vals = [
+            np.mean([r.get("botCausalContribution") or 0
+                     for r in injection if r["botType"] == bt])
+            for bt in bot_types2
+        ]
+        colors = [TAG_COLORS.get("bot", "#ff0000")] * len(bot_types2)
+        ax_c.barh(bot_types2, contrib_vals, color=colors, alpha=0.8)
+        ax_c.set_xlabel("Mean causal MI contribution", color="#e0e0e0", fontsize=8)
+        ax_c.set_title("C — Causal MI by Bot Type", color="#e0e0e0", fontsize=9)
+    else:
+        ax_c.text(0.5, 0.5, "No injection data", ha="center", va="center",
+                  transform=ax_c.transAxes, color="#e0e0e0", fontsize=9)
+        ax_c.set_title("C — Causal MI by Bot Type", color="#e0e0e0", fontsize=9)
+
+    # Panel D — removal strategy effectiveness (contamination after removal)
+    ax_d = axes[3]
+    if removal:
+        rem_labels = [r["removal"] for r in removal]
+        rem_contam = [r.get("cascadeContamination") or 0 for r in removal]
+        x4 = np.arange(len(rem_labels))
+        ax_d.bar(x4, rem_contam, color="#27ae60", alpha=0.8)
+        ax_d.set_xticks(x4)
+        ax_d.set_xticklabels(rem_labels, rotation=30, ha="right", fontsize=7)
+        ax_d.set_ylabel("Cascade contamination", color="#e0e0e0", fontsize=8)
+        ax_d.set_title("D — Removal Strategy Effectiveness", color="#e0e0e0", fontsize=9)
+    else:
+        ax_d.text(0.5, 0.5, "No removal data", ha="center", va="center",
+                  transform=ax_d.transAxes, color="#e0e0e0", fontsize=9)
+        ax_d.set_title("D — Removal Strategy Effectiveness", color="#e0e0e0", fontsize=9)
+
+    for a in axes:
+        for spine in a.spines.values():
+            spine.set_edgecolor("#e0e0e0")
+        a.tick_params(colors="#e0e0e0", labelsize=7)
+
+    if standalone:
+        plt.tight_layout()
+
 # ── Individual savers ─────────────────────────────────────────────────────────
 
 def save_individual(fn, plot_fn, *args, out_dir):
@@ -732,9 +868,9 @@ def build_dashboard(meta, topology, persona_map, nodes_data, exp_dir, out_dir):
         ax_it.set_facecolor("#16213e")
         plot_institutional_trust(exp_dir, ax_it)
 
-        ax_empty = fig.add_subplot(gs[5, 1])
-        ax_empty.set_facecolor("#16213e")
-        ax_empty.axis("off")
+        ax_bot = fig.add_subplot(gs[5, 1])
+        ax_bot.set_facecolor("#16213e")
+        plot_bot_impact(exp_dir, ax_bot)
 
         out_path = out_dir / "dashboard.png"
         fig.savefig(out_path, dpi=150, bbox_inches="tight",
@@ -799,6 +935,8 @@ def main():
     save_individual("08_opinion_dynamics.png", plot_opinion_dynamics,
                     exp_dir, meta, out_dir=out_dir)
     save_individual("09_institutional_trust.png", plot_institutional_trust,
+                    exp_dir, out_dir=out_dir)
+    save_individual("10_bot_impact.png", plot_bot_impact,
                     exp_dir, out_dir=out_dir)
 
     # Dashboard

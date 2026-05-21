@@ -5,6 +5,7 @@ const BeliefEngine = require("./BeliefEngine");
 const ProvenanceEngine = require("./ProvenanceEngine");
 const StrategyEngine = require("./StrategyEngine");
 const InstitutionalTrust = require("./InstitutionalTrust");
+const BotEngine = require("./BotEngine");
 
 class SimulationNode {
   constructor(nodeId, experimentDir) {
@@ -84,6 +85,49 @@ class SimulationNode {
         state.stats.forwarded++;
         continue;
       }
+
+      // ── Bot fast-path: bypass all trust/belief/provenance checks ──────────
+      if (BotEngine.isBot(persona)) {
+        const { outContent, action, duplicateCount } = BotEngine.processMessage(
+          msg, persona, this.nodeId
+        );
+
+        if (action === "drop") {
+          this._recordEvent(state, tick, msg, "drop", null, null, "bot_agenda_filter", null, msg.provenance);
+          state.stats.dropped++;
+          continue;
+        }
+
+        const botProvenance = [
+          ...(msg.provenance || []),
+          { nodeId: this.nodeId, personaId: persona.id, isBot: true },
+        ];
+
+        this._recordEvent(state, tick, msg, action, outContent, null, "bot", null, botProvenance);
+        if (action === "forward") state.stats.forwarded++;
+        else if (action === "reinterpret") state.stats.reinterpreted++;
+
+        // Flooders/amplifiers push multiple copies into the outgoing queue
+        for (let copy = 0; copy < duplicateCount; copy++) {
+          for (const targetNodeId of Object.keys(state.relations)) {
+            outgoing.push({
+              targetNodeId,
+              message: {
+                articleId:       msg.articleId,
+                sourceNodeId:    this.nodeId,
+                senderPersonaId: persona.id,
+                content:         outContent,
+                hops:            msg.hops + 1,
+                originalContent: msg.originalContent,
+                provenance:      botProvenance,
+                tick,
+              },
+            });
+          }
+        }
+        continue;
+      }
+      // ── End bot fast-path ──────────────────────────────────────────────────
 
       if (msg.hops >= resolvedParams.maxHops) {
         this._recordEvent(state, tick, msg, "drop", null, null, "max_hops");

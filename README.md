@@ -865,3 +865,4 @@ The five articles used for evaluation are sourced from publicly available news a
 **LLM providers:** OpenAI GPT-4o / GPT-4o-mini, Anthropic Claude Sonnet 4.6, Ollama (local).
 
 For questions, issues, or collaboration inquiries, please open a GitHub issue.
+
