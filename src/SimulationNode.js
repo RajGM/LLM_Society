@@ -139,7 +139,7 @@ class SimulationNode {
       // Strategic action selection overrides probabilistic sampling
       let action = null;
       if (enableStrategicAgents) {
-        const strategy = StrategyEngine.getStrategy(persona);
+        const strategy = resolvedParams.strategy || StrategyEngine.getStrategy(persona);
         if (strategy) {
           action = StrategyEngine.chooseAction(state, msg, strategy, beliefAlignment);
         }

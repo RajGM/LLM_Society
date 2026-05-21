@@ -14,6 +14,10 @@
  *       [--runs 3]                                                   # A/B test
  *   node index.js --list-personas
  *   node index.js --list-articles
+ *   node index.js --scenario scenarios/climate_debate.yaml          # compile + run
+ *   node index.js --compile  scenarios/climate_debate.yaml          # compile only
+ *       [--out compiled.json] [--summary]
+ *   node index.js --validate scenarios/climate_debate.yaml          # validate only
  *
  * Environment variables:
  *   OPENAI_API_KEY       required for gpt-4o / gpt-4o-mini
@@ -24,6 +28,7 @@ const fs = require("fs");
 const path = require("path");
 const Simulation = require("./src/Simulation");
 const ABTestRunner = require("./src/ABTestRunner");
+const DSLCompiler = require("./src/DSLCompiler");
 
 async function main() {
   const args = process.argv.slice(2);
@@ -36,6 +41,74 @@ async function main() {
   if (args.includes("--dry-run")) {
     process.env.DRY_RUN = "1";
     console.log("[Dry-run] No LLM calls will be made.");
+  }
+
+  // ── DSL: validate only ─────────────────────────────────────────────────────
+  const validateIdx = args.indexOf("--validate");
+  if (validateIdx !== -1) {
+    const scenarioPath = args[validateIdx + 1];
+    if (!scenarioPath) {
+      console.error("--validate requires a path argument");
+      process.exit(1);
+    }
+    try {
+      DSLCompiler.compile(resolveArg(scenarioPath), { validateOnly: true });
+      console.log("Scenario is valid.");
+    } catch (err) {
+      console.error(`Validation failed: ${err.message}`);
+      process.exit(1);
+    }
+    return;
+  }
+
+  // ── DSL: compile only ──────────────────────────────────────────────────────
+  const compileIdx = args.indexOf("--compile");
+  if (compileIdx !== -1) {
+    const scenarioPath = args[compileIdx + 1];
+    if (!scenarioPath) {
+      console.error("--compile requires a path argument");
+      process.exit(1);
+    }
+    const outIdx = args.indexOf("--out");
+    const outPath = outIdx !== -1 ? resolveArg(args[outIdx + 1]) : null;
+    const printSum = args.includes("--summary");
+    try {
+      const config = DSLCompiler.compile(resolveArg(scenarioPath));
+      const json = JSON.stringify(config, null, 2);
+      if (outPath) {
+        fs.writeFileSync(outPath, json, "utf8");
+        console.log(`Compiled config written to: ${outPath}`);
+      } else {
+        console.log(json);
+      }
+      if (printSum) DSLCompiler.printSummary(config, path.basename(scenarioPath));
+    } catch (err) {
+      console.error(`Compilation failed: ${err.message}`);
+      process.exit(1);
+    }
+    return;
+  }
+
+  // ── DSL: compile + run ─────────────────────────────────────────────────────
+  const scenarioIdx = args.indexOf("--scenario");
+  if (scenarioIdx !== -1) {
+    const scenarioPath = args[scenarioIdx + 1];
+    if (!scenarioPath) {
+      console.error("--scenario requires a path argument");
+      process.exit(1);
+    }
+    let config;
+    try {
+      config = DSLCompiler.compile(resolveArg(scenarioPath));
+      DSLCompiler.printSummary(config, path.basename(scenarioPath));
+    } catch (err) {
+      console.error(`Scenario compilation failed: ${err.message}`);
+      process.exit(1);
+    }
+    const sim = new Simulation(config);
+    const results = await sim.run();
+    printSummary(results);
+    return;
   }
 
   if (args.includes("--list-personas")) {
@@ -189,6 +262,14 @@ async function testExtensions() {
 
   console.log(`\n[test-extensions] ${allPass ? "ALL CHECKS PASSED" : "SOME CHECKS FAILED"}`);
   console.log(`[test-extensions] Experiment dir: ${sim.experimentDir}`);
+}
+
+function resolveArg(filePath) {
+  if (!filePath) {
+    console.error("Expected a path argument");
+    process.exit(1);
+  }
+  return path.isAbsolute(filePath) ? filePath : path.join(process.cwd(), filePath);
 }
 
 function loadConfig(filePath) {

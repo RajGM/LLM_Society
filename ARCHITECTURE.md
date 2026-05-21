@@ -43,6 +43,7 @@ SocietySimulation/
 │   ├── SocietyGraph.js        # Graph builder (9 topology modes) + matrix helpers
 │   ├── Auditor.js             # QA scorer -> MI -> MPR -> severity
 │   ├── Simulation.js          # Orchestrator — two-phase, resumable, all layers wired
+│   ├── DSLCompiler.js         # Society DSL — YAML scenario → JSON run config
 │   │
 │   ├── BeliefEngine.js        # Layer 1 — per-node belief state + confirmation bias
 │   ├── FrameAuditor.js        # Layer 2 — frame detection, sentiment drift, claim injection
@@ -55,6 +56,9 @@ SocietySimulation/
 │   ├── StrategyEngine.js      # Extension 4 — utility-maximising strategic agents
 │   ├── OpinionDynamics.js     # Extension 8 — DeGroot / BC / Voter model
 │   └── InstitutionalTrust.js  # Extension 9 — per-node trust toward 4 institutions
+│
+├── scenarios/
+│   └── climate_debate.yaml    # Example DSL scenario (202 nodes, all extensions)
 │
 ├── examples/
 │   ├── run_linear_chain.json
@@ -145,6 +149,14 @@ node index.js --dry-run --config examples/run_linear_chain.json  # dry-run + con
 node index.js --resume experiments/exp_2026-05-20_18-17-04       # resume interrupted run
 node index.js --list-personas                                    # print all persona IDs
 node index.js --list-articles                                    # print all article IDs
+
+# Society DSL — YAML scenario workflow
+node index.js --validate scenarios/climate_debate.yaml           # validate only (no compile)
+node index.js --compile  scenarios/climate_debate.yaml --summary # compile → stdout + report
+node index.js --compile  scenarios/climate_debate.yaml \
+    --out compiled.json                                          # compile → file
+node index.js --scenario scenarios/climate_debate.yaml           # compile + run
+node index.js --dry-run --scenario scenarios/climate_debate.yaml # compile + dry-run
 
 # A/B testing
 node index.js --dry-run --ab-test \
@@ -490,6 +502,175 @@ All society topologies support homophily-based trust initialisation. When `perso
 
 - Same tags (e.g. both `ideology`) → trust boosted toward `baseTrust + 0.3`
 - No shared tags → trust reduced toward `baseTrust - 0.2`
+
+---
+
+### `src/DSLCompiler.js` — Society DSL
+
+The Society DSL lets researchers describe experiments as human-readable YAML rather than hand-crafting flat JSON run configs. The compiler translates YAML scenarios into the exact JSON format that `Simulation.js` consumes — the engine never sees YAML.
+
+#### Compilation pipeline (10 steps)
+
+| Step | Input → Output |
+|---|---|
+| 1. Parse | YAML text → plain JS object (minimal recursive parser, zero deps) |
+| 2. Validate | Schema + known persona/article ID checks → `errors[]`; throws on failure |
+| 3. expandGroups | Group entries + seeded PRNG → `{nodes[], groupIndex}` |
+| 4. expandBridges | Bridge entries → bridge node configs |
+| 5. intraEdges | Per-group `internal_connectivity` × `internal_trust` → base edges |
+| 6. interEdges | `relations[]` probabilistic cross-group sampling → upsert edges |
+| 7. bridgeEdges | `bridge.connects_to[]` → upsert edges |
+| 8. customLinks | Explicit `custom_links[]` → upsert edges (highest priority) |
+| 9. strategies | `strategic_overrides[]` → write strategy into `node.params.strategy` |
+| 10. buildConfig | All of the above → complete JSON run config |
+
+Edge priority is enforced by call order with last-write-wins `_upsertEdge`: intra (lowest) → inter → bridge → custom (highest).
+
+#### DSL schema (top-level keys)
+
+```yaml
+title: Human-readable experiment name
+description: >
+  Folded scalar — collapsed to a single string by the parser.
+
+simulation:
+  random_seed: 42          # Seeded PRNG (xorshift32) → deterministic graph
+  max_ticks: 12
+  default_model: gpt-4o-mini
+  trust_threshold: 0.30
+  action_weights: { forward: 0.35, reinterpret: 0.40, drop: 0.15, dump: 0.10 }
+  trust_delta: 0.05
+  edge_deletion_threshold: 0.05
+
+groups:
+  - name: progressives        # Required: used as node ID prefix
+    size: 80
+    personas:
+      - id: environmentalist  # Weighted sampling
+        weight: 3
+      - id: neutral_news
+        weight: 1
+    internal_connectivity: 0.15  # P(edge between any two group members)
+    internal_trust: 0.80
+    params:                   # Per-node overrides; snake_case → camelCase
+      trust_threshold: 0.35
+      action_weights: { forward: 0.55, reinterpret: 0.20, drop: 0.10, dump: 0.15 }
+      max_hops: 6
+      activity_pattern: always
+
+bridges:
+  - name: media_hub           # Single node; nodeId = bridge name
+    persona: neutral_news
+    connects_to:
+      - group: progressives
+        trust: 0.60
+        direction: bidirectional  # outgoing | incoming | bidirectional
+    params:
+      trust_threshold: 0.10
+
+relations:
+  - from: progressives        # Group-to-group cross edges
+    to: skeptics
+    trust: 0.30
+    connectivity: 0.04        # P(edge between a from-member and a to-member)
+    direction: outgoing
+
+custom_links:                 # Highest precedence; support index syntax
+  - from: experts[0]          # First member
+    to: progressives[0]
+    trust: 0.95
+  - from: media_hub           # Bare bridge name
+    to: amplifiers[*]         # All members
+    trust: 0.70
+  - from: experts[0:2]        # Slice: indices 0, 1, 2 (inclusive)
+    to: progressives[0]
+    trust: 0.90
+  - from: skeptics[-1]        # Last member
+    to: media_hub
+    trust: 0.50
+
+strategic_overrides:
+  - node: amplifiers[0]
+    strategy: maximize_downstream_mi  # Overrides persona.strategy
+
+seed:
+  articles: [politics_0, technology_0]
+  entry_points: [media_hub, progressives[0]]
+  competitive_groups:
+    - articles: [politics_0]
+      entry_points: [progressives[0], skeptics[0]]
+
+interventions:
+  - type: inject_article
+    tick: 3
+    article: healthcare_0     # Note: 'article', not 'article_id'
+    targets: [skeptics[0], skeptics[1], skeptics[2]]
+    params:
+      injected_trust: 0.80
+
+extensions:
+  beliefs: true
+  frame_analysis: true
+  provenance: true
+  strategic_agents: true
+  network_evolution: true
+  opinion_dynamics: true
+  institutional_trust: true
+
+extension_params:
+  provenance:
+    recency_discount: 0.88
+  network_evolution:
+    homophily_weight: 0.6
+  opinion_dynamics:
+    model: bounded_confidence
+    epsilon: 0.35
+  institutional_trust:
+    media: { progressives: 0.70, skeptics: 0.35 }
+    science: { progressives: 0.85, skeptics: 0.30 }
+```
+
+#### Node reference syntax
+
+| Syntax | Resolves to |
+|---|---|
+| `group[0]` | First group member |
+| `group[-1]` | Last group member |
+| `group[*]` | All group members |
+| `group[0:2]` | Members at index 0, 1, 2 (inclusive) |
+| `bridge_name` | The bridge node itself |
+| `group_name` | All members (bare group name) |
+
+#### Seeded PRNG
+
+`simulation.random_seed` seeds an xorshift32 PRNG used for all probabilistic graph operations. Same scenario file + same seed → identical graph every compile, enabling reproducible experiment families.
+
+#### Params normalisation
+
+Group and bridge `params` use `snake_case` keys; `_normalizeParams()` converts them to `camelCase` for the engine:
+
+| DSL key | Engine key |
+|---|---|
+| `trust_threshold` | `trustThreshold` |
+| `action_weights` | `actionWeights` |
+| `activity_pattern` | `activityPattern` |
+| `max_hops` | `maxHops` |
+| `max_inbox_size` | `maxInboxSize` |
+| `trust_delta` | `trustDelta` |
+
+#### Per-node strategy routing
+
+`strategic_overrides` writes the chosen strategy into `node.params.strategy`. `SimulationNode.processTick()` checks `resolvedParams.strategy` before falling back to `StrategyEngine.getStrategy(persona)`, so DSL-specified strategies override persona-level ones.
+
+#### YAML parser notes
+
+The built-in `YAMLParser` class handles the DSL subset without external dependencies:
+- Block mappings and sequences
+- Flow sequences `[a, b, c]` and flow mappings `{a: 1}`
+- Folded scalars (`key: >`)
+- Inline comments (`# ...`)
+- Scalar coercion: bool, int, float, null, quoted strings, plain strings
+- **Slice expressions** like `group[0:4]` are treated as plain strings (the `:` inside `[...]` is not mistaken for a mapping separator)
 
 ---
 
@@ -1112,6 +1293,7 @@ python visualize.py --latest
 | New persona | Append entry to `personas/personas.json` |
 | Strategic persona | Add `"strategy": "maximize_reach"` to a persona JSON entry |
 | New article | Append entry to `articles/articles.json` with `id`, `domain`, `title`, `text`, `questions`, `groundTruth` |
+| New scenario | Add a `.yaml` file in `scenarios/` using the DSL schema; validate with `--validate`, compile with `--compile --summary`, run with `--scenario` |
 | New LLM provider | Add entry to `config/models.js` + dispatch branch in `src/llmClient.js` |
 | New topology | Add `static build*()` to `src/SocietyGraph.js` + case in `Simulation._buildGraph()` |
 | New visualization panel | Add `plot_*()` to `visualize.py` with `(data..., ax)` signature; call `save_individual`; add subplot to `build_dashboard` |
@@ -1140,6 +1322,7 @@ python visualize.py --latest
 - [x] Extension 8: Population-level opinion dynamics — DeGroot / Bounded-Confidence / Voter model
 - [x] Extension 9: Institutional trust modeling — per-node trust toward media/science/government/corporate
 - [x] `--test-extensions` CLI flag — 10-point smoke test for all five extensions
+- [x] Society DSL (`src/DSLCompiler.js`) — YAML scenario compiler: seeded PRNG, weighted persona sampling, 10-step pipeline, edge deduplication with precedence, per-node strategy override, `--scenario` / `--compile` / `--validate` CLI flags
 - [ ] Continuous MI scoring (0.0–1.0 float) replacing binary question answers
 - [ ] Multi-model ablation runner — same persona, N different models, compare MPRs
 - [ ] Temporal dynamics — trust decay over time, re-seeding articles mid-simulation

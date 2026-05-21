@@ -1,0 +1,348 @@
+# Society DSL — Climate & AI Policy Debate Scenario
+# Demonstrates all DSL constructs: groups, relations, custom_links,
+# bridges, strategic_overrides, seed, interventions, extensions.
+#
+# Narrative: Two ideological blocs debate AI-driven climate policy.
+#   - "progressives" accept AI analysis and amplify consensus science.
+#   - "skeptics" distrust institutional sources and reinterpret claims.
+#   - A "media_hub" bridge node connects both blocs and seeds discourse.
+#   - "experts" are a trusted but infrequent voice (weekly activity).
+#
+# Usage:
+#   node index.js --scenario scenarios/climate_debate.yaml       # compile + run
+#   node index.js --dry-run --scenario scenarios/climate_debate.yaml
+#   node index.js --compile  scenarios/climate_debate.yaml --summary
+#   node index.js --validate scenarios/climate_debate.yaml
+
+title: Climate & AI Policy Debate
+description: >
+  A 200-node society split into progressive and skeptic factions
+  connected by a media bridge. Tests confirmation bias, provenance
+  chain trust, strategic amplification, and counter-narrative
+  interventions over 12 ticks.
+
+# ── Simulation parameters ─────────────────────────────────────────────────────
+simulation:
+  random_seed: 42
+  max_ticks: 12
+  default_model: gpt-4o-mini
+  auditor_model: gpt-4o-mini
+  auditor_questions: 3
+  trust_threshold: 0.30
+  action_weights:
+    forward: 0.35
+    reinterpret: 0.40
+    drop: 0.15
+    dump: 0.10
+  max_hops: 8
+  trust_delta: 0.05
+  edge_deletion_threshold: 0.05
+
+# ── Groups ────────────────────────────────────────────────────────────────────
+groups:
+  - name: progressives
+    size: 80
+    personas:
+      - id: environmentalist
+        weight: 3
+      - id: politically_biased_left
+        weight: 2
+      - id: investigative_journalist
+        weight: 1
+      - id: neutral_news
+        weight: 1
+    internal_connectivity: 0.15
+    internal_trust: 0.80
+    params:
+      trust_threshold: 0.35
+      action_weights:
+        forward: 0.55
+        reinterpret: 0.20
+        drop: 0.10
+        dump: 0.15
+      max_hops: 6
+      activity_pattern: always
+
+  - name: skeptics
+    size: 80
+    personas:
+      - id: politically_biased_right
+        weight: 3
+      - id: religious_leader
+        weight: 2
+      - id: low_education
+        weight: 2
+      - id: opinion_columnist
+        weight: 1
+    internal_connectivity: 0.15
+    internal_trust: 0.75
+    params:
+      trust_threshold: 0.40
+      action_weights:
+        forward: 0.30
+        reinterpret: 0.40
+        drop: 0.20
+        dump: 0.10
+      max_hops: 5
+      activity_pattern: always
+
+  - name: amplifiers
+    size: 20
+    personas:
+      - id: sensationalist_news
+        weight: 2
+      - id: lifestyle_influencer
+        weight: 1
+      - id: brand_collaborator
+        weight: 1
+    internal_connectivity: 0.30
+    internal_trust: 0.60
+    params:
+      trust_threshold: 0.20
+      action_weights:
+        forward: 0.70
+        reinterpret: 0.20
+        drop: 0.05
+        dump: 0.05
+      max_hops: 8
+      activity_pattern: always
+
+  - name: experts
+    size: 20
+    personas:
+      - id: medical_expert
+        weight: 1
+      - id: tech_expert
+        weight: 1
+    internal_connectivity: 0.40
+    internal_trust: 0.85
+    params:
+      trust_threshold: 0.50
+      action_weights:
+        forward: 0.40
+        reinterpret: 0.35
+        drop: 0.15
+        dump: 0.10
+      max_hops: 4
+      activity_pattern: weekly
+
+# ── Bridge Nodes ──────────────────────────────────────────────────────────────
+# Bridges connect across groups and serve as cross-faction hubs.
+bridges:
+  - name: media_hub
+    persona: neutral_news
+    connects_to:
+      - group: progressives
+        trust: 0.60
+        direction: bidirectional
+      - group: skeptics
+        trust: 0.45
+        direction: bidirectional
+      - group: amplifiers
+        trust: 0.65
+        direction: bidirectional
+    params:
+      trust_threshold: 0.10
+      action_weights:
+        forward: 0.80
+        reinterpret: 0.10
+        drop: 0.05
+        dump: 0.05
+      max_hops: 10
+
+  - name: conflict_node
+    persona: conflict_creator
+    connects_to:
+      - group: skeptics
+        trust: 0.55
+        direction: outgoing
+      - group: amplifiers
+        trust: 0.50
+        direction: outgoing
+    params:
+      trust_threshold: 0.15
+      action_weights:
+        forward: 0.20
+        reinterpret: 0.65
+        drop: 0.10
+        dump: 0.05
+      max_hops: 8
+
+# ── Inter-group relations ─────────────────────────────────────────────────────
+# Bridge-to-group connectivity is defined inside each bridge (above).
+# These relations cover group-to-group cross-faction links.
+relations:
+  # Progressives lightly trust experts
+  - from: progressives
+    to: experts
+    trust: 0.70
+    connectivity: 0.10
+    direction: incoming
+
+  # Skeptics connect to amplifiers
+  - from: skeptics
+    to: amplifiers
+    trust: 0.65
+    connectivity: 0.12
+    direction: bidirectional
+
+  # Weak cross-ideological links (shared social platforms)
+  - from: progressives
+    to: skeptics
+    trust: 0.30
+    connectivity: 0.04
+    direction: outgoing
+
+  - from: skeptics
+    to: progressives
+    trust: 0.25
+    connectivity: 0.04
+    direction: outgoing
+
+  # Experts reach amplifiers occasionally
+  - from: experts
+    to: amplifiers
+    trust: 0.55
+    connectivity: 0.08
+    direction: outgoing
+
+# ── Custom links (highest precedence) ────────────────────────────────────────
+custom_links:
+  # Expert anchor is a highly trusted source for the first progressive node
+  - from: experts[0]
+    to: progressives[0]
+    trust: 0.95
+
+  # Last skeptic is a "bridge sceptic" with unusually high expert trust
+  - from: experts[0]
+    to: skeptics[-1]
+    trust: 0.72
+
+  # All amplifiers get a direct feed from the media hub (full saturation)
+  - from: media_hub
+    to: amplifiers[*]
+    trust: 0.70
+
+  # First progressive has a direct channel back to media hub
+  - from: progressives[0]
+    to: media_hub
+    trust: 0.85
+
+  # First 3 experts each link to the leading progressive node
+  - from: experts[0:2]
+    to: progressives[0]
+    trust: 0.90
+
+# ── Strategic role overrides ──────────────────────────────────────────────────
+strategic_overrides:
+  # Top amplifiers actively maximise downstream misinformation
+  - node: amplifiers[0]
+    strategy: maximize_downstream_mi
+
+  - node: amplifiers[1]
+    strategy: maximize_reach
+
+  # Expert anchor works to minimize misinformation spread
+  - node: experts[0]
+    strategy: minimize_downstream_mi
+
+  # Conflict bridge polarises as aggressively as possible
+  - node: conflict_node
+    strategy: maximize_downstream_mi
+
+# ── Seed articles and entry points ───────────────────────────────────────────
+seed:
+  articles:
+    - politics_0      # AI Policy debate (primary narrative)
+    - technology_0    # AI technology article (secondary narrative)
+
+  entry_points:
+    - media_hub       # Bridge node injects both articles
+    - progressives[0] # Progressive anchor also seeds the primary
+
+  competitive_groups:
+    - articles:
+        - politics_0
+      entry_points:
+        - progressives[0]
+        - skeptics[0]
+
+# ── Interventions ─────────────────────────────────────────────────────────────
+interventions:
+  # Tick 3: inject a corrective counter-narrative into the skeptic bloc
+  - type: inject_article
+    tick: 3
+    article: healthcare_0
+    targets:
+      - skeptics[0]
+      - skeptics[1]
+      - skeptics[2]
+    params:
+      injected_trust: 0.80
+
+  # Tick 5: boost trust signal from expert sources across the network
+  - type: boost_trust
+    tick: 5
+    article: politics_0
+    targets:
+      - experts[*]
+    params:
+      injected_trust: 0.90
+
+  # Tick 7: peacekeeper message to reduce polarisation
+  - type: inject_article
+    tick: 7
+    article: politics_0
+    targets:
+      - progressives[0:4]
+      - skeptics[0:4]
+    params:
+      injected_trust: 0.75
+
+# ── Extensions ────────────────────────────────────────────────────────────────
+extensions:
+  beliefs: true
+  frame_analysis: true
+  provenance: true
+  strategic_agents: true
+  network_evolution: true
+  opinion_dynamics: true
+  institutional_trust: true
+
+# ── Extension parameters ──────────────────────────────────────────────────────
+extension_params:
+  provenance:
+    recency_discount: 0.88
+
+  network_evolution:
+    homophily_weight: 0.6
+    alignment_threshold: 0.3
+    rewire_probability: 0.05
+    max_new_edges_per_tick: 3
+
+  opinion_dynamics:
+    model: bounded_confidence
+    epsilon: 0.35
+    mu: 0.4
+
+  institutional_trust:
+    media:
+      progressives: 0.70
+      skeptics: 0.35
+      amplifiers: 0.55
+      experts: 0.80
+    science:
+      progressives: 0.85
+      skeptics: 0.30
+      amplifiers: 0.50
+      experts: 0.95
+    government:
+      progressives: 0.60
+      skeptics: 0.25
+      amplifiers: 0.45
+      experts: 0.65
+    corporate:
+      progressives: 0.40
+      skeptics: 0.55
+      amplifiers: 0.65
+      experts: 0.50
