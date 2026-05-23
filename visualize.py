@@ -1368,13 +1368,13 @@ def save_individual(fn, plot_fn, *args, out_dir):
 
 def build_dashboard(meta, topology, persona_map, nodes_data, exp_dir, out_dir):
     with plt.style.context(PLOT_STYLE):
-        fig = plt.figure(figsize=(22, 30), facecolor="#1a1a2e")
+        fig = plt.figure(figsize=(22, 34), facecolor="#1a1a2e")
         gs = gridspec.GridSpec(
-            6, 2,
+            7, 2,
             figure=fig,
             hspace=0.50,
             wspace=0.32,
-            height_ratios=[0.5, 1.7, 1.3, 1.3, 1.3, 1.3],
+            height_ratios=[0.5, 1.7, 1.3, 1.3, 1.3, 1.3, 1.3],
         )
 
         # Row 0 — banner (spans both columns)
@@ -1427,11 +1427,226 @@ def build_dashboard(meta, topology, persona_map, nodes_data, exp_dir, out_dir):
         ax_bot.set_facecolor("#16213e")
         plot_bot_impact(exp_dir, ax_bot)
 
+        # Row 6 — IFD decomposition (left) + IFD simplex (right)
+        ax_ifd = fig.add_subplot(gs[6, 0])
+        ax_ifd.set_facecolor("#16213e")
+        plot_ifd_decomposition(exp_dir, ax_ifd)
+
+        ax_simplex = fig.add_subplot(gs[6, 1])
+        ax_simplex.set_facecolor("#16213e")
+        plot_ifd_simplex(exp_dir, ax_simplex)
+
         out_path = out_dir / "dashboard.png"
         fig.savefig(out_path, dpi=150, bbox_inches="tight",
                     facecolor=fig.get_facecolor())
         plt.close(fig)
         print(f"  Saved: {out_path}")
+
+# ── Plot 20: IFD decomposition stacked area ───────────────────────────────────
+
+def plot_ifd_decomposition(exp_dir: Path, ax=None):
+    """Stacked-area chart of mean CR / MR / IR over ticks + CMS secondary line."""
+    standalone = ax is None
+    if standalone:
+        with plt.style.context(PLOT_STYLE):
+            fig, ax = plt.subplots(figsize=(10, 5), facecolor="#1a1a2e")
+
+    results_files = sorted(Path(exp_dir).glob("results_*.json"))
+    if not results_files:
+        ax.text(0.5, 0.5, "No results data found", ha="center", va="center",
+                transform=ax.transAxes, color="#888", fontsize=10)
+        if standalone:
+            plt.tight_layout()
+        return
+
+    # Use first article's IFD trajectory
+    data = json.loads(results_files[0].read_text(encoding="utf-8"))
+    trajectory = data.get("metrics", {}).get("ifdOverTime", [])
+
+    if not trajectory:
+        ax.text(0.5, 0.5, "IFD data not present\n(run includes pre-IFD results)",
+                ha="center", va="center", transform=ax.transAxes, color="#888", fontsize=9)
+        if standalone:
+            plt.tight_layout()
+        return
+
+    ticks   = [t["tick"]   for t in trajectory]
+    cr_vals = [t["meanCR"] for t in trajectory]
+    mr_vals = [t["meanMR"] for t in trajectory]
+    ir_vals = [t["meanIR"] for t in trajectory]
+    cms_vals = [t.get("meanCMS", 0) for t in trajectory]
+
+    ax.set_facecolor("#16213e")
+    ax.stackplot(
+        ticks, cr_vals, mr_vals, ir_vals,
+        labels=["Correct (CR)", "Missing (MR)", "Incorrect (IR)"],
+        colors=["#27ae60", "#f39c12", "#e74c3c"],
+        alpha=0.82,
+    )
+
+    # CMS on secondary axis — ratio of incorrect to correct
+    ax2 = ax.twinx()
+    ax2.set_facecolor("#16213e")
+    ax2.plot(ticks, cms_vals, color="#9b59b6", lw=2, linestyle="--",
+             label="CMS (distortion ratio)")
+    ax2.set_ylabel("CMS", color="#9b59b6", fontsize=9)
+    ax2.tick_params(colors="#9b59b6", labelsize=8)
+    ax2.set_ylim(bottom=0)
+
+    ax.set_xlabel("Tick", color="#e0e0e0", fontsize=9)
+    ax.set_ylabel("Proportion of information", color="#e0e0e0", fontsize=9)
+    ax.set_ylim(0, 1)
+    ax.set_xlim(min(ticks), max(ticks))
+
+    article_id = results_files[0].stem.replace("results_", "")
+    ax.set_title(f"Information Fidelity Decomposition — {article_id}",
+                 color="#e0e0e0", fontsize=10)
+
+    lines1, labels1 = ax.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax.legend(lines1 + lines2, labels1 + labels2,
+              loc="lower left", fontsize=7,
+              facecolor="#16213e", edgecolor="#444", labelcolor="#e0e0e0")
+
+    ax.tick_params(colors="#e0e0e0", labelsize=8)
+    for spine in ax.spines.values():
+        spine.set_edgecolor("#444")
+
+    if standalone:
+        plt.tight_layout()
+
+
+# ── Plot 21: IFD ternary simplex ──────────────────────────────────────────────
+
+def _ternary_coords(cr, mr, ir):
+    """Project (CR, MR, IR) on the 2-simplex to 2-D Cartesian.
+    Vertices: CR=1 at top (0.5, √3/2), MR=1 bottom-left (0,0), IR=1 bottom-right (1,0).
+    """
+    import numpy as np
+    total = cr + mr + ir
+    if total == 0:
+        return 0.5, np.sqrt(3) / 6   # centroid
+    cr, mr, ir = cr / total, mr / total, ir / total
+    x = 0.5 * cr + ir
+    y = (np.sqrt(3) / 2) * cr
+    return x, y
+
+
+def plot_ifd_simplex(exp_dir: Path, ax=None):
+    """Ternary simplex: per-tick fidelity trajectory + per-persona scatter."""
+    import numpy as np
+
+    standalone = ax is None
+    if standalone:
+        with plt.style.context(PLOT_STYLE):
+            fig, ax = plt.subplots(figsize=(7, 7), facecolor="#1a1a2e")
+
+    results_files = sorted(Path(exp_dir).glob("results_*.json"))
+    if not results_files:
+        ax.text(0.5, 0.5, "No results data found", ha="center", va="center",
+                transform=ax.transAxes, color="#888", fontsize=10)
+        if standalone:
+            plt.tight_layout()
+        return
+
+    data = json.loads(results_files[0].read_text(encoding="utf-8"))
+    trajectory  = data.get("metrics", {}).get("ifdOverTime", [])
+    persona_ifd = data.get("metrics", {}).get("personaIFD", [])
+
+    if not trajectory and not persona_ifd:
+        ax.text(0.5, 0.5, "IFD data not present\n(run includes pre-IFD results)",
+                ha="center", va="center", transform=ax.transAxes, color="#888", fontsize=9)
+        if standalone:
+            plt.tight_layout()
+        return
+
+    ax.set_facecolor("#16213e")
+    ax.set_aspect("equal")
+    ax.axis("off")
+
+    # Draw simplex triangle
+    h = np.sqrt(3) / 2
+    triangle = plt.Polygon(
+        [[0.5, h], [0, 0], [1, 0]],
+        fill=False, edgecolor="#e0e0e0", linewidth=1.5, zorder=2,
+    )
+    ax.add_patch(triangle)
+
+    # Draw faint gridlines at 1/3 and 2/3 from each vertex
+    for alpha in [1/3, 2/3]:
+        # Lines parallel to each edge at given fraction
+        p1 = np.array(_ternary_coords(alpha, 1 - alpha, 0))
+        p2 = np.array(_ternary_coords(alpha, 0, 1 - alpha))
+        ax.plot(*zip(p1, p2), color="#444", lw=0.6, zorder=1)
+        p3 = np.array(_ternary_coords(1 - alpha, alpha, 0))
+        p4 = np.array(_ternary_coords(0, alpha, 1 - alpha))
+        ax.plot(*zip(p3, p4), color="#444", lw=0.6, zorder=1)
+        p5 = np.array(_ternary_coords(1 - alpha, 0, alpha))
+        p6 = np.array(_ternary_coords(0, 1 - alpha, alpha))
+        ax.plot(*zip(p5, p6), color="#444", lw=0.6, zorder=1)
+
+    # Vertex labels
+    ax.text(0.5,  h + 0.07, "CORRECT\n(CR = 1)", ha="center", va="bottom",
+            color="#27ae60", fontsize=9, fontweight="bold")
+    ax.text(-0.06, -0.06, "MISSING\n(MR = 1)", ha="center", va="top",
+            color="#f39c12", fontsize=9, fontweight="bold")
+    ax.text(1.06, -0.06, "INCORRECT\n(IR = 1)", ha="center", va="top",
+            color="#e74c3c", fontsize=9, fontweight="bold")
+
+    # Region label at centroid
+    cx, cy = _ternary_coords(1/3, 1/3, 1/3)
+    ax.text(cx, cy, "chaos\n(max entropy)", ha="center", va="center",
+            color="#666", fontsize=7, alpha=0.7)
+
+    # Per-tick trajectory
+    if trajectory:
+        xs = [_ternary_coords(t["meanCR"], t["meanMR"], t["meanIR"])[0] for t in trajectory]
+        ys = [_ternary_coords(t["meanCR"], t["meanMR"], t["meanIR"])[1] for t in trajectory]
+        cmap = plt.cm.plasma
+        n = len(xs)
+        for i in range(n - 1):
+            frac = i / max(n - 2, 1)
+            ax.annotate("", xy=(xs[i + 1], ys[i + 1]), xytext=(xs[i], ys[i]),
+                        arrowprops=dict(arrowstyle="->", color=cmap(frac), lw=1.4))
+        sc = ax.scatter(xs, ys, c=range(n), cmap="plasma", s=40, zorder=5, linewidths=0)
+        # Label first and last
+        ax.text(xs[0],  ys[0]  + 0.025, f"t={trajectory[0]['tick']}",  color="#ccc", fontsize=7, ha="center")
+        ax.text(xs[-1], ys[-1] + 0.025, f"t={trajectory[-1]['tick']}", color="#ccc", fontsize=7, ha="center")
+
+        # Colorbar for ticks
+        plt.colorbar(sc, ax=ax, label="Tick", shrink=0.4, pad=0.02,
+                     location="right").ax.tick_params(colors="#e0e0e0", labelsize=7)
+
+    # Per-persona scatter
+    persona_colors = {
+        "politically_biased_left":  "#3498db",
+        "politically_biased_right": "#e74c3c",
+        "sensationalist_news":      "#e67e22",
+        "neutral_news":             "#2ecc71",
+        "investigative_journalist": "#1abc9c",
+        "medical_expert":           "#9b59b6",
+        "tech_expert":              "#34495e",
+    }
+    for p in persona_ifd[:12]:   # cap at 12 personas
+        pid = p["personaId"]
+        if p["meanCR"] is None:
+            continue
+        px, py = _ternary_coords(p["meanCR"], p["meanMR"], p["meanIR"])
+        color = persona_colors.get(pid, "#aaa")
+        ax.scatter(px, py, color=color, s=70, marker="D", zorder=6,
+                   edgecolors="#fff", linewidths=0.5)
+        short = pid.replace("politically_biased_", "").replace("_", " ")[:12]
+        ax.text(px, py - 0.04, short, ha="center", va="top",
+                color=color, fontsize=6, alpha=0.9)
+
+    article_id = results_files[0].stem.replace("results_", "")
+    ax.set_title(f"Fidelity Simplex — {article_id}", color="#e0e0e0", fontsize=10, pad=12)
+    ax.set_xlim(-0.18, 1.18)
+    ax.set_ylim(-0.18, h + 0.22)
+
+    if standalone:
+        plt.tight_layout()
+
 
 # ── Main ──────────────────────────────────────────────────────────────────────
 
@@ -1510,6 +1725,10 @@ def main():
     save_individual("14_phase_diagram.png", plot_phase_diagram,
                     exp_dir, out_dir=out_dir)
     save_individual("15_intervention_window.png", plot_intervention_window,
+                    exp_dir, out_dir=out_dir)
+    save_individual("20_ifd_decomposition.png", plot_ifd_decomposition,
+                    exp_dir, out_dir=out_dir)
+    save_individual("21_ifd_simplex.png", plot_ifd_simplex,
                     exp_dir, out_dir=out_dir)
 
     # Dashboard

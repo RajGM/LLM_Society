@@ -285,7 +285,9 @@ class SimulationNode {
       if (event.action !== "reinterpret" && event.action !== "forward") continue;
 
       try {
-        event.misinfoIndex = await auditor.score(articleId, event.contentOut);
+        const ifd = await auditor.score(articleId, event.contentOut);
+        event.misinfoIndex = ifd.mi;
+        event.ifd = ifd;
         changed = true;
 
         // Frame analysis (optional)

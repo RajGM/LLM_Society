@@ -5,8 +5,8 @@ const { getModel } = require("../config/models");
 // In dry-run mode every LLM call is intercepted by keyword detection on the userPrompt.
 // Each call type embeds a unique sentinel so the interceptor can return the right mock.
 function callLLMDryRun(systemPrompt, userPrompt) {
-  // QA auditor (Auditor.js)
-  if (userPrompt.includes("Return only the JSON")) {
+  // IFD auditor three-way scoring (Auditor.js) — returns all-correct in dry-run
+  if (userPrompt.includes("IFD_SCORE_QUERY")) {
     const count = (userPrompt.match(/^\d+\./gm) || []).length || 5;
     return Promise.resolve(JSON.stringify({ answers: Array(count).fill(1) }));
   }

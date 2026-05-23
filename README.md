@@ -41,6 +41,7 @@ The base system reproduces the **CIKM 2025 outstanding paper** results. The EMNL
 - Dry-run mode — complete pipeline with no LLM API calls (instant, zero cost)
 - 26 personas × 9 graph topologies × 12 configurable flags (including 4 bot personas)
 - Two-phase execution: propagation first, batch audit second — LLM rewrites and QA scoring never interleaved
+- Three-way auditor scoring (IFD): Correct / Missing / Incorrect decomposition replaces binary MI, backward-compatible
 
 ---
 
@@ -61,13 +62,14 @@ The base system reproduces the **CIKM 2025 outstanding paper** results. The EMNL
 13. [Bot Detection & Resilience Testing](#bot-detection--resilience-testing)
 14. [Emergent Polarization](#emergent-polarization-extension-11)
 15. [Digital Twin Validation](#digital-twin-validation-extension-12)
-16. [Output Files](#output-files)
-17. [Visualization](#visualization)
-18. [Reproducing Paper Results](#reproducing-paper-results)
-19. [Project Structure](#project-structure)
-20. [Extending the System](#extending-the-system)
-21. [License](#license)
-22. [Acknowledgements](#acknowledgements)
+16. [Information Fidelity Decomposition](#information-fidelity-decomposition-ifd)
+17. [Output Files](#output-files)
+18. [Visualization](#visualization)
+19. [Reproducing Paper Results](#reproducing-paper-results)
+20. [Project Structure](#project-structure)
+21. [Extending the System](#extending-the-system)
+22. [License](#license)
+23. [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -1051,6 +1053,110 @@ experiments/sensitivity_{timestamp}/
 | `17_distribution_match.png` | 4-panel histograms: depth/breadth/SV/speed distributions (batch mode) or KS bar chart |
 | `18_content_drift.png` | Sentiment trajectory real vs simulated by cascade depth with Pearson ρ |
 | `19_sensitivity_analysis.png` | DTFS per inference strategy with error bars; best strategy highlighted |
+
+---
+
+## Information Fidelity Decomposition (IFD)
+
+The original CIKM auditor collapsed three distinct failure modes into a single integer MI: a rewrite that *drops* three facts (lossy compression) scored identically to one that *inverts* three facts (active misinformation). IFD replaces binary scoring with a three-way evaluation and a set of derived metrics that distinguish what actually happened to the information.
+
+### Three-way scoring
+
+For each yes/no auditor question q_j with ground-truth answer g_j, the LLM auditor evaluates the rewritten text and returns one of:
+
+| Score | Symbol | Meaning |
+|---|---|---|
+| `+1` | CORRECT | text correctly states the expected answer |
+| `0` | MISSING | text does not contain enough information to address the question |
+| `−1` | INCORRECT | text contradicts or distorts the expected answer |
+
+The auditor prompt explicitly provides the expected answer for each question, enabling reliable discrimination between omission and distortion.
+
+### Derived metrics
+
+For m questions on text x:
+
+| Metric | Formula | Range | Meaning |
+|---|---|---|---|
+| **CR** (Correctness Rate) | `correct / m` | [0, 1] | Fraction of facts accurately preserved |
+| **MR** (Missing Rate) | `missing / m` | [0, 1] | Fraction of facts omitted |
+| **IR** (Incorrectness Rate) | `incorrect / m` | [0, 1] | Fraction of facts actively distorted |
+| **CMS** (Continuous Misinformation Score) | `IR / (CR + ε)` | [0, ∞) | Ratio of distortion to remaining accuracy |
+| **IE** (Information Entropy) | `−CR·log₂CR − MR·log₂MR − IR·log₂IR` | [0, log₂3] | Disorder of information state |
+
+By construction: `CR + MR + IR = 1`. Maximum IE (≈ 1.585 bits) when all three are equal — maximum uncertainty about what's true.
+
+**CMS interpretation:**
+- `CMS = 0` — no distortion (perfect fidelity or purely lossy compression)
+- `CMS = 1` — equal correct and incorrect (half the surviving claims are wrong)
+- `CMS > 1` — more incorrect than correct (net misinformation producer)
+- `CMS → ∞` — all incorrect, nothing correct (propaganda)
+
+### Backward compatibility
+
+The original MI is exactly recovered:
+```
+MI = m × (MR + IR) = m × (1 − CR)
+```
+
+All existing MI-dependent logic — trust evolution (`MI > 3`), MPR, severity tiers, Gini coefficient, half-life — is unchanged. IFD extends the data; it does not replace it.
+
+### Fidelity simplex
+
+Every rewrite maps to a point on the 2-simplex (triangle):
+
+```
+        CR = 1.0
+        (Perfect)
+           /\
+          /  \
+    GOOD /    \ PROPAGANDA
+        /  IE  \
+       /  max   \
+      /──────────\
+  MR = 1.0    IR = 1.0
+  (Lossy)     (Distortion)
+```
+
+Personas that systematically simplify (e.g. `simplifier`, `low_education`) drift toward MR. Adversarial personas (e.g. `sensationalist_news`, `politically_biased`) drift toward IR. The trajectory on the simplex characterizes each persona's effect on information, not just a single number.
+
+### Per-event storage
+
+Each audited history event gains an `ifd` field:
+
+```json
+{
+  "tick": 2,
+  "action": "reinterpret",
+  "misinfoIndex": 2,
+  "ifd": {
+    "mi": 2,
+    "cr": 0.6,
+    "mr": 0.2,
+    "ir": 0.2,
+    "cms": 0.333,
+    "ie": 1.371,
+    "scores": [1, 1, 1, 0, -1]
+  }
+}
+```
+
+### Aggregate metrics in results files
+
+`results_{articleId}.json` → `metrics` now contains:
+
+| Key | Contents |
+|---|---|
+| `ifdMetrics` | `{ meanCR, meanMR, meanIR, meanCMS, meanIE, eventCount }` across all events |
+| `ifdOverTime` | `[{ tick, meanCR, meanMR, meanIR, meanCMS }]` — per-tick time series |
+| `personaIFD` | `[{ personaId, meanCR, meanMR, meanIR, meanCMS, eventCount }]` sorted by CMS desc |
+
+### Visualizations (plots 20–21)
+
+| Plot | Description |
+|---|---|
+| `20_ifd_decomposition.png` | Stacked area CR/MR/IR over ticks + CMS on secondary axis — shows how information degrades as it propagates |
+| `21_ifd_simplex.png` | Ternary plot: per-tick trajectory as plasma-colored arrows; per-persona diamond markers — makes degradation type immediately readable |
 
 ---
 

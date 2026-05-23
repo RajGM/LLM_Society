@@ -392,6 +392,102 @@ class MetricsEngine {
     return { actualMeanMI, counterfactualMeanMI, botCausalContribution };
   }
 
+  // ── IFD aggregate metrics (Extension: Information Fidelity Decomposition) ──
+  // Mean CR/MR/IR/CMS/IE across all audited events for the article.
+  // Events without ifd (old data or pre-IFD runs) are skipped gracefully.
+  static ifdMetrics(nodesData, articleId) {
+    const cr = [], mr = [], ir = [], cms = [], ie = [];
+
+    for (const state of Object.values(nodesData)) {
+      for (const ev of state.history) {
+        if (ev.articleId !== articleId || !ev.ifd) continue;
+        cr.push(ev.ifd.cr);
+        mr.push(ev.ifd.mr);
+        ir.push(ev.ifd.ir);
+        cms.push(ev.ifd.cms);
+        ie.push(ev.ifd.ie);
+      }
+    }
+
+    const mean = (arr) =>
+      arr.length ? arr.reduce((s, v) => s + v, 0) / arr.length : null;
+
+    return {
+      meanCR: mean(cr),
+      meanMR: mean(mr),
+      meanIR: mean(ir),
+      meanCMS: mean(cms),
+      meanIE: mean(ie),
+      eventCount: cr.length,
+    };
+  }
+
+  // ── IFD over time — mean CR/MR/IR/CMS per tick ───────────────────────────
+  static ifdOverTime(nodesData, articleId, maxTicks) {
+    const byTick = {};
+    for (let t = 1; t <= maxTicks; t++) {
+      byTick[t] = { cr: [], mr: [], ir: [], cms: [] };
+    }
+
+    for (const state of Object.values(nodesData)) {
+      for (const ev of state.history) {
+        if (ev.articleId !== articleId || !ev.ifd) continue;
+        if (!byTick[ev.tick]) byTick[ev.tick] = { cr: [], mr: [], ir: [], cms: [] };
+        byTick[ev.tick].cr.push(ev.ifd.cr);
+        byTick[ev.tick].mr.push(ev.ifd.mr);
+        byTick[ev.tick].ir.push(ev.ifd.ir);
+        byTick[ev.tick].cms.push(ev.ifd.cms);
+      }
+    }
+
+    const mean = (arr) =>
+      arr.length ? arr.reduce((s, v) => s + v, 0) / arr.length : null;
+
+    return Object.entries(byTick)
+      .map(([tick, d]) => ({
+        tick: parseInt(tick),
+        meanCR: mean(d.cr),
+        meanMR: mean(d.mr),
+        meanIR: mean(d.ir),
+        meanCMS: mean(d.cms),
+      }))
+      .filter((r) => r.meanCR !== null)
+      .sort((a, b) => a.tick - b.tick);
+  }
+
+  // ── Per-persona IFD — fidelity vector per persona type ───────────────────
+  // Returns array sorted by meanCMS descending (worst distorters first).
+  static personaIFD(nodesData, articleId) {
+    const byPersona = {};
+
+    for (const state of Object.values(nodesData)) {
+      const pid = state.personaId;
+      if (!byPersona[pid]) byPersona[pid] = { cr: [], mr: [], ir: [], cms: [] };
+      for (const ev of state.history) {
+        if (ev.articleId !== articleId || !ev.ifd) continue;
+        byPersona[pid].cr.push(ev.ifd.cr);
+        byPersona[pid].mr.push(ev.ifd.mr);
+        byPersona[pid].ir.push(ev.ifd.ir);
+        byPersona[pid].cms.push(ev.ifd.cms);
+      }
+    }
+
+    const mean = (arr) =>
+      arr.length ? arr.reduce((s, v) => s + v, 0) / arr.length : null;
+
+    return Object.entries(byPersona)
+      .filter(([, d]) => d.cr.length > 0)
+      .map(([personaId, d]) => ({
+        personaId,
+        meanCR: mean(d.cr),
+        meanMR: mean(d.mr),
+        meanIR: mean(d.ir),
+        meanCMS: mean(d.cms),
+        eventCount: d.cr.length,
+      }))
+      .sort((a, b) => b.meanCMS - a.meanCMS);
+  }
+
   // ── Compute everything ─────────────────────────────────────────────────────
   // botNodeIds is optional; pass a non-empty array to include bot metrics.
   static computeAll(nodesData, topology, articleId, maxTicks, botNodeIds = []) {
@@ -403,6 +499,9 @@ class MetricsEngine {
       criticalMassThreshold:   MetricsEngine.criticalMassThreshold(nodesData, articleId),
       structuralVirality:      MetricsEngine.structuralVirality(nodesData, articleId),
       frameMetrics:            MetricsEngine.frameMetrics(nodesData, articleId),
+      ifdMetrics:              MetricsEngine.ifdMetrics(nodesData, articleId),
+      ifdOverTime:             MetricsEngine.ifdOverTime(nodesData, articleId, maxTicks),
+      personaIFD:              MetricsEngine.personaIFD(nodesData, articleId),
     };
 
     if (botNodeIds.length > 0) {
