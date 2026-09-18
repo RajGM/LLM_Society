@@ -1050,3 +1050,33 @@ Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occu
 **Cells completed.** **0 / 216**.
 
 ---
+
+## 2026-09-18T18:18:13.576Z
+
+T2d_H slice start n=96 topologies=echo_chamber,hierarchical,linear_chain,polarized,random_er,ring,scale_free,small_world concurrency=3
+
+---
+
+## 2026-09-18T18:18:40.847Z
+
+T2c_H worker start: poll /workspace/.env + KEY_READY.md every 20s up to ~8 min, then probe + all 96 configs concurrency 3. Isolation runs_phase2/results_phase2.
+
+---
+
+## 2026-09-18T18:19:28.822Z
+
+T2c_He slice start n=48 topologies=echo_chamber,hierarchical,linear_chain,polarized,random_er,ring,scale_free,small_world concurrency=3
+
+---
+
+## 2026-09-18T18:20:30Z — MASTER orchestrator: polarized harden + key still missing
+
+**Key found: no** (process length=0; `/workspace/.env` absent). Did not invent a key. Did not print a key. Did not dry-run. Did not invent MI/MPR.
+
+**Polarized seed-drop guard (non-LLM).** `SocietyGraph.buildPolarized` now takes seeded `rng` + `minSeedOutDegree` (same cascade-death patch as echo/ER). `Simulation._buildGraph` passes `graphRandomSeed` / `seedNodes` / `minSeedOutDegree`. All 36 Phase 2 polarized configs have `minSeedOutDegree: 2`. Smoke (40 seeds, no LLM): `node_0` min out-degree 2.
+
+**Parse.** `parse_phase2.js` expected 1728 cells, missing 1728, hatched-dead-after-LLM 0. Isolation: `results_phase2` only.
+
+**Requested secret.** `cursor-cloud-request-environment-setup-actions` `OPENAI_API_KEY`. Orchestrator (`thesisExperiment/scripts/master_phase2.js --wait-key`) launches probe + 288 configs + 4 Dnet as soon as gitignored `/workspace/.env` appears.
+
+---

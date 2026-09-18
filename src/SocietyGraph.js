@@ -298,12 +298,15 @@ class SocietyGraph {
     experimentDir, nodeConfigs,
     intraEdgeProb = 0.75, interEdgeProb = 0.05,
     intraTrust = 0.88, interTrust = 0.10,
-    bridgeNodeIds = [], personaMap = null
+    bridgeNodeIds = [], personaMap = null,
+    options = {}
   ) {
     const graph = new SocietyGraph(experimentDir);
     const ids = nodeConfigs.map((cfg, i) => cfg.nodeId || `node_${i}`);
     const n = ids.length;
     const bridgeSet = new Set(bridgeNodeIds);
+    const rng = typeof options.rng === "function" ? options.rng : Math.random;
+    const minSeedOutDegree = options.minSeedOutDegree ?? 2;
 
     for (let i = 0; i < n; i++) graph.addNode(ids[i], nodeConfigs[i]);
 
@@ -336,12 +339,27 @@ class SocietyGraph {
           baseTrust = interTrust;
         }
 
-        if (Math.random() < prob) {
+        if (rng() < prob) {
           const trust = personaMap
             ? SocietyGraph._homophilyTrust(nodeConfigs[i].personaId, nodeConfigs[j].personaId, personaMap, baseTrust)
-            : baseTrust + (Math.random() - 0.5) * 0.08;
+            : baseTrust + (rng() - 0.5) * 0.08;
           graph.addEdge(aId, bId, Math.max(0.05, Math.min(0.95, trust)));
         }
+      }
+    }
+
+    // Same cascade-death guard as echo/ER: isolated seed never forwards.
+    const personaById = Object.fromEntries(nodeConfigs.map((c, i) => [ids[i], c.personaId]));
+    for (const seedId of options.seedNodeIds || []) {
+      if (!graph.nodes[seedId]) continue;
+      while ((graph.adjacency[seedId] || []).length < Math.min(minSeedOutDegree, ids.length - 1)) {
+        const candidates = ids.filter((id) => id !== seedId && !(graph.adjacency[seedId] || []).includes(id));
+        if (candidates.length === 0) break;
+        const pick = candidates[Math.floor(rng() * candidates.length)];
+        const trust = personaMap
+          ? SocietyGraph._homophilyTrust(personaById[seedId], personaById[pick], personaMap, 0.55)
+          : 0.45 + rng() * 0.3;
+        graph.addEdge(seedId, pick, trust);
       }
     }
 

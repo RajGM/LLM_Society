@@ -126,6 +126,7 @@ const TOPOLOGIES = [
       interEdgeProb: 0.05,
       intraTrust: 0.88,
       interTrust: 0.10,
+      minSeedOutDegree: 2,
     },
     assignment: "by_cluster",
   },

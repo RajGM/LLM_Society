@@ -29,6 +29,15 @@ Did **not** call `parse_phase2.js` (it rewrites shared CSVs; there are no hierar
 
 A probe would fail immediately with `Env var OPENAI_API_KEY not set` and would not yield real LLM usage > 0.
 
+## Follow-up recheck (instruction: wait ~15s once, then exit)
+
+| When (UTC) | `process.env` | `/workspace/.env` | `thesisExperiment/.env` | `KEY_READY.md` |
+|---|---|---|---|---|
+| 2026-09-18T16:43:12Z | unset len=0 | missing | missing | missing |
+| 2026-09-18T16:43:36Z | unset len=0 | missing | missing | missing |
+
+Still missing. Did **not** fabricate. Did **not** loop further. Cells completed: **0 / 216**.
+
 ## Grid that was not run
 
 N=1, 8 nodes / 8 hops, `gpt-4o-mini`, `outputRoot: thesisExperiment/runs_phase2`. Each config seeds 6 core articles, so persona×article cells = configs × 6.

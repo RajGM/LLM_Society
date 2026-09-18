@@ -16,22 +16,61 @@ const EXP = path.join(ROOT, "thesisExperiment");
 const GRID = JSON.parse(fs.readFileSync(path.join(EXP, "configs", "grid_phase2.json"), "utf8"));
 const LOG_MD = path.join(EXP, "LOG.md");
 const LOG_DIR = path.join(EXP, "results_phase2", "logs");
-const MANIFEST = path.join(EXP, "results_phase2", "phase2_manifest.json");
+const DEFAULT_MANIFEST = path.join(EXP, "results_phase2", "phase2_manifest.json");
 const RUNS = path.join(EXP, "runs_phase2");
+let MANIFEST = DEFAULT_MANIFEST;
 
 fs.mkdirSync(LOG_DIR, { recursive: true });
 fs.mkdirSync(RUNS, { recursive: true });
 
+const TOPOLOGIES = [
+  "linear_chain",
+  "ring",
+  "random_er",
+  "small_world",
+  "scale_free",
+  "echo_chamber",
+  "polarized",
+  "hierarchical",
+];
+const SLICES = ["T2c_H", "T2d_H", "T2c_He", "T2d_He"];
+
 function parseArgs(argv) {
   const phaseIdx = argv.indexOf("--phase");
   const concIdx = argv.indexOf("--concurrency");
+  const topoIdx = argv.indexOf("--topology");
+  const sliceIdx = argv.indexOf("--slice");
+  const manifestIdx = argv.indexOf("--manifest");
   return {
     probeOnly: argv.includes("--probe-only"),
+    skipProbe: argv.includes("--skip-probe"),
     phase: phaseIdx !== -1 ? argv[phaseIdx + 1] : "all",
     concurrency: Math.max(1, Number(concIdx !== -1 ? argv[concIdx + 1] : 2) || 2),
+    topology: topoIdx !== -1 ? argv[topoIdx + 1] : null,
+    slice: sliceIdx !== -1 ? argv[sliceIdx + 1] : null,
     force: argv.includes("--force"),
     allowDry: argv.includes("--allow-dry-plumbing"),
+    noParse: argv.includes("--no-parse"),
+    manifest: manifestIdx !== -1 ? argv[manifestIdx + 1] : null,
   };
+}
+
+function topologyOfRel(rel) {
+  const base = path.basename(rel, ".json");
+  return TOPOLOGIES.find((t) => base.includes(`_${t}_`)) || null;
+}
+
+function sliceOfRel(rel) {
+  const base = path.basename(rel, ".json");
+  return SLICES.find((s) => base.startsWith(s + "_")) || null;
+}
+
+function filterRels(rels, topology, slice) {
+  return rels.filter((rel) => {
+    if (slice && sliceOfRel(rel) !== slice) return false;
+    if (topology && topologyOfRel(rel) !== topology) return false;
+    return true;
+  });
 }
 
 function appendLog(text) {
@@ -271,51 +310,76 @@ function parseAfter(label) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
+  if (args.manifest) {
+    MANIFEST = path.isAbsolute(args.manifest) ? args.manifest : path.join(ROOT, args.manifest);
+    fs.mkdirSync(path.dirname(MANIFEST), { recursive: true });
+  }
   const campaign = readManifest();
   campaign.lastCommand = process.argv.slice(2).join(" ");
 
   const probes = {};
-  for (const mode of ["continuous", "dual"]) {
-    console.log(`=== Phase2 probe ${mode} ===`);
-    const rel = writeProbeConfig(mode, `probe_p2_${mode}`);
-    const probe = await runCli(rel, [], `probe_p2_${mode}`, {
-      stallMs: 10 * 60 * 1000,
-      hardMs: 4 * 60 * 1000,
-    });
-    const failed = probeFailedFrom(probe);
-    probes[mode] = {
-      status: probe.status,
-      elapsedMs: probe.elapsedMs,
-      failed,
-      usageLine: extractUsage(probe.stdout),
-      at: new Date().toISOString(),
-    };
-    appendLog(`PROBE_P2 ${mode} status=${probe.status} failed=${failed} elapsedMs=${probe.elapsedMs} usage=${probes[mode].usageLine || "n/a"}`);
-    console.log(`Probe ${mode} exit=${probe.status} failed=${failed}`);
+  const priorOk =
+    campaign.probe &&
+    campaign.probe.continuous &&
+    campaign.probe.dual &&
+    !campaign.probe.continuous.failed &&
+    !campaign.probe.dual.failed;
+  if (args.skipProbe && !args.probeOnly) {
+    console.log("=== Phase2 probes skipped (--skip-probe) ===");
+    campaign.probe = campaign.probe || { skipped: true, at: new Date().toISOString() };
+    writeManifest(campaign);
+  } else {
+    for (const mode of ["continuous", "dual"]) {
+      console.log(`=== Phase2 probe ${mode} ===`);
+      const rel = writeProbeConfig(mode, `probe_p2_${mode}`);
+      const probe = await runCli(rel, [], `probe_p2_${mode}`, {
+        stallMs: 10 * 60 * 1000,
+        hardMs: 4 * 60 * 1000,
+      });
+      const failed = probeFailedFrom(probe);
+      probes[mode] = {
+        status: probe.status,
+        elapsedMs: probe.elapsedMs,
+        failed,
+        usageLine: extractUsage(probe.stdout),
+        at: new Date().toISOString(),
+      };
+      appendLog(
+        `PROBE_P2 ${mode} status=${probe.status} failed=${failed} elapsedMs=${probe.elapsedMs} usage=${probes[mode].usageLine || "n/a"}`
+      );
+      console.log(`Probe ${mode} exit=${probe.status} failed=${failed}`);
+    }
+    campaign.probe = probes;
+    writeManifest(campaign);
+
+    if (args.probeOnly) {
+      process.exit(probes.continuous.failed || probes.dual.failed ? 2 : 0);
+    }
+    if (probes.continuous.failed || probes.dual.failed) {
+      if (!args.allowDry) {
+        appendLog("ABORT_P2 real_api_unavailable — refusing to invent Phase 2 MI/MPR.");
+        campaign.aborted = "real_api_unavailable";
+        writeManifest(campaign);
+        process.exit(2);
+      }
+      console.warn("[phase2] --allow-dry-plumbing: continuing without treating numbers as thesis.");
+    }
   }
-  campaign.probe = probes;
-  writeManifest(campaign);
 
   if (args.probeOnly) {
-    process.exit(probes.continuous.failed || probes.dual.failed ? 2 : 0);
-  }
-  if (probes.continuous.failed || probes.dual.failed) {
-    if (!args.allowDry) {
-      appendLog("ABORT_P2 real_api_unavailable — refusing to invent Phase 2 MI/MPR.");
-      campaign.aborted = "real_api_unavailable";
-      writeManifest(campaign);
-      process.exit(2);
-    }
-    console.warn("[phase2] --allow-dry-plumbing: continuing without treating numbers as thesis.");
+    process.exit(priorOk ? 0 : 2);
   }
 
   const to = { stallMs: 25 * 60 * 1000, hardMs: 70 * 60 * 1000 };
   const want = args.phase;
   const runPhase = async (name, rels, conc) => {
     if (want !== "all" && want !== name) return;
-    appendLog(`PHASE_P2 ${name} n=${rels.length} concurrency=${conc}`);
-    await runPool(rels, conc, to, campaign, args.force);
-    await parseAfter(name);
+    const filtered = filterRels(rels, args.topology, args.slice);
+    appendLog(
+      `PHASE_P2 ${name} n=${filtered.length} concurrency=${conc} topology=${args.topology || "all"} slice=${args.slice || "all"}`
+    );
+    await runPool(filtered, conc, to, campaign, args.force);
+    if (!args.noParse) await parseAfter(name);
   };
 
   await runPhase("TH", GRID.experimentTH, args.concurrency);

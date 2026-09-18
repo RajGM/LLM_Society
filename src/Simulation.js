@@ -577,7 +577,12 @@ class Simulation {
           this.experimentDir, nodeConfigs,
           tp.intraEdgeProb ?? 0.75, tp.interEdgeProb ?? 0.05,
           tp.intraTrust ?? 0.88, tp.interTrust ?? 0.10,
-          tp.bridgeNodeIds ?? [], this.personaMap
+          tp.bridgeNodeIds ?? [], this.personaMap,
+          {
+            rng: this._graphRng(),
+            seedNodeIds: this.config.seedNodes || ["node_0"],
+            minSeedOutDegree: tp.minSeedOutDegree ?? 2,
+          }
         );
       case "hierarchical":
         return SocietyGraph.buildHierarchical(

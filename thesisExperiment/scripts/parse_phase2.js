@@ -20,12 +20,26 @@ function round4(x) {
   return Math.round(x * 10000) / 10000;
 }
 
+const TOPOLOGIES = [
+  "linear_chain",
+  "ring",
+  "random_er",
+  "small_world",
+  "scale_free",
+  "echo_chamber",
+  "polarized",
+  "hierarchical",
+];
+
 function parseName(experimentName) {
   // T2c_H_linear_chain_conspiracy_believer
   // T2d_He_scale_free_mix_00
-  const m = experimentName.match(/^(T2c|T2d)_(H|He)_([a-z_]+?)_(.+)$/);
+  const m = String(experimentName || "").match(/^(T2c|T2d)_(H|He)_(.+)$/);
   if (!m) return { prefix: null, arm: null, topology: null, rest: experimentName };
-  return { prefix: m[1], arm: m[2], topology: m[3], rest: m[4], mode: m[1] === "T2c" ? "continuous" : "dual" };
+  const restAll = m[3];
+  const topology = TOPOLOGIES.find((t) => restAll === t || restAll.startsWith(t + "_")) || null;
+  const rest = topology ? restAll.slice(topology.length).replace(/^_/, "") : restAll;
+  return { prefix: m[1], arm: m[2], topology, rest, mode: m[1] === "T2c" ? "continuous" : "dual" };
 }
 
 function collectEvents(runDir, articleId) {
@@ -128,8 +142,14 @@ function rowFromRun(runDir, meta, articleId) {
     kStarDiscrete: ksDisc.k,
     kStarContinuous: ksCont.k,
     kStarCensoredDiscrete: ksDisc.k != null && ksDisc.k === Math.max(...(events.map((e) => e.tick || e.hops || 0))),
-    llmCalls: usage && usage.calls,
-    status: meta.status,
+    hatchStatus: dead
+      ? usage && usage.calls > 0
+        ? "hatched_dead_after_llm"
+        : "hatched_api_fail_or_unscored"
+      : "live",
+    hatchNote: dead
+      ? "nScored <= 1; keep the row; do not read as mix immunises"
+      : null,
   };
 }
 
@@ -180,9 +200,31 @@ function main() {
 
   const th = rows.filter((r) => r.arm === "H" && !String(r.experimentName).startsWith("probe"));
   const the = rows.filter((r) => r.arm === "He");
-  const cont = rows.filter((r) => r.miScoringMode === "continuous");
-  const dual = rows.filter((r) => r.miScoringMode === "dual");
-  const dead = rows.filter((r) => r.dead);
+  const thesisRows = rows.filter((r) => r.arm === "H" || r.arm === "He");
+  const cont = rows.filter((r) => r.miScoringMode === "continuous" && (r.arm === "H" || r.arm === "He"));
+  const dual = rows.filter((r) => r.miScoringMode === "dual" && (r.arm === "H" || r.arm === "He"));
+  const dead = thesisRows.filter((r) => r.dead);
+  const hatchedDeadAfterLlm = dead.filter((r) => r.hatchStatus === "hatched_dead_after_llm");
+
+  const expected = expectedGridCells();
+  const seen = new Set(thesisRows.map((r) => `${r.experimentName}::${r.articleId}`));
+  const missing = expected.filter((e) => !seen.has(`${e.experimentName}::${e.articleId}`));
+  const sliceCounts = {};
+  for (const s of ["T2c_H", "T2d_H", "T2c_He", "T2d_He"]) {
+    const exp = expected.filter((e) => e.slice === s);
+    const got = thesisRows.filter((r) => String(r.experimentName).startsWith(s + "_"));
+    const complete = got.filter((r) => r.status === "completed" || r.status === "complete");
+    const failed = got.filter((r) => r.status && r.status !== "completed" && r.status !== "complete");
+    sliceCounts[s] = {
+      expectedConfigs: new Set(exp.map((e) => e.experimentName)).size,
+      expectedCells: exp.length,
+      parsedCells: got.length,
+      completedCells: complete.length,
+      failedCells: failed.length,
+      remainingCells: exp.length - got.length,
+      hatchedDead: got.filter((r) => r.dead).length,
+    };
+  }
 
   fs.writeFileSync(path.join(OUT, "tables", "TH_rows.csv"), toCsv(th));
   fs.writeFileSync(path.join(OUT, "tables", "THe_rows.csv"), toCsv(the));
@@ -199,6 +241,10 @@ function main() {
   }))));
   fs.writeFileSync(path.join(OUT, "tables", "dead_cells.csv"), toCsv(dead));
   fs.writeFileSync(path.join(OUT, "tables", "all_rows.csv"), toCsv(rows));
+  fs.writeFileSync(
+    path.join(OUT, "tables", "missing_cells.csv"),
+    toCsv(missing.map((e) => ({ ...e, hatchStatus: "not_attempted" })))
+  );
 
   const summary = {
     generatedAt: new Date().toISOString(),
@@ -208,14 +254,49 @@ function main() {
     nContinuous: cont.length,
     nDual: dual.length,
     nDead: dead.length,
-    deadNote: "dead = nScored <= 1; hatch these; do not read as mix immunises",
+    nHatchedDeadAfterLlm: hatchedDeadAfterLlm.length,
+    nExpectedCells: expected.length,
+    nMissingCells: missing.length,
+    sliceCounts,
+    deadNote: "dead = nScored <= 1; hatch these; do not drop; do not read as mix immunises. missing cells are not empirical zeros.",
     meanMPR_TH_continuous: round4(mean(cont.filter((r) => r.arm === "H" && !r.dead).map((r) => r.meanMI).filter((x) => x != null))),
     meanMPR_TH_dualHeadline: round4(mean(dual.filter((r) => r.arm === "H" && !r.dead).map((r) => r.meanMI).filter((x) => x != null))),
     thesisGrade: false,
     isolation: "results_phase2 only",
   };
   fs.writeFileSync(path.join(OUT, "summary.json"), JSON.stringify(summary, null, 2));
-  console.log(`Phase2 parse: ${rows.length} rows, dead=${dead.length} → ${OUT}/tables`);
+  console.log(
+    `Phase2 parse: ${rows.length} rows, thesis=${thesisRows.length}, dead=${dead.length} hatchedAfterLlm=${hatchedDeadAfterLlm.length} missing=${missing.length} → ${OUT}/tables`
+  );
+}
+
+function expectedGridCells() {
+  const cfgDir = path.join(EXP, "configs", "phase2");
+  const articlesDefault = ["scopex_2017", "chemtrails_gates_2018_2021", "sai_geoengineering", "paris_agreement", "climate_consensus", "polar_bears"];
+  const out = [];
+  if (!fs.existsSync(cfgDir)) return out;
+  for (const f of fs.readdirSync(cfgDir).filter((x) => /^T2[cd]_/.test(x) && x.endsWith(".json") && !x.startsWith("_"))) {
+    let cfg;
+    try {
+      cfg = readJSON(path.join(cfgDir, f));
+    } catch {
+      continue;
+    }
+    const name = cfg.experimentName || f.replace(/\.json$/, "");
+    const parsed = parseName(name);
+    const slice = parsed.prefix && parsed.arm ? `${parsed.prefix}_${parsed.arm}` : null;
+    const articles = (cfg.seedArticles && cfg.seedArticles.length ? cfg.seedArticles : articlesDefault);
+    for (const articleId of articles) {
+      out.push({
+        experimentName: name,
+        articleId,
+        slice,
+        topology: parsed.topology || cfg.topology,
+        miScoringMode: cfg.miScoringMode,
+      });
+    }
+  }
+  return out;
 }
 
 function writeJSONEmpty() {
