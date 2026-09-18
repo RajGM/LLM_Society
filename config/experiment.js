@@ -13,6 +13,17 @@ const DEFAULTS = {
   auditorModel: "gpt-4o-mini",
   auditorQuestions: 5,
 
+  // ── Auditor scoring mode ────────────────────────────────────────────────────
+  // "discrete"   — three-way -1/0/+1 per question (CORRECT / MISSING / INCORRECT)
+  //                MI = count of non-correct answers (integer, backward-compatible)
+  // "continuous" — float [0.0–1.0] per question representing partial accuracy
+  //                MI = m × (1 - mean_score) (float, same range as discrete at limits)
+  // "dual"       — runs BOTH scorers in parallel on every event (2× auditor LLM calls)
+  //                event.ifd = discrete result (backward-compat top-level)
+  //                event.ifd.dual = { discrete, continuous, gap, agreement }
+  //                gap = |disc_mi - cont_mi|; agreement = Pearson R between score vectors
+  miScoringMode: "discrete",
+
   // ── Layer 1: Node cognition ─────────────────────────────────────────────────
   // Belief state + confirmation bias (extra LLM call per message processed)
   enableBeliefs: false,

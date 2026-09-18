@@ -1,6 +1,7 @@
 const https = require("https");
 const http = require("http");
 const { getModel } = require("../config/models");
+const { isMockKey } = require("./loadEnv");
 
 // In dry-run mode every LLM call is intercepted by keyword detection on the userPrompt.
 // Each call type embeds a unique sentinel so the interceptor can return the right mock.
@@ -9,6 +10,11 @@ function callLLMDryRun(systemPrompt, userPrompt) {
   if (userPrompt.includes("IFD_SCORE_QUERY")) {
     const count = (userPrompt.match(/^\d+\./gm) || []).length || 5;
     return Promise.resolve(JSON.stringify({ answers: Array(count).fill(1) }));
+  }
+  // Continuous auditor scoring (Auditor.js) — returns near-perfect floats in dry-run
+  if (userPrompt.includes("CONTINUOUS_SCORE_QUERY")) {
+    const count = (userPrompt.match(/^\d+\./gm) || []).length || 5;
+    return Promise.resolve(JSON.stringify({ scores: Array(count).fill(0.9) }));
   }
   // Belief alignment query (BeliefEngine.js)
   if (userPrompt.includes("BELIEF_ALIGNMENT_QUERY")) {
@@ -62,7 +68,11 @@ async function callLLM(modelId, systemPrompt, userPrompt) {
 
 function callOpenAI(cfg, systemPrompt, userPrompt) {
   const apiKey = process.env[cfg.apiKeyEnv];
-  if (!apiKey) throw new Error(`Env var ${cfg.apiKeyEnv} not set`);
+  if (!apiKey) throw new Error(`Env var ${cfg.apiKeyEnv} not set — add it to .env or export it`);
+  if (isMockKey(apiKey)) throw new Error(
+    `${cfg.apiKeyEnv} looks like a placeholder ("${apiKey.slice(0, 20)}…"). ` +
+    `Replace it with a real key in .env`
+  );
 
   const body = JSON.stringify({
     model: cfg.model,
@@ -81,7 +91,11 @@ function callOpenAI(cfg, systemPrompt, userPrompt) {
 
 function callAnthropic(cfg, systemPrompt, userPrompt) {
   const apiKey = process.env[cfg.apiKeyEnv];
-  if (!apiKey) throw new Error(`Env var ${cfg.apiKeyEnv} not set`);
+  if (!apiKey) throw new Error(`Env var ${cfg.apiKeyEnv} not set — add it to .env or export it`);
+  if (isMockKey(apiKey)) throw new Error(
+    `${cfg.apiKeyEnv} looks like a placeholder ("${apiKey.slice(0, 20)}…"). ` +
+    `Replace it with a real key in .env`
+  );
 
   const body = JSON.stringify({
     model: cfg.model,

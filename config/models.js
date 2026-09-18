@@ -11,19 +11,7 @@ const MODELS = {
     apiUrl: "https://api.openai.com/v1/chat/completions",
     model: "gpt-4o-mini",
     apiKeyEnv: "OPENAI_API_KEY",
-  },
-  "claude-sonnet-4-6": {
-    provider: "anthropic",
-    apiUrl: "https://api.anthropic.com/v1/messages",
-    model: "claude-sonnet-4-6",
-    apiKeyEnv: "ANTHROPIC_API_KEY",
-  },
-  "ollama-llama3": {
-    provider: "ollama",
-    apiUrl: "http://localhost:11434/api/chat",
-    model: "llama3",
-    apiKeyEnv: null,
-  },
+  }
 };
 
 function getModel(modelId) {

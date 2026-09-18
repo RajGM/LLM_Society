@@ -358,6 +358,7 @@ Experiments are configured by passing a JSON file to `--config`. Any field not s
 | `defaultModel` | `"gpt-4o-mini"` | LLM for all nodes (overridable per node) |
 | `auditorModel` | `"gpt-4o-mini"` | LLM for the auditor and FrameAuditor |
 | `auditorQuestions` | `5` | QA questions per article |
+| `miScoringMode` | `"discrete"` | `"discrete"` — three-way −1/0/+1 per question, integer MI; `"continuous"` — float [0.0–1.0] per question, float MI; `"dual"` — both scorers run in parallel, top-level = discrete, `.dual` adds gap + agreement |
 | `seedArticles` | `["crime_0"]` | Articles to propagate |
 | `seedNodes` | `["node_0"]` | Nodes that receive the initial message |
 | `defaultPersonaAssignment` | `"sequential"` | `"sequential"` / `"random"` / `"by_cluster"` |
@@ -1060,9 +1061,11 @@ experiments/sensitivity_{timestamp}/
 
 The original CIKM auditor collapsed three distinct failure modes into a single integer MI: a rewrite that *drops* three facts (lossy compression) scored identically to one that *inverts* three facts (active misinformation). IFD replaces binary scoring with a three-way evaluation and a set of derived metrics that distinguish what actually happened to the information.
 
-### Three-way scoring
+### Scoring modes
 
-For each yes/no auditor question q_j with ground-truth answer g_j, the LLM auditor evaluates the rewritten text and returns one of:
+Set `"miScoringMode"` in your run config (default: `"discrete"`).
+
+**Discrete mode** (`"discrete"`) — three-way integer score per question:
 
 | Score | Symbol | Meaning |
 |---|---|---|
@@ -1070,7 +1073,41 @@ For each yes/no auditor question q_j with ground-truth answer g_j, the LLM audit
 | `0` | MISSING | text does not contain enough information to address the question |
 | `−1` | INCORRECT | text contradicts or distorts the expected answer |
 
-The auditor prompt explicitly provides the expected answer for each question, enabling reliable discrimination between omission and distortion.
+The auditor prompt explicitly provides the expected answer per question, enabling reliable discrimination between omission and distortion.
+
+**Continuous mode** (`"continuous"`) — float [0.0–1.0] per question representing partial accuracy:
+
+| Score | Meaning |
+|---|---|
+| `1.0` | Fully and correctly states the expected answer |
+| `0.5` | Does not address the question (missing / neutral) |
+| `0.0` | Directly contradicts or inverts the expected answer |
+| Intermediate | Partial accuracy — e.g. `0.8` = mostly correct, `0.2` = mostly wrong |
+
+In continuous mode `mi = m × (1 − mean_score)` is a float; at the 0/1 boundaries it equals the discrete MI exactly. Both modes produce the same `event.ifd` shape (`cr`, `mr`, `ir`, `cms`, `ie`, `scores`, `mode`).
+
+```json
+{
+  "miScoringMode": "continuous",
+  "auditorModel":  "gpt-4o-mini"
+}
+```
+
+**Dual mode** (`"dual"`) — runs both scorers in parallel on every audited event (2 auditor LLM calls per event, issued concurrently):
+
+- `event.ifd` top-level = discrete IFD (all existing trust evolution, MPR, and severity logic unchanged)
+- `event.ifd.dual` = `{ discrete, continuous, gap, agreement }`
+- `gap = |disc_mi − cont_mi|` — fuzziness signal: large gap means the LLM sees borderline content that the binary threshold miscounts
+- `agreement` = Pearson R between normalized discrete scores and continuous scores; `null` when scores have zero variance
+- `results_{article}.metrics.ifdDualMetrics` — network-wide mean gap, signed gap, and agreement
+- `results_{article}.metrics.personaIFDDual` — per-persona breakdown sorted by disagreement
+
+```json
+{
+  "miScoringMode": "dual",
+  "auditorModel":  "gpt-4o-mini"
+}
+```
 
 ### Derived metrics
 
@@ -1157,6 +1194,7 @@ Each audited history event gains an `ifd` field:
 |---|---|
 | `20_ifd_decomposition.png` | Stacked area CR/MR/IR over ticks + CMS on secondary axis — shows how information degrades as it propagates |
 | `21_ifd_simplex.png` | Ternary plot: per-tick trajectory as plasma-colored arrows; per-persona diamond markers — makes degradation type immediately readable |
+| `22_ifd_dual.png` | Dual mode only: scatter of discrete MI vs continuous MI per event (points near y=x = agreement; points above = continuous more lenient) + per-persona gap bar chart |
 
 ---
 

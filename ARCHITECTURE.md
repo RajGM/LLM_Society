@@ -289,6 +289,7 @@ All parameters are overridable in a run config JSON.
 
 | Flag | Default | Description |
 |---|---|---|
+| `miScoringMode` | `"discrete"` | Auditor mode: `"discrete"` (−1/0/+1 per question, integer MI) or `"continuous"` (float [0,1] per question, float MI) |
 | `enableBeliefs` | `false` | Layer 1: belief state + confirmation bias (+2 LLM calls/message) |
 | `enableFrameAnalysis` | `false` | Layer 2: frame shift, sentiment drift, claim injection |
 | `competitiveGroups` | `[]` | Layer 3: article groups that propagate simultaneously |
@@ -448,7 +449,8 @@ Single `callLLM(modelId, systemPrompt, userPrompt)` function. Dispatches to the 
 
 | Sentinel keyword | Returns |
 |---|---|
-| `Return only the JSON` | Auditor QA answers: `{"answers":[1,1,...]}` |
+| `IFD_SCORE_QUERY` | Discrete auditor answers: `{"answers":[1,1,...]}` (all correct) |
+| `CONTINUOUS_SCORE_QUERY` | Continuous auditor scores: `{"scores":[0.9,0.9,...]}` (near-perfect floats) |
 | `BELIEF_ALIGNMENT_QUERY` | Alignment: `{"alignment":0.5}` |
 | `BELIEF_UPDATE_QUERY` | Stance update: `{"stance":"...", "confidence":0.5}` |
 | `FRAME_ANALYSIS_QUERY` | Frame data: `{"frameShift":0.1, ...}` |
@@ -778,11 +780,60 @@ The built-in `YAMLParser` class handles the DSL subset without external dependen
 
 ### `src/Auditor.js` — Misinformation Metrics
 
-Implements the QA-based auditor from the paper.
+Implements the QA-based auditor from the paper, extended with IFD decomposition and optional continuous scoring.
 
-**Misinformation Index (MI)** — number of questions whose answer in the rewritten text differs from ground truth (0 = perfect fidelity, 5 = complete distortion).
+**Constructor:** `new Auditor(modelId, articles, scoringMode = "discrete")`
 
-**MPR** — mean MI across all events in a node's history for a given article.
+`scoringMode` is read from `config.miScoringMode` and forwarded by `Simulation.js`.
+
+#### Scoring modes
+
+| Mode | Per-question output | `mi` range | LLM calls per event | Sentinel(s) |
+|---|---|---|---|---|
+| `"discrete"` (default) | Integer: `−1` / `0` / `+1` | Integer [0, m] | 1 | `IFD_SCORE_QUERY` |
+| `"continuous"` | Float [0.0, 1.0] partial accuracy | Float [0.0, m] | 1 | `CONTINUOUS_SCORE_QUERY` |
+| `"dual"` | Both — parallel LLM calls | Integer (discrete, backward-compat) | 2 (parallel) | both |
+
+**Backward compatibility:** `mi` in discrete mode is `missingCount + incorrectCount` — identical to the original CIKM paper's MI. In continuous mode, `mi = m × (1 − mean_score)`, which equals the discrete value exactly at the 0/1 boundaries.
+
+**`score(articleId, text)` return shape** (`event.ifd` on every audited history event):
+
+Discrete / continuous:
+```json
+{ "mi": 2, "cr": 0.6, "mr": 0.2, "ir": 0.2, "cms": 0.333, "ie": 1.371,
+  "scores": [1, 1, 1, 0, -1], "mode": "discrete" }
+```
+
+Dual mode — top-level = discrete (backward compat), full breakdown in `.dual`:
+```json
+{
+  "mi": 2, "cr": 0.6, "mr": 0.2, "ir": 0.2, "cms": 0.333, "ie": 1.371,
+  "scores": [1, 1, 1, 0, -1], "mode": "dual",
+  "dual": {
+    "discrete":   { "mi": 2, "cr": 0.6, ..., "mode": "discrete" },
+    "continuous": { "mi": 1.4, "cr": 0.72, ..., "mode": "continuous" },
+    "gap":        0.6,
+    "agreement":  0.88
+  }
+}
+```
+
+`gap = |disc_mi − cont_mi|` — fuzziness: large gap = LLM sees borderline cases; small gap = clear-cut.  
+`agreement` = Pearson R between normalized discrete scores and continuous scores (null when all scores are constant).
+
+**CR / MR / IR in continuous mode:** scores are bucketed (≥ 0.67 → CORRECT, ≤ 0.33 → INCORRECT, else MISSING) to preserve IFD simplex compatibility across both modes.
+
+**`static computeIFD(scores, mode)`** — pure function usable standalone:
+
+```js
+const Auditor = require("./src/Auditor");
+const disc = Auditor.computeIFD([1, 0, -1, 1, 1], "discrete");
+// { mi: 2, cr: 0.6, mr: 0.2, ir: 0.2, cms: 0.333, ie: 1.371, mode: "discrete" }
+const cont = Auditor.computeIFD([1.0, 0.5, 0.1, 0.9, 0.8], "continuous");
+// { mi: 1.7, cr: 0.66, mr: 0.2, ir: 0.2, cms: 0.515, ie: 0.925, mode: "continuous" }
+```
+
+**MPR** — mean MI across all events in a node's history for a given article. Works for both integer and float MI.
 
 **Severity taxonomy:**
 
@@ -791,6 +842,8 @@ Implements the QA-based auditor from the paper.
 | ≤ 1 | `factual_error` | Green |
 | 1–3 | `lie` | Orange |
 | > 3 | `propaganda` | Red |
+
+Severity thresholds are the same regardless of scoring mode; in continuous mode a node can sit at e.g. MPR = 1.7 (float lie).
 
 ---
 
@@ -1721,7 +1774,8 @@ python visualize.py --latest
 - [x] Extension 10: Bot Detection and Resilience Testing — 4 bot persona types, 5 placement strategies, 5 removal strategies, `BotEngine.js`, `BotResilienceRunner.js`, `botImpactMetrics`, `botCounterfactualMI`, `--bot-resilience` CLI, `bots:` DSL key, `10_bot_impact.png` visualization
 - [x] Extension 11: Emergent Polarization — `PolarizationMetrics.js` (PI formula, phase transition detection, bimodality/trust bifurcation/modularity/extremity), `MultiCycleRunner.js` (belief carry-over, topology carry-over, 3 article sequence strategies, phase diagram, intervention experiment), `--polarization` / `--polarization-phase-diagram` / `--polarization-intervention` CLI flags, plots 11–15
 - [x] Extension 12: Digital Twin Validation — `RealGraphImporter.js` (FakeNewsNet/PHEME importer, 4 persona inference strategies, trust heuristic), `ValidationMetrics.js` (depth/breadth/structural virality for real + simulated cascades), `ValidationComparison.js` (KS test, JS divergence, DTFS formula), `ContentDriftValidation.js` (sentiment trajectory Pearson R), `DigitalTwinRunner.js` (article injection/cleanup via TEMP_ARTICLE_ID), `BatchValidationRunner.js` (N-cascade distributional comparison), `SensitivityRunner.js` (4-strategy DTFS sensitivity), `--digital-twin` / `--validate-batch` / `--validate-sensitivity` CLI flags, `DT_ARTICLE_QA_QUERY` dry-run sentinel, sample cascade data, plots 16–19
-- [ ] Continuous MI scoring (0.0–1.0 float) replacing binary question answers
+- [x] Continuous MI scoring — `miScoringMode: "continuous"` gives per-question float [0.0–1.0] accuracy; `mi` becomes a float; discrete mode (default) is fully backward-compatible; both modes produce the same IFD shape (`cr`, `mr`, `ir`, `cms`, `ie`, `scores`, `mode`)
+- [x] Dual scoring mode — `miScoringMode: "dual"` runs both auditors in parallel (2 LLM calls/event); top-level IFD = discrete (all existing consumers unchanged); `event.ifd.dual` adds `{ discrete, continuous, gap, agreement }`; `ifdDualMetrics` and `personaIFDDual` in results; `22_ifd_dual.png` visualization (scatter + per-persona gap bars)
 - [ ] Multi-model ablation runner — same persona, N different models, compare MPRs
 - [ ] Temporal dynamics — trust decay over time, re-seeding articles mid-simulation
 - [ ] Strategic node placement optimizer — given K expert nodes, find placement minimizing MPR

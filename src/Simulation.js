@@ -36,7 +36,7 @@ class Simulation {
     this.personaMap = Object.fromEntries(this.personas.map((p) => [p.id, p]));
     this.articleMap = Object.fromEntries(this.articles.map((a) => [a.id, a]));
 
-    this.auditor = new Auditor(this.config.auditorModel, this.articles);
+    this.auditor = new Auditor(this.config.auditorModel, this.articles, this.config.miScoringMode);
     this.frameAuditor = this.config.enableFrameAnalysis
       ? new FrameAuditor(this.config.auditorModel)
       : null;

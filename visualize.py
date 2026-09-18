@@ -1427,14 +1427,14 @@ def build_dashboard(meta, topology, persona_map, nodes_data, exp_dir, out_dir):
         ax_bot.set_facecolor("#16213e")
         plot_bot_impact(exp_dir, ax_bot)
 
-        # Row 6 — IFD decomposition (left) + IFD simplex (right)
+        # Row 6 — IFD decomposition (left) + IFD dual gap (right)
         ax_ifd = fig.add_subplot(gs[6, 0])
         ax_ifd.set_facecolor("#16213e")
         plot_ifd_decomposition(exp_dir, ax_ifd)
 
-        ax_simplex = fig.add_subplot(gs[6, 1])
-        ax_simplex.set_facecolor("#16213e")
-        plot_ifd_simplex(exp_dir, ax_simplex)
+        ax_dual = fig.add_subplot(gs[6, 1])
+        ax_dual.set_facecolor("#16213e")
+        plot_ifd_dual(nodes_data, exp_dir, ax_dual)
 
         out_path = out_dir / "dashboard.png"
         fig.savefig(out_path, dpi=150, bbox_inches="tight",
@@ -1648,6 +1648,165 @@ def plot_ifd_simplex(exp_dir: Path, ax=None):
         plt.tight_layout()
 
 
+# ── Plot 22: IFD dual-mode scorer comparison ─────────────────────────────────
+
+def plot_ifd_dual(nodes_data, exp_dir: Path, ax=None):
+    """Two-panel: scatter disc_mi vs cont_mi per event (left) + per-persona gap bars (right)."""
+    import numpy as np
+
+    standalone = ax is None
+    if standalone:
+        with plt.style.context(PLOT_STYLE):
+            fig, axes = plt.subplots(1, 2, figsize=(14, 6), facecolor="#1a1a2e")
+        ax_sc, ax_bar = axes
+    else:
+        # Dashboard: single axis — show gap bars only (more informative at small size)
+        ax_sc  = None
+        ax_bar = ax
+
+    # ── Collect per-event dual data from node history ────────────────────────
+    events = []
+    results_files = sorted(Path(exp_dir).glob("results_*.json"))
+    article_id = results_files[0].stem.replace("results_", "") if results_files else None
+
+    for nd in nodes_data.values():
+        persona_id = nd.get("personaId", "unknown")
+        for ev in nd.get("history", []):
+            if article_id and ev.get("articleId") != article_id:
+                continue
+            ifd = ev.get("ifd", {})
+            if ifd.get("mode") != "dual":
+                continue
+            dual = ifd.get("dual", {})
+            disc_mi = dual.get("discrete",   {}).get("mi")
+            cont_mi = dual.get("continuous", {}).get("mi")
+            gap     = dual.get("gap")
+            agr     = dual.get("agreement")
+            if disc_mi is None or cont_mi is None:
+                continue
+            events.append({
+                "persona":  persona_id,
+                "disc_mi":  disc_mi,
+                "cont_mi":  cont_mi,
+                "gap":      gap,
+                "agreement": agr,
+            })
+
+    # ── Per-persona gap from results metrics (fallback if node history empty) ─
+    persona_gaps = {}
+    if results_files:
+        data = json.loads(results_files[0].read_text(encoding="utf-8"))
+        for row in data.get("metrics", {}).get("personaIFDDual", []):
+            persona_gaps[row["personaId"]] = row
+
+    if not events and not persona_gaps:
+        msg = "No dual IFD data found.\nSet \"miScoringMode\": \"dual\" in your run config."
+        for a in ([ax_sc, ax_bar] if ax_sc else [ax_bar]):
+            if a:
+                a.set_facecolor("#16213e")
+                a.text(0.5, 0.5, msg, ha="center", va="center",
+                       transform=a.transAxes, color="#888", fontsize=9)
+        if standalone:
+            plt.tight_layout()
+        return
+
+    # ── Scatter: discrete MI vs continuous MI ────────────────────────────────
+    if ax_sc is not None:
+        ax_sc.set_facecolor("#16213e")
+
+        persona_ids = sorted({e["persona"] for e in events})
+        cmap        = plt.cm.tab20
+        color_map   = {pid: cmap(i / max(len(persona_ids), 1))
+                       for i, pid in enumerate(persona_ids)}
+
+        max_mi = max((e["disc_mi"] for e in events), default=5)
+        max_mi = max(max_mi, max((e["cont_mi"] for e in events), default=5), 5)
+
+        # Perfect-agreement diagonal
+        ax_sc.plot([0, max_mi], [0, max_mi], color="#555", lw=1.2,
+                   linestyle="--", label="y = x  (perfect agreement)")
+
+        for pid in persona_ids:
+            pts = [e for e in events if e["persona"] == pid]
+            xs  = [p["disc_mi"]  for p in pts]
+            ys  = [p["cont_mi"]  for p in pts]
+            short = pid.replace("politically_biased_", "").replace("_", " ")[:14]
+            ax_sc.scatter(xs, ys, color=color_map[pid], s=55, alpha=0.8,
+                          label=short, edgecolors="#fff", linewidths=0.4, zorder=4)
+
+        # Shaded regions
+        ax_sc.fill_between([0, max_mi], [0, max_mi], max_mi,
+                            color="#e74c3c", alpha=0.04)  # continuous stricter
+        ax_sc.fill_between([0, max_mi], 0, [0, max_mi],
+                            color="#27ae60", alpha=0.04)  # continuous more lenient
+
+        ax_sc.text(max_mi * 0.75, max_mi * 0.15, "continuous\nmore lenient",
+                   color="#27ae60", fontsize=7, alpha=0.7, ha="center")
+        ax_sc.text(max_mi * 0.20, max_mi * 0.80, "continuous\nstricter",
+                   color="#e74c3c", fontsize=7, alpha=0.7, ha="center")
+
+        ax_sc.set_xlabel("Discrete MI", color="#e0e0e0", fontsize=9)
+        ax_sc.set_ylabel("Continuous MI", color="#e0e0e0", fontsize=9)
+        ax_sc.set_title(f"Scorer Agreement — {article_id or ''}",
+                        color="#e0e0e0", fontsize=10)
+        ax_sc.set_xlim(0, max_mi * 1.05)
+        ax_sc.set_ylim(0, max_mi * 1.05)
+        ax_sc.legend(fontsize=6, facecolor="#16213e", edgecolor="#444",
+                     labelcolor="#e0e0e0", ncol=2, loc="upper left")
+        ax_sc.tick_params(colors="#e0e0e0", labelsize=8)
+        ax_sc.grid(True, alpha=0.15)
+        for spine in ax_sc.spines.values():
+            spine.set_edgecolor("#444")
+
+    # ── Bar chart: per-persona mean gap and signed gap ───────────────────────
+    ax_bar.set_facecolor("#16213e")
+
+    # Build per-persona stats from whichever source has data
+    if persona_gaps:
+        rows = sorted(persona_gaps.values(), key=lambda r: r.get("meanGap", 0), reverse=True)
+    else:
+        from collections import defaultdict
+        agg = defaultdict(list)
+        for e in events:
+            agg[e["persona"]].append(e)
+        rows = []
+        for pid, pts in agg.items():
+            gaps = [p["gap"] for p in pts if p["gap"] is not None]
+            signed = [p["cont_mi"] - p["disc_mi"] for p in pts]
+            rows.append({
+                "personaId":     pid,
+                "meanGap":       np.mean(gaps) if gaps else 0,
+                "meanSignedGap": np.mean(signed),
+            })
+        rows.sort(key=lambda r: r["meanGap"], reverse=True)
+
+    labels      = [r["personaId"].replace("politically_biased_", "pb_").replace("_", " ")
+                   for r in rows]
+    gap_vals    = [r.get("meanGap",       0) or 0 for r in rows]
+    signed_vals = [r.get("meanSignedGap", 0) or 0 for r in rows]
+
+    x = np.arange(len(labels))
+    bar_colors = ["#e74c3c" if s < 0 else "#27ae60" for s in signed_vals]
+
+    ax_bar.bar(x, gap_vals, color="#9b59b6", alpha=0.7, label="|gap|")
+    ax_bar.bar(x, signed_vals, color=bar_colors, alpha=0.55,
+               label="signed gap (+ = cont lenient)")
+
+    ax_bar.axhline(0, color="#e0e0e0", lw=0.8)
+    ax_bar.set_xticks(x)
+    ax_bar.set_xticklabels(labels, rotation=30, ha="right", fontsize=7)
+    ax_bar.set_ylabel("MI gap (disc − cont)", color="#e0e0e0", fontsize=9)
+    ax_bar.set_title("Per-persona Scorer Disagreement", color="#e0e0e0", fontsize=10)
+    ax_bar.legend(fontsize=7, facecolor="#16213e", edgecolor="#444", labelcolor="#e0e0e0")
+    ax_bar.tick_params(colors="#e0e0e0", labelsize=7)
+    ax_bar.grid(True, axis="y", alpha=0.2)
+    for spine in ax_bar.spines.values():
+        spine.set_edgecolor("#444")
+
+    if standalone:
+        plt.tight_layout()
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 def main():
@@ -1730,6 +1889,8 @@ def main():
                     exp_dir, out_dir=out_dir)
     save_individual("21_ifd_simplex.png", plot_ifd_simplex,
                     exp_dir, out_dir=out_dir)
+    save_individual("22_ifd_dual.png", plot_ifd_dual,
+                    nodes_data, exp_dir, out_dir=out_dir)
 
     # Dashboard
     print("  Building dashboard…")

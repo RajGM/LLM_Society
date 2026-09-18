@@ -26,6 +26,8 @@
 
 const fs = require("fs");
 const path = require("path");
+const { loadEnv } = require("./src/loadEnv");
+loadEnv(); // must run before any provider check reads process.env
 const Simulation = require("./src/Simulation");
 const ABTestRunner = require("./src/ABTestRunner");
 const DSLCompiler = require("./src/DSLCompiler");

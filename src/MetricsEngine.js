@@ -488,6 +488,72 @@ class MetricsEngine {
       .sort((a, b) => b.meanCMS - a.meanCMS);
   }
 
+  // ── Dual-mode IFD: gap and agreement metrics ──────────────────────────────
+  // Only populated when miScoringMode === "dual". Returns null otherwise.
+  static ifdDualMetrics(nodesData, articleId) {
+    const gaps = [], agreements = [], discMIs = [], contMIs = [];
+
+    for (const state of Object.values(nodesData)) {
+      for (const ev of state.history) {
+        if (ev.articleId !== articleId || !ev.ifd || ev.ifd.mode !== "dual") continue;
+        const { gap, agreement } = ev.ifd.dual;
+        gaps.push(gap);
+        if (agreement !== null) agreements.push(agreement);
+        discMIs.push(ev.ifd.dual.discrete.mi);
+        contMIs.push(ev.ifd.dual.continuous.mi);
+      }
+    }
+
+    if (gaps.length === 0) return null;
+
+    const mean = (arr) => arr.reduce((s, v) => s + v, 0) / arr.length;
+
+    return {
+      meanGap:          mean(gaps),
+      meanAgreement:    agreements.length ? mean(agreements) : null,
+      meanDiscreteMI:   mean(discMIs),
+      meanContinuousMI: mean(contMIs),
+      // +gap = continuous is more lenient; -gap = continuous is stricter
+      meanSignedGap:    mean(contMIs.map((c, i) => c - discMIs[i])),
+      eventCount:       gaps.length,
+    };
+  }
+
+  // ── Per-persona dual analysis — sorted by disagreement (largest gap first) ─
+  static personaIFDDual(nodesData, articleId) {
+    const byPersona = {};
+
+    for (const state of Object.values(nodesData)) {
+      const pid = state.personaId;
+      if (!byPersona[pid]) {
+        byPersona[pid] = { gaps: [], agreements: [], discMIs: [], contMIs: [] };
+      }
+      for (const ev of state.history) {
+        if (ev.articleId !== articleId || !ev.ifd || ev.ifd.mode !== "dual") continue;
+        byPersona[pid].gaps.push(ev.ifd.dual.gap);
+        if (ev.ifd.dual.agreement !== null) byPersona[pid].agreements.push(ev.ifd.dual.agreement);
+        byPersona[pid].discMIs.push(ev.ifd.dual.discrete.mi);
+        byPersona[pid].contMIs.push(ev.ifd.dual.continuous.mi);
+      }
+    }
+
+    const mean = (arr) => (arr.length ? arr.reduce((s, v) => s + v, 0) / arr.length : null);
+
+    return Object.entries(byPersona)
+      .filter(([, d]) => d.gaps.length > 0)
+      .map(([personaId, d]) => ({
+        personaId,
+        meanGap:          mean(d.gaps),
+        meanAgreement:    mean(d.agreements),
+        meanDiscreteMI:   mean(d.discMIs),
+        meanContinuousMI: mean(d.contMIs),
+        // positive = continuous is more lenient for this persona (soft distortions)
+        meanSignedGap:    mean(d.contMIs.map((c, i) => c - d.discMIs[i])),
+        eventCount:       d.gaps.length,
+      }))
+      .sort((a, b) => b.meanGap - a.meanGap);
+  }
+
   // ── Compute everything ─────────────────────────────────────────────────────
   // botNodeIds is optional; pass a non-empty array to include bot metrics.
   static computeAll(nodesData, topology, articleId, maxTicks, botNodeIds = []) {
@@ -503,6 +569,12 @@ class MetricsEngine {
       ifdOverTime:             MetricsEngine.ifdOverTime(nodesData, articleId, maxTicks),
       personaIFD:              MetricsEngine.personaIFD(nodesData, articleId),
     };
+
+    const dualMetrics = MetricsEngine.ifdDualMetrics(nodesData, articleId);
+    if (dualMetrics) {
+      result.ifdDualMetrics  = dualMetrics;
+      result.personaIFDDual  = MetricsEngine.personaIFDDual(nodesData, articleId);
+    }
 
     if (botNodeIds.length > 0) {
       result.botImpact        = MetricsEngine.botImpactMetrics(nodesData, botNodeIds, articleId);
