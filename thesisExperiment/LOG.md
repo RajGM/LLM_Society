@@ -993,3 +993,32 @@ Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occu
 
 ---
 
+## 2026-09-18T16:42:21Z — T2c_He recheck ABORT (still no key)
+
+**Follow-up.** Hunt repeated: `/workspace/.env`, `thesisExperiment/.env`, process.env, `runs_phase2/_status/KEY_READY.md`. Wait ~15s, recheck once. Still missing (`OPENAI_API_KEY` length=0). Did **not** invent a key. Did **not** write `.env`. Did **not** probe or run the 48-cell grid. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Counts.** completed=**0** failed=**0** skipped=**0** not_started=**48**. LLM calls: **0**.
+
+**Blocker.** `thesisExperiment/runs_phase2/_blockers/T2c_He_no_key.md`. Manifest remains `thesisExperiment/results_phase2/manifest_T2c_He.json`. Isolation: did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+---
+
+## 2026-09-18T16:43:00Z — Dnet custom-graph runner (independent of 8-topology grid)
+
+**Key.** `OPENAI_API_KEY` still unset (length=0). No `.env`. Did **not** invent a key. Did **not** write `.env`. Did **not** dry-run. Did **not** invent MI/MPR. Dual headline MPR ≠ continuous headline MPR — **neither mode ran**.
+
+**Reconstruct.** Re-ran `node thesisExperiment/scripts/reconstruct_debnath.js`. OSF `dataset.csv` sampled via `files.osf.io` object URL (4043 lines; PII discarded). `tweet_id` Excel scientific notation → **0 hydratable IDs**. No Twitter/X bearer. Tweets **not** invented.
+
+**Fallback kept.** `thesisExperiment/data/derived/debnath_hashtag_cascade.json` — **63** nodes, **228** directed edges. Hashtag co-occurrence / same-cluster. **NOT** a retweet cascade. Seed `chemtrails_hub`. RealGraphImporter 63/228.
+
+**Hops.** 8 ticks/hops is a **cost cut vs CIKM K=30**, not Debnath’s skip-gram window.
+
+**LLM cells.** 0 / 4 finished (`Dnet_c_H`, `Dnet_c_He`, `Dnet_d_H`, `Dnet_d_He`). Did not re-launch `run_dnet.js` after the earlier probe abort (`real_api_unavailable`).
+
+**Compare.** `compare_phase2.js` refreshed `results_phase2/{summary.md,debnath_compare.json,pfeffer_observables.md}`. `simPending=true`. Pfeffer seven rows (cross-media held). Empirical: depth=4, breadth=33, size=61, SV=2.7.
+
+**Paths.** Blocker `thesisExperiment/runs_phase2/_blockers/dnet_no_key.md`. Status `thesisExperiment/runs_phase2/_status/dnet.md`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not switch git branches. Did not write thesis chapters.
+
+---
