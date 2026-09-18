@@ -641,62 +641,28 @@ Student can start writing methods/results from `analysis/` + `results/FIGURES.md
 **Hops.** Still 8 (logged cost cut vs CIKM 30; not Debnath). Core articles: 6 (same Exp A subset). N=1, gpt-4o-mini.
 
 ---
-<<<<<<< HEAD
-=======
 
-## 2026-09-18T15:26:28.733Z
-
-PROBE_P2 continuous status=0 failed=true elapsedMs=42 usage=n/a
-
----
-
-## 2026-09-18T15:26:28.772Z
-
-PROBE_P2 dual status=0 failed=true elapsedMs=39 usage=n/a
-
----
-
-## 2026-09-18T15:27:00Z — Phase 2 ABORT (no live API)
-
-**Probe.** FAIL (continuous + dual). Process exit 0 but `failed=true`: `Env var OPENAI_API_KEY not set`. Engine still printed `[Simulation] Done` with **0 LLM calls**, nScored=0, MI left at 0. That is **not** gpt-4o-mini.
-
-**Key search (no values logged).** `OPENAI_API_KEY` unset in process env. No `.env` / `.env.local` under `/workspace` or `/home/ubuntu`. No key in `/proc/*/environ`. Git never tracked `.env`. Phase 1 logs only show truncated `sk-proj… (len=164)` prefixes — not recoverable. Did **not** invent a key.
-
-**Grid.** ABORT. Configs ran: **0 / 288** (192 T-H + 96 T-He). Did **not** dry-run the ~1728-cell grid (would fake MI=0). LLM calls: **0**. Est. USD: **$0**.
-
-**Parse.** `node thesisExperiment/scripts/parse_phase2.js` → 2 probe rows, both hatched dead (`nScored<=1`). T-H / T-He CSVs empty. `thesisGrade: false`.
-
-**Isolation.** Writes only `runs_phase2/` + `results_phase2/`. Phase 1 `runs/` and `results/tables/` untouched.
-
-**Resume.** Real `OPENAI_API_KEY` in `.env`, then `--probe-only` then `--phase all --concurrency 4`.
-
----
-
-PHASE2_PLAN.md copies: PHASE2_PLAN.md ; thesisExperiment/PHASE2_PLAN.md ; docs/PHASE2_PLAN.md
-
-## 2026-09-18T15:29:21.655Z — Phase 2 Debnath reconstruct
-
-Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occurrence graph written (63 nodes, 228 directed edges). This is NOT a retweet cascade. Outputs: thesisExperiment/data/derived/debnath_hashtag_cascade.json; thesisExperiment/data/derived/debnath_reconstruct_report.md; configs/phase2/Dnet_*.json. Did not touch thesisExperiment/runs/ or results/tables/. Did not run LLM.
-
----
-
-## 2026-09-18T15:30:53.048Z — Phase 2 Debnath reconstruct
-
-Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occurrence graph written (63 nodes, 228 directed edges). This is NOT a retweet cascade. Outputs: thesisExperiment/data/derived/debnath_hashtag_cascade.json; thesisExperiment/data/derived/debnath_reconstruct_report.md; configs/phase2/Dnet_*.json. Did not touch thesisExperiment/runs/ or results/tables/. Did not run LLM.
-
----
-
-## 2026-09-18T15:32:48.973Z — Phase 2 Debnath reconstruct
-
-Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occurrence graph written (63 nodes, 228 directed edges). This is NOT a retweet cascade. Outputs: thesisExperiment/data/derived/debnath_hashtag_cascade.json; thesisExperiment/data/derived/debnath_reconstruct_report.md; configs/phase2/Dnet_*.json. Did not touch thesisExperiment/runs/ or results/tables/. Did not run LLM.
-
----
-
-## 2026-09-18T15:34:00Z — Phase 2 Debnath reconstruct (note)
+## 2026-09-18T15:34:00Z — Phase 2 Debnath reconstruct
 
 Hydration: no Twitter/X bearer; tweets **not** invented. Mendeley files API body `error 400`. OSF `dataset.csv` is 661,867,256 bytes and is **not** IDs-only (text + user fields); a 5k-line peek was discarded. `tweet_id` is scientific notation → 0 hydratable IDs.
 
 Fallback: documented hashtag co-occurrence graph, **not a retweet cascade** — 63 nodes, 228 directed edges, seed `chemtrails_hub`. FakeNewsNet-shaped for `RealGraphImporter`. Dnet configs: `Dnet_{c|d}_{H_conspiracy|He_mixed}.json` (`continuous` + `dual`; homo conspiracy + mixed BPs; seeds `scopex_2017`, `chemtrails_gates_2018_2021`; `outputRoot` `runs_phase2`). LLM not run (`OPENAI_API_KEY` absent). Did not write `runs/` or `results/tables/`.
 
 ---
->>>>>>> 4eb1b36 (Add Phase 2 Debnath reconstruct with hashtag co-occurrence fallback.)
+
+## 2026-09-18T16:06:00Z — Phase 2 ABORT (OPENAI_API_KEY still missing)
+
+**Key check (no values logged).** `/workspace/.env` does not exist. `OPENAI_API_KEY` unset in process env (length=0). `isMockKey` from `src/loadEnv.js` was not applied because there is no value. Searched `/workspace`, `/home/ubuntu`, and process env names only. Did **not** invent a key. Did **not** write `.env`.
+
+**Probe.** Not started. Instruction: stop if key missing/placeholder.
+
+**Grid.** ABORT. Configs completed: **0 / 288** (192 T-H + 96 T-He). Did **not** dry-run. LLM calls: **0**. Est. USD: **$0**.
+
+**Parse / tables.** Not run. No `results_phase2` tables written this attempt.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, then `node thesisExperiment/scripts/run_phase2.js --probe-only`. If both continuous and dual probes pass with real LLM usage (not 0 calls): `node thesisExperiment/scripts/run_phase2.js --phase all --concurrency 4`.
+
+---
+
