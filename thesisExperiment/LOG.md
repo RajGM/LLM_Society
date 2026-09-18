@@ -650,6 +650,18 @@ Fallback: documented hashtag co-occurrence graph, **not a retweet cascade** — 
 
 ---
 
+## 2026-09-18T16:06:00Z — Dnet keep-graph + runner (independent of T-H/T-He)
+
+**Graph kept (not regenerated).** `thesisExperiment/data/derived/debnath_hashtag_cascade.json` already existed (63 `user_profiles`, 228 directed `retweets[]` as an edge container, `graph_topology` 63/228). Kind: **hashtag co-occurrence / same-cluster**. `notARetweetCascade: true`. `empiricalMPR: false`. Seed hashtag user: `chemtrails_hub` (sim `user_chemtrails_hub`). Identity mix: conspiracy 28 / climate_action 19 / environmental_concern 14 / other 2. Not tiny; no extra paper-hashtag expansion.
+
+**Not a retweet cascade.** Twitter/X hydration did not run. Edges occupy FakeNewsNet `retweets[]` only so `RealGraphImporter` / `SocietyGraph.buildCustom` can attach topology. Comparison later is structural/hashtag, not “simulated MPR = Twitter MPR.”
+
+**Dnet configs (already present).** `Dnet_c_H_conspiracy`, `Dnet_d_H_conspiracy`, `Dnet_c_He_mixed`, `Dnet_d_He_mixed` — custom nodes/edges, `outputRoot` `runs_phase2`, 2 climate seeds, homo conspiracy vs mixed BPs, continuous vs dual.
+
+**Runner.** `thesisExperiment/scripts/run_dnet.js` (probe tiny 3-node custom cell, then all Dnet_ configs, concurrency 2, real API). Compare: `thesisExperiment/scripts/compare_phase2.js` after Dnet. Isolation: do not write `runs/` or `results/tables/`.
+
+---
+
 ## 2026-09-18T16:06:00Z — Phase 2 ABORT (OPENAI_API_KEY still missing)
 
 **Key check (no values logged).** `/workspace/.env` does not exist. `OPENAI_API_KEY` unset in process env (length=0). `isMockKey` from `src/loadEnv.js` was not applied because there is no value. Searched `/workspace`, `/home/ubuntu`, and process env names only. Did **not** invent a key. Did **not** write `.env`.

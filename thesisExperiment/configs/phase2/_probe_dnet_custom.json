@@ -1,0 +1,73 @@
+{
+  "_description": "Tiny custom-graph API probe (3 Debnath hashtag nodes, 1 tick, 1 seed). Not a thesis cell. NOT a retweet cascade.",
+  "_honesty": {
+    "notARetweetCascade": true,
+    "graphSource": "debnath_hashtag_cooccurrence_fallback_subsample",
+    "probeOnly": true
+  },
+  "experimentName": "probe_dnet_custom",
+  "personasPath": "thesisExperiment/personas/phase2/homogeneous_conspiracy.json",
+  "articlesPath": "thesisExperiment/articles/merged.json",
+  "outputRoot": "thesisExperiment/runs_phase2",
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "miScoringMode": "continuous",
+  "topology": "custom",
+  "seedNodes": ["user_chemtrails_hub"],
+  "graphRandomSeed": 42,
+  "maxTicks": 1,
+  "seedArticles": ["scopex_2017"],
+  "nodes": [
+    {
+      "nodeId": "user_chemtrails_hub",
+      "personaId": "conspiracy_believer",
+      "modelId": "gpt-4o-mini",
+      "params": {
+        "trustThreshold": 0.15,
+        "actionWeights": { "forward": 0.5, "reinterpret": 0.5, "drop": 0.0 },
+        "relationEvolution": false,
+        "maxHops": 1,
+        "maxInboxSize": 4,
+        "activityPattern": "always"
+      }
+    },
+    {
+      "nodeId": "user_haarp_hub",
+      "personaId": "conspiracy_believer",
+      "modelId": "gpt-4o-mini",
+      "params": {
+        "trustThreshold": 0.15,
+        "actionWeights": { "forward": 0.5, "reinterpret": 0.5, "drop": 0.0 },
+        "relationEvolution": false,
+        "maxHops": 1,
+        "maxInboxSize": 4,
+        "activityPattern": "always"
+      }
+    },
+    {
+      "nodeId": "user_chemtrails_amp_1",
+      "personaId": "conspiracy_believer",
+      "modelId": "gpt-4o-mini",
+      "params": {
+        "trustThreshold": 0.15,
+        "actionWeights": { "forward": 0.5, "reinterpret": 0.5, "drop": 0.0 },
+        "relationEvolution": false,
+        "maxHops": 1,
+        "maxInboxSize": 4,
+        "activityPattern": "always"
+      }
+    }
+  ],
+  "edges": [
+    { "from": "user_chemtrails_hub", "to": "user_haarp_hub", "trust": 0.82 },
+    { "from": "user_chemtrails_hub", "to": "user_chemtrails_amp_1", "trust": 0.8 }
+  ],
+  "nodeParams": {
+    "trustThreshold": 0.15,
+    "actionWeights": { "forward": 0.5, "reinterpret": 0.5, "drop": 0.0 },
+    "relationEvolution": false,
+    "maxHops": 1,
+    "maxInboxSize": 4,
+    "activityPattern": "always"
+  }
+}
