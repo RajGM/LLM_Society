@@ -2,6 +2,7 @@
 
 **When.** 2026-09-18T16:41:30Z  
 **Key present.** **no** (length=0)  
+**Recheck.** 2026-09-18T16:44:32Z — still **no** (`/workspace/.env`, `thesisExperiment/.env`, process.env, `KEY_READY.md`; wait ~15s, one recheck).  
 **Aborted.** yes — see `thesisExperiment/runs_phase2/_blockers/polarized_no_key.md`  
 **Branch.** stayed on existing working branch (no checkout).
 

@@ -1040,3 +1040,13 @@ Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occu
 **Key found: no.** Rechecked `/workspace/.env`, `thesisExperiment/.env`, process `OPENAI_API_KEY` (length=0), `runs_phase2/_status/KEY_READY.md`. Waited ~15s, rechecked once. Still absent. Did not invent a key. Did not run T2c_H / T2d_H / T2c_He / T2d_He. Cells completed: **0 / 216**.
 
 ---
+
+## 2026-09-18T16:44:32Z — polarized follow-up: still no key
+
+**Scope.** Topology `polarized`, all four slices T2c_H / T2d_H / T2c_He / T2d_He.
+
+**Key found.** **no**. Rechecked `/workspace/.env`, `thesisExperiment/.env`, process.env, `runs_phase2/_status/KEY_READY.md`. Waited ~15s, rechecked once. Still missing (`OPENAI_API_KEY` length=0). Did **not** invent a key. Did **not** write `.env`. Did **not** run cells. Did **not** dry-run. Did **not** invent MI.
+
+**Cells completed.** **0 / 216**.
+
+---
