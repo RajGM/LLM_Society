@@ -87,18 +87,58 @@ function isConspiracyId(id) {
 
 function identityFromTag(tag) {
   const s = slugHashtag(tag);
-  if (CONSPIRACY_TAGS.has(s)) return "conspiracy";
-  if (ENV_TAGS.has(s)) return "environmental_concern";
-  if (CLIMATE_ACTION_TAGS.has(s)) return "climate_action";
-  if (s === "geoengineering") return "mixed_hub";
+  if (
+    CONSPIRACY_TAGS.has(s) ||
+    s.includes("chemtrail") ||
+    s.includes("haarp") ||
+    s.includes("depop") ||
+    s.includes("nwo") ||
+    s.includes("illuminati") ||
+    s.includes("stopspray")
+  ) {
+    return "conspiracy";
+  }
+  if (ENV_TAGS.has(s) || s.includes("ozone") || s.includes("biodivers") || s.includes("pollution") || s.includes("food")) {
+    return "environmental_concern";
+  }
+  if (
+    CLIMATE_ACTION_TAGS.has(s) ||
+    s.includes("climateaction") ||
+    s.includes("climatejustice") ||
+    s.includes("mitigation") ||
+    s === "srm" ||
+    s === "sag" ||
+    s === "sai"
+  ) {
+    return "climate_action";
+  }
+  if (s === "geoengineering" || s === "geo") return "mixed_hub";
   return "other";
 }
 
+function identityFromCluster(cluster) {
+  const s = String(cluster || "").toLowerCase();
+  if (s === "chemtrails" || s === "piggyback" || s === "conspiracy") return "conspiracy";
+  if (s === "climate_action" || s === "climate-action") return "climate_action";
+  if (s === "environmental" || s === "environmental_concern") return "environmental_concern";
+  if (s === "geo") return "mixed_hub";
+  if (s === "expert") return "other";
+  return null;
+}
+
 function identityBucket(value, node) {
+  const fromCluster = identityFromCluster(node && node.cluster);
+  if (fromCluster) return fromCluster === "mixed_hub" ? "other" : fromCluster;
+  const bp = node && (node.intended_debnath_bp || node.intendedBp || node.personaId);
+  if (isConspiracyId(bp)) return "conspiracy";
+  if (bp && /climate_action|climate_justice|mitigation_first/i.test(String(bp))) return "climate_action";
+  if (bp && /environmental|ozone|biodivers/i.test(String(bp))) return "environmental_concern";
   const raw = (node && (node.identity || node.debnathType || node.cluster)) || value || "";
   const s = String(raw).toLowerCase();
   if (s === "mixed_hub" || s === "mixed") return "other";
   if (isConspiracyId(s) || s === "conspiracy") return "conspiracy";
+  const clustered = identityFromCluster(s);
+  if (clustered) return clustered === "mixed_hub" ? "other" : clustered;
   if (s.includes("climate_action") || s.includes("climate-action") || s === "climate_action") {
     return "climate_action";
   }
@@ -316,11 +356,18 @@ function topologyFromCascade(cascade) {
   const nodes = [...nodeIds].map((id) => {
     const profile = profiles[id] || {};
     const tag = profile.hashtag || id;
-    const identity = profile.identity || identityFromTag(tag);
+    const nodeHint = {
+      cluster: profile.cluster,
+      identity: profile.identity,
+      intended_debnath_bp: profile.intended_debnath_bp || profile.intendedBp,
+      personaId: profile.intended_debnath_bp,
+    };
+    const identity = identityBucket(profile.identity || profile.cluster || tag, nodeHint);
     return {
       nodeId: id,
-      personaId: identity === "conspiracy" ? "conspiracy_cluster" : identity,
+      personaId: profile.intended_debnath_bp || (identity === "conspiracy" ? "conspiracy_cluster" : identity),
       identity,
+      cluster: profile.cluster || identity,
       hashtag: tag,
       toxicityPrior: profile.toxicityPrior != null ? profile.toxicityPrior : toxicityProxyForIdentity(identity),
     };
@@ -616,6 +663,7 @@ function identityMixFromTopo(topo) {
 }
 
 function empiricalValence(cascade) {
+  const slice = paperSlice();
   const tox = cascade.toxicity || {};
   const topo = topologyFromCascade(cascade);
   const priors = [];
@@ -627,8 +675,8 @@ function empiricalValence(cascade) {
     if (p && p.toxicityPrior != null) priors.push(p.toxicityPrior);
   }
   return {
-    toxicityMeanPaper: tox.mean != null ? tox.mean : 0.17,
-    toxicitySeverePaper: tox.severeMean != null ? tox.severeMean : null,
+    toxicityMeanPaper: tox.mean != null ? tox.mean : (slice.toxicity && slice.toxicity.mean) || 0.17,
+    toxicitySeverePaper: tox.severeMean != null ? tox.severeMean : (slice.toxicity && slice.toxicity.severeMean) || 0.12,
     hashtagToxicityProxy: round4(mean(priors)),
     source: tox.source || "paper-quoted Debnath toxicity / hashtag identity proxy",
     notMPR: true,
@@ -641,7 +689,9 @@ function pfefferEmpirical(cascade) {
   const cluster = clusteringFromTopo(topo);
   const echo = echoFromTopo(topo);
   const identity = identityMixFromTopo(topo);
-  const temporalAvailable = cascade.temporalAvailable === true && cascade.kind !== "hashtag_cooccurrence";
+  const kind = cascade.kind || cascade.edge_semantics || "";
+  const temporalAvailable =
+    cascade.temporalAvailable === true && !/hashtag/i.test(String(kind));
   return {
     valence: {
       factor: "valence (thesis knob) / affective character of firestorm (Pfeffer definition)",
@@ -908,7 +958,7 @@ function writeSummary(report) {
     "## Data",
     "",
     `- Empirical file: \`${path.relative(ROOT, report.empirical.file)}\` (${report.empirical.note})`,
-    `- Empirical kind: \`${report.empirical.cascade.kind || "unknown"}\`; generatedFallback=${!!report.empirical.cascade.generatedFallback}`,
+        `- Empirical kind: \`${report.empirical.kind || "unknown"}\`; generatedFallback=${!!report.empirical.generatedFallback}`,
     `- Simulated runs matched (\`Dnet_\` name or \`topology: custom\`): **${report.nSimRuns}**`,
     simPending
       ? "- **Sim pending.** D-net / custom cells were not found under `thesisExperiment/runs_phase2/`. Empirical Pfeffer table is still written."
@@ -1100,17 +1150,21 @@ function main() {
       file: empirical.file,
       note: empirical.note,
       generatedFallback: !!empirical.generated || !!empirical.cascade.generatedFallback,
-      kind: empirical.cascade.kind || null,
+      kind: empirical.cascade.kind || empirical.cascade.edge_semantics || null,
       schema: empirical.cascade.schema || null,
       cascade: {
-        kind: empirical.cascade.kind,
+        kind: empirical.cascade.kind || empirical.cascade.edge_semantics,
         generatedFallback: empirical.cascade.generatedFallback,
-        notARetweetCascade: empirical.cascade.notARetweetCascade,
-        temporalAvailable: empirical.cascade.temporalAvailable,
+        notARetweetCascade:
+          empirical.cascade.notARetweetCascade !== false &&
+          /hashtag/i.test(String(empirical.cascade.kind || empirical.cascade.edge_semantics || "")),
+        temporalAvailable: empirical.cascade.temporalAvailable === true,
         news_id: empirical.cascade.news_id,
         seed_user: empirical.cascade.seed_user,
         nRetweets: (empirical.cascade.retweets || []).length,
-        nNodes: ((empirical.cascade.graph_topology && empirical.cascade.graph_topology.nodes) || []).length,
+        nNodes:
+          ((empirical.cascade.graph_topology && empirical.cascade.graph_topology.nodes) || []).length ||
+          Object.keys(empirical.cascade.user_profiles || {}).length,
       },
     },
     realMetrics,

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-18T15:29:34.652Z",
+  "generatedAt": "2026-09-18T15:31:17.199Z",
   "isolation": {
     "wrote": [
       "thesisExperiment/results_phase2/"
@@ -23,28 +23,27 @@
   },
   "empirical": {
     "file": "/workspace/thesisExperiment/data/derived/debnath_hashtag_cascade.json",
-    "note": "generated fallback (reconstruct output not present)",
-    "generatedFallback": true,
-    "kind": "hashtag_cooccurrence",
-    "schema": "thesisExperiment.debnath_hashtag_cascade.v1",
+    "note": "reconstruct or existing derived cascade",
+    "generatedFallback": false,
+    "kind": "hashtag_cooccurrence_same_cluster",
+    "schema": null,
     "cascade": {
-      "kind": "hashtag_cooccurrence",
-      "generatedFallback": true,
+      "kind": "hashtag_cooccurrence_same_cluster",
       "notARetweetCascade": true,
       "temporalAvailable": false,
-      "news_id": "debnath_geoengineering_hashtag",
-      "seed_user": "geoengineering",
-      "nRetweets": 17,
-      "nNodes": 18
+      "news_id": "debnath_hashtag_cooccurrence_fallback",
+      "seed_user": "chemtrails_hub",
+      "nRetweets": 228,
+      "nNodes": 63
     }
   },
   "realMetrics": {
-    "depth": 3,
-    "breadth": 8,
-    "size": 18,
-    "structuralVirality": 3.3398692810457518,
-    "speedHours": 0,
-    "root": "geoengineering"
+    "depth": 4,
+    "breadth": 33,
+    "size": 61,
+    "structuralVirality": 2.7,
+    "speedHours": 227,
+    "root": "chemtrails_hub"
   },
   "nSimRuns": 0,
   "nSimCascades": 0,
@@ -61,8 +60,8 @@
       "empirical": {
         "toxicityMeanPaper": 0.17,
         "toxicitySeverePaper": 0.12,
-        "hashtagToxicityProxy": 0.1067,
-        "source": "Debnath 2023 Table 1 paper-quoted; not tweet-level Perspective scores",
+        "hashtagToxicityProxy": 0.1092,
+        "source": "paper-quoted Debnath toxicity / hashtag identity proxy",
         "notMPR": true,
         "note": "Valence proxy is Perspective-like toxicity from the paper (mean ~0.17), not MPR."
       },
@@ -80,31 +79,39 @@
       "factor": "lack of diversity (Pfeffer 2014 #5)",
       "empirical": {
         "counts": {
-          "conspiracy": 6,
-          "climate_action": 5,
-          "environmental_concern": 6,
-          "other": 1
+          "conspiracy": 28,
+          "climate_action": 16,
+          "environmental_concern": 14,
+          "other": 5
         },
         "personaCounts": {
-          "mixed_hub": 1,
-          "conspiracy_cluster": 6,
-          "climate_action": 5,
-          "environmental_concern": 6
+          "conspiracy_believer": 15,
+          "conspiracy_haarp_weather": 6,
+          "conspiracy_peripheral_skywatcher": 4,
+          "conspiracy_depopulation": 1,
+          "climate_action_advocate": 18,
+          "climate_scientist": 2,
+          "ozone_stratosphere_specialist": 4,
+          "biodiversity_food_security": 3,
+          "environmental_concern": 6,
+          "mitigation_first_policy": 1,
+          "conspiracy_climate_piggyback": 2,
+          "science_journalist": 1
         },
-        "conspiracyShare": 0.3333,
-        "otherShare": 0.6667
+        "conspiracyShare": 0.4444,
+        "otherShare": 0.5556
       },
       "status": "measured_hashtag_mix"
     },
     "clustering": {
       "factor": "network clusters (Pfeffer 2014 #3)",
       "empirical": {
-        "nNodes": 18,
-        "nEdges": 17,
-        "meanDegree": 1.8889,
-        "meanOutDegree": 0.9444,
-        "maxDegree": 5,
-        "modularityConspiracy": 0.4343,
+        "nNodes": 63,
+        "nEdges": 228,
+        "meanDegree": 7.2381,
+        "meanOutDegree": 3.619,
+        "maxDegree": 53,
+        "modularityConspiracy": 0.4039,
         "computable": true
       },
       "status": "measured_hashtag_graph"
@@ -112,10 +119,10 @@
     "echo": {
       "factor": "information echo / unrestrained flow + clusters (Pfeffer 2014 #3–5)",
       "empirical": {
-        "edgeHomophily": 0.7059,
-        "identityHomophily": 0.7059,
-        "conspiracyHomophily": 0.7059,
-        "nEdges": 17,
+        "edgeHomophily": 0.5439,
+        "identityHomophily": 0.8728,
+        "conspiracyHomophily": 0.8728,
+        "nEdges": 228,
         "computable": true
       },
       "status": "measured_edge_homophily"
