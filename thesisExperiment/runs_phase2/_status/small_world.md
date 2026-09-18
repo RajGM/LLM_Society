@@ -106,3 +106,16 @@ None logged from simulation (no cells ran). All 216 are **not_started / blocked*
 2. `node thesisExperiment/scripts/run_phase2.js --probe-only` until both modes show LLM usage > 0.
 3. Run all 36 `*_small_world_*.json` into `runs_phase2`, skip completed (`metadata.status` completed + matching `miScoringMode`).
 4. `node thesisExperiment/scripts/parse_phase2.js` → `results_phase2`. Hatch 1-event dead cells.
+
+## Follow-up recheck (2026-09-18T16:42:00Z)
+
+Instruction: do not leave topology idle; recheck key; if missing wait ~15s and recheck once; do not fabricate.
+
+| Check | Immediate | After ~15s |
+|---|---|---|
+| `/workspace/.env` | missing | missing |
+| `thesisExperiment/.env` | missing | missing |
+| `process.env OPENAI_API_KEY` | unset (len=0) | unset (len=0) |
+| `runs_phase2/_status/KEY_READY.md` | missing | missing |
+
+**Key found: no.** **Cells completed: 0 / 216.** Did not run slices. Did not dry-run. Did not invent MI. Exit after second miss.

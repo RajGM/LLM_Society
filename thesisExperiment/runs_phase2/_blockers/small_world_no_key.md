@@ -53,3 +53,7 @@ node thesisExperiment/scripts/run_phase2.js --probe-only
 ```
 
 Configs: `thesisExperiment/configs/phase2/T2{c,d}_{H,He}_small_world_*.json`.
+
+## Follow-up recheck (2026-09-18T16:42:00Z)
+
+Immediate recheck: still missing. Waited ~15s. Second recheck: still missing (`/workspace/.env`, `thesisExperiment/.env`, `process.env`, `KEY_READY.md`). **Key found: no. Cells completed: 0/216.** Did not fabricate. Exited.
