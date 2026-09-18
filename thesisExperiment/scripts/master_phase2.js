@@ -205,6 +205,8 @@ Dnet complete: **${inv.dnet.filter((d) => d.complete).length}/4**
 
 ${extra.notes || "- orchestrator running"}
 
+${fs.existsSync(path.join(RUNS, "_status", "ORCHESTRATOR.md")) ? fs.readFileSync(path.join(RUNS, "_status", "ORCHESTRATOR.md"), "utf8").trim() : ""}
+
 Sibling slice agents may also write \`runs_phase2\`. This master skips completed cells and does not kill other node processes.
 `;
 }
