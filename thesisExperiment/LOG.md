@@ -641,3 +641,31 @@ Student can start writing methods/results from `analysis/` + `results/FIGURES.md
 **Hops.** Still 8 (logged cost cut vs CIKM 30; not Debnath). Core articles: 6 (same Exp A subset). N=1, gpt-4o-mini.
 
 ---
+
+## 2026-09-18T15:26:28.733Z
+
+PROBE_P2 continuous status=0 failed=true elapsedMs=42 usage=n/a
+
+---
+
+## 2026-09-18T15:26:28.772Z
+
+PROBE_P2 dual status=0 failed=true elapsedMs=39 usage=n/a
+
+---
+
+## 2026-09-18T15:27:00Z — Phase 2 ABORT (no live API)
+
+**Probe.** FAIL (continuous + dual). Process exit 0 but `failed=true`: `Env var OPENAI_API_KEY not set`. Engine still printed `[Simulation] Done` with **0 LLM calls**, nScored=0, MI left at 0. That is **not** gpt-4o-mini.
+
+**Key search (no values logged).** `OPENAI_API_KEY` unset in process env. No `.env` / `.env.local` under `/workspace` or `/home/ubuntu`. No key in `/proc/*/environ`. Git never tracked `.env`. Phase 1 logs only show truncated `sk-proj… (len=164)` prefixes — not recoverable. Did **not** invent a key.
+
+**Grid.** ABORT. Configs ran: **0 / 288** (192 T-H + 96 T-He). Did **not** dry-run the ~1728-cell grid (would fake MI=0). LLM calls: **0**. Est. USD: **$0**.
+
+**Parse.** `node thesisExperiment/scripts/parse_phase2.js` → 2 probe rows, both hatched dead (`nScored<=1`). T-H / T-He CSVs empty. `thesisGrade: false`.
+
+**Isolation.** Writes only `runs_phase2/` + `results_phase2/`. Phase 1 `runs/` and `results/tables/` untouched.
+
+**Resume.** Real `OPENAI_API_KEY` in `.env`, then `--probe-only` then `--phase all --concurrency 4`.
+
+---
