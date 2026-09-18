@@ -803,3 +803,52 @@ KS/JS/DTFS **not computed** (`simPending=true`). Pfeffer **empirical** side fill
 **Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, probe one `T2d_He_*` cell until real usage is non-zero, then run all 48 with concurrency 3 into `runs_phase2`, skip complete dual cells, refresh `manifest_T2d_He.json`.
 
 ---
+
+## 2026-09-18T16:40:00Z — small_world ALL SLICES ABORT (OPENAI_API_KEY missing)
+
+**Scope.** Topology `small_world` across **all four** slices: `T2c_H`, `T2d_H`, `T2c_He`, `T2d_He`. Did not stop after one slice; all four aborted by the same missing key.
+
+**Key check (no values logged).** `/workspace/.env` does not exist. Process `OPENAI_API_KEY` unset (**length=0**). Searched process env, `/workspace`, `/home/ubuntu`, `/tmp/cursor`, `/run`. Cloud environment has no injected secret. Did **not** invent a key. Did **not** write `.env`. Instruction: stop if missing.
+
+**Probe / grid.** Not started. Did **not** dry-run. Did **not** invent MI/MPR. LLM calls: **0**. Est. USD: **$0**.
+
+| Slice | configs | cells (×6 articles) | completed | failed | skipped | dead | not_started |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| T2c_H | 12 | 72 | 0 | 0 | 0 | 0 | 72 |
+| T2d_H | 12 | 72 | 0 | 0 | 0 | 0 | 72 |
+| T2c_He | 6 | 36 | 0 | 0 | 0 | 0 | 36 |
+| T2d_He | 6 | 36 | 0 | 0 | 0 | 0 | 36 |
+| **total** | **36** | **216** | **0** | **0** | **0** | **0** | **216** |
+
+**Parse.** Not run (`parse_phase2.js` would rewrite shared CSVs with no small_world events). Dead cells: none (no simulation).
+
+**Paths.** Blocker `thesisExperiment/runs_phase2/_blockers/small_world_no_key.md`. Status `thesisExperiment/runs_phase2/_status/small_world.md`. Configs `thesisExperiment/configs/phase2/T2{c,d}_{H,He}_small_world_*.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not switch git branches.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, then `node thesisExperiment/scripts/run_phase2.js --probe-only`. If both continuous and dual probes show real LLM usage > 0, run all 36 small_world configs into `runs_phase2`, skip completed, parse into `results_phase2`.
+
+---
+
+
+## 2026-09-18T16:41:00Z — echo_chamber ALL SLICES ABORT (OPENAI_API_KEY missing)
+
+**Scope.** Topology `echo_chamber` across **all four** slices: T2c_H, T2d_H, T2c_He, T2d_He. Did not stop after one slice. Instruction: stop if key missing.
+
+**Key.** **no** (process length=0; `/workspace/.env` absent). Did not invent a key. Did not write `.env`.
+
+**Configs ready.** 36 files, 216 persona×article cells. All `graphRandomSeed: 42`, `minSeedOutDegree: 2`, 8 nodes/hops, `outputRoot runs_phase2`.
+
+| Slice | configs | cells | completed | not_started |
+|---|---:|---:|---:|---:|
+| T2c_H | 12 | 72 | 0 | 72 |
+| T2d_H | 12 | 72 | 0 | 72 |
+| T2c_He | 6 | 36 | 0 | 36 |
+| T2d_He | 6 | 36 | 0 | 36 |
+| total | 36 | 216 | 0 | 216 |
+
+**Runs.** 0 echo_chamber dirs. Probe not started. Parse not run. No dry-run. No invented MI. Dead cells: none (not_started, not hatch-dead).
+
+**Artifacts.** `thesisExperiment/runs_phase2/_blockers/echo_chamber_no_key.md`, `thesisExperiment/runs_phase2/_status/echo_chamber.md`. Isolation: did not write `runs/` or `results/tables/`.
+
+---
