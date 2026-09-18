@@ -1,0 +1,238 @@
+install.packages("academictwitteR")
+devtools::install_github("cjbarrie/academictwitteR", build_vignettes = TRUE) 
+devtools::install_github("tidyverse/tidyverse")
+
+library(academictwitteR)
+library(sentimentr)
+library(tidyr)
+library(rtweet)
+library(ggplot2)
+library(lubridate)
+library(tidyverse)
+library(tidytext)
+library(reshape2)
+library(dplyr)
+library(viridis)
+library(textdata)
+
+# Insert bearer token
+bearer_token <- "enter your token" 
+set_bearer()
+get_bearer()
+
+#query using hashtags
+tweets <-
+  get_all_tweets(
+    query = c("enter your value"),
+    start_tweets = "2009-01-01T00:00:00Z",
+    end_tweets = "2022-04-15T00:00:00Z",
+    data_path = "data/",
+    is_retweet = FALSE,
+    bind_tweets = FALSE,
+    bearer_token = "enter your token",
+    n= 10000000
+  )
+
+#query using username
+tweets <-
+  get_all_tweets(
+    users = c("enter your value"),
+    start_tweets = "2014-01-01T00:00:00Z",
+    end_tweets = "2021-11-01T00:00:00Z",
+    data_path = "data/",
+    bind_tweets = FALSE,
+    bearer_token = "enter your token",
+    n= 1000000
+  )
+#resume_collection(data_path = "data")
+
+#tweets <- bind_tweets(data_path = "data/")
+df <- bind_tweets(data_path = "data/", output_format = "tidy")
+head(df)
+nrow(df)
+
+#write to csv
+#write.csv(df, file ="H.csv")
+
+#Calculate average sentiment score of each tweet
+#note to rename the 'text' column to 'sentence' for using the package 'sentimentr'
+
+dfs<- df %>%
+  rename(
+    sentence = text
+  )
+head(dfs)
+
+df22 <- get_sentences(dfs)
+sentiment_by(df22)
+
+#append ave_sentiment score to the data frame
+df$ave_sentiment <- sentiment_by(df1)$ave_sentiment 
+head(df, n = 10)
+
+write.csv(df, file ="exxon21.csv", row.names = FALSE)
+
+#timeseries plot using ts_plot 
+
+ts_plot(df, by = "weeks", dtname = "created_at", ticks=1.25)
+
+#handling in POSIXc time series plot; similar to above step using ts_plot
+
+elec <- as.data.frame(df)
+head (elec,6)
+nrow(elec)
+
+elec$created_at <- ymd_hms(as.character(elec$created_at)) 
+elec$Date <- as.Date(elec$created_at, format = "%Y-%m-%d  %H:%M")
+elec$Year <- format(as.POSIXct(strptime(elec$created_at, "%Y-%m-%d  %H:%M:%S",tz="")) ,format = "%Y:%m")
+elec$Time <- format(as.POSIXct(strptime(elec$created_at, "%Y-%m-%d  %H:%M:%S",tz="")) ,format = "%H:%M")
+elec$Time <- as.POSIXct(elec$Time, format = "%H:%M")
+head(elec, 6)
+tail(elec, 6)
+
+#plot volume of tweets over time 
+
+q <- ggplot(data = elec, aes(x=Date)) + geom_freqpoly(bins = 859)
+q + theme(axis.title.y=element_text(size=12, vjust=2, colour="black"),
+          axis.text.x=element_text(size=8, hjust=0.5, angle = 90, colour="black")) + 
+  scale_x_date(date_labels="%b-%Y", date_breaks = "3 month")
+
+old <- theme_set(theme_classic())
+q
+q <- ggsave("HTvol.jpg", units="in", width = 16, height = 7, dpi = 300)
+
+#processing the dataframe 
+replace_reg <- "https://t.co/[A-Za-z\\d]+|http://[A-Za-z\\d]+|&amp;|&lt;|&gt;|RT|https"
+unnest_reg <- "([^A-Za-z_\\d#@']|'(?![A-Za-z_\\d#@]))"
+tidy_tweets1 <- elec %>% 
+  filter(!str_detect(text, "^RT")) %>% 
+  mutate(Text = str_replace_all(text, replace_reg, ""))
+
+tidy_tweets <- tidy_tweets1 %>% unnest_tokens(word, text, token = "regex", pattern = unnest_reg) %>%
+  filter(!word %in% stop_words$word, str_detect(word, "[a-z]"))
+
+tidy_tweets %>% count(word, sort = TRUE)
+
+most_common <- tidy_tweets %>% count(word, sort = TRUE)
+head(most_common, n = 10)
+
+freq_by_rank <- tidy_tweets %>% count(word, sort = TRUE) %>% mutate(rank = row_number())
+freq_by_rank %>% mutate(rank=row_number())
+
+ggplot(data = freq_by_rank) + geom_point(aes(x=rank, y=n))
+
+ggplot(data = freq_by_rank) + geom_point(aes(x=rank, y=n)) + coord_trans(x="log10", y="log10")
+
+rank_subset <- freq_by_rank %>% filter(rank < 50, rank > 10)
+
+ggplot() + geom_point(data = rank_subset, aes(x = rank, y = n), color = "red") + geom_line(data = rank_subset, aes(x = rank, y = n), color = "blue")
+
+daily_tweet <- tidy_tweets %>% mutate(tweetDay = floor_date(Date, "day"))
+wordsPerDay <- count(daily_tweet, tweetDay)
+
+#sentiments 
+
+nrc <- get_sentiments("nrc")
+
+tweet_sentiment <- tidy_tweets %>% inner_join(nrc) %>% count(index = Date, sentiment) %>%
+  spread(sentiment, n, fill = 0)
+head(tweet_sentiment, n = 10)
+
+#write to csv
+write.csv(tweet_sentiment, file ="Hsent.csv")
+
+## Joining, by = "word"
+
+nrcjoy <- get_sentiments("nrc") %>%
+  filter(sentiment == "joy")
+
+tidy_tweets %>%
+  inner_join(nrcjoy) %>%
+  count(word, sort = TRUE)
+
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(trust))) + geom_line()
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(anger))) + geom_line()
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(positive))) + geom_line()
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(negative))) + geom_line()
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(surprise))) + geom_line()
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(disgust))) + geom_line()
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(fear))) + geom_line()
+
+
+
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(anger-fear))) + geom_line() + 
+                        theme(axis.title.y=element_text(size=12, vjust=2, colour="black"),
+                    axis.text.x=element_text(size=10, hjust=0.5, angle = 90, colour="black"))+
+                              scale_x_date(date_labels="%b-%Y", date_breaks = "3 month")
+ggsave("angerfear.jpg", units="in", width = 18, height = 6, dpi = 300)
+
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(trust-fear))) + geom_line() +
+  theme(axis.title.y=element_text(size=12, vjust=2, colour="black"),
+        axis.text.x=element_text(size=10, hjust=0.5, angle = 90, colour="black"))+
+  scale_x_date(date_labels="%b-%Y", date_breaks = "3 month")
+ggsave("trustfear.jpg", units="in", width = 18, height = 6, dpi = 300)
+
+tweet_sentiment %>% ggplot(aes(x=as.Date(index), y=cumsum(positive-negative))) + geom_line()+
+  theme(axis.title.y=element_text(size=12, vjust=2, colour="black"),
+        axis.text.x=element_text(size=10, hjust=0.5, angle = 90, colour="black"))+
+  scale_x_date(date_labels="%b-%Y", date_breaks = "3 month")
+ggsave("posneg.jpg", units="in", width = 18, height = 6, dpi = 300)
+
+#using reshape2 to plot multiple ts line plot in R 
+
+data_long <- melt(tweet_sentiment, id.vars = "index")
+
+g <- ggplot(data_long, aes(x = as.Date(index), y = value, col = variable)) + geom_line()
+g + scale_colour_brewer(palette="Paired") + 
+  theme(axis.title.y=element_text(size=12, vjust=2, colour="black"),
+        axis.text.x=element_text(size=8, hjust=0.5, angle = 90, colour="black")) + 
+  scale_x_date(date_labels="%b-%Y", date_breaks = "3 month")
+
+g <- ggsave("HTsent1.jpg", units="in", width = 18, height = 6, dpi = 300)
+
+#draw area plot using the melt function
+install.packages("areaplot")
+library(areaplot)
+
+Area_df <- read.csv("H.csv", sep = ",", header = TRUE)
+Area_df <- na.omit(Area_df)
+head(Area_df)
+
+data_long <- melt(Area_df, id.vars ="index")
+head(data_long)
+
+data <- data_long %>%
+  group_by(index, variable) %>%
+  summarise(n = sum(value)) %>%
+  mutate(percent = n / sum(n))
+head(data)
+
+g <- ggplot(data, aes(x = as.Date(index), y = percent, fill = variable))+ geom_area()
+g + xlab("Month-Year") + labs(fill = "Sentiments")+
+  theme(axis.title.y=element_text(size=12, vjust=2, colour="black"),
+        axis.text.x=element_text(size=10, hjust=0.5, angle = 90, colour="black"))+ 
+  scale_x_date(date_labels="%b-%Y", date_breaks = "3 month")
+
+g <- ggsave("Hydrogen_sent.jpg", units="in", width = 18, height = 7, dpi = 300)
+#using facet grid
+
+p <- ggplot(data, aes(x = as.Date(index), y = percent))+ geom_area() + facet_grid(variable~ .)
+p + xlab("Month-Year") + labs(fill = "Sentiments")+
+  theme(axis.title.y=element_text(size=12, vjust=2, colour="black"),
+        axis.text.x=element_text(size=9, hjust=0.5, angle = 90, colour="black"))+ 
+  scale_x_date(date_labels="%b-%Y", date_breaks = "3 month")
+
+p <- ggsave("Hydrogen_facet.jpg", units="in", width = 10, height = 14, dpi = 300)
+
+#barplot basis 
+q <- ggplot(data, aes(x = as.Date(index), y = percent, fill = variable)) + 
+  geom_col(position="fill") 
+q + xlab("Month-Year") + labs(fill = "Sentiments")+
+  theme(axis.title.y=element_text(size=12, vjust=2, colour="black"),
+        axis.text.x=element_text(size=9, hjust=0.5, angle = 90, colour="black"))+ 
+  scale_x_date(date_labels="%b-%Y", date_breaks = "3 month")
+q <- ggsave("geosent3.jpg", units="in", width = 18, height = 7, dpi = 300)
+
+
+
+save.image(file = 'acadTwitteR.RData')

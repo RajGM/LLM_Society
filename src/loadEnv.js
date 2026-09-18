@@ -55,8 +55,8 @@ function loadEnv() {
       console.warn(`[env]   ${key} = ${value}`);
       console.warn(`[env]   ^ this looks like a placeholder — replace it with a real key`);
     } else {
-      const masked = value.slice(0, 8) + "..." + value.slice(-4);
-      console.log(`[env]   ${key} = ${masked}`);
+      const prefix = value.slice(0, Math.min(7, value.length));
+      console.log(`[env]   ${key} = ${prefix}… (len=${value.length})`);
     }
   }
 }

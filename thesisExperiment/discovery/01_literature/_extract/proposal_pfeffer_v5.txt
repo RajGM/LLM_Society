@@ -1,0 +1,178 @@
+--- PAGE 1 ---
+Master Thesis Proposal | CSS | TUM Raj Gaurav Maurya | rajg.maurya@tum.de
+MASTER THESIS PROPOSAL
+An Open-Source Artificial Society for Climate Misinformation:
+Operationalising, Extending, and Cross-Validating Pfeffer’s Online Firestorm Theory via LLM Agent Simulation
+Candidate
+Raj Gaurav Maurya — M.Sc. Data and Society, TUM
+Primary Supervisor
+Prof. Dr. Jürgen Pfeffer — Chair of Computational Social Science, TUM
+External Co-Supervisor
+Dr. Ramit Debnath — Deputy Director, CHIA, University of Cambridge
+Submission
+August 2026 | Corpus: Mendeley 10.17632/546hsym93p.1 (IRB: Cambridge 20-064, Caltech 21-1169)
+1 CENTRAL RESEARCH QUESTION
+Primary: Can an open-source artificial society of memory-equipped LLM agents operationalise all six of Pfeffer et al. ’s firestorm
+factors as a generative, predictive model with testable tipping-point parameters?
+Cross-domain extension: Do firestorm tipping-point dynamics, belief-correction resistance, narrative mutation trajectories, and
+echo chamber formation replicate in a scientific misinformation network (climate/geoengineering) — a domain entirely absent
+from the commercial-crisis context in which the theory was derived — and if parameter thresholds differ, what does that reveal as
+a boundary condition of the theory?
+2 MOTIVATION
+Pfeffer, Zorbach, and Carley [ 1] identified six structural factors governing online firestorms: valence, surprise, identity alignment,
+network clustering, information echo, and temporal acceleration. The framework has accumulated >1,500 citations across marketing,
+political science, and crisis communication. It carries two unresolved limitations that this thesis addresses.
+Limitation 1 — descriptive, not generative. The paper groups observations and derives factors; it produces neither a computational
+tipping-point model nor a tested intervention mechanism. Detection systems built on it [2] identify firestorms after ignition, not before.
+Nuortimo et al. [3] concede the framework “represents only a first step toward a fully validated scale.” The causal mechanism by which
+the six factors combine to produce irreversible cascade escalation — the tipping point — has never been formally parameterised or
+tested.
+Limitation 2 — no cross-domain validity. Every empirical case involves commercial or political targets (Amazon, Coca-Cola, H&M,
+Wulff). Whether identical dynamics hold when the target is epistemic — a scientific research programme — is unknown. Debnath et
+al. [4] documented precisely this case: 814,924 geoengineering tweets (2009–2021) in which the chemtrails conspiracy drove toxicity
+spikes correlated with SRM announcements (R2 = 10.02, 99% CI), chemtrail hashtag eigenvector centrality reaching 0.58 (UK), 0.47
+(USA), 0.68 (Sweden), and 0.37 (India), with SCoPEx driving a +300% tweet-volume surge (peak:∼8,000 interactions/day). The
+corpus contains temporal and network structure sufficient to test cross-domain validity — but no study has done so. Debnath’s inoculation
+work [5] provides the intervention-design framework for Phase III and directly motivates Cambridge’s co-supervisory role.
+LLM agent simulation provides the generative instrument. Maurya et al. [6] (ACM CIKM 2025, Outstanding Paper Award) showed
+persona-conditioned agents reproduce misinformation amplification: identity-driven agents produced Misinformation Propagation Rates
+(MPR) > 5.0 (propaganda tier), expert agents stabilised at MPR < 2, with tipping points at nodes 5–9. Those agents used hand-crafted
+archetypes without memory or networked interaction. This thesis replaces archetypes with empirically-derived Behavioural Profiles,
+adds persistent memory and networked inter-agent interaction, and releases the system as open-source infrastructure — enabling the first
+generative, validated, community-extensible test of Pfeffer’s theory. A null result — domain-specific thresholds — is equally publishable
+as a new boundary condition.
+3 SYSTEM DESIGN: OPEN-SOURCE ARTIFICIAL SOCIETY
+The core deliverable is an open-source artificial society built on the auditor-node framework of Maurya et al. [6], extended with three
+architectural additions: (i) persistent agent memory — each agent maintains a structured memory store of prior interactions, belief
+states, and received narratives, implemented via a lightweight key-value store (SQLite); (ii) networked interaction — agents are
+arranged in a configurable network topology (scale-free, small-world, random) and can read outputs from connected neighbours, enabling
+emergent echo chambers and cascade effects beyond linear chains; (iii) external data pipeline — a documented JSON schema for
+injecting external Behavioural Profiles and corpora, enabling community replication across domains. The framework is released on
+GitHub with full documentation, reproducible experiment configurations, and a schema validator. Building on the existing CIKM
+Technical University of Munich | School of Social Sciences and Technology 1
+--- PAGE 2 ---
+Master Thesis Proposal | CSS | TUM Raj Gaurav Maurya | rajg.maurya@tum.de
+Gap State of knowledge This thesis
+Firestorm formalisation Qualitative factors; no tipping-point model [1]
+First computational operationalisation of all six factors as simulation pa-
+rameters with testable k∗
+Cross-domain validity All cases: commercial/political [1]
+First test in scientific misinformation; boundary condition if thresholds
+differ
+Belief correction Continued influence theorised [8]; not tested
+in LLM societies Belief-correction resistance measured by BP type after n conspiracy
+exposures
+Narrative mutation Factual degradation measured [6]; reframing
+not tracked Mutation trajectory taxonomy: what distortion each BP type introduces
+Echo chamber formation Assumed or hand-crafted [9]
+Emergent from BP-network interaction; measured as outcome, not input
+Intervention design Descriptive counter-information advice [1]
+Bridge agent placement + counter-narrative timing tested at k∗− 1, k∗,
+k∗ + 1
+Cross-corpus validity Single-domain studies only
+External pipeline demonstrated on ClimateFEVER; released for commu-
+nity replication
+Table 1: Research gaps and contributions of this thesis.
+codebase, the extended system is estimated to require approximately one week of engineering, leaving the full three months for data,
+experiments, and writing.
+4 METHODOLOGY
+Phase I — Corpus Audit and Behavioural Profile Construction (Weeks 1–4)
+Corpus audit. Pfeffer et al.’s platform bias framework [11, 10] is applied to the 814,924-tweet corpus before any agent conditioning: bot
+detection via source field, tweet-count Z-score (σ > 3), and inter-tweet interval; representativeness assessment by geography, temporal
+coverage, and follower distribution; cascade reconstruction via conversation_id and sourcetweet_author_id . Output: corpus
+integrity score and bias-corrected subset.
+Behavioural Profile construction. Users with ≥5 tweets are aggregated by author_id . Five features are extracted per user:
+(i) conspiracy cluster membership via Debnath’s three empirical types (climate action, environmental concern, conspiracy theory);
+(ii) linguistic style via sentence-level embedding; (iii) network position (eigenvector centrality); (iv) toxicity signature from pre-computed
+Perspective API scores (corpus mean = 0.17, severe mean = 0.12); (v) temporal posting pattern. Users are clustered via HDBSCAN
+into empirical BP archetypes, anonymised, and loaded into the simulation’s persona memory layer.
+Operationalising the six firestorm factors. All six Pfeffer et al. factors are mapped to measurable simulation parameters: valence
+(toxicity score); surprise (tweet-volume deviation from 30-day baseline, e.g. SCoPEx +300%); identity alignment (BP cluster homogene-
+ity); network clustering (eigenvector centrality, e.g. UK chemtrails= 0.58); information echo (BP homogeneity within reconstructed
+cascades); temporal acceleration (inter-tweet interval compression rate post seed injection).
+Phase II — Artificial Society Simulation (Weeks 5–8)
+BP-conditioned agents with persistent memory are deployed in the artificial society. Each agent receives its BP as context-window memory
+(anonymised posting history summary and representative examples). Seed narratives: SCoPEx announcement cascade (April 2017) and
+the chemtrails–Bill Gates conspiracy network (2018–2021) [4]. MI and MPR are computed per node per branch.
+Experiment A — tipping-point detection. The node k∗ at which MI crosses from lie tier ( 1 < MI≤ 3) into propaganda (MI > 3)
+and does not recover. Tested across homogeneous BP branches, heterogeneous BP branches, and scale-free vs. random network
+topologies.
+Experiment B — belief-correction resistance. After n∈{ 1,3,5} conspiracy-narrative exposures, agents receive a factual counter-
+narrative. Measured: MI recovery rate and nodes required to return to lie tier. Tests whether resistance is monotone in exposure count
+and whether it varies by BP type.
+Experiment C — narrative mutation taxonomy. Each agent’s output is analysed for six distortion types derived from Debnath’s
+semantic structure (weaponisation, depopulation, institutional delegitimisation, greenwashing conflation, 5G/vaccine spillover, and
+scientific reframing). Produces a BP-type× distortion-type matrix.
+Experiment D — echo chamber emergence. Agents interact across a configurable network. Measured: Modularity score of opinion
+clusters at t ={10,30,50} interaction steps, and whether cluster boundaries align with initial BP assignments or diverge.
+Phase III — Validation, Intervention, and Cross-Corpus (Weeks 9–10)
+Cross-validation against real cascades. Synthetic k∗ is compared against empirical inflection points in reconstructed real cascades. BP
+accelerator profiles in simulation are compared against user toxicity and centrality profiles in real cascades. Pfeffer’s six factors are
+Technical University of Munich | School of Social Sciences and Technology 2
+--- PAGE 3 ---
+Master Thesis Proposal | CSS | TUM Raj Gaurav Maurya | rajg.maurya@tum.de
+tested for threshold equivalence between the geoengineering domain and the original commercial cases.
+Intervention experiments. Bridge agents (mixed-BP profiles) are injected at k∗− 1, k∗, and k∗ + 1. Counter-narratives aligned with
+Debnath’s inoculation framework [5] are tested at the same positions. Measured: MPR arrest rate and minimum intervention strength
+required per BP type.
+Cross-corpus demonstration. The external pipeline is run on ClimateFEVER (1,535 labelled climate claims). Tipping-point dynamics
+are reported for comparison with the geoengineering corpus findings. This demonstrates platform extensibility and provides one
+additional data point on cross-domain generalisation.
+5 CONTRIBUTIONS
+• CSS theory: First computational operationalisation of all six Pfeffer et al. firestorm factors as a generative agent simulation with a
+testable, measurable tipping-point parameter k∗.
+• Cross-domain validity: First empirical test of firestorm dynamics in a scientific misinformation domain; boundary conditions
+identified if thresholds differ.
+• Belief-correction resistance: First measurement of continued influence effects in an LLM agent society, quantified by BP type and
+exposure count.
+• Narrative mutation taxonomy: First systematic classification of distortion types introduced by each BP archetype during misinfor-
+mation propagation.
+• Echo chamber emergence: First observation of echo chamber formation as an emergent property of BP-network interaction rather
+than an assumed input.
+• Intervention design: Cascade-position-specific and BP-type-specific counter-narrative and bridge agent strategies, providing
+actionable output for climate misinformation governance.
+• Open-source infrastructure: A reusable, documented artificial society platform with external persona and corpus pipeline, enabling
+community-driven cross-domain replication of firestorm theory testing.
+6 TIMELINE (3 MONTHS)
+Wks 1–2
+Corpus audit: bot detection, BP extraction, cascade reconstruction, corpus integrity score
+Wks 3–4
+Platform build: memory layer, network topology, external pipeline, GitHub release
+Wks 5–6
+Experiments A and B: tipping-point detection and belief-correction resistance
+Wks 7–8
+Experiments C and D: narrative mutation taxonomy and echo chamber emergence
+Wks 9–10
+Phase III: cross-validation, intervention experiments, ClimateFEVER pipeline demo
+Wks 11–12
+Writing, revision, and submission — TUM August 2026 deadline
+7 CANDIDATE’S PRIOR WORK
+• Maurya et al. (ACM CIKM 2025 — Outstanding Paper Award). Simulating misinformation propagation in social networks using
+LLMs. Foundational auditor-node framework, MI and MPR metrics. arXiv:2511.10384.
+• Maurya et al. (EACL 2026 — accepted). Socio-economic bias audit in generative vision-language models.
+• Maurya et al. (IJCAI 2026 — under review). AI for social good: conversational data collection in low-literacy settings.
+REFERENCES
+[1] Pfeffer, J., Zorbach, T., & Carley, K. M. (2014). Understanding online firestorms: Negative word-of-mouth dynamics in social media networks.
+Journal of Marketing Communications, 20(1–2), 117–128. https://doi.org/10.1080/13527266.2013.797778
+[2] Drasch, B., Huber, J., Panz, S., & Probst, F. (2015). Detecting online firestorms in social media. 36th International Conference on Information
+Systems, Fort Worth.
+[3] Nuortimo, K., Härkönen, J., Breznik, K., et al. (2025). Developing a social media firestorm scale. Journal of Marketing Analytics . https:
+//doi.org/10.1057/s41270-025-00439-x
+[4] Debnath, R., Reiner, D. M., Sovacool, B. K., et al. (2023). Conspiracy spillovers and geoengineering. iScience, 26(3), 106166. https://doi.org/
+10.1016/j.isci.2023.106166
+[5] Amazeen, M. A., et al. (2025). Building resilience to ExxonMobil’s disinformation through inoculation. npj Climate Action, 4(1), 19. https:
+//doi.org/10.1038/s44168-025-00209-6
+Technical University of Munich | School of Social Sciences and Technology 3
+--- PAGE 4 ---
+Master Thesis Proposal | CSS | TUM Raj Gaurav Maurya | rajg.maurya@tum.de
+[6] Maurya, R. G., Shukla, V ., Dandekar, R. A., Dandekar, R., & Panat, S. (2025). Simulating misinformation propagation using LLMs.ACM CIKM
+2025 Workshop on LLM Agents for Social Simulation. arXiv:2511.10384.
+[7] Törnberg, P., et al. (2024). Validation is the central challenge for generative social simulation. Journal of Computational Social Science .
+PMC12627210.
+[8] Lewandowsky, S., Ecker, U. K. H., Seifert, C. M., Schwarz, N., & Cook, J. (2012). Misinformation and its correction: Continued influence and
+successful debiasing. Psychological Science in the Public Interest, 13(3), 106–131.
+[9] Ji, Z., et al. (2025). Decoding echo chambers: LLM-powered simulations reveal polarisation dynamics. Proceedings of COLING 2025, 264.
+[10] Ruths, D., & Pfeffer, J. (2014). Social media for large studies of behavior. Science, 346(6213), 1063–1064.
+[11] Pfeffer, J., Mayer, K., & Morstatter, F. (2018). Tampering with Twitter’s Sample API. EPJ Data Science, 7(1), 50.
+Submitted for supervisory consideration | April 2026
+Technical University of Munich | School of Social Sciences and Technology 4

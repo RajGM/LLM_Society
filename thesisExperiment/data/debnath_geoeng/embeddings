@@ -1,0 +1,123 @@
+library(tidytext)
+library(tidyverse)
+library(dplyr)
+library(widyr)
+library(irlba)
+library(broom)
+library(ggrepel)
+library(ggplot2)
+library(SnowballC)
+library(stopwords)
+library(tm)
+
+df<- read.csv("Your file.csv", sep = ",")
+
+# We want to use original tweets:
+elected_no_retweets <- df %>%
+  select(c("text"))
+
+elected_no_retweets$text <- gsub('[0-9.]', '', elected_no_retweets$text)
+
+#create tweet id
+elected_no_retweets$postID<-row.names(elected_no_retweets)
+
+#create context window with length 8
+tidy_skipgrams <- elected_no_retweets %>%
+  unnest_tokens(ngram, text, token = "ngrams", n = 10) %>%
+  mutate(ngramID = row_number()) %>% 
+  tidyr::unite(skipgramID, postID, ngramID) %>%
+  unnest_tokens(word, ngram)
+
+my_stop_words <- tibble(
+  word = c(
+    "https", "t.co", "rt","amp","rstats","gt","ä","geoengineering","http","amp","climate","ç","é","å",
+    "äôs","è","äù","2","10", "Å", "Ä", "ä", "Ö", "ö", "Æ","æ","Ø","ø", "ú", "ü", "ý", "ǫ́","ǫ","ó","ø",
+    "œ", "ð", "Ø", "Ö", "Þ", "þ", "Ü", "ô", "à", "ì", "üå", "üåé", "ù", "üì", "NA", "õ", "üõ", "NA.",
+    "X1", "X3", "X5", "X2015", "X15", "X6", "X2013", "X2017", "X2014", "X16", "X2016", "X5480", "X4", 
+    "úà", "üí", "äôt", "äô", "â"), 
+    lexicon = "Twitter"
+    )
+
+all_stop_words <- stop_words %>%
+  bind_rows(my_stop_words)
+
+suppressWarnings({
+  no_numbers <- tidy_skipgrams%>%
+    filter(is.na(as.numeric(word)))
+})
+
+no_stop_words <- no_numbers %>%
+  anti_join(all_stop_words, by = "word")
+
+# remove stop words (e.g. 'a', 'the', 'and')
+tidy_skipgrams_no_stop <- tidy_skipgrams %>% anti_join(all_stop_words, by ="word")
+
+#calculate unigram probabilities (used to normalize skipgram probabilities later)
+unigram_probs <- elected_no_retweets %>%
+  unnest_tokens(word, text) %>%
+  count(word, sort = TRUE) %>%
+  mutate(p = n / sum(n))
+
+#calculate probabilities
+skipgram_probs <- tidy_skipgrams_no_stop %>%
+  pairwise_count(word, skipgramID, diag = TRUE, sort = TRUE) %>%
+  mutate(p = n / sum(n))
+
+#normalize probabilities
+normalized_prob <- skipgram_probs %>%
+  filter(n > 20) %>%
+  rename(word1 = item1, word2 = item2) %>%
+  left_join(unigram_probs %>%
+              select(word1 = word, p1 = p),
+            by = "word1") %>%
+  left_join(unigram_probs %>%
+              select(word2 = word, p2 = p),
+            by = "word2") %>%
+  mutate(p_together = p / p1 / p2)
+head(normalized_prob)
+
+#normalized_prob[2005:2010,]
+
+normalized_prob %>% 
+  filter(word1 == "chemtrails") %>%
+  arrange(-p_together)
+
+
+#write.csv(normalized_prob, file = "XXX.csv")
+
+pmi_matrix <- normalized_prob %>%
+  mutate(pmi = log10(p_together)) %>%
+  cast_sparse(word1, word2, pmi)
+
+#remove missing data
+pmi_matrix@x[is.na(pmi_matrix@x)] <- 0
+#run SVD
+pmi_svd <- irlba(pmi_matrix, 256, maxit = 1000)
+
+#next we output the word vectors:
+word_vectors <- pmi_svd$u
+rownames(word_vectors) <- rownames(pmi_matrix)
+
+head(word_vectors)
+
+pmi_svd <- irlba(pmi_matrix, 2, maxit = 500)
+
+#next we output the word vectors:
+word_vectors <- pmi_svd$u
+rownames(word_vectors) <- rownames(pmi_matrix)
+
+#grab 100 words
+forplot<-as.data.frame(word_vectors[100:200,])
+forplot$word<-rownames(forplot)
+head(forplot)
+
+#now plot
+options(ggrepel.max.overlaps = Inf)
+
+ggplot(forplot, aes(x=V1, y=V2, label=word))+
+  geom_text_repel(segment.alpha = 0, aes(label=word),hjust=0, vjust=0, color="black")+
+  theme_minimal()+ #coord_cartesian(xlim=c(-0.01, 0.015))+
+  xlab("First Dimension Created by SVD")+
+  ylab("Second Dimension Created by SVD")
+
+ggsave("XXXX.jpg", units="in", width = 16, height = 8, dpi = 600)

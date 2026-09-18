@@ -1,0 +1,94 @@
+{
+  "experimentId": "A_er_mix_2026-09-18_05-21-10",
+  "status": "running",
+  "timestamp": "2026-09-18T05:21:10.744Z",
+  "config": {
+    "topology": "random_er",
+    "topologyParams": {
+      "numNodes": 8,
+      "edgeProbability": 0.42,
+      "minSeedOutDegree": 2
+    },
+    "maxTicks": 8,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "discrete",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.15,
+      "actionWeights": {
+        "forward": 0.35,
+        "reinterpret": 0.5,
+        "drop": 0.15
+      },
+      "relationEvolution": true,
+      "trustDelta": 0.05,
+      "maxHops": 8,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017",
+      "chemtrails_gates_2018_2021",
+      "sai_geoengineering",
+      "paris_agreement",
+      "climate_consensus",
+      "polar_bears"
+    ],
+    "seedNodes": [
+      "node_0"
+    ],
+    "personasPath": "thesisExperiment/personas/mixed_graph.json",
+    "articlesPath": "thesisExperiment/articles/articles.json",
+    "outputRoot": "thesisExperiment/runs",
+    "graphRandomSeed": 42,
+    "_description": "Proposal Exp A — random_er × mixed 8 of 12 BPs × 6-article subset, 8 nodes, 8 ticks, N=1.",
+    "experimentName": "A_er_mix",
+    "defaultPersonaAssignment": "sequential",
+    "pfeffer": {
+      "valence": "varied: 6-article subset spanning geoeng + climate misinfo",
+      "surprise": "held: drip seed node_0",
+      "identityAlignment": "mixed 8 of 12 BPs",
+      "networkClustering": "random_er",
+      "informationEcho": "measured (homophily / modularity / PI)",
+      "temporalAcceleration": "8 ticks / 8 hops (was 6 in pilot)"
+    }
+  },
+  "llmUsage": {
+    "calls": 0,
+    "promptTokens": 0,
+    "completionTokens": 0,
+    "totalTokens": 0,
+    "errors": 0,
+    "model": null,
+    "estimatedUsd": 0
+  },
+  "results": null
+}

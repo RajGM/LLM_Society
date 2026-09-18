@@ -1,0 +1,31 @@
+{
+  "campaign": "thesisExperiment",
+  "date": "2026-09-18",
+  "protocol": "A 2x2 real LLM; B n in {1,3}; extra echo-chamber if time; C/D metrics from A/B texts",
+  "experimentA": [
+    "thesisExperiment/configs/A_sf_hom.json",
+    "thesisExperiment/configs/A_sf_mix.json",
+    "thesisExperiment/configs/A_er_hom.json",
+    "thesisExperiment/configs/A_er_mix.json"
+  ],
+  "experimentB": [
+    "thesisExperiment/configs/B_sf_mix_n1.json",
+    "thesisExperiment/configs/B_sf_mix_n3.json"
+  ],
+  "experimentExtra": [
+    "thesisExperiment/configs/D_echo_mix.json"
+  ],
+  "notes": {
+    "nodes": 8,
+    "ticks": 6,
+    "maxHops": 6,
+    "maxInboxSize": 4,
+    "runsPerCell": 1,
+    "model": "gpt-4o-mini",
+    "articlesInA": ["scopex_2017", "chemtrails_gates_2018_2021"],
+    "topologies": ["scale_free", "random_er"],
+    "bpMixes": ["homogeneous_conspiracy", "mixed_three_bp"],
+    "graphRandomSeed": 42,
+    "temporalNote": "6 ticks is hop-compressed vs a 15-tick proposal (Pfeffer temporal acceleration)"
+  }
+}

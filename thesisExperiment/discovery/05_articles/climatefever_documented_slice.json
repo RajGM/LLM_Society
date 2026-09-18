@@ -1,0 +1,69 @@
+{
+  "title": "ClimateFEVER documented slice for discovery article seeds",
+  "fetched": "2026-09-18 (repo already held a 40-row hub pull; this file is the subset cited by articles_candidates.json)",
+  "dataset": {
+    "huggingface": "tdiggelm/climate_fever",
+    "huggingface_url": "https://huggingface.co/datasets/tdiggelm/climate_fever",
+    "paper": "Diggelmann, Boyd-Graber, Bulian, Ciaramita, Leippold, 2020. CLIMATE-FEVER: A Dataset for Verification of Real-World Climate Claims. arXiv:2012.00614",
+    "paper_url": "https://arxiv.org/abs/2012.00614",
+    "github": "https://github.com/tdiggelm/climate-fever-dataset",
+    "n_claims_full": 1535,
+    "n_evidence_pairs_full": 7675,
+    "split": "test (only split on the hub card)",
+    "labels": ["SUPPORTS", "REFUTES", "NOT_ENOUGH_INFO", "DISPUTED"]
+  },
+  "fetch_limitations": [
+    "amandakonet/climate_fever parquet URL 404 (see thesisExperiment/data/SOURCES.md).",
+    "Hub keyword-search endpoints timed out / HTTP 500 in the original download pass.",
+    "Used Hugging Face datasets-server rows for tdiggelm/climate_fever (40 test-split claims) stored at thesisExperiment/data/raw/climatefever_hf_rows_0_40.json.",
+    "Parsed companion: thesisExperiment/data/derived/climatefever_slice.json (n=40).",
+    "This file does not invent labels. Claim strings and claim_label values are copied from that hub slice."
+  ],
+  "claims_used_in_articles": [
+    {
+      "claim_id": "0",
+      "claim": "Global warming is driving polar bears toward extinction",
+      "claim_label": "SUPPORTS",
+      "used_in_article": "climatefever_polar_bears",
+      "evidence_articles": ["Extinction risk from global warming", "Global warming", "Habitat destruction", "Polar bear"]
+    },
+    {
+      "claim_id": "6",
+      "claim": "The polar bear population has been growing.",
+      "claim_label": "REFUTES",
+      "used_in_article": "climatefever_polar_bears",
+      "evidence_articles": ["Polar bear"]
+    },
+    {
+      "claim_id": "10",
+      "claim": "Human additions of CO2 are in the margin of error of current measurements and the gradual increase in CO2 is mainly from oceans degassing as the planet slowly emerges from the last ice age.",
+      "claim_label": "REFUTES",
+      "used_in_article": "climatefever_co2_claims",
+      "evidence_articles": ["Carbon dioxide in Earth's atmosphere", "Ocean acidification", "Sea"]
+    },
+    {
+      "claim_id": "19",
+      "claim": "If CO2 was so terrible for the planet, then installing a CO2 generator in a greenhouse would kill the plants.",
+      "claim_label": "REFUTES",
+      "used_in_article": "climatefever_co2_claims",
+      "evidence_articles": ["Carbon dioxide in Earth's atmosphere", "Carbon dioxide", "Terraforming of Mars"]
+    },
+    {
+      "claim_id": "14",
+      "claim": "The Great Barrier Reef is experiencing the most widespread bleaching ever recorded",
+      "claim_label": "SUPPORTS",
+      "used_in_article": "great_barrier_reef_bleaching",
+      "evidence_articles": ["Coral bleaching", "Great Barrier Reef"]
+    }
+  ],
+  "other_slice_claims_not_turned_into_articles": [
+    {"claim_id": "9", "claim": "Ironic' study finds more CO2 has slightly cooled the planet", "claim_label": "REFUTES"},
+    {"claim_id": "21", "claim": "Sea level rise has been slow and a constant, pre-dating industrialization", "claim_label": "REFUTES"},
+    {"claim_id": "33", "claim": "Harvard study finds that wind turbines create MORE global warming than the fossil fuels they eliminate", "claim_label": "REFUTES"},
+    {"claim_id": "35", "claim": "Ice berg melts, ocean level remains the same.", "claim_label": "REFUTES"},
+    {"claim_id": "44", "claim": "Human-produced carbon might be one of the factors [of climate change], but there’s simply no evidence that it is a significant one.", "claim_label": "REFUTES"},
+    {"claim_id": "69", "claim": "Sea level rise is not going to happen.", "claim_label": "REFUTES"},
+    {"claim_id": "75", "claim": "The science is clear, climate change is making extreme weather events, including tornadoes, worse.", "claim_label": "SUPPORTS"}
+  ],
+  "auditor_caution": "ClimateFEVER labels are majority votes over retrieved Wikipedia sentences. Some SUPPORTS/REFUTES rows in the 40-claim slice have noisy evidence pages. Seed articles use only claims whose labels match independent NASA/NOAA/IUCN/USGS/IPCC pages listed in sources.md. Do not treat ClimateFEVER SUPPORTS as a licence to assert every viral headline as physics."
+}

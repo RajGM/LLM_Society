@@ -1,0 +1,28 @@
+{
+  "experimentName": "probe_api",
+  "personasPath": "thesisExperiment/personas/homo/conspiracy_believer.json",
+  "articlesPath": "thesisExperiment/articles/articles.json",
+  "outputRoot": "thesisExperiment/runs",
+  "topology": "linear_chain",
+  "topologyParams": {
+    "numNodes": 2
+  },
+  "maxTicks": 1,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "seedArticles": [
+    "scopex_2017"
+  ],
+  "seedNodes": [
+    "node_0"
+  ],
+  "nodeParams": {
+    "maxHops": 1,
+    "maxInboxSize": 4,
+    "actionWeights": {
+      "forward": 0.2,
+      "reinterpret": 0.8,
+      "drop": 0
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "personasPath": "thesisExperiment/personas/mixed_graph.json",
+  "articlesPath": "thesisExperiment/articles/articles.json",
+  "outputRoot": "thesisExperiment/runs",
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "miScoringMode": "discrete",
+  "seedNodes": [
+    "node_0"
+  ],
+  "graphRandomSeed": 42,
+  "_description": "Proposal Exp B — fact_checker_injection after n=5 ticks. Scale-free × mixed graph BPs × chemtrails.",
+  "experimentName": "B_sf_mix_n5",
+  "topology": "scale_free",
+  "topologyParams": {
+    "numNodes": 8,
+    "m": 2
+  },
+  "defaultPersonaAssignment": "sequential",
+  "maxTicks": 8,
+  "seedArticles": [
+    "chemtrails_gates_2018_2021"
+  ],
+  "interventions": [
+    {
+      "type": "fact_checker_injection",
+      "tick": 5,
+      "articleId": "chemtrails_gates_2018_2021",
+      "params": {
+        "correctionStrength": 0.9
+      }
+    }
+  ],
+  "pfeffer": {
+    "valence": "held: chemtrails seed",
+    "surprise": "held: drip then correction shock at tick n",
+    "identityAlignment": "mixed 8 BPs",
+    "networkClustering": "scale_free",
+    "informationEcho": "measured before/after injection",
+    "temporalAcceleration": "8 ticks; intervention tick = n"
+  },
+  "nodeParams": {
+    "trustThreshold": 0.15,
+    "actionWeights": {
+      "forward": 0.35,
+      "reinterpret": 0.5,
+      "drop": 0.15
+    },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 8,
+    "maxInboxSize": 4,
+    "activityPattern": "always"
+  }
+}

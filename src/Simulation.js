@@ -9,28 +9,31 @@ const InstitutionalTrust = require("./InstitutionalTrust");
 const NetworkEvolution = require("./NetworkEvolution");
 const OpinionDynamics = require("./OpinionDynamics");
 const ProvenanceEngine = require("./ProvenanceEngine");
-const { readJSON, writeJSON, ensureDir, fileExists } = require("./fileIO");
+const { readJSON, writeJSON, updateJSON, ensureDir, fileExists } = require("./fileIO");
 const { DEFAULTS } = require("../config/experiment");
 const BotEngine = require("./BotEngine");
+const { getUsageStats, resetUsageStats } = require("./llmClient");
 
 const STATE_FILE = "state.json";
+
+function resolveProjectPath(p, fallbackRel) {
+  if (p) return path.isAbsolute(p) ? p : path.join(process.cwd(), p);
+  return path.join(process.cwd(), fallbackRel);
+}
 
 class Simulation {
   constructor(runConfig = {}) {
     this.config = this._mergeConfig(runConfig);
     this.experimentId = this._makeId();
-    this.experimentDir = path.join(
-      process.cwd(),
-      "experiments",
-      this.experimentId
-    );
+    const outputRoot = resolveProjectPath(this.config.outputRoot, "experiments");
+    this.experimentDir = path.join(outputRoot, this.experimentId);
     ensureDir(this.experimentDir);
 
     this.personas = readJSON(
-      path.join(process.cwd(), "personas", "personas.json")
+      resolveProjectPath(this.config.personasPath, path.join("personas", "personas.json"))
     ).personas;
     this.articles = readJSON(
-      path.join(process.cwd(), "articles", "articles.json")
+      resolveProjectPath(this.config.articlesPath, path.join("articles", "articles.json"))
     ).articles;
 
     this.personaMap = Object.fromEntries(this.personas.map((p) => [p.id, p]));
@@ -48,6 +51,7 @@ class Simulation {
   // ── Public API ─────────────────────────────────────────────────────────────
 
   async run() {
+    resetUsageStats();
     this._saveMetadata("running");
     console.log(`\n[Simulation] Experiment: ${this.experimentId}`);
     console.log(`[Simulation] Dir: ${this.experimentDir}\n`);
@@ -137,6 +141,14 @@ class Simulation {
       simState.lastUpdated = new Date().toISOString();
       this._saveState(simState);
       this._saveMetadata("complete", results);
+      const usage = getUsageStats();
+      if (usage && usage.calls > 0) {
+        const est = usage.estimatedUsd != null ? ` ~$${usage.estimatedUsd}` : "";
+        console.log(
+          `[Simulation] LLM usage: ${usage.calls} calls, ` +
+            `${usage.promptTokens} prompt / ${usage.completionTokens} completion tokens${est}`
+        );
+      }
 
       // Human eval CSV export (always generated; raters fill in the rating columns)
       this._exportHumanEvalCSV();
@@ -182,6 +194,7 @@ class Simulation {
       this._saveState(simState);
 
       this._cleanArticleFromAllNodes(articleId);
+      this._flushAllInboxes();
 
       console.log(`\n[Simulation] === Propagating: ${articleId} ===`);
       await this._propagateGroup([article], simState, enableBeliefs);
@@ -478,6 +491,15 @@ class Simulation {
     }
   }
 
+  _flushAllInboxes() {
+    for (const nodeInst of Object.values(this.graph.nodes)) {
+      updateJSON(nodeInst.filePath, (state) => {
+        state.inbox = [];
+        return state;
+      });
+    }
+  }
+
   // ── State management ───────────────────────────────────────────────────────
 
   _initState() {
@@ -524,7 +546,17 @@ class Simulation {
       case "ring":
         return SocietyGraph.buildRing(this.experimentDir, nodeConfigs);
       case "random_er":
-        return SocietyGraph.buildRandomER(this.experimentDir, nodeConfigs, tp.edgeProbability ?? 0.3);
+        return SocietyGraph.buildRandomER(
+          this.experimentDir,
+          nodeConfigs,
+          tp.edgeProbability ?? 0.3,
+          {
+            rng: this._graphRng(),
+            personaMap: this.personaMap,
+            seedNodeIds: this.config.seedNodes || ["node_0"],
+            minSeedOutDegree: tp.minSeedOutDegree ?? 2,
+          }
+        );
       case "small_world":
         return SocietyGraph.buildSmallWorld(this.experimentDir, nodeConfigs, tp.k ?? 4, tp.beta ?? 0.1, this.personaMap);
       case "scale_free":
@@ -533,7 +565,12 @@ class Simulation {
         return SocietyGraph.buildEchoChamber(
           this.experimentDir, nodeConfigs,
           tp.numChambers ?? 2, tp.intraEdgeProb ?? 0.7, tp.interEdgeProb ?? 0.05,
-          tp.intraTrust ?? 0.85, tp.interTrust ?? 0.15, this.personaMap
+          tp.intraTrust ?? 0.85, tp.interTrust ?? 0.15, this.personaMap,
+          {
+            rng: this._graphRng(),
+            seedNodeIds: this.config.seedNodes || ["node_0"],
+            minSeedOutDegree: tp.minSeedOutDegree ?? 2,
+          }
         );
       case "polarized":
         return SocietyGraph.buildPolarized(
@@ -641,6 +678,14 @@ class Simulation {
     }
     if (topology === "echo_chamber") {
       const numChambers = tp.numChambers ?? 2;
+      const available = Object.keys(this.personaMap);
+      if (available.includes("conspiracy_believer")) {
+        const others = available.filter((id) => id !== "conspiracy_believer");
+        return [
+          ["conspiracy_believer"],
+          others.length ? others : ["conspiracy_believer"],
+        ].slice(0, numChambers);
+      }
       const allPools = [
         ["politically_biased_left", "lgbtq_advocate", "environmentalist", "lifestyle_influencer"],
         ["politically_biased_right", "religious_leader", "young_parent", "gadget_enthusiast"],
@@ -710,12 +755,19 @@ class Simulation {
     };
   }
 
+  _graphRng() {
+    const seed = this.config.graphRandomSeed;
+    if (seed == null) return Math.random;
+    return SocietyGraph.mulberry32(Number(seed) >>> 0);
+  }
+
   _saveMetadata(status, results = null) {
     writeJSON(path.join(this.experimentDir, "metadata.json"), {
       experimentId: this.experimentId,
       status,
       timestamp: new Date().toISOString(),
       config: this.config,
+      llmUsage: getUsageStats(),
       results,
     });
   }
@@ -726,7 +778,8 @@ class Simulation {
       .replace(/[:.]/g, "-")
       .replace("T", "_")
       .slice(0, 19);
-    return `exp_${ts}`;
+    const prefix = this.config.experimentName || "exp";
+    return `${prefix}_${ts}`;
   }
 }
 

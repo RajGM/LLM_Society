@@ -1,0 +1,90 @@
+devtools::install_github("favstats/peRspective")
+library(peRspective)
+library(usethis)
+library(tidyverse)
+usethis::edit_r_environ()
+
+
+#using various pespective models (https://github.com/favstats/peRspective)
+#TEST RUNS
+
+my_text <- "XXXXXX"
+
+text_scores <- prsp_score(
+  text = my_text, 
+  languages = "en",
+  score_model = peRspective::prsp_models
+)
+
+text_scores %>% 
+  tidyr::gather() %>% 
+  dplyr::mutate(key = forcats::fct_reorder(key, value)) %>% 
+  ggplot2::ggplot(ggplot2::aes(key, value)) +
+  ggplot2::geom_col() +
+  ggplot2::coord_flip() +
+  ggplot2::ylim(0, 1) +
+  ggplot2::geom_hline(yintercept = 0.5, linetype = "dashed") +
+  ggplot2::labs(x = "Model", y = "Probability", title = "Perspective API Results")
+
+#tweetlevel 
+
+trump_tweet <- "The Fake News Media has NEVER been more Dishonest or Corrupt than it is right now. There has never been a time like this in American History. Very exciting but also, very sad! Fake News is the absolute Enemy of the People and our Country itself!"
+
+text_scores <- prsp_score(
+  trump_tweet, 
+  score_sentences = F,
+  score_model = peRspective::prsp_models
+)
+
+text_scores %>% 
+  tidyr::gather() %>% 
+  dplyr::mutate(key = forcats::fct_reorder(key, value)) %>% 
+  ggplot2::ggplot(ggplot2::aes(key, value)) +
+  ggplot2::geom_col() +
+  ggplot2::coord_flip() +
+  ggplot2::ylim(0, 1) +
+  ggplot2::geom_hline(yintercept = 0.5, linetype = "dashed") +
+  ggplot2::labs(x = "Model", y = "Probability", title = "Perspective API Results")
+
+#Spanish text 
+spanish_text <- "gastan en cosas que de nada sirven-nunca tratan de saber la verdad del funcionalismo de nuestro sistema solar y origen del cosmos-falso por Kepler. LAS UNIVERSIDADES DEL MUNDO NO SABEN ANALIZAR VERDAD O MENTIRA-LO QUE DICE KEPLER"
+
+
+text_scores <- prsp_score(
+  text = spanish_text, 
+  languages = "es",
+  score_model = c("TOXICITY", "SEVERE_TOXICITY", "INSULT_EXPERIMENTAL")
+)
+
+text_scores %>% 
+  tidyr::gather() %>% 
+  dplyr::mutate(key = forcats::fct_reorder(key, value)) %>% 
+  ggplot2::ggplot(ggplot2::aes(key, value)) +
+  ggplot2::geom_col() +
+  ggplot2::coord_flip() +
+  ggplot2::geom_hline(yintercept = 0.5, linetype = "dashed")  +
+  ggplot2::labs(x = "Model", y = "Probability", title = "Perspective API Results")
+
+#text_streaming using prsp_stream - Most important if using large datasets like tweets
+
+df1 <- read.csv("pers.csv", sep = ",") %>%
+  glimpse()
+df <- as.data.frame(df1)
+
+
+df2 <- df %>%
+  prsp_stream(text = text,
+              text_id = TDID,
+              score_model = c("TOXICITY", "SEVERE_TOXICITY", "XXXX"), # XXXX - include other toxicity measures
+              safe_output = T)
+df2 <- data.frame(df2)
+head(df2)
+
+df$TOXICITY <- df2$TOXICITY
+head(df)
+
+#save the output
+write.csv(df, file ="persp.csv", row.names = FALSE)
+
+
+

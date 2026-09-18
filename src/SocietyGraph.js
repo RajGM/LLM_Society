@@ -2,6 +2,17 @@ const path = require("path");
 const SimulationNode = require("./SimulationNode");
 const { writeJSON, readJSON, ensureDir, fileExists } = require("./fileIO");
 
+function mulberry32(seed) {
+  let a = seed >>> 0;
+  return function rng() {
+    a |= 0;
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
 class SocietyGraph {
   constructor(experimentDir) {
     this.experimentDir = experimentDir;
@@ -232,11 +243,14 @@ class SocietyGraph {
     numChambers = 2,
     intraEdgeProb = 0.7, interEdgeProb = 0.05,
     intraTrust = 0.85, interTrust = 0.15,
-    personaMap = null
+    personaMap = null,
+    options = {}
   ) {
     const graph = new SocietyGraph(experimentDir);
     const ids = nodeConfigs.map((cfg, i) => cfg.nodeId || `node_${i}`);
     const n = ids.length;
+    const rng = typeof options.rng === "function" ? options.rng : Math.random;
+    const minSeedOutDegree = options.minSeedOutDegree ?? 2;
 
     for (let i = 0; i < n; i++) graph.addNode(ids[i], nodeConfigs[i]);
 
@@ -248,13 +262,28 @@ class SocietyGraph {
         if (i === j) continue;
         const sameCluster = clusterOf[i] === clusterOf[j];
         const prob = sameCluster ? intraEdgeProb : interEdgeProb;
-        if (Math.random() < prob) {
+        if (rng() < prob) {
           const baseTrust = sameCluster ? intraTrust : interTrust;
           const trust = personaMap
             ? SocietyGraph._homophilyTrust(nodeConfigs[i].personaId, nodeConfigs[j].personaId, personaMap, baseTrust)
-            : baseTrust + (Math.random() - 0.5) * 0.1;
+            : baseTrust + (rng() - 0.5) * 0.1;
           graph.addEdge(ids[i], ids[j], Math.max(0.05, Math.min(0.95, trust)));
         }
+      }
+    }
+
+    // Same cascade-death guard as ER: isolated seed never forwards.
+    const personaById = Object.fromEntries(nodeConfigs.map((c, i) => [ids[i], c.personaId]));
+    for (const seedId of options.seedNodeIds || []) {
+      if (!graph.nodes[seedId]) continue;
+      while ((graph.adjacency[seedId] || []).length < Math.min(minSeedOutDegree, ids.length - 1)) {
+        const candidates = ids.filter((id) => id !== seedId && !(graph.adjacency[seedId] || []).includes(id));
+        if (candidates.length === 0) break;
+        const pick = candidates[Math.floor(rng() * candidates.length)];
+        const trust = personaMap
+          ? SocietyGraph._homophilyTrust(personaById[seedId], personaById[pick], personaMap, 0.55)
+          : 0.45 + rng() * 0.3;
+        graph.addEdge(seedId, pick, trust);
       }
     }
 
@@ -470,4 +499,5 @@ class SocietyGraph {
   }
 }
 
+SocietyGraph.mulberry32 = mulberry32;
 module.exports = SocietyGraph;

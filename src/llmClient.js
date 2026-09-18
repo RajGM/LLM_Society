@@ -3,6 +3,55 @@ const http = require("http");
 const { getModel } = require("../config/models");
 const { isMockKey } = require("./loadEnv");
 
+// Approximate public list prices for gpt-4o-mini (USD per 1M tokens). Estimates only.
+const PRICE_PER_MILLION = {
+  "gpt-4o-mini": { prompt: 0.15, completion: 0.6 },
+  "gpt-4o": { prompt: 2.5, completion: 10 },
+};
+
+const usageStats = {
+  calls: 0,
+  promptTokens: 0,
+  completionTokens: 0,
+  totalTokens: 0,
+  errors: 0,
+  model: null,
+};
+
+function recordUsage(parsed, modelName) {
+  usageStats.calls += 1;
+  if (modelName) usageStats.model = modelName;
+  const u = parsed && parsed.usage;
+  if (!u) return;
+  usageStats.promptTokens += u.prompt_tokens || 0;
+  usageStats.completionTokens += u.completion_tokens || 0;
+  usageStats.totalTokens += u.total_tokens || u.prompt_tokens + u.completion_tokens || 0;
+}
+
+function estimatedUsd() {
+  const rates = PRICE_PER_MILLION[usageStats.model] || PRICE_PER_MILLION["gpt-4o-mini"];
+  return (
+    (usageStats.promptTokens / 1e6) * rates.prompt +
+    (usageStats.completionTokens / 1e6) * rates.completion
+  );
+}
+
+function getUsageStats() {
+  return {
+    ...usageStats,
+    estimatedUsd: Math.round(estimatedUsd() * 10000) / 10000,
+  };
+}
+
+function resetUsageStats() {
+  usageStats.calls = 0;
+  usageStats.promptTokens = 0;
+  usageStats.completionTokens = 0;
+  usageStats.totalTokens = 0;
+  usageStats.errors = 0;
+  usageStats.model = null;
+}
+
 // In dry-run mode every LLM call is intercepted by keyword detection on the userPrompt.
 // Each call type embeds a unique sentinel so the interceptor can return the right mock.
 function callLLMDryRun(systemPrompt, userPrompt) {
@@ -81,12 +130,16 @@ function callOpenAI(cfg, systemPrompt, userPrompt) {
       { role: "user", content: userPrompt },
     ],
     temperature: 0.7,
+    max_tokens: 700,
   });
 
   return httpPost(cfg.apiUrl, body, {
     "Content-Type": "application/json",
     Authorization: `Bearer ${apiKey}`,
-  }).then((res) => res.choices[0].message.content.trim());
+  }).then((res) => {
+    recordUsage(res, cfg.model);
+    return res.choices[0].message.content.trim();
+  });
 }
 
 function callAnthropic(cfg, systemPrompt, userPrompt) {
@@ -108,7 +161,10 @@ function callAnthropic(cfg, systemPrompt, userPrompt) {
     "Content-Type": "application/json",
     "x-api-key": apiKey,
     "anthropic-version": "2023-06-01",
-  }).then((res) => res.content[0].text.trim());
+  }).then((res) => {
+    recordUsage(res, cfg.model);
+    return res.content[0].text.trim();
+  });
 }
 
 function callOllama(cfg, systemPrompt, userPrompt) {
@@ -146,6 +202,7 @@ function httpPost(urlStr, body, headers) {
         try {
           const parsed = JSON.parse(data);
           if (res.statusCode >= 400) {
+            usageStats.errors += 1;
             reject(new Error(`HTTP ${res.statusCode}: ${JSON.stringify(parsed)}`));
           } else {
             resolve(parsed);
@@ -157,9 +214,12 @@ function httpPost(urlStr, body, headers) {
     });
 
     req.on("error", reject);
+    req.setTimeout(120000, () => {
+      req.destroy(new Error("LLM HTTP timeout (120s)"));
+    });
     req.write(body);
     req.end();
   });
 }
 
-module.exports = { callLLM };
+module.exports = { callLLM, getUsageStats, resetUsageStats };

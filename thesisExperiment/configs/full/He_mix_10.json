@@ -1,0 +1,55 @@
+{
+  "personasPath": "thesisExperiment/personas/hetero/mix_10.json",
+  "articlesPath": "thesisExperiment/articles/articles.json",
+  "outputRoot": "thesisExperiment/runs",
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "miScoringMode": "discrete",
+  "seedNodes": [
+    "node_0"
+  ],
+  "graphRandomSeed": 42,
+  "_description": "CIKM-style Experiment He — heterogeneous linear chain mix_10 (8 unique personas, no within-chain repeats), all 12 articles, 8 hops.",
+  "experimentName": "He_mix_10",
+  "topology": "linear_chain",
+  "topologyParams": {
+    "numNodes": 8
+  },
+  "defaultPersonaAssignment": "sequential",
+  "maxTicks": 8,
+  "seedArticles": [
+    "scopex_2017",
+    "chemtrails_gates_2018_2021",
+    "sai_geoengineering",
+    "spice_uk_cancelled",
+    "paris_agreement",
+    "climate_consensus",
+    "glaciers_retreat",
+    "polar_bears",
+    "co2_fertilization",
+    "sea_level_rise",
+    "net_zero",
+    "attribution_extremes"
+  ],
+  "pfeffer": {
+    "valence": "varied via 12 article set",
+    "surprise": "held: drip seed node_0",
+    "identityAlignment": "heterogeneous mix_10",
+    "networkClustering": "linear_chain",
+    "informationEcho": "measured along mixed-persona hops",
+    "temporalAcceleration": "8 hops / 8 ticks"
+  },
+  "nodeParams": {
+    "trustThreshold": 0.08,
+    "actionWeights": {
+      "forward": 0.1,
+      "reinterpret": 0.85,
+      "drop": 0.05
+    },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 8,
+    "maxInboxSize": 4,
+    "activityPattern": "always"
+  }
+}

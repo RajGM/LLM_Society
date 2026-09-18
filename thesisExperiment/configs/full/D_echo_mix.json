@@ -1,0 +1,50 @@
+{
+  "personasPath": "thesisExperiment/personas/mixed_graph.json",
+  "articlesPath": "thesisExperiment/articles/articles.json",
+  "outputRoot": "thesisExperiment/runs",
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "miScoringMode": "discrete",
+  "seedNodes": [
+    "node_0"
+  ],
+  "graphRandomSeed": 42,
+  "_description": "Pfeffer echo-chamber cell — seeded RNG + minSeedOutDegree (pilot D died on tick-1 drop/isolation).",
+  "experimentName": "D_echo_mix",
+  "topology": "echo_chamber",
+  "topologyParams": {
+    "numNodes": 8,
+    "numChambers": 2,
+    "intraEdgeProb": 0.75,
+    "interEdgeProb": 0.08,
+    "intraTrust": 0.85,
+    "interTrust": 0.15,
+    "minSeedOutDegree": 2
+  },
+  "defaultPersonaAssignment": "by_cluster",
+  "maxTicks": 8,
+  "seedArticles": [
+    "chemtrails_gates_2018_2021"
+  ],
+  "pfeffer": {
+    "valence": "held: chemtrails",
+    "surprise": "held: drip",
+    "identityAlignment": "mixed by chamber",
+    "networkClustering": "echo_chamber 2 chambers",
+    "informationEcho": "swept: high intra / low inter trust",
+    "temporalAcceleration": "8 ticks"
+  },
+  "nodeParams": {
+    "trustThreshold": 0.15,
+    "actionWeights": {
+      "forward": 0.35,
+      "reinterpret": 0.5,
+      "drop": 0.15
+    },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 8,
+    "maxInboxSize": 4,
+    "activityPattern": "always"
+  }
+}

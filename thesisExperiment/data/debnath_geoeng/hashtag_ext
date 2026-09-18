@@ -1,0 +1,45 @@
+library(tidyverse)
+library(tidytext)
+
+
+library(devtools)
+install_github("cldatascience/tidygramr")
+library(tidygramr)
+
+
+tweets <- read.csv("geo_sweden.csv", sep = ",")
+head(tweets)
+nrow(tweets)
+
+hashtag_pat <- "#[a-zA-Z0-9_-ー\\.]+"
+hashtag <- str_extract_all(tweets$text, hashtag_pat)
+hashtag_word <- unlist(hashtag)
+hashtag_word <- tolower(hashtag_word)
+hashtag_word <- gsub("[[:punct:]ー]", "", hashtag_word)
+hashtag_word <- hashtag_word[!str_detect(hashtag_word, "geoengineering")]
+hashtag_word <- hashtag_word[!str_detect(hashtag_word, "sweden")]
+#hashtag_word <- hashtag_word[!str_detect(hashtag_word, "sweden")]
+
+
+df <- as.data.frame(hashtag_word) %>%
+  count(hashtag_word, sort = TRUE) %>%
+  mutate(hashtag_word = reorder(hashtag_word, n))
+write.csv(df, file ="hash_xxx.csv")
+
+q <- as.data.frame(hashtag_word) %>%
+  count(hashtag_word, sort = TRUE) %>%
+  mutate(hashtag_word = reorder(hashtag_word, n)) %>%
+  top_n(30) %>%
+  ggplot(aes(x = hashtag_word, y = log(n))) +
+  geom_col() +
+  coord_flip() +
+  labs(x = "Hashtag",
+       y = "log(n)",
+       title = "Top 30 Popular Hashtags")
+q
+q <- ggsave("XXXX.jpg", units="in", width = 7, height = 10, dpi = 300)
+
+#hashtag generation for network analysis 
+df <- extract_twitter(tweets, tag = "hashtag")
+#head(df)
+#write.csv(df, file ="hashtag_xxx.csv")

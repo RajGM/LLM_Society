@@ -1,0 +1,55 @@
+{
+  "personasPath": "thesisExperiment/personas/homo/climate_justice_youth.json",
+  "articlesPath": "thesisExperiment/articles/articles.json",
+  "outputRoot": "thesisExperiment/runs",
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "miScoringMode": "discrete",
+  "seedNodes": [
+    "node_0"
+  ],
+  "graphRandomSeed": 42,
+  "_description": "CIKM-style Experiment H — homogeneous linear chain, persona climate_justice_youth, all 12 articles, 8 hops.",
+  "experimentName": "H_climate_justice_youth",
+  "topology": "linear_chain",
+  "topologyParams": {
+    "numNodes": 8
+  },
+  "defaultPersonaAssignment": "sequential",
+  "maxTicks": 8,
+  "seedArticles": [
+    "scopex_2017",
+    "chemtrails_gates_2018_2021",
+    "sai_geoengineering",
+    "spice_uk_cancelled",
+    "paris_agreement",
+    "climate_consensus",
+    "glaciers_retreat",
+    "polar_bears",
+    "co2_fertilization",
+    "sea_level_rise",
+    "net_zero",
+    "attribution_extremes"
+  ],
+  "pfeffer": {
+    "valence": "varied via 12 article set",
+    "surprise": "held: drip seed node_0",
+    "identityAlignment": "homogeneous climate_justice_youth",
+    "networkClustering": "linear_chain",
+    "informationEcho": "measured along chain hops",
+    "temporalAcceleration": "8 hops / 8 ticks (cut from 12 for cost; logged)"
+  },
+  "nodeParams": {
+    "trustThreshold": 0.08,
+    "actionWeights": {
+      "forward": 0.1,
+      "reinterpret": 0.85,
+      "drop": 0.05
+    },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 8,
+    "maxInboxSize": 4,
+    "activityPattern": "always"
+  }
+}
