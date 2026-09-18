@@ -710,3 +710,96 @@ KS/JS/DTFS **not computed** (`simPending=true`). Pfeffer **empirical** side fill
 
 ---
 
+## 2026-09-18T16:40:00Z — T2c_H ABORT (OPENAI_API_KEY missing)
+
+**Slice.** Phase 2 CONTINUOUS homogeneous persona×article: `thesisExperiment/configs/phase2/T2c_H_*.json`. Grid is **8 topologies × 12 personas = 96 configs**, each with 6 core articles (`scopex_2017`, `chemtrails_gates_2018_2021`, `sai_geoengineering`, `paris_agreement`, `climate_consensus`, `polar_bears`). All `miScoringMode: "continuous"`. All `experimentName` unique. All `outputRoot: thesisExperiment/runs_phase2`. Nodes/ticks = 8. Model `gpt-4o-mini`. Planned concurrency 3.
+
+**Key check (no values logged).** `/workspace/.env` does **not** exist. Process `OPENAI_API_KEY` unset (length=0). Searched `/workspace`, `/home/ubuntu`, `/tmp/cursor`, and process env names containing OPENAI/API_KEY. Cloud environment has no injected secret. Did **not** invent a key. Did **not** write `.env`.
+
+**Probe.** Not started. Instruction: stop if key missing/placeholder. Did not run `node index.js --config` (would fail with `Env var OPENAI_API_KEY not set` and would not yield real LLM usage > 0). Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Grid.** ABORT. completed=**0** failed=**0** skipped=**0** not_started=**96**. LLM calls: **0**. Est. USD: **$0**. Existing `runs_phase2` has **0** T2c_H dirs (nothing to skip as completed+continuous).
+
+**Parse / tables.** Did not run `parse_phase2.js` (it rewrites shared CSVs). Wrote header-only `thesisExperiment/results_phase2/tables/T2c_H_rows.csv` (0 data rows). Progress only in `thesisExperiment/results_phase2/manifest_T2c_H.json`. Did **not** write `phase2_manifest.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`. Then probe a 2-node continuous cell (`miScoringMode: continuous`) until LLM usage > 0. Then run all 96 `T2c_H_*.json` with concurrency 3, skip completed (`metadata.status` completed + `miScoringMode` continuous), write progress only to `manifest_T2c_H.json`.
+
+---
+
+## 2026-09-18T16:39:08Z — Phase 2 T2c_He CONTINUOUS slice ABORT
+
+**Slice.** Heterogeneous persona×article, `miScoringMode: continuous` only. Configs: `thesisExperiment/configs/phase2/T2c_He_*.json` (48 = 8 topologies × 6 mixes). Did **not** run `H_` or `T2d_` files.
+
+**Key check (no values logged).** `/workspace/.env` does not exist. `OPENAI_API_KEY` unset in process env (**length=0**). `isMockKey` not applied (no value). Searched `/workspace`, `/home/ubuntu`, process env names, and common secret paths. Did **not** invent a key. Did **not** write `.env`. Instruction: stop if missing.
+
+**Probe.** Not started (would have been 1 T2c_He cell with real usage). No LLM calls.
+
+**Grid.** ABORT before concurrency-3 `runs_phase2` loop. Skip-completed not reached (no complete T2c_He run dirs).
+
+| Count | n |
+|---|---|
+| configs | 48 |
+| completed | 0 |
+| failed | 0 |
+| skipped | 0 |
+| not_started | 48 |
+| LLM calls | 0 |
+| Est. USD | $0 |
+
+**Manifest.** `thesisExperiment/results_phase2/manifest_T2c_He.json` only. Did **not** write `phase2_manifest.json`. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, probe one `T2c_He_*` cell until real usage is non-zero, then run all 48 with concurrency 3 into `runs_phase2`, skip complete cells, refresh `manifest_T2c_He.json`.
+
+---
+
+
+## 2026-09-18T16:39:29Z — Phase 2 T2d_H ABORT (OPENAI_API_KEY missing)
+
+**Slice.** Dual IFD homogeneous persona×article (`T2d_H_*` only). Dual = 2 auditor calls per event. Did **not** run `T2c_` or `He_` configs.
+
+**Key check (no values logged).** `/workspace/.env` does not exist. Process `OPENAI_API_KEY` unset (length=0). `isMockKey` not applied (no value). Searched process env names, `/workspace`, `/home/ubuntu`, `/run`. Did **not** invent a key. Did **not** write `.env`.
+
+**Probe.** Not started. Instruction: stop if key missing/placeholder. Real LLM usage = n/a (0 cells).
+
+**Grid.** ABORT. T2d_H configs: **96** (8 topologies × 12 homo personas; all `miScoringMode=dual`, `outputRoot=thesisExperiment/runs_phase2`). Completed **0**. Failed **0**. Skipped **0** (no completed dual runs on disk). Pending **96**. Did **not** dry-run. LLM calls: **0**. Est. USD: **$0**.
+
+**Manifest.** `thesisExperiment/results_phase2/manifest_T2d_H.json` only. Did not write `phase2_manifest.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`. Probe one dual cell with usage>0, then run all `T2d_H_*.json` concurrency 3, `outputRoot thesisExperiment/runs_phase2`, skip completed dual runs.
+
+---
+
+
+## 2026-09-18T16:39:55Z — Phase 2 T2d_He DUAL slice ABORT
+
+**Slice.** Heterogeneous persona×article, `miScoringMode: dual` (two auditor calls per event). Configs: `thesisExperiment/configs/phase2/T2d_He_*.json` (48 = 8 topologies × 6 mixes). All `outputRoot: thesisExperiment/runs_phase2`. Nodes/ticks = 8. Model `gpt-4o-mini`. Planned concurrency 3. Did **not** run `H_` or `T2c_` files (or `T2d_H_` homo dual).
+
+**Key check (no values logged).** `/workspace/.env` does not exist. `OPENAI_API_KEY` unset in process env (**length=0**). `isMockKey` not applied (no value). Searched `/workspace`, `/home/ubuntu`, `/tmp/cursor`, process env names containing OPENAI/API/KEY, and `/run`. Cloud environment has no injected secret. Did **not** invent a key. Did **not** write `.env`. Instruction: stop if missing.
+
+**Probe.** Not started (would have been 1 T2d_He cell with real usage). No LLM calls. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Grid.** ABORT before concurrency-3 `runs_phase2` loop. Skip-completed not reached (0 T2d_He run dirs on disk).
+
+| Count | n |
+|---|---|
+| configs | 48 |
+| completed | 0 |
+| failed | 0 |
+| skipped | 0 |
+| not_started | 48 |
+| LLM calls | 0 |
+| Est. USD | $0 |
+
+**Manifest.** `thesisExperiment/results_phase2/manifest_T2d_He.json` only. Did **not** write `phase2_manifest.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, probe one `T2d_He_*` cell until real usage is non-zero, then run all 48 with concurrency 3 into `runs_phase2`, skip complete dual cells, refresh `manifest_T2d_He.json`.
+
+---
