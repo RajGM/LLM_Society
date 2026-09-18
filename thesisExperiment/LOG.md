@@ -631,3 +631,13 @@ CAMPAIGN command finished phase=D
 Student can start writing methods/results from `analysis/` + `results/FIGURES.md` + `results/findings.md`. Do not self-PASS ACCEPTANCE.md; independent checker should re-read disk.
 
 ---
+
+## 2026-09-18T15:25:00Z — Phase 2 kickoff (isolated)
+
+**Decision.** New campaign for 8 topologies × homo/hetero × `continuous` + `dual` IFD, then Debnath network reconstruct + Pfeffer comparison.
+
+**Isolation.** Do not write to `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Use `runs_phase2/`, `results_phase2/`, `configs/phase2/`. Plan: `thesisExperiment/PHASE2_PLAN.md`.
+
+**Hops.** Still 8 (logged cost cut vs CIKM 30; not Debnath). Core articles: 6 (same Exp A subset). N=1, gpt-4o-mini.
+
+---

@@ -1,0 +1,51 @@
+{
+  "personasPath": "thesisExperiment/personas/phase2/hetero/mix_04.json",
+  "articlesPath": "thesisExperiment/articles/merged.json",
+  "outputRoot": "thesisExperiment/runs_phase2",
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "miScoringMode": "continuous",
+  "seedNodes": [
+    "node_0"
+  ],
+  "graphRandomSeed": 42,
+  "_description": "Phase2 T-He continuous random_er mix_04",
+  "experimentName": "T2c_He_random_er_mix_04",
+  "topology": "random_er",
+  "topologyParams": {
+    "numNodes": 8,
+    "edgeProbability": 0.42,
+    "minSeedOutDegree": 2
+  },
+  "defaultPersonaAssignment": "sequential",
+  "maxTicks": 8,
+  "seedArticles": [
+    "scopex_2017",
+    "chemtrails_gates_2018_2021",
+    "sai_geoengineering",
+    "paris_agreement",
+    "climate_consensus",
+    "polar_bears"
+  ],
+  "pfeffer": {
+    "valence": "varied via 6 core articles",
+    "surprise": "held: drip seed node_0",
+    "identityAlignment": "heterogeneous mix_04",
+    "networkClustering": "random_er",
+    "informationEcho": "measured",
+    "temporalAcceleration": "8 hops/ticks (logged cut)"
+  },
+  "nodeParams": {
+    "trustThreshold": 0.15,
+    "actionWeights": {
+      "forward": 0.35,
+      "reinterpret": 0.5,
+      "drop": 0.15
+    },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 8,
+    "maxInboxSize": 4,
+    "activityPattern": "always"
+  }
+}
