@@ -96,3 +96,7 @@ Simulation-dead (1-event) count: **0** (nothing ran).
 | Manifest | `thesisExperiment/results_phase2/manifest_scale_free.json` |
 | Runner (unread as executed) | `thesisExperiment/scripts/run_phase2.js` |
 | Configs | `thesisExperiment/configs/phase2/*_scale_free_*.json` |
+
+## Follow-up recheck — 2026-09-18T16:43:27Z
+
+**Key found: no.** Rechecked `/workspace/.env` (missing), `thesisExperiment/.env` (missing), `process.env OPENAI_API_KEY` (length=0), `thesisExperiment/runs_phase2/_status/KEY_READY.md` (missing). Waited ~15s and rechecked the same four locations: still missing. Did **not** invent a key. Did **not** write `.env`. Did **not** run slices. Cells completed: **0 / 216**.

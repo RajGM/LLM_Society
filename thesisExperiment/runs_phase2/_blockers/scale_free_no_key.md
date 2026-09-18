@@ -31,6 +31,10 @@ Hard rule: real OpenAI only. `run_phase2.js` / `index.js` would exit with `Env v
 
 Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/` (Phase 1). Did not switch git branches.
 
+## Follow-up recheck — 2026-09-18T16:43:27Z
+
+Rechecked `/workspace/.env`, `thesisExperiment/.env`, process `OPENAI_API_KEY` (length=0), and `runs_phase2/_status/KEY_READY.md`. Waited ~15s; rechecked once. Still missing. Cells completed: **0 / 216**.
+
 ## Resume
 
 Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`. Then:

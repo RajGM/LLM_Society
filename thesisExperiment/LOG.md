@@ -1034,3 +1034,9 @@ Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occu
 **Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not write `phase2_manifest.json`.
 
 ---
+
+## 2026-09-18T16:43:27Z — scale_free follow-up: key still missing
+
+**Key found: no.** Rechecked `/workspace/.env`, `thesisExperiment/.env`, process `OPENAI_API_KEY` (length=0), `runs_phase2/_status/KEY_READY.md`. Waited ~15s, rechecked once. Still absent. Did not invent a key. Did not run T2c_H / T2d_H / T2c_He / T2d_He. Cells completed: **0 / 216**.
+
+---
