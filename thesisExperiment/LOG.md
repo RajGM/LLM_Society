@@ -904,3 +904,92 @@ KS/JS/DTFS **not computed** (`simPending=true`). Pfeffer **empirical** side fill
 **Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, then `node thesisExperiment/scripts/run_phase2.js --probe-only`. If both continuous and dual probes show real LLM usage > 0, run all 36 scale_free configs into `runs_phase2`, skip completed, parse into `results_phase2`.
 
 ---
+
+## 2026-09-18T16:40:52Z — hierarchical ALL SLICES ABORT (OPENAI_API_KEY missing)
+
+**Scope.** Topology `hierarchical` across **all four** slices: `T2c_H`, `T2d_H`, `T2c_He`, `T2d_He`. Did not stop after one slice; all four aborted by the same missing key.
+
+**Key check (no values logged).** `/workspace/.env` does not exist. Process `OPENAI_API_KEY` unset (**length=0**). Searched process env, `/workspace`, `/home/ubuntu`, `/tmp/cursor`, `/run`. Cloud environment has no injected secret. `isMockKey` not applied (no value). Did **not** invent a key. Did **not** write `.env`. Instruction: stop if missing.
+
+**Runner.** Read `thesisExperiment/scripts/run_phase2.js` and all 36 `configs/phase2/*hierarchical*.json` (8 nodes/hops/ticks, N=1, `outputRoot runs_phase2`). Probe not started. Did **not** dry-run. Did **not** invent MI/MPR. LLM calls: **0**. Est. USD: **$0**.
+
+| Slice | configs | cells (×6 articles) | completed | failed | skipped | dead / not_started |
+|---|---:|---:|---:|---:|---:|---:|
+| T2c_H | 12 | 72 | 0 | 0 | 0 | 72 |
+| T2d_H | 12 | 72 | 0 | 0 | 0 | 72 |
+| T2c_He | 6 | 36 | 0 | 0 | 0 | 36 |
+| T2d_He | 6 | 36 | 0 | 0 | 0 | 36 |
+| **total** | **36** | **216** | **0** | **0** | **0** | **216** |
+
+**Parse.** Did not run `parse_phase2.js` (rewrites shared CSVs; 0 hierarchical run dirs). Dead-cell log: `results_phase2/dead_cells_hierarchical.json` (36 configs / 216 persona×article cells).
+
+**Paths.** Blocker `thesisExperiment/runs_phase2/_blockers/hierarchical_no_key.md`. Status `thesisExperiment/runs_phase2/_status/hierarchical.md`. Configs `thesisExperiment/configs/phase2/T2{c,d}_{H,He}_hierarchical_*.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not switch git branches.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, then `node thesisExperiment/scripts/run_phase2.js --probe-only`. If both continuous and dual probes show real LLM usage > 0, run all 36 hierarchical configs into `runs_phase2`, skip completed, parse into `results_phase2`.
+
+---
+
+## 2026-09-18T16:41:30Z — polarized ALL SLICES ABORT (OPENAI_API_KEY missing)
+
+**Scope.** Topology `polarized` across **all four** slices: `T2c_H`, `T2d_H`, `T2c_He`, `T2d_He`. Did not stop after one slice; all four aborted by the same missing key.
+
+**Key check (no values logged).** `/workspace/.env` does not exist. Process `OPENAI_API_KEY` unset (**length=0**). Searched process env, `/workspace`, `/home/ubuntu`, `/tmp/cursor`, `/run`. Cloud environment has no injected secret. `isMockKey` not applied (no value). Did **not** invent a key. Did **not** write `.env`. Instruction: stop if missing.
+
+**Runner.** Read `thesisExperiment/scripts/run_phase2.js` and all 36 `configs/phase2/*polarized*.json`. Probe not started. Did **not** dry-run. Did **not** invent MI/MPR. LLM calls: **0**. Est. USD: **$0**.
+
+| Slice | configs | cells (×6 articles) | completed | failed | skipped | dead | not_started |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| T2c_H | 12 | 72 | 0 | 0 | 0 | 0 | 72 |
+| T2d_H | 12 | 72 | 0 | 0 | 0 | 0 | 72 |
+| T2c_He | 6 | 36 | 0 | 0 | 0 | 0 | 36 |
+| T2d_He | 6 | 36 | 0 | 0 | 0 | 0 | 36 |
+| **total** | **36** | **216** | **0** | **0** | **0** | **0** | **216** |
+
+**Parse.** Did not run `parse_phase2.js` (rewrites shared CSVs; 0 polarized run dirs). Blocked-cell log: `results_phase2/tables/polarized_dead_cells.csv` (216 rows, `blocked_no_key`; not 1-event hatch-dead). Manifest: `results_phase2/manifest_polarized.json`.
+
+**Seed-drop.** Polarized configs still use `seedNodes: ["node_0"]`. `buildPolarized` has no `minSeedOutDegree` (unlike echo). Not observed (nothing ran); configs not patched.
+
+**Paths.** Blocker `thesisExperiment/runs_phase2/_blockers/polarized_no_key.md`. Status `thesisExperiment/runs_phase2/_status/polarized.md`. Configs `thesisExperiment/configs/phase2/T2{c,d}_{H,He}_polarized_*.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not switch git branches.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, then `node thesisExperiment/scripts/run_phase2.js --probe-only`. If both continuous and dual probes show real LLM usage > 0, run all 36 polarized configs into `runs_phase2`, skip completed, parse into `results_phase2`. If seeds isolate, add min out-degree minimally and continue.
+
+---
+
+## 2026-09-18T16:41:55.958Z — Phase 2 Debnath reconstruct
+
+Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occurrence graph written (63 nodes, 228 directed edges). This is NOT a retweet cascade. Outputs: thesisExperiment/data/derived/debnath_hashtag_cascade.json; thesisExperiment/data/derived/debnath_reconstruct_report.md; configs/phase2/Dnet_*.json. Did not touch thesisExperiment/runs/ or results/tables/. Did not run LLM.
+
+---
+
+## 2026-09-18T16:42:00Z — random_er ALL SLICES ABORT (OPENAI_API_KEY missing)
+
+**Scope.** Topology `random_er` across **all four** slices: `T2c_H`, `T2d_H`, `T2c_He`, `T2d_He`. Did not stop after one slice; all four aborted by the same missing key.
+
+**Key check (no values logged).** `/workspace/.env` does not exist. Process `OPENAI_API_KEY` unset (**length=0**). Searched process env, `/workspace`, `/home/ubuntu`, `/tmp/cursor`, `/run`. Cloud environment has no injected secret. Did **not** invent a key. Did **not** write `.env`. Instruction: stop if missing.
+
+**Probe / grid.** Not started. Did **not** dry-run. Did **not** invent MI/MPR. LLM calls: **0**. Est. USD: **$0**.
+
+| Slice | configs | cells (×6 articles) | completed | failed | skipped | dead | not_started |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| T2c_H | 12 | 72 | 0 | 0 | 0 | 0 | 72 |
+| T2d_H | 12 | 72 | 0 | 0 | 0 | 0 | 72 |
+| T2c_He | 6 | 36 | 0 | 0 | 0 | 0 | 36 |
+| T2d_He | 6 | 36 | 0 | 0 | 0 | 0 | 36 |
+| **total** | **36** | **216** | **0** | **0** | **0** | **0** | **216** |
+
+**Parse.** Not run (`parse_phase2.js` would rewrite shared CSVs with no random_er events). Dead cells: none (no simulation).
+
+**Engine fix.** **none.** Phase 1 ER crash (`TypeError: mulberry32 is not a function`) did not recur — no ER cell executed. `SocietyGraph.mulberry32` is already exported.
+
+**Paths.** Blocker `thesisExperiment/runs_phase2/_blockers/random_er_no_key.md`. Status `thesisExperiment/runs_phase2/_status/random_er.md`. Configs `thesisExperiment/configs/phase2/T2{c,d}_{H,He}_random_er_*.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not switch git branches.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, then `node thesisExperiment/scripts/run_phase2.js --probe-only`. If both continuous and dual probes show real LLM usage > 0, run all 36 random_er configs into `runs_phase2` (all four slices), skip completed, parse into `results_phase2`. If mulberry32 TypeError recurs, restore the export and continue.
+
+---
+
