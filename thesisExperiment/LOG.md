@@ -1022,3 +1022,15 @@ Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occu
 **Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not switch git branches. Did not write thesis chapters.
 
 ---
+
+## 2026-09-18T16:42:45Z — T2c_H second hunt ABORT (still no key)
+
+**Slice.** CONTINUOUS homogeneous, all 8 topologies: 96 `T2c_H_*.json`.
+
+**Key found: no** (not printed). Hunt-1 + hunt-2 after 20s. `/workspace/.env` still missing. Process `OPENAI_API_KEY` length=0. Paths listed in `thesisExperiment/runs_phase2/_blockers/T2c_H_no_key.md`. Truncated Phase 1 log prefix is not a recoverable key. Did not invent a key. Did not write `.env`. Did not probe. Did not dry-run. Did not invent MI.
+
+**Counts.** completed=**0** failed=**0** skipped=**0** not_started=**96**. LLM calls: **0**. Est. USD: **$0**.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not write `phase2_manifest.json`.
+
+---
