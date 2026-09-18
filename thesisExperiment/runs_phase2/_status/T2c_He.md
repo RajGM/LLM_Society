@@ -1,6 +1,6 @@
 # T2c_He status (continuous heterogeneous, all 8 topologies)
 
-**Updated:** 2026-09-18T18:20:28.878Z
+**Updated:** 2026-09-18T18:36:46.796Z
 **OPENAI_API_KEY present:** no (length=0; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -8,7 +8,7 @@
 **Concurrency:** 3
 **Isolation:** `thesisExperiment/runs_phase2` only (not Phase 1 `runs/` or `results/tables/`)
 
-**Phase:** polling for key (attempt 4; every 20s, max ~8 min).
+**Phase:** polling for key (attempt 15; every 30s, max ~20 min).
 
 Did not invent a key. Did not write `.env`.
 

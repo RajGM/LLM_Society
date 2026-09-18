@@ -1,10 +1,8 @@
 # Blocker: D-net custom-graph LLM cells — OPENAI_API_KEY missing
 
-**Time:** 2026-09-18T16:43:00Z  
+**Time:** 2026-09-18T18:25:03Z  
 **Slice:** Debnath custom graph (`Dnet_c_H`, `Dnet_c_He`, `Dnet_d_H`, `Dnet_d_He`)  
-**LLM runs:** STOPPED. Did not re-launch `run_dnet.js`. Did not dry-run. Did not invent MI/MPR.
-
-A prior probe (`probe_dnet_custom_2026-09-18_16-08-07`) already failed with `Env var OPENAI_API_KEY not set` (`dnet_manifest.json` `aborted: real_api_unavailable`). Do **not** treat that directory’s MPR as a thesis cell.
+**LLM runs:** STOPPED. Polled `.env`/`KEY_READY` every 20s for 480s (25 checks). Still missing. Did not launch `run_dnet.js`. Did not dry-run. Did not invent MI/MPR. Did not invent tweet hydration.
 
 ## Key check (no values logged)
 
@@ -15,32 +13,29 @@ A prior probe (`probe_dnet_custom_2026-09-18_16-08-07`) already failed with `Env
 | `/workspace/thesisExperiment/.env` | does not exist |
 | `~/.env` | does not exist |
 | `/run/secrets/OPENAI_API_KEY` | does not exist |
-| `/secrets/OPENAI_API_KEY` | does not exist |
-| Other process environ (`OPENAI*`) | none |
-| Twitter/X bearer names | all unset (hydration also impossible) |
-| `src/loadEnv.js` `isMockKey` | not applied (no value to test) |
-| Cloud environment secrets | none injected |
+| `thesisExperiment/runs_phase2/_status/KEY_READY.md` | does not exist |
+| `src/loadEnv.js` `isMockKey` | not applied (no value) |
 
-Searched `/workspace`, `/home/ubuntu`, `/tmp/cursor`, `/run` (names and existence only). Did **not** invent a key. Did **not** write `.env`.
+Did **not** invent a key. Did **not** write `.env`.
 
-## What was not run
+## 4-cell counts
 
 | Cell | config | `miScoringMode` | mix | status |
 | --- | --- | --- | --- | --- |
-| Dnet_c_H | `configs/phase2/Dnet_c_H_conspiracy.json` | continuous | homo conspiracy | pending (0/1) |
-| Dnet_c_He | `configs/phase2/Dnet_c_He_mixed.json` | continuous | mixed Debnath BPs | pending (0/1) |
-| Dnet_d_H | `configs/phase2/Dnet_d_H_conspiracy.json` | dual | homo conspiracy | pending (0/1) |
-| Dnet_d_He | `configs/phase2/Dnet_d_He_mixed.json` | dual | mixed Debnath BPs | pending (0/1) |
+| Dnet_c_H | `configs/phase2/Dnet_c_H_conspiracy.json` | continuous | homo conspiracy | not_started (0/1) |
+| Dnet_c_He | `configs/phase2/Dnet_c_He_mixed.json` | continuous | mixed Debnath BPs | not_started (0/1) |
+| Dnet_d_H | `configs/phase2/Dnet_d_H_conspiracy.json` | dual | homo conspiracy | not_started (0/1) |
+| Dnet_d_He | `configs/phase2/Dnet_d_He_mixed.json` | dual | mixed Debnath BPs | not_started (0/1) |
 
-Dual headline MPR is **not** continuous headline MPR. Neither mode ran; neither was copied from the other.
+completed=**0** skipped=**0** failed=**0** not_started=**4**. Dual headline MPR is **not** continuous headline MPR. Neither mode ran.
 
-## Non-LLM work that did run
+## Compare
 
-Reconstruct/import still executed (see status file). Graph kept: `data/derived/debnath_hashtag_cascade.json` (**63** nodes, **228** edges). **Not** a retweet cascade.
+`simPending=true` (no Dnet sims under `runs_phase2`). Did not re-run compare (no sims).
 
 ## Isolation
 
-Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Dnet `outputRoot` remains `thesisExperiment/runs_phase2`.
+Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not git commit.
 
 ## Resume
 

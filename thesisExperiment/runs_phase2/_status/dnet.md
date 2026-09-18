@@ -1,67 +1,57 @@
 # Phase 2 D-net (Debnath custom graph) status
 
-**Generated.** 2026-09-18T16:43:00Z  
-**Key present.** **no** — `thesisExperiment/runs_phase2/_blockers/dnet_no_key.md`  
+**Generated.** 2026-09-18T18:25:03Z  
+**Key present.** **no**  
 **Dry-run.** no  
 **MI/MPR invented.** no  
-**Git branch.** stayed on the workspace branch; did not switch.
+**Tweet hydration invented.** no  
+**Git commit.** none (instruction: do not git commit)
 
-Independent of the 8-topology grid. Isolation: `runs_phase2/`, `results_phase2/`, `data/derived/` only.
+Independent of the 8-topology grid. Isolation: `runs_phase2/`, `results_phase2/` only. Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
 
-## What ran
+## Key hunt (no values logged)
 
-1. **Key hunt.** `OPENAI_API_KEY` unset (length=0). No `.env`. No Twitter/X bearer. Did not invent a key.
-2. **Reconstruct (re-run).** `node thesisExperiment/scripts/reconstruct_debnath.js`
-   - Mendeley files API still `error 400` / landing only.
-   - OSF `dataset.csv` **did stream** this pass via `files.osf.io` object URL (previous `osf.io/download/mx97s` 403). Sample: 4043 data lines, PII columns discarded, **0 usable digit tweet IDs**, 1169 scientific-notation tokens (`1.00048E+18`). Converting those tokens would fabricate IDs (precision lost) — **not done**.
-   - Twitter/X hydrate skipped (`no_bearer_token`). Tweets **not** invented.
-   - Importer validate: 63 nodes / 228 edges, seed `user_chemtrails_hub`.
-3. **Graph kept.** `thesisExperiment/data/derived/debnath_hashtag_cascade.json` — documented **hashtag co-occurrence / same-cluster** fallback. **63** `user_profiles`, **228** directed edges in `retweets[]` (edge container only). `notARetweetCascade: true`. `empiricalMPR: false`. Seed `chemtrails_hub`.
-4. **Configs present (not executed).** continuous vs dual × homo vs hetero, `outputRoot: thesisExperiment/runs_phase2`, seeds `scopex_2017` + `chemtrails_gates_2018_2021`, 8 ticks/hops.
-5. **Compare.** `node thesisExperiment/scripts/compare_phase2.js` — empirical Pfeffer table written; **sim pending**.
+Polled `.env` / `KEY_READY` **every 20s for 480s (~8 min), 25 checks**. Still missing. Did **not** invent a key. Did **not** write `.env` or `KEY_READY.md`. Did **not** launch `run_dnet.js` (would abort `real_api_unavailable` and yield 0 LLM calls).
 
-## What blocked
-
-| Item | Status |
+| Source | Result |
 | --- | --- |
-| `Dnet_c_H_conspiracy` (continuous homo) | not started |
-| `Dnet_c_He_mixed` (continuous hetero) | not started |
-| `Dnet_d_H_conspiracy` (dual homo) | not started |
-| `Dnet_d_He_mixed` (dual hetero) | not started |
-| Dual vs continuous headline MPR | **cannot compare** — neither mode ran; will not copy one onto the other |
-| Tweet hydration | blocked: no bearer + unusable Excel tweet_id sample |
+| Process `OPENAI_API_KEY` | unset (length=0) |
+| `/workspace/.env` | absent |
+| `thesisExperiment/.env` | absent |
+| `~/.env` | absent |
+| `/run/secrets/OPENAI_API_KEY` | absent |
+| `runs_phase2/_status/KEY_READY.md` | absent |
+| `src/loadEnv.js` `isMockKey` | not applied (no value) |
 
-Prior probe `runs_phase2/probe_dnet_custom_2026-09-18_16-08-07` is **not** a Dnet cell (`compare_phase2.js` skips `probe`). Failed: missing OpenAI key.
+## Return counts
 
-## Honesty (hops / skip-gram / MPR)
+| Cell | config | `miScoringMode` | mix | completed | skipped | failed | not_started |
+| --- | --- | --- | --- | --- | --- | --- | ---: |
+| Dnet_c_H | `Dnet_c_H_conspiracy.json` | continuous | homo conspiracy | 0 | 0 | 0 | 1 |
+| Dnet_c_He | `Dnet_c_He_mixed.json` | continuous | mixed Debnath BPs | 0 | 0 | 0 | 1 |
+| Dnet_d_H | `Dnet_d_H_conspiracy.json` | dual | homo conspiracy | 0 | 0 | 0 | 1 |
+| Dnet_d_He | `Dnet_d_He_mixed.json` | dual | mixed Debnath BPs | 0 | 0 | 0 | 1 |
+| **four cells** | | | | **0** | **0** | **0** | **4** |
 
-- **8 hops/ticks is a cost cut vs CIKM K=30**, not Debnath’s skip-gram window, and not a Debnath hop protocol.
-- Debnath has **no empirical MPR**. Simulated MI (when it eventually runs) is an auditor score, not Twitter MI.
-- Hashtag co-occurrence is **not** a retweet cascade of the 814,924 tweets.
+**Key: no.** **4-cell: 0/4 finished.** Dual vs continuous headlines **did not run** (must actually run; will not copy one onto the other).
 
-## Pfeffer observables (seven)
+## Compare
 
-Written to `results_phase2/pfeffer_observables.md` + `summary.md`. Rows: valence, surprise, identity, clustering, echo, temporal; **seventh cross-media held**. Empirical side filled from the hashtag graph; simulated side **pending**.
+Did **not** re-run `compare_phase2.js` (no Dnet sims exist). Last `results_phase2/debnath_compare.json`:
 
-Empirical ValidationMetrics on the fallback (tree-from-seed, not tweet time): depth=4, breadth=33, size=61, structuralVirality=2.7. Speed not available empirically.
+- **simPending = true**
+- nSimRuns = 0
+- reason: `No thesisExperiment/runs_phase2 directories matching Dnet_ or topology=custom`
+- KS/JS/DTFS not computed
+- Pfeffer seven rows: empirical filled; simulated pending; **cross-media held**
 
-## Paths
+Prior probe `runs_phase2/probe_dnet_custom_2026-09-18_16-08-07` is **not** a Dnet cell (`compare_phase2.js` skips `probe`). Do not treat that dir’s MPR as a thesis cell.
 
-| Path | Role |
-| --- | --- |
-| `thesisExperiment/data/derived/debnath_hashtag_cascade.json` | graph used (63 / 228 fallback) |
-| `thesisExperiment/data/derived/debnath_reconstruct_report.md` | reconstruct report |
-| `thesisExperiment/data/debnath_hydrated/reconstruct_attempts.json` | attempt log |
-| `thesisExperiment/data/debnath_hydrated/osf_id_sample.json` | ID sample metadata (no PII / no hydratable IDs) |
-| `thesisExperiment/configs/phase2/Dnet_{c,d}_{H_conspiracy,He_mixed}.json` | four cells |
-| `thesisExperiment/scripts/run_dnet.js` | LLM runner (not launched this pass) |
-| `thesisExperiment/scripts/compare_phase2.js` | comparison |
-| `thesisExperiment/results_phase2/summary.md` | compare summary (`simPending`) |
-| `thesisExperiment/results_phase2/debnath_compare.json` | compare JSON |
-| `thesisExperiment/results_phase2/pfeffer_observables.md` | seven-factor remapping |
-| `thesisExperiment/results_phase2/dnet_manifest.json` | last probe abort |
-| `thesisExperiment/runs_phase2/_blockers/dnet_no_key.md` | this blocker |
-| `thesisExperiment/runs_phase2/_status/dnet.md` | this file |
+## Honesty
+
+- 8 hops/ticks is a cost cut vs CIKM K=30, not Debnath’s skip-gram window.
+- Debnath has **no empirical MPR**. Simulated MI is an auditor score, not Twitter MI.
+- Hashtag co-occurrence graph (63 nodes / 228 edges) is **not** a retweet cascade. Tweets **not** invented.
 
 ## Resume
 

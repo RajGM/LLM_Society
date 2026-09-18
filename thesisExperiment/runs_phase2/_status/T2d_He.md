@@ -1,10 +1,10 @@
 # T2d_He Phase 2 DUAL hetero — status
 
-**When.** 2026-09-18T18:20:38.242Z
+**When.** 2026-09-18T18:36:54.363Z
 **OPENAI_API_KEY present.** **no** (length only; value not logged)
 **Slice.** `T2d_He_*` only — dual IFD (2 auditor calls per event), heterogeneous mixes, all 8 topologies.
 **Dry-run.** no. **MI invented.** no. **Git commit.** no.
-**Phase.** polling key (120s / 480s)
+**Phase.** polling key (510s / 1200s)
 
 | Count | n |
 | ---: | ---: |
@@ -12,7 +12,7 @@
 | completed | 0 |
 | failed | 0 |
 | skipped (already complete dual) | 0 |
-| not_started | 48 |
+| remaining / not_started | 48 |
 | LLM calls | 0 |
 | Est. USD | $0 |
 

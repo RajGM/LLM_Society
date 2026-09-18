@@ -1,13 +1,13 @@
 # T2c_H status — continuous homogeneous, all 8 topologies
 
-**When.** 2026-09-18T18:20:40.968Z
+**When.** 2026-09-18T18:36:28.655Z
 **OPENAI_API_KEY found.** **no** (value not logged)
 **Dry-run.** no. **MI invented.** no.
 **Isolation.** `thesisExperiment/runs_phase2` + `thesisExperiment/results_phase2` only.
 **N=1, hops/ticks=8, concurrency=3.** Model `gpt-4o-mini`. `miScoringMode: continuous`.
 **Configs.** 96 = 8 topologies × 12 personas. Does not stop after one topology.
 
-**Phase.** polling for OPENAI_API_KEY (7)
+**Phase.** polling for OPENAI_API_KEY (19)
 
 | metric | n |
 |---|---:|
@@ -33,7 +33,7 @@
 
 ## Note
 
-Poll 7: /workspace/.env exists=false; KEY_READY.md exists=false; process length=0; file length=0. Value not logged.
+Poll 19: /workspace/.env exists=false; KEY_READY.md exists=false; process length=0; file length=0. Value not logged.
 
 ## Isolation
 
