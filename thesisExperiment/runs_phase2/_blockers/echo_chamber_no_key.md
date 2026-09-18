@@ -1,8 +1,19 @@
 # echo_chamber Phase 2 ABORT — OPENAI_API_KEY missing
 
-**When.** 2026-09-18T16:41:00Z  
+**When.** 2026-09-18T16:41:00Z; recheck 2026-09-18T16:42:00Z  
 **Topology.** `echo_chamber` only.  
-**Instruction.** Find `OPENAI_API_KEY`. If missing, write this file and **STOP**.
+**Instruction.** Find `OPENAI_API_KEY`. If missing, write this file and **STOP**. Recheck: wait ~15s once, then exit if still missing.
+
+## Recheck (follow-up)
+
+| Check | Immediate | After ~15s |
+|---|---|---|
+| `process.env OPENAI_API_KEY` | unset len=0 | unset len=0 |
+| `/workspace/.env` | missing | missing |
+| `thesisExperiment/.env` | missing | missing |
+| `_status/KEY_READY.md` | missing | missing |
+
+Still no key. Exit. Did **not** fabricate. Cells completed: **0 / 216**.
 
 ## Key check (no values logged)
 

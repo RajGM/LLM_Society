@@ -993,3 +993,25 @@ Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occu
 
 ---
 
+
+## 2026-09-18T16:41:55Z — T2d_H follow-up hunt: still no key
+
+**Slice.** Dual homogeneous `T2d_H_*` only (96 configs, 8 topologies). Did **not** leave the slice idle: hunted again, waited ~15s, rechecked.
+
+**Key found.** **no**. `/workspace/.env` absent. `thesisExperiment/.env` absent. Process `OPENAI_API_KEY` length=0. `KEY_READY.md` not found. Did **not** invent a key. Did **not** write `.env`. Did **not** probe or run cells. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Counts.** completed=**0** failed=**0** skipped=**0** pending=**96**. LLM calls: **0**.
+
+**Paths.** Blocker `thesisExperiment/runs_phase2/_blockers/T2d_H_no_key.md`. Manifest `thesisExperiment/results_phase2/manifest_T2d_H.json`. Isolation: no writes to `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+---
+
+## 2026-09-18T16:42:21Z — T2c_He recheck ABORT (still no key)
+
+**Follow-up.** Hunt repeated: `/workspace/.env`, `thesisExperiment/.env`, process.env, `runs_phase2/_status/KEY_READY.md`. Wait ~15s, recheck once. Still missing (`OPENAI_API_KEY` length=0). Did **not** invent a key. Did **not** write `.env`. Did **not** probe or run the 48-cell grid. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Counts.** completed=**0** failed=**0** skipped=**0** not_started=**48**. LLM calls: **0**.
+
+**Blocker.** `thesisExperiment/runs_phase2/_blockers/T2c_He_no_key.md`. Manifest remains `thesisExperiment/results_phase2/manifest_T2c_He.json`. Isolation: did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+---
