@@ -678,3 +678,35 @@ Fallback: documented hashtag co-occurrence graph, **not a retweet cascade** — 
 
 ---
 
+
+## 2026-09-18T16:08:07.575Z
+
+PROBE_DNET custom status=0 failed=true elapsedMs=51 usage=n/a
+
+---
+
+## 2026-09-18T16:08:07.575Z
+
+ABORT_DNET real_api_unavailable — refusing to invent D-net MI/MPR.
+
+---
+
+## 2026-09-18T16:08:20Z — Dnet wrap (independent of T-H/T-He)
+
+**Graph.** Kept existing `thesisExperiment/data/derived/debnath_hashtag_cascade.json`. Stats: **63** user_profiles, **228** directed edges (`retweets[]` container + `graph_topology`). Kind: hashtag co-occurrence, **not a retweet cascade**. Seed `chemtrails_hub`. RealMetrics on that graph (tree-from-seed, not tweet time): depth=4, breadth=33, size=61, structuralVirality=2.7, speedHours=0.
+
+**Probe.** Tiny custom cell `probe_dnet_custom` (3 nodes, 1 tick, `scopex_2017`) loaded via `SocietyGraph.buildCustom`. Failed: `Env var OPENAI_API_KEY not set`. Do **not** read MPR=0.00 in that dir as a thesis cell. `/workspace/.env` still absent in this VM (gitignored; not injected).
+
+**Dnet cells finished: 0 / 4.** Not started after probe fail. No dry-run. Cells pending: `Dnet_c_H_conspiracy`, `Dnet_d_H_conspiracy`, `Dnet_c_He_mixed`, `Dnet_d_He_mixed`.
+
+**Compare.** `node thesisExperiment/scripts/compare_phase2.js` wrote:
+- `thesisExperiment/results_phase2/debnath_compare.json`
+- `thesisExperiment/results_phase2/summary.md`
+- `thesisExperiment/results_phase2/pfeffer_observables.md`
+
+KS/JS/DTFS **not computed** (`simPending=true`). Pfeffer **empirical** side filled (toxicity proxy, hashtag mix, modularity, homophily). Pfeffer **sim** side pending. Isolation: did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+**Resume.** Put a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, then `node thesisExperiment/scripts/run_dnet.js --concurrency 2` and re-run `node thesisExperiment/scripts/compare_phase2.js`.
+
+---
+
