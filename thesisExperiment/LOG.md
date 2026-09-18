@@ -669,3 +669,31 @@ PROBE_P2 dual status=0 failed=true elapsedMs=39 usage=n/a
 **Resume.** Real `OPENAI_API_KEY` in `.env`, then `--probe-only` then `--phase all --concurrency 4`.
 
 ---
+
+PHASE2_PLAN.md copies: PHASE2_PLAN.md ; thesisExperiment/PHASE2_PLAN.md ; docs/PHASE2_PLAN.md
+
+## 2026-09-18T15:29:21.655Z — Phase 2 Debnath reconstruct
+
+Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occurrence graph written (63 nodes, 228 directed edges). This is NOT a retweet cascade. Outputs: thesisExperiment/data/derived/debnath_hashtag_cascade.json; thesisExperiment/data/derived/debnath_reconstruct_report.md; configs/phase2/Dnet_*.json. Did not touch thesisExperiment/runs/ or results/tables/. Did not run LLM.
+
+---
+
+## 2026-09-18T15:30:53.048Z — Phase 2 Debnath reconstruct
+
+Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occurrence graph written (63 nodes, 228 directed edges). This is NOT a retweet cascade. Outputs: thesisExperiment/data/derived/debnath_hashtag_cascade.json; thesisExperiment/data/derived/debnath_reconstruct_report.md; configs/phase2/Dnet_*.json. Did not touch thesisExperiment/runs/ or results/tables/. Did not run LLM.
+
+---
+
+## 2026-09-18T15:32:48.973Z — Phase 2 Debnath reconstruct
+
+Debnath reconstruct ran. Hydration: no (bearer absent). Fallback hashtag co-occurrence graph written (63 nodes, 228 directed edges). This is NOT a retweet cascade. Outputs: thesisExperiment/data/derived/debnath_hashtag_cascade.json; thesisExperiment/data/derived/debnath_reconstruct_report.md; configs/phase2/Dnet_*.json. Did not touch thesisExperiment/runs/ or results/tables/. Did not run LLM.
+
+---
+
+## 2026-09-18T15:34:00Z — Phase 2 Debnath reconstruct (note)
+
+Hydration: no Twitter/X bearer; tweets **not** invented. Mendeley files API body `error 400`. OSF `dataset.csv` is 661,867,256 bytes and is **not** IDs-only (text + user fields); a 5k-line peek was discarded. `tweet_id` is scientific notation → 0 hydratable IDs.
+
+Fallback: documented hashtag co-occurrence graph, **not a retweet cascade** — 63 nodes, 228 directed edges, seed `chemtrails_hub`. FakeNewsNet-shaped for `RealGraphImporter`. Dnet configs: `Dnet_{c|d}_{H_conspiracy|He_mixed}.json` (`continuous` + `dual`; homo conspiracy + mixed BPs; seeds `scopex_2017`, `chemtrails_gates_2018_2021`; `outputRoot` `runs_phase2`). LLM not run (`OPENAI_API_KEY` absent). Did not write `runs/` or `results/tables/`.
+
+---

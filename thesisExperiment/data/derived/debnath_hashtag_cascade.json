@@ -1,1836 +1,3407 @@
 {
+  "schema": "thesisExperiment.debnath_hashtag_cascade.v1",
+  "kind": "hashtag_cooccurrence",
+  "notARetweetCascade": true,
+  "generatedFallback": false,
+  "reconstructOutput": true,
+  "temporalAvailable": false,
+  "empiricalMPR": false,
   "_comment": "NOT a retweet cascade and NOT hydrated Debnath tweets. FakeNewsNet-shaped JSON so RealGraphImporter can read a documented hashtag co-occurrence / same-cluster graph (Debnath et al. 2023). Edges reuse the importer's retweets[] field only as a directed-edge container.",
   "news_id": "debnath_hashtag_cooccurrence_fallback",
-  "label": "unknown",
+  "label": "empirical_hashtag_fallback",
   "article_text": "Importer placeholder only — not tweet text. Simulation seeds are thesis articles scopex_2017 and chemtrails_gates_2018_2021. Debnath 814,924 tweets were not hydrated.",
   "seed_user": "chemtrails_hub",
+  "seed_hashtag": "#chemtrails",
   "edge_semantics": "hashtag_cooccurrence_same_cluster",
   "source": "Debnath et al. iScience 2023 (PMC10040962) Table 1, Figures 3–6, p0160/p0175/p0210; GitHub Ramit1201/geoeng hashtag_ext",
+  "toxicity": {
+    "mean": 0.17,
+    "severeMean": 0.12,
+    "source": "Debnath 2023 Table 1 paper-quoted; not tweet-level Perspective scores"
+  },
+  "identityMix": {
+    "conspiracy": 28,
+    "climate_action": 19,
+    "environmental_concern": 14,
+    "other": 2
+  },
+  "hashtags": [
+    {
+      "id": "chemtrails",
+      "tag": "#chemtrails",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "geoengineering",
+      "tag": "#geoengineering",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "haarp",
+      "tag": "#haarp",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "srm",
+      "tag": "#srm",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "sag",
+      "tag": "#sag",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "weathermodification",
+      "tag": "#weathermodification",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "nexrad",
+      "tag": "#nexrad",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "weatherwarfare",
+      "tag": "#weatherwarfare",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "stopspraying",
+      "tag": "#stopspraying",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "nwo",
+      "tag": "#nwo",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "illuminati",
+      "tag": "#illuminati",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "gmo",
+      "tag": "#gmo",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "depopulation",
+      "tag": "#depopulation",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "monsanto",
+      "tag": "#monsanto",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "deepstate",
+      "tag": "#deepstate",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "maga",
+      "tag": "#maga",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "greatawakening",
+      "tag": "#greatawakening",
+      "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    },
+    {
+      "id": "climateaction",
+      "tag": "#climateaction",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "climatejustice",
+      "tag": "#climatejustice",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "climate",
+      "tag": "#climate",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "fridaysforfuture",
+      "tag": "#fridaysforfuture",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "cop26",
+      "tag": "#cop26",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "ipcc",
+      "tag": "#ipcc",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "wedonotconsent",
+      "tag": "#wedonotconsent",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "sweden",
+      "tag": "#sweden",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "scopex",
+      "tag": "#scopex",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "actonclimate",
+      "tag": "#actonclimate",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "netzero",
+      "tag": "#netzero",
+      "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "ozone",
+      "tag": "#ozone",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "biodiversity",
+      "tag": "#biodiversity",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "airpollution",
+      "tag": "#airpollution",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "foodsecurity",
+      "tag": "#foodsecurity",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "ecology",
+      "tag": "#ecology",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "environment",
+      "tag": "#environment",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "publichealth",
+      "tag": "#publichealth",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "stratosphere",
+      "tag": "#stratosphere",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "sai",
+      "tag": "#sai",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "mitigation",
+      "tag": "#mitigation",
+      "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08
+    },
+    {
+      "id": "usa",
+      "tag": "#usa",
+      "cluster": "geo",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "uk",
+      "tag": "#uk",
+      "cluster": "geo",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "india",
+      "tag": "#india",
+      "cluster": "geo",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05
+    },
+    {
+      "id": "climateaction_piggyback",
+      "tag": "#climateaction",
+      "cluster": "piggyback",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17
+    }
+  ],
   "tweet_ids": [],
   "retweets": [
     {
       "user_id": "haarp_hub",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-01T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "haarp_hub",
-      "timestamp": "2018-01-01T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_amp_1",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-01T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#chemtrails",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "haarp_amp_1",
       "retweeted_from": "haarp_hub",
-      "timestamp": "2018-01-01T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#haarp",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "geoengineering_hub",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-01T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "geoengineering_hub",
-      "timestamp": "2018-01-01T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "geoengineering_amp_1",
       "retweeted_from": "geoengineering_hub",
-      "timestamp": "2018-01-01T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#geoengineering",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "srm_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-01T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "srm_amp",
-      "timestamp": "2018-01-01T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "srm_peri_1",
       "retweeted_from": "srm_amp",
-      "timestamp": "2018-01-01T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#srm",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sag_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-01T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "sag_amp",
-      "timestamp": "2018-01-01T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nexrad_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-02T00:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "nexrad_amp",
-      "timestamp": "2018-01-02T01:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nwo_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-02T02:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "nwo_amp",
-      "timestamp": "2018-01-02T03:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nwo_peri_1",
       "retweeted_from": "nwo_amp",
-      "timestamp": "2018-01-02T04:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#nwo",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "illuminati_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-02T05:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "illuminati_amp",
-      "timestamp": "2018-01-02T06:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "gmo_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-02T07:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "gmo_amp",
-      "timestamp": "2018-01-02T08:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "haarp_hub",
       "retweeted_from": "geoengineering_hub",
-      "timestamp": "2018-01-02T09:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "geoengineering_hub",
       "retweeted_from": "haarp_hub",
-      "timestamp": "2018-01-02T10:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "srm_amp",
       "retweeted_from": "geoengineering_hub",
-      "timestamp": "2018-01-02T11:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "geoengineering_hub",
       "retweeted_from": "srm_amp",
-      "timestamp": "2018-01-02T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weathermodification_amp",
       "retweeted_from": "haarp_hub",
-      "timestamp": "2018-01-02T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2009_2012_neighbours",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "haarp_hub",
       "retweeted_from": "weathermodification_amp",
-      "timestamp": "2018-01-02T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2009_2012_neighbours",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weathermodification_peri_1",
       "retweeted_from": "weathermodification_amp",
-      "timestamp": "2018-01-02T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#weathermodification",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nexrad_amp",
       "retweeted_from": "haarp_hub",
-      "timestamp": "2018-01-02T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "haarp_hub",
       "retweeted_from": "nexrad_amp",
-      "timestamp": "2018-01-02T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weatherwarfare_amp",
       "retweeted_from": "haarp_hub",
-      "timestamp": "2018-01-02T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "haarp_hub",
       "retweeted_from": "weatherwarfare_amp",
-      "timestamp": "2018-01-02T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "illuminati_amp",
       "retweeted_from": "nwo_amp",
-      "timestamp": "2018-01-02T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nwo_amp",
       "retweeted_from": "illuminati_amp",
-      "timestamp": "2018-01-02T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "deepstate_amp",
       "retweeted_from": "nwo_amp",
-      "timestamp": "2018-01-02T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig6_usa_trump_deepstate",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nwo_amp",
       "retweeted_from": "deepstate_amp",
-      "timestamp": "2018-01-02T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig6_usa_trump_deepstate",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "deepstate_amp",
       "retweeted_from": "maga_amp",
-      "timestamp": "2018-01-03T00:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig6_usa_trump_deepstate",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "maga_amp",
       "retweeted_from": "deepstate_amp",
-      "timestamp": "2018-01-03T01:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig6_usa_trump_deepstate",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "greatawakening_amp",
       "retweeted_from": "maga_amp",
-      "timestamp": "2018-01-03T02:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0215_usa",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "maga_amp",
       "retweeted_from": "greatawakening_amp",
-      "timestamp": "2018-01-03T03:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0215_usa",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "depopulation_amp",
-      "timestamp": "2018-01-03T04:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "depopulation_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-03T05:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "stopspraying_amp",
-      "timestamp": "2018-01-03T06:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stopspraying_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-03T07:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stopspraying_peri_1",
       "retweeted_from": "stopspraying_amp",
-      "timestamp": "2018-01-03T08:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#stopspraying",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "gmo_amp",
       "retweeted_from": "monsanto_amp",
-      "timestamp": "2018-01-03T09:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "monsanto_amp",
       "retweeted_from": "gmo_amp",
-      "timestamp": "2018-01-03T10:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climatejustice_hub",
       "retweeted_from": "climateaction_hub",
-      "timestamp": "2018-01-03T11:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0160_nonconspiracy",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "climatejustice_hub",
-      "timestamp": "2018-01-03T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0160_nonconspiracy",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_amp_1",
       "retweeted_from": "climateaction_hub",
-      "timestamp": "2018-01-03T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#climateaction",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climatejustice_amp_1",
       "retweeted_from": "climatejustice_hub",
-      "timestamp": "2018-01-03T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#climatejustice",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sweden_hub",
       "retweeted_from": "climateaction_hub",
-      "timestamp": "2018-01-03T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0175_sweden_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "sweden_hub",
-      "timestamp": "2018-01-03T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0175_sweden_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sweden_peri_1",
       "retweeted_from": "sweden_hub",
-      "timestamp": "2018-01-03T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#sweden",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "scopex_hub",
       "retweeted_from": "sweden_hub",
-      "timestamp": "2018-01-03T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0175_sweden_scopex",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sweden_hub",
       "retweeted_from": "scopex_hub",
-      "timestamp": "2018-01-03T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0175_sweden_scopex",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "scopex_peri_1",
       "retweeted_from": "scopex_hub",
-      "timestamp": "2018-01-03T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#scopex",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "wedonotconsent_hub",
       "retweeted_from": "sweden_hub",
-      "timestamp": "2018-01-03T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0175_home_etc",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sweden_hub",
       "retweeted_from": "wedonotconsent_hub",
-      "timestamp": "2018-01-03T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0175_home_etc",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "wedonotconsent_amp_1",
       "retweeted_from": "wedonotconsent_hub",
-      "timestamp": "2018-01-03T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#wedonotconsent",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "wedonotconsent_hub",
       "retweeted_from": "scopex_hub",
-      "timestamp": "2018-01-04T00:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0175_scopex_protests",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "scopex_hub",
       "retweeted_from": "wedonotconsent_hub",
-      "timestamp": "2018-01-04T01:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0175_scopex_protests",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "fridaysforfuture_amp",
       "retweeted_from": "climateaction_hub",
-      "timestamp": "2018-01-04T02:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "climate_action_cluster",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "fridaysforfuture_amp",
-      "timestamp": "2018-01-04T03:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "climate_action_cluster",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "cop26_amp",
       "retweeted_from": "climateaction_hub",
-      "timestamp": "2018-01-04T04:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "governance_events",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "cop26_amp",
-      "timestamp": "2018-01-04T05:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "governance_events",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climate_amp",
       "retweeted_from": "ipcc_amp",
-      "timestamp": "2018-01-04T06:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "governance_events",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ipcc_amp",
       "retweeted_from": "climate_amp",
-      "timestamp": "2018-01-04T07:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "governance_events",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "geoengineering_hub",
       "retweeted_from": "actonclimate_amp",
-      "timestamp": "2018-01-04T08:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1_uk_actonclimate",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "actonclimate_amp",
       "retweeted_from": "geoengineering_hub",
-      "timestamp": "2018-01-04T09:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "table1_uk_actonclimate",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "netzero_amp",
-      "timestamp": "2018-01-04T10:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "governance_events",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "netzero_amp",
       "retweeted_from": "climateaction_hub",
-      "timestamp": "2018-01-04T11:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "governance_events",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stratosphere_amp",
       "retweeted_from": "ozone_hub",
-      "timestamp": "2018-01-04T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ozone_hub",
       "retweeted_from": "stratosphere_amp",
-      "timestamp": "2018-01-04T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ozone_peri_1",
       "retweeted_from": "ozone_hub",
-      "timestamp": "2018-01-04T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#ozone",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sai_amp",
       "retweeted_from": "ozone_hub",
-      "timestamp": "2018-01-04T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ozone_hub",
       "retweeted_from": "sai_amp",
-      "timestamp": "2018-01-04T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ecology_amp",
       "retweeted_from": "biodiversity_hub",
-      "timestamp": "2018-01-04T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "biodiversity_hub",
       "retweeted_from": "ecology_amp",
-      "timestamp": "2018-01-04T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "biodiversity_peri_1",
       "retweeted_from": "biodiversity_hub",
-      "timestamp": "2018-01-04T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#biodiversity",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "foodsecurity_amp",
       "retweeted_from": "biodiversity_hub",
-      "timestamp": "2018-01-04T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "biodiversity_hub",
       "retweeted_from": "foodsecurity_amp",
-      "timestamp": "2018-01-04T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "publichealth_amp",
       "retweeted_from": "airpollution_amp",
-      "timestamp": "2018-01-04T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4_p0160",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "airpollution_amp",
       "retweeted_from": "publichealth_amp",
-      "timestamp": "2018-01-04T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4_p0160",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "airpollution_peri_1",
       "retweeted_from": "airpollution_amp",
-      "timestamp": "2018-01-05T00:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#airpollution",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "publichealth_peri_1",
       "retweeted_from": "publichealth_amp",
-      "timestamp": "2018-01-05T01:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#publichealth",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ozone_hub",
       "retweeted_from": "environment_amp",
-      "timestamp": "2018-01-05T02:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "environment_amp",
       "retweeted_from": "ozone_hub",
-      "timestamp": "2018-01-05T03:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "mitigation_amp",
-      "timestamp": "2018-01-05T04:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "mitigation_amp",
       "retweeted_from": "climateaction_hub",
-      "timestamp": "2018-01-05T05:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig4",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "srm_amp",
       "retweeted_from": "sai_amp",
-      "timestamp": "2018-01-05T06:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "sg_governance_bridge",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sai_amp",
       "retweeted_from": "srm_amp",
-      "timestamp": "2018-01-05T07:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "sg_governance_bridge",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "publichealth_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-05T08:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0210_uk_moderate_influence",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "publichealth_amp",
-      "timestamp": "2018-01-05T09:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0210_uk_moderate_influence",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climatejustice_hub",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-05T10:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0210_uk_moderate_influence",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "climatejustice_hub",
-      "timestamp": "2018-01-05T11:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0210_uk_moderate_influence",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-05T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0210_uk_sg_governance",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "climateaction_hub",
-      "timestamp": "2018-01-05T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0210_uk_sg_governance",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ozone_hub",
       "retweeted_from": "haarp_hub",
-      "timestamp": "2018-01-05T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0210_uk_moderate_influence",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "haarp_hub",
       "retweeted_from": "ozone_hub",
-      "timestamp": "2018-01-05T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "p0210_uk_moderate_influence",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "usa_amp",
-      "timestamp": "2018-01-05T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig5_usa",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "usa_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-05T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig5_usa",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "uk_amp",
-      "timestamp": "2018-01-05T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig5_uk",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "uk_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-05T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig5_uk",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weatherwarfare_amp",
       "retweeted_from": "india_amp",
-      "timestamp": "2018-01-05T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig6d_india",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "india_amp",
       "retweeted_from": "weatherwarfare_amp",
-      "timestamp": "2018-01-05T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig6d_india",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "india_amp",
-      "timestamp": "2018-01-05T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig5_india",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "india_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-05T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig5_india",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "sweden_hub",
-      "timestamp": "2018-01-06T00:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig5c_sweden_us_scopex",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sweden_hub",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-06T01:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig5c_sweden_us_scopex",
-      "_trustHint": 0.32
+      "_trustHint": 0.32,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "climateaction_piggyback_amp",
-      "timestamp": "2018-01-06T02:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021_piggyback",
-      "_trustHint": 0.55
+      "_trustHint": 0.55,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_piggyback_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-06T03:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021_piggyback",
-      "_trustHint": 0.55
+      "_trustHint": 0.55,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_piggyback_peri_1",
       "retweeted_from": "climateaction_piggyback_amp",
-      "timestamp": "2018-01-06T04:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_hashtag_#climateaction_piggyback",
-      "_trustHint": 0.8
+      "_trustHint": 0.8,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "climateaction_piggyback_amp",
-      "timestamp": "2018-01-06T05:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021_piggyback",
-      "_trustHint": 0.55
+      "_trustHint": 0.55,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_piggyback_amp",
       "retweeted_from": "climateaction_hub",
-      "timestamp": "2018-01-06T06:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021_piggyback",
-      "_trustHint": 0.55
+      "_trustHint": 0.55,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stopspraying_amp",
       "retweeted_from": "climateaction_piggyback_amp",
-      "timestamp": "2018-01-06T07:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021_piggyback",
-      "_trustHint": 0.55
+      "_trustHint": 0.55,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_piggyback_amp",
       "retweeted_from": "stopspraying_amp",
-      "timestamp": "2018-01-06T08:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "fig3_2018_2021_piggyback",
-      "_trustHint": 0.55
+      "_trustHint": 0.55,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_amp_2",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-06T09:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_amp_2",
       "retweeted_from": "chemtrails_amp_1",
-      "timestamp": "2018-01-06T10:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_peri_3",
       "retweeted_from": "chemtrails_amp_1",
-      "timestamp": "2018-01-06T11:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_peri_3",
       "retweeted_from": "chemtrails_amp_2",
-      "timestamp": "2018-01-06T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "geoengineering_hub",
       "retweeted_from": "chemtrails_amp_2",
-      "timestamp": "2018-01-06T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "geoengineering_hub",
       "retweeted_from": "chemtrails_peri_3",
-      "timestamp": "2018-01-06T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "geoengineering_amp_1",
       "retweeted_from": "chemtrails_peri_3",
-      "timestamp": "2018-01-06T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "haarp_hub",
       "retweeted_from": "geoengineering_amp_1",
-      "timestamp": "2018-01-06T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "haarp_amp_1",
       "retweeted_from": "geoengineering_amp_1",
-      "timestamp": "2018-01-06T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "srm_amp",
       "retweeted_from": "haarp_hub",
-      "timestamp": "2018-01-06T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "srm_amp",
       "retweeted_from": "haarp_amp_1",
-      "timestamp": "2018-01-06T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "srm_peri_1",
       "retweeted_from": "haarp_amp_1",
-      "timestamp": "2018-01-06T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sag_amp",
       "retweeted_from": "srm_amp",
-      "timestamp": "2018-01-06T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sag_amp",
       "retweeted_from": "srm_peri_1",
-      "timestamp": "2018-01-06T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weathermodification_amp",
       "retweeted_from": "srm_peri_1",
-      "timestamp": "2018-01-06T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weathermodification_amp",
       "retweeted_from": "sag_amp",
-      "timestamp": "2018-01-07T00:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weathermodification_peri_1",
       "retweeted_from": "sag_amp",
-      "timestamp": "2018-01-07T01:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nexrad_amp",
       "retweeted_from": "weathermodification_amp",
-      "timestamp": "2018-01-07T02:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nexrad_amp",
       "retweeted_from": "weathermodification_peri_1",
-      "timestamp": "2018-01-07T03:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weatherwarfare_amp",
       "retweeted_from": "weathermodification_peri_1",
-      "timestamp": "2018-01-07T04:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weatherwarfare_amp",
       "retweeted_from": "nexrad_amp",
-      "timestamp": "2018-01-07T05:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stopspraying_amp",
       "retweeted_from": "nexrad_amp",
-      "timestamp": "2018-01-07T06:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stopspraying_amp",
       "retweeted_from": "weatherwarfare_amp",
-      "timestamp": "2018-01-07T07:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stopspraying_peri_1",
       "retweeted_from": "weatherwarfare_amp",
-      "timestamp": "2018-01-07T08:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nwo_amp",
       "retweeted_from": "stopspraying_amp",
-      "timestamp": "2018-01-07T09:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nwo_amp",
       "retweeted_from": "stopspraying_peri_1",
-      "timestamp": "2018-01-07T10:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nwo_peri_1",
       "retweeted_from": "stopspraying_peri_1",
-      "timestamp": "2018-01-07T11:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "illuminati_amp",
       "retweeted_from": "nwo_peri_1",
-      "timestamp": "2018-01-07T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "gmo_amp",
       "retweeted_from": "nwo_peri_1",
-      "timestamp": "2018-01-07T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "gmo_amp",
       "retweeted_from": "illuminati_amp",
-      "timestamp": "2018-01-07T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "depopulation_amp",
       "retweeted_from": "illuminati_amp",
-      "timestamp": "2018-01-07T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "depopulation_amp",
       "retweeted_from": "gmo_amp",
-      "timestamp": "2018-01-07T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "monsanto_amp",
       "retweeted_from": "depopulation_amp",
-      "timestamp": "2018-01-07T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "deepstate_amp",
       "retweeted_from": "depopulation_amp",
-      "timestamp": "2018-01-07T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "deepstate_amp",
       "retweeted_from": "monsanto_amp",
-      "timestamp": "2018-01-07T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "maga_amp",
       "retweeted_from": "monsanto_amp",
-      "timestamp": "2018-01-07T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "greatawakening_amp",
       "retweeted_from": "deepstate_amp",
-      "timestamp": "2018-01-07T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "maga_amp",
-      "timestamp": "2018-01-07T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_hub",
       "retweeted_from": "greatawakening_amp",
-      "timestamp": "2018-01-07T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_amp_1",
       "retweeted_from": "greatawakening_amp",
-      "timestamp": "2018-01-08T00:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_chemtrails",
-      "_trustHint": 0.82
+      "_trustHint": 0.82,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climatejustice_hub",
       "retweeted_from": "climateaction_amp_1",
-      "timestamp": "2018-01-08T01:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climatejustice_amp_1",
       "retweeted_from": "climateaction_amp_1",
-      "timestamp": "2018-01-08T02:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climate_amp",
       "retweeted_from": "climatejustice_hub",
-      "timestamp": "2018-01-08T03:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climate_amp",
       "retweeted_from": "climatejustice_amp_1",
-      "timestamp": "2018-01-08T04:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "fridaysforfuture_amp",
       "retweeted_from": "climatejustice_amp_1",
-      "timestamp": "2018-01-08T05:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "fridaysforfuture_amp",
       "retweeted_from": "climate_amp",
-      "timestamp": "2018-01-08T06:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "cop26_amp",
       "retweeted_from": "climate_amp",
-      "timestamp": "2018-01-08T07:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "cop26_amp",
       "retweeted_from": "fridaysforfuture_amp",
-      "timestamp": "2018-01-08T08:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ipcc_amp",
       "retweeted_from": "fridaysforfuture_amp",
-      "timestamp": "2018-01-08T09:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ipcc_amp",
       "retweeted_from": "cop26_amp",
-      "timestamp": "2018-01-08T10:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "wedonotconsent_hub",
       "retweeted_from": "cop26_amp",
-      "timestamp": "2018-01-08T11:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "wedonotconsent_hub",
       "retweeted_from": "ipcc_amp",
-      "timestamp": "2018-01-08T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "wedonotconsent_amp_1",
       "retweeted_from": "ipcc_amp",
-      "timestamp": "2018-01-08T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sweden_hub",
       "retweeted_from": "wedonotconsent_amp_1",
-      "timestamp": "2018-01-08T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sweden_peri_1",
       "retweeted_from": "wedonotconsent_amp_1",
-      "timestamp": "2018-01-08T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "scopex_hub",
       "retweeted_from": "sweden_peri_1",
-      "timestamp": "2018-01-08T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "scopex_peri_1",
       "retweeted_from": "sweden_peri_1",
-      "timestamp": "2018-01-08T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "actonclimate_amp",
       "retweeted_from": "scopex_hub",
-      "timestamp": "2018-01-08T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "actonclimate_amp",
       "retweeted_from": "scopex_peri_1",
-      "timestamp": "2018-01-08T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "netzero_amp",
       "retweeted_from": "scopex_peri_1",
-      "timestamp": "2018-01-08T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "netzero_amp",
       "retweeted_from": "actonclimate_amp",
-      "timestamp": "2018-01-08T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "actonclimate_amp",
-      "timestamp": "2018-01-08T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_amp_1",
       "retweeted_from": "netzero_amp",
-      "timestamp": "2018-01-08T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_climate_action",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "biodiversity_hub",
       "retweeted_from": "ozone_hub",
-      "timestamp": "2018-01-09T00:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "biodiversity_hub",
       "retweeted_from": "ozone_peri_1",
-      "timestamp": "2018-01-09T01:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "biodiversity_peri_1",
       "retweeted_from": "ozone_peri_1",
-      "timestamp": "2018-01-09T02:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "airpollution_amp",
       "retweeted_from": "biodiversity_hub",
-      "timestamp": "2018-01-09T03:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "airpollution_amp",
       "retweeted_from": "biodiversity_peri_1",
-      "timestamp": "2018-01-09T04:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "airpollution_peri_1",
       "retweeted_from": "biodiversity_peri_1",
-      "timestamp": "2018-01-09T05:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "foodsecurity_amp",
       "retweeted_from": "airpollution_amp",
-      "timestamp": "2018-01-09T06:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "foodsecurity_amp",
       "retweeted_from": "airpollution_peri_1",
-      "timestamp": "2018-01-09T07:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ecology_amp",
       "retweeted_from": "airpollution_peri_1",
-      "timestamp": "2018-01-09T08:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ecology_amp",
       "retweeted_from": "foodsecurity_amp",
-      "timestamp": "2018-01-09T09:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "environment_amp",
       "retweeted_from": "foodsecurity_amp",
-      "timestamp": "2018-01-09T10:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "environment_amp",
       "retweeted_from": "ecology_amp",
-      "timestamp": "2018-01-09T11:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "publichealth_amp",
       "retweeted_from": "ecology_amp",
-      "timestamp": "2018-01-09T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "publichealth_amp",
       "retweeted_from": "environment_amp",
-      "timestamp": "2018-01-09T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "publichealth_peri_1",
       "retweeted_from": "environment_amp",
-      "timestamp": "2018-01-09T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stratosphere_amp",
       "retweeted_from": "publichealth_amp",
-      "timestamp": "2018-01-09T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stratosphere_amp",
       "retweeted_from": "publichealth_peri_1",
-      "timestamp": "2018-01-09T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sai_amp",
       "retweeted_from": "publichealth_peri_1",
-      "timestamp": "2018-01-09T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sai_amp",
       "retweeted_from": "stratosphere_amp",
-      "timestamp": "2018-01-09T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "mitigation_amp",
       "retweeted_from": "stratosphere_amp",
-      "timestamp": "2018-01-09T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "mitigation_amp",
       "retweeted_from": "sai_amp",
-      "timestamp": "2018-01-09T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ozone_hub",
       "retweeted_from": "mitigation_amp",
-      "timestamp": "2018-01-09T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ozone_peri_1",
       "retweeted_from": "mitigation_amp",
-      "timestamp": "2018-01-09T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_environmental",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "uk_amp",
       "retweeted_from": "usa_amp",
-      "timestamp": "2018-01-09T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_geo",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "india_amp",
       "retweeted_from": "usa_amp",
-      "timestamp": "2018-01-10T00:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_geo",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "india_amp",
       "retweeted_from": "uk_amp",
-      "timestamp": "2018-01-10T01:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_geo",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "usa_amp",
       "retweeted_from": "uk_amp",
-      "timestamp": "2018-01-10T02:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_geo",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "usa_amp",
       "retweeted_from": "india_amp",
-      "timestamp": "2018-01-10T03:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_geo",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "uk_amp",
       "retweeted_from": "india_amp",
-      "timestamp": "2018-01-10T04:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_geo",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_piggyback_amp",
       "retweeted_from": "climateaction_piggyback_peri_1",
-      "timestamp": "2018-01-10T05:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_piggyback",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climate_scientist_hub",
       "retweeted_from": "science_journalist_hub",
-      "timestamp": "2018-01-10T06:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_expert",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "science_journalist_hub",
       "retweeted_from": "climate_scientist_hub",
-      "timestamp": "2018-01-10T07:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "same_cluster_expert",
-      "_trustHint": 0.74
+      "_trustHint": 0.74,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "chemtrails_peri_3",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T08:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "geoengineering_amp_1",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T09:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "haarp_amp_1",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T10:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "srm_peri_1",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T11:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weathermodification_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T12:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weathermodification_peri_1",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T13:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "weatherwarfare_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T14:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "stopspraying_peri_1",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T15:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "nwo_peri_1",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T16:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "monsanto_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T17:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "deepstate_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T18:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "maga_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T19:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "greatawakening_amp",
       "retweeted_from": "chemtrails_hub",
-      "timestamp": "2018-01-10T20:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "chemtrails_hub_outstar",
-      "_trustHint": 0.85
+      "_trustHint": 0.85,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "ozone_hub",
       "retweeted_from": "climate_scientist_hub",
-      "timestamp": "2018-01-10T21:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "expert_ozone",
-      "_trustHint": 0.7
+      "_trustHint": 0.7,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "sai_amp",
       "retweeted_from": "climate_scientist_hub",
-      "timestamp": "2018-01-10T22:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "expert_sai",
-      "_trustHint": 0.7
+      "_trustHint": 0.7,
+      "_timestampSynthetic": true
     },
     {
       "user_id": "climateaction_hub",
       "retweeted_from": "science_journalist_hub",
-      "timestamp": "2018-01-10T23:00:00.000Z",
+      "timestamp": null,
       "edge_type": "hashtag_cooccurrence",
       "evidence": "journalist_action",
-      "_trustHint": 0.65
+      "_trustHint": 0.65,
+      "_timestampSynthetic": true
+    }
+  ],
+  "cooccurrence": [
+    {
+      "source": "chemtrails_hub",
+      "target": "haarp_hub",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "chemtrails_amp_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#chemtrails"
+    },
+    {
+      "source": "haarp_hub",
+      "target": "haarp_amp_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#haarp"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "geoengineering_hub",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "geoengineering_hub",
+      "target": "geoengineering_amp_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#geoengineering"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "srm_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "srm_amp",
+      "target": "srm_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#srm"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "sag_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "nexrad_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "nwo_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "nwo_amp",
+      "target": "nwo_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#nwo"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "illuminati_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "gmo_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "geoengineering_hub",
+      "target": "haarp_hub",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "geoengineering_hub",
+      "target": "srm_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "haarp_hub",
+      "target": "weathermodification_amp",
+      "weight": 1,
+      "evidence": "fig3_2009_2012_neighbours"
+    },
+    {
+      "source": "weathermodification_amp",
+      "target": "weathermodification_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#weathermodification"
+    },
+    {
+      "source": "haarp_hub",
+      "target": "nexrad_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "haarp_hub",
+      "target": "weatherwarfare_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "nwo_amp",
+      "target": "illuminati_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "nwo_amp",
+      "target": "deepstate_amp",
+      "weight": 1,
+      "evidence": "fig6_usa_trump_deepstate"
+    },
+    {
+      "source": "maga_amp",
+      "target": "deepstate_amp",
+      "weight": 1,
+      "evidence": "fig6_usa_trump_deepstate"
+    },
+    {
+      "source": "maga_amp",
+      "target": "greatawakening_amp",
+      "weight": 1,
+      "evidence": "p0215_usa"
+    },
+    {
+      "source": "depopulation_amp",
+      "target": "chemtrails_hub",
+      "weight": 1,
+      "evidence": "fig3_2018_2021"
+    },
+    {
+      "source": "stopspraying_amp",
+      "target": "chemtrails_hub",
+      "weight": 1,
+      "evidence": "fig3_2018_2021"
+    },
+    {
+      "source": "stopspraying_amp",
+      "target": "stopspraying_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#stopspraying"
+    },
+    {
+      "source": "monsanto_amp",
+      "target": "gmo_amp",
+      "weight": 1,
+      "evidence": "table1"
+    },
+    {
+      "source": "climateaction_hub",
+      "target": "climatejustice_hub",
+      "weight": 1,
+      "evidence": "p0160_nonconspiracy"
+    },
+    {
+      "source": "climateaction_hub",
+      "target": "climateaction_amp_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#climateaction"
+    },
+    {
+      "source": "climatejustice_hub",
+      "target": "climatejustice_amp_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#climatejustice"
+    },
+    {
+      "source": "climateaction_hub",
+      "target": "sweden_hub",
+      "weight": 1,
+      "evidence": "p0175_sweden_climate_action"
+    },
+    {
+      "source": "sweden_hub",
+      "target": "sweden_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#sweden"
+    },
+    {
+      "source": "sweden_hub",
+      "target": "scopex_hub",
+      "weight": 1,
+      "evidence": "p0175_sweden_scopex"
+    },
+    {
+      "source": "scopex_hub",
+      "target": "scopex_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#scopex"
+    },
+    {
+      "source": "sweden_hub",
+      "target": "wedonotconsent_hub",
+      "weight": 1,
+      "evidence": "p0175_home_etc"
+    },
+    {
+      "source": "wedonotconsent_hub",
+      "target": "wedonotconsent_amp_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#wedonotconsent"
+    },
+    {
+      "source": "scopex_hub",
+      "target": "wedonotconsent_hub",
+      "weight": 1,
+      "evidence": "p0175_scopex_protests"
+    },
+    {
+      "source": "climateaction_hub",
+      "target": "fridaysforfuture_amp",
+      "weight": 1,
+      "evidence": "climate_action_cluster"
+    },
+    {
+      "source": "climateaction_hub",
+      "target": "cop26_amp",
+      "weight": 1,
+      "evidence": "governance_events"
+    },
+    {
+      "source": "ipcc_amp",
+      "target": "climate_amp",
+      "weight": 1,
+      "evidence": "governance_events"
+    },
+    {
+      "source": "actonclimate_amp",
+      "target": "geoengineering_hub",
+      "weight": 1,
+      "evidence": "table1_uk_actonclimate"
+    },
+    {
+      "source": "netzero_amp",
+      "target": "climateaction_hub",
+      "weight": 1,
+      "evidence": "governance_events"
+    },
+    {
+      "source": "ozone_hub",
+      "target": "stratosphere_amp",
+      "weight": 1,
+      "evidence": "fig4"
+    },
+    {
+      "source": "ozone_hub",
+      "target": "ozone_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#ozone"
+    },
+    {
+      "source": "ozone_hub",
+      "target": "sai_amp",
+      "weight": 1,
+      "evidence": "fig4"
+    },
+    {
+      "source": "biodiversity_hub",
+      "target": "ecology_amp",
+      "weight": 1,
+      "evidence": "fig4"
+    },
+    {
+      "source": "biodiversity_hub",
+      "target": "biodiversity_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#biodiversity"
+    },
+    {
+      "source": "biodiversity_hub",
+      "target": "foodsecurity_amp",
+      "weight": 1,
+      "evidence": "fig4"
+    },
+    {
+      "source": "airpollution_amp",
+      "target": "publichealth_amp",
+      "weight": 1,
+      "evidence": "fig4_p0160"
+    },
+    {
+      "source": "airpollution_amp",
+      "target": "airpollution_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#airpollution"
+    },
+    {
+      "source": "publichealth_amp",
+      "target": "publichealth_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#publichealth"
+    },
+    {
+      "source": "environment_amp",
+      "target": "ozone_hub",
+      "weight": 1,
+      "evidence": "fig4"
+    },
+    {
+      "source": "mitigation_amp",
+      "target": "climateaction_hub",
+      "weight": 1,
+      "evidence": "fig4"
+    },
+    {
+      "source": "sai_amp",
+      "target": "srm_amp",
+      "weight": 1,
+      "evidence": "sg_governance_bridge"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "publichealth_amp",
+      "weight": 1,
+      "evidence": "p0210_uk_moderate_influence"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "climatejustice_hub",
+      "weight": 1,
+      "evidence": "p0210_uk_moderate_influence"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "climateaction_hub",
+      "weight": 1,
+      "evidence": "p0210_uk_sg_governance"
+    },
+    {
+      "source": "haarp_hub",
+      "target": "ozone_hub",
+      "weight": 1,
+      "evidence": "p0210_uk_moderate_influence"
+    },
+    {
+      "source": "usa_amp",
+      "target": "chemtrails_hub",
+      "weight": 1,
+      "evidence": "fig5_usa"
+    },
+    {
+      "source": "uk_amp",
+      "target": "chemtrails_hub",
+      "weight": 1,
+      "evidence": "fig5_uk"
+    },
+    {
+      "source": "india_amp",
+      "target": "weatherwarfare_amp",
+      "weight": 1,
+      "evidence": "fig6d_india"
+    },
+    {
+      "source": "india_amp",
+      "target": "chemtrails_hub",
+      "weight": 1,
+      "evidence": "fig5_india"
+    },
+    {
+      "source": "sweden_hub",
+      "target": "chemtrails_hub",
+      "weight": 1,
+      "evidence": "fig5c_sweden_us_scopex"
+    },
+    {
+      "source": "climateaction_piggyback_amp",
+      "target": "chemtrails_hub",
+      "weight": 1,
+      "evidence": "fig3_2018_2021_piggyback"
+    },
+    {
+      "source": "climateaction_piggyback_amp",
+      "target": "climateaction_piggyback_peri_1",
+      "weight": 1,
+      "evidence": "same_hashtag_#climateaction_piggyback"
+    },
+    {
+      "source": "climateaction_piggyback_amp",
+      "target": "climateaction_hub",
+      "weight": 1,
+      "evidence": "fig3_2018_2021_piggyback"
+    },
+    {
+      "source": "climateaction_piggyback_amp",
+      "target": "stopspraying_amp",
+      "weight": 1,
+      "evidence": "fig3_2018_2021_piggyback"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "chemtrails_amp_2",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "chemtrails_amp_1",
+      "target": "chemtrails_amp_2",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "chemtrails_amp_1",
+      "target": "chemtrails_peri_3",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "chemtrails_amp_2",
+      "target": "chemtrails_peri_3",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "chemtrails_amp_2",
+      "target": "geoengineering_hub",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "chemtrails_peri_3",
+      "target": "geoengineering_hub",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "chemtrails_peri_3",
+      "target": "geoengineering_amp_1",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "geoengineering_amp_1",
+      "target": "haarp_hub",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "geoengineering_amp_1",
+      "target": "haarp_amp_1",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "haarp_hub",
+      "target": "srm_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "haarp_amp_1",
+      "target": "srm_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "haarp_amp_1",
+      "target": "srm_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "srm_amp",
+      "target": "sag_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "srm_peri_1",
+      "target": "sag_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "srm_peri_1",
+      "target": "weathermodification_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "sag_amp",
+      "target": "weathermodification_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "sag_amp",
+      "target": "weathermodification_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "weathermodification_amp",
+      "target": "nexrad_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "weathermodification_peri_1",
+      "target": "nexrad_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "weathermodification_peri_1",
+      "target": "weatherwarfare_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "nexrad_amp",
+      "target": "weatherwarfare_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "nexrad_amp",
+      "target": "stopspraying_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "weatherwarfare_amp",
+      "target": "stopspraying_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "weatherwarfare_amp",
+      "target": "stopspraying_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "stopspraying_amp",
+      "target": "nwo_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "stopspraying_peri_1",
+      "target": "nwo_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "stopspraying_peri_1",
+      "target": "nwo_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "nwo_peri_1",
+      "target": "illuminati_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "nwo_peri_1",
+      "target": "gmo_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "illuminati_amp",
+      "target": "gmo_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "illuminati_amp",
+      "target": "depopulation_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "gmo_amp",
+      "target": "depopulation_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "depopulation_amp",
+      "target": "monsanto_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "depopulation_amp",
+      "target": "deepstate_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "monsanto_amp",
+      "target": "deepstate_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "monsanto_amp",
+      "target": "maga_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "deepstate_amp",
+      "target": "greatawakening_amp",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "maga_amp",
+      "target": "chemtrails_hub",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "greatawakening_amp",
+      "target": "chemtrails_hub",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "greatawakening_amp",
+      "target": "chemtrails_amp_1",
+      "weight": 1,
+      "evidence": "same_cluster_chemtrails"
+    },
+    {
+      "source": "climateaction_amp_1",
+      "target": "climatejustice_hub",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "climateaction_amp_1",
+      "target": "climatejustice_amp_1",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "climatejustice_hub",
+      "target": "climate_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "climatejustice_amp_1",
+      "target": "climate_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "climatejustice_amp_1",
+      "target": "fridaysforfuture_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "climate_amp",
+      "target": "fridaysforfuture_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "climate_amp",
+      "target": "cop26_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "fridaysforfuture_amp",
+      "target": "cop26_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "fridaysforfuture_amp",
+      "target": "ipcc_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "cop26_amp",
+      "target": "ipcc_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "cop26_amp",
+      "target": "wedonotconsent_hub",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "ipcc_amp",
+      "target": "wedonotconsent_hub",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "ipcc_amp",
+      "target": "wedonotconsent_amp_1",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "wedonotconsent_amp_1",
+      "target": "sweden_hub",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "wedonotconsent_amp_1",
+      "target": "sweden_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "sweden_peri_1",
+      "target": "scopex_hub",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "sweden_peri_1",
+      "target": "scopex_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "scopex_hub",
+      "target": "actonclimate_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "scopex_peri_1",
+      "target": "actonclimate_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "scopex_peri_1",
+      "target": "netzero_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "actonclimate_amp",
+      "target": "netzero_amp",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "actonclimate_amp",
+      "target": "climateaction_hub",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "netzero_amp",
+      "target": "climateaction_amp_1",
+      "weight": 1,
+      "evidence": "same_cluster_climate_action"
+    },
+    {
+      "source": "ozone_hub",
+      "target": "biodiversity_hub",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "ozone_peri_1",
+      "target": "biodiversity_hub",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "ozone_peri_1",
+      "target": "biodiversity_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "biodiversity_hub",
+      "target": "airpollution_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "biodiversity_peri_1",
+      "target": "airpollution_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "biodiversity_peri_1",
+      "target": "airpollution_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "airpollution_amp",
+      "target": "foodsecurity_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "airpollution_peri_1",
+      "target": "foodsecurity_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "airpollution_peri_1",
+      "target": "ecology_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "foodsecurity_amp",
+      "target": "ecology_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "foodsecurity_amp",
+      "target": "environment_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "ecology_amp",
+      "target": "environment_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "ecology_amp",
+      "target": "publichealth_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "environment_amp",
+      "target": "publichealth_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "environment_amp",
+      "target": "publichealth_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "publichealth_amp",
+      "target": "stratosphere_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "publichealth_peri_1",
+      "target": "stratosphere_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "publichealth_peri_1",
+      "target": "sai_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "stratosphere_amp",
+      "target": "sai_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "stratosphere_amp",
+      "target": "mitigation_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "sai_amp",
+      "target": "mitigation_amp",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "mitigation_amp",
+      "target": "ozone_hub",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "mitigation_amp",
+      "target": "ozone_peri_1",
+      "weight": 1,
+      "evidence": "same_cluster_environmental"
+    },
+    {
+      "source": "usa_amp",
+      "target": "uk_amp",
+      "weight": 1,
+      "evidence": "same_cluster_geo"
+    },
+    {
+      "source": "usa_amp",
+      "target": "india_amp",
+      "weight": 1,
+      "evidence": "same_cluster_geo"
+    },
+    {
+      "source": "uk_amp",
+      "target": "india_amp",
+      "weight": 1,
+      "evidence": "same_cluster_geo"
+    },
+    {
+      "source": "science_journalist_hub",
+      "target": "climate_scientist_hub",
+      "weight": 1,
+      "evidence": "same_cluster_expert"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "chemtrails_peri_3",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "geoengineering_amp_1",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "haarp_amp_1",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "srm_peri_1",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "weathermodification_amp",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "weathermodification_peri_1",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "weatherwarfare_amp",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "stopspraying_peri_1",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "nwo_peri_1",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "monsanto_amp",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "chemtrails_hub",
+      "target": "deepstate_amp",
+      "weight": 1,
+      "evidence": "chemtrails_hub_outstar"
+    },
+    {
+      "source": "climate_scientist_hub",
+      "target": "ozone_hub",
+      "weight": 1,
+      "evidence": "expert_ozone"
+    },
+    {
+      "source": "climate_scientist_hub",
+      "target": "sai_amp",
+      "weight": 1,
+      "evidence": "expert_sai"
+    },
+    {
+      "source": "science_journalist_hub",
+      "target": "climateaction_hub",
+      "weight": 1,
+      "evidence": "journalist_action"
     }
   ],
   "user_profiles": {
@@ -1840,6 +3411,8 @@
       "description": "High-follower #chemtrails amplifier in Debnath chemtrails conspiracy cluster. Keywords: chemtrails spraying HAARP geoengineering weather modification NWO conspiracy. Looking up. Stop spraying.",
       "hashtag": "#chemtrails",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "conspiracy_believer"
@@ -1850,6 +3423,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #chemtrails.",
       "hashtag": "#chemtrails",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "high",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -1860,6 +3435,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #chemtrails.",
       "hashtag": "#chemtrails",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "high",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -1870,6 +3447,8 @@
       "description": "Ordinary skywatcher. Keywords: chemtrails geoengineering climate. First-person sky reports, not a hub.",
       "hashtag": "#chemtrails",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "high",
       "role": "peri",
       "intended_debnath_bp": "conspiracy_peripheral_skywatcher"
@@ -1880,6 +3459,8 @@
       "description": "High-follower #geoengineering amplifier in Debnath chemtrails conspiracy cluster. Keywords: chemtrails spraying HAARP geoengineering weather modification NWO conspiracy. Looking up. Stop spraying.",
       "hashtag": "#geoengineering",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "conspiracy_believer"
@@ -1890,6 +3471,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #geoengineering.",
       "hashtag": "#geoengineering",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "high",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -1900,6 +3483,8 @@
       "description": "High-follower #haarp amplifier in Debnath chemtrails conspiracy cluster. Keywords: chemtrails spraying HAARP geoengineering weather modification NWO conspiracy. Looking up. Stop spraying.",
       "hashtag": "#haarp",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "conspiracy_haarp_weather"
@@ -1910,6 +3495,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #haarp.",
       "hashtag": "#haarp",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "high",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_haarp_weather"
@@ -1920,6 +3507,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #srm.",
       "hashtag": "#srm",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -1930,6 +3519,8 @@
       "description": "Ordinary skywatcher. Keywords: chemtrails geoengineering climate. First-person sky reports, not a hub.",
       "hashtag": "#srm",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "peri",
       "intended_debnath_bp": "conspiracy_peripheral_skywatcher"
@@ -1940,6 +3531,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #sag.",
       "hashtag": "#sag",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -1950,6 +3543,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #weathermodification.",
       "hashtag": "#weathermodification",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_haarp_weather"
@@ -1960,6 +3555,8 @@
       "description": "Ordinary skywatcher. Keywords: chemtrails geoengineering climate. First-person sky reports, not a hub.",
       "hashtag": "#weathermodification",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "peri",
       "intended_debnath_bp": "conspiracy_haarp_weather"
@@ -1970,6 +3567,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #nexrad.",
       "hashtag": "#nexrad",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_haarp_weather"
@@ -1980,6 +3579,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #weatherwarfare.",
       "hashtag": "#weatherwarfare",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_haarp_weather"
@@ -1990,6 +3591,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #stopspraying.",
       "hashtag": "#stopspraying",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -2000,6 +3603,8 @@
       "description": "Ordinary skywatcher. Keywords: chemtrails geoengineering climate. First-person sky reports, not a hub.",
       "hashtag": "#stopspraying",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "peri",
       "intended_debnath_bp": "conspiracy_peripheral_skywatcher"
@@ -2010,6 +3615,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #nwo.",
       "hashtag": "#nwo",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -2020,6 +3627,8 @@
       "description": "Ordinary skywatcher. Keywords: chemtrails geoengineering climate. First-person sky reports, not a hub.",
       "hashtag": "#nwo",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "peri",
       "intended_debnath_bp": "conspiracy_peripheral_skywatcher"
@@ -2030,6 +3639,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #illuminati.",
       "hashtag": "#illuminati",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "low",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -2040,6 +3651,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #gmo.",
       "hashtag": "#gmo",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "low",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -2050,6 +3663,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #depopulation.",
       "hashtag": "#depopulation",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_depopulation"
@@ -2060,6 +3675,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #monsanto.",
       "hashtag": "#monsanto",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "low",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -2070,6 +3687,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #deepstate.",
       "hashtag": "#deepstate",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -2080,6 +3699,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #maga.",
       "hashtag": "#maga",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -2090,6 +3711,8 @@
       "description": "Chemtrails / geoengineering conspiracy account. Keywords: chemtrails spraying geoengineering HAARP #greatawakening.",
       "hashtag": "#greatawakening",
       "cluster": "chemtrails",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "low",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_believer"
@@ -2100,6 +3723,8 @@
       "description": "Climate action / justice advocate. Keywords: climate action climate justice mitigation equity progressive environment. Not a chemtrails believer. #climateaction",
       "hashtag": "#climateaction",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2110,6 +3735,8 @@
       "description": "Climate policy communicator. Keywords: climate justice climate action mitigation #climateaction.",
       "hashtag": "#climateaction",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2120,6 +3747,8 @@
       "description": "Climate action / justice advocate. Keywords: climate action climate justice mitigation equity progressive environment. Not a chemtrails believer. #climatejustice",
       "hashtag": "#climatejustice",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2130,6 +3759,8 @@
       "description": "Climate policy communicator. Keywords: climate justice climate action mitigation #climatejustice.",
       "hashtag": "#climatejustice",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2140,6 +3771,8 @@
       "description": "Climate policy communicator. Keywords: climate justice climate action mitigation #climate.",
       "hashtag": "#climate",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2150,6 +3783,8 @@
       "description": "Climate policy communicator. Keywords: climate justice climate action mitigation #fridaysforfuture.",
       "hashtag": "#fridaysforfuture",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2160,6 +3795,8 @@
       "description": "Climate policy communicator. Keywords: climate justice climate action mitigation #cop26.",
       "hashtag": "#cop26",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2170,6 +3807,8 @@
       "description": "Climate policy communicator. Keywords: climate justice climate action mitigation #ipcc.",
       "hashtag": "#ipcc",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "climate_scientist"
@@ -2180,6 +3819,8 @@
       "description": "Climate action / justice advocate. Keywords: climate action climate justice mitigation equity progressive environment. Not a chemtrails believer. #wedonotconsent",
       "hashtag": "#wedonotconsent",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2190,6 +3831,8 @@
       "description": "Climate policy communicator. Keywords: climate justice climate action mitigation #wedonotconsent.",
       "hashtag": "#wedonotconsent",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2200,6 +3843,8 @@
       "description": "Climate action / justice advocate. Keywords: climate action climate justice mitigation equity progressive environment. Not a chemtrails believer. #sweden",
       "hashtag": "#sweden",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2210,6 +3855,8 @@
       "description": "Local climate volunteer. Keywords: climate environment justice #sweden.",
       "hashtag": "#sweden",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "peri",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2220,6 +3867,8 @@
       "description": "Climate action / justice advocate. Keywords: climate action climate justice mitigation equity progressive environment. Not a chemtrails believer. #scopex",
       "hashtag": "#scopex",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2230,6 +3879,8 @@
       "description": "Local climate volunteer. Keywords: climate environment justice #scopex.",
       "hashtag": "#scopex",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "high",
       "role": "peri",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2240,6 +3891,8 @@
       "description": "Climate policy communicator. Keywords: climate justice climate action mitigation #actonclimate.",
       "hashtag": "#actonclimate",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2250,6 +3903,8 @@
       "description": "Climate policy communicator. Keywords: climate justice climate action mitigation #netzero.",
       "hashtag": "#netzero",
       "cluster": "climate_action",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "low",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2260,6 +3915,8 @@
       "description": "Environmental science / ecology concern. Keywords: climate environment ozone biodiversity ecology science research #ozone.",
       "hashtag": "#ozone",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "ozone_stratosphere_specialist"
@@ -2270,6 +3927,8 @@
       "description": "Concerned reader. Keywords: environment biodiversity food security #ozone.",
       "hashtag": "#ozone",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "high",
       "role": "peri",
       "intended_debnath_bp": "ozone_stratosphere_specialist"
@@ -2280,6 +3939,8 @@
       "description": "Environmental science / ecology concern. Keywords: climate environment ozone biodiversity ecology science research #biodiversity.",
       "hashtag": "#biodiversity",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "high",
       "role": "hub",
       "intended_debnath_bp": "biodiversity_food_security"
@@ -2290,6 +3951,8 @@
       "description": "Concerned reader. Keywords: environment biodiversity food security #biodiversity.",
       "hashtag": "#biodiversity",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "high",
       "role": "peri",
       "intended_debnath_bp": "biodiversity_food_security"
@@ -2300,6 +3963,8 @@
       "description": "Air quality and ecosystems. Keywords: environment ozone air pollution public health science #airpollution.",
       "hashtag": "#airpollution",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "environmental_concern"
@@ -2310,6 +3975,8 @@
       "description": "Concerned reader. Keywords: environment biodiversity food security #airpollution.",
       "hashtag": "#airpollution",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "mid",
       "role": "peri",
       "intended_debnath_bp": "environmental_concern"
@@ -2320,6 +3987,8 @@
       "description": "Air quality and ecosystems. Keywords: environment ozone air pollution public health science #foodsecurity.",
       "hashtag": "#foodsecurity",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "biodiversity_food_security"
@@ -2330,6 +3999,8 @@
       "description": "Air quality and ecosystems. Keywords: environment ozone air pollution public health science #ecology.",
       "hashtag": "#ecology",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "environmental_concern"
@@ -2340,6 +4011,8 @@
       "description": "Air quality and ecosystems. Keywords: environment ozone air pollution public health science #environment.",
       "hashtag": "#environment",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "environmental_concern"
@@ -2350,6 +4023,8 @@
       "description": "Air quality and ecosystems. Keywords: environment ozone air pollution public health science #publichealth.",
       "hashtag": "#publichealth",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "environmental_concern"
@@ -2360,6 +4035,8 @@
       "description": "Concerned reader. Keywords: environment biodiversity food security #publichealth.",
       "hashtag": "#publichealth",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "mid",
       "role": "peri",
       "intended_debnath_bp": "environmental_concern"
@@ -2370,6 +4047,8 @@
       "description": "Air quality and ecosystems. Keywords: environment ozone air pollution public health science #stratosphere.",
       "hashtag": "#stratosphere",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "ozone_stratosphere_specialist"
@@ -2380,6 +4059,8 @@
       "description": "Air quality and ecosystems. Keywords: environment ozone air pollution public health science #sai.",
       "hashtag": "#sai",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "ozone_stratosphere_specialist"
@@ -2390,6 +4071,8 @@
       "description": "Air quality and ecosystems. Keywords: environment ozone air pollution public health science #mitigation.",
       "hashtag": "#mitigation",
       "cluster": "environmental",
+      "identity": "environmental_concern",
+      "toxicityPrior": 0.08,
       "centrality": "low",
       "role": "amp",
       "intended_debnath_bp": "mitigation_first_policy"
@@ -2400,6 +4083,8 @@
       "description": "Country-tag account #usa. Keywords: climate environment #usa.",
       "hashtag": "#usa",
       "cluster": "geo",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2410,6 +4095,8 @@
       "description": "Country-tag account #uk. Keywords: climate environment #uk.",
       "hashtag": "#uk",
       "cluster": "geo",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2420,6 +4107,8 @@
       "description": "Country-tag account #india. Keywords: climate environment #india.",
       "hashtag": "#india",
       "cluster": "geo",
+      "identity": "climate_action",
+      "toxicityPrior": 0.05,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "climate_action_advocate"
@@ -2430,6 +4119,8 @@
       "description": "Stop-spraying plus climate hashtags. Keywords: climateaction chemtrails geoengineering.",
       "hashtag": "#climateaction",
       "cluster": "piggyback",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "amp",
       "intended_debnath_bp": "conspiracy_climate_piggyback"
@@ -2440,6 +4131,8 @@
       "description": "Piggyback periphery. Keywords: climateaction chemtrails.",
       "hashtag": "#climateaction",
       "cluster": "piggyback",
+      "identity": "conspiracy",
+      "toxicityPrior": 0.17,
       "centrality": "mid",
       "role": "peri",
       "intended_debnath_bp": "conspiracy_climate_piggyback"
@@ -2450,6 +4143,8 @@
       "description": "Science journalist covering climate and geoengineering. Keywords: journalist reporter science research climate news editor.",
       "hashtag": "#climatenews",
       "cluster": "expert",
+      "identity": "other",
+      "toxicityPrior": 0.04,
       "centrality": "mid",
       "role": "hub",
       "intended_debnath_bp": "science_journalist"
@@ -2460,10 +4155,2068 @@
       "description": "Climate science research PhD / academic. Keywords: science research phd professor academic climate environment geoengineering SAI.",
       "hashtag": "#climatescience",
       "cluster": "expert",
+      "identity": "other",
+      "toxicityPrior": 0.04,
       "centrality": "mid",
       "role": "hub",
       "intended_debnath_bp": "climate_scientist"
     }
+  },
+  "graph_topology": {
+    "nodes": [
+      {
+        "nodeId": "chemtrails_hub",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#chemtrails",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "chemtrails_amp_1",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#chemtrails",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "chemtrails_amp_2",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#chemtrails",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "chemtrails_peri_3",
+        "personaId": "conspiracy_peripheral_skywatcher",
+        "identity": "conspiracy",
+        "hashtag": "#chemtrails",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "geoengineering_hub",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#geoengineering",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "geoengineering_amp_1",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#geoengineering",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "haarp_hub",
+        "personaId": "conspiracy_haarp_weather",
+        "identity": "conspiracy",
+        "hashtag": "#haarp",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "haarp_amp_1",
+        "personaId": "conspiracy_haarp_weather",
+        "identity": "conspiracy",
+        "hashtag": "#haarp",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "srm_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#srm",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "srm_peri_1",
+        "personaId": "conspiracy_peripheral_skywatcher",
+        "identity": "conspiracy",
+        "hashtag": "#srm",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "sag_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#sag",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "weathermodification_amp",
+        "personaId": "conspiracy_haarp_weather",
+        "identity": "conspiracy",
+        "hashtag": "#weathermodification",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "weathermodification_peri_1",
+        "personaId": "conspiracy_haarp_weather",
+        "identity": "conspiracy",
+        "hashtag": "#weathermodification",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "nexrad_amp",
+        "personaId": "conspiracy_haarp_weather",
+        "identity": "conspiracy",
+        "hashtag": "#nexrad",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "weatherwarfare_amp",
+        "personaId": "conspiracy_haarp_weather",
+        "identity": "conspiracy",
+        "hashtag": "#weatherwarfare",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "stopspraying_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#stopspraying",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "stopspraying_peri_1",
+        "personaId": "conspiracy_peripheral_skywatcher",
+        "identity": "conspiracy",
+        "hashtag": "#stopspraying",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "nwo_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#nwo",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "nwo_peri_1",
+        "personaId": "conspiracy_peripheral_skywatcher",
+        "identity": "conspiracy",
+        "hashtag": "#nwo",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "illuminati_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#illuminati",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "gmo_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#gmo",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "depopulation_amp",
+        "personaId": "conspiracy_depopulation",
+        "identity": "conspiracy",
+        "hashtag": "#depopulation",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "monsanto_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#monsanto",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "deepstate_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#deepstate",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "maga_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#maga",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "greatawakening_amp",
+        "personaId": "conspiracy_believer",
+        "identity": "conspiracy",
+        "hashtag": "#greatawakening",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "climateaction_hub",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#climateaction",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "climateaction_amp_1",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#climateaction",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "climatejustice_hub",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#climatejustice",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "climatejustice_amp_1",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#climatejustice",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "climate_amp",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#climate",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "fridaysforfuture_amp",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#fridaysforfuture",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "cop26_amp",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#cop26",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "ipcc_amp",
+        "personaId": "climate_scientist",
+        "identity": "climate_action",
+        "hashtag": "#ipcc",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "wedonotconsent_hub",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#wedonotconsent",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "wedonotconsent_amp_1",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#wedonotconsent",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "sweden_hub",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#sweden",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "sweden_peri_1",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#sweden",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "scopex_hub",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#scopex",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "scopex_peri_1",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#scopex",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "actonclimate_amp",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#actonclimate",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "netzero_amp",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#netzero",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "ozone_hub",
+        "personaId": "ozone_stratosphere_specialist",
+        "identity": "environmental_concern",
+        "hashtag": "#ozone",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "ozone_peri_1",
+        "personaId": "ozone_stratosphere_specialist",
+        "identity": "environmental_concern",
+        "hashtag": "#ozone",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "biodiversity_hub",
+        "personaId": "biodiversity_food_security",
+        "identity": "environmental_concern",
+        "hashtag": "#biodiversity",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "biodiversity_peri_1",
+        "personaId": "biodiversity_food_security",
+        "identity": "environmental_concern",
+        "hashtag": "#biodiversity",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "airpollution_amp",
+        "personaId": "environmental_concern",
+        "identity": "environmental_concern",
+        "hashtag": "#airpollution",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "airpollution_peri_1",
+        "personaId": "environmental_concern",
+        "identity": "environmental_concern",
+        "hashtag": "#airpollution",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "foodsecurity_amp",
+        "personaId": "biodiversity_food_security",
+        "identity": "environmental_concern",
+        "hashtag": "#foodsecurity",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "ecology_amp",
+        "personaId": "environmental_concern",
+        "identity": "environmental_concern",
+        "hashtag": "#ecology",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "environment_amp",
+        "personaId": "environmental_concern",
+        "identity": "environmental_concern",
+        "hashtag": "#environment",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "publichealth_amp",
+        "personaId": "environmental_concern",
+        "identity": "environmental_concern",
+        "hashtag": "#publichealth",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "publichealth_peri_1",
+        "personaId": "environmental_concern",
+        "identity": "environmental_concern",
+        "hashtag": "#publichealth",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "stratosphere_amp",
+        "personaId": "ozone_stratosphere_specialist",
+        "identity": "environmental_concern",
+        "hashtag": "#stratosphere",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "sai_amp",
+        "personaId": "ozone_stratosphere_specialist",
+        "identity": "environmental_concern",
+        "hashtag": "#sai",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "mitigation_amp",
+        "personaId": "mitigation_first_policy",
+        "identity": "environmental_concern",
+        "hashtag": "#mitigation",
+        "toxicityPrior": 0.08
+      },
+      {
+        "nodeId": "usa_amp",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#usa",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "uk_amp",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#uk",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "india_amp",
+        "personaId": "climate_action_advocate",
+        "identity": "climate_action",
+        "hashtag": "#india",
+        "toxicityPrior": 0.05
+      },
+      {
+        "nodeId": "climateaction_piggyback_amp",
+        "personaId": "conspiracy_climate_piggyback",
+        "identity": "conspiracy",
+        "hashtag": "#climateaction",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "climateaction_piggyback_peri_1",
+        "personaId": "conspiracy_climate_piggyback",
+        "identity": "conspiracy",
+        "hashtag": "#climateaction",
+        "toxicityPrior": 0.17
+      },
+      {
+        "nodeId": "science_journalist_hub",
+        "personaId": "science_journalist",
+        "identity": "other",
+        "hashtag": "#climatenews",
+        "toxicityPrior": 0.04
+      },
+      {
+        "nodeId": "climate_scientist_hub",
+        "personaId": "climate_scientist",
+        "identity": "other",
+        "hashtag": "#climatescience",
+        "toxicityPrior": 0.04
+      }
+    ],
+    "edges": [
+      {
+        "from": "chemtrails_hub",
+        "to": "haarp_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_hub",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "chemtrails_amp_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_hub",
+        "to": "haarp_amp_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "geoengineering_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "geoengineering_hub",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "geoengineering_hub",
+        "to": "geoengineering_amp_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "srm_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "srm_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "srm_amp",
+        "to": "srm_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "sag_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sag_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "nexrad_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nexrad_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "nwo_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nwo_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nwo_amp",
+        "to": "nwo_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "illuminati_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "illuminati_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "gmo_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "gmo_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "geoengineering_hub",
+        "to": "haarp_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_hub",
+        "to": "geoengineering_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "geoengineering_hub",
+        "to": "srm_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "srm_amp",
+        "to": "geoengineering_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_hub",
+        "to": "weathermodification_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "weathermodification_amp",
+        "to": "haarp_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "weathermodification_amp",
+        "to": "weathermodification_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_hub",
+        "to": "nexrad_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nexrad_amp",
+        "to": "haarp_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_hub",
+        "to": "weatherwarfare_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "weatherwarfare_amp",
+        "to": "haarp_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nwo_amp",
+        "to": "illuminati_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "illuminati_amp",
+        "to": "nwo_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nwo_amp",
+        "to": "deepstate_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "deepstate_amp",
+        "to": "nwo_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "maga_amp",
+        "to": "deepstate_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "deepstate_amp",
+        "to": "maga_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "maga_amp",
+        "to": "greatawakening_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "greatawakening_amp",
+        "to": "maga_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "depopulation_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "depopulation_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "stopspraying_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "stopspraying_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "stopspraying_amp",
+        "to": "stopspraying_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "monsanto_amp",
+        "to": "gmo_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "gmo_amp",
+        "to": "monsanto_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_hub",
+        "to": "climatejustice_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climatejustice_hub",
+        "to": "climateaction_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_hub",
+        "to": "climateaction_amp_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climatejustice_hub",
+        "to": "climatejustice_amp_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_hub",
+        "to": "sweden_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sweden_hub",
+        "to": "climateaction_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sweden_hub",
+        "to": "sweden_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sweden_hub",
+        "to": "scopex_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "scopex_hub",
+        "to": "sweden_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "scopex_hub",
+        "to": "scopex_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sweden_hub",
+        "to": "wedonotconsent_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "wedonotconsent_hub",
+        "to": "sweden_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "wedonotconsent_hub",
+        "to": "wedonotconsent_amp_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "scopex_hub",
+        "to": "wedonotconsent_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "wedonotconsent_hub",
+        "to": "scopex_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_hub",
+        "to": "fridaysforfuture_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "fridaysforfuture_amp",
+        "to": "climateaction_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_hub",
+        "to": "cop26_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "cop26_amp",
+        "to": "climateaction_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ipcc_amp",
+        "to": "climate_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climate_amp",
+        "to": "ipcc_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "actonclimate_amp",
+        "to": "geoengineering_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "geoengineering_hub",
+        "to": "actonclimate_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "netzero_amp",
+        "to": "climateaction_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_hub",
+        "to": "netzero_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ozone_hub",
+        "to": "stratosphere_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "stratosphere_amp",
+        "to": "ozone_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ozone_hub",
+        "to": "ozone_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ozone_hub",
+        "to": "sai_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sai_amp",
+        "to": "ozone_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "biodiversity_hub",
+        "to": "ecology_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ecology_amp",
+        "to": "biodiversity_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "biodiversity_hub",
+        "to": "biodiversity_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "biodiversity_hub",
+        "to": "foodsecurity_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "foodsecurity_amp",
+        "to": "biodiversity_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "airpollution_amp",
+        "to": "publichealth_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "publichealth_amp",
+        "to": "airpollution_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "airpollution_amp",
+        "to": "airpollution_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "publichealth_amp",
+        "to": "publichealth_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "environment_amp",
+        "to": "ozone_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ozone_hub",
+        "to": "environment_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "mitigation_amp",
+        "to": "climateaction_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_hub",
+        "to": "mitigation_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sai_amp",
+        "to": "srm_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "srm_amp",
+        "to": "sai_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "publichealth_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "publichealth_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "climatejustice_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climatejustice_hub",
+        "to": "chemtrails_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "climateaction_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_hub",
+        "to": "chemtrails_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_hub",
+        "to": "ozone_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ozone_hub",
+        "to": "haarp_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "usa_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "usa_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "uk_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "uk_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "india_amp",
+        "to": "weatherwarfare_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "weatherwarfare_amp",
+        "to": "india_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "india_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "india_amp",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sweden_hub",
+        "to": "chemtrails_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "sweden_hub",
+        "trust": 0.32,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_piggyback_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.55,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "climateaction_piggyback_amp",
+        "trust": 0.55,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_piggyback_amp",
+        "to": "climateaction_piggyback_peri_1",
+        "trust": 0.8,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_piggyback_amp",
+        "to": "climateaction_hub",
+        "trust": 0.55,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_hub",
+        "to": "climateaction_piggyback_amp",
+        "trust": 0.55,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_piggyback_amp",
+        "to": "stopspraying_amp",
+        "trust": 0.55,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "stopspraying_amp",
+        "to": "climateaction_piggyback_amp",
+        "trust": 0.55,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "chemtrails_amp_2",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_amp_1",
+        "to": "chemtrails_amp_2",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_amp_1",
+        "to": "chemtrails_peri_3",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_amp_2",
+        "to": "chemtrails_peri_3",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_amp_2",
+        "to": "geoengineering_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_peri_3",
+        "to": "geoengineering_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_peri_3",
+        "to": "geoengineering_amp_1",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "geoengineering_amp_1",
+        "to": "haarp_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "geoengineering_amp_1",
+        "to": "haarp_amp_1",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_hub",
+        "to": "srm_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_amp_1",
+        "to": "srm_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "haarp_amp_1",
+        "to": "srm_peri_1",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "srm_amp",
+        "to": "sag_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "srm_peri_1",
+        "to": "sag_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "srm_peri_1",
+        "to": "weathermodification_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sag_amp",
+        "to": "weathermodification_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sag_amp",
+        "to": "weathermodification_peri_1",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "weathermodification_amp",
+        "to": "nexrad_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "weathermodification_peri_1",
+        "to": "nexrad_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "weathermodification_peri_1",
+        "to": "weatherwarfare_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nexrad_amp",
+        "to": "weatherwarfare_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nexrad_amp",
+        "to": "stopspraying_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "weatherwarfare_amp",
+        "to": "stopspraying_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "weatherwarfare_amp",
+        "to": "stopspraying_peri_1",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "stopspraying_amp",
+        "to": "nwo_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "stopspraying_peri_1",
+        "to": "nwo_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "stopspraying_peri_1",
+        "to": "nwo_peri_1",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nwo_peri_1",
+        "to": "illuminati_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "nwo_peri_1",
+        "to": "gmo_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "illuminati_amp",
+        "to": "gmo_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "illuminati_amp",
+        "to": "depopulation_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "gmo_amp",
+        "to": "depopulation_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "depopulation_amp",
+        "to": "monsanto_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "depopulation_amp",
+        "to": "deepstate_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "monsanto_amp",
+        "to": "deepstate_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "monsanto_amp",
+        "to": "maga_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "deepstate_amp",
+        "to": "greatawakening_amp",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "maga_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "greatawakening_amp",
+        "to": "chemtrails_hub",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "greatawakening_amp",
+        "to": "chemtrails_amp_1",
+        "trust": 0.82,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_amp_1",
+        "to": "climatejustice_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_amp_1",
+        "to": "climatejustice_amp_1",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climatejustice_hub",
+        "to": "climate_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climatejustice_amp_1",
+        "to": "climate_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climatejustice_amp_1",
+        "to": "fridaysforfuture_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climate_amp",
+        "to": "fridaysforfuture_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climate_amp",
+        "to": "cop26_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "fridaysforfuture_amp",
+        "to": "cop26_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "fridaysforfuture_amp",
+        "to": "ipcc_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "cop26_amp",
+        "to": "ipcc_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "cop26_amp",
+        "to": "wedonotconsent_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ipcc_amp",
+        "to": "wedonotconsent_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ipcc_amp",
+        "to": "wedonotconsent_amp_1",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "wedonotconsent_amp_1",
+        "to": "sweden_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "wedonotconsent_amp_1",
+        "to": "sweden_peri_1",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sweden_peri_1",
+        "to": "scopex_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sweden_peri_1",
+        "to": "scopex_peri_1",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "scopex_hub",
+        "to": "actonclimate_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "scopex_peri_1",
+        "to": "actonclimate_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "scopex_peri_1",
+        "to": "netzero_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "actonclimate_amp",
+        "to": "netzero_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "actonclimate_amp",
+        "to": "climateaction_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "netzero_amp",
+        "to": "climateaction_amp_1",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ozone_hub",
+        "to": "biodiversity_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ozone_peri_1",
+        "to": "biodiversity_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ozone_peri_1",
+        "to": "biodiversity_peri_1",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "biodiversity_hub",
+        "to": "airpollution_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "biodiversity_peri_1",
+        "to": "airpollution_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "biodiversity_peri_1",
+        "to": "airpollution_peri_1",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "airpollution_amp",
+        "to": "foodsecurity_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "airpollution_peri_1",
+        "to": "foodsecurity_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "airpollution_peri_1",
+        "to": "ecology_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "foodsecurity_amp",
+        "to": "ecology_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "foodsecurity_amp",
+        "to": "environment_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ecology_amp",
+        "to": "environment_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "ecology_amp",
+        "to": "publichealth_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "environment_amp",
+        "to": "publichealth_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "environment_amp",
+        "to": "publichealth_peri_1",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "publichealth_amp",
+        "to": "stratosphere_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "publichealth_peri_1",
+        "to": "stratosphere_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "publichealth_peri_1",
+        "to": "sai_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "stratosphere_amp",
+        "to": "sai_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "stratosphere_amp",
+        "to": "mitigation_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "sai_amp",
+        "to": "mitigation_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "mitigation_amp",
+        "to": "ozone_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "mitigation_amp",
+        "to": "ozone_peri_1",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "usa_amp",
+        "to": "uk_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "usa_amp",
+        "to": "india_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "uk_amp",
+        "to": "india_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "uk_amp",
+        "to": "usa_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "india_amp",
+        "to": "usa_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "india_amp",
+        "to": "uk_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climateaction_piggyback_peri_1",
+        "to": "climateaction_piggyback_amp",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "science_journalist_hub",
+        "to": "climate_scientist_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climate_scientist_hub",
+        "to": "science_journalist_hub",
+        "trust": 0.74,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "chemtrails_peri_3",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "geoengineering_amp_1",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "haarp_amp_1",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "srm_peri_1",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "weathermodification_amp",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "weathermodification_peri_1",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "weatherwarfare_amp",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "stopspraying_peri_1",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "nwo_peri_1",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "monsanto_amp",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "deepstate_amp",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "maga_amp",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "chemtrails_hub",
+        "to": "greatawakening_amp",
+        "trust": 0.85,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climate_scientist_hub",
+        "to": "ozone_hub",
+        "trust": 0.7,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "climate_scientist_hub",
+        "to": "sai_amp",
+        "trust": 0.7,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      },
+      {
+        "from": "science_journalist_hub",
+        "to": "climateaction_hub",
+        "trust": 0.65,
+        "weight": 1,
+        "kind": "hashtag_cooccurrence"
+      }
+    ]
+  },
+  "honesty": {
+    "empiricalMPR": false,
+    "simulatedMIIsNotTwitterMI": true,
+    "hashtagCooccurrenceIsNotRetweetCascade": true,
+    "hydratedTweets": false,
+    "timestampsSynthetic": true,
+    "notes": [
+      "Debnath has NO empirical MPR. Do not claim simulated MI equals Twitter MI.",
+      "Hashtag co-occurrence is a structural/hashtag fallback, not a hydrated retweet cascade.",
+      "814k tweet IDs were not hydrated; BPs are theory-faithful reductions, not HDBSCAN centroids.",
+      "8 hops/ticks is logged cost compression vs CIKM 30, not a Debnath hop protocol."
+    ]
   },
   "_meta": {
     "nUsers": 63,
