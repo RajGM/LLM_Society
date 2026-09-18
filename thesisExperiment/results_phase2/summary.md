@@ -1,6 +1,49 @@
+# Phase 2 harvest — partial grid + Debnath compare
+
+Harvest generated: 2026-09-18T16:42:14Z  
+Debnath compare generated: 2026-09-18T16:42:25.769Z
+
+## T-H / T-He grid (honest partial)
+
+**OPENAI_API_KEY found: no.** Real dual+continuous IFD probe: **not run**. Dry-run: no. MI invented: no.
+
+| slice | configs | persona×article cells | completed | running | blocked |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| T2c_H | 96 | 576 | 0 | 0 | 576 |
+| T2d_H | 96 | 576 | 0 | 0 | 576 |
+| T2c_He | 48 | 288 | 0 | 0 | 288 |
+| T2d_He | 48 | 288 | 0 | 0 | 288 |
+| **grid** | **288** | **1728** | **0** | **0** | **1728** |
+
+**0 / 288** thesis configs finished. All eight topologies × four slices are **blocked** (see `thesisExperiment/runs_phase2/_status/ALL_TOPOLOGIES.md`).
+
+### parse_phase2.js
+
+Ran against `runs_phase2`. Shared tables under `results_phase2/tables/`:
+
+| file | rows |
+| --- | ---: |
+| `TH_rows.csv` | 0 |
+| `THe_rows.csv` | 0 |
+| `continuous.csv` | 1 (failed `probe_dnet_custom`, not a thesis cell) |
+| `dual_discrete.csv` | 0 |
+| `dual_gap.csv` | 0 |
+| `dead_cells.csv` | 1 (`probe_dnet_custom`, nScored=0, llmCalls=0) |
+| `all_rows.csv` | 1 |
+
+`summary.json`: nRows=1, nTH=0, nTHe=0, nDual=0, nDead=1, meanMPR_TH_continuous=null, meanMPR_TH_dualHeadline=null, thesisGrade=false.
+
+**Hatch.** No real LLM dead cells (`nScored <= 1` after usage>0). The D-net probe row is API-fail (hatched). The 1728 grid cells are missing/blocked, not empirical MI=0.
+
+Do **not** mix discrete and continuous means. Dual headline MPR is discrete; continuous is sidecar. Neither field was observed on a live auditor response this harvest.
+
+Isolation: did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+---
+
 # Phase 2 comparison — Debnath hashtag graph vs simulated D-net
 
-Generated: 2026-09-18T16:08:14.864Z
+Generated: 2026-09-18T16:42:25.769Z
 
 ## Honesty
 

@@ -1,6 +1,6 @@
 # Debnath reconstruct report
 
-Date: 2026-09-18T15:32:48.973Z
+Date: 2026-09-18T16:41:55.958Z
 
 ## Headline
 
@@ -26,9 +26,7 @@ This graph is **NOT a retweet cascade**. Twitter/X hydration did not run (no bea
 | `mendeley_landing` | yes | Landing page only; tweet-ID dump not retrieved. |
 | `osf_guid` | yes | HTTP 200 |
 | `osf_node_files` | yes | HTTP 200 |
-| `osf_dataset_sample` | no | HTTP 403, 0 lines — https://osf.io/download/mx97s/ |
-| `osf_dataset_sample` | no | HTTP 500, 0 lines — https://osf.io/75ye3/download |
-| `osf_dataset_sample` | yes | HTTP 200, 1 lines — https://files.osf.io/v1/resources/75ye3/providers/osfstorage/ |
+| `osf_dataset_sample` | yes | HTTP 200, 4043 lines — https://files.osf.io/v1/resources/75ye3/providers/osfstorage/63a03f8750be9e0d13772c09 |
 | `twitter_hydrate` | no | no_bearer_token |
 | `hashtag_cooccurrence_fallback` | yes | NOT a retweet cascade. |
 | `realgraphimporter_validate` | yes |  |
@@ -39,9 +37,8 @@ This graph is **NOT a retweet cascade**. Twitter/X hydration did not run (no bea
 
 1. **Mendeley** `10.17632/546hsym93p.1` — tweet **IDs**, not text. Files API historically 400; landing page may already sit in `data/raw/mendeley_546hsym93p_landing.html`.
    - This run: no dump (API error 400 / landing only).
-2. **OSF** `osf.io/75ye3` `dataset.csv` **661,867,256 bytes** (`mx97s`). Policy: sample first 5k lines only; never keep the full CSV.
-   - A 5k-line stream showed the file is **hydrated text + user fields**, not IDs-only. Raw rows were **deleted** (ethics: no re-identification). `tweet_id` is Excel scientific notation (`1.00048E+18`) — not hydratable.
-   - Later download URLs returned 403 / 500 / a JSON file listing. **0 usable digit tweet IDs retained.**
+2. **OSF** `osf.io/75ye3` `dataset.csv` ~662MB. Policy: store a **sample of IDs only** (first 5k lines) if the file is reachable; never keep the full CSV in-repo. The live OSF CSV also contains tweet **text and user fields** — those columns were **discarded** (ethics: no re-identification). `tweet_id` in the sample is Excel scientific notation, so IDs are not hydratable.
+   - This run: sample 4043 lines; usable digit IDs 0; PII discarded=true.
 3. **GitHub** `Ramit1201/geoeng` at `thesisExperiment/data/debnath_geoeng/` — analysis codes (`hashtag_ext`, NRC, embeddings, Perspective), **not** tweets.
    - Present: **yes**.
 4. **Twitter/X API** — bearer env: **absent**. If absent, tweets are not invented.

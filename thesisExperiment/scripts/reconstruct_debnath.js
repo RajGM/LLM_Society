@@ -278,6 +278,8 @@ async function tryOsf(attempts) {
   const guidUrl = "https://api.osf.io/v2/guids/75ye3/";
   const nodeFiles = "https://api.osf.io/v2/nodes/75ye3/files/osfstorage/";
   const downloadGuesses = [
+    "https://files.osf.io/v1/resources/75ye3/providers/osfstorage/63a03f8750be9e0d13772c09",
+    "https://osf.io/mx97s/download",
     "https://osf.io/75ye3/download",
     "https://files.osf.io/v1/resources/75ye3/providers/osfstorage/",
   ];
@@ -309,7 +311,10 @@ async function tryOsf(attempts) {
         const name = (f.attributes && f.attributes.name) || "";
         return /dataset\.csv/i.test(name) || /\.csv$/i.test(name);
       });
-      if (csv && csv.links && csv.links.download) downloadUrl = csv.links.download;
+      // Prefer the files.osf.io object URL. `osf.io/download/<guid>` has returned 403
+      // while the storage object URL streams dataset.csv. Do not store the ~662MB file.
+      if (csv && csv.links && csv.links.move) downloadUrl = csv.links.move;
+      else if (csv && csv.links && csv.links.download) downloadUrl = csv.links.download;
     }
   } catch (err) {
     attempts.push({ step: "osf_node_files", ok: false, error: err.message });
