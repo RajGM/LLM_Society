@@ -3,9 +3,9 @@
  * Isolated Phase 2 T2c_He runner (continuous IFD, heterogeneous, all 8 topologies).
  *   node thesisExperiment/scripts/run_t2c_he.js
  *
- * Polls /workspace/.env, thesisExperiment/.env, and KEY_READY.md every 30s up to
- * ~20 min if the key is missing. Probes one continuous cell until LLM usage > 0,
- * then runs every T2c_He_*.json into runs_phase2 (concurrency 3, skip completed).
+ * Polls /workspace/.env, thesisExperiment/.env, and KEY_READY.md every 15s up to
+ * ~10 min if the key is missing. Probes one continuous cell until LLM usage > 0,
+ * then runs every T2c_He_*.json into runs_phase2 (concurrency 4, skip completed).
  *
  * Does not write thesisExperiment/runs/ or thesisExperiment/results/tables/.
  * Does not write phase2_manifest.json. No dry-run. No invented MI. Continuous =
@@ -27,9 +27,9 @@ const STATUS = path.join(EXP, "runs_phase2", "_status", "T2c_He.md");
 const BLOCKER = path.join(EXP, "runs_phase2", "_blockers", "T2c_He_no_key.md");
 const POLL_LOG = path.join(EXP, "runs_phase2", "_status", "T2c_He_poll.json");
 
-const POLL_INTERVAL_MS = 30 * 1000;
-const POLL_MAX_MS = 20 * 60 * 1000;
-const CONCURRENCY = 3;
+const POLL_INTERVAL_MS = Number(process.env.T2C_HE_POLL_MS) > 0 ? Number(process.env.T2C_HE_POLL_MS) : 15 * 1000;
+const POLL_MAX_MS = Number(process.env.T2C_HE_POLL_MAX_MS) > 0 ? Number(process.env.T2C_HE_POLL_MAX_MS) : 10 * 60 * 1000;
+const CONCURRENCY = Number(process.env.T2C_HE_CONCURRENCY) > 0 ? Number(process.env.T2C_HE_CONCURRENCY) : 4;
 const EXPECTED_CONFIGS = 48;
 const TOPOLOGIES = [
   "echo_chamber",
@@ -348,11 +348,11 @@ function writeBlocker(campaign, polls) {
 **Time:** ${nowIso()}
 **Slice:** T2c_He (heterogeneous persona×article, \`miScoringMode: continuous\`)
 **Grid:** 8 topologies × 6 mixes = **${counts.configs} configs** (each × 6 core articles)
-**LLM runs:** STOPPED after polling ~20 minutes. No cells launched. Did not dry-run. Did not invent MI/MPR.
+**LLM runs:** STOPPED after polling ~${Math.round(POLL_MAX_MS / 60000)} minutes. No cells launched. Did not dry-run. Did not invent MI/MPR.
 
 ## Key poll (no values logged)
 
-Polled \`/workspace/.env\`, \`thesisExperiment/.env\`, process.env, and \`KEY_READY.md\` every 30s for up to ~20 minutes (${polls.length} checks). Still missing or placeholder.
+Polled \`/workspace/.env\`, \`thesisExperiment/.env\`, process.env, and \`KEY_READY.md\` every ${Math.round(POLL_INTERVAL_MS / 1000)}s for up to ~${Math.round(POLL_MAX_MS / 60000)} minutes (${polls.length} checks). Still missing or placeholder.
 
 | Source | Result |
 | --- | --- |
@@ -383,7 +383,7 @@ Did not write to \`thesisExperiment/runs/\` or \`thesisExperiment/results/tables
 
 1. Place a non-placeholder \`OPENAI_API_KEY\` in gitignored \`/workspace/.env\` (optional \`KEY_READY.md\` signal, no secret body).
 2. Probe one T2c_He cell until LLM usage > 0.
-3. Run all 48 \`T2c_He_*.json\` into \`thesisExperiment/runs_phase2\`, concurrency 3, skip completed continuous runs.
+3. Run all 48 \`T2c_He_*.json\` into \`thesisExperiment/runs_phase2\`, concurrency ${CONCURRENCY}, skip completed continuous runs.
 `;
   fs.writeFileSync(BLOCKER, body);
 }
@@ -566,7 +566,7 @@ async function pollForKey(campaign) {
     writeManifest(campaign);
     writeStatus(
       campaign,
-      `**Phase:** polling for key (attempt ${attempt}; every 30s, max ~20 min).\n\nDid not invent a key. Did not write \`.env\`.`
+      `**Phase:** polling for key (attempt ${attempt}; every ${Math.round(POLL_INTERVAL_MS / 1000)}s, max ~${Math.round(POLL_MAX_MS / 60000)} min).\n\nDid not invent a key. Did not write \`.env\`.`
     );
     console.log(
       `[T2c_He] key poll ${attempt} ok=${check.ok} envFile=${check.envFileExists} length=${check.OPENAI_API_KEY_length} readyMd=${check.KEY_READY_md.length}`
@@ -676,11 +676,11 @@ async function main() {
   if (!polled.ok) {
     campaign.aborted = "real_api_unavailable";
     campaign.abortReason =
-      "OPENAI_API_KEY missing/placeholder after ~20 min poll of /workspace/.env, thesisExperiment/.env, process.env, and KEY_READY.md. Refusing to invent MI/MPR.";
+      `OPENAI_API_KEY missing/placeholder after ~${Math.round(POLL_MAX_MS / 60000)} min poll of /workspace/.env, thesisExperiment/.env, process.env, and KEY_READY.md. Refusing to invent MI/MPR.`;
     campaign.finishedAt = nowIso();
     writeManifest(campaign);
     writeBlocker(campaign, polled.polls);
-    writeStatus(campaign, "**Phase:** ABORT. Key still missing after ~20 min poll. Probe and grid not started. Did not invent results.");
+    writeStatus(campaign, `**Phase:** ABORT. Key still missing after ~${Math.round(POLL_MAX_MS / 60000)} min poll. Probe and grid not started. Did not invent results.`);
     const counts = tally(campaign);
     appendLog(
       `T2c_He ABORT real_api_unavailable after ${polled.polls.length} polls. completed=${counts.completed} failed=${counts.failed} skipped=${counts.skipped} pending=${counts.pending}. Did not dry-run. Did not invent MI.`
@@ -741,7 +741,7 @@ async function main() {
   appendLog(`PHASE_T2c_He n=${rels.length} concurrency=${CONCURRENCY}`);
   writeStatus(
     campaign,
-    "**Phase:** grid. Continuous probe usage>0. Running all T2c_He_*.json across 8 topologies, skip completed, concurrency 3. Do not stop after one."
+    `**Phase:** grid. Continuous probe usage>0. Running all T2c_He_*.json across 8 topologies, skip completed, concurrency ${CONCURRENCY}. Do not stop after one.`
   );
   const timeouts = { stallMs: 25 * 60 * 1000, hardMs: 70 * 60 * 1000 };
   await runPool(campaign, timeouts);

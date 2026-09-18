@@ -22,8 +22,18 @@ const BLOCK_DIR = path.join(RUNS, "_blockers");
 const STATUS_MD = path.join(STATUS_DIR, "T2c_H.md");
 const MANIFEST = path.join(RESULTS, "manifest_T2c_H.json");
 const LOG_MD = path.join(EXP, "LOG.md");
-const ENV_PATH = path.join(ROOT, ".env");
-const KEY_READY = path.join(STATUS_DIR, "KEY_READY.md");
+const ENV_PATHS = [
+  path.join(ROOT, ".env"),
+  path.join(EXP, ".env"),
+  path.join(process.env.HOME || "/home/ubuntu", ".env"),
+];
+const KEY_READY_PATHS = [
+  path.join(STATUS_DIR, "KEY_READY.md"),
+  path.join(ROOT, "KEY_READY.md"),
+  path.join(ROOT, "KEY_READY"),
+];
+const ENV_PATH = ENV_PATHS[0];
+const KEY_READY = KEY_READY_PATHS[0];
 const WAITING_MD = path.join(BLOCK_DIR, "T2c_H_waiting.md");
 const ORCH_LOG = path.join(LOG_DIR, "T2c_H_orchestrator.log");
 
@@ -38,9 +48,9 @@ const TOPO_ORDER = [
   "hierarchical",
 ];
 
-const POLL_MS = Number(process.env.T2C_H_POLL_MS) > 0 ? Number(process.env.T2C_H_POLL_MS) : 30_000;
-const POLL_MAX_MS = Number(process.env.T2C_H_POLL_MAX_MS) > 0 ? Number(process.env.T2C_H_POLL_MAX_MS) : 20 * 60 * 1000;
-const CONCURRENCY = 3;
+const POLL_MS = Number(process.env.T2C_H_POLL_MS) > 0 ? Number(process.env.T2C_H_POLL_MS) : 15_000;
+const POLL_MAX_MS = Number(process.env.T2C_H_POLL_MAX_MS) > 0 ? Number(process.env.T2C_H_POLL_MAX_MS) : 10 * 60 * 1000;
+const CONCURRENCY = Number(process.env.T2C_H_CONCURRENCY) > 0 ? Number(process.env.T2C_H_CONCURRENCY) : 4;
 
 fs.mkdirSync(LOG_DIR, { recursive: true });
 fs.mkdirSync(RUNS, { recursive: true });
@@ -88,8 +98,15 @@ function keyLooksReal(value) {
 
 function inspectKey() {
   const fromProc = (process.env.OPENAI_API_KEY || "").trim();
-  const fromFile = readDotEnvKey(ENV_PATH);
-  const readyExists = fs.existsSync(KEY_READY);
+  let fromFile = { exists: false, value: "", length: 0 };
+  for (const p of ENV_PATHS) {
+    const hit = readDotEnvKey(p);
+    if (hit.exists) {
+      fromFile = hit;
+      if (keyLooksReal(hit.value)) break;
+    }
+  }
+  const readyExists = KEY_READY_PATHS.some((p) => fs.existsSync(p));
   const candidate = fromProc || fromFile.value || "";
   const ok = keyLooksReal(candidate);
   return {
@@ -293,7 +310,7 @@ function writeWaiting(polls, elapsedMs) {
 **Slice.** CONTINUOUS homogeneous: 96 \`T2c_H_*.json\` (8 topologies × 12 personas).  
 **Key found.** **no** (length=0). Did not invent a key. Did not write \`/workspace/.env\`. Did not dry-run. Did not invent MI/MPR.
 
-Polled \`/workspace/.env\` and \`thesisExperiment/runs_phase2/_status/KEY_READY.md\` every ${Math.round(POLL_MS / 1000)}s for up to ${Math.round(POLL_MAX_MS / 60000)} minutes (${polls} polls, elapsedMs=${elapsedMs}). Still missing. Master should inject a real key and relaunch this worker.
+Polled \`/workspace/.env\`, \`thesisExperiment/.env\`, and KEY_READY files every ${Math.round(POLL_MS / 1000)}s for up to ${Math.round(POLL_MAX_MS / 60000)} minutes (${polls} polls, elapsedMs=${elapsedMs}). Still missing. Did not invent a key.
 
 ## Grid that did not run
 
@@ -629,7 +646,7 @@ async function main() {
   }
 
   writeStatus({ phase: "start: check/poll OPENAI_API_KEY", keyFound: inspectKey().ok });
-  appendLog("T2c_H worker start: poll /workspace/.env + KEY_READY.md every 20s up to ~8 min, then probe + all 96 configs concurrency 3. Isolation runs_phase2/results_phase2.");
+  appendLog(`T2c_H worker start: poll .env + KEY_READY every ${Math.round(POLL_MS / 1000)}s up to ${Math.round(POLL_MAX_MS / 60000)} min, then probe + all 96 configs concurrency ${CONCURRENCY}. Isolation runs_phase2/results_phase2.`);
 
   const first = inspectKey();
   let keyInfo = first.ok

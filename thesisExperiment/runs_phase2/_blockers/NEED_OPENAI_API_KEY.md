@@ -1,7 +1,7 @@
 # Blocker: OPENAI_API_KEY missing
 
-**Time:** 2026-09-18T19:04:25.546Z
-**Polls:** 1
+**Time:** 2026-09-18T20:51:31.622Z
+**Polls:** 215
 
 Phase 2 LLM grid cannot run without a real key (length > 20, not a placeholder).
 Did **not** invent a key. Did **not** dry-run. Did **not** invent MI/MPR.

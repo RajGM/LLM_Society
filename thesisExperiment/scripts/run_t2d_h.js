@@ -3,9 +3,9 @@
  * Isolated Phase 2 T2d_H runner (dual IFD, homogeneous, all 8 topologies).
  *   node thesisExperiment/scripts/run_t2d_h.js
  *
- * Polls /workspace/.env and KEY_READY.md if the key is missing
+ * Polls /workspace/.env, thesisExperiment/.env, and KEY_READY.md if the key is missing
  * (--poll-interval-ms, --poll-max-ms). Probes one dual cell until LLM usage > 0, then runs every
- * T2d_H_*.json into runs_phase2 (concurrency 3, skip completed).
+ * T2d_H_*.json into runs_phase2 (concurrency 4, skip completed).
  *
  * Does not write thesisExperiment/runs/ or thesisExperiment/results/tables/.
  * Does not write phase2_manifest.json. No dry-run. No invented MI. Dual =
@@ -27,14 +27,16 @@ const STATUS = path.join(EXP, "runs_phase2", "_status", "T2d_H.md");
 const BLOCKER = path.join(EXP, "runs_phase2", "_blockers", "T2d_H_no_key.md");
 const POLL_LOG = path.join(EXP, "runs_phase2", "_status", "T2d_H_poll.json");
 
-const CONCURRENCY = 3;
+const CONCURRENCY = 4;
 
 function parseArgs(argv) {
   const intervalIdx = argv.indexOf("--poll-interval-ms");
   const maxIdx = argv.indexOf("--poll-max-ms");
+  const concIdx = argv.indexOf("--concurrency");
   return {
-    pollIntervalMs: Math.max(1000, Number(intervalIdx !== -1 ? argv[intervalIdx + 1] : 20 * 1000) || 20 * 1000),
-    pollMaxMs: Math.max(0, Number(maxIdx !== -1 ? argv[maxIdx + 1] : 8 * 60 * 1000) || 0),
+    pollIntervalMs: Math.max(1000, Number(intervalIdx !== -1 ? argv[intervalIdx + 1] : 15 * 1000) || 15 * 1000),
+    pollMaxMs: Math.max(0, Number(maxIdx !== -1 ? argv[maxIdx + 1] : 10 * 60 * 1000) || 0),
+    concurrency: Math.max(1, Number(concIdx !== -1 ? argv[concIdx + 1] : CONCURRENCY) || CONCURRENCY),
   };
 }
 const TOPOLOGIES = [
@@ -139,6 +141,10 @@ function readDotEnvKey(envPath) {
   return { exists: true, key: null };
 }
 
+function envCandidatePaths() {
+  return [path.join(ROOT, ".env"), path.join(EXP, ".env")];
+}
+
 function keyReadyPaths() {
   return [
     path.join(ROOT, "KEY_READY.md"),
@@ -148,20 +154,45 @@ function keyReadyPaths() {
 }
 
 function checkKey() {
-  const envPath = path.join(ROOT, ".env");
-  const fromFile = readDotEnvKey(envPath);
   const fromProc = process.env.OPENAI_API_KEY;
-  const fileClass = classifyKeyValue(fromFile.key);
   const procClass = classifyKeyValue(fromProc);
   const ready = keyReadyPaths().filter((p) => fs.existsSync(p));
-  const chosen = fileClass.ok ? { ...fileClass, source: envPath, value: fromFile.key } : procClass.ok ? { ...procClass, source: "process.env", value: fromProc } : null;
+  let envFileExists = false;
+  let envFileHasKey = false;
+  let fileClass = { present: false, length: 0, placeholder: false, ok: false };
+  let fileSource = null;
+  let fileValue = null;
+  for (const envPath of envCandidatePaths()) {
+    const fromFile = readDotEnvKey(envPath);
+    if (fromFile.exists) envFileExists = true;
+    if (fromFile.key) {
+      envFileHasKey = true;
+      const cls = classifyKeyValue(fromFile.key);
+      if (!fileSource) {
+        fileClass = cls;
+        fileSource = envPath;
+        fileValue = fromFile.key;
+      }
+      if (cls.ok) {
+        fileClass = cls;
+        fileSource = envPath;
+        fileValue = fromFile.key;
+        break;
+      }
+    }
+  }
+  const chosen = fileClass.ok
+    ? { ...fileClass, source: fileSource, value: fileValue }
+    : procClass.ok
+      ? { ...procClass, source: "process.env", value: fromProc }
+      : null;
   return {
     ok: Boolean(chosen),
-    envFileExists: fromFile.exists,
-    envFileHasKey: Boolean(fromFile.key),
+    envFileExists,
+    envFileHasKey,
     OPENAI_API_KEY_length: chosen ? chosen.length : fileClass.present ? fileClass.length : procClass.present ? procClass.length : 0,
     placeholder: chosen ? false : fileClass.placeholder || procClass.placeholder || null,
-    source: chosen ? chosen.source : fromFile.exists ? envPath : fromProc ? "process.env" : null,
+    source: chosen ? chosen.source : fileSource || (fromProc ? "process.env" : null),
     KEY_READY_md: ready,
     value: chosen ? chosen.value : null,
   };
@@ -287,7 +318,7 @@ function writeStatus(campaign, extra = "") {
     `**Dry-run:** no`,
     `**MI/MPR invented:** no`,
     `**Dual:** 2 auditor LLM calls per event (\`src/Auditor.js\` \`miScoringMode: dual\`)`,
-    `**Concurrency:** ${CONCURRENCY}`,
+    `**Concurrency:** ${campaign.concurrency || CONCURRENCY}`,
     `**Isolation:** \`thesisExperiment/runs_phase2\` only (not Phase 1 \`runs/\` or \`results/tables/\`)`,
     ``,
     extra ? extra.trim() + "\n" : "",
@@ -379,7 +410,7 @@ Did not write to \`thesisExperiment/runs/\` or \`thesisExperiment/results/tables
 
 1. Place a non-placeholder \`OPENAI_API_KEY\` in gitignored \`/workspace/.env\` (optional \`KEY_READY.md\` signal, no secret body).
 2. Probe one dual cell until LLM usage > 0.
-3. Run all \`T2d_H_*.json\` into \`thesisExperiment/runs_phase2\`, concurrency 3, skip completed dual runs.
+3. Run all \`T2d_H_*.json\` into \`thesisExperiment/runs_phase2\`, concurrency 4, skip completed dual runs.
 `;
   fs.writeFileSync(BLOCKER, body);
 }
@@ -552,7 +583,7 @@ async function pollForKey(campaign, { pollIntervalMs, pollMaxMs }) {
       JSON.stringify({ round: campaign.pollRound || 1, pollIntervalMs, pollMaxMs, polls }, null, 2)
     );
     campaign.keyCheck = {
-      envFile: "/workspace/.env",
+      envFile: "/workspace/.env + thesisExperiment/.env",
       envFileExists: check.envFileExists,
       OPENAI_API_KEY_length: check.OPENAI_API_KEY_length,
       placeholder: check.placeholder,
@@ -619,7 +650,8 @@ async function runPool(campaign, timeouts) {
       );
     }
   };
-  for (let i = 0; i < CONCURRENCY; i++) workers.push(runNext());
+  const n = campaign.concurrency || CONCURRENCY;
+  for (let i = 0; i < n; i++) workers.push(runNext());
   await Promise.all(workers);
 }
 
@@ -654,10 +686,10 @@ async function main() {
     startedAt: nowIso(),
     mode: "real",
     model: "gpt-4o-mini",
-    concurrency: CONCURRENCY,
+    concurrency: args.concurrency,
     outputRoot: "thesisExperiment/runs_phase2",
     dualAuditorCallsPerEvent: 2,
-    pollRound: 2,
+    pollRound: 3,
     pollIntervalMs: args.pollIntervalMs,
     pollMaxMs: args.pollMaxMs,
     configRels: rels,
@@ -686,7 +718,7 @@ async function main() {
 
   writeManifest(campaign);
   writeStatus(campaign, "**Phase:** start. Validated 96 dual homogeneous configs across 8 topologies.");
-  appendLog(`T2d_H slice start n=${rels.length} topologies=${topologies.join(",")} concurrency=${CONCURRENCY}`);
+  appendLog(`T2d_H slice start n=${rels.length} topologies=${topologies.join(",")} concurrency=${args.concurrency}`);
 
   const polled = await pollForKey(campaign, args);
   if (!polled.ok) {
@@ -752,8 +784,8 @@ async function main() {
     process.exit(2);
   }
 
-  appendLog(`PHASE_T2d_H n=${rels.length} concurrency=${CONCURRENCY}`);
-  writeStatus(campaign, "**Phase:** grid. Dual probe usage>0. Running all T2d_H_*.json, skip completed, concurrency 3. Do not stop after one.");
+  appendLog(`PHASE_T2d_H n=${rels.length} concurrency=${campaign.concurrency}`);
+  writeStatus(campaign, `**Phase:** grid. Dual probe usage>0. Running all T2d_H_*.json, skip completed, concurrency ${campaign.concurrency}. Do not stop after one.`);
   const timeouts = { stallMs: 25 * 60 * 1000, hardMs: 70 * 60 * 1000 };
   await runPool(campaign, timeouts);
 

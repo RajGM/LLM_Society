@@ -1,14 +1,14 @@
 # T2d_H status (dual homogeneous, all 8 topologies)
 
-**Updated:** 2026-09-18T18:36:47.366Z
+**Updated:** 2026-09-18T20:51:46.672Z
 **OPENAI_API_KEY present:** no (length=0; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
 **Dual:** 2 auditor LLM calls per event (`src/Auditor.js` `miScoringMode: dual`)
-**Concurrency:** 3
+**Concurrency:** 4
 **Isolation:** `thesisExperiment/runs_phase2` only (not Phase 1 `runs/` or `results/tables/`)
 
-**Phase:** polling for key (attempt 18; every 30s, max ~20 min).
+**Phase:** polling for key (attempt 5; every 20s, max ~15 min).
 
 Did not invent a key. Did not write `.env`.
 

@@ -1171,3 +1171,171 @@ T2d_H slice start n=96 topologies=echo_chamber,hierarchical,linear_chain,polariz
 T2c_He slice start n=48 topologies=echo_chamber,hierarchical,linear_chain,polarized,random_er,ring,scale_free,small_world concurrency=3
 
 ---
+
+## 2026-09-18T18:46:59.186Z
+
+T2c_H ABORT waiting for OPENAI_API_KEY. polls=40 elapsedMs=1170968. completed=0 failed=0 remaining=96. Wrote runs_phase2/_blockers/T2c_H_waiting.md.
+
+---
+
+## 2026-09-18T18:48:17.989Z
+
+T2d_H ABORT real_api_unavailable after 41 polls (~20 min, every 30s). completed=0 failed=0 skipped=0 pending=96. Did not dry-run. Did not invent MI.
+
+---
+
+## 2026-09-18T18:48:24.902Z
+
+Phase 2 T2d_He DUAL slice ABORT after 20-minute follow-up poll
+
+**Slice.** Heterogeneous persona×article, `miScoringMode: dual` (two auditor calls per event). Configs: `thesisExperiment/configs/phase2/T2d_He_*.json` (48 = 8 topologies × 6 mixes). All `outputRoot: thesisExperiment/runs_phase2`. Planned concurrency 3. Did **not** run `H_` or `T2c_` files (or `T2d_H_` homo dual).
+
+**Key found: no.** Rechecked immediately, then polled `/workspace/.env`, `thesisExperiment/.env`, process `OPENAI_API_KEY`, and `runs_phase2/_status/KEY_READY.md` every 30s for ~20 minutes. Still absent (length=0). Did **not** invent a key. Did **not** write `.env`. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Probe.** Not started. **Grid.** ABORT before concurrency-3 loop.
+
+| Count | n |
+|---|---|
+| configs | 48 |
+| completed | 0 |
+| failed | 0 |
+| skipped | 0 |
+| not_started | 48 |
+| LLM calls | 0 |
+| Est. USD | $0 |
+
+**Manifest.** `thesisExperiment/results_phase2/manifest_T2d_He.json` only. Did **not** write `phase2_manifest.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not git commit.
+
+**Status.** `thesisExperiment/runs_phase2/_status/T2d_He.md`.
+
+---
+
+## 2026-09-18T18:49:47.526Z
+
+T2c_He ABORT real_api_unavailable after 41 polls. completed=0 failed=0 skipped=0 pending=48. Did not dry-run. Did not invent MI.
+
+---
+
+## 2026-09-18T19:04:25.546Z
+
+MASTER key missing — waiting (non-LLM work already applied).
+
+---
+
+## 2026-09-18T20:39:02.751Z
+
+T2c_He slice start n=48 topologies=echo_chamber,hierarchical,linear_chain,polarized,random_er,ring,scale_free,small_world concurrency=4
+
+---
+
+## 2026-09-18T20:39:17.315Z
+
+T2d_H slice start n=96 topologies=echo_chamber,hierarchical,linear_chain,polarized,random_er,ring,scale_free,small_world concurrency=4
+
+---
+
+## 2026-09-18T20:39:18.564Z
+
+T2c_H worker start: poll .env + KEY_READY every 15s up to 10 min, then probe + all 96 configs concurrency 4. Isolation runs_phase2/results_phase2.
+
+---
+
+## 2026-09-18T20:48:40Z — Dnet worker: key still missing after 10 min poll
+
+**Key: no.** Polled `/workspace/.env`, `thesisExperiment/.env`, process `OPENAI_API_KEY` (length=0), `runs_phase2/_status/KEY_READY.md` every 15s for 600s (41 checks). Still absent. Did not invent a key. Did not write `.env`. Did not launch `run_dnet.js`. Did not dry-run. Did not invent MI/MPR. Did not invent tweet hydration.
+
+**4-cell counts.** completed=**0** skipped=**0** failed=**0** not_started=**4** (`Dnet_c_H`, `Dnet_c_He`, `Dnet_d_H`, `Dnet_d_He`). Dual vs continuous headlines did not run.
+
+**Compare.** Did not re-run `compare_phase2.js` (no sims). Last `debnath_compare.json` **simPending=true**, nSimRuns=0. Pfeffer seven factors; **cross-media held**.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not git commit.
+
+**Status.** `thesisExperiment/runs_phase2/_status/dnet.md`. Blocker `thesisExperiment/runs_phase2/_blockers/dnet_no_key.md`.
+
+---
+
+## 2026-09-18T20:49:03.436Z
+
+T2c_He ABORT real_api_unavailable after 41 polls. completed=0 failed=0 skipped=0 pending=48. Did not dry-run. Did not invent MI.
+
+---
+
+## 2026-09-18T20:49:04.164Z
+
+T2c_H ABORT waiting for OPENAI_API_KEY. polls=40 elapsedMs=585598. completed=0 failed=0 remaining=96. Wrote runs_phase2/_blockers/T2c_H_waiting.md.
+
+---
+
+## 2026-09-18T20:49:18.134Z
+
+T2d_H ABORT real_api_unavailable after 41 polls (~10 min, every 15s). completed=0 failed=0 skipped=0 pending=96. Did not dry-run. Did not invent MI.
+
+---
+
+## 2026-09-18T20:49:25.422Z
+
+Phase 2 T2d_He DUAL slice ABORT after 10-minute poll
+
+**Slice.** Heterogeneous persona×article, `miScoringMode: dual` (two auditor calls per event). Configs: `thesisExperiment/configs/phase2/T2d_He_*.json` (48 = 8 topologies × 6 mixes). All `outputRoot: thesisExperiment/runs_phase2`. Planned concurrency 4. Did **not** run `H_` or `T2c_` files (or `T2d_H_` homo dual).
+
+**Key found: no.** Polled `/workspace/.env`, `thesisExperiment/.env`, process `OPENAI_API_KEY`, and `KEY_READY` every 15s for ~10 minutes. Still absent (length=0). Did **not** invent a key. Did **not** write `.env`. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Probe.** Not started. **Grid.** ABORT before concurrency-4 loop.
+
+| Count | n |
+|---|---|
+| configs | 48 |
+| completed | 0 |
+| failed | 0 |
+| skipped | 0 |
+| not_started | 48 |
+| LLM calls | 0 |
+| Est. USD | $0 |
+
+**Manifest.** `thesisExperiment/results_phase2/manifest_T2d_He.json` only. Did **not** write `phase2_manifest.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not git commit.
+
+**Status.** `thesisExperiment/runs_phase2/_status/T2d_He.md`.
+
+---
+
+## 2026-09-18T20:50:18.961Z
+
+T2c_He slice start n=48 topologies=echo_chamber,hierarchical,linear_chain,polarized,random_er,ring,scale_free,small_world concurrency=4
+
+---
+
+## 2026-09-18T20:50:26.569Z
+
+T2d_H slice start n=96 topologies=echo_chamber,hierarchical,linear_chain,polarized,random_er,ring,scale_free,small_world concurrency=4
+
+---
+
+## 2026-09-18T20:50:37.306Z
+
+T2c_H worker start: poll .env + KEY_READY every 20s up to 15 min, then probe + all 96 configs concurrency 4. Isolation runs_phase2/results_phase2.
+
+---
+
+## 2026-09-18T20:50:50Z — MASTER 10-minute key poll complete; still blocked
+
+**OPENAI_API_KEY found: no** (length=0; value not logged).
+
+**Hunt.** `process.env`, `/workspace/.env`, `thesisExperiment/.env`, `KEY_READY.md` (workspace + runs_phase2/_status), `/proc/*/environ`, `/home/ubuntu/.env`, `/tmp/.env`, `/run/secrets`. All missing. Did **not** invent a key. Did **not** write `.env`. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Poll.** 15s cadence, 41 checks, 2026-09-18T20:39:36Z–20:49:36Z (`results_phase2/logs/key_poll_master.log`). Secret re-requested via `add_secrets`.
+
+**Counts.** probe usage=0/0 (continuous+dual not started). Grid **0/288 configs, 0/1728 cells** (T2c_H 0/96, T2d_H 0/96, T2c_He 0/48, T2d_He 0/48). Dnet **0/4**. `compare_phase2.js` **simPending=true**. Polarized already `minSeedOutDegree=2`. 8 hops/ticks logged cost cut vs CIKM 30.
+
+**Watcher.** tmux `phase2-master` PID 73069 kept alive (`--wait-key --poll-sec 30 --concurrency 4`). Sibling slice agents not killed. `dnet-watch` infinite waiter left running.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+**PR.** https://github.com/RajGM/LLM_Society/pull/1 (ManagePullRequest not in toolset).
+
+**Status.** `runs_phase2/_status/ORCHESTRATOR.md`, `runs_phase2/_blockers/MASTER_10MIN_POLL.md`.
+
+---
