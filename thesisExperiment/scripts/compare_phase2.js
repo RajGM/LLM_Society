@@ -184,8 +184,6 @@ function generateMinimalHashtagGraph() {
     { tag: "#foodsecurity", identity: "environmental_concern", parent: "environment" },
   ];
 
-  const seed = "2017-04-15T12:00:00Z";
-  const seedMs = Date.parse(seed);
   const user_profiles = {};
   const topoNodes = [];
   const topoEdges = [];
@@ -193,7 +191,7 @@ function generateMinimalHashtagGraph() {
   const cooccurrence = [];
   const identityMix = { conspiracy: 0, climate_action: 0, environmental_concern: 0, other: 0 };
 
-  nodesSpec.forEach((spec, i) => {
+  nodesSpec.forEach((spec) => {
     const id = slugHashtag(spec.tag);
     const tox = spec.identity === "mixed_hub" ? toxMean : toxicityProxyForIdentity(spec.identity);
     const bucket = spec.identity === "mixed_hub" ? "other" : spec.identity;
@@ -214,11 +212,10 @@ function generateMinimalHashtagGraph() {
       toxicityPrior: tox,
     });
     if (spec.parent) {
-      const ts = new Date(seedMs + (i + 1) * 3600000).toISOString();
       retweets.push({
         user_id: id,
         retweeted_from: spec.parent,
-        timestamp: ts,
+        timestamp: null,
         hashtag: spec.tag,
         identity: spec.identity,
         toxicityProxy: tox,
@@ -415,7 +412,15 @@ function loadEmpirical() {
   }
   const cascade = ensureRetweets(raw);
   if (!cascade.graph_topology) cascade.graph_topology = topologyFromCascade(cascade);
-  return { file, cascade, generated, note: generated ? "generated fallback" : "reconstruct or existing derived cascade" };
+  const fallback = generated || !!cascade.generatedFallback;
+  return {
+    file,
+    cascade,
+    generated: fallback,
+    note: fallback
+      ? "generated fallback (reconstruct output not present)"
+      : "reconstruct or existing derived cascade",
+  };
 }
 
 function isDnetOrCustom(dirName, meta) {
@@ -521,14 +526,22 @@ function clusteringFromTopo(topo) {
   const edges = topo.edges;
   const nNodes = nodes.length;
   const nEdges = edges.length;
-  const degree = {};
-  for (const n of nodes) degree[n.nodeId] = 0;
-  for (const e of edges) {
-    degree[e.from] = (degree[e.from] || 0) + 1;
+  const outDegree = {};
+  const undirected = {};
+  for (const n of nodes) {
+    outDegree[n.nodeId] = 0;
+    undirected[n.nodeId] = 0;
   }
-  const degrees = Object.values(degree);
-  const meanDegree = mean(degrees);
-  const maxDegree = degrees.length ? Math.max(...degrees) : 0;
+  for (const e of edges) {
+    outDegree[e.from] = (outDegree[e.from] || 0) + 1;
+    undirected[e.from] = (undirected[e.from] || 0) + 1;
+    undirected[e.to] = (undirected[e.to] || 0) + 1;
+  }
+  const degrees = Object.values(outDegree);
+  const undirectedDegrees = Object.values(undirected);
+  const meanDegree = mean(undirectedDegrees);
+  const meanOutDegree = mean(degrees);
+  const maxDegree = undirectedDegrees.length ? Math.max(...undirectedDegrees) : 0;
 
   let modularityConspiracy = null;
   if (nEdges > 0) {
@@ -538,8 +551,8 @@ function clusteringFromTopo(topo) {
     const m = nEdges;
     let q = 0;
     for (const e of edges) {
-      const ki = degree[e.from] || 0;
-      const kj = degree[e.to] || 0;
+      const ki = outDegree[e.from] || 0;
+      const kj = outDegree[e.to] || 0;
       const same =
         (persona[e.from] === "conspiracy") === (persona[e.to] === "conspiracy") ? 1 : 0;
       q += same - (ki * kj) / (2 * m);
@@ -551,6 +564,7 @@ function clusteringFromTopo(topo) {
     nNodes,
     nEdges,
     meanDegree: round4(meanDegree),
+    meanOutDegree: round4(meanOutDegree),
     maxDegree: maxDegree || null,
     modularityConspiracy: round4(modularityConspiracy),
     computable: nEdges > 0,

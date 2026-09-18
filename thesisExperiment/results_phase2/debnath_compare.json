@@ -1,0 +1,150 @@
+{
+  "generatedAt": "2026-09-18T15:29:34.652Z",
+  "isolation": {
+    "wrote": [
+      "thesisExperiment/results_phase2/"
+    ],
+    "notTouched": [
+      "thesisExperiment/runs/",
+      "thesisExperiment/results/tables/"
+    ]
+  },
+  "honesty": {
+    "empiricalMPR": false,
+    "simulatedMIIsNotTwitterMI": true,
+    "notes": [
+      "Debnath has NO empirical MPR. Do not claim simulated MI equals Twitter MI.",
+      "Hashtag co-occurrence is a structural/hashtag fallback, not a hydrated retweet cascade.",
+      "814k tweet IDs were not hydrated; BPs are theory-faithful reductions, not HDBSCAN centroids.",
+      "8 hops/ticks is logged cost compression vs CIKM 30, not a Debnath hop protocol.",
+      "Pfeffer et al. (2014) lists seven interrelated factors. The thesis six-knob list is a remapping, not a restatement of that paper.",
+      "Cross-media dynamics has no engine knob and is held."
+    ]
+  },
+  "empirical": {
+    "file": "/workspace/thesisExperiment/data/derived/debnath_hashtag_cascade.json",
+    "note": "generated fallback (reconstruct output not present)",
+    "generatedFallback": true,
+    "kind": "hashtag_cooccurrence",
+    "schema": "thesisExperiment.debnath_hashtag_cascade.v1",
+    "cascade": {
+      "kind": "hashtag_cooccurrence",
+      "generatedFallback": true,
+      "notARetweetCascade": true,
+      "temporalAvailable": false,
+      "news_id": "debnath_geoengineering_hashtag",
+      "seed_user": "geoengineering",
+      "nRetweets": 17,
+      "nNodes": 18
+    }
+  },
+  "realMetrics": {
+    "depth": 3,
+    "breadth": 8,
+    "size": 18,
+    "structuralVirality": 3.3398692810457518,
+    "speedHours": 0,
+    "root": "geoengineering"
+  },
+  "nSimRuns": 0,
+  "nSimCascades": 0,
+  "simPending": true,
+  "simPendingReason": "No thesisExperiment/runs_phase2 directories matching Dnet_ or topology=custom",
+  "avgSimMetrics": null,
+  "simulatedRuns": [],
+  "structuralComparison": null,
+  "distributionalComparison": null,
+  "dtfs": null,
+  "pfefferEmpirical": {
+    "valence": {
+      "factor": "valence (thesis knob) / affective character of firestorm (Pfeffer definition)",
+      "empirical": {
+        "toxicityMeanPaper": 0.17,
+        "toxicitySeverePaper": 0.12,
+        "hashtagToxicityProxy": 0.1067,
+        "source": "Debnath 2023 Table 1 paper-quoted; not tweet-level Perspective scores",
+        "notMPR": true,
+        "note": "Valence proxy is Perspective-like toxicity from the paper (mean ~0.17), not MPR."
+      },
+      "status": "measured_proxy"
+    },
+    "surprise": {
+      "factor": "speed and volume of communication (Pfeffer 2014 #1)",
+      "empirical": {
+        "paperVolumeShock": "SCoPEx April 2017 ~8000 interactions/day (~+300% vs Feb 2017) — paper-quoted, not a reconstructed shock time-series",
+        "engine": "held drip unless a shock cell exists"
+      },
+      "status": "held_drip"
+    },
+    "identity": {
+      "factor": "lack of diversity (Pfeffer 2014 #5)",
+      "empirical": {
+        "counts": {
+          "conspiracy": 6,
+          "climate_action": 5,
+          "environmental_concern": 6,
+          "other": 1
+        },
+        "personaCounts": {
+          "mixed_hub": 1,
+          "conspiracy_cluster": 6,
+          "climate_action": 5,
+          "environmental_concern": 6
+        },
+        "conspiracyShare": 0.3333,
+        "otherShare": 0.6667
+      },
+      "status": "measured_hashtag_mix"
+    },
+    "clustering": {
+      "factor": "network clusters (Pfeffer 2014 #3)",
+      "empirical": {
+        "nNodes": 18,
+        "nEdges": 17,
+        "meanDegree": 1.8889,
+        "meanOutDegree": 0.9444,
+        "maxDegree": 5,
+        "modularityConspiracy": 0.4343,
+        "computable": true
+      },
+      "status": "measured_hashtag_graph"
+    },
+    "echo": {
+      "factor": "information echo / unrestrained flow + clusters (Pfeffer 2014 #3–5)",
+      "empirical": {
+        "edgeHomophily": 0.7059,
+        "identityHomophily": 0.7059,
+        "conspiracyHomophily": 0.7059,
+        "nEdges": 17,
+        "computable": true
+      },
+      "status": "measured_edge_homophily"
+    },
+    "temporal": {
+      "factor": "speed and volume; network-triggered decisions (Pfeffer 2014 #1, #7)",
+      "empirical": {
+        "available": false,
+        "note": "not available empirically (hashtag co-occurrence has no tweet clock; placeholder timestamps are synthetic)"
+      },
+      "status": "not_available_empirically"
+    },
+    "crossMedia": {
+      "factor": "cross-media dynamics (Pfeffer 2014 #6)",
+      "empirical": {
+        "available": false,
+        "note": "no legacy-media layer in Debnath reconstruct used here"
+      },
+      "status": "held_no_engine_knob"
+    }
+  },
+  "simValenceSummary": {
+    "meanMI": null,
+    "meanFrameSentiment": null
+  },
+  "simIdentitySummary": {
+    "conspiracyShare": null
+  },
+  "simClusteringSummary": null,
+  "simEchoSummary": null,
+  "simSurpriseStatus": null
+}
