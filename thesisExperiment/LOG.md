@@ -852,3 +852,55 @@ KS/JS/DTFS **not computed** (`simPending=true`). Pfeffer **empirical** side fill
 **Artifacts.** `thesisExperiment/runs_phase2/_blockers/echo_chamber_no_key.md`, `thesisExperiment/runs_phase2/_status/echo_chamber.md`. Isolation: did not write `runs/` or `results/tables/`.
 
 ---
+
+## 2026-09-18T16:40:54Z — ring ALL SLICES ABORT (OPENAI_API_KEY missing)
+
+**Scope.** Topology `ring` across **all four** slices: `T2c_H`, `T2d_H`, `T2c_He`, `T2d_He`. Did not stop after one slice; all four aborted by the same missing key.
+
+**Key check (no values logged).** `/workspace/.env` does not exist. Process `OPENAI_API_KEY` unset (**length=0**). Searched `/workspace`, `/home/ubuntu`, `/root`, process env names containing OPENAI/API_KEY/ANTHROPIC. Cloud environment has no injected secret. `isMockKey` not applied (no value). Did **not** invent a key. Did **not** write `.env`. Instruction: stop if missing.
+
+**Runner.** Read `thesisExperiment/scripts/run_phase2.js` and all 36 `configs/phase2/*ring*.json`. Probe not started. Did **not** dry-run. Did **not** invent MI/MPR. LLM calls: **0**. Est. USD: **$0**.
+
+| Slice | configs | cells (×6 articles) | attempted | completed | failed | skipped | dead | remaining |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| T2c_H | 12 | 72 | 0 | 0 | 0 | 0 | 0 | 72 |
+| T2d_H | 12 | 72 | 0 | 0 | 0 | 0 | 0 | 72 |
+| T2c_He | 6 | 36 | 0 | 0 | 0 | 0 | 0 | 36 |
+| T2d_He | 6 | 36 | 0 | 0 | 0 | 0 | 0 | 36 |
+| **total** | **36** | **216** | **0** | **0** | **0** | **0** | **0** | **216** |
+
+**Parse.** Did not run `parse_phase2.js` (it rewrites shared CSVs). Ring-only stub: header-only `results_phase2/tables/ring_rows.csv`, counts in `results_phase2/ring_parse.json`, dead-cell log `results_phase2/logs/ring_dead_cells.md` (0 dead; none ran).
+
+**Paths.** Blocker `thesisExperiment/runs_phase2/_blockers/ring_no_key.md`. Status `thesisExperiment/runs_phase2/_status/ring.md`. Configs `thesisExperiment/configs/phase2/T2{c,d}_{H,He}_ring_*.json`. Runs `thesisExperiment/runs_phase2/` (0 ring dirs).
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/` or `configs/full/`. Did not switch git branches.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`. Probe one continuous and one dual ring cell until real LLM usage > 0. Then run all 36 ring configs into `runs_phase2`, skip completed, parse into `results_phase2`, hatch dead cells (`nScored <= 1`).
+
+---
+
+## 2026-09-18T16:40:48Z — scale_free ALL SLICES ABORT (OPENAI_API_KEY missing)
+
+**Scope.** Topology `scale_free` across **all four** slices: `T2c_H`, `T2d_H`, `T2c_He`, `T2d_He`. Did not stop after one slice; all four aborted by the same missing key.
+
+**Key check (no values logged).** `/workspace/.env` does not exist. Process `OPENAI_API_KEY` unset (**length=0**). Searched process env, `/workspace`, `/home/ubuntu`, `/tmp/cursor`, `/run`, `/opt`. Cloud environment has no injected secret. `isMockKey` not applied (no value). Did **not** invent a key. Did **not** write `.env`. Instruction: stop if missing.
+
+**Runner.** Read `thesisExperiment/scripts/run_phase2.js` and all 36 `configs/phase2/*scale_free*.json` (8 nodes/hops/ticks, N=1, `outputRoot runs_phase2`). Probe not started. Did **not** dry-run. Did **not** invent MI/MPR. LLM calls: **0**. Est. USD: **$0**.
+
+| Slice | configs | cells (×6 articles) | completed | failed | skipped | dead | not_started |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| T2c_H | 12 | 72 | 0 | 0 | 0 | 0 | 72 |
+| T2d_H | 12 | 72 | 0 | 0 | 0 | 0 | 72 |
+| T2c_He | 6 | 36 | 0 | 0 | 0 | 0 | 36 |
+| T2d_He | 6 | 36 | 0 | 0 | 0 | 0 | 36 |
+| **total** | **36** | **216** | **0** | **0** | **0** | **0** | **216** |
+
+**Parse.** Did not run `parse_phase2.js` (rewrites shared CSVs; no scale_free run dirs). Blocked-cell log: `results_phase2/dead_cells_scale_free.csv` (216 rows). Manifest: `results_phase2/manifest_scale_free.json`. Simulation-dead (1-event hatch): **0**.
+
+**Paths.** Blocker `thesisExperiment/runs_phase2/_blockers/scale_free_no_key.md`. Status `thesisExperiment/runs_phase2/_status/scale_free.md`. Configs `thesisExperiment/configs/phase2/T2{c,d}_{H,He}_scale_free_*.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not switch git branches.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, then `node thesisExperiment/scripts/run_phase2.js --probe-only`. If both continuous and dual probes show real LLM usage > 0, run all 36 scale_free configs into `runs_phase2`, skip completed, parse into `results_phase2`.
+
+---
