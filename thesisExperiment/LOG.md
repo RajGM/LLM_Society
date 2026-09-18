@@ -710,3 +710,21 @@ KS/JS/DTFS **not computed** (`simPending=true`). Pfeffer **empirical** side fill
 
 ---
 
+
+## 2026-09-18T16:39:29Z — Phase 2 T2d_H ABORT (OPENAI_API_KEY missing)
+
+**Slice.** Dual IFD homogeneous persona×article (`T2d_H_*` only). Dual = 2 auditor calls per event. Did **not** run `T2c_` or `He_` configs.
+
+**Key check (no values logged).** `/workspace/.env` does not exist. Process `OPENAI_API_KEY` unset (length=0). `isMockKey` not applied (no value). Searched process env names, `/workspace`, `/home/ubuntu`, `/run`. Did **not** invent a key. Did **not** write `.env`.
+
+**Probe.** Not started. Instruction: stop if key missing/placeholder. Real LLM usage = n/a (0 cells).
+
+**Grid.** ABORT. T2d_H configs: **96** (8 topologies × 12 homo personas; all `miScoringMode=dual`, `outputRoot=thesisExperiment/runs_phase2`). Completed **0**. Failed **0**. Skipped **0** (no completed dual runs on disk). Pending **96**. Did **not** dry-run. LLM calls: **0**. Est. USD: **$0**.
+
+**Manifest.** `thesisExperiment/results_phase2/manifest_T2d_H.json` only. Did not write `phase2_manifest.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+**Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`. Probe one dual cell with usage>0, then run all `T2d_H_*.json` concurrency 3, `outputRoot thesisExperiment/runs_phase2`, skip completed dual runs.
+
+---
