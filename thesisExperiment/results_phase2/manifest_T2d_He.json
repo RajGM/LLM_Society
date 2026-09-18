@@ -1,7 +1,9 @@
 {
   "slice": "T2d_He",
   "startedAt": "2026-09-18T16:39:49Z",
-  "finishedAt": "2026-09-18T16:39:49Z",
+  "finishedAt": "2026-09-18T16:42:07Z",
+  "recheckAt": "2026-09-18T16:42:07Z",
+  "recheckWaitSec": 15,
   "mode": "real",
   "model": "gpt-4o-mini",
   "miScoringMode": "dual",
@@ -28,11 +30,21 @@
     "OPENAI_API_KEY_length": 0,
     "placeholder": false,
     "ok": false,
-    "note": "length only; value not logged"
+    "note": "length only; value not logged",
+    "recheck": {
+      "at": "2026-09-18T16:42:07Z",
+      "waitSec": 15,
+      "envFileExists": false,
+      "thesisExperimentEnvExists": false,
+      "processLen": 0,
+      "keyReadyMdExists": false,
+      "ok": false
+    }
   },
+  "blocker": "thesisExperiment/runs_phase2/_blockers/T2d_He_no_key.md",
   "probe": null,
   "probeSkipped": true,
-  "probeNote": "Not started. Instruction: stop if OPENAI_API_KEY missing/placeholder.",
+  "probeNote": "Not started. Instruction: stop if OPENAI_API_KEY missing/placeholder. Recheck after 15s still missing.",
   "aborted": "real_api_unavailable",
   "counts": {
     "configs": 48,

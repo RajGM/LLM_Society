@@ -738,3 +738,17 @@ KS/JS/DTFS **not computed** (`simPending=true`). Pfeffer **empirical** side fill
 **Resume.** Place a non-placeholder `OPENAI_API_KEY` in gitignored `/workspace/.env`, probe one `T2d_He_*` cell until real usage is non-zero, then run all 48 with concurrency 3 into `runs_phase2`, skip complete dual cells, refresh `manifest_T2d_He.json`.
 
 ---
+
+## 2026-09-18T16:42:07Z — T2d_He recheck ABORT (still no key)
+
+**Follow-up.** Re-hunted `OPENAI_API_KEY` (length only). Waited ~15s and rechecked once.
+
+**Key found:** no. `/workspace/.env` missing. `thesisExperiment/.env` missing. Process env length=0. `runs_phase2/_status/KEY_READY.md` missing. Did **not** invent a key. Did **not** write `.env`. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Probe / grid.** Not started. completed=**0** failed=**0** skipped=**0** not_started=**48** (288 persona×article cells). LLM calls: **0**.
+
+**Blocker.** `thesisExperiment/runs_phase2/_blockers/T2d_He_no_key.md`
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`.
+
+---
