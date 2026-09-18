@@ -1,8 +1,19 @@
 # Phase 2 hierarchical status
 
-**Updated:** 2026-09-18T16:40:52Z  
-**OPENAI_API_KEY:** **no** (length=0; `/workspace/.env` missing)  
-**Outcome:** ABORT before probe and grid. All four slices recorded as dead cells.
+**Updated:** 2026-09-18T16:43:36Z  
+**OPENAI_API_KEY:** **no** (length=0; `/workspace/.env` missing; `KEY_READY.md` missing)  
+**Outcome:** ABORT. Rechecked twice (immediate + ~16s wait). Still missing. Exiting; did not fabricate.
+
+## Follow-up recheck (2026-09-18T16:43:12Z and 16:43:36Z)
+
+| Location | Recheck 1 | Recheck 2 (after ~16s) |
+|---|---|---|
+| `process.env.OPENAI_API_KEY` | unset len=0 | unset len=0 |
+| `/workspace/.env` | missing | missing |
+| `thesisExperiment/.env` | missing | missing |
+| `runs_phase2/_status/KEY_READY.md` | missing | missing |
+
+Cells completed: **0 / 216**. Did not run `run_phase2.js`. Did not invent MI. Did not loop further.
 
 ## Counts
 

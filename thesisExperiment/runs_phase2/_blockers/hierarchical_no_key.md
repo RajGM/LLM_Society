@@ -1,8 +1,8 @@
 # Hierarchical Phase 2 ABORT — OPENAI_API_KEY missing
 
-**When:** 2026-09-18T16:40:52Z  
+**When:** 2026-09-18T16:40:52Z (follow-up recheck 16:43:12Z and 16:43:36Z)  
 **Topology:** hierarchical only, all four slices (T2c_H, T2d_H, T2c_He, T2d_He)  
-**Key present:** **no**
+**Key present:** **no** (still missing after one wait + second check)
 
 ## Key check (no values logged)
 
