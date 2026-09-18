@@ -3,8 +3,8 @@
  * Isolated Phase 2 T2d_H runner (dual IFD, homogeneous, all 8 topologies).
  *   node thesisExperiment/scripts/run_t2d_h.js
  *
- * Polls /workspace/.env and KEY_READY.md every 20s up to ~8 min if the key
- * is missing. Probes one dual cell until LLM usage > 0, then runs every
+ * Polls /workspace/.env and KEY_READY.md if the key is missing
+ * (--poll-interval-ms, --poll-max-ms). Probes one dual cell until LLM usage > 0, then runs every
  * T2d_H_*.json into runs_phase2 (concurrency 3, skip completed).
  *
  * Does not write thesisExperiment/runs/ or thesisExperiment/results/tables/.
@@ -27,9 +27,16 @@ const STATUS = path.join(EXP, "runs_phase2", "_status", "T2d_H.md");
 const BLOCKER = path.join(EXP, "runs_phase2", "_blockers", "T2d_H_no_key.md");
 const POLL_LOG = path.join(EXP, "runs_phase2", "_status", "T2d_H_poll.json");
 
-const POLL_INTERVAL_MS = 20 * 1000;
-const POLL_MAX_MS = 8 * 60 * 1000;
 const CONCURRENCY = 3;
+
+function parseArgs(argv) {
+  const intervalIdx = argv.indexOf("--poll-interval-ms");
+  const maxIdx = argv.indexOf("--poll-max-ms");
+  return {
+    pollIntervalMs: Math.max(1000, Number(intervalIdx !== -1 ? argv[intervalIdx + 1] : 20 * 1000) || 20 * 1000),
+    pollMaxMs: Math.max(0, Number(maxIdx !== -1 ? argv[maxIdx + 1] : 8 * 60 * 1000) || 0),
+  };
+}
 const TOPOLOGIES = [
   "echo_chamber",
   "hierarchical",
@@ -337,11 +344,11 @@ function writeBlocker(campaign, polls) {
 **Time:** ${nowIso()}
 **Slice:** \`T2d_H\` (dual IFD, homogeneous persona×article, 8 topologies)
 **Configs:** ${counts.configs} (\`thesisExperiment/configs/phase2/T2d_H_*.json\`)
-**LLM runs:** STOPPED after polling ~8 minutes. No cells launched. Did not dry-run. Did not invent MI/MPR.
+**LLM runs:** STOPPED after polling. No cells launched. Did not dry-run. Did not invent MI/MPR.
 
 ## Key poll (no values logged)
 
-Polled \`/workspace/.env\` and \`KEY_READY.md\` every 20s for up to ~8 minutes (${polls.length} checks). Still missing or placeholder.
+Polled \`/workspace/.env\` and \`KEY_READY.md\` every ${Math.round((campaign.pollIntervalMs || 30000) / 1000)}s for up to ~${Math.round((campaign.pollMaxMs || 0) / 60000)} minutes (${polls.length} checks). Still missing or placeholder.
 
 | Source | Result |
 | --- | --- |
@@ -520,10 +527,12 @@ function sleep(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-async function pollForKey(campaign) {
+async function pollForKey(campaign, { pollIntervalMs, pollMaxMs }) {
   const polls = [];
   const started = Date.now();
   let attempt = 0;
+  const intervalSec = Math.round(pollIntervalMs / 1000);
+  const maxMin = Math.round(pollMaxMs / 60000);
   while (true) {
     attempt += 1;
     const check = checkKey();
@@ -538,7 +547,10 @@ async function pollForKey(campaign) {
       placeholder: check.placeholder,
     };
     polls.push(row);
-    fs.writeFileSync(POLL_LOG, JSON.stringify({ polls }, null, 2));
+    fs.writeFileSync(
+      POLL_LOG,
+      JSON.stringify({ round: campaign.pollRound || 1, pollIntervalMs, pollMaxMs, polls }, null, 2)
+    );
     campaign.keyCheck = {
       envFile: "/workspace/.env",
       envFileExists: check.envFileExists,
@@ -550,11 +562,13 @@ async function pollForKey(campaign) {
       KEY_READY_paths: check.KEY_READY_md,
       recheckAt: nowIso(),
       pollAttempt: attempt,
+      pollIntervalMs,
+      pollMaxMs,
     };
     writeManifest(campaign);
     writeStatus(
       campaign,
-      `**Phase:** polling for key (attempt ${attempt}; every 20s, max ~8 min).\n\nDid not invent a key. Did not write \`.env\`.`
+      `**Phase:** polling for key (attempt ${attempt}; every ${intervalSec}s, max ~${maxMin} min).\n\nDid not invent a key. Did not write \`.env\`.`
     );
     console.log(
       `[T2d_H] key poll ${attempt} ok=${check.ok} envFile=${check.envFileExists} length=${check.OPENAI_API_KEY_length} readyMd=${check.KEY_READY_md.length}`
@@ -563,10 +577,10 @@ async function pollForKey(campaign) {
       applyKeyToEnv(check);
       return { ok: true, check, polls };
     }
-    if (Date.now() - started >= POLL_MAX_MS) {
+    if (Date.now() - started >= pollMaxMs) {
       return { ok: false, check, polls };
     }
-    await sleep(POLL_INTERVAL_MS);
+    await sleep(pollIntervalMs);
   }
 }
 
@@ -623,6 +637,7 @@ function validateConfigs(rels) {
 }
 
 async function main() {
+  const args = parseArgs(process.argv.slice(2));
   const rels = listConfigs();
   const { problems, topologies } = validateConfigs(rels);
   if (problems.length) {
@@ -642,6 +657,9 @@ async function main() {
     concurrency: CONCURRENCY,
     outputRoot: "thesisExperiment/runs_phase2",
     dualAuditorCallsPerEvent: 2,
+    pollRound: 2,
+    pollIntervalMs: args.pollIntervalMs,
+    pollMaxMs: args.pollMaxMs,
     configRels: rels,
     topologies,
     keyCheck: null,
@@ -670,16 +688,19 @@ async function main() {
   writeStatus(campaign, "**Phase:** start. Validated 96 dual homogeneous configs across 8 topologies.");
   appendLog(`T2d_H slice start n=${rels.length} topologies=${topologies.join(",")} concurrency=${CONCURRENCY}`);
 
-  const polled = await pollForKey(campaign);
+  const polled = await pollForKey(campaign, args);
   if (!polled.ok) {
     campaign.aborted = "real_api_unavailable";
-    campaign.abortReason = "OPENAI_API_KEY missing/placeholder after ~8 min poll of /workspace/.env and KEY_READY.md. Refusing to invent MI/MPR.";
+    campaign.abortReason = `OPENAI_API_KEY missing/placeholder after ~${Math.round(args.pollMaxMs / 60000)} min poll of /workspace/.env and KEY_READY.md (interval ${Math.round(args.pollIntervalMs / 1000)}s). Refusing to invent MI/MPR.`;
     campaign.finishedAt = nowIso();
     writeManifest(campaign);
     writeBlocker(campaign, polled.polls);
-    writeStatus(campaign, "**Phase:** ABORT. Key still missing after ~8 min poll. Probe and grid not started.");
+    writeStatus(
+      campaign,
+      `**Phase:** ABORT. Key still missing after ~${Math.round(args.pollMaxMs / 60000)} min poll. Probe and grid not started. Follow-up exit once.`
+    );
     appendLog(
-      `T2d_H ABORT real_api_unavailable after ${polled.polls.length} polls. completed=0 failed=0 skipped=0 pending=96. Did not dry-run. Did not invent MI.`
+      `T2d_H ABORT real_api_unavailable after ${polled.polls.length} polls (~${Math.round(args.pollMaxMs / 60000)} min, every ${Math.round(args.pollIntervalMs / 1000)}s). completed=0 failed=0 skipped=0 pending=96. Did not dry-run. Did not invent MI.`
     );
     console.error("[T2d_H] key missing after poll; exiting without dry-run.");
     process.exit(2);

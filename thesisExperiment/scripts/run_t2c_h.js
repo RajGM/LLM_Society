@@ -38,8 +38,8 @@ const TOPO_ORDER = [
   "hierarchical",
 ];
 
-const POLL_MS = 20_000;
-const POLL_MAX_MS = 8 * 60 * 1000;
+const POLL_MS = Number(process.env.T2C_H_POLL_MS) > 0 ? Number(process.env.T2C_H_POLL_MS) : 30_000;
+const POLL_MAX_MS = Number(process.env.T2C_H_POLL_MAX_MS) > 0 ? Number(process.env.T2C_H_POLL_MAX_MS) : 20 * 60 * 1000;
 const CONCURRENCY = 3;
 
 fs.mkdirSync(LOG_DIR, { recursive: true });
@@ -293,7 +293,7 @@ function writeWaiting(polls, elapsedMs) {
 **Slice.** CONTINUOUS homogeneous: 96 \`T2c_H_*.json\` (8 topologies × 12 personas).  
 **Key found.** **no** (length=0). Did not invent a key. Did not write \`/workspace/.env\`. Did not dry-run. Did not invent MI/MPR.
 
-Polled \`/workspace/.env\` and \`thesisExperiment/runs_phase2/_status/KEY_READY.md\` every 20s for ~8 minutes (${polls} polls, elapsedMs=${elapsedMs}). Still missing. Master should inject a real key and relaunch this worker.
+Polled \`/workspace/.env\` and \`thesisExperiment/runs_phase2/_status/KEY_READY.md\` every ${Math.round(POLL_MS / 1000)}s for up to ${Math.round(POLL_MAX_MS / 60000)} minutes (${polls} polls, elapsedMs=${elapsedMs}). Still missing. Master should inject a real key and relaunch this worker.
 
 ## Grid that did not run
 
