@@ -1,0 +1,127 @@
+% Phase 2 results chapter — TUM M.Sc. Data & Society (English).
+% Standalone KOMA-Script article so the file compiles without the full TUM
+% thesis class. Sectioning matches a thesis results chapter, not a CIKM reprint.
+%
+% Compile: pdflatex main && biber main && pdflatex main && pdflatex main
+%
+% Figures: copies of thesisExperiment/results_phase2/figures/ (and
+% analysis_phase2/figures/). If a later analysis_full pass produces replacement
+% panels, swap the files in figures/ and keep the caption numbers.
+%
+% Isolation: this folder does not write Phase 1 runs/ or results/tables/.
+% Do not commit .env.
+
+\documentclass[
+  11pt,
+  a4paper,
+  oneside,
+  bibliography=totoc,
+  listof=totoc,
+  captions=tableheading,
+  headings=normal,
+  numbers=noenddot
+]{scrartcl}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+% TUM skill §11 specifies English quotation punctuation, not German „quotes“.
+% csquotes \enquote{...} is the TUM-safe wrapper; babel english selects “...”.
+\usepackage[autostyle,english=american]{csquotes}
+\usepackage{microtype}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\emergencystretch=2em
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{tabulary}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{threeparttable}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage[style=authoryear,
+            backend=biber,
+            maxcitenames=3,
+            mincitenames=1,
+            maxbibnames=99,
+            giveninits=true,
+            uniquename=init,
+            uniquelist=false,
+            doi=true,
+            url=false,
+            isbn=false,
+            dashed=false,
+            natbib=true]{biblatex}
+\addbibresource{references.bib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+
+\captionsetup{
+  format=plain,
+  labelfont={bf,small},
+  font=small,
+  skip=6pt,
+  justification=RaggedRight,
+  singlelinecheck=false
+}
+\captionsetup[table]{position=top,skip=4pt}
+\captionsetup[figure]{position=bottom,skip=6pt}
+
+\setkomafont{disposition}{\rmfamily\bfseries}
+\setkomafont{title}{\rmfamily\bfseries}
+\newcommand{\MPR}{\textsc{mpr}}
+\newcommand{\MI}{\textsc{mi}}
+\newcommand{\kstar}{$k^{\ast}$}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\cf}{\textit{cf.}}
+
+\title{Phase 2 Results:\\
+Topology, Identity Mix, and Scoring Mode\\
+in a Climate-Firestorm Simulation}
+\author{TUM M.Sc.\ Data and Society --- thesis results chapter (standalone)}
+\date{Harvest stamp: 19 September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This chapter reports the Phase~2 campaign of the climate-firestorm simulation.
+The campaign crossed eight network topologies with homogeneous (H) and heterogeneous (He) identity mixes and with two auditor instruments, then compared a reconstructed Debnath hashtag graph against a custom-graph (D-net) simulation.
+Discrete \MPR{} (dual-run headline) and continuous \MPR{} (continuous-only headline) are different instruments; this chapter never averages them.
+The harvest is a real \texttt{gpt-4o-mini} run with $N=1$, eight hops, and \texttt{thesisGrade=false}.
+Hatched dead cells remain in the grid.
+The Debnath comparison is structural: 814k tweet identifiers were not hydrated, and Debnath's skip-gram window of eight is not this protocol's hop budget.
+\end{abstract}
+
+\tableofcontents
+\listoffigures
+\listoftables
+\clearpage
+
+\input{sections/01_intro}
+\input{sections/02_methods}
+\input{sections/03_instruments}
+\input{sections/04_topology}
+\input{sections/05_h_vs_he}
+\input{sections/06_four_designs}
+\input{sections/07_pooled}
+\input{sections/08_dnet_pfeffer}
+\input{sections/09_limitations}
+\input{sections/10_conclusion}
+
+\printbibliography[title={References}]
+
+\end{document}

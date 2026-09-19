@@ -1,0 +1,38 @@
+\section{Pooled-mean check}
+\label{sec:pooled}
+
+A single campaign \MPR{} is a tempting summary.
+Three pooled scalars are easy to compute from \Cref{tab:headlines}.
+All three are invalid as headlines.
+This section prints them so that they are not rediscovered later as \enquote{the Phase~2 result}.
+
+\paragraph{Invalid pool 1: discrete with continuous.}
+The arithmetic mean of H continuous $0.8608$ and H dual-discrete $1.6814$ is $1.2711$.
+That number has no auditor.
+It mixes a float instrument with a discrete instrument.
+Dual-discrete already sits higher on every topology (\Cref{fig:topo}).
+Averaging the two columns erases the scoring-mode effect that Phase~2 was built to expose.
+
+\paragraph{Invalid pool 2: H with He on one instrument.}
+Weighting live cells, the H+He continuous mean is
+\[
+(482\times 0.8608 + 238\times 1.0192)/720 = 0.9132.
+\]
+The H+He dual-discrete mean is
+\[
+(478\times 1.6814 + 240\times 2.0800)/718 = 1.8146.
+\]
+Each scalar hides the composition problem in Section~\ref{sec:hhe}.
+Conspiracy-heavy mixes pull He up; scientist personas pull H down.
+A reader who sees only $0.9132$ cannot recover that \texttt{mix\_02} continuous \MPR{} is $0.2645$ and conspiracy-believer continuous \MPR{} is $2.4842$.
+
+\paragraph{Invalid pool 3: \enquote{hetero buffers} from the wrong collapse.}
+CIKM-style buffering is a claim about mixed identity on a matched topology and article, not about averaging twelve H personas with six He mixes \parencite{maurya2025simulating}.
+Collapsed He $>$ collapsed H on both instruments in \Cref{tab:headlines}.
+A pooled story that \enquote{diversity helped} would have to ignore that sign, or restrict the contrast to \texttt{mix\_02} versus conspiracy H, which is Design~A/C identity rather than a grand mean.
+
+\paragraph{What the check allows.}
+Report four headlines: H continuous, H dual-discrete, He continuous, He dual-discrete.
+Report family and mix collapses beside them.
+Report topology ranks inside each of those four.
+Do not promote $1.2711$, $0.9132$, or $1.8146$ to the abstract.
