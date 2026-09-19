@@ -1,10 +1,10 @@
 # T2c_H waiting for OPENAI_API_KEY
 
-**When.** 2026-09-18T20:49:04.162Z  
+**When.** 2026-09-18T21:05:18.198Z  
 **Slice.** CONTINUOUS homogeneous: 96 `T2c_H_*.json` (8 topologies × 12 personas).  
 **Key found.** **no** (length=0). Did not invent a key. Did not write `/workspace/.env`. Did not dry-run. Did not invent MI/MPR.
 
-Polled `/workspace/.env`, `thesisExperiment/.env`, and KEY_READY files every 15s for up to 10 minutes (40 polls, elapsedMs=585598). Still missing. Did not invent a key.
+Polled `/workspace/.env`, `thesisExperiment/.env`, and KEY_READY files every 20s for up to 15 minutes (45 polls, elapsedMs=880892). Still missing. Did not invent a key.
 
 ## Grid that did not run
 

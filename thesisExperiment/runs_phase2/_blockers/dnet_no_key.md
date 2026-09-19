@@ -1,8 +1,8 @@
 # Blocker: D-net custom-graph LLM cells — OPENAI_API_KEY missing
 
-**Time:** 2026-09-18T20:48:40Z  
+**Time:** 2026-09-18T21:04:55Z  
 **Slice:** Debnath custom graph (`Dnet_c_H`, `Dnet_c_He`, `Dnet_d_H`, `Dnet_d_He`)  
-**LLM runs:** STOPPED after 10-minute poll. Immediate hunt + every 15s for 600s (41 checks). Still missing. Did not launch `run_dnet.js`. Did not dry-run. Did not invent MI/MPR. Did not invent results. Did not git commit.
+**LLM runs:** STOPPED after follow-up poll. Immediate recheck + every 20s for 15 min (47 checks). Still missing. Did not launch `run_dnet.js`. Did not dry-run. Did not invent MI/MPR. Did not invent results. Exit once — master still waiting (`phase2-master` PID 73069).
 
 ## Key check (no values logged)
 
@@ -12,6 +12,7 @@
 | `/workspace/.env` | does not exist |
 | `/workspace/thesisExperiment/.env` | does not exist |
 | `thesisExperiment/runs_phase2/_status/KEY_READY.md` | does not exist |
+| tmux `phase2-master` | alive (PID 73069) |
 
 ## 4-cell counts
 
@@ -19,7 +20,7 @@ completed=**0** skipped=**0** failed=**0** not_started=**4**.
 
 ## Compare
 
-`simPending=true` (nSimRuns=0). Did not re-run compare (no sims). Pfeffer seven factors; cross-media held.
+`simPending=true` (nSimRuns=0). Did not re-run compare.
 
 ## Isolation
 

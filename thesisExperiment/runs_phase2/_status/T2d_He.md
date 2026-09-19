@@ -1,6 +1,6 @@
 # T2d_He status (dual heterogeneous, all 8 topologies)
 
-**Updated:** 2026-09-19T04:45:57.178Z
+**Updated:** 2026-09-19T04:46:17.542Z
 **OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -9,7 +9,7 @@
 **Isolation:** `thesisExperiment/runs_phase2` only (not Phase 1 `runs/` or `results/tables/`)
 **Git commit:** no
 
-**Phase:** peer T2d_He orchestrator live (pids 155296). Watching; skip completed/in-progress; will run leftovers. Do not stop after one topology.
+**Phase:** finished. completed=48 failed=0 skipped=48 pending=0 in_progress=0.
 
 ## Counts (configs; each seeds 6 core articles)
 
@@ -21,8 +21,8 @@
 | skipped (already complete dual) | 48 |
 | in_progress | 0 |
 | pending / not_started | 0 |
-| LLM calls (this slice + probe) | 36640 |
-| Est. USD | $4.0004 |
+| LLM calls (this slice + probe) | 38122 |
+| Est. USD | $4.1476 |
 
 ## By topology
 
