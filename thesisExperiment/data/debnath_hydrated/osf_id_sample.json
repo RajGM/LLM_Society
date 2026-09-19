@@ -1,9 +1,12 @@
 {
-  "source": "OSF osf.io/75ye3 dataset.csv SAMPLE — first 5k lines only, not the ~662MB dump",
-  "warning": "The OSF CSV is NOT tweet-IDs-only: it has text, user_name, user_description, location, profile image. Raw rows were discarded. tweet_id values in this sample are mostly Excel scientific notation (precision lost) and cannot be hydrated.",
-  "nLinesKept": 4043,
-  "nIdsScientificNotation": 1169,
+  "source": "OSF osf.io/75ye3 dataset.csv SAMPLE — first 5k CSV records, not the ~662MB dump",
+  "warning": "The OSF CSV is NOT tweet-IDs-only: it has text, user_name, user_description, location, profile image. Raw rows were discarded. tweet_id values in this sample are mostly Excel scientific notation (precision lost) and cannot be hydrated. Hashtags were extracted from `text` in memory and only aggregate counts were kept.",
+  "nRecordsKept": 5000,
+  "nLinesKept": 5000,
+  "nIdsScientificNotation": 1786,
   "nIdsUsableDigits": 0,
+  "nRecordsWithHashtag": 987,
+  "nDistinctHashtags": 564,
   "headerColumnsOnly": [
     "tweet_id",
     "text",

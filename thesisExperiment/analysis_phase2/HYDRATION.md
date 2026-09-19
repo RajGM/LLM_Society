@@ -42,9 +42,9 @@ OSF prefix hashtags **annotate** documented edges (`osfSampleCount`) and are sto
 
 ### OSF hashtag sample (this run)
 
-- Records: **5000**; with text: **2134**; with ≥1 hashtag: **970**.
-- Distinct hashtags: **557**. Tweets with ≥2 documented tags: **354**.
-- Documented tag-pairs observed: **61**. Directed edges with OSF count > 0: **45**.
+- Records: **5000**; scientific-notation `tweet_id` tokens: **1786**; usable digit IDs: **0**; with text: **2158**; with ≥1 hashtag: **987**.
+- Distinct hashtags: **564**. Tweets with ≥2 documented tags: **361**.
+- Documented tag-pairs observed: **65**. Directed edges with OSF count > 0: **48**.
 - PII: tweet text and user fields discarded after extraction.
 
 ## Debnath’s “eight” is not our 8 hops

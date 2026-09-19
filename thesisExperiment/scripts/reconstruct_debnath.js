@@ -4,18 +4,23 @@
  *
  * Tries, in order:
  *   1. Mendeley 10.17632/546hsym93p.1 tweet IDs
- *   2. OSF osf.io/75ye3 dataset.csv (full file is ~662MB — sample first 5k lines)
- *   3. Twitter/X hydration if a bearer token is present in the environment
- *   4. Documented hashtag co-occurrence graph fallback (NOT a retweet cascade)
+ *   2. OSF osf.io/75ye3 dataset.csv (~662MB). Sample first 5k CSV *records*:
+ *      tweet_id tokens + hashtags from `text` only. Never store tweet text / user fields.
+ *      tweet_id is Excel scientific notation → 0 hydratable IDs. Do not invent IDs.
+ *   3. Twitter/X hydration if a bearer token is present AND usable digit IDs exist
+ *   4. Documented hashtag co-occurrence graph (NOT a retweet cascade). OSF hashtags
+ *      annotate that graph; they do not fabricate a user/retweet cascade.
  *
  * Writes:
  *   thesisExperiment/data/debnath_hydrated/
  *   thesisExperiment/data/derived/debnath_hashtag_cascade.json
+ *   thesisExperiment/data/derived/debnath_osf_hashtag_sample.json
  *   thesisExperiment/data/derived/debnath_reconstruct_report.md
- *   thesisExperiment/configs/phase2/Dnet_*.json
+ *   thesisExperiment/analysis_phase2/HYDRATION.md
+ *   thesisExperiment/configs/phase2/Dnet_*.json  (skipped if topology unchanged)
  *
  * Does NOT overwrite thesisExperiment/runs/ or thesisExperiment/results/tables/.
- * Does NOT invent tweets. Does not print secrets. Does not commit .env.
+ * Does NOT invent tweets or tweet IDs. Does not print secrets. Does not commit .env.
  *
  *   node thesisExperiment/scripts/reconstruct_debnath.js
  */
@@ -41,6 +46,8 @@ const LLM_SUBSAMPLE_MAX = 80;
 const LLM_SUBSAMPLE_IF_OVER = 200;
 
 const UA = "SocietySimulation-thesisExperiment/1.0 (academic; TUM thesis Debnath reconstruct)";
+
+const osfHashtags = require("./debnath_hashtag_osf");
 
 for (const d of [HYDRATED, DERIVED, CFG_DIR]) fs.mkdirSync(d, { recursive: true });
 
@@ -322,44 +329,25 @@ async function tryOsf(attempts) {
 
   const urlsToTry = [downloadUrl, ...downloadGuesses].filter(Boolean);
   const idOnlyPath = path.join(HYDRATED, "osf_tweet_id_tokens_5k.txt");
+  const tmp = path.join(HYDRATED, "_osf_raw_tmp.csv");
+  if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
   for (const url of urlsToTry) {
     try {
-      const streamed = await streamFirstLines(url, path.join(HYDRATED, "_osf_raw_tmp.csv"), OSF_SAMPLE_LINES, {
+      const streamed = await osfHashtags.streamOsfIdAndHashtags(url, OSF_SAMPLE_LINES, {
         timeoutMs: 90000,
+        userAgent: UA,
+        hashtagSpec: HASHTAG_SPEC,
       });
-      const tmp = path.join(HYDRATED, "_osf_raw_tmp.csv");
-      const head = fs.existsSync(tmp) ? fs.readFileSync(tmp, "utf8").slice(0, 800) : "";
-      const html = looksLikeHtml(streamed.contentType, head);
-      const headerLine = head.split(/\r?\n/)[0] || "";
-      const looksCsv = /tweet_id/i.test(headerLine) && !/^\s*[\[{]/.test(String(head).trim());
-      const hasPiiColumns = /(?:^|,)(text|user_name|user_description|user_location|user_profile_image_url|sourcetweet_text)(?:,|$)/i.test(
-        headerLine
-      );
-      const counts = { lines: 0, ok_digits: 0, scientific_notation: 0, other: 0, empty: 0 };
-      const usableIds = [];
-      if (streamed.ok && !html && looksCsv && fs.existsSync(tmp)) {
-        const raw = fs.readFileSync(tmp, "utf8");
-        const lines = raw.split(/\r?\n/);
-        const outIds = [];
-        for (let i = 0; i < lines.length; i++) {
-          const line = lines[i];
-          if (!line.trim()) continue;
-          if (i === 0 && /tweet_id/i.test(line)) continue;
-          counts.lines += 1;
-          const tok = firstCsvFieldPair(line) || line.split(/[,;\t]/)[0].replace(/"/g, "").trim();
-          const kind = classifyTweetIdToken(tok);
-          counts[kind] = (counts[kind] || 0) + 1;
-          if (kind === "ok_digits") {
-            usableIds.push(tok);
-            outIds.push(tok);
-          } else if (kind === "scientific_notation") {
-            outIds.push(tok);
-          }
-        }
-        fs.writeFileSync(idOnlyPath, outIds.slice(0, OSF_SAMPLE_LINES).join("\n") + "\n");
-      }
-      // Always drop the raw CSV: OSF file includes tweet text and user fields.
       if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
+      const html = streamed.html;
+      const looksCsv = !!streamed.looksCsv;
+      const counts = streamed.idCounts || { lines: 0, ok_digits: 0, scientific_notation: 0, other: 0, empty: 0 };
+      const usableIds = streamed.usableIds || [];
+      const hashtags = streamed.hashtags || osfHashtags.emptyHashtagStats();
+      const hasPiiColumns = !!hashtags.hasPiiColumns;
+      if (looksCsv && (streamed.idTokens || []).length) {
+        fs.writeFileSync(idOnlyPath, streamed.idTokens.slice(0, OSF_SAMPLE_LINES).join("\n") + "\n");
+      }
       const csvOk = streamed.ok && !html && looksCsv && counts.lines > 0;
       if (csvOk) {
         const idJson = path.join(HYDRATED, "osf_id_sample.json");
@@ -367,16 +355,16 @@ async function tryOsf(attempts) {
           idJson,
           JSON.stringify(
             {
-              source: "OSF osf.io/75ye3 dataset.csv SAMPLE — first 5k lines only, not the ~662MB dump",
+              source: "OSF osf.io/75ye3 dataset.csv SAMPLE — first 5k CSV records, not the ~662MB dump",
               warning:
-                "The OSF CSV is NOT tweet-IDs-only: it has text, user_name, user_description, location, profile image. Raw rows were discarded. tweet_id values in this sample are mostly Excel scientific notation (precision lost) and cannot be hydrated.",
+                "The OSF CSV is NOT tweet-IDs-only: it has text, user_name, user_description, location, profile image. Raw rows were discarded. tweet_id values in this sample are mostly Excel scientific notation (precision lost) and cannot be hydrated. Hashtags were extracted from `text` in memory and only aggregate counts were kept.",
+              nRecordsKept: hashtags.nRecords,
               nLinesKept: counts.lines,
               nIdsScientificNotation: counts.scientific_notation,
               nIdsUsableDigits: counts.ok_digits,
-              headerColumnsOnly: headerLine
-                .split(",")
-                .map((c) => c.trim())
-                .filter(Boolean),
+              nRecordsWithHashtag: hashtags.nRecordsWithHashtag,
+              nDistinctHashtags: hashtags.nDistinctHashtags,
+              headerColumnsOnly: hashtags.headerColumnsOnly,
               hasPiiColumns,
               usableDigitIds: usableIds.slice(0, 50),
               exampleScientificToken: "1.00048E+18",
@@ -392,6 +380,7 @@ async function tryOsf(attempts) {
         status: streamed.status,
         url,
         lines: counts.lines,
+        records: hashtags.nRecords,
         bytes: streamed.bytes,
         contentType: streamed.contentType,
         html,
@@ -401,7 +390,12 @@ async function tryOsf(attempts) {
         piiDiscarded: hasPiiColumns,
         nIdsScientificNotation: counts.scientific_notation,
         nIdsUsableDigits: counts.ok_digits,
-        note: looksCsv ? null : "response was not dataset.csv (HTML/JSON listing)",
+        nRecordsWithHashtag: hashtags.nRecordsWithHashtag,
+        nDistinctHashtags: hashtags.nDistinctHashtags,
+        nDocumentedPairsObserved: (hashtags.documentedPairsObserved || []).length,
+        note: looksCsv
+          ? "tweet text discarded after hashtag extraction; IDs not invented"
+          : "response was not dataset.csv (HTML/JSON listing)",
       });
       if (csvOk) {
         return {
@@ -409,14 +403,15 @@ async function tryOsf(attempts) {
           samplePath: idOnlyPath,
           ids: usableIds,
           lines: counts.lines,
+          records: hashtags.nRecords,
           downloadUrl: url,
           guidMeta: guidMeta ? "saved" : null,
           piiDiscarded: hasPiiColumns,
           nScientific: counts.scientific_notation,
+          hashtags,
         };
       }
     } catch (err) {
-      const tmp = path.join(HYDRATED, "_osf_raw_tmp.csv");
       if (fs.existsSync(tmp)) fs.unlinkSync(tmp);
       attempts.push({ step: "osf_dataset_sample", ok: false, url, error: err.message });
     }
@@ -974,6 +969,7 @@ function buildHashtagCascade() {
         "Hashtag co-occurrence is a structural/hashtag fallback, not a hydrated retweet cascade.",
         "814k tweet IDs were not hydrated; BPs are theory-faithful reductions, not HDBSCAN centroids.",
         "8 hops/ticks is logged cost compression vs CIKM 30, not a Debnath hop protocol.",
+        "Debnath's “eight” is a skip-gram context window of eight words (p_together), not hop depth.",
       ],
     },
     _meta: {
@@ -1133,6 +1129,37 @@ function cascadeToCustomGraph(cascade, mode) {
 
 function writeDnetConfigs(cascade, attempts) {
   const n = Object.keys(cascade.user_profiles || {}).length;
+  const nEdges = (cascade.retweets || []).length;
+  const idxPath = path.join(CFG_DIR, "Dnet_index.json");
+  if (n <= LLM_SUBSAMPLE_IF_OVER && fs.existsSync(idxPath)) {
+    try {
+      const idx = JSON.parse(fs.readFileSync(idxPath, "utf8"));
+      const configs = idx.configs || [];
+      const same =
+        configs.length >= 4 &&
+        configs.every(
+          (c) =>
+            c.nNodes === n &&
+            c.nEdges === nEdges &&
+            c.file &&
+            fs.existsSync(path.join(ROOT, c.file))
+        );
+      if (same) {
+        attempts.push({
+          step: "write_dnet_configs",
+          ok: true,
+          skipped: true,
+          reason: "topology_unchanged",
+          nNodes: n,
+          nEdges,
+          note: "Existing Dnet configs kept (same node/edge counts). Completed D-net sims not rewritten.",
+        });
+        return { written: configs, subsampled: false, simNodes: n, skipped: true };
+      }
+    } catch (_) {
+      /* rewrite */
+    }
+  }
   let simCascade = cascade;
   let subsampled = false;
   if (n > LLM_SUBSAMPLE_IF_OVER) {
@@ -1254,9 +1281,15 @@ function writeReport(ctx) {
     );
   } else {
     lines.push(
-      "This graph is **NOT a retweet cascade**. Twitter/X hydration did not run (no bearer token and/or no usable ID dump). The artefact is a **documented hashtag co-occurrence / same-cluster graph** in FakeNewsNet JSON shape so `RealGraphImporter` can attach a custom topology. Edges occupy `retweets[]` only as a directed-edge container."
+      "**Hydration failed.** Twitter/X hydration did not run: no bearer token, and OSF `tweet_id` is Excel scientific notation (0 hydratable IDs). Tweet IDs were **not invented**. The artefact used as the empirical graph is a **documented hashtag co-occurrence / same-cluster graph** in FakeNewsNet JSON shape so `RealGraphImporter` can attach a custom topology. Edges occupy `retweets[]` only as a directed-edge container. This graph is **NOT a retweet cascade**."
     );
   }
+  lines.push("");
+  lines.push("### Debnath’s “eight” vs our 8 hops");
+  lines.push("");
+  lines.push(
+    "Debnath, Reiner, Sovacool et al. (iScience 2023, STAR Methods) define a skip-gram **context window of eight**: a batch of eight **words** in an individual tweet to estimate `p_together` with “chemtrails”. That is a **word2vec/skip-gram window**, not a hop protocol. This experiment’s **8 hops/ticks** is a logged cost cut vs CIKM K=30. Do not equate the two."
+  );
   lines.push("");
   lines.push("## Isolation");
   lines.push("");
@@ -1286,13 +1319,23 @@ function writeReport(ctx) {
   lines.push("");
   lines.push("1. **Mendeley** `10.17632/546hsym93p.1` — tweet **IDs**, not text. Files API historically 400; landing page may already sit in `data/raw/mendeley_546hsym93p_landing.html`.");
   lines.push(`   - This run: ${mendeley && mendeley.ok ? "files listing retrieved" : "no dump (API error 400 / landing only)"}.`);
-  lines.push("2. **OSF** `osf.io/75ye3` `dataset.csv` ~662MB. Policy: store a **sample of IDs only** (first 5k lines) if the file is reachable; never keep the full CSV in-repo. The live OSF CSV also contains tweet **text and user fields** — those columns were **discarded** (ethics: no re-identification). `tweet_id` in the sample is Excel scientific notation, so IDs are not hydratable.");
-  lines.push(`   - This run: ${osf && osf.ok ? `sample ${osf.lines} lines; usable digit IDs ${osf.ids.length}; PII discarded=${!!osf.piiDiscarded}` : "sample not retrieved"}.`);
+  lines.push("2. **OSF** `osf.io/75ye3` `dataset.csv` ~662MB. Policy: store a **sample of IDs only** (first 5k records) if the file is reachable; never keep the full CSV in-repo. The live OSF CSV also contains tweet **text and user fields** — those columns were **discarded** (ethics: no re-identification). `tweet_id` in the sample is Excel scientific notation, so IDs are not hydratable. **Hashtags** were extracted from `text` in memory (Ramit1201/geoeng `hashtag_ext` regex) and only aggregate counts were kept.");
+  lines.push(
+    `   - This run: ${
+      osf && osf.ok
+        ? `sample ${osf.records || osf.lines} records; usable digit IDs ${osf.ids.length}; PII discarded=${!!osf.piiDiscarded}; hashtag tweets ${(osf.hashtags && osf.hashtags.nRecordsWithHashtag) || 0}; documented pairs observed ${
+            (osf.hashtags && osf.hashtags.documentedPairsObserved && osf.hashtags.documentedPairsObserved.length) || 0
+          }`
+        : "sample not retrieved"
+    }.`
+  );
   lines.push("3. **GitHub** `Ramit1201/geoeng` at `thesisExperiment/data/debnath_geoeng/` — analysis codes (`hashtag_ext`, NRC, embeddings, Perspective), **not** tweets.");
   lines.push(`   - Present: **${geoengExists ? "yes" : "no"}**.`);
   lines.push(`4. **Twitter/X API** — bearer env: **${bearer.present ? bearer.envName + " (present, value not logged)" : "absent"}**. If absent, tweets are not invented.`);
   lines.push("");
   lines.push("## Graph used for D-net");
+  lines.push("");
+  lines.push("This hashtag co-occurrence graph is the **empirical graph** for Phase 2 comparison. It is **not** a hydrated retweet cascade and **not** HDBSCAN on 814k tweets.");
   lines.push("");
   lines.push(`- File: \`thesisExperiment/data/derived/debnath_hashtag_cascade.json\``);
   lines.push(`- Nodes (user_profiles): **${nUsers}**`);
@@ -1304,6 +1347,21 @@ function writeReport(ctx) {
     lines.push(`- Documented pairs encoded: ${cascade._meta.documentedPairs}`);
   }
   lines.push("");
+  if (cascade._meta && cascade._meta.osfHashtagSample) {
+    const s = cascade._meta.osfHashtagSample;
+    lines.push("### OSF hashtag annotation (not a topology change)");
+    lines.push("");
+    lines.push(
+      `- Records streamed: **${s.nRecords}**; with ≥1 hashtag: **${s.nRecordsWithHashtag}**; distinct hashtags: **${s.nDistinctHashtags}**.`
+    );
+    lines.push(
+      `- Documented tag-pairs observed in the prefix: **${s.nDocumentedPairsObserved}**. Directed edges carrying a positive OSF count: **${s.nDirectedEdgesWithOsfCount}**.`
+    );
+    lines.push(
+      "- These counts **annotate** documented edges (`osfSampleCount`). They do **not** add or remove nodes/edges. The 5k-record prefix is not Debnath’s full co-occurrence network."
+    );
+    lines.push("");
+  }
   lines.push("### What the nodes are");
   lines.push("");
   lines.push("Accounts keyed by published Debnath hashtags (`#chemtrails`, `#geoengineering`, `#haarp`, `#srm`, `#climateaction`, `#ozone`, …) plus a small expert pair (science journalist / climate scientist) so mixed BPs can map. Follower counts are **illustrative bands** from Figure 2 (≥10k = highly influential), not scraped profiles.");
@@ -1337,13 +1395,27 @@ function writeReport(ctx) {
   lines.push("- `seedArticles`: `scopex_2017`, `chemtrails_gates_2018_2021`");
   lines.push("- `outputRoot`: `thesisExperiment/runs_phase2`");
   lines.push(`- LLM subsample: ${dnet.subsampled ? "yes (graph was >200 nodes)" : "not needed (graph ≤200 nodes); full co-occurrence graph kept"}`);
+  if (dnet.skipped) {
+    lines.push("- Dnet config rewrite: **skipped** (topology unchanged; completed D-net sims not overwritten).");
+  }
   lines.push("");
-  lines.push("## Non-claims");
+  lines.push("## compare_phase2.js");
+  lines.push("");
+  lines.push(
+    ctx.topologyChanged
+      ? "- Empirical **topology changed**. `compare_phase2.js` should be re-run."
+      : "- Empirical **topology unchanged** (same node/edge endpoints). `compare_phase2.js` was **not** re-run; do not wipe `simPending=false`."
+  );
+  lines.push("");
+  lines.push("## Non-claims / still impossible");
   lines.push("");
   lines.push("- Not HDBSCAN / Skip-gram re-estimation of 814,924 tweets.");
   lines.push("- Not a digital twin of Debnath retweet virality.");
   lines.push("- Not empirical MPR. Debnath reports toxicity, NRC, embeddings, hashtag networks — not 0–5 MPR.");
-  lines.push("- If hydration failed, comparison in later steps is **structural / hashtag**, not “simulated MPR = Twitter MPR.”");
+  lines.push("- Hydration failed: comparison is **structural / hashtag**, not “simulated MPR = Twitter MPR.”");
+  lines.push("- Cannot recover true tweet IDs from Excel scientific notation (`1.00048E+18` has lost low digits).");
+  lines.push("- Cannot build `conversation_id` / retweet chains from this OSF sample (those IDs are also unusable / PII-adjacent; text discarded).");
+  lines.push("- Cannot claim OSF 5k-record prefix = Debnath’s published country-scale Gephi co-occurrence nets.");
   lines.push("");
   const reportPath = path.join(DERIVED, "debnath_reconstruct_report.md");
   fs.writeFileSync(reportPath, lines.join("\n") + "\n");
@@ -1361,10 +1433,10 @@ function writeHydratedReadme(ctx) {
     "- CSV/TSV/ZIP dumps are gitignored (see repo `.gitignore`).",
     "",
     `Bearer token present this run: ${ctx.bearer.present ? "yes (name withheld)" : "no"}.`,
-    `OSF ID sample: ${ctx.osf && ctx.osf.ok ? ctx.osf.lines + " lines streamed; usable digit IDs " + (ctx.osf.ids || []).length + "; tweet text discarded" : "not retrieved"}.`,
-    `Hydration: ${ctx.hydrated && ctx.hydrated.ok ? "ok" : "skipped/failed"}.`,
+    `OSF ID sample: ${ctx.osf && ctx.osf.ok ? (ctx.osf.records || ctx.osf.lines) + " records streamed; usable digit IDs " + (ctx.osf.ids || []).length + "; tweet text discarded after hashtag extraction" : "not retrieved"}.`,
+    `Hydration: ${ctx.hydrated && ctx.hydrated.ok ? "ok" : "failed/skipped"}.`,
     "",
-    "The graph actually used for D-net lives at `../derived/debnath_hashtag_cascade.json` unless hydration produced a usable retweet graph.",
+    "The graph actually used for D-net lives at `../derived/debnath_hashtag_cascade.json`. Method: `../../analysis_phase2/HYDRATION.md`.",
     "",
   ];
   fs.writeFileSync(path.join(HYDRATED, "README.md"), md.join("\n"));
@@ -1417,11 +1489,47 @@ async function main() {
       ok: true,
       nUsers: cascade._meta.nUsers,
       nEdges: cascade._meta.nEdges,
-      note: "NOT a retweet cascade.",
+      note: "NOT a retweet cascade. Empirical graph for D-net / compare.",
     });
+    if (osf && osf.hashtags && osf.hashtags.nRecords > 0) {
+      osfHashtags.annotateCascadeWithOsfHashtags(cascade, osf.hashtags);
+      const hashtagSamplePath = path.join(DERIVED, "debnath_osf_hashtag_sample.json");
+      osfHashtags.writeOsfHashtagSample(osf.hashtags, hashtagSamplePath, osf);
+      attempts.push({
+        step: "osf_hashtag_extract",
+        ok: true,
+        nRecords: osf.hashtags.nRecords,
+        nRecordsWithHashtag: osf.hashtags.nRecordsWithHashtag,
+        nDistinctHashtags: osf.hashtags.nDistinctHashtags,
+        nDocumentedPairsObserved: (osf.hashtags.documentedPairsObserved || []).length,
+        dest: path.relative(ROOT, hashtagSamplePath),
+        note: "Hashtags only; tweet text discarded. Topology not expanded from the 5k prefix.",
+      });
+    } else {
+      attempts.push({
+        step: "osf_hashtag_extract",
+        ok: false,
+        note: "No OSF hashtag aggregates (sample missing or unparseable).",
+      });
+    }
   }
 
   const cascadePath = path.join(DERIVED, "debnath_hashtag_cascade.json");
+  const prevFp = fs.existsSync(cascadePath)
+    ? osfHashtags.topologyFingerprint(JSON.parse(fs.readFileSync(cascadePath, "utf8")))
+    : null;
+  const nextFp = osfHashtags.topologyFingerprint(cascade);
+  const topologyChanged = !!(prevFp && prevFp !== nextFp);
+  attempts.push({
+    step: "topology_fingerprint",
+    ok: true,
+    topologyChanged,
+    note: topologyChanged
+      ? "Node/edge endpoints changed vs previous cascade."
+      : prevFp
+        ? "Node/edge endpoints unchanged; OSF counts are annotations only."
+        : "No previous cascade to compare.",
+  });
   fs.writeFileSync(cascadePath, JSON.stringify(cascade, null, 2) + "\n");
 
   // Validate importer can read it
@@ -1455,36 +1563,59 @@ async function main() {
   }
 
   const dnet = writeDnetConfigs(cascade, attempts);
-  attempts.push({ step: "write_dnet_configs", ok: true, n: dnet.written.length });
+  if (!dnet.skipped) {
+    attempts.push({ step: "write_dnet_configs", ok: true, n: dnet.written.length });
+  }
 
-  const ctx = { attempts, bearer, openai, mendeley, osf, hydrated, cascadePath, dnet, geoengExists };
+  const ctx = {
+    attempts,
+    bearer,
+    openai,
+    mendeley,
+    osf,
+    hydrated,
+    cascadePath,
+    dnet,
+    geoengExists,
+    topologyChanged,
+    expDir: EXP,
+    derivedDir: DERIVED,
+  };
   writeHydratedReadme(ctx);
   fs.writeFileSync(path.join(HYDRATED, "reconstruct_attempts.json"), JSON.stringify({ at: new Date().toISOString(), attempts }, null, 2) + "\n");
   const reportPath = writeReport(ctx);
+  const hydrationPath = osfHashtags.writeHydrationMd(ctx);
 
   const nUsers = Object.keys(cascade.user_profiles).length;
   const nEdges = cascade.retweets.length;
   const logNote = [
-    `Debnath reconstruct ran. Hydration: ${hydrated.ok ? "yes" : "no"} (bearer ${bearer.present ? "present" : "absent"}).`,
+    `Debnath reconstruct ran. Hydration: ${hydrated.ok ? "yes" : "FAILED"} (bearer ${bearer.present ? "present" : "absent"}; usable digit IDs ${(osf.ids || []).length}).`,
     usedFallback
-      ? `Fallback hashtag co-occurrence graph written (${nUsers} nodes, ${nEdges} directed edges). This is NOT a retweet cascade.`
+      ? `Empirical graph = hashtag co-occurrence fallback (${nUsers} nodes, ${nEdges} directed edges). NOT a retweet cascade. Topology ${topologyChanged ? "CHANGED" : "unchanged"}.`
       : `Hydrated cascade written (${nUsers} users).`,
-    `Outputs: ${path.relative(ROOT, cascadePath)}; ${path.relative(ROOT, reportPath)}; configs/phase2/Dnet_*.json.`,
-    "Did not touch thesisExperiment/runs/ or results/tables/. Did not run LLM.",
+    `Debnath “eight” = skip-gram word window, not 8 hops.`,
+    `Outputs: ${path.relative(ROOT, cascadePath)}; ${path.relative(ROOT, reportPath)}; ${path.relative(ROOT, hydrationPath)}.`,
+    "Did not touch thesisExperiment/runs/ or results/tables/. Did not invent tweet IDs. Did not run LLM.",
   ].join(" ");
   appendLog(logNote);
 
   console.log(JSON.stringify(
     {
       usedFallback,
+      hydrationFailed: !hydrated.ok,
       nUsers,
       nEdges,
+      topologyChanged,
       seed_user: cascade.seed_user,
       cascade: path.relative(ROOT, cascadePath),
       report: path.relative(ROOT, reportPath),
-      dnet: dnet.written.map((w) => w.file),
+      hydration: path.relative(ROOT, hydrationPath),
+      dnetSkipped: !!dnet.skipped,
+      dnet: (dnet.written || []).map((w) => w.file),
       openai: openai ? "present" : "absent",
       twitterBearer: bearer.present ? "present" : "absent",
+      osfUsableDigitIds: (osf.ids || []).length,
+      osfHashtagRecords: osf.hashtags ? osf.hashtags.nRecordsWithHashtag : 0,
     },
     null,
     2
