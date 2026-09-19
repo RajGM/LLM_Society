@@ -200,8 +200,15 @@ files were already identical on `main`.
 **Also on `main`:** `thesisExperiment/thesis_final/SUBMISSION_INPUTS_REQUIRED.md`,
 `CLAIM_EVIDENCE_MATRIX.md`, `THESIS_LOG.md`.
 
-**PDF at the preserved thesis SHA:** 116 pages; 2,242,482 bytes; 37,892
+**PDF at the preserved thesis SHA.** 116 pages; 2,242,482 bytes; 37,892
 extracted words; 0 undefined citations/references; 0 overfull boxes.
+
+**Clean compile (2026-09-19 17:40 UTC).** `latexmk -g` in
+`thesisExperiment/thesis_final/` succeeded with the same page/word/byte
+counts and 0 overfull boxes. The rebuilt PDF hash differed only by
+CreationDate; the committed file was left at `389b0bf` so the thesis
+binary was not overwritten. Reviews-on-main commit:
+`9426dcc96aaff1e5c024fc267d6cb671f6b3d1f2`.
 
 **Unresolved user inputs:** see `SUBMISSION_INPUTS_REQUIRED.md` (14
 `\UserInput` sites + 8 contribution confirmations). `.env` was not printed

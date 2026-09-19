@@ -199,6 +199,11 @@ Identical mirrors: repo-root `reviews/`.
 
 ### Final PDF (thesis source unchanged from `389b0bf`)
 
+Clean `latexmk -g -pdf -interaction=nonstopmode -halt-on-error main.tex`
+on 2026-09-19 17:40 UTC reproduced the same document. Science was not
+edited. The rebuilt binary differed only by PDF timestamp; the committed
+file remains the `389b0bf` artefact.
+
 - Path: `thesisExperiment/thesis_final/main.pdf`
 - Pages: 116
 - Bytes: 2,242,482
