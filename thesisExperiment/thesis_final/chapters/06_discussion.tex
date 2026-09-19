@@ -1,0 +1,351 @@
+\chapter{Discussion}
+\label{chap:discussion}
+
+This chapter interprets the Phase~2 results in relation to the research
+questions and the literature.  The distinction between evidence,
+interpretation, and implication is maintained throughout.  This distinction is
+necessary because the campaign comprises one run per configuration
+($N=1$), one graph seed, an eight-tick horizon, and 292 dead cells among
+1,728 configured cells.  The reported quantities are therefore descriptive
+properties of the present LLM simulation.  They are neither estimates of
+population effects nor measurements of misinformation on Twitter.
+
+\section{Synthesis of the research questions}
+\label{sec:discussion-rqs}
+
+\subsection{RQ1: What does the instrument comparison establish?}
+
+The measurement result precedes all substantive comparisons. Dual-discrete scores exceeded continuous scores on every topology in both arms, while topology ranks aligned weakly. The campaign therefore shows that MI and MPR conclusions depend on the auditor regime. This finding answers RQ1: neither instrument can serve as an unqualified ground truth, and cross-mode pooling is not admissible.
+
+\subsection{RQ3: How does network topology affect misinformation
+propagation?}
+
+\paragraph{Evidence.}
+Topology changed the live-cell scores, the frequency of irreversible
+\kstar{}, and the probability that a cascade remained scorable.  However, no
+topology occupied the highest or lowest position consistently across identity
+composition and scoring instrument.  In homogeneous continuous runs,
+scale-free networks had the highest topology mean ($0.9205$), whereas
+small-world networks had the lowest ($0.7215$).  In homogeneous
+dual-discrete runs, echo chambers had the highest mean ($1.7984$), again with
+small-world networks lowest ($1.5977$).  In heterogeneous runs, the
+hierarchical topology had the highest mean under both instruments ($1.5242$
+continuous and $2.5934$ dual-discrete).  These latter estimates must be read
+together with the hierarchical dead-cell rates of $27.8\%$ and $22.2\%$,
+respectively.  Polarised heterogeneous continuous runs likewise combined a
+high live-cell mean ($1.4137$) with a $30.6\%$ dead-cell rate.
+
+\paragraph{Interpretation.}
+The results do not support a topology-invariant ranking.  Topology appears to
+condition which messages are observed and scored, but it does so jointly with
+persona placement, article content, and cascade survival.  In particular,
+live-only means on topologies with many dead cells describe the surviving
+cascades rather than the generator as a whole.  The scale-free versus random
+comparison is primarily a hub and degree-sequence contrast; it is not a
+controlled comparison of clustering coefficients.  Similarly, the
+hierarchical generator represents authority-oriented transmission and should
+not be interpreted as a model of cross-media dynamics.
+
+\paragraph{Implication.}
+Topology should be treated as a conditioning structure, not as a sufficient
+cause of factual degradation.  Subsequent work should use repeated graph
+seeds, report cascade survival as an outcome, and match graph properties when
+isolating a specific mechanism such as clustering, centralisation, or
+community separation.  On the present evidence, selecting a single
+\enquote{most harmful} topology would overstate what the design identifies.
+
+\subsection{RQ2: What is the role of identity composition?}
+
+\paragraph{Evidence.}
+When all eight generated topologies were collapsed within one instrument, the
+heterogeneous arm exceeded the homogeneous arm: by $0.1549$ in continuous
+\MI{} (H $0.8643$, He $1.0192$) and by $0.3986$ in dual-discrete \MI{}
+(H $1.6814$, He $2.0800$).  The continuous direction was nevertheless split:
+He exceeded H on four of eight topologies, whereas H exceeded He on the other
+four.  The dual-discrete direction was He$>$H on all eight topologies.
+Composition-specific results were substantially more differentiated than
+these arm labels.  Homogeneous conspiracy-family cells reached $2.2194$
+continuous and $3.1691$ dual-discrete, compared with $0.1118$ and $0.8687$
+for homogeneous science/environment personas.  Among heterogeneous mixes,
+\texttt{mix\_00}, containing four conspiracy personas, scored $1.7712$
+continuous and $3.1321$ dual-discrete; conspiracy-free \texttt{mix\_02}
+scored $0.2645$ and $1.1882$.
+
+\paragraph{Interpretation.}
+The collapsed H/He contrast is not an estimate of a general effect of
+diversity.  The homogeneous arm contains both conspiracy-only and
+scientist-only societies, while the heterogeneous arm contains mixes with
+different conspiracy shares and different persona identities.  Averaging
+within these broad labels changes the distribution of substantive roles.
+Consequently, the observed He$>$H collapse is compatible with a strong
+composition gradient: conspiracy-conditioned cells score high, whereas
+science-conditioned cells score low.  It does not establish that
+heterogeneity intensifies misinformation, just as the low value of
+\texttt{mix\_02} does not establish that diversity prevents it.
+
+\paragraph{Implication.}
+Future comparisons should hold the proportion and identity of
+conspiracy-conditioned seats constant while varying only within-network
+diversity or placement.  Network means should be accompanied by
+persona-conditioned \MPR{} and exposure-matched comparisons.  This would
+separate a genuine interaction between heterogeneous neighbours from the
+mechanical dilution or enrichment produced by changing the number of
+high-scoring personas.
+
+\subsection{Measurement implications across RQ2 and RQ3}
+
+\paragraph{Evidence.}
+Dual-discrete scores exceeded continuous scores on all eight topologies in
+both arms.  The topology-mean difference was $0.8201$ for homogeneous and
+$1.0450$ for heterogeneous runs.  Among cells live under both modes, the
+median paired difference was $0.8125$ for H ($n=398$) and $0.9778$ for He
+($n=198$).  Instrument choice also affected the incidence of irreversible
+\kstar{}: the collapsed He rates were $32.1\%$ under dual-discrete scoring and
+$7.6\%$ under continuous scoring.  Moreover, topology rankings agreed only
+weakly across modes in the exploratory analysis (Spearman
+$\rho=0.095$ for H and $\rho=0.167$ for He).
+
+\paragraph{Interpretation.}
+The two modes are not interchangeable measurements on a common numerical
+scale.  The discrete instrument awards categorical penalties for omitted or
+contradicted answers, whereas the continuous instrument resolves degradation
+differently.  The systematic level difference and weak rank agreement show
+that instrument choice can affect both absolute severity and comparative
+claims about topology.  The continuous sidecar generated during a dual run is
+useful for diagnosing disagreement, but it is not a third independent
+\MPR{}.
+
+\paragraph{Implication.}
+Substantive conclusions should be reported separately for each instrument.
+Averaging the two modes would create a quantity without a defined auditor.
+The disagreement also motivates external validation: a preregistered sample
+of rewrites should be assessed by human coders, and calibration should examine
+whether each instrument preserves article- and persona-level ordering rather
+than merely correlating at the event level.  Until such validation is
+available, \kstar{} is instrument-relative.
+
+\subsection{RQ4: Does the D-net analysis generalise the generated-topology
+findings?}
+
+\paragraph{Evidence.}
+D-net used a 63-node custom graph reconstructed from hashtag co-occurrence,
+not a retweet cascade.  Its homogeneous condition assigned
+\texttt{conspiracy\_believer} to all 63 seats; its mixed condition retained a
+conspiracy share of $28/63$.  On the identical edge set, homogeneous
+conspiracy exceeded the mixed condition for both articles and both
+instruments: continuous SCoPEx $1.7349$ versus $0.9983$, continuous
+chemtrails--Gates $3.3378$ versus $2.5068$, dual-discrete SCoPEx $4.2537$
+versus $2.6880$, and dual-discrete chemtrails--Gates $3.7303$ versus
+$1.5297$.  Structural comparison was less favourable.  Breadth fell within
+the specified $30\%$ band, whereas depth and structural virality did not;
+DTFS was $0.2754$ and failed the $0.70$ validation threshold.  Tests comparing
+one empirical graph with 16 simulated cascades were underpowered.
+
+\paragraph{Interpretation.}
+D-net provides a useful stress test of the composition interpretation because
+the topology is held fixed while persona labels change.  It does not provide
+out-of-sample validation of the eight-node generators, and it is not a
+digital twin of Debnath et al.'s Twitter corpus.  The graph imports
+co-occurrence structure and then simulates message propagation on that
+structure; it neither reconstructs empirical retweet paths nor reproduces an
+empirical misinformation score.  The D-net result therefore supports the
+narrow statement that a conspiracy-only assignment scored above the retained
+mixed assignment on this larger custom graph.
+
+\paragraph{Implication.}
+The qualitative composition gradient travels from the generated graphs to
+D-net, but numerical effect sizes and cascade-shape claims do not.  Stronger
+generalisation would require hydrated interaction data, common community and
+centrality estimators, temporal information, multiple reconstructed cascades,
+and repeated simulation seeds.  Simulated auditor \MI{} must remain separate
+from Debnath et al.'s toxicity and network measures
+\parencite{debnath2023conspiracy,ruths2014social}.
+
+\section{Reconciling the collapsed and D-net orderings}
+\label{sec:discussion-reconciliation}
+
+\paragraph{Evidence.}
+The generated-topology collapse gives He$>$H, whereas D-net gives
+H-conspiracy$>$He-mixed.  These comparisons use different definitions of H.
+Across the eight-node grid, H denotes twelve separate homogeneous persona
+societies, including four conspiracy personas as well as climate-action,
+environmental, journalist, and scientist personas.  D-net H denotes one
+specific treatment: all 63 nodes are assigned the
+\texttt{conspiracy\_believer} persona.  D-net He preserves a majority
+non-conspiracy composition.  Restricting the generated-topology H cells to
+the conspiracy family already reverses the broad collapse: conspiracy H is
+well above overall He on both instruments.
+
+\paragraph{Interpretation.}
+There is therefore no empirical contradiction to resolve.  The label H
+encodes within-network uniformity, but it does not encode which identity is
+uniform.  Collapsing across homogeneous scientist and homogeneous conspiracy
+societies answers a different question from comparing a conspiracy monoculture
+with a mixed society.  D-net changes both diversity and the prevalence of the
+high-scoring persona when moving from H to He.  Its ordering is consequently
+consistent with composition, but cannot distinguish composition from a
+causal benefit of heterogeneity.
+
+\paragraph{Implication.}
+H and He should not be used as portable substantive treatments without an
+attached composition descriptor.  A defensible notation would distinguish,
+for example, H-conspiracy, H-science, He-44\%-conspiracy, and
+He-0\%-conspiracy.  A matched factorial design could then vary diversity while
+holding conspiracy share, seed position, and topology fixed.  This
+reformulation is more informative than asking whether H or He is
+\enquote{higher} in the abstract.
+
+\section{Relation to the award paper and adjacent literature}
+\label{sec:discussion-literature}
+
+\subsection{The CIKM/LASS study as prior method, not a benchmark result}
+
+\paragraph{Evidence from the literature.}
+\textcite{maurya2025simulating} introduced the auditor--node framework, MI and
+MPR, and the severity taxonomy used by the present system.  Its published
+evaluation concerned 30-hop linear branches, a different article collection,
+a larger persona inventory, ten auditor questions, and a different model
+configuration.  It reported that identity- and ideology-oriented homogeneous
+branches could accelerate degradation and that experts could stabilise it;
+it also reported propaganda-tier outcomes in approximately $85\%$ of
+heterogeneous branch--domain pairs.  Thus, the award paper itself does not
+establish a universal rule that heterogeneous societies must score below
+homogeneous societies.
+
+\paragraph{Interpretation of the present comparison.}
+The present study transfers the instrument to climate and geoengineering
+content and extends the setting from linear branches to generated and custom
+graphs.  The non-zero, persona-sensitive scores indicate that the instrument
+remains responsive in this domain.  The observed collapsed He$>$H ordering is
+not a failed replication of a universal CIKM H$>$He$ hypothesis, because no
+such universal hypothesis follows from the prior heterogeneous result.
+Conversely, D-net H-conspiracy$>$He-mixed cannot be presented as a
+replication: identity inventories, graph objects, hop budgets, auditor
+questions, and model settings differ, and the present campaign has only one
+replicate.
+
+\paragraph{Implication.}
+The defensible contribution is a boundary analysis of the prior method, not a
+numerical reproduction of the award paper.  A direct conceptual replication
+would require matched linear chains, an expert-inclusive heterogeneous arm,
+the same climate articles in both arms, a sufficiently broad article set, and
+node-type-conditioned outcomes.  The eight-hop graph campaign can motivate
+that test but cannot substitute for it.
+
+\subsection{Topology and diffusion literature}
+
+\paragraph{Evidence from the literature.}
+Classical diffusion models establish that network structure affects reach and
+activation opportunities \parencite{kempe2003influence}.  Small-world and
+preferential-attachment models formalise different structural properties
+\parencite{watts1998collective,barabasi1999emergence}.  Empirical work further
+shows that cascade depth and breadth are not captured by size alone
+\parencite{goel2016virality}, and that false news can diffuse farther and
+faster than true news in observational data \parencite{vosoughi2018false}.
+
+\paragraph{Interpretation of the present comparison.}
+The present results are compatible with the general proposition that
+structure conditions diffusion, but they do not re-estimate these empirical
+findings.  Here the state is mutable text, forwarding is mediated by an LLM,
+and live-cell \MI{} is an auditor output.  Topology effects are also entangled
+with cascade death and composition.  The data therefore add a
+content-transformation perspective to network diffusion; they do not show
+that one canonical graph class is intrinsically most susceptible to
+misinformation.
+
+\paragraph{Implication.}
+Network controls in LLM societies should include both structural summaries
+and content outcomes.  Matching degree, density, seed centrality, and
+clustering would permit more specific tests than topology names alone.
+
+\section{Pfeffer's firestorm theory: insights and boundaries}
+\label{sec:discussion-pfeffer}
+
+\paragraph{Evidence.}
+\textcite{pfeffer2014firestorms} identify seven interrelated factors: speed
+and volume of communication, binary choices, network clusters, unrestrained
+information flow, lack of diversity, cross-media dynamics, and
+network-triggered decision processes.  The present six-knob vocabulary is a
+computational remapping rather than this original list.  The campaign varied
+network structure and identity composition and compared article frames.  It
+held surprise as a single-node drip, fixed the horizon at eight ticks, omitted
+a cross-media layer, and used ternary actions---forward, reinterpret, and
+drop---rather than binary platform actions.  D-net's empirical structure had
+transitivity $0.315$, mean local clustering $0.515$, and mixed-label
+homophily close to $0.84$, but these structures were pre-wired rather than
+generated by the simulation.
+
+\paragraph{Interpretation.}
+Two Pfeffer insights receive limited support as useful design principles.
+First, network clusters and identity structure cannot be reduced to a single
+topology label: the high-scoring composition can be concentrated or diluted
+within the same graph.  Second, lack of diversity is not adequately tested by
+the binary H/He label unless identity prevalence is controlled.  The D-net
+comparison illustrates both points particularly clearly.  By contrast, this
+campaign does not test speed and volume as a shock manipulation,
+unrestrained information flow at platform scale, binary-choice dynamics,
+cross-media amplification, or the four stages of network-triggered adoption.
+Nor does \kstar{} originate in Pfeffer's framework; it is a thesis-specific
+auditor threshold.
+
+\paragraph{Implication.}
+Pfeffer's framework is most productive here as an audit of what the
+simulation represents and omits.  It should not be presented as a
+seven-factor confirmation.  A fuller test would add shock versus drip
+seeding, a binary-action ablation, a legacy-media or exogenous-broadcast
+layer, and explicit logging of repeated exposure and affirmation.  Such
+extensions would move the framework from retrospective mapping towards
+identified mechanism tests.
+
+\section{Alternative explanations and validity of the interpretation}
+\label{sec:discussion-validity}
+
+Several alternative explanations remain plausible.  Persona prompts may
+induce role compliance rather than persistent beliefs; high conspiracy scores
+may therefore partly measure how faithfully the model follows an instruction
+to use conspiratorial language.  The action policy gives reinterpretation a
+substantial role, which creates opportunities for factual mutation by design.
+The same model family participates in generation and automated assessment,
+and the five author-defined questions constrain what counts as degradation.
+Article differences combine topic, wording, affective charge, and prior fit
+with persona prompts, so they are not a clean manipulation of valence.
+Finally, excluding dead cells from means avoids coding them as factual zeros,
+but produces survivor-conditioned estimates.
+
+These limitations do not make the campaign uninformative.  They narrow the
+appropriate claim.  The experiment demonstrates that, under the documented
+prompts and graph protocols, auditor scores vary with persona composition,
+topology, and scoring mode.  It does not establish human susceptibility,
+platform-level firestorm dynamics, or causal effects in an empirical
+population.  Human evaluation, model ablations, repeated seeds, and a
+fail-closed auditor are therefore validation requirements rather than
+optional refinements \parencite{zheng2023judge,park2023generative}.
+
+\section{Overall implications}
+\label{sec:discussion-implications}
+
+For simulation methodology, the principal implication is that treatment
+labels must preserve their substantive content.  \enquote{Homogeneous} and
+\enquote{heterogeneous} are insufficient without persona shares, placement,
+and node-conditioned outcomes.  Likewise, topology names should be
+accompanied by realised graph statistics and cascade-survival rates.
+
+For measurement, discrete and continuous \MI{} should be treated as separate
+operationalisations.  Agreement in a direction across both instruments is
+stronger descriptive evidence than a result present under only one, but
+neither becomes ground truth through convergence.  Divergence is itself a
+result about the sensitivity of the conclusion to the auditor.
+
+For empirical generalisation, D-net is an intermediate case: larger and
+structurally grounded in a hashtag graph, yet still neither a retweet cascade
+nor a temporal reconstruction.  Its contribution is to show that the
+composition interpretation survives a change in graph size and source under
+the same simulator.  It does not validate the simulator against Twitter.
+
+Taken together, the research questions yield a restrained conclusion.
+Topology conditions propagation but has no stable winner; identity
+composition is more informative than the H/He label; severity and \kstar{}
+are instrument-dependent; and D-net supports only qualitative, not numerical,
+generalisation.  Pfeffer's framework explains why these dimensions should be
+considered jointly, while also making visible the mechanisms that the current
+campaign leaves untested.

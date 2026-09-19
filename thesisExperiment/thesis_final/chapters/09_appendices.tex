@@ -1,0 +1,641 @@
+% Draft reproducibility appendix for the full thesis.
+% Expected parent packages: booktabs, longtable, array, listings, xcolor,
+% hyperref, xurl, amsmath, and enumitem.
+% This is an input fragment, not a standalone document.
+
+\appendix
+\chapter{Reproducibility materials}
+\label{app:reproducibility}
+
+This appendix records the executable specification of the Phase~2 campaign.
+Paths are relative to the repository root.  The canonical machine-readable
+design is \path{thesisExperiment/configs/grid_phase2.json}; where this appendix
+and a generated artefact disagree, that file and the raw run metadata take
+precedence.  The campaign used one graph seed (\texttt{graphRandomSeed: 42})
+and one replicate, and therefore is not a replicated inferential experiment.
+Continuous and dual-discrete misinformation indices are separate instruments
+and must not be averaged.
+
+\section{Configuration matrix}
+\label{app:config-matrix}
+
+\begin{longtable}{@{}p{0.13\textwidth}p{0.13\textwidth}p{0.12\textwidth}p{0.12\textwidth}p{0.10\textwidth}p{0.10\textwidth}p{0.10\textwidth}@{}}
+\caption{Phase~2 factorial configuration matrix.  A cell is one
+configuration--article pair.  D-net and probes are outside the 1,728-cell
+factorial grid.}
+\label{tab:appendix-config-matrix}\\
+\toprule
+Slice & Instrument & Identity arm & Topologies & Identity settings & Configs & Article cells\\
+\midrule
+\endfirsthead
+\multicolumn{7}{@{}l}{\tablename~\thetable\ continued}\\
+\toprule
+Slice & Instrument & Identity arm & Topologies & Identity settings & Configs & Article cells\\
+\midrule
+\endhead
+\midrule
+\multicolumn{7}{r@{}}{\emph{continued on next page}}\\
+\endfoot
+\bottomrule
+\endlastfoot
+T2c H & continuous & H & 8 & 12 personas & $8\times12=96$ & $96\times6=576$\\
+T2d H & dual; discrete headline & H & 8 & 12 personas & $8\times12=96$ & $96\times6=576$\\
+T2c He & continuous & He & 8 & 6 mixes & $8\times6=48$ & $48\times6=288$\\
+T2d He & dual; discrete headline & He & 8 & 6 mixes & $8\times6=48$ & $48\times6=288$\\
+\midrule
+T2 total & two instruments & H and He & 8 & 18 settings & 288 & 1,728\\
+\midrule
+D-net & continuous or dual & H or He & custom & 2 assignments & 4 & 8\\
+Probes & field checks & selected & custom or chain & selected & 5 configs & 5 parsed rows\\
+\end{longtable}
+
+All T2 configurations use \texttt{gpt-4o-mini} for both the propagating agent
+and auditor, eight nodes, eight ticks, a maximum of eight hops, one drip seed
+(\texttt{node\_0}), an inbox cap of four, an always-active schedule, relation
+evolution with \texttt{trustDelta=0.05}, and six seed articles.  Graph
+configurations use action weights 0.35/0.50/0.15 for
+forward/reinterpret/drop and trust threshold 0.15.  The linear chain is the
+deliberately rewrite-heavy exception: 0.10/0.85/0.05 and threshold 0.08.
+Output is isolated under \path{thesisExperiment/runs_phase2/}; Phase~1
+\path{runs/}, \path{results/tables/}, and \path{configs/full/} are not inputs to
+the Phase~2 headlines.
+
+Configuration names have the grammar shown in
+Listing~\ref{lst:config-name-grammar}.  The parser matches the longest known
+topology token before interpreting the remainder as a persona or mix.
+
+\begin{lstlisting}[basicstyle=\ttfamily\small,breaklines=true,
+  caption={Phase~2 configuration-name grammar.},
+  label={lst:config-name-grammar}]
+T2{c|d}_{H|He}_{topology}_{persona-id|mix-id}
+
+c  -> miScoringMode = "continuous"
+d  -> miScoringMode = "dual" (headline is discrete)
+H  -> one homogeneous persona
+He -> one heterogeneous eight-seat mix
+
+Examples:
+T2c_H_linear_chain_climate_scientist
+T2d_He_polarized_mix_00
+\end{lstlisting}
+
+\section{Network topology definitions}
+\label{app:topologies}
+
+\begin{longtable}{@{}p{0.16\textwidth}p{0.25\textwidth}p{0.45\textwidth}@{}}
+\caption{The eight directed, eight-node T2 topology generators.}
+\label{tab:appendix-topologies}\\
+\toprule
+Identifier & Parameters & Construction\\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\tablename~\thetable\ continued}\\
+\toprule
+Identifier & Parameters & Construction\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\texttt{linear\_chain} & edge trust 0.7 & Directed edges
+$v_i\rightarrow v_{i+1}$ for $i=0,\ldots,6$.\\
+\texttt{ring} & edge trust 0.7 & Linear chain plus
+$v_7\rightarrow v_0$.\\
+\texttt{random\_er} & $p=0.42$; minimum seed out-degree 2 & Each ordered
+non-self pair is sampled; a guard adds outgoing seed edges if required.\\
+\texttt{small\_world} & $k=4$, $\beta=0.1$ & Directed ring lattice to two
+neighbours on each side; forward-side edges are rewired with probability
+$\beta$.\\
+\texttt{scale\_free} & Barabási--Albert $m=2$ & A fully connected
+$m+1$ seed is extended by preferential attachment; selected old--new pairs
+receive edges in both directions.\\
+\texttt{echo\_chamber} & 2 chambers; $p_{\mathrm{in}}=0.75$,
+$p_{\mathrm{out}}=0.08$; trust 0.85/0.15; seed out-degree 2 & Alternating chamber
+membership; dense high-trust within-chamber and sparse low-trust cross-chamber
+directed edges.\\
+\texttt{polarized} & $p_{\mathrm{in}}=0.75$, $p_{\mathrm{out}}=0.05$; trust
+0.88/0.10; seed out-degree 2 & Two tightly connected halves with sparse,
+low-trust cross-cluster edges.\\
+\path{hierarchical} & branching factor 3; down/up trust 0.85/0.30 &
+Rooted three-ary tree with parent--child and weaker child--parent edges.\\
+\end{longtable}
+
+Homophily-adjusted generators calculate trust from the Jaccard overlap of
+persona tags and clamp it to $[0.05,0.95]$.  The stored
+\path{graph_topology.json}, rather than the generator label alone, is the
+authoritative realised graph.  D-net is not a ninth T2 generator: it is a
+63-node, 228-directed-edge custom graph copied from the reconstructed hashtag
+co-occurrence object.
+
+\section{Persona and article inventory}
+\label{app:inventory}
+
+\subsection{Personas}
+
+\begin{longtable}{@{}p{0.28\textwidth}p{0.19\textwidth}p{0.13\textwidth}p{0.27\textwidth}@{}}
+\caption{Merged Phase~2 persona inventory.  ``H'' marks membership in the
+12-person homogeneous grid; the other five personas are available to
+heterogeneous mixes or graph cluster pools.}
+\label{tab:appendix-personas}\\
+\toprule
+Persona identifier & Family/type & H grid & Operational role\\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\tablename~\thetable\ continued}\\
+\toprule
+Persona identifier & Family/type & H grid & Operational role\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\path{conspiracy_believer} & conspiracy & yes & high-centrality chemtrails account\\
+\path{conspiracy_haarp_weather} & conspiracy & yes & HAARP and weather-warfare frame\\
+\path{conspiracy_depopulation} & conspiracy & yes & depopulation and Gates-target frame\\
+\path{conspiracy_climate_piggyback} & conspiracy & yes & climate-action hashtag hijack\\
+\path{climate_action_advocate} & climate action & yes & mitigation, justice, accountability\\
+\path{climate_justice_youth} & climate action & yes & youth and intergenerational justice\\
+\path{mitigation_first_policy} & climate action & yes & policy and SRM-governance analysis\\
+\path{environmental_concern} & environment & yes & general ecological-risk frame\\
+\path{ozone_stratosphere_specialist} & environment & yes & atmospheric chemistry and ozone\\
+\path{biodiversity_food_security} & environment & yes & ecosystems, rainfall, and crops\\
+\path{climate_scientist} & expert & yes & assessed-science correction\\
+\path{science_journalist} & expert/media & yes & sourced factual summary\\
+\path{conspiracy_peripheral_skywatcher} & conspiracy & no & low-centrality first-person sky report\\
+\path{climate_action_sweden_scopex} & climate action & no & Swedish SCoPEx consent protest\\
+\path{platform_moderator_toxicity} & institution & no & procedural harm reduction\\
+\path{caregiver_air_quality} & env./health & no & household health and air quality\\
+\path{hashtag_attention_communicator} & communication & no & high-visibility hashtag amplification\\
+\end{longtable}
+
+These are theory-faithful reductions of discourse roles, not HDBSCAN centroids
+estimated from the unavailable 814,924 tweets.  The full prompt text and
+metadata are in \path{thesisExperiment/personas/merged.json}; compact
+per-condition files are in \path{thesisExperiment/personas/phase2/}.
+The six heterogeneous mixes, in node-seat order, are:
+
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize,breaklines=true,
+  caption={Heterogeneous eight-seat persona mixes.},
+  label={lst:heterogeneous-mixes}]
+mix_00 = [conspiracy_believer, conspiracy_haarp_weather,
+  conspiracy_depopulation, conspiracy_climate_piggyback,
+  climate_action_advocate, climate_justice_youth,
+  mitigation_first_policy, environmental_concern]
+mix_01 = [conspiracy_depopulation, conspiracy_climate_piggyback,
+  climate_action_advocate, climate_justice_youth,
+  mitigation_first_policy, environmental_concern,
+  ozone_stratosphere_specialist, biodiversity_food_security]
+mix_02 = [climate_action_advocate, climate_justice_youth,
+  mitigation_first_policy, environmental_concern,
+  ozone_stratosphere_specialist, biodiversity_food_security,
+  climate_scientist, science_journalist]
+mix_03 = [mitigation_first_policy, platform_moderator_toxicity,
+  ozone_stratosphere_specialist, climate_action_sweden_scopex,
+  biodiversity_food_security, climate_scientist,
+  conspiracy_believer, climate_justice_youth]
+mix_04 = [climate_action_advocate, conspiracy_peripheral_skywatcher,
+  science_journalist, biodiversity_food_security,
+  climate_action_sweden_scopex, platform_moderator_toxicity,
+  ozone_stratosphere_specialist, conspiracy_depopulation]
+mix_05 = [climate_scientist, climate_action_advocate,
+  conspiracy_climate_piggyback, biodiversity_food_security,
+  platform_moderator_toxicity, science_journalist,
+  ozone_stratosphere_specialist, conspiracy_peripheral_skywatcher]
+\end{lstlisting}
+
+\subsection{Articles}
+
+\begin{longtable}{@{}p{0.28\textwidth}p{0.19\textwidth}p{0.10\textwidth}p{0.31\textwidth}@{}}
+\caption{Merged article inventory.  Every article contains five yes/no
+ground-truth questions.  ``Core'' marks the six articles used in every T2
+configuration.}
+\label{tab:appendix-articles}\\
+\toprule
+Article identifier & Domain & Use & Short topic\\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\tablename~\thetable\ continued}\\
+\toprule
+Article identifier & Domain & Use & Short topic\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\path{scopex_2017} & geoengineering & core, D-net & SCoPEx measurement proposal\\
+\path{chemtrails_gates_2018_2021} & misinformation & core, D-net & chemtrails, SCoPEx, and Gates\\
+\path{sai_geoengineering} & geoengineering & core & SAI proposal versus deployment\\
+\path{paris_agreement} & policy & core & Paris treaty and NDCs\\
+\path{climate_consensus} & science & core & anthropogenic-warming consensus\\
+\path{polar_bears} & science & core & sea ice and hunting habitat\\
+\path{spice_uk_cancelled} & geoengineering & library & cancelled SPICE field test\\
+\path{glaciers_retreat} & science & library & global glacier retreat\\
+\path{co2_fertilization} & misinformation & library & plant growth versus climate harm\\
+\path{sea_level_rise} & science & library & thermal expansion and land ice\\
+\path{net_zero} & policy & library & emissions--removals balance\\
+\path{attribution_extremes} & science & library & probabilistic event attribution\\
+\path{paris_agreement_2015} & policy & library & expanded Paris explainer\\
+\path{consensus_97_percent} & science & library & conditional 97\% consensus\\
+\path{glacier_retreat} & science & library & WGMS glacier mass balance\\
+\path{polar_bears_sea_ice} & science & library & IUCN and ice-season evidence\\
+\path{co2_plant_food} & science & library & fertilisation and ocean acidification\\
+\path{sai_solar_geoengineering} & geoengineering & library & SAI risks and termination shock\\
+\path{net_zero_2050} & policy & library & carbon budgets and mid-century pathways\\
+\path{extreme_weather_attribution} & science & library & likelihood and intensity\\
+\path{climatefever_polar_bears} & science & library & ClimateFEVER evidence labels\\
+\path{climatefever_co2_claims} & science & library & ocean-degassing and greenhouse claims\\
+\path{volcanic_vs_human_co2} & science & library & volcanic versus anthropogenic emissions\\
+\path{great_barrier_reef_bleaching} & science & library & marine heat and bleaching\\
+\end{longtable}
+
+The source text, exact questions, expected Boolean answers, and source URLs are
+stored in \path{thesisExperiment/articles/merged.json}.  The inventories above
+identify experimental inputs; they do not reproduce the full stimuli.
+
+\section{Prompt templates and IFD fields}
+\label{app:prompts-ifd}
+
+Each reinterpretation uses the selected persona's \texttt{systemPrompt} and the
+fixed user template below.  Forward actions make no rewrite call.  Agent and
+auditor outputs are model outputs, not human ratings.
+
+\begin{lstlisting}[basicstyle=\ttfamily\small,breaklines=true,
+  caption={Rewrite user prompt from \texttt{src/SimulationNode.js}.},
+  label={lst:rewrite-prompt}]
+Here is the information you received. Rewrite it through your
+perspective in 100-200 words. Return only the rewritten text,
+no preamble:
+
+<incoming content>
+\end{lstlisting}
+
+\begin{lstlisting}[basicstyle=\ttfamily\footnotesize,breaklines=true,
+  caption={Discrete and continuous auditor templates from
+  \texttt{src/Auditor.js}.},
+  label={lst:auditor-prompts}]
+DISCRETE SYSTEM
+You are a fact-checker. For each question, the expected correct
+answer is provided.
+Evaluate the given text and return a score for each question:
+  1  = text correctly states the expected answer
+  0  = text does not contain enough information to address the question
+ -1  = text contradicts or distorts the expected answer
+Return only a JSON object: {"answers": [1, 0, -1, ...]}
+
+CONTINUOUS SYSTEM
+You are a fact-checker. For each question, the expected correct
+answer is provided.
+Rate how accurately the given text addresses each question on a
+scale from 0.0 to 1.0:
+  1.0 = text fully and correctly states the expected answer
+  0.5 = text does not address this question (missing or neutral)
+  0.0 = text directly contradicts or inverts the expected answer
+Intermediate values represent partial accuracy.
+Return only a JSON object: {"scores": [1.0, 0.5, 0.8, ...]}
+
+USER, BOTH MODES
+Text:
+<text>
+
+Questions (with expected answers):
+1. <question> (expected: Yes|No)
+...
+\end{lstlisting}
+
+For $m=5$ questions, discrete scores $s_i\in\{-1,0,1\}$ produce
+\[
+  \mathrm{MI}_{d}=n_{\mathrm{missing}}+n_{\mathrm{incorrect}},\quad
+  \mathrm{CR}=n_{\mathrm{correct}}/m,\quad
+  \mathrm{MR}=n_{\mathrm{missing}}/m,\quad
+  \mathrm{IR}=n_{\mathrm{incorrect}}/m.
+\]
+Continuous scores $q_i\in[0,1]$ produce
+\[
+  \mathrm{CR}=\frac{1}{m}\sum_iq_i,\qquad
+  \mathrm{MI}_{c}=m(1-\mathrm{CR}).
+\]
+For descriptive CR/MR/IR counts in continuous mode, $q_i\geq0.67$ is
+correct, $q_i\leq0.33$ is incorrect, and intermediate values are missing.
+In dual mode two calls are made in parallel.  The top-level IFD and
+\texttt{misinfoIndex} mirror the discrete result; the sidecar stores both
+results, absolute gap
+$|\mathrm{MI}_{d}-\mathrm{MI}_{c}|$, and Pearson agreement after mapping
+$-1,0,1$ to $0,0.5,1$.
+
+\begin{longtable}{@{}p{0.21\textwidth}p{0.18\textwidth}p{0.48\textwidth}@{}}
+\caption{Fields in an event's \texttt{ifd} object.}
+\label{tab:appendix-ifd-fields}\\
+\toprule
+Field & Type/range & Definition\\
+\midrule
+\endfirsthead
+\multicolumn{3}{@{}l}{\tablename~\thetable\ continued}\\
+\toprule
+Field & Type/range & Definition\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\texttt{mi} & $[0,5]$ & Discrete count or continuous $m(1-\mathrm{CR})$.\\
+\texttt{cr}, \texttt{mr}, \texttt{ir} & $[0,1]$ & Correct, missing, and incorrect rates.\\
+\texttt{cms} & non-negative & Discrete $\mathrm{IR}/(\mathrm{CR}+10^{-9})$;
+continuous $(1-\mathrm{CR})/(\mathrm{CR}+10^{-9})$.\\
+\texttt{ie} & non-negative & Entropy-like score over the mode's rate terms.\\
+\texttt{scores} & array length 5 & Per-question discrete or continuous scores.\\
+\texttt{mode} & string & \texttt{discrete}, \texttt{continuous}, or
+\texttt{dual}.\\
+\texttt{dual.discrete} & object & Complete discrete IFD object.\\
+\texttt{dual.continuous} & object & Complete continuous IFD object.\\
+\texttt{dual.gap} & float & Absolute MI difference; a diagnostic, not a third MPR.\\
+\texttt{dual.agreement} & $[-1,1]$ or null & Pearson correlation of aligned
+question scores.\\
+\end{longtable}
+
+On auditor JSON parse failure the current engine defaults discrete questions to
+1 and continuous questions to 1.0, emitting a warning.  This is a consequential
+implementation choice and is retained here for reproducibility.
+
+\section{Raw run schema}
+\label{app:raw-schema}
+
+\begin{lstlisting}[basicstyle=\ttfamily\small,breaklines=true,
+  caption={Raw run directory layout.},
+  label={lst:raw-layout}]
+runs_phase2/<experimentName>_<YYYY-MM-DD_HH-MM-SS>/
+  metadata.json
+  state.json
+  graph_topology.json
+  human_eval_template.csv
+  results_<articleId>.json
+  nodes/node_0.json ... nodes/node_7.json
+\end{lstlisting}
+
+T2 runs contain six \path{results_*.json} files.  D-net contains two and stores
+63 \path{nodes/user_*.json} files; probes contain one result.  The parser
+selects the newest complete directory with \texttt{llmUsage.calls>0} for each
+\texttt{experimentName}.
+
+\begin{longtable}{@{}p{0.22\textwidth}p{0.67\textwidth}@{}}
+\caption{Raw JSON schema by file.}
+\label{tab:appendix-raw-schema}\\
+\toprule
+Object & Fields and interpretation\\
+\midrule
+\endfirsthead
+\multicolumn{2}{@{}l}{\tablename~\thetable\ continued}\\
+\toprule
+Object & Fields and interpretation\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\texttt{metadata.json} & \texttt{experimentId}, \texttt{status},
+\texttt{timestamp}, full \texttt{config}, \texttt{llmUsage}, and per-article
+\texttt{results}.  \texttt{config.experimentName} is the reliable name when
+the optional top-level name is null.\\
+\texttt{llmUsage} & \texttt{calls}, \texttt{promptTokens},
+\texttt{completionTokens}, \texttt{totalTokens}, \texttt{errors},
+\texttt{model}, and \texttt{estimatedUsd}.  No credential is stored.\\
+\texttt{state.json} & \texttt{experimentId}, \texttt{phase}, \texttt{status},
+propagation progress, audit progress, \texttt{error}, and
+\texttt{lastUpdated}.\\
+\texttt{node\_*.json} & \texttt{nodeId}, \texttt{personaId},
+\texttt{modelId}, outgoing \texttt{relations}, node \texttt{params},
+\texttt{inbox}, event \texttt{history}, and action \texttt{stats}.\\
+History event & \texttt{tick}, \texttt{articleId}, \texttt{sourceNodeId},
+\texttt{hops}, \texttt{action}, \texttt{contentIn}, \texttt{contentOut},
+\texttt{misinfoIndex}, \texttt{ifd}, \texttt{frameAnalysis}, \texttt{reason},
+\texttt{chainTrust}, \texttt{provenance}, and \texttt{timestamp}.\\
+\path{results_<article>.json} & \texttt{nodeSummaries}, \texttt{metrics},
+\texttt{provenanceMetrics}, and \texttt{networkEvolution}.  Typical metrics
+include network MI over time, IFD metrics, structural virality, critical mass,
+and persona IFD; dual runs add dual metrics.\\
+\path{graph_topology.json} & realised node records and directed
+\texttt{\{from,to,trust\}} edges.\\
+\end{longtable}
+
+\section{Parsed table schema}
+\label{app:table-schema}
+
+The canonical wide schema is shared by
+\texttt{TH\_rows.csv}, \texttt{THe\_rows.csv},
+\texttt{continuous.csv}, \texttt{dual\_discrete.csv},
+\texttt{dead\_cells.csv}, and \texttt{all\_rows.csv}.
+
+\begin{longtable}{@{}p{0.24\textwidth}p{0.65\textwidth}@{}}
+\caption{Canonical parsed-cell fields, in CSV column order.}
+\label{tab:appendix-table-schema}\\
+\toprule
+Field & Meaning\\
+\midrule
+\endfirsthead
+\multicolumn{2}{@{}l}{\tablename~\thetable\ continued}\\
+\toprule
+Field & Meaning\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\texttt{runDir} & Selected timestamped raw directory.\\
+\texttt{experimentName} & Stable configuration identifier.\\
+\texttt{slice}, \texttt{arm} & T2 slice and H/He arm.\\
+\texttt{topology}, \texttt{rest} & Generator/custom label and persona or mix identifier.\\
+\texttt{miScoringMode} & \texttt{continuous} or \texttt{dual}.\\
+\texttt{articleId} & Seed article; together with experiment name forms the cell key.\\
+\texttt{status}, \texttt{llmCalls} & Run completion state and real model-call count.\\
+\texttt{nEvents}, \texttt{nScored} & Collected events and events with non-null MI.\\
+\texttt{dead} & True iff \texttt{nScored<=1}.\\
+\texttt{meanMI} & Mean event \texttt{misinfoIndex}; the cell headline.\\
+\texttt{meanNodeMPR} & Mean of per-node mean MI; shown beside, not merged with, \texttt{meanMI}.\\
+\texttt{maxMI} & Maximum scored-event MI.\\
+\texttt{meanDiscreteMI} & Mean discrete MI where available.\\
+\texttt{meanContinuousMI} & Mean continuous MI, including dual sidecar where available.\\
+\texttt{meanDualGap} & Mean absolute dual gap; not an MPR.\\
+\texttt{meanAgreement} & Mean dual per-event Pearson agreement.\\
+\texttt{kStarDiscrete} & First tick at which mean discrete MI exceeds 3 and remains above 3.\\
+\texttt{kStarContinuous} & Continuous equivalent of $k^\ast$.\\
+\path{kStarCensoredDiscrete} & True when discrete $k^\ast$ occurs at the last observed tick.\\
+\texttt{hatchStatus}, \texttt{hatchNote} & Live/dead rendering status and interpretation warning.\\
+\end{longtable}
+
+\texttt{dual\_gap.csv} is narrow:
+\texttt{experimentName, articleId, topology, meanDualGap, meanAgreement,
+meanDiscreteMI, meanContinuousMI}; join it to the wide dual table on
+\texttt{(experimentName, articleId)}.  Pair T2c with T2d on
+\texttt{(topology, rest, articleId)}, never by row number.  Dead cells remain
+in the ledger and are excluded from live means rather than imputed as zero.
+
+\section{D-net mapping}
+\label{app:dnet-mapping}
+
+The empirical object is
+\path{thesisExperiment/data/derived/debnath_hashtag_cascade.json}, schema
+\texttt{thesisExperiment.debnath\_hashtag\_cascade.v1}.  It is a hashtag
+co-occurrence graph, not a retweet or \texttt{conversation\_id} cascade; its
+\texttt{retweets[]} array is an importer edge container.  It has 63 nodes, 228
+directed edges, seed \texttt{user\_chemtrails\_hub}, no empirical MPR, and no
+empirical time series.  D-net scores only \texttt{scopex\_2017} and
+\texttt{chemtrails\_gates\_2018\_2021}.
+
+\begin{longtable}{@{}p{0.25\textwidth}rrrr@{}}
+\caption{D-net identity mapping counts.}
+\label{tab:appendix-dnet-counts}\\
+\toprule
+Layer & Conspiracy & Climate action & Environmental & Expert/other\\
+\midrule
+\endfirsthead
+\toprule
+Layer & Conspiracy & Climate action & Environmental & Expert/other\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+Empirical cluster identity & 28 & 19 & 14 & 2\\
+Intended BP family & 28 & 19 & 13 & 3\\
+Mixed D-net persona family & 28 & 19 & 13 & 3\\
+Homogeneous D-net & 63 & 0 & 0 & 0\\
+\end{longtable}
+
+The mixed assignment exactly matches the reconstructed intended persona ID for
+56 of 63 seats.  The seven coarsened assignments preserve discourse type:
+
+{\footnotesize
+\begin{longtable}{@{}p{0.28\textwidth}p{0.17\textwidth}p{0.22\textwidth}p{0.21\textwidth}@{}}
+\caption{D-net seats whose mixed persona ID is coarser than the reconstruct
+mapping.}
+\label{tab:appendix-dnet-mismatches}\\
+\toprule
+Node & Hashtag & Intended BP & Mixed seat\\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\tablename~\thetable\ continued}\\
+\toprule
+Node & Hashtag & Intended BP & Mixed seat\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\path{user_depopulation_amp} & \texttt{\#depopulation} &
+\path{conspiracy_depopulation} & \path{conspiracy_believer}\\
+\path{user_climateaction_piggyback_amp} & \texttt{\#climateaction} &
+\path{conspiracy_climate_piggyback} & \path{conspiracy_believer}\\
+\path{user_climateaction_piggyback_peri_1} & \texttt{\#climateaction} &
+\path{conspiracy_climate_piggyback} & \path{conspiracy_believer}\\
+\path{user_biodiversity_hub} & \texttt{\#biodiversity} &
+\path{biodiversity_food_security} & \path{environmental_concern}\\
+\path{user_biodiversity_peri_1} & \texttt{\#biodiversity} &
+\path{biodiversity_food_security} & \path{environmental_concern}\\
+\path{user_foodsecurity_amp} & \texttt{\#foodsecurity} &
+\path{biodiversity_food_security} & \path{environmental_concern}\\
+\path{user_mitigation_amp} & \texttt{\#mitigation} &
+\path{mitigation_first_policy} & \path{climate_action_advocate}\\
+\end{longtable}
+}
+
+The complete 63-row node map is retained in
+\path{thesisExperiment/analysis_full/PFEFFER_DEBNATH_VS_SIM.md}; duplicating it
+here would create a second canonical mapping.  Homogeneous D-net deliberately
+overwrites all 63 seats with \path{conspiracy_believer}.  H and He use the
+same edge set, so clustering is fixed while label-dependent homophily changes.
+
+\section{Reproduction commands}
+\label{app:commands}
+
+Run the following from the repository root.  Parsing and plotting consume
+existing runs; the D-net and campaign runners can make paid API calls and are
+shown only for provenance.
+
+\begin{lstlisting}[language=bash,basicstyle=\ttfamily\small,breaklines=true,
+  caption={Parse, compare, replot, and compile commands.},
+  label={lst:reproduction-commands}]
+# Rebuild canonical Phase 2 CSVs and parse summaries.
+node thesisExperiment/scripts/parse_phase2.js
+
+# Recompute the structural Debnath/D-net comparison only if its
+# empirical topology has changed.
+node thesisExperiment/scripts/compare_phase2.js
+
+# Replot both analysis layers.
+python3 thesisExperiment/analysis_phase2/plot_phase2.py
+python3 thesisExperiment/analysis_full/analyze_full.py
+
+# Recompute the Pfeffer/Debnath mapping overlay without new LLM runs.
+node thesisExperiment/scripts/pfeffer_debnath_vs_sim.js
+
+# Compile the existing standalone Phase 2 LaTeX chapter.
+make -C thesisExperiment/latex_phase2
+# Equivalent:
+cd thesisExperiment/latex_phase2
+pdflatex -interaction=nonstopmode -halt-on-error main
+biber main
+pdflatex -interaction=nonstopmode -halt-on-error main
+pdflatex -interaction=nonstopmode -halt-on-error main
+
+# Potentially paid execution commands; normally skip because harvest is complete.
+node thesisExperiment/scripts/run_dnet.js
+node thesisExperiment/scripts/master_phase2.js --skip-probe
+\end{lstlisting}
+
+The present file is an input fragment.  Once the full thesis master exists,
+include it with \verb|\input{drafts/15_APPENDICES}| and compile that master
+with its normal \texttt{latexmk} or \texttt{pdflatex}/\texttt{biber} sequence.
+No master file is assumed in this draft.
+
+\section{Artifact index}
+\label{app:artifact-index}
+
+\begin{longtable}{@{}p{0.39\textwidth}p{0.51\textwidth}@{}}
+\caption{Canonical Phase~2 artefact paths.}
+\label{tab:appendix-artifacts}\\
+\toprule
+Path & Purpose\\
+\midrule
+\endfirsthead
+\multicolumn{2}{@{}l}{\tablename~\thetable\ continued}\\
+\toprule
+Path & Purpose\\
+\midrule
+\endhead
+\bottomrule
+\endlastfoot
+\path{thesisExperiment/configs/grid_phase2.json} & machine-readable design and inventories\\
+\path{thesisExperiment/configs/phase2/} & 288 T2 configs, four D-net configs, index, and probes\\
+\path{thesisExperiment/personas/merged.json} & 17-person merged library\\
+\path{thesisExperiment/personas/phase2/} & exact H and He persona files\\
+\path{thesisExperiment/articles/merged.json} & 24 articles with questions and expected answers\\
+\path{thesisExperiment/runs_phase2/} & raw Phase~2 runs and status records\\
+\path{thesisExperiment/results_phase2/tables/} & canonical parsed CSVs\\
+\path{thesisExperiment/results_phase2/summary.json} & harvest counts and generated-at stamp\\
+\path{thesisExperiment/results_phase2/PARSE.md} & human-readable parse ledger\\
+\path{thesisExperiment/results_phase2/debnath_compare.json} & structural comparison\\
+\path{thesisExperiment/analysis_phase2/} & first analysis and plots\\
+\path{thesisExperiment/analysis_full/} & C1--C5 tables, plots, notes, and key numbers\\
+\path{thesisExperiment/analysis_full/PFEFFER_DEBNATH_VS_SIM.md} & full D-net map and observable audit\\
+\path{thesisExperiment/data/derived/debnath_hashtag_cascade.json} & 63-node reconstructed custom graph\\
+\path{thesisExperiment/latex_phase2/} & standalone Phase~2 results chapter\\
+\path{thesisExperiment/AGENT_HANDOFF.md} & detailed schema and harvest handoff\\
+\path{thesisExperiment/CONSOLIDATION_LOG.md} & branch provenance, overlap resolutions, and canonical 292-dead-cell decision\\
+\path{thesisExperiment/CONSOLIDATED_OVERLAPS/} & retained non-canonical conflict copies\\
+\end{longtable}
+
+\section{Credential handling and consolidation provenance}
+\label{app:security-provenance}
+
+The OpenAI credential is runtime infrastructure, not a research artefact.
+It must be supplied through \texttt{OPENAI\_API\_KEY} or an ignored local
+\path{.env} file.  Never paste a value into a configuration, manuscript,
+terminal transcript, issue, manifest, or committed file; never print
+\path{.env}.  The safe readiness check is
+\begin{lstlisting}[language=bash,basicstyle=\ttfamily\small]
+node thesisExperiment/scripts/check_openai_key.js
+\end{lstlisting}
+which reports only presence, length, and candidate locations.  Repository
+ignore rules cover \path{.env}, \path{.env.local}, and
+\path{.env.*.local}.  Raw metadata records usage and model names but no API
+credential.
+
+The consolidation record is
+\path{thesisExperiment/CONSOLIDATION_LOG.md}.  It identifies source branches,
+merge order, retained overlap copies, official artefact locations, and the
+resolution of the historical 290-versus-292 dead-cell discrepancy.  The
+canonical parse ledger contains 292 dead T2 cells; older 290-cell analysis
+copies remain under
+\path{thesisExperiment/CONSOLIDATED_OVERLAPS/analysis_phase2_hatch290/} for
+auditability and must not replace the canonical tables.

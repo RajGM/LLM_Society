@@ -1,0 +1,165 @@
+\documentclass[
+  11pt,a4paper,twoside,openright,
+  bibliography=totoc,listof=totoc,
+  captions=tableheading,headings=normal,numbers=noenddot
+]{scrbook}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage[autostyle,english=american]{csquotes}
+\usepackage{microtype}
+\usepackage[inner=3.0cm,outer=2.5cm,top=2.5cm,bottom=2.7cm]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\emergencystretch=3em
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{array,booktabs,tabularx,tabulary,longtable,multirow,makecell,threeparttable}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+\usepackage{caption,subcaption}
+\usepackage{enumitem}
+\usepackage{amsmath,amssymb}
+\usepackage{listings}
+\usepackage[
+  style=authoryear,backend=biber,maxcitenames=3,mincitenames=1,
+  maxbibnames=99,giveninits=true,uniquename=init,uniquelist=false,
+  doi=true,url=true,isbn=false,dashed=false,natbib=true
+]{biblatex}
+\addbibresource{references.bib}
+\usepackage[hidelinks,pdfencoding=auto]{hyperref}
+\usepackage{xurl}
+\usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+
+\captionsetup{format=plain,labelfont={bf,small},font=small,skip=6pt,
+  justification=RaggedRight,singlelinecheck=false}
+\captionsetup[table]{position=top,skip=4pt}
+\captionsetup[figure]{position=bottom,skip=6pt}
+\setkomafont{disposition}{\rmfamily\bfseries}
+\setkomafont{title}{\rmfamily\bfseries}
+
+\newcommand{\MPR}{\textsc{mpr}}
+\newcommand{\MI}{\textsc{mi}}
+\newcommand{\kstar}{$k^{\ast}$}
+\newcommand{\ie}{\textit{i.e.}}
+\newcommand{\eg}{\textit{e.g.}}
+\newcommand{\cf}{\textit{cf.}}
+
+\title{Audited Semantic Propagation in LLM-Agent Societies\\
+Persona Composition, Network Topology, and Climate Firestorms}
+\author{[CANDIDATE NAME]}
+\date{[SUBMISSION DATE]}
+
+\begin{document}
+\frontmatter
+
+\begin{titlepage}
+\centering
+{\Large Technical University of Munich\par}
+\vspace{0.4cm}
+{\large [SCHOOL OR DEPARTMENT]\par}
+\vspace{2.2cm}
+{\huge\bfseries Audited Semantic Propagation in LLM-Agent Societies\par}
+\vspace{0.4cm}
+{\Large Persona Composition, Network Topology, and Climate Firestorms\par}
+\vfill
+{\Large Master's Thesis\par}
+\vspace{1.2cm}
+\begin{tabular}{@{}ll@{}}
+Candidate: & [CANDIDATE NAME] \\
+Student ID: & [MATRICULATION NUMBER] \\
+Programme: & [DEGREE PROGRAMME] \\
+First examiner: & [FIRST EXAMINER] \\
+Supervisor: & [SUPERVISOR NAME] \\
+Advisor: & [ADVISOR NAME, IF APPLICABLE] \\
+Submission date: & [SUBMISSION DATE] \\
+\end{tabular}
+\vfill
+{\small TUM-compatible KOMA-Script fallback. The named official template
+\texttt{6aaeb12d2d2eaea03e67a80b} was unavailable at integration time.\par}
+\end{titlepage}
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+Online firestorms can connect scientific proposals with established
+misinformation narratives. This thesis examines how factual content changes
+when large language model (LLM) agents transmit climate and geoengineering
+messages. It extends a prior auditor--node instrument with persona compositions,
+eight generated topologies, and a separate 63-node complex network. Four
+research questions address measurement, persona composition, topology, and
+empirical anchoring.
+
+The canonical Phase~2 campaign used \texttt{gpt-4o-mini}, eight hops, one run
+per configuration, 288 configurations, and 1,728 article cells. It retained
+292 cells with at most one scored event as hatched dead cascades. Continuous
+and dual-discrete Misinformation Propagation Rate (MPR) remained separate.
+Dual-discrete scores exceeded continuous scores on every topology aggregate,
+which demonstrates instrument sensitivity rather than a common-scale increase.
+Conspiracy-oriented personas and conspiracy-heavy mixes scored above scientific
+personas and the conspiracy-free mix in both instruments. Topology conditioned
+these contrasts, but no universal ranking emerged.
+
+The D-net experiment applied the same protocol to a 63-node hashtag
+co-occurrence graph. Conspiracy-only assignments exceeded mixed assignments on
+both articles and instruments. Structural validation failed overall. The graph
+was not a hydrated retweet cascade, empirical timing was unavailable, and
+Debnath et al.\ provided no empirical Twitter MPR. The results therefore support
+a reproducible mechanism probe, not a causal account of human behaviour or a
+validated digital twin.
+
+\chapter*{Individual contribution and prior-work boundary}
+\addcontentsline{toc}{chapter}{Individual contribution and prior-work boundary}
+The auditor--node engine, MI, MPR, and the general-news linear-chain study are
+co-authored prior work \parencite{maurya2025simulating}. The climate corpus,
+Phase~2 campaign, Pfeffer operationalisation, composition analysis, and D-net
+boundary test form the thesis research layer. \textbf{Unresolved placeholder:}
+the candidate must insert the exact sentence-level division of code,
+experimental design, analysis, and writing among all co-authors before
+submission.
+
+\chapter*{Declaration}
+\addcontentsline{toc}{chapter}{Declaration}
+\textbf{Official wording required.} Insert the current statutory declaration
+from the responsible TUM examination office here. The official text, place,
+date, signature fields, and any generative-AI disclosure were not available in
+the source material and have not been invented.
+
+\tableofcontents
+\listoffigures
+\listoftables
+
+\chapter*{Abbreviations}
+\addcontentsline{toc}{chapter}{Abbreviations}
+\begin{description}[style=multiline,leftmargin=3.7cm]
+  \item[D-net] Separate 63-node custom complex network.
+  \item[DTFS] Digital Twin Fidelity Score.
+  \item[H] Homogeneous persona assignment.
+  \item[He] Heterogeneous persona assignment.
+  \item[IFD] Information Fidelity and Distortion record.
+  \item[LLM] Large language model.
+  \item[MI] Misinformation Index.
+  \item[MPR] Misinformation Propagation Rate.
+  \item[T2c] Phase~2 continuous-instrument campaign.
+  \item[T2d] Phase~2 dual campaign with a discrete headline.
+  \item[\(k^{*}\)] First tick above MI 3 with no later observed recovery.
+\end{description}
+
+\mainmatter
+\input{chapters/01_introduction}
+\input{chapters/02_related_work}
+\input{chapters/03_theory}
+\input{chapters/04_methods}
+\input{chapters/05_results}
+\input{chapters/06_discussion}
+\input{chapters/07_validity_ethics}
+\input{chapters/08_conclusion}
+
+\printbibliography[title={References}]
+
+\backmatter
+\input{chapters/09_appendices}
+
+\end{document}
