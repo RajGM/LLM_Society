@@ -1,6 +1,6 @@
 # Phase 2 MASTER status
 
-**Updated.** 2026-09-19T03:35:38.639Z
+**Updated.** 2026-09-19T03:55:39.665Z
 **OPENAI_API_KEY found.** yes (length=164)
 **Dry-run.** no. **MI invented.** no.
 **Isolation.** `runs_phase2/` + `results_phase2/` only. Did not write Phase 1 `runs/` or `results/tables/`.
@@ -9,11 +9,11 @@
 
 | slice | configs | complete | in_progress | incomplete | not_started | cells (×6) |
 | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| T2c_H | 96 | 31 | 11 | 0 | 54 | 186/576 |
-| T2d_H | 96 | 35 | 15 | 0 | 46 | 210/576 |
-| T2c_He | 48 | 18 | 8 | 0 | 22 | 108/288 |
-| T2d_He | 48 | 18 | 8 | 0 | 22 | 108/288 |
-| **grid** | **288** | **102** | **42** |  |  | **612/1728** |
+| T2c_H | 96 | 36 | 9 | 0 | 51 | 216/576 |
+| T2d_H | 96 | 44 | 13 | 0 | 39 | 264/576 |
+| T2c_He | 48 | 23 | 6 | 0 | 19 | 138/288 |
+| T2d_He | 48 | 21 | 7 | 0 | 20 | 126/288 |
+| **grid** | **288** | **124** | **35** |  |  | **744/1728** |
 
 ## Per topology (complete/n)
 
@@ -21,16 +21,16 @@
 | --- | ---: | ---: | ---: | ---: |
 | linear_chain | 12/12 | 12/12 | 6/6 | 6/6 |
 | ring | 12/12 | 12/12 | 6/6 | 6/6 |
-| random_er | 7/12 | 6/12 | 6/6 | 6/6 |
-| small_world | 0/12 | 0/12 | 0/6 | 0/6 |
-| scale_free | 0/12 | 0/12 | 0/6 | 0/6 |
-| echo_chamber | 0/12 | 5/12 | 0/6 | 0/6 |
+| random_er | 10/12 | 10/12 | 6/6 | 6/6 |
+| small_world | 2/12 | 1/12 | 4/6 | 3/6 |
+| scale_free | 0/12 | 0/12 | 1/6 | 0/6 |
+| echo_chamber | 0/12 | 9/12 | 0/6 | 0/6 |
 | polarized | 0/12 | 0/12 | 0/6 | 0/6 |
 | hierarchical | 0/12 | 0/12 | 0/6 | 0/6 |
 
 ## D-net
 
-- `Dnet_c_H_conspiracy`: in_progress usage=0 (Dnet_c_H_conspiracy_2026-09-19_02-49-31)
+- `Dnet_c_H_conspiracy`: in_progress usage=0 (Dnet_c_H_conspiracy_2026-09-19_02-49-25)
 - `Dnet_c_He_mixed`: not_started usage=0 (no run dir)
 - `Dnet_d_H_conspiracy`: in_progress usage=0 (Dnet_d_H_conspiracy_2026-09-19_02-49-31)
 - `Dnet_d_He_mixed`: not_started usage=0 (no run dir)
@@ -48,7 +48,7 @@ T2c_H=alive T2d_H=alive T2c_He=alive T2d_He=alive dnet=alive master_phase2=alive
 
 ## Notes
 
-- continuation master loop. complete=102/288 in_progress=42
+- continuation master loop. complete=124/288 in_progress=35
 - gap actions this tick: none (workers healthy or no gap)
 - no overlapping full grid. no dry-run. no invented MI.
 

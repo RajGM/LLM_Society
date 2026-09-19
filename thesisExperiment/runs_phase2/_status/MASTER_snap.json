@@ -1,12 +1,12 @@
 {
-  "at": "2026-09-19T03:35:38.639Z",
+  "at": "2026-09-19T03:55:39.665Z",
   "bySlice": {
     "T2c_H": {
       "configs": 96,
-      "complete": 31,
-      "in_progress": 11,
+      "complete": 36,
+      "in_progress": 9,
       "incomplete": 0,
-      "not_started": 54,
+      "not_started": 51,
       "byTopo": {
         "linear_chain": {
           "configs": 12,
@@ -24,17 +24,17 @@
         },
         "random_er": {
           "configs": 12,
-          "complete": 7,
-          "in_progress": 4,
+          "complete": 10,
+          "in_progress": 2,
           "incomplete": 0,
-          "not_started": 1
+          "not_started": 0
         },
         "small_world": {
           "configs": 12,
-          "complete": 0,
+          "complete": 2,
           "in_progress": 4,
           "incomplete": 0,
-          "not_started": 8
+          "not_started": 6
         },
         "scale_free": {
           "configs": 12,
@@ -68,10 +68,10 @@
     },
     "T2d_H": {
       "configs": 96,
-      "complete": 35,
-      "in_progress": 15,
+      "complete": 44,
+      "in_progress": 13,
       "incomplete": 0,
-      "not_started": 46,
+      "not_started": 39,
       "byTopo": {
         "linear_chain": {
           "configs": 12,
@@ -89,17 +89,17 @@
         },
         "random_er": {
           "configs": 12,
-          "complete": 6,
-          "in_progress": 4,
+          "complete": 10,
+          "in_progress": 2,
           "incomplete": 0,
-          "not_started": 2
+          "not_started": 0
         },
         "small_world": {
           "configs": 12,
-          "complete": 0,
+          "complete": 1,
           "in_progress": 4,
           "incomplete": 0,
-          "not_started": 8
+          "not_started": 7
         },
         "scale_free": {
           "configs": 12,
@@ -110,10 +110,10 @@
         },
         "echo_chamber": {
           "configs": 12,
-          "complete": 5,
-          "in_progress": 4,
+          "complete": 9,
+          "in_progress": 3,
           "incomplete": 0,
-          "not_started": 3
+          "not_started": 0
         },
         "polarized": {
           "configs": 12,
@@ -125,18 +125,18 @@
         "hierarchical": {
           "configs": 12,
           "complete": 0,
-          "in_progress": 0,
+          "in_progress": 1,
           "incomplete": 0,
-          "not_started": 12
+          "not_started": 11
         }
       }
     },
     "T2c_He": {
       "configs": 48,
-      "complete": 18,
-      "in_progress": 8,
+      "complete": 23,
+      "in_progress": 6,
       "incomplete": 0,
-      "not_started": 22,
+      "not_started": 19,
       "byTopo": {
         "linear_chain": {
           "configs": 6,
@@ -161,17 +161,17 @@
         },
         "small_world": {
           "configs": 6,
-          "complete": 0,
-          "in_progress": 4,
+          "complete": 4,
+          "in_progress": 2,
           "incomplete": 0,
-          "not_started": 2
+          "not_started": 0
         },
         "scale_free": {
           "configs": 6,
-          "complete": 0,
+          "complete": 1,
           "in_progress": 4,
           "incomplete": 0,
-          "not_started": 2
+          "not_started": 1
         },
         "echo_chamber": {
           "configs": 6,
@@ -198,10 +198,10 @@
     },
     "T2d_He": {
       "configs": 48,
-      "complete": 18,
-      "in_progress": 8,
+      "complete": 21,
+      "in_progress": 7,
       "incomplete": 0,
-      "not_started": 22,
+      "not_started": 20,
       "byTopo": {
         "linear_chain": {
           "configs": 6,
@@ -226,10 +226,10 @@
         },
         "small_world": {
           "configs": 6,
-          "complete": 0,
-          "in_progress": 4,
+          "complete": 3,
+          "in_progress": 3,
           "incomplete": 0,
-          "not_started": 2
+          "not_started": 0
         },
         "scale_free": {
           "configs": 6,
@@ -266,7 +266,7 @@
     {
       "name": "Dnet_c_H_conspiracy",
       "state": "in_progress",
-      "runDir": "Dnet_c_H_conspiracy_2026-09-19_02-49-31",
+      "runDir": "Dnet_c_H_conspiracy_2026-09-19_02-49-25",
       "usage": 0,
       "status": "running"
     },
@@ -298,7 +298,6 @@
         "pat": "T2c_H",
         "lines": [
           "155283 /exec-daemon/node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_H.json",
-          "171471 /bin/bash -O extglob -c snap=$(command cat <&3) && builtin shopt -s extglob && builtin eval -- \"$snap\" && { builtin set +u 2>/dev/null || true; builtin eval \"${__CURSOR_SANDBOX_ENV_RESTORE:-}\" 2>/dev/null; builtin export PWD=\"$(builtin pwd)\"; builtin shopt -s expand_aliases 2>/dev/null; builtin eval \"$1\" < /dev/null; }; COMMAND_EXIT_CODE=$?; dump_bash_state >&4; builtin exit $COMMAND_EXIT_CODE -- # extra topology workers; skip-complete; do not kill existing node procs TMUX=\"tmux -f /exec-daemon/tmux.portal.conf\" start() {   local name=\"$1\"; shift   $TMUX has-session -t \"=$name\" 2>/dev/null && echo \"reuse $name\" && return 0   $TMUX new-session -d -s \"$name\" -c /workspace -- \"${SHELL:-bash}\" -l   $TMUX send-keys -t \"$name:0.0\" \"$*\" C-m   echo \"started $name\" } start gap-t2c-h-sw 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_H_small_world.json' start gap-t2d-h-sw 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_H_small_world.json' start gap-t2c-he-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_scale_free.json' start gap-t2d-he-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_He_scale_free.json' start gap-t2c-h-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2c_H_scale_free.json' start gap-t2d-h-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2d_H_scale_free.json' sleep 3 echo '=== new sessions ===' $TMUX ls echo '=== index count ===' ps -eo cmd | grep 'index.js --config thesisExperiment' | grep -v grep | wc -l echo '=== new run_phase2 ===' ps -eo pid,etime,cmd | grep 'run_phase2.js' | grep -v grep",
           "172617 node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_H_small_world.json",
           "173158 node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2c_H_scale_free.json"
         ]
@@ -310,7 +309,6 @@
         "lines": [
           "155284 /exec-daemon/node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_H.json",
           "156972 /exec-daemon/node thesisExperiment/scripts/run_t2d_h.js --poll-interval-ms 2000 --poll-max-ms 90000 --concurrency 4",
-          "171471 /bin/bash -O extglob -c snap=$(command cat <&3) && builtin shopt -s extglob && builtin eval -- \"$snap\" && { builtin set +u 2>/dev/null || true; builtin eval \"${__CURSOR_SANDBOX_ENV_RESTORE:-}\" 2>/dev/null; builtin export PWD=\"$(builtin pwd)\"; builtin shopt -s expand_aliases 2>/dev/null; builtin eval \"$1\" < /dev/null; }; COMMAND_EXIT_CODE=$?; dump_bash_state >&4; builtin exit $COMMAND_EXIT_CODE -- # extra topology workers; skip-complete; do not kill existing node procs TMUX=\"tmux -f /exec-daemon/tmux.portal.conf\" start() {   local name=\"$1\"; shift   $TMUX has-session -t \"=$name\" 2>/dev/null && echo \"reuse $name\" && return 0   $TMUX new-session -d -s \"$name\" -c /workspace -- \"${SHELL:-bash}\" -l   $TMUX send-keys -t \"$name:0.0\" \"$*\" C-m   echo \"started $name\" } start gap-t2c-h-sw 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_H_small_world.json' start gap-t2d-h-sw 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_H_small_world.json' start gap-t2c-he-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_scale_free.json' start gap-t2d-he-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_He_scale_free.json' start gap-t2c-h-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2c_H_scale_free.json' start gap-t2d-h-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2d_H_scale_free.json' sleep 3 echo '=== new sessions ===' $TMUX ls echo '=== index count ===' ps -eo cmd | grep 'index.js --config thesisExperiment' | grep -v grep | wc -l echo '=== new run_phase2 ===' ps -eo pid,etime,cmd | grep 'run_phase2.js' | grep -v grep",
           "172962 node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_H_small_world.json",
           "173082 node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2d_H_scale_free.json"
         ]
@@ -322,7 +320,6 @@
         "lines": [
           "155290 /exec-daemon/node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He.json",
           "158386 node thesisExperiment/scripts/watch_t2c_he.js",
-          "171471 /bin/bash -O extglob -c snap=$(command cat <&3) && builtin shopt -s extglob && builtin eval -- \"$snap\" && { builtin set +u 2>/dev/null || true; builtin eval \"${__CURSOR_SANDBOX_ENV_RESTORE:-}\" 2>/dev/null; builtin export PWD=\"$(builtin pwd)\"; builtin shopt -s expand_aliases 2>/dev/null; builtin eval \"$1\" < /dev/null; }; COMMAND_EXIT_CODE=$?; dump_bash_state >&4; builtin exit $COMMAND_EXIT_CODE -- # extra topology workers; skip-complete; do not kill existing node procs TMUX=\"tmux -f /exec-daemon/tmux.portal.conf\" start() {   local name=\"$1\"; shift   $TMUX has-session -t \"=$name\" 2>/dev/null && echo \"reuse $name\" && return 0   $TMUX new-session -d -s \"$name\" -c /workspace -- \"${SHELL:-bash}\" -l   $TMUX send-keys -t \"$name:0.0\" \"$*\" C-m   echo \"started $name\" } start gap-t2c-h-sw 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_H_small_world.json' start gap-t2d-h-sw 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_H_small_world.json' start gap-t2c-he-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_scale_free.json' start gap-t2d-he-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_He_scale_free.json' start gap-t2c-h-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2c_H_scale_free.json' start gap-t2d-h-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2d_H_scale_free.json' sleep 3 echo '=== new sessions ===' $TMUX ls echo '=== index count ===' ps -eo cmd | grep 'index.js --config thesisExperiment' | grep -v grep | wc -l echo '=== new run_phase2 ===' ps -eo pid,etime,cmd | grep 'run_phase2.js' | grep -v grep",
           "172920 node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_scale_free.json"
         ]
       }
@@ -333,7 +330,6 @@
         "lines": [
           "155296 /exec-daemon/node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_He --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_He.json",
           "158976 node thesisExperiment/scripts/run_t2d_he.js",
-          "171471 /bin/bash -O extglob -c snap=$(command cat <&3) && builtin shopt -s extglob && builtin eval -- \"$snap\" && { builtin set +u 2>/dev/null || true; builtin eval \"${__CURSOR_SANDBOX_ENV_RESTORE:-}\" 2>/dev/null; builtin export PWD=\"$(builtin pwd)\"; builtin shopt -s expand_aliases 2>/dev/null; builtin eval \"$1\" < /dev/null; }; COMMAND_EXIT_CODE=$?; dump_bash_state >&4; builtin exit $COMMAND_EXIT_CODE -- # extra topology workers; skip-complete; do not kill existing node procs TMUX=\"tmux -f /exec-daemon/tmux.portal.conf\" start() {   local name=\"$1\"; shift   $TMUX has-session -t \"=$name\" 2>/dev/null && echo \"reuse $name\" && return 0   $TMUX new-session -d -s \"$name\" -c /workspace -- \"${SHELL:-bash}\" -l   $TMUX send-keys -t \"$name:0.0\" \"$*\" C-m   echo \"started $name\" } start gap-t2c-h-sw 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_H_small_world.json' start gap-t2d-h-sw 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology small_world --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_H_small_world.json' start gap-t2c-he-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_scale_free.json' start gap-t2d-he-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_He_scale_free.json' start gap-t2c-h-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2c_H_scale_free.json' start gap-t2d-h-sf 'node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_H --topology scale_free --concurrency 3 --manifest thesisExperiment/results_phase2/manifest_T2d_H_scale_free.json' sleep 3 echo '=== new sessions ===' $TMUX ls echo '=== index count ===' ps -eo cmd | grep 'index.js --config thesisExperiment' | grep -v grep | wc -l echo '=== new run_phase2 ===' ps -eo pid,etime,cmd | grep 'run_phase2.js' | grep -v grep",
           "173017 node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2d_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_He_scale_free.json"
         ]
       }
