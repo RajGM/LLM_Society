@@ -206,7 +206,7 @@ def aggregate(rows, keys):
         "runs", "llm_calls", "http_errors", "expected_attempts",
         "reinterpret_events", "identity_rewrite_fallbacks",
         "audit_eligible_events", "scored_events", "unscored_eligible_events",
-        "auditor_request_failures_derived", "rewrite_caught_failures",
+        "rewrite_caught_failures",
         "auditor_caught_failed_events", "parse_fallbacks", "aborted_selected_runs",
     ]
     for group, members in sorted(grouped.items(), key=lambda item: str(item[0])):
