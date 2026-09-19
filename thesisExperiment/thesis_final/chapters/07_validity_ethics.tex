@@ -66,6 +66,37 @@ metadata, repeat runs across several model families and temperatures, and
 report model-by-condition interactions rather than presenting one model as a
 generic human proxy.
 
+\paragraph{API failure and fallback process.}
+A forensic audit of the 288 selected runs found 203,928 successful responses
+and 64,270 HTTP-error responses in the client counters; 121 runs recorded at
+least one error.  The client made no automatic retries.  Errors were strongly
+time-clustered: 57,417 occurred among runs started in the 04:00 UTC hour.
+Failed rewrites propagated the unchanged input while retaining the
+\texttt{reinterpret} action; failed audits left 36,194 eligible events with a
+null score.  Null scores were excluded from \MI{}, \MPR{}, and \(k^{\ast}\),
+but reduced \texttt{nScored} and could cause hatching.  The malformed-response
+path would instead fail open to all-correct scores (\(\MI=0\)); no such parse
+warning was found in the selected archived log sections.  Raw responses and
+request identifiers were not retained, so provider-side uniqueness and exact
+event linkage cannot be reconstructed.
+
+The same-mode He--H sensitivity is consequential.  The canonical continuous
+delta is \(+0.1549\), but becomes \(-0.0295\) when restricted to runs with
+zero recorded HTTP errors.  The dual-discrete delta remains positive
+(\(+0.3986\) canonical; \(+0.4695\) in zero-error runs).  This is a
+conditioned sensitivity analysis, not a corrected causal estimate, because
+API availability was associated with time and condition.  The continuous
+collapsed H--He direction is therefore not robust to this restriction, while
+the dual-discrete direction is stable across the audited checks.  Complete
+forensic tables are retained separately; raw run results were not rewritten.
+
+\emph{Mitigation.}  These failures are reported as an outcome-relevant
+execution process rather than folded into cascade death.  Future runs should
+use bounded backoff, fail-closed schema validation, per-request identifiers,
+stage and article labels, immutable raw-response hashes, and explicit
+fallback flags on events.  Propagation sparsity, rewrite failure, audit
+failure, and parse failure should be separate denominators.
+
 \paragraph{Auditor circularity.}
 The same model family generates the messages and judges them against five
 author-curated questions.  Shared model priors can create correlated generator
