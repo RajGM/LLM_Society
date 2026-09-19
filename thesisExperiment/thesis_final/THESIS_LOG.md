@@ -137,3 +137,8 @@ numerical claims were preserved.
   block into RQ1; split the 50-word D-net contrast sentence; replaced
   remaining promotional/defensive phrasing in intro, theory close,
   discussion, and Results handover.
+- Language-pass rebuild: `latexmk -g -pdf -interaction=nonstopmode -halt-on-error main.tex`.
+  Status: successful. Pages: 116. PDF-extracted words: 37,894.
+  Undefined citations/references: 0 / 0.
+  Residual overfull boxes: declaration placeholder 1.09 pt; methods
+  comparison table 3.90 pt; ethics/declaration line 27.50 pt.

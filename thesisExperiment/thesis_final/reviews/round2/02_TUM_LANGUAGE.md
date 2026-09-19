@@ -286,5 +286,7 @@ not English-prose failures.
 
 ## Rebuild
 
-See `thesisExperiment/thesis_final/THESIS_LOG.md` for the post-edit
-`latexmk` record.
+Rebuild command: `latexmk -g -pdf -interaction=nonstopmode -halt-on-error main.tex`
+(from `thesisExperiment/thesis_final/`). Successful; 116 pages; 37,894
+PDF-extracted words; 0 undefined citations; 0 undefined cross-references.
+Details in `thesisExperiment/thesis_final/THESIS_LOG.md`.
