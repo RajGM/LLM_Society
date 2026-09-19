@@ -82,7 +82,7 @@ N=1 per config. `thesisGrade=false`. 8 hops, not CIKM 30.
 | biodiversity_food_security | random_er | 4 | 1.3274 | 6 | 0.2187 |
 | biodiversity_food_security | small_world | 5 | 0.8745 | 3 | 0.0625 |
 | biodiversity_food_security | scale_free | 6 | 1.1908 | 5 | 0.2657 |
-| biodiversity_food_security | echo_chamber | 4 | 1.4069 | 5 | 0.2194 |
+| biodiversity_food_security | echo_chamber | 4 | 1.4069 | 5 | 0.2771 |
 | biodiversity_food_security | polarized | 2 | 1.0000 | 5 | 0.1710 |
 | biodiversity_food_security | hierarchical | 5 | 0.8949 | 5 | 0.0000 |
 | ozone_stratosphere_specialist | linear_chain | 6 | 0.9683 | 6 | 0.1250 |
@@ -90,7 +90,7 @@ N=1 per config. `thesisGrade=false`. 8 hops, not CIKM 30.
 | ozone_stratosphere_specialist | random_er | 3 | 1.2230 | 3 | 0.0000 |
 | ozone_stratosphere_specialist | small_world | 5 | 0.8867 | 5 | 0.1667 |
 | ozone_stratosphere_specialist | scale_free | 3 | 1.0071 | 5 | 0.3667 |
-| ozone_stratosphere_specialist | echo_chamber | 4 | 0.9178 | 6 | 0.1545 |
+| ozone_stratosphere_specialist | echo_chamber | 4 | 0.9178 | 5 | 0.1174 |
 | ozone_stratosphere_specialist | polarized | 6 | 1.0550 | 6 | 0.1756 |
 | ozone_stratosphere_specialist | hierarchical | 5 | 0.8960 | 3 | 0.0000 |
 | science_journalist | linear_chain | 6 | 0.6250 | 3 | 0.0000 |
@@ -106,7 +106,7 @@ N=1 per config. `thesisGrade=false`. 8 hops, not CIKM 30.
 | climate_scientist | random_er | 6 | 0.8359 | 5 | 0.0316 |
 | climate_scientist | small_world | 6 | 0.5240 | 6 | 0.0039 |
 | climate_scientist | scale_free | 4 | 1.0659 | 6 | 0.0224 |
-| climate_scientist | echo_chamber | 5 | 0.6865 | 6 | 0.0032 |
+| climate_scientist | echo_chamber | 5 | 0.6865 | 5 | 0.0095 |
 | climate_scientist | polarized | 6 | 0.7639 | 5 | 0.0089 |
 | climate_scientist | hierarchical | 5 | 0.7767 | 3 | 0.0000 |
 
@@ -122,10 +122,10 @@ N=1 per config. `thesisGrade=false`. 8 hops, not CIKM 30.
 | climate_justice_youth | climate_action | 46 | 1.3072 | 41 | 0.2454 |
 | mitigation_first_policy | climate_action | 43 | 0.7571 | 39 | 0.0464 |
 | environmental_concern | science_env | 37 | 0.8359 | 40 | 0.1423 |
-| biodiversity_food_security | science_env | 37 | 1.1470 | 39 | 0.2041 |
-| ozone_stratosphere_specialist | science_env | 37 | 0.9639 | 39 | 0.1672 |
+| biodiversity_food_security | science_env | 37 | 1.1470 | 39 | 0.2115 |
+| ozone_stratosphere_specialist | science_env | 37 | 0.9639 | 38 | 0.1627 |
 | science_journalist | science_env | 39 | 0.6745 | 37 | 0.0310 |
-| climate_scientist | science_env | 43 | 0.7517 | 42 | 0.0120 |
+| climate_scientist | science_env | 43 | 0.7517 | 41 | 0.0130 |
 
 ## Heterogeneous (He) — mix × topology
 
@@ -205,7 +205,7 @@ N=1 per config. `thesisGrade=false`. 8 hops, not CIKM 30.
 | small_world | He | 1.9096 | 0.7545 |
 | scale_free | H | 1.7034 | 0.9205 |
 | scale_free | He | 1.9924 | 0.8157 |
-| echo_chamber | H | 1.7984 | 0.8233 |
+| echo_chamber | H | 1.7984 | 0.8490 |
 | echo_chamber | He | 1.9632 | 1.3775 |
 | polarized | H | 1.7005 | 0.8356 |
 | polarized | He | 1.8830 | 1.4137 |

@@ -8519,8 +8519,20 @@ END T2c_H_echo_chamber_biodiversity_food_security status=0 elapsedMs=1199429 run
 
 ---
 
+## 2026-09-19T10:21:34.148Z — Phase 2 Debnath reconstruct
+
+Debnath reconstruct ran. Hydration: FAILED (bearer absent; usable digit IDs 0). Empirical graph = hashtag co-occurrence fallback (63 nodes, 228 directed edges). NOT a retweet cascade. Topology unchanged. Debnath “eight” = skip-gram word window, not 8 hops. Outputs: thesisExperiment/data/derived/debnath_hashtag_cascade.json; thesisExperiment/data/derived/debnath_reconstruct_report.md; thesisExperiment/analysis_phase2/HYDRATION.md. Did not touch thesisExperiment/runs/ or results/tables/. Did not invent tweet IDs. Did not run LLM.
+
+---
+
 ## 2026-09-19T12:25:00Z — Pfeffer Debnath vs D-net (no new LLM)
 
 Pfeffer observables applied to empirical hashtag STRUCTURE (63/228, not a retweet cascade) and to existing Dnet_c_H / Dnet_c_He / Dnet_d_H / Dnet_d_He raw runs. Mapping already in Dnet configs: conspiracy / climate action / environmental types seated on all 63 nodes; exact persona-id match 56/63. No new LLM sim. No Twitter MPR invented. Temporal not available empirically. Cross-media held. Wrote `thesisExperiment/analysis_full/PFEFFER_DEBNATH_VS_SIM.md` and `pfeffer_debnath_vs_sim.json`. Did not overwrite Phase 1 `runs/` or `results/tables/`. Did not print API keys.
+
+---
+
+## 2026-09-19T15:30:00Z — Phase 2 consolidation onto main
+
+Merged Phase 2 feature branches starting from origin/main. Canonical harvest parse remains 292 hatched-dead cells (`results_phase2/PARSE.md`). analysis_phase2 was replotted to match 292 (older 290 analysis copies in `thesisExperiment/CONSOLIDATED_OVERLAPS/analysis_phase2_hatch290/`). Overlapping incoming files from abort/probe branches live under `thesisExperiment/CONSOLIDATED_OVERLAPS/<branch>/`. Did not overwrite Phase 1 `runs/`, `results/tables/`, or `configs/full/`. Did not commit `.env`. Did not print API keys. See `thesisExperiment/CONSOLIDATION_LOG.md`.
 
 ---

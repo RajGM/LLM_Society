@@ -1,6 +1,6 @@
 # Phase 2 analysis summary
 
-Generated from LIVE tables. Harvest stamp: `2026-09-19T05:27:59.674Z`.
+Generated from LIVE tables. Harvest stamp: `2026-09-19T05:14:37.163Z`.
 Isolation: this folder is `thesisExperiment/analysis_phase2/`. Phase 1 `analysis/` and `results/tables/` were not overwritten.
 
 ## What this is
@@ -19,13 +19,13 @@ Cell headline used below = `meanMI` (same rule as `parse_phase2.js` / `summary.j
 
 | slice | configs | cells | hatched dead |
 | --- | --- | --- | --- |
-| T2c_H | 96/96 | 576/576 | 94 |
+| T2c_H | 96/96 | 576/576 | 96 |
 | T2d_H | 96/96 | 576/576 | 98 |
 | T2c_He | 48/48 | 288/288 | 50 |
 | T2d_He | 48/48 | 288/288 | 48 |
 | D-net | 4 configs | 8 article-rows | 0 |
 
-Thesis grid cells: **1728** expected, **0** missing. Dead-cell table rows: **290** (all `hatched_dead_after_llm`). `thesisGrade`: **False**.
+Thesis grid cells: **1728** expected, **0** missing. Dead-cell table rows: **292** (all `hatched_dead_after_llm`). `thesisGrade`: **False**.
 
 ## Headlines — do not pool these
 
@@ -33,12 +33,12 @@ Live-cell means of `meanMI`. Dead cells excluded. H and He are separate. Discret
 
 | arm | continuous MPR (T2c) | n live cont | dual-discrete MPR (T2d) | n live dual | mean dual gap |
 | --- | --- | --- | --- | --- | --- |
-| H (homo) | 0.8608 | 482 | 1.6814 | 478 | 0.8804 |
+| H (homo) | 0.8643 | 480 | 1.6814 | 478 | 0.8804 |
 | He (hetero) | 1.0192 | 238 | 2.0800 | 240 | 1.1145 |
 
-Harvest `summary.json` cross-check (H only): continuous `0.8608`, dual headline `1.6814`. Recomputed live: continuous `0.8608`, dual `1.6814`.
+Harvest `summary.json` cross-check (H only): continuous `0.8643`, dual headline `1.6814`. Recomputed live: continuous `0.8643`, dual `1.6814`.
 
-Same cells as `meanNodeMPR` (not interchangeable with `meanMI`): H continuous `0.8595`, H dual `1.6839`, He continuous `1.0140`, He dual `2.0737`.
+Same cells as `meanNodeMPR` (not interchangeable with `meanMI`): H continuous `0.8630`, H dual `1.6839`, He continuous `1.0140`, He dual `2.0737`.
 
 **Reading the two headlines.** Dual-discrete H (1.68) is not “the same MPR as continuous H (0.86) but higher.” The auditors are different instruments. Dual-discrete sits higher than continuous on every topology in this harvest; that is a **scoring-mode effect**, not evidence that the discrete campaign “found more misinformation” in a shared unit. Dual gap on H live cells is 0.8804 — the sidecar continuous on dual events is not the T2c continuous headline.
 
@@ -55,7 +55,7 @@ Figure: `results_phase2/figures/fig01_topology_mpr_discrete_vs_continuous.png` (
 | random_er | 56/72 | 1.7809 | 19.6% | 22.2% | 57/72 | 0.8736 | 14.0% | 20.8% | 0.9680 |
 | small_world | 59/72 | 1.5977 | 20.3% | 18.1% | 56/72 | 0.7215 | 12.5% | 22.2% | 0.8255 |
 | scale_free | 57/72 | 1.7034 | 21.1% | 20.8% | 60/72 | 0.9205 | 16.7% | 16.7% | 0.8463 |
-| echo_chamber | 61/72 | 1.7984 | 23.0% | 15.3% | 65/72 | 0.8233 | 12.3% | 9.7% | 0.8923 |
+| echo_chamber | 61/72 | 1.7984 | 23.0% | 15.3% | 63/72 | 0.8490 | 12.7% | 12.5% | 0.8923 |
 | polarized | 57/72 | 1.7005 | 21.1% | 20.8% | 65/72 | 0.8356 | 15.4% | 9.7% | 0.8553 |
 | hierarchical | 59/72 | 1.6315 | 23.7% | 18.1% | 52/72 | 0.8751 | 11.5% | 27.8% | 0.7973 |
 
@@ -85,11 +85,11 @@ Figure: `results_phase2/figures/fig02_h_vs_he_mpr.png`.
 
 | comparison | continuous | dual-discrete |
 | --- | --- | --- |
-| H meanMI | 0.8608 | 1.6814 |
+| H meanMI | 0.8643 | 1.6814 |
 | He meanMI | 1.0192 | 2.0800 |
-| He − H (same mode only) | 0.1584 | 0.3986 |
+| He − H (same mode only) | 0.1549 | 0.3986 |
 
-Collapsed He is **higher** than collapsed H on both instruments (continuous 0.1584; dual-discrete 0.3986). That is the opposite of a pooled “hetero buffers firestorms” claim. The H mean mixes conspiracy personas (~2–3) with scientists (~0–1). The He mean mixes conspiracy-heavy `mix_00`/`mix_01` with conspiracy-free `mix_02`. Composition, not the H/He label, is what moves MPR.
+Collapsed He is **higher** than collapsed H on both instruments (continuous 0.1549; dual-discrete 0.3986). That is the opposite of a pooled “hetero buffers firestorms” claim. The H mean mixes conspiracy personas (~2–3) with scientists (~0–1). The He mean mixes conspiracy-heavy `mix_00`/`mix_01` with conspiracy-free `mix_02`. Composition, not the H/He label, is what moves MPR.
 
 Do **not** read dead He cells as “mix immunises.” They are hatched (`nScored≤1` after real LLM calls).
 
@@ -107,18 +107,18 @@ Figures: `fig03_persona_mpr_bars.png`, `fig05_persona_article_heatmaps.png`, `fi
 | climate_justice_youth | climate_action | 1.3072 | 0.2454 | 2.2% | 0.0% | 2/48 | 7/48 |
 | mitigation_first_policy | climate_action | 0.7571 | 0.0464 | 0.0% | 0.0% | 5/48 | 9/48 |
 | environmental_concern | science_env | 0.8359 | 0.1423 | 0.0% | 0.0% | 11/48 | 8/48 |
-| biodiversity_food_security | science_env | 1.1470 | 0.2041 | 0.0% | 0.0% | 11/48 | 9/48 |
-| ozone_stratosphere_specialist | science_env | 0.9639 | 0.1672 | 0.0% | 0.0% | 11/48 | 9/48 |
+| biodiversity_food_security | science_env | 1.1470 | 0.2115 | 0.0% | 0.0% | 11/48 | 9/48 |
+| ozone_stratosphere_specialist | science_env | 0.9639 | 0.1627 | 0.0% | 0.0% | 11/48 | 10/48 |
 | science_journalist | science_env | 0.6745 | 0.0310 | 0.0% | 0.0% | 9/48 | 11/48 |
-| climate_scientist | science_env | 0.7517 | 0.0120 | 0.0% | 0.0% | 5/48 | 6/48 |
+| climate_scientist | science_env | 0.7517 | 0.0130 | 0.0% | 0.0% | 5/48 | 7/48 |
 
 | family | n personas | discrete MPR | continuous MPR | k* dual | k* cont |
 | --- | --- | --- | --- | --- | --- |
 | conspiracy | 4 | 3.1691 | 2.2194 | 59.7% | 40.5% |
 | climate_action | 3 | 1.0488 | 0.1729 | 0.8% | 0.0% |
-| science_env | 5 | 0.8687 | 0.1108 | 0.0% | 0.0% |
+| science_env | 5 | 0.8687 | 0.1118 | 0.0% | 0.0% |
 
-Conspiracy-family H cells are the high-MPR group on **both** instruments (discrete `3.1691`, continuous `2.2194`). Science/env is lowest continuous (`0.1108`) but not uniformly lowest dual-discrete (`0.8687` vs climate-action `1.0488`). Scientist / journalist personas often sit near 0 on continuous and still pick up discrete points on some articles (see heatmaps). That is a mode disagreement, not “the scientist believed chemtrails.”
+Conspiracy-family H cells are the high-MPR group on **both** instruments (discrete `3.1691`, continuous `2.2194`). Science/env is lowest continuous (`0.1118`) but not uniformly lowest dual-discrete (`0.8687` vs climate-action `1.0488`). Scientist / journalist personas often sit near 0 on continuous and still pick up discrete points on some articles (see heatmaps). That is a mode disagreement, not “the scientist believed chemtrails.”
 
 Full persona × topology grid: `RESULTS.md` and `tables/persona_topology_mpr.csv`.
 
@@ -141,12 +141,12 @@ Figures: `fig04_mix_mpr_bars.png`, `fig07_mix_topology_heatmaps.png`.
 
 | article | H discrete | H continuous | He discrete | He continuous |
 | --- | --- | --- | --- | --- |
-| scopex_2017 | 1.5390 | 0.7321 | 2.3718 | 0.7694 |
-| chemtrails_gates_2018_2021 | 2.1383 | 1.3585 | 2.3885 | 1.7852 |
-| sai_geoengineering | 1.3576 | 0.1946 | 1.1160 | 0.1523 |
-| paris_agreement | 1.7321 | 1.3334 | 2.4591 | 1.6821 |
-| climate_consensus | 2.2610 | 1.5721 | 2.8991 | 1.8896 |
-| polar_bears | 1.0399 | 0.0166 | 1.1444 | 0.0415 |
+| scopex_2017 | 1.5390 | 0.7322 | 2.3718 | 0.7694 |
+| chemtrails_gates_2018_2021 | 2.1383 | 1.3541 | 2.3885 | 1.7852 |
+| sai_geoengineering | 1.3576 | 0.1974 | 1.1160 | 0.1523 |
+| paris_agreement | 1.7321 | 1.3357 | 2.4591 | 1.6821 |
+| climate_consensus | 2.2610 | 1.5934 | 2.8991 | 1.8896 |
+| polar_bears | 1.0399 | 0.0185 | 1.1444 | 0.0415 |
 
 ## k* and dead cells
 
@@ -154,12 +154,12 @@ k* = first tick where tick-mean MI > 3 and every later tick stays > 3 (`parse_ph
 
 | arm × mode | live cells | k* rate | dead rate |
 | --- | --- | --- | --- |
-| H continuous | 482 | 14.1% | 16.3% |
+| H continuous | 480 | 14.2% | 16.7% |
 | H dual-discrete | 478 | 20.1% | 17.0% |
 | He continuous | 238 | 7.6% | 17.4% |
 | He dual-discrete | 240 | 32.1% | 16.7% |
 
-Hatched dead after LLM: **290** / 1728 thesis cells (16.8%). Hatch pattern in `fig08_dead_cell_rates.png`. Hierarchical and some short chains show more dead cells (few scored events), which **inflates uncertainty** for those topologies — do not treat a live-only mean on a half-dead topology as a clean topology effect.
+Hatched dead after LLM: **292** / 1728 thesis cells (16.9%). Hatch pattern in `fig08_dead_cell_rates.png`. Hierarchical and some short chains show more dead cells (few scored events), which **inflates uncertainty** for those topologies — do not treat a live-only mean on a half-dead topology as a clean topology effect.
 
 Dual k* uses the discrete series; continuous k* uses the continuous series. Do not add them.
 
@@ -191,7 +191,7 @@ Simulated D-net auditor scores (from `all_rows.csv`) are listed in `RESULTS.md`.
 
 - **N=1.** One seed (`graphRandomSeed: 42`), one run per config. No error bars, no topology significance tests.
 - **8 hops vs CIKM 30.** Logged cost compression. Not Debnath’s hop protocol; not an empirical firestorm duration.
-- **Hatched dead cells: 290.** Kept. Not zeros. Not “mix immunises.” Live-only means drop those cells.
+- **Hatched dead cells: 292.** Kept. Not zeros. Not “mix immunises.” Live-only means drop those cells.
 - **`thesisGrade: false`.** Harvest itself marks this campaign as not thesis-grade.
 - **Two instruments.** Dual-discrete headline ≠ continuous headline. Dual gap ≠ MPR.
 - **Debnath reconstruct is a hashtag co-occurrence fallback**, not a hydrated retweet cascade. 814k tweet IDs were not hydrated. BPs are theory-faithful reductions, not HDBSCAN centroids.
