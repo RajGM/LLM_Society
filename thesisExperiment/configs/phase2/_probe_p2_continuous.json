@@ -1,0 +1,30 @@
+{
+  "experimentName": "probe_p2_continuous",
+  "personasPath": "thesisExperiment/personas/phase2/homo/conspiracy_believer.json",
+  "articlesPath": "thesisExperiment/articles/merged.json",
+  "outputRoot": "thesisExperiment/runs_phase2",
+  "topology": "linear_chain",
+  "topologyParams": {
+    "numNodes": 2
+  },
+  "maxTicks": 1,
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "miScoringMode": "continuous",
+  "seedArticles": [
+    "scopex_2017"
+  ],
+  "seedNodes": [
+    "node_0"
+  ],
+  "graphRandomSeed": 42,
+  "nodeParams": {
+    "maxHops": 1,
+    "maxInboxSize": 4,
+    "actionWeights": {
+      "forward": 0.2,
+      "reinterpret": 0.8,
+      "drop": 0
+    }
+  }
+}

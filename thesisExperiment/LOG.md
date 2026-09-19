@@ -1339,3 +1339,261 @@ T2c_H worker start: poll .env + KEY_READY every 20s up to 15 min, then probe + a
 **Status.** `runs_phase2/_status/ORCHESTRATOR.md`, `runs_phase2/_blockers/MASTER_10MIN_POLL.md`.
 
 ---
+
+## 2026-09-18T21:04:55Z — Dnet worker follow-up: key still missing after 15 min poll
+
+**Key: no.** Immediate recheck + poll `/workspace/.env`, process `OPENAI_API_KEY` (length=0), `KEY_READY.md` every 20s for 900s (47 checks). tmux `phase2-master` PID 73069 alive. Still absent. Did not invent a key. Did not write `.env`. Did not launch `run_dnet.js`. Did not dry-run. Did not invent MI/MPR. Did not invent tweet hydration. Did not git commit.
+
+**4-cell counts.** completed=**0** skipped=**0** failed=**0** not_started=**4** (`Dnet_c_H`, `Dnet_c_He`, `Dnet_d_H`, `Dnet_d_He`). Dual vs continuous headlines did not run.
+
+**Compare.** Did not re-run `compare_phase2.js` (no sims). Last `debnath_compare.json` **simPending=true**, nSimRuns=0. Pfeffer seven factors; **cross-media held**.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Exit once for the master.
+
+**Status.** `thesisExperiment/runs_phase2/_status/dnet.md`. Blocker `thesisExperiment/runs_phase2/_blockers/dnet_no_key.md`.
+
+---
+
+## 2026-09-18T21:05:18.201Z
+
+T2c_H ABORT waiting for OPENAI_API_KEY. polls=45 elapsedMs=880892. completed=0 failed=0 remaining=96. Wrote runs_phase2/_blockers/T2c_H_waiting.md.
+
+---
+
+## 2026-09-18T21:05:19.911Z
+
+T2c_He ABORT real_api_unavailable after 46 polls. completed=0 failed=0 skipped=0 pending=48. Did not dry-run. Did not invent MI.
+
+---
+
+## 2026-09-18T21:05:27.713Z
+
+T2d_H ABORT real_api_unavailable after 46 polls (~15 min, every 20s). completed=0 failed=0 skipped=0 pending=96. Did not dry-run. Did not invent MI.
+
+---
+
+## 2026-09-18T21:05:49.055Z
+
+Phase 2 T2d_He DUAL slice ABORT after 15-minute follow-up poll
+
+**Slice.** Heterogeneous persona×article, `miScoringMode: dual` (two auditor calls per event). Configs: `thesisExperiment/configs/phase2/T2d_He_*.json` (48 = 8 topologies × 6 mixes). All `outputRoot: thesisExperiment/runs_phase2`. Planned concurrency 4. Did **not** run `H_` or `T2c_` files (or `T2d_H_` homo dual).
+
+**Key found: no.** Rechecked immediately, then polled `/workspace/.env`, `thesisExperiment/.env`, process `OPENAI_API_KEY`, and `KEY_READY.md` every 20s for ~15 minutes. Still absent (length=0). Did **not** invent a key. Did **not** write `.env`. Did **not** dry-run. Did **not** invent MI/MPR.
+
+**Probe.** Not started. **Grid.** ABORT before concurrency-4 loop.
+
+| Count | n |
+|---|---|
+| configs | 48 |
+| completed | 0 |
+| failed | 0 |
+| skipped | 0 |
+| not_started | 48 |
+| LLM calls | 0 |
+| Est. USD | $0 |
+
+**Manifest.** `thesisExperiment/results_phase2/manifest_T2d_He.json` only. Did **not** write `phase2_manifest.json`.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not git commit.
+
+**Status.** `thesisExperiment/runs_phase2/_status/T2d_He.md`.
+
+---
+
+## 2026-09-19T02:49:15.910Z
+
+MASTER key ready length=164 source=/workspace/.env (value not logged)
+
+---
+
+## 2026-09-19T02:49:23.395Z
+
+PROBE_P2 continuous status=0 failed=false elapsedMs=7441 usage=2 calls, 1079 prompt / 248 completion tokens ~$0.0003
+
+---
+
+## 2026-09-19T02:49:24.637Z
+
+PROBE_P2 dual status=0 failed=false elapsedMs=1241 usage=2 calls, 1155 prompt / 41 completion tokens ~$0.0002
+
+---
+
+## 2026-09-19T02:49:24.640Z
+
+MASTER probe-only exit=0
+
+---
+
+## 2026-09-19T02:49:24.671Z
+
+PHASE_P2 TH n=96 concurrency=4 topology=all slice=T2c_H
+
+---
+
+## 2026-09-19T02:49:24.671Z
+
+START T2c_H_linear_chain_conspiracy_believer config=thesisExperiment/configs/phase2/T2c_H_linear_chain_conspiracy_believer.json
+
+---
+
+## 2026-09-19T02:49:24.674Z
+
+START T2c_H_linear_chain_conspiracy_haarp_weather config=thesisExperiment/configs/phase2/T2c_H_linear_chain_conspiracy_haarp_weather.json
+
+---
+
+## 2026-09-19T02:49:24.675Z
+
+PHASE_P2 TH n=96 concurrency=4 topology=all slice=T2d_H
+
+---
+
+## 2026-09-19T02:49:24.675Z
+
+START T2d_H_linear_chain_conspiracy_believer config=thesisExperiment/configs/phase2/T2d_H_linear_chain_conspiracy_believer.json
+
+---
+
+## 2026-09-19T02:49:24.675Z
+
+PHASE_P2 TH n=0 concurrency=4 topology=all slice=T2c_He
+
+---
+
+## 2026-09-19T02:49:24.676Z
+
+PHASE_P2 THe n=48 concurrency=4 topology=all slice=T2c_He
+
+---
+
+## 2026-09-19T02:49:24.676Z
+
+START T2c_He_linear_chain_mix_00 config=thesisExperiment/configs/phase2/T2c_He_linear_chain_mix_00.json
+
+---
+
+## 2026-09-19T02:49:24.682Z
+
+START T2c_H_linear_chain_conspiracy_depopulation config=thesisExperiment/configs/phase2/T2c_H_linear_chain_conspiracy_depopulation.json
+
+---
+
+## 2026-09-19T02:49:24.682Z
+
+START T2d_H_linear_chain_conspiracy_haarp_weather config=thesisExperiment/configs/phase2/T2d_H_linear_chain_conspiracy_haarp_weather.json
+
+---
+
+## 2026-09-19T02:49:24.683Z
+
+START T2d_H_linear_chain_conspiracy_depopulation config=thesisExperiment/configs/phase2/T2d_H_linear_chain_conspiracy_depopulation.json
+
+---
+
+## 2026-09-19T02:49:24.686Z
+
+START T2c_H_linear_chain_conspiracy_climate_piggyback config=thesisExperiment/configs/phase2/T2c_H_linear_chain_conspiracy_climate_piggyback.json
+
+---
+
+## 2026-09-19T02:49:24.687Z
+
+START T2c_He_linear_chain_mix_01 config=thesisExperiment/configs/phase2/T2c_He_linear_chain_mix_01.json
+
+---
+
+## 2026-09-19T02:49:24.688Z
+
+START T2d_H_linear_chain_conspiracy_climate_piggyback config=thesisExperiment/configs/phase2/T2d_H_linear_chain_conspiracy_climate_piggyback.json
+
+---
+
+## 2026-09-19T02:49:24.688Z
+
+PHASE_P2 TH n=0 concurrency=4 topology=all slice=T2d_He
+
+---
+
+## 2026-09-19T02:49:24.689Z
+
+PHASE_P2 THe n=48 concurrency=4 topology=all slice=T2d_He
+
+---
+
+## 2026-09-19T02:49:24.689Z
+
+START T2d_He_linear_chain_mix_00 config=thesisExperiment/configs/phase2/T2d_He_linear_chain_mix_00.json
+
+---
+
+## 2026-09-19T02:49:24.701Z
+
+START T2d_He_linear_chain_mix_01 config=thesisExperiment/configs/phase2/T2d_He_linear_chain_mix_01.json
+
+---
+
+## 2026-09-19T02:49:24.702Z
+
+START T2c_He_linear_chain_mix_02 config=thesisExperiment/configs/phase2/T2c_He_linear_chain_mix_02.json
+
+---
+
+## 2026-09-19T02:49:24.702Z
+
+PHASE_DNET n=4 concurrency=2
+
+---
+
+## 2026-09-19T02:49:24.703Z
+
+START Dnet_c_H_conspiracy config=thesisExperiment/configs/phase2/Dnet_c_H_conspiracy.json
+
+---
+
+## 2026-09-19T02:49:24.706Z
+
+START T2c_He_linear_chain_mix_03 config=thesisExperiment/configs/phase2/T2c_He_linear_chain_mix_03.json
+
+---
+
+## 2026-09-19T02:49:24.714Z
+
+START T2d_He_linear_chain_mix_02 config=thesisExperiment/configs/phase2/T2d_He_linear_chain_mix_02.json
+
+---
+
+## 2026-09-19T02:49:24.715Z
+
+START T2d_He_linear_chain_mix_03 config=thesisExperiment/configs/phase2/T2d_He_linear_chain_mix_03.json
+
+---
+
+## 2026-09-19T02:49:24.719Z
+
+START Dnet_d_H_conspiracy config=thesisExperiment/configs/phase2/Dnet_d_H_conspiracy.json
+
+---
+
+## 2026-09-19T02:49:31.430Z
+
+PROBE_DNET custom status=0 failed=false elapsedMs=4660 usage=2 calls, 1086 prompt / 255 completion tokens ~$0.0003
+
+---
+
+## 2026-09-19T02:49:31.430Z
+
+PHASE_DNET n=4 concurrency=2
+
+---
+
+## 2026-09-19T02:49:31.432Z
+
+START Dnet_c_H_conspiracy config=thesisExperiment/configs/phase2/Dnet_c_H_conspiracy.json
+
+---
+
+## 2026-09-19T02:49:31.435Z
+
+START Dnet_d_H_conspiracy config=thesisExperiment/configs/phase2/Dnet_d_H_conspiracy.json
+
+---

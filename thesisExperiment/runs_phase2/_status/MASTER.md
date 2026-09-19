@@ -1,7 +1,7 @@
 # Phase 2 MASTER status
 
-**Updated.** 2026-09-18T20:51:31.629Z
-**OPENAI_API_KEY found.** no
+**Updated.** 2026-09-19T02:49:24.647Z
+**OPENAI_API_KEY found.** yes (length=164)
 **Dry-run.** no. **MI invented.** no.
 **Isolation.** `runs_phase2/` + `results_phase2/` only. Did not write Phase 1 `runs/` or `results/tables/`.
 
@@ -9,8 +9,8 @@
 
 | mode | runDir | LLM usage | dual discrete field | dual continuous field |
 | --- | --- | ---: | --- | --- |
-| continuous | — | 0 | n/a | not observed |
-| dual | — | 0 | no | no |
+| continuous | probe_p2_continuous_2026-09-19_02-49-15 | 2 | n/a | headline |
+| dual | probe_p2_dual_2026-09-19_02-49-23 | 2 | yes | yes |
 
 ## Grid (288 configs / 1728 cells)
 
@@ -37,7 +37,7 @@ Dnet complete: **0/4**
 
 ## Notes
 
-- waiting for OPENAI_API_KEY (poll 215, every 30s). Non-LLM work already done (polarized minSeedOutDegree, parse hatch, empirical compare).
+- probes passed; launching 4 slices + Dnet in parallel (skip complete).
 
 # Orchestrator follow-up (2026-09-18T20:50Z)
 
