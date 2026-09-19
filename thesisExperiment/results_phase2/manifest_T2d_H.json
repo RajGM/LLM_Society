@@ -1,14 +1,14 @@
 {
   "slice": "T2d_H",
-  "startedAt": "2026-09-18T20:50:26.559Z",
+  "startedAt": "2026-09-19T02:50:18.943Z",
   "mode": "real",
   "model": "gpt-4o-mini",
   "concurrency": 4,
   "outputRoot": "thesisExperiment/runs_phase2",
   "dualAuditorCallsPerEvent": 2,
-  "pollRound": 2,
-  "pollIntervalMs": 20000,
-  "pollMaxMs": 900000,
+  "pollRound": 3,
+  "pollIntervalMs": 2000,
+  "pollMaxMs": 90000,
   "configRels": [
     "thesisExperiment/configs/phase2/T2d_H_echo_chamber_biodiversity_food_security.json",
     "thesisExperiment/configs/phase2/T2d_H_echo_chamber_climate_action_advocate.json",
@@ -119,23 +119,31 @@
   ],
   "keyCheck": {
     "envFile": "/workspace/.env + thesisExperiment/.env",
-    "envFileExists": false,
-    "OPENAI_API_KEY_length": 0,
-    "placeholder": null,
-    "ok": false,
-    "source": null,
-    "KEY_READY_md": false,
-    "KEY_READY_paths": [],
-    "recheckAt": "2026-09-18T21:05:27.695Z",
-    "pollAttempt": 46,
-    "pollIntervalMs": 20000,
-    "pollMaxMs": 900000
+    "envFileExists": true,
+    "OPENAI_API_KEY_length": 164,
+    "placeholder": false,
+    "ok": true,
+    "source": "/workspace/.env",
+    "KEY_READY_md": true,
+    "KEY_READY_paths": [
+      "/workspace/thesisExperiment/runs_phase2/_status/KEY_READY.md"
+    ],
+    "recheckAt": "2026-09-19T02:50:18.956Z",
+    "pollAttempt": 1,
+    "pollIntervalMs": 2000,
+    "pollMaxMs": 90000
   },
   "probe": {
-    "skipped": true,
-    "at": "2026-09-19T02:49:24.673Z"
+    "attempt": 1,
+    "experimentName": "probe_p2_dual",
+    "status": 0,
+    "elapsedMs": 5003,
+    "failed": false,
+    "usageLine": "3 calls, 1522 prompt / 249 completion tokens ~$0.0004",
+    "usageCalls": 3,
+    "at": "2026-09-19T02:50:23.977Z"
   },
-  "aborted": "real_api_unavailable",
+  "aborted": null,
   "isolation": {
     "didNotWrite": [
       "thesisExperiment/runs",
@@ -150,256 +158,36 @@
   },
   "runs": [
     {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_conspiracy_depopulation.json",
-      "experimentName": "T2d_H_linear_chain_conspiracy_depopulation",
+      "config": "thesisExperiment/configs/phase2/T2d_H_echo_chamber_biodiversity_food_security.json",
+      "experimentName": "T2d_H_echo_chamber_biodiversity_food_security",
+      "topology": "echo_chamber",
       "status": 0,
       "signal": null,
       "killedFor": null,
-      "elapsedMs": 89292,
-      "runDir": "T2d_H_linear_chain_conspiracy_depopulation_2026-09-19_02-49-25",
+      "elapsedMs": 1054112,
+      "runDir": "T2d_H_echo_chamber_biodiversity_food_security_2026-09-19_02-50-24",
       "error": null,
-      "usageLine": "90 calls, 40682 prompt / 6835 completion tokens ~$0.0102",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_conspiracy_depopulation.log",
+      "usageLine": "1372 calls, 601646 prompt / 80824 completion tokens ~$0.1387",
+      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_echo_chamber_biodiversity_food_security.log",
       "done": true,
-      "miScoringMode": "dual"
+      "miScoringMode": "dual",
+      "skipped": false
     },
     {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_conspiracy_haarp_weather.json",
-      "experimentName": "T2d_H_linear_chain_conspiracy_haarp_weather",
+      "config": "thesisExperiment/configs/phase2/T2d_H_echo_chamber_climate_action_advocate.json",
+      "experimentName": "T2d_H_echo_chamber_climate_action_advocate",
+      "topology": "echo_chamber",
       "status": 0,
       "signal": null,
       "killedFor": null,
-      "elapsedMs": 109703,
-      "runDir": "T2d_H_linear_chain_conspiracy_haarp_weather_2026-09-19_02-49-25",
+      "elapsedMs": 1258314,
+      "runDir": "T2d_H_echo_chamber_climate_action_advocate_2026-09-19_02-50-24",
       "error": null,
-      "usageLine": "122 calls, 54402 prompt / 8855 completion tokens ~$0.0135",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_conspiracy_haarp_weather.log",
+      "usageLine": "1709 calls, 780906 prompt / 101227 completion tokens ~$0.1779",
+      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_echo_chamber_climate_action_advocate.log",
       "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_conspiracy_believer.json",
-      "experimentName": "T2d_H_linear_chain_conspiracy_believer",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 114475,
-      "runDir": "T2d_H_linear_chain_conspiracy_believer_2026-09-19_02-49-25",
-      "error": null,
-      "usageLine": "100 calls, 46564 prompt / 6709 completion tokens ~$0.011",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_conspiracy_believer.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_conspiracy_climate_piggyback.json",
-      "experimentName": "T2d_H_linear_chain_conspiracy_climate_piggyback",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 115409,
-      "runDir": "T2d_H_linear_chain_conspiracy_climate_piggyback_2026-09-19_02-49-25",
-      "error": null,
-      "usageLine": "116 calls, 53792 prompt / 9335 completion tokens ~$0.0137",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_conspiracy_climate_piggyback.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_climate_justice_youth.json",
-      "experimentName": "T2d_H_linear_chain_climate_justice_youth",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 110165,
-      "runDir": "T2d_H_linear_chain_climate_justice_youth_2026-09-19_02-51-14",
-      "error": null,
-      "usageLine": "123 calls, 54222 prompt / 9282 completion tokens ~$0.0137",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_climate_justice_youth.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_climate_action_advocate.json",
-      "experimentName": "T2d_H_linear_chain_climate_action_advocate",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 131393,
-      "runDir": "T2d_H_linear_chain_climate_action_advocate_2026-09-19_02-50-54",
-      "error": null,
-      "usageLine": "137 calls, 61144 prompt / 10710 completion tokens ~$0.0156",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_climate_action_advocate.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_environmental_concern.json",
-      "experimentName": "T2d_H_linear_chain_environmental_concern",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 133263,
-      "runDir": "T2d_H_linear_chain_environmental_concern_2026-09-19_02-51-20",
-      "error": null,
-      "usageLine": "125 calls, 57193 prompt / 9778 completion tokens ~$0.0144",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_environmental_concern.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_mitigation_first_policy.json",
-      "experimentName": "T2d_H_linear_chain_mitigation_first_policy",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 178398,
-      "runDir": "T2d_H_linear_chain_mitigation_first_policy_2026-09-19_02-51-19",
-      "error": null,
-      "usageLine": "135 calls, 60704 prompt / 10904 completion tokens ~$0.0156",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_mitigation_first_policy.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_biodiversity_food_security.json",
-      "experimentName": "T2d_H_linear_chain_biodiversity_food_security",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 119865,
-      "runDir": "T2d_H_linear_chain_biodiversity_food_security_2026-09-19_02-53-05",
-      "error": null,
-      "usageLine": "130 calls, 56488 prompt / 9286 completion tokens ~$0.014",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_biodiversity_food_security.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_ozone_stratosphere_specialist.json",
-      "experimentName": "T2d_H_linear_chain_ozone_stratosphere_specialist",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 126433,
-      "runDir": "T2d_H_linear_chain_ozone_stratosphere_specialist_2026-09-19_02-53-04",
-      "error": null,
-      "usageLine": "132 calls, 57755 prompt / 10193 completion tokens ~$0.0148",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_ozone_stratosphere_specialist.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_climate_scientist.json",
-      "experimentName": "T2d_H_linear_chain_climate_scientist",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 147379,
-      "runDir": "T2d_H_linear_chain_climate_scientist_2026-09-19_02-53-33",
-      "error": null,
-      "usageLine": "135 calls, 61970 prompt / 11064 completion tokens ~$0.0159",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_climate_scientist.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_linear_chain_science_journalist.json",
-      "experimentName": "T2d_H_linear_chain_science_journalist",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 106282,
-      "runDir": "T2d_H_linear_chain_science_journalist_2026-09-19_02-54-17",
-      "error": null,
-      "usageLine": "103 calls, 45264 prompt / 7588 completion tokens ~$0.0113",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_linear_chain_science_journalist.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_ring_conspiracy_believer.json",
-      "experimentName": "T2d_H_ring_conspiracy_believer",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 83723,
-      "runDir": "T2d_H_ring_conspiracy_believer_2026-09-19_02-55-05",
-      "error": null,
-      "usageLine": "76 calls, 34753 prompt / 5436 completion tokens ~$0.0085",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_ring_conspiracy_believer.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_ring_conspiracy_haarp_weather.json",
-      "experimentName": "T2d_H_ring_conspiracy_haarp_weather",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 106960,
-      "runDir": "T2d_H_ring_conspiracy_haarp_weather_2026-09-19_02-55-11",
-      "error": null,
-      "usageLine": "114 calls, 51874 prompt / 8247 completion tokens ~$0.0127",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_ring_conspiracy_haarp_weather.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_ring_conspiracy_depopulation.json",
-      "experimentName": "T2d_H_ring_conspiracy_depopulation",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 84862,
-      "runDir": "T2d_H_ring_conspiracy_depopulation_2026-09-19_02-56-00",
-      "error": null,
-      "usageLine": "90 calls, 40894 prompt / 6833 completion tokens ~$0.0102",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_ring_conspiracy_depopulation.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_ring_conspiracy_climate_piggyback.json",
-      "experimentName": "T2d_H_ring_conspiracy_climate_piggyback",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 116230,
-      "runDir": "T2d_H_ring_conspiracy_climate_piggyback_2026-09-19_02-56-03",
-      "error": null,
-      "usageLine": "120 calls, 55573 prompt / 9802 completion tokens ~$0.0142",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_ring_conspiracy_climate_piggyback.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_ring_climate_action_advocate.json",
-      "experimentName": "T2d_H_ring_climate_action_advocate",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 96420,
-      "runDir": "T2d_H_ring_climate_action_advocate_2026-09-19_02-56-28",
-      "error": null,
-      "usageLine": "101 calls, 44408 prompt / 7586 completion tokens ~$0.0112",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_ring_climate_action_advocate.log",
-      "done": true,
-      "miScoringMode": "dual"
-    },
-    {
-      "config": "thesisExperiment/configs/phase2/T2d_H_ring_climate_justice_youth.json",
-      "experimentName": "T2d_H_ring_climate_justice_youth",
-      "status": 0,
-      "signal": null,
-      "killedFor": null,
-      "elapsedMs": 85703,
-      "runDir": "T2d_H_ring_climate_justice_youth_2026-09-19_02-56-57",
-      "error": null,
-      "usageLine": "102 calls, 44537 prompt / 7041 completion tokens ~$0.0109",
-      "logPath": "thesisExperiment/results_phase2/logs/T2d_H_ring_climate_justice_youth.log",
-      "done": true,
-      "miScoringMode": "dual"
+      "miScoringMode": "dual",
+      "skipped": false
     }
   ],
   "pending": [
@@ -1172,25 +960,23 @@
       "skipped": false
     }
   ],
-  "abortReason": "OPENAI_API_KEY missing/placeholder after ~15 min poll of /workspace/.env and KEY_READY.md (interval 20s). Refusing to invent MI/MPR.",
-  "finishedAt": "2026-09-18T21:05:27.703Z",
   "counts": {
     "configs": 96,
-    "completed": 0,
+    "completed": 27,
     "failed": 0,
-    "skipped": 0,
-    "pending": 96,
-    "not_started": 96,
-    "llmCalls": 0,
-    "estUsd": 0
+    "skipped": 25,
+    "pending": 69,
+    "not_started": 69,
+    "llmCalls": 3084,
+    "estUsd": 0.317
   },
   "byTopology": {
     "echo_chamber": {
       "configs": 12,
-      "completed": 0,
+      "completed": 2,
       "failed": 0,
       "skipped": 0,
-      "pending": 12
+      "pending": 10
     },
     "hierarchical": {
       "configs": 12,
@@ -1201,10 +987,10 @@
     },
     "linear_chain": {
       "configs": 12,
-      "completed": 0,
+      "completed": 12,
       "failed": 0,
       "skipped": 0,
-      "pending": 12
+      "pending": 0
     },
     "polarized": {
       "configs": 12,
@@ -1215,17 +1001,17 @@
     },
     "random_er": {
       "configs": 12,
-      "completed": 0,
+      "completed": 1,
       "failed": 0,
       "skipped": 0,
-      "pending": 12
+      "pending": 11
     },
     "ring": {
       "configs": 12,
-      "completed": 0,
+      "completed": 12,
       "failed": 0,
       "skipped": 0,
-      "pending": 12
+      "pending": 0
     },
     "scale_free": {
       "configs": 12,
@@ -1242,6 +1028,5 @@
       "pending": 12
     }
   },
-  "updatedAt": "2026-09-18T21:05:27.706Z",
-  "lastCommand": "--skip-probe --no-parse --phase all --slice T2d_H --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2d_H.json"
+  "updatedAt": "2026-09-19T03:11:22.338Z"
 }

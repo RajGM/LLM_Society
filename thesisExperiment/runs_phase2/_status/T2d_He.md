@@ -1,6 +1,6 @@
 # T2d_He status (dual heterogeneous, all 8 topologies)
 
-**Updated:** 2026-09-19T02:58:48.205Z
+**Updated:** 2026-09-19T03:14:24.723Z
 **OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -16,13 +16,13 @@
 | Count | n |
 | --- | ---: |
 | configs | 48 |
-| completed | 12 |
+| completed | 15 |
 | failed | 0 |
-| skipped (already complete dual) | 12 |
+| skipped (already complete dual) | 15 |
 | in_progress | 4 |
-| pending / not_started | 32 |
-| LLM calls (this slice + probe) | 1411 |
-| Est. USD | $0.1594 |
+| pending / not_started | 29 |
+| LLM calls (this slice + probe) | 5385 |
+| Est. USD | $0.576 |
 
 ## By topology
 
@@ -32,10 +32,10 @@
 | hierarchical | 6 | 0 | 0 | 0 | 0 | 6 |
 | linear_chain | 6 | 6 | 0 | 6 | 0 | 0 |
 | polarized | 6 | 0 | 0 | 0 | 0 | 6 |
-| random_er | 6 | 0 | 0 | 0 | 4 | 2 |
+| random_er | 6 | 3 | 0 | 3 | 3 | 0 |
 | ring | 6 | 6 | 0 | 6 | 0 | 0 |
 | scale_free | 6 | 0 | 0 | 0 | 0 | 6 |
-| small_world | 6 | 0 | 0 | 0 | 0 | 6 |
+| small_world | 6 | 0 | 0 | 0 | 1 | 5 |
 
 ## Probe (dual)
 

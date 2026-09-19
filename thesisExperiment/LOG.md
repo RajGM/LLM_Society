@@ -2689,3 +2689,129 @@ CONTINUE_MASTER progress complete=72/288 dnet=0/4
 CONTINUE_MASTER progress complete=72/288 dnet=0/4
 
 ---
+
+## 2026-09-19T03:07:58.146Z
+
+END T2d_H_echo_chamber_biodiversity_food_security status=0 elapsedMs=1054112 runDir=T2d_H_echo_chamber_biodiversity_food_security_2026-09-19_02-50-24 usage=1372 calls, 601646 prompt / 80824 completion tokens ~$0.1387 killedFor=none done=true
+
+---
+
+## 2026-09-19T03:07:58.147Z
+
+START T2d_H_echo_chamber_conspiracy_believer config=thesisExperiment/configs/phase2/T2d_H_echo_chamber_conspiracy_believer.json
+
+---
+
+## 2026-09-19T03:08:07.501Z
+
+CONTINUE_MASTER progress complete=73/288 dnet=0/4
+
+---
+
+## 2026-09-19T03:08:33.423Z
+
+END T2d_H_random_er_conspiracy_climate_piggyback status=0 elapsedMs=404207 runDir=T2d_H_random_er_conspiracy_climate_piggyback_2026-09-19_03-01-49 usage=531 calls, 254057 prompt / 33448 completion tokens ~$0.0582 killedFor=none done=true
+
+---
+
+## 2026-09-19T03:08:33.423Z
+
+START T2d_H_random_er_climate_action_advocate config=thesisExperiment/configs/phase2/T2d_H_random_er_climate_action_advocate.json
+
+---
+
+## 2026-09-19T03:10:20.264Z
+
+END T2d_He_random_er_mix_03 status=0 elapsedMs=876401 runDir=T2d_He_random_er_mix_03_2026-09-19_02-55-43 usage=1104 calls, 512992 prompt / 67835 completion tokens ~$0.1176 killedFor=none done=true
+
+---
+
+## 2026-09-19T03:10:20.264Z
+
+START T2d_He_random_er_mix_04 config=thesisExperiment/configs/phase2/T2d_He_random_er_mix_04.json
+
+---
+
+## 2026-09-19T03:10:37.547Z
+
+CONTINUE_MASTER progress complete=75/288 dnet=0/4
+
+---
+
+## 2026-09-19T03:10:51.793Z
+
+END T2c_H_random_er_conspiracy_haarp_weather status=0 elapsedMs=670696 runDir=T2c_H_random_er_conspiracy_haarp_weather_2026-09-19_02-59-41 usage=570 calls, 265029 prompt / 49675 completion tokens ~$0.0696 killedFor=none done=true
+
+---
+
+## 2026-09-19T03:10:51.793Z
+
+START T2c_H_random_er_climate_action_advocate config=thesisExperiment/configs/phase2/T2c_H_random_er_climate_action_advocate.json
+
+---
+
+## 2026-09-19T03:11:03.286Z
+
+END T2c_He_random_er_mix_01 status=0 elapsedMs=983738 runDir=T2c_He_random_er_mix_01_2026-09-19_02-54-39 usage=795 calls, 353197 prompt / 71505 completion tokens ~$0.0959 killedFor=none done=true
+
+---
+
+## 2026-09-19T03:11:03.286Z
+
+START T2c_He_random_er_mix_04 config=thesisExperiment/configs/phase2/T2c_He_random_er_mix_04.json
+
+---
+
+## 2026-09-19T03:11:22.356Z
+
+END T2d_H_echo_chamber_climate_action_advocate status=0 elapsedMs=1258314 runDir=T2d_H_echo_chamber_climate_action_advocate_2026-09-19_02-50-24 usage=1709 calls, 780906 prompt / 101227 completion tokens ~$0.1779 killedFor=none done=true
+
+---
+
+## 2026-09-19T03:11:22.356Z
+
+START T2d_H_echo_chamber_conspiracy_climate_piggyback config=thesisExperiment/configs/phase2/T2d_H_echo_chamber_conspiracy_climate_piggyback.json
+
+---
+
+## 2026-09-19T03:13:07.697Z
+
+CONTINUE_MASTER progress complete=78/288 dnet=0/4
+
+---
+
+## 2026-09-19T03:13:24.544Z
+
+END T2d_He_random_er_mix_00 status=0 elapsedMs=1137562 runDir=T2d_He_random_er_mix_00_2026-09-19_02-54-27 usage=1470 calls, 667404 prompt / 88906 completion tokens ~$0.1535 killedFor=none done=true
+
+---
+
+## 2026-09-19T03:13:24.545Z
+
+START T2d_He_random_er_mix_05 config=thesisExperiment/configs/phase2/T2d_He_random_er_mix_05.json
+
+---
+
+## 2026-09-19T03:13:39.067Z
+
+END T2d_He_random_er_mix_02 status=0 elapsedMs=1084642 runDir=T2d_He_random_er_mix_02_2026-09-19_02-55-34 usage=1400 calls, 630047 prompt / 85014 completion tokens ~$0.1455 killedFor=none done=true
+
+---
+
+## 2026-09-19T03:13:39.067Z
+
+START T2d_He_small_world_mix_00 config=thesisExperiment/configs/phase2/T2d_He_small_world_mix_00.json
+
+---
+
+## 2026-09-19T03:14:24.672Z
+
+END T2c_He_random_er_mix_03 status=0 elapsedMs=1151335 runDir=T2c_He_random_er_mix_03_2026-09-19_02-55-13 usage=944 calls, 450176 prompt / 82130 completion tokens ~$0.1168 killedFor=none done=true
+
+---
+
+## 2026-09-19T03:14:24.672Z
+
+START T2c_He_random_er_mix_05 config=thesisExperiment/configs/phase2/T2c_He_random_er_mix_05.json
+
+---
