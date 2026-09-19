@@ -715,9 +715,10 @@ averaged.
 
 The copied graph has global transitivity 0.3146, mean local clustering
 0.5153, and mean unique degree 5.4286.  The
-\texttt{user\_chemtrails\_hub} node has 33 unique neighbours.  The
-conspiracy cut has modularity 0.4039 under mixed labels and 0.4566 when all
-nodes are labelled conspiracy.  Mixed-label identity homophily is 0.8377
+\texttt{user\_chemtrails\_hub} node has 33 unique neighbours.  Using
+unweighted unique-undirected pairs, the mixed-label conspiracy cut has
+Newman--Girvan modularity 0.4297; the homogeneous one-community partition
+has modularity 0.  Mixed-label identity homophily is 0.8377
 in the simulation; homogeneous identity homophily is 1.0 by construction,
 so the latter is not evidence of an emergent echo chamber.
 
@@ -841,8 +842,11 @@ quantities for the homogeneous and mixed assignments.
 \paragraph{Empirical hashtag structure.}
 The graph has global transitivity \(0.315\), mean local clustering \(0.515\),
 and mean unique degree \(5.43\).  The \texttt{\#chemtrails} hub has 33 unique
-neighbours.  With the empirical discourse labels, the conspiracy-cut
-modularity is \(Q=0.404\).  Identity edge homophily is \(0.873\);
+neighbours.  On the 171 unique-undirected pairs, the six assigned graph
+clusters have \(Q=0.5489\), the four assigned discourse identities have
+\(Q=0.5322\), and the binary conspiracy cut has \(Q=0.4297\).
+These label-partition statistics are distinct from clustering coefficients.
+Identity edge homophily is \(0.873\);
 belief-profile-family homophily is \(0.838\).  The identity composition is
 28 conspiracy, 19 climate-action, 14 environmental, and two expert/other
 nodes.  Thus conspiracy discourse is a plurality (\(28/63=0.444\)), not a
@@ -858,8 +862,9 @@ edge set, transitivity, local clustering, and hub degree remain \(0.315\),
 \(0.515\), and 33.  Mixed D-net identity homophily is \(0.838\), whereas the
 homogeneous value is \(1.0\) by construction.  The latter is not evidence
 that an echo chamber emerged.  It is the mechanical result of giving every
-node the same identity.  The corresponding conspiracy-cut modularities are
-\(Q=0.404\) for mixed labels and \(Q=0.457\) under homogeneous labels.
+node the same identity.  Mixed belief-profile families have \(Q=0.4908\),
+and the mixed binary conspiracy cut has \(Q=0.4297\).  Under homogeneous
+labels there is only one community, for which \(Q=0\).
 
 Across the four primary D-net cells, 61 of 63 nodes receive a message within
 the held eight-tick horizon.  This demonstrates reach under the engine's

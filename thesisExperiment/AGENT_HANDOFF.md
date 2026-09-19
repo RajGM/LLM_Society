@@ -574,7 +574,7 @@ On D-net, **H (conspiracy-only) > He (mixed)** on both instruments and both arti
 
 Structural similarity **0.6885** (1/3 metrics within 30%). KS nReal=1 nSim=16 **underpowered**: depth D=1 p=0.1104; breadth D=0.8125 p=0.2954; virality D=1 p=0.1104. JS=1 on all three. DTFS **0.2754** `isValidated=false` (threshold 0.70). Content correlation 0.
 
-Pfeffer observable row copies (summary.md): valence empirical 0.1097 (paper mean 0.17) vs sim mean MI 2.5529 **not Twitter MI**; identity conspiracy 0.4444 / other 0.5556 vs sim conspiracy share 0.7222; clustering n=63 meanDeg=7.2381 Q_conspiracy=0.4039 vs sim Q=0.4566; echo identityHomophily=0.864 vs sim edgeHomophily=1 identityHomophily=1; surprise held drip; temporal n/a vs 7 ticks; cross-media held.
+Pfeffer observable row copies (summary.md): valence empirical 0.1097 (paper mean 0.17) vs sim mean MI 2.5529 **not Twitter MI**; identity conspiracy 0.4444 / other 0.5556 vs sim conspiracy share 0.7222; clustering n=63 meanDeg=7.2381 and unique-undirected conspiracy-cut Q=0.4297 vs the summary's first homogeneous sim row Q=0; echo identityHomophily=0.864 vs sim edgeHomophily=1 identityHomophily=1; surprise held drip; temporal n/a vs 7 ticks; cross-media held. Do not average modularity across label partitions.
 
 Regenerate analysis_phase2: `python3 thesisExperiment/analysis_phase2/plot_phase2.py` (reads tables + summary.json + debnath_compare.json; writes analysis_phase2/ and results_phase2/figures/).
 
@@ -685,13 +685,13 @@ Empirical identity mix: conspiracy **0.4444** (28/63) / other **0.5556**. Intend
 | Dnet_d_H | homo conspiracy | dual | `Dnet_d_H_conspiracy_2026-09-19_02-49-31` |
 | Dnet_d_He | mixed Debnath BPs | dual | `Dnet_d_He_mixed_2026-09-19_04-07-40` |
 
-**H and He share identical edge sets.** Clustering coefficients therefore match empirical structure. Homophily and conspiracy-cut modularity **change with labels**. JSON `structureNote`: clustering identical; homophily and Q differ because persona labels differ.
+**H and He share identical edge sets.** Clustering coefficients therefore match the reconstructed structure. Homophily changes with labels. Modularity is partition-dependent: the mixed conspiracy cut has Q **0.4297**, while the homogeneous one-community partition has Q **0**.
 
 #### Clustering is **pre-sim** (not a sim result)
 
-Transitivity **0.3146** / local clustering **0.5153** / mixed-label Q **0.4039** live on the hashtag graph *before* any LLM call. MD rounds 0.315 / 0.515 / 0.404. D-net **copies** that graph; it does not grow clusters. T2 8-node graphs are **not** this measurement.
+Transitivity **0.3146** / local clustering **0.5153** live on the hashtag graph *before* any LLM call. D-net **copies** that graph; it does not grow clusters. T2 8-node graphs are **not** this measurement. Modularity is not a clustering coefficient and requires a named partition.
 
-JSON `empiricalPfeffer.clustering` / graph: n=63, 228 directed, `nUniqueUndirectedEdges=171`, `meanUniqueDegree=5.4286` (MD 5.43), `hubUniqueDegree=33` (`chemtrails_hub`), directed-incidence `meanUndirectedDegree=7.2381` (MD 7.24; bidirected pairs counted twice; campaign `compare_phase2` number), `maxUndirectedDegree=53` (stub incidence, ≠ unique-neighbour 33), `nWedges=1211`, `nClosedTriads=381`, `hubShareOfStubs=0.1162`. Sim cells copy transitivity 0.3146 / local 0.5153 / meanUndirectedDegree 7.2381. Q **0.4039** on mixed labels; Q **0.4566** (MD 0.457) if every node labelled conspiracy (H). Not Watts–Strogatz generative clustering; not retweet triadic closure; n=63 ≠ Outlook #4 hundreds of neighbours.
+JSON `empiricalPfeffer.clustering` / graph: n=63, 228 stored arcs, `nUniqueUndirectedEdges=171`, `meanUniqueDegree=5.4286` (MD 5.43), `hubUniqueDegree=33` (`chemtrails_hub`), directed-incidence `meanUndirectedDegree=7.2381` (MD 7.24; bidirected pairs counted twice; campaign `compare_phase2` number), `maxUndirectedDegree=53` (stub incidence, ≠ unique-neighbour 33), `nWedges=1211`, `nClosedTriads=381`, `hubShareOfStubs=0.1162`. Sim cells copy transitivity 0.3146 / local 0.5153 / meanUndirectedDegree 7.2381. Standard unweighted unique-undirected Newman--Girvan values: assigned six graph clusters Q **0.5489**; assigned four discourse identities Q **0.5322**; intended/mixed BP families Q **0.4908**; binary conspiracy cut Q **0.4297**; homogeneous one-community Q **0**. Directed binary-cut sensitivity is Q **0.3941**. Not Watts–Strogatz generative clustering; not retweet triadic closure; n=63 ≠ Outlook #4 hundreds of neighbours.
 
 #### Echo is **label-dependent** (do not pool H+He)
 

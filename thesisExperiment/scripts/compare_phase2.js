@@ -593,20 +593,39 @@ function clusteringFromTopo(topo) {
   const maxDegree = undirectedDegrees.length ? Math.max(...undirectedDegrees) : 0;
 
   let modularityConspiracy = null;
+  let nUniqueUndirectedEdges = 0;
   if (nEdges > 0) {
-    const persona = Object.fromEntries(
-      nodes.map((n) => [n.nodeId, identityBucket(n.personaId, n)])
+    const identity = Object.fromEntries(nodes.map((n) => [n.nodeId, identityBucket(n.personaId, n)]));
+    const label = Object.fromEntries(
+      nodes.map((n) => [n.nodeId, identity[n.nodeId] === "conspiracy" ? "conspiracy" : "non_conspiracy"])
     );
-    const m = nEdges;
-    let q = 0;
+    const pairs = new Set();
     for (const e of edges) {
-      const ki = outDegree[e.from] || 0;
-      const kj = outDegree[e.to] || 0;
-      const same =
-        (persona[e.from] === "conspiracy") === (persona[e.to] === "conspiracy") ? 1 : 0;
-      q += same - (ki * kj) / (2 * m);
+      if (!e.from || !e.to || e.from === e.to) continue;
+      pairs.add(e.from < e.to ? `${e.from}\0${e.to}` : `${e.to}\0${e.from}`);
     }
-    modularityConspiracy = q / (2 * m);
+    const m = pairs.size;
+    nUniqueUndirectedEdges = m;
+    if (m) {
+      const degree = Object.fromEntries(nodes.map((n) => [n.nodeId, 0]));
+      const internal = {};
+      for (const key of pairs) {
+        const [u, v] = key.split("\0");
+        degree[u] = (degree[u] || 0) + 1;
+        degree[v] = (degree[v] || 0) + 1;
+        if (label[u] === label[v]) internal[label[u]] = (internal[label[u]] || 0) + 1;
+      }
+      const degreeSum = {};
+      for (const n of nodes) {
+        const group = label[n.nodeId];
+        degreeSum[group] = (degreeSum[group] || 0) + (degree[n.nodeId] || 0);
+      }
+      let q = 0;
+      for (const group of new Set(Object.values(label))) {
+        q += (internal[group] || 0) / m - ((degreeSum[group] || 0) / (2 * m)) ** 2;
+      }
+      modularityConspiracy = Math.abs(q) < 1e-12 ? 0 : q;
+    }
   }
 
   return {
@@ -615,7 +634,9 @@ function clusteringFromTopo(topo) {
     meanDegree: round4(meanDegree),
     meanOutDegree: round4(meanOutDegree),
     maxDegree: maxDegree || null,
+    nUniqueUndirectedEdges,
     modularityConspiracy: round4(modularityConspiracy),
+    modularityConvention: "Newman-Girvan, unweighted unique-undirected pairs; conspiracy versus non-conspiracy labels",
     computable: nEdges > 0,
   };
 }
@@ -852,12 +873,14 @@ Do not write “Pfeffer identified six factors.” Do not write “Pfeffer ident
 | **Valence** | Affective / indignation character of firestorm messages (definition), not a numbered Outlook factor | Paper-quoted toxicity mean ~0.17 / hashtag toxicity proxy | Mean auditor MI; frame sentiment if FrameAuditor is on | Varied via articles + persona tone. **Not Twitter MI.** |
 | **Surprise** | #1 speed and volume (shock vs drip) | Paper notes SCoPEx April 2017 volume spike; not a reconstructed shock series | Drip \`seedNodes: [node_0]\` unless a shock cell exists | **Held** (drip) |
 | **Identity** | #5 lack of diversity | Hashtag mix: conspiracy vs climate-action vs environmental vs other | BP mix / conspiracy vs other personas on \`graph_topology.json\` | Swept homo vs hetero in T-H / T-He; measured on D-net |
-| **Clustering** | #3 network clusters | Degree / conspiracy-cut modularity on hashtag graph | Degree / modularity on \`graph_topology.json\` | Swept in topology grid; measured on custom graph |
+| **Clustering** | #3 network clusters | Transitivity / local clustering on topology; assigned-label modularity reported separately | Same fixed topology; identity-label modularity changes with labels | Swept in topology grid; measured on custom graph |
 | **Echo** | #3 clusters + #4 unrestrained flow + parts of #5 | Edge homophily on hashtag identity | Edge homophily on persona / conspiracy cut | Measured |
 | **Temporal** | #1 speed and volume; #7 network-triggered decisions | **Not available** on a hashtag co-occurrence fallback (no tweet clock) | \`speedTicks\` / \`maxTicks\` / hops | **Held** at 8 ticks (compression, not Debnath) |
 | **Cross-media** | #6 cross-media dynamics | Not in the reconstruct used here | No legacy-media broadcast agent | **Held**, no engine knob |
 
 **Binary choices (Pfeffer 2014 #2)** has no dedicated observable row: the engine is three-way (forward / reinterpret / drop), not like/share binary. It is implicit in action weights, not swept.
+
+Clustering coefficients are properties of the fixed edge set. Modularity additionally requires a partition: the six assigned graph clusters, the assigned discourse identities, and the simulation persona families are different partitions and therefore different statistics. A homogeneous one-community partition has Newman--Girvan \\(Q=0\\); homophily remains 1 by construction.
 
 ## Honesty
 
