@@ -30,12 +30,15 @@ const TOPOLOGIES = [
 ];
 const SLICES = ["T2c_H", "T2d_H", "T2c_He", "T2d_He"];
 const DNET = ["Dnet_c_H_conspiracy", "Dnet_c_He_mixed", "Dnet_d_H_conspiracy", "Dnet_d_He_mixed"];
-const SLICE_RUNNERS = {
-  T2c_H: ["run_t2c_h.js", "run_phase2.js --slice T2c_H"],
-  T2d_H: ["run_t2d_h.js", "run_phase2.js --slice T2d_H"],
-  T2c_He: ["run_t2c_he.js", "watch_t2c_he.js", "run_phase2.js --slice T2c_He"],
-  T2d_He: ["run_t2d_he.js", "run_phase2.js --slice T2d_He"],
-};
+function lineCoversSlice(line, slice) {
+  const sliceFlag = new RegExp(`--slice\\s+${slice}(?:\\s|$)`);
+  if (line.includes("run_phase2.js") && sliceFlag.test(line)) return true;
+  if (slice === "T2c_H" && /run_t2c_h\.js/.test(line) && !/run_t2c_he\.js/.test(line)) return true;
+  if (slice === "T2d_H" && /run_t2d_h\.js/.test(line) && !/run_t2d_he\.js/.test(line)) return true;
+  if (slice === "T2c_He" && (/run_t2c_he\.js/.test(line) || /watch_t2c_he\.js/.test(line))) return true;
+  if (slice === "T2d_He" && /run_t2d_he\.js/.test(line)) return true;
+  return false;
+}
 
 function nowIso() {
   return new Date().toISOString();
@@ -187,9 +190,8 @@ function inventory() {
   });
   const workers = {};
   for (const s of SLICES) {
-    workers[s] = SLICE_RUNNERS[s]
-      .map((pat) => ({ pat, lines: runnerLines.filter((l) => l.includes(pat)) }))
-      .filter((x) => x.lines.length);
+    const lines = runnerLines.filter((l) => lineCoversSlice(l, s));
+    workers[s] = lines.length ? [{ pat: s, lines }] : [];
   }
   workers.dnet = runnerLines.filter((l) => l.includes("run_dnet.js") || l.includes("_dnet_supervise"));
   workers.master = runnerLines.filter((l) => l.includes("master_phase2.js") && !l.includes("_continue"));
@@ -390,14 +392,22 @@ function runNode(args, logName) {
   });
 }
 
+function sliceHasFullGridWorker(inv, slice) {
+  const lines = ((inv.workers[slice] || [])[0] || {}).lines || [];
+  const sliceFlag = new RegExp(`--slice\\s+${slice}(?:\\s|$)`);
+  return lines.some((l) => l.includes("run_phase2.js") && sliceFlag.test(l) && !l.includes("--topology"));
+}
+
 function fillGaps(inv) {
   const actions = [];
   for (const slice of SLICES) {
     const next = nextUnfinished(inv, slice);
     if (!next) continue;
     const healthy = sliceWorkerHealthy(inv, slice);
+    const fullGrid = sliceHasFullGridWorker(inv, slice);
     const finishedPrev = TOPOLOGIES.slice(0, TOPOLOGIES.indexOf(next)).every((t) => topologyFinished(inv, slice, t));
     const nextStarted = topologyStarted(inv, slice, next);
+    if (fullGrid) continue;
     if (healthy && (nextStarted || !finishedPrev)) continue;
     if (!healthy || (finishedPrev && !nextStarted)) {
       actions.push(launchTopo(slice, next));
