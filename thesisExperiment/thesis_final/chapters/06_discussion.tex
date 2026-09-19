@@ -13,23 +13,50 @@ population effects nor measurements of misinformation on Twitter.
 \section{Synthesis of the research questions}
 \label{sec:discussion-rqs}
 
-\subsection{RQ1: What does the instrument comparison establish?}
+\subsection{RQ1: Auditor-regime sensitivity of levels and network-condition orderings}
 
+\paragraph{Evidence.}
+Dual-discrete scores exceeded continuous scores on every
+network-condition aggregate in both arms. The topology-mean difference was
+$0.8201$ for homogeneous and $1.0450$ for heterogeneous runs. Among cells
+live under both modes, the median paired difference was $0.8125$ for H
+($n=398$) and $0.9778$ for He ($n=198$). Topology ranks aligned weakly
+(Spearman $\rho=0.095$ for H and $\rho=0.167$ for He). These coefficients
+describe this harvest's rank order; they are not population inferences.
+Same-event dual diagnostics show the same directional gap, but agreement is
+defined for only 270 of 478 live H dual cells and 171 of 240 live He dual
+cells. Instrument choice also affected the incidence of within-window
+\kstar{}: the collapsed He rates were $32.1\%$ under dual-discrete scoring
+and $7.6\%$ under continuous scoring. Because missing items receive different
+penalties, a common $\mathrm{MI}>3$ cut is not equivalent across instruments.
+T2c and T2d are also separate realisations, so campaign-level T2d--T2c
+contrasts are whole-pipeline sensitivity rather than a clean instrument
+effect.
+
+\paragraph{Interpretation.}
 The instrument comparison constrains the interpretation of all substantive
-results. Dual-discrete scores exceeded continuous scores on every
-network-condition aggregate in both arms, while topology ranks aligned
-weakly. Same-event dual diagnostics show the same directional gap, but
-agreement is defined for only 270 of 478 live H dual cells and 171 of 240
-live He dual cells. Because missing items receive different penalties, a
-common $\mathrm{MI}>3$ cut is not equivalent across instruments. T2c and
-T2d are also separate realisations, so campaign-level T2d--T2c contrasts are
-whole-pipeline sensitivity rather than a clean instrument effect. The
-campaign therefore establishes that severity levels and network-condition
-ordering depend on the auditor regime. It does not separately answer an
-instrument effect on threshold occurrence from a dedicated topology-resolved
-\(k^{*}\) table.
+results. The two modes are not interchangeable measurements on a common numerical
+scale. The discrete instrument awards categorical penalties for omitted or
+contradicted answers, whereas the continuous instrument resolves degradation
+differently. The systematic level difference and weak rank agreement show
+that instrument choice can affect both absolute severity and comparative
+claims about network conditions. The continuous sidecar generated during a
+dual run supports diagnosis of disagreement, but it is not a third
+independent \MPR{}. The campaign therefore establishes that severity levels
+and network-condition ordering depend on the auditor regime. It does not
+separately answer an instrument effect on threshold occurrence from a
+dedicated topology-resolved \(k^{*}\) table.
 
-\subsection{RQ2: What is the role of identity composition?}
+\paragraph{Implication.}
+Substantive conclusions should be reported separately for each instrument.
+Averaging the two modes would create a quantity without a defined auditor.
+The disagreement also motivates external validation: a preregistered sample
+of rewrites should be assessed by human coders, and calibration should examine
+whether each instrument preserves article- and persona-level ordering rather
+than merely correlating at the event level. Until such validation is
+available, \kstar{} is instrument-relative.
+
+\subsection{RQ2: Named persona families and heterogeneous compositions}
 
 \paragraph{Evidence.}
 When all eight generated topologies were collapsed within one instrument, the
@@ -71,14 +98,13 @@ separate a genuine interaction between heterogeneous neighbours from the
 mechanical dilution or enrichment produced by changing the number of
 high-scoring personas.
 
-\subsection{RQ3: How does network topology affect misinformation
-propagation?}
+\subsection{RQ3: Bundled network conditions, live-cell mean MI, and cascade survival}
 
 \paragraph{Evidence.}
-Topology changed the live-cell scores, the frequency of within-window
-\kstar{}, and the probability that a cascade remained scorable.  However, no
-topology occupied the highest or lowest position consistently across identity
-composition and scoring instrument.  In homogeneous continuous runs,
+The eight bundled network conditions differed in live-cell scores, the
+frequency of within-window \kstar{}, and the probability that a cascade
+remained scorable. No condition occupied the highest or lowest position
+consistently across identity composition and scoring instrument.  In homogeneous continuous runs,
 scale-free networks had the highest topology mean ($0.9205$), whereas
 small-world networks had the lowest ($0.7215$).  In homogeneous
 dual-discrete runs, echo chambers had the highest mean ($1.7984$), again with
@@ -108,41 +134,7 @@ isolating a specific mechanism such as clustering, centralisation, or
 community separation.  On the present evidence, selecting a single
 \enquote{most harmful} topology would overstate what the design identifies.
 
-\subsection{Measurement implications across RQ2 and RQ3}
-
-\paragraph{Evidence.}
-Dual-discrete scores exceeded continuous scores on all eight topologies in
-both arms.  The topology-mean difference was $0.8201$ for homogeneous and
-$1.0450$ for heterogeneous runs.  Among cells live under both modes, the
-median paired difference was $0.8125$ for H ($n=398$) and $0.9778$ for He
-($n=198$).  Instrument choice also affected the incidence of within-window
-\kstar{}: the collapsed He rates were $32.1\%$ under dual-discrete scoring and
-$7.6\%$ under continuous scoring.  Moreover, topology rankings agreed only
-weakly across modes (Spearman $\rho=0.095$ for H and $\rho=0.167$ for He).
-These coefficients describe this harvest's rank order; they are not
-population inferences.
-
-\paragraph{Interpretation.}
-The two modes are not interchangeable measurements on a common numerical
-scale.  The discrete instrument awards categorical penalties for omitted or
-contradicted answers, whereas the continuous instrument resolves degradation
-differently.  The systematic level difference and weak rank agreement show
-that instrument choice can affect both absolute severity and comparative
-claims about topology.  The continuous sidecar generated during a dual run is
-useful for diagnosing disagreement, but it is not a third independent
-\MPR{}.
-
-\paragraph{Implication.}
-Substantive conclusions should be reported separately for each instrument.
-Averaging the two modes would create a quantity without a defined auditor.
-The disagreement also motivates external validation: a preregistered sample
-of rewrites should be assessed by human coders, and calibration should examine
-whether each instrument preserves article- and persona-level ordering rather
-than merely correlating at the event level.  Until such validation is
-available, \kstar{} is instrument-relative.
-
-\subsection{RQ4: Does the D-net analysis generalise the generated-topology
-findings?}
+\subsection{RQ4: Constructed hashtag-graph stress test}
 
 \paragraph{Evidence.}
 D-net used a 63-node custom graph reconstructed from hashtag co-occurrence,
@@ -150,17 +142,17 @@ not a retweet cascade.  Its homogeneous condition assigned
 \texttt{conspiracy\_believer} to all 63 seats; its mixed condition retained a
 conspiracy share of $28/63$.  On the identical edge set, homogeneous
 conspiracy exceeded the mixed condition for both articles and both
-instruments: continuous SCoPEx $1.7349$ versus $0.9983$, continuous
-chemtrails--Gates $3.3378$ versus $2.5068$, dual-discrete SCoPEx $4.2537$
-versus $2.6880$, and dual-discrete chemtrails--Gates $3.7303$ versus
-$1.5297$.  Structural comparison was less favourable.  Breadth fell within
+instruments. Continuous scores were $1.7349$ versus $0.9983$ for SCoPEx and
+$3.3378$ versus $2.5068$ for chemtrails--Gates. Dual-discrete scores were
+$4.2537$ versus $2.6880$ for SCoPEx and $3.7303$ versus $1.5297$ for
+chemtrails--Gates.  Structural comparison was less favourable.  Breadth fell within
 the specified $30\%$ band, whereas depth and structural virality did not;
 DTFS was $0.2754$ and failed the $0.70$ validation threshold.  Tests comparing
 one empirical graph with 16 simulated cascades were underpowered.
 
 \paragraph{Interpretation.}
-D-net provides a useful stress test of the composition interpretation because
-the topology is held fixed while persona labels change.  It does not provide
+D-net holds topology fixed while persona labels change, which isolates a
+composition contrast. It does not provide
 out-of-sample validation of the eight-node generators, and it is not a
 digital twin of Debnath et al.'s Twitter corpus.  The graph imports
 co-occurrence structure and then simulates message propagation on that
@@ -330,10 +322,10 @@ with persona prompts, so they are not a clean manipulation of valence.
 Finally, excluding dead cells from means avoids coding them as factual zeros,
 but produces survivor-conditioned estimates.
 
-These limitations do not make the campaign uninformative.  They narrow the
-appropriate claim.  The experiment demonstrates that, under the documented
-prompts and graph protocols, auditor scores vary with persona composition,
-topology, and scoring mode.  It does not establish human susceptibility,
+These limitations restrict the claim to the documented prompts, graph
+protocols, and auditor scores.  Under those conditions, auditor scores vary
+with persona composition, topology, and scoring mode.  The campaign does not
+establish human susceptibility,
 platform-level firestorm dynamics, or causal effects in an empirical
 population.  Human evaluation, model ablations, repeated seeds, and a
 fail-closed auditor are therefore validation requirements rather than
@@ -357,7 +349,7 @@ result about the sensitivity of the conclusion to the auditor.
 For empirical generalisation, D-net is an intermediate case: larger and
 structurally grounded in a hashtag graph, yet still neither a retweet cascade
 nor a temporal reconstruction.  Its contribution is to show that the
-composition interpretation survives a change in graph size and source under
+composition interpretation recurs after a change in graph size and source under
 the same simulator.  It does not validate the simulator against Twitter.
 
 Taken together, the research questions yield a restrained conclusion.
