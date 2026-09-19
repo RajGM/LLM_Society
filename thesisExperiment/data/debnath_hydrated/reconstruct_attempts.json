@@ -1,5 +1,5 @@
 {
-  "at": "2026-09-18T16:41:55.957Z",
+  "at": "2026-09-19T10:21:34.145Z",
   "attempts": [
     {
       "step": "detect_twitter_bearer",
@@ -9,8 +9,8 @@
     },
     {
       "step": "detect_openai",
-      "ok": false,
-      "note": "absent — Dnet configs written, LLM not run"
+      "ok": true,
+      "note": "present"
     },
     {
       "step": "github_ramit1201_geoeng",
@@ -67,17 +67,21 @@
       "ok": true,
       "status": 200,
       "url": "https://files.osf.io/v1/resources/75ye3/providers/osfstorage/63a03f8750be9e0d13772c09",
-      "lines": 4043,
-      "bytes": 847849,
+      "lines": 5000,
+      "records": 5000,
+      "bytes": 1915409,
       "contentType": "application/octet-stream",
       "html": false,
       "looksCsv": true,
       "sampled": true,
-      "stopReason": "max_lines",
+      "stopReason": "max_records",
       "piiDiscarded": true,
-      "nIdsScientificNotation": 1169,
+      "nIdsScientificNotation": 1786,
       "nIdsUsableDigits": 0,
-      "note": null
+      "nRecordsWithHashtag": 987,
+      "nDistinctHashtags": 564,
+      "nDocumentedPairsObserved": 65,
+      "note": "tweet text discarded after hashtag extraction; IDs not invented"
     },
     {
       "step": "twitter_hydrate",
@@ -91,7 +95,23 @@
       "ok": true,
       "nUsers": 63,
       "nEdges": 228,
-      "note": "NOT a retweet cascade."
+      "note": "NOT a retweet cascade. Empirical graph for D-net / compare."
+    },
+    {
+      "step": "osf_hashtag_extract",
+      "ok": true,
+      "nRecords": 5000,
+      "nRecordsWithHashtag": 987,
+      "nDistinctHashtags": 564,
+      "nDocumentedPairsObserved": 65,
+      "dest": "thesisExperiment/data/derived/debnath_osf_hashtag_sample.json",
+      "note": "Hashtags only; tweet text discarded. Topology not expanded from the 5k prefix."
+    },
+    {
+      "step": "topology_fingerprint",
+      "ok": true,
+      "topologyChanged": false,
+      "note": "Node/edge endpoints unchanged; OSF counts are annotations only."
     },
     {
       "step": "realgraphimporter_validate",
@@ -103,17 +123,13 @@
       ]
     },
     {
-      "step": "subsample_for_llm",
-      "ok": true,
-      "fullNodes": 63,
-      "simNodes": 63,
-      "subsampled": false,
-      "rule": "subsample 50-80 only if n>200"
-    },
-    {
       "step": "write_dnet_configs",
       "ok": true,
-      "n": 4
+      "skipped": true,
+      "reason": "topology_unchanged",
+      "nNodes": 63,
+      "nEdges": 228,
+      "note": "Existing Dnet configs kept (same node/edge counts). Completed D-net sims not rewritten."
     }
   ]
 }
