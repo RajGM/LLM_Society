@@ -142,3 +142,18 @@ numerical claims were preserved.
   Undefined citations/references: 0 / 0.
   Residual overfull boxes: declaration placeholder 1.09 pt; methods
   comparison table 3.90 pt; ethics/declaration line 27.50 pt.
+
+## Round-2 LaTeX technical check (2026-09-19)
+
+Clean `latexmk -g` / Biber rebuild after wrapping remaining overfull boxes.
+Review: `reviews/round2/03_LATEX.md` (mirrored under
+`thesisExperiment/thesis_final/reviews/round2/`).
+
+- Status: successful; 116 pages; 2,242,482 bytes; 37,892 extracted words.
+- Undefined citations/references: 0 / 0.
+- Overfull boxes: **0**.
+- Underfull boxes: 78 hbox / 10 vbox (narrow tables; cosmetic).
+- Appendix numbering: A / A.1--A.10 / Table A.1--A.10.
+- Fonts: 32 subset-embedded Type 1; `lmtt` bx→b fallback unchanged.
+- PDF metadata: title/subject/keywords set; author Raj Gaurav Maurya;
+  untagged; no XMP stream.
