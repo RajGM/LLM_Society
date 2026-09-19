@@ -1,0 +1,3810 @@
+{
+  "nodeId": "node_2",
+  "personaId": "mitigation_first_policy",
+  "modelId": "gpt-4o-mini",
+  "relations": {
+    "node_0": 1,
+    "node_7": 1
+  },
+  "params": {
+    "trustThreshold": 0.15,
+    "actionWeights": {
+      "forward": 0.35,
+      "reinterpret": 0.5,
+      "drop": 0.15
+    },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 8,
+    "strippedProperties": [],
+    "activityPattern": "always",
+    "edgeDeletionThreshold": 0.05,
+    "maxInboxSize": 4
+  },
+  "inbox": [],
+  "history": [
+    {
+      "tick": 2,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 1,
+      "action": "drop",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx) was a scientific initiative led by Harvard University, aimed at investigating the behavior of small aerosol particles in the stratosphere. Principal investigator Frank Keutsch and his team, including David Keith, publicly introduced the concept at the American Geophysical Union Fall Meeting in 2017. The primary goal was to enhance computer models that assess the risks and benefits associated with solar geoengineering, specifically solar radiation management, rather than to directly cool the planet. The experiment was to utilize a scientific balloon gondola operating at approximately 20 km altitude, releasing a minimal quantity of material—typically calcium carbonate—into a controlled environment. A planned test in Sweden in 2021 focused solely on hardware evaluation, with the SCoPEx Advisory Committee recommending a pause for societal engagement, ensuring no particles would be released. In March 2024, Harvard announced that Keutsch would no longer pursue SCoPEx, with the platform likely to be redirected towards unrelated stratospheric research. This highlights the importance of transparency and public discourse in the governance of geoengineering research.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:16:32.518Z"
+    },
+    {
+      "tick": 4,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 3,
+      "action": "forward",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), led by Harvard University and spearheaded by principal investigator Frank Keutsch along with David Keith, was designed to study the behavior of small aerosol particles in the stratosphere. Introduced at the American Geophysical Union Fall Meeting in 2017, the initiative aimed to refine computer models that evaluate the risks and benefits of solar radiation management (SRM), rather than directly cooling the Earth. The experiment was planned to use a scientific balloon gondola operating at around 20 km altitude to release a very small amount of calcium carbonate into a controlled environment. A test originally scheduled in Sweden for 2021 focused exclusively on hardware assessment, with the SCoPEx Advisory Committee recommending a pause for societal engagement, ensuring no particles would be released. In March 2024, Harvard announced that Keutsch would discontinue SCoPEx, redirecting efforts toward unrelated stratospheric research. This underscores the need for transparency and public dialogue in the governance of geoengineering research, while emphasizing the imperative of emissions reductions and maintaining net-zero integrity.",
+      "contentOut": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), led by Harvard University and spearheaded by principal investigator Frank Keutsch along with David Keith, was designed to study the behavior of small aerosol particles in the stratosphere. Introduced at the American Geophysical Union Fall Meeting in 2017, the initiative aimed to refine computer models that evaluate the risks and benefits of solar radiation management (SRM), rather than directly cooling the Earth. The experiment was planned to use a scientific balloon gondola operating at around 20 km altitude to release a very small amount of calcium carbonate into a controlled environment. A test originally scheduled in Sweden for 2021 focused exclusively on hardware assessment, with the SCoPEx Advisory Committee recommending a pause for societal engagement, ensuring no particles would be released. In March 2024, Harvard announced that Keutsch would discontinue SCoPEx, redirecting efforts toward unrelated stratospheric research. This underscores the need for transparency and public dialogue in the governance of geoengineering research, while emphasizing the imperative of emissions reductions and maintaining net-zero integrity.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:16:51.466Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0.2,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0.2,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              0,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University and led by Frank Keutsch and David Keith, focuses on understanding the behavior of small aerosol particles in the stratosphere. Introduced at the American Geophysical Union Fall Meeting in 2017, SCoPEx aims to enhance computer models assessing the potential risks and benefits of solar geoengineering, specifically solar radiation management, rather than facilitating immediate cooling interventions. The experiment plans to deploy a scientific balloon gondola at approximately 20 km altitude to release a very small quantity of calcium carbonate in a controlled manner. A test in Sweden was scheduled for 2021, intended exclusively for hardware evaluation, with the SCoPEx Advisory Committee advocating for a pause to ensure societal engagement and prevent any particle release. In March 2024, Harvard announced a shift away from advancing SCoPEx under Keutsch, redirecting the focus to other stratospheric research. This development highlights the critical need for transparency and public engagement in the governance of geoengineering research, crucial for maintaining integrity in emissions reductions and the path towards net-zero goals.",
+      "contentOut": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University under the leadership of Frank Keutsch and David Keith, aims to investigate the dynamics of small aerosol particles in the stratosphere. First presented at the American Geophysical Union Fall Meeting in 2017, SCoPEx is designed to improve computer models that evaluate the risks and benefits of solar geoengineering, specifically solar radiation management, without implementing immediate cooling solutions. The experiment involves deploying a scientific balloon gondola at around 20 km altitude to release a minimal quantity of calcium carbonate in a controlled manner. A test in Sweden was planned for 2021 to evaluate hardware, but the SCoPEx Advisory Committee recommended a pause for societal engagement and to avoid any particle release. In March 2024, Harvard announced a shift from advancing SCoPEx under Keutsch, pivoting to other stratospheric research. This evolution underscores the importance of transparency and public involvement in geoengineering governance, essential for upholding integrity in emissions reductions and achieving net-zero objectives.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:16:54.156Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University under the guidance of principal investigator Frank Keutsch and David Keith, was designed to investigate the behavior of small aerosol particles in the stratosphere. Launched at the American Geophysical Union Fall Meeting in 2017, the project aimed to enhance computer models assessing the risks and benefits of solar radiation management (SRM), rather than implementing direct cooling measures. The experiment involved using a scientific balloon gondola at approximately 20 km altitude to release a minimal quantity of calcium carbonate into a controlled environment. Initially scheduled for a hardware assessment test in Sweden in 2021, the SCoPEx Advisory Committee recommended a pause for societal engagement, ensuring no particles would be released. In March 2024, Harvard announced the discontinuation of SCoPEx, shifting focus to other stratospheric research. This decision highlights the critical importance of transparency and public dialogue in geoengineering governance, while reiterating the necessity of emissions reductions and upholding net-zero integrity.",
+      "contentOut": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University under leaders Frank Keutsch and David Keith, was established to study the behavior of small aerosol particles in the stratosphere. Launched at the American Geophysical Union Fall Meeting in 2017, the project sought to improve computer models that evaluate the risks and benefits of solar radiation management (SRM) rather than to implement any direct cooling strategies. The experiment planned to use a scientific balloon gondola at an altitude of approximately 20 km to release a minimal amount of calcium carbonate in a controlled manner. Although a hardware assessment test was scheduled for 2021 in Sweden, the SCoPEx Advisory Committee recommended a pause for societal engagement, ensuring that no particles would be released. In March 2024, Harvard announced the discontinuation of SCoPEx, redirecting its efforts towards other stratospheric research. This decision underscores the importance of transparency and public dialogue in geoengineering governance and reaffirms the critical need for emissions reductions and maintaining net-zero integrity.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:17:12.815Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0.2,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0.2,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              0,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), led by Harvard University under Frank Keutsch, was designed to study the behavior of small aerosol particles in the stratosphere. Introduced at the American Geophysical Union Fall Meeting in 2017, SCoPEx aimed to improve computer models for assessing the risks and benefits of solar radiation management (SRM), rather than implementing direct cooling strategies. The experiment included a planned, controlled release of a small amount of calcium carbonate from a scientific balloon at around 20 km altitude. A test in Sweden in 2021 focused solely on evaluating hardware, with the SCoPEx Advisory Committee recommending a pause for societal dialogue, resulting in no particle release. In March 2024, Harvard announced the discontinuation of SCoPEx under Keutsch, shifting focus to other areas of stratospheric research. This decision underscores the need for transparency and public participation in the governance of geoengineering projects, emphasizing the vital importance of emissions reductions and maintaining net-zero integrity.",
+      "contentOut": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), led by Harvard University under Frank Keutsch, was initiated to enhance our understanding of small aerosol particles in the stratosphere. Introduced during the American Geophysical Union Fall Meeting in 2017, SCoPEx aimed to refine computer models for evaluating the risks and benefits associated with solar radiation management (SRM), rather than pursuing direct cooling approaches. The experiment proposed a controlled release of a small quantity of calcium carbonate from a scientific balloon at approximately 20 km altitude. A 2021 test in Sweden was limited to hardware evaluation, with the SCoPEx Advisory Committee advocating for a pause to encourage societal dialogue, resulting in no particle release. In March 2024, Harvard announced the discontinuation of SCoPEx under Keutsch, redirecting its focus to other stratospheric research avenues. This decision highlights the necessity for transparency and public engagement in the governance of geoengineering initiatives, while underscoring the critical importance of emissions reductions and upholding net-zero commitments.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:17:14.930Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0.2,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0.2,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              0,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "forward",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University and led by Frank Keutsch, aimed to investigate the behavior of small aerosol particles in the stratosphere. Introduced at the American Geophysical Union Fall Meeting in 2017, SCoPEx focused on refining computer models to understand the potential implications of solar geoengineering, particularly solar radiation management, without the intent to directly cool the planet. The experiment planned to release a minimal amount of calcium carbonate from a scientific balloon gondola at approximately 20 km altitude. A hardware evaluation test scheduled for Sweden in 2021 was ultimately paused by the SCoPEx Advisory Committee to prioritize societal engagement, ensuring no particles would be released during this time. In March 2024, Harvard announced the discontinuation of SCoPEx, possibly shifting the research focus to unrelated stratospheric studies. This development highlights the ongoing need for transparency and public engagement in the governance of geoengineering research, emphasizing the importance of emissions reductions and maintaining net-zero integrity.",
+      "contentOut": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University and led by Frank Keutsch, aimed to investigate the behavior of small aerosol particles in the stratosphere. Introduced at the American Geophysical Union Fall Meeting in 2017, SCoPEx focused on refining computer models to understand the potential implications of solar geoengineering, particularly solar radiation management, without the intent to directly cool the planet. The experiment planned to release a minimal amount of calcium carbonate from a scientific balloon gondola at approximately 20 km altitude. A hardware evaluation test scheduled for Sweden in 2021 was ultimately paused by the SCoPEx Advisory Committee to prioritize societal engagement, ensuring no particles would be released during this time. In March 2024, Harvard announced the discontinuation of SCoPEx, possibly shifting the research focus to unrelated stratospheric studies. This development highlights the ongoing need for transparency and public engagement in the governance of geoengineering research, emphasizing the importance of emissions reductions and maintaining net-zero integrity.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_5",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:17:14.930Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0.2,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0.2,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              0,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_7",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), led by Harvard University and spearheaded by principal investigator Frank Keutsch along with David Keith, was designed to study the behavior of small aerosol particles in the stratosphere. Introduced at the American Geophysical Union Fall Meeting in 2017, the initiative aimed to refine computer models that evaluate the risks and benefits of solar radiation management (SRM), rather than directly cooling the Earth. The experiment was planned to use a scientific balloon gondola operating at around 20 km altitude to release a very small amount of calcium carbonate into a controlled environment. A test originally scheduled in Sweden for 2021 focused exclusively on hardware assessment, with the SCoPEx Advisory Committee recommending a pause for societal engagement, ensuring no particles would be released. In March 2024, Harvard announced that Keutsch would discontinue SCoPEx, redirecting efforts toward unrelated stratospheric research. This underscores the need for transparency and public dialogue in the governance of geoengineering research, while emphasizing the imperative of emissions reductions and maintaining net-zero integrity.",
+      "contentOut": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University under the leadership of Frank Keutsch and David Keith, was designed to investigate the behavior of small aerosol particles in the stratosphere. Introduced at the American Geophysical Union Fall Meeting in 2017, the initiative aimed to enhance computer models assessing the risks and benefits associated with solar radiation management (SRM), rather than implementing direct cooling measures. The experiment planned to utilize a scientific balloon gondola to release a minimal quantity of calcium carbonate at an altitude of around 20 km in a controlled setting. Originally scheduled for 2021 in Sweden, the test focused solely on hardware assessment, with the SCoPEx Advisory Committee advocating for a pause to facilitate societal engagement, ensuring no particles were released. In March 2024, Harvard announced the discontinuation of SCoPEx to shift focus to other areas of stratospheric research. This decision highlights the importance of transparency and public discourse in the governance of geoengineering, while reinforcing the critical need for emissions reductions and adherence to net-zero commitments.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_7",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:17:17.084Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "drop",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), spearheaded by Harvard University under the direction of Frank Keutsch and David Keith, was established to examine the behavior of small aerosol particles in the stratosphere. Launched at the American Geophysical Union Fall Meeting in 2017, the project aimed to refine computer models used to evaluate the risks and benefits associated with solar radiation management (SRM), without undertaking direct cooling measures. The experiment planned to utilize a scientific balloon gondola at approximately 20 km altitude to release a minimal amount of calcium carbonate in a controlled setting. Although a hardware assessment test was initially set for Sweden in 2021, the SCoPEx Advisory Committee recommended a pause for societal engagement, ensuring that no particles would be released. In March 2024, Harvard announced the discontinuation of SCoPEx, redirecting efforts toward other stratospheric research. This decision underscores the importance of transparency and public discourse in geoengineering governance while reaffirming the critical need for emissions reductions and maintaining net-zero integrity.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:17:48.407Z"
+    },
+    {
+      "tick": 8,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "reinterpret",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University and led by Frank Keutsch and David Keith, aimed to study the behavior of small aerosol particles in the stratosphere. Launched during the American Geophysical Union Fall Meeting in 2017, the project sought to enhance computer models that assess the risks and benefits of solar radiation management (SRM), not to implement direct cooling measures. The experiment planned to use a scientific balloon gondola at an altitude of approximately 20 km to release a minimal quantity of calcium carbonate in a controlled manner. However, following a recommendation from the SCoPEx Advisory Committee, the project paused for societal engagement prior to any particle release, ensuring public involvement in the governance of such studies. In March 2024, Harvard announced the discontinuation of SCoPEx to redirect efforts toward other stratospheric research. This decision underscores the importance of transparency and public dialogue in geoengineering governance and emphasizes the continued need for emissions reductions and the integrity of net-zero commitments.",
+      "contentOut": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University under the leadership of Frank Keutsch and David Keith, was designed to investigate the dynamics of small aerosol particles in the stratosphere. Announced during the 2017 American Geophysical Union Fall Meeting, the goal was to improve computer models assessing the risks and benefits of solar radiation management (SRM), without engaging in direct cooling interventions. The experiment intended to utilize a scientific balloon to release a controlled, minimal quantity of calcium carbonate at approximately 20 km altitude. However, following advice from the SCoPEx Advisory Committee, the project was paused to facilitate societal engagement before any particle release, emphasizing the importance of public involvement in governance discussions. In March 2024, Harvard decided to discontinue SCoPEx to focus on other stratospheric research, highlighting the critical need for transparency and dialogue in geoengineering governance while reinforcing the imperative of emissions reductions and maintaining the integrity of net-zero targets.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:17:50.724Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "drop",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University under the leadership of Frank Keutsch and David Keith, was designed to investigate the dynamics of small aerosol particles in the stratosphere. Launched during the American Geophysical Union Fall Meeting in 2017, the project aimed to enhance computer models assessing the risks and potential benefits of solar radiation management (SRM), rather than pursuing direct climate intervention strategies. The experiment intended to utilize a scientific balloon gondola at an altitude of around 20 km to release a small quantity of calcium carbonate in a controlled environment. However, following a recommendation from the SCoPEx Advisory Committee, a pause for societal engagement was instituted, preventing any particle release. In March 2024, Harvard announced the discontinuation of SCoPEx, shifting focus to other avenues in stratospheric research. This decision highlights the essential role of transparency and public dialogue in geoengineering governance, while reiterating the necessity for robust emissions reductions and the integrity of net-zero commitments.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:17:50.724Z"
+    },
+    {
+      "tick": 8,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "forward",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University and led by Frank Keutsch, was designed to improve our understanding of stratospheric aerosols. Launched during the American Geophysical Union Fall Meeting in 2017, SCoPEx focused on refining computer models to assess the risks and benefits of solar radiation management (SRM) rather than implementing direct cooling methods. The experiment proposed a controlled release of a small amount of calcium carbonate from a scientific balloon at an altitude of approximately 20 km. A test conducted in Sweden in 2021 was limited to hardware evaluation, with the SCoPEx Advisory Committee recommending a pause to foster societal dialogue, resulting in no particle release. In March 2024, Harvard announced the discontinuation of SCoPEx under Keutsch, shifting towards other areas of stratospheric research. This decision underscores the necessity for transparency and public involvement in geoengineering governance, alongside the crucial imperative of reducing emissions and maintaining net-zero integrity.",
+      "contentOut": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), initiated by Harvard University and led by Frank Keutsch, was designed to improve our understanding of stratospheric aerosols. Launched during the American Geophysical Union Fall Meeting in 2017, SCoPEx focused on refining computer models to assess the risks and benefits of solar radiation management (SRM) rather than implementing direct cooling methods. The experiment proposed a controlled release of a small amount of calcium carbonate from a scientific balloon at an altitude of approximately 20 km. A test conducted in Sweden in 2021 was limited to hardware evaluation, with the SCoPEx Advisory Committee recommending a pause to foster societal dialogue, resulting in no particle release. In March 2024, Harvard announced the discontinuation of SCoPEx under Keutsch, shifting towards other areas of stratospheric research. This decision underscores the necessity for transparency and public involvement in geoengineering governance, alongside the crucial imperative of reducing emissions and maintaining net-zero integrity.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:17:50.724Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0.2,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          0,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0.2,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              0,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 2,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_0",
+      "hops": 1,
+      "action": "reinterpret",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a proposed solar radiation modification method that would introduce aerosols into the stratosphere to reflect a small fraction of incoming sunlight, analogous in mechanism to cooling after large volcanic eruptions such as Mount Pinatubo in 1991. The IPCC has described SAI as the most-researched solar geoengineering approach and notes that, used at moderate intensity, it could limit warming, but imperfectly and with other possible effects if used suboptimally. Candidate materials discussed in the literature include sulfates and, in some proposals, calcite or other particles. Delivery concepts include specialised high-altitude aircraft; there is no operational global SAI deployment. SAI would not remove carbon dioxide from the atmosphere, would not stop ocean acidification, and would require a sustained commitment if used to offset continued high emissions. Risks discussed in assessments include ozone chemistry, changes in precipitation patterns, termination shock if a program stopped abruptly, and governance problems. Small research proposals such as Harvard's SCoPEx aimed to measure aerosol microphysics in a tiny plume, not to cool the planet. Public claims that routine commercial aviation is already injecting SAI materials as 'chemtrails' are not supported by atmospheric science.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a proposed method of solar radiation modification that aims to reflect a portion of incoming sunlight by introducing aerosols into the stratosphere. This approach is inspired by natural cooling events following large volcanic eruptions, such as the 1991 Mount Pinatubo eruption. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as the most extensively researched solar geoengineering technique, noting that, if implemented at moderate levels, it could help limit global warming, albeit with potential side effects if not managed carefully. Various materials, including sulfates and calcite, are considered for this purpose, with delivery methods involving specialized high-altitude aircraft. Importantly, SAI would not remove carbon dioxide from the atmosphere or address ocean acidification, and its effectiveness would depend on a sustained commitment alongside significant emissions reductions. Risks associated with SAI include impacts on ozone chemistry, altered precipitation patterns, and the possibility of \"termination shock\" if the program were to cease suddenly. Research initiatives, such as Harvard's SCoPEx, focus on understanding aerosol behavior in a controlled manner rather than directly cooling the planet. Claims regarding routine SAI-like activities from commercial aviation are not substantiated by scientific evidence.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:17:58.010Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0.9999999999999998,
+            "cr": 0.8,
+            "mr": 0,
+            "ir": 0.2,
+            "cms": 0.24999999968749995,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              1,
+              0,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0.9999999999999998,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_0",
+      "hops": 3,
+      "action": "forward",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a proposed technique for solar radiation modification that seeks to reflect some incoming sunlight by dispersing aerosols into the stratosphere. This concept draws inspiration from the natural cooling observed after significant volcanic eruptions, like the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) identifies SAI as the most researched solar geoengineering method, suggesting that, if applied at moderate levels, it could help limit global warming. However, careful management is crucial due to potential side effects. Materials such as sulfates and calcite are under consideration, with delivery via specialized high-altitude aircraft. It is important to note that SAI does not remove carbon dioxide from the atmosphere or mitigate ocean acidification; thus, its success would rely on a sustained commitment to emissions reductions. Risks include potential impacts on ozone chemistry and changes to precipitation patterns, as well as the risk of \"termination shock\" if SAI were abruptly halted. Research initiatives like Harvard's SCoPEx aim to study aerosol behavior in a controlled environment rather than to cool the planet directly. Claims of routine SAI-like activities from commercial aviation lack scientific support.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a proposed technique for solar radiation modification that seeks to reflect some incoming sunlight by dispersing aerosols into the stratosphere. This concept draws inspiration from the natural cooling observed after significant volcanic eruptions, like the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) identifies SAI as the most researched solar geoengineering method, suggesting that, if applied at moderate levels, it could help limit global warming. However, careful management is crucial due to potential side effects. Materials such as sulfates and calcite are under consideration, with delivery via specialized high-altitude aircraft. It is important to note that SAI does not remove carbon dioxide from the atmosphere or mitigate ocean acidification; thus, its success would rely on a sustained commitment to emissions reductions. Risks include potential impacts on ozone chemistry and changes to precipitation patterns, as well as the risk of \"termination shock\" if SAI were abruptly halted. Research initiatives like Harvard's SCoPEx aim to study aerosol behavior in a controlled environment rather than to cool the planet directly. Claims of routine SAI-like activities from commercial aviation lack scientific support.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:18:04.110Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_7",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a proposed solar radiation modification technique designed to reflect some incoming sunlight by dispersing aerosols into the stratosphere. This concept draws inspiration from the natural cooling observed after significant volcanic eruptions, like the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) identifies SAI as the most researched solar geoengineering method, suggesting that, if applied judiciously, it could mitigate global warming impacts. However, careful management is essential to avoid potential adverse effects. Various materials, such as sulfates and calcite, are being considered, and delivery would typically involve high-altitude aircraft. It's crucial to note that SAI does not reduce atmospheric carbon dioxide or address ocean acidification; its success hinges on concurrent, substantial emissions reductions. SAI carries risks, including potential disruptions to ozone chemistry and precipitation patterns, as well as the risk of \"termination shock\" if the initiative were abruptly halted. Research projects like Harvard's SCoPEx aim to study aerosol dynamics in a controlled context rather than implementing cooling strategies directly. Claims of routine SAI-like activities linked to commercial aviation lack scientific backing.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a proposed method of solar radiation modification that aims to reflect a portion of incoming sunlight by dispersing aerosols in the stratosphere. This approach is inspired by the natural cooling effects observed after major volcanic eruptions, such as the 1991 eruption of Mount Pinatubo. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as one of the most extensively studied geoengineering techniques, suggesting it could play a role in mitigating the impacts of global warming if implemented carefully. However, its deployment requires thorough management to mitigate potential adverse effects. Various materials, including sulfates and calcite, are under consideration, with delivery typically involving high-altitude aircraft. Importantly, SAI does not reduce atmospheric carbon dioxide or address ocean acidification; its effectiveness depends on significant emissions reductions occurring simultaneously. Risks associated with SAI include possible disruptions to ozone chemistry and precipitation patterns, along with the danger of “termination shock” if the initiative were to stop suddenly. Research initiatives, such as Harvard's SCoPEx, focus on understanding aerosol dynamics in a controlled environment rather than immediate cooling interventions. Claims suggesting routine SAI activities linked to commercial aviation lack scientific validation.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_7",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:18:06.534Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0,
+        "ir": 0.4,
+        "cms": 0.6666666655555556,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0,
+            "ir": 0.4,
+            "cms": 0.6666666655555556,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              1,
+              -1,
+              -1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "forward",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a proposed technique for solar radiation modification that seeks to reflect some incoming sunlight by dispersing aerosols into the stratosphere. This concept draws inspiration from the natural cooling observed after significant volcanic eruptions, like the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) identifies SAI as the most researched solar geoengineering method, suggesting that, if applied at moderate levels, it could help limit global warming. However, careful management is crucial due to potential side effects. Materials such as sulfates and calcite are under consideration, with delivery via specialized high-altitude aircraft. It is important to note that SAI does not remove carbon dioxide from the atmosphere or mitigate ocean acidification; thus, its success would rely on a sustained commitment to emissions reductions. Risks include potential impacts on ozone chemistry and changes to precipitation patterns, as well as the risk of \"termination shock\" if SAI were abruptly halted. Research initiatives like Harvard's SCoPEx aim to study aerosol behavior in a controlled environment rather than to cool the planet directly. Claims of routine SAI-like activities from commercial aviation lack scientific support.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a proposed technique for solar radiation modification that seeks to reflect some incoming sunlight by dispersing aerosols into the stratosphere. This concept draws inspiration from the natural cooling observed after significant volcanic eruptions, like the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) identifies SAI as the most researched solar geoengineering method, suggesting that, if applied at moderate levels, it could help limit global warming. However, careful management is crucial due to potential side effects. Materials such as sulfates and calcite are under consideration, with delivery via specialized high-altitude aircraft. It is important to note that SAI does not remove carbon dioxide from the atmosphere or mitigate ocean acidification; thus, its success would rely on a sustained commitment to emissions reductions. Risks include potential impacts on ozone chemistry and changes to precipitation patterns, as well as the risk of \"termination shock\" if SAI were abruptly halted. Research initiatives like Harvard's SCoPEx aim to study aerosol behavior in a controlled environment rather than to cool the planet directly. Claims of routine SAI-like activities from commercial aviation lack scientific support.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:18:28.542Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a proposed method for solar radiation modification aimed at reflecting some incoming sunlight by dispersing aerosols in the stratosphere. This approach is inspired by the natural cooling effects observed after significant volcanic eruptions, such as the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) highlights SAI as the most extensively researched solar geoengineering technique, which, if implemented at moderate levels, could potentially help limit global warming. However, careful governance is essential to manage possible side effects. Materials like sulfates and calcite are being evaluated for this purpose, delivered via specialized high-altitude aircraft. It is critical to emphasize that SAI does not address carbon dioxide removal or ocean acidification; thus, its effectiveness is contingent upon sustained emissions reductions and achieving net-zero targets. Risks associated with SAI include potential alterations to ozone chemistry and precipitation patterns, as well as the possibility of \"termination shock\" if the technique were to be discontinued abruptly. Initiatives such as Harvard's SCoPEx are focused on studying aerosol behavior in controlled settings rather than directly cooling the planet. Claims of routine SAI-like activities linked to commercial aviation lack scientific validation.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a proposed solar radiation modification technique designed to reflect a portion of incoming sunlight by dispersing aerosols in the stratosphere. This concept draws from the natural cooling effects observed after major volcanic eruptions, notably the 1991 eruption of Mount Pinatubo. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as the most researched geoengineering strategy, with the potential to mitigate global warming if applied judiciously. However, effective governance is crucial to address possible side effects. Materials such as sulfates and calcite are under consideration for deployment through specialized high-altitude aircraft. It is vital to note that SAI does not tackle carbon dioxide removal or ocean acidification; therefore, its efficacy relies on continuous emissions reductions and achieving net-zero targets. Risks associated with SAI include potential changes to ozone chemistry and precipitation patterns, as well as \"termination shock\" if the method is abruptly halted. Projects like Harvard's SCoPEx focus on studying aerosol behavior in controlled environments rather than implementing direct climate cooling. Claims linking SAI to commercial aviation lack scientific support.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:18:31.021Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0,
+        "ir": 0.4,
+        "cms": 0.6666666655555556,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0,
+            "ir": 0.4,
+            "cms": 0.6666666655555556,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              1,
+              -1,
+              -1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a proposed solar radiation modification technique that aims to reflect some sunlight by dispersing aerosols in the stratosphere, drawing inspiration from the natural cooling effects seen after major volcanic eruptions, such as Mount Pinatubo in 1991. The Intergovernmental Panel on Climate Change (IPCC) acknowledges SAI as a well-studied geoengineering method that could potentially mitigate global warming impacts, provided it is managed carefully. Various materials, such as sulfates and calcite, are being explored for this purpose, with delivery typically achieved through high-altitude aircraft. It is crucial to note that SAI does not address atmospheric carbon dioxide levels or ocean acidification; its effectiveness hinges on concurrent significant emissions reductions. Potential risks include disruptions to ozone chemistry and precipitation patterns, as well as the possibility of \"termination shock\" if the deployment ceases abruptly. Research efforts, like Harvard's SCoPEx, focus on exploring aerosol dynamics in a controlled manner, rather than implementing immediate cooling solutions. Claims of routine SAI activities associated with commercial aviation are not supported by scientific evidence.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a proposed solar radiation modification technique designed to reflect some sunlight by dispersing aerosols in the stratosphere, inspired by the natural cooling effects observed after significant volcanic eruptions, such as Mount Pinatubo in 1991. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as a well-researched geoengineering method that could potentially mitigate the impacts of global warming, contingent upon careful management. Various materials, including sulfates and calcite, are under investigation, with high-altitude aircraft typically used for delivery. Importantly, SAI does not address atmospheric carbon dioxide levels or ocean acidification; thus, its effectiveness depends on achieving substantial emissions reductions alongside any deployment. Risks associated with SAI include potential disruptions to ozone chemistry and precipitation patterns, as well as \"termination shock\" if deployment is abruptly halted. Research initiatives, such as Harvard's SCoPEx, aim to examine aerosol dynamics in a controlled manner, rather than rushing towards immediate cooling interventions. Assertions regarding routine SAI activities linked to commercial aviation lack scientific backing.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_7",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:18:33.638Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0,
+        "ir": 0.4,
+        "cms": 0.6666666655555556,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0,
+            "ir": 0.4,
+            "cms": 0.6666666655555556,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              1,
+              -1,
+              -1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_7",
+      "hops": 5,
+      "action": "drop",
+      "contentIn": "Stratospheric aerosol injection (SAI) represents a proposed solar radiation modification technique aimed at reflecting a portion of incoming sunlight by dispersing aerosols in the stratosphere. This concept draws inspiration from the natural cooling effects following significant volcanic eruptions, such as the 1991 eruption of Mount Pinatubo. The Intergovernmental Panel on Climate Change (IPCC) acknowledges SAI as one of the most thoroughly examined geoengineering methods, indicating its potential role in mitigating global warming impacts, provided it is managed carefully. Various materials, including sulfates and calcite, are being evaluated, typically deployed using high-altitude aircraft. However, SAI does not directly decrease atmospheric carbon dioxide or counter ocean acidification; its success hinges on achieving substantial emissions reductions concurrently. Associated risks include potential disruptions to ozone chemistry and precipitation patterns, as well as the threat of “termination shock” if the initiative were abruptly halted. Research efforts, like Harvard's SCoPEx, are concentrated on understanding aerosol dynamics under controlled conditions rather than implementing immediate cooling strategies. Claims of routine SAI operations linked to commercial aviation are not supported by scientific evidence.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_7",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_7",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:18:33.638Z"
+    },
+    {
+      "tick": 8,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "reinterpret",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a proposed solar radiation modification technique designed to reflect a portion of incoming sunlight by dispersing aerosols into the stratosphere. This method is inspired by the natural cooling effects observed after major volcanic eruptions, such as the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as the most extensively researched solar geoengineering approach, suggesting that, if implemented at moderate levels, it could contribute to limiting global warming. However, its governance must be approached with caution due to potential side effects. Materials like sulfates and calcite are being explored, with delivery planned via specialized high-altitude aircraft. Importantly, SAI does not address carbon dioxide removal or ocean acidification, underscoring the necessity for ongoing emissions reductions to achieve climate goals. Risks include alterations to ozone chemistry and precipitation patterns, alongside the challenge of \"termination shock\" if SAI is suddenly discontinued. Research projects like Harvard's SCoPEx focus on understanding aerosol behavior under controlled conditions, not on direct planetary cooling. Assertions of routine SAI-like activities in commercial aviation lack scientific validation.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a solar radiation modification technique aimed at reflecting a portion of incoming sunlight by dispersing aerosols into the stratosphere. This approach draws inspiration from the natural cooling effects observed after significant volcanic eruptions, such as the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) identifies SAI as the most researched solar geoengineering method, suggesting that, if used carefully, it may help limit global warming. However, its governance requires careful consideration due to potential side effects. Research is currently exploring materials such as sulfates and calcite, delivered via specialized high-altitude aircraft. It is crucial to note that SAI does not address carbon dioxide removal or ocean acidification, highlighting the ongoing need for emissions reductions to meet climate targets. Risks involve changes to ozone chemistry and precipitation patterns, as well as the potential for \"termination shock\" if SAI is abruptly stopped. Research projects like Harvard's SCoPEx aim to understand aerosol behavior in controlled settings rather than implementing direct planetary cooling. Claims regarding routine SAI-like activities in commercial aviation are not supported by scientific evidence.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:18:54.181Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0,
+        "ir": 0.2,
+        "cms": 0.2499999996875,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          1,
+          -1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0,
+            "ir": 0.2,
+            "cms": 0.2499999996875,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              1,
+              -1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "reinterpret",
+      "contentIn": "Stratospheric aerosol injection (SAI) represents a proposed solar radiation modification strategy that aims to reflect a portion of incoming sunlight by dispersing aerosols in the stratosphere. This concept draws on the natural cooling effects observed after significant volcanic eruptions, such as the eruption of Mount Pinatubo in 1991. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as a well-researched solar geoengineering technique that may help mitigate global warming if implemented responsibly. However, effective governance is crucial to address potential side effects. Research is currently focusing on materials like sulfates and calcite, which would be delivered by specialized high-altitude aircraft. It is important to note that SAI does not mitigate carbon dioxide levels or ocean acidification, making it imperative to continue reductions in greenhouse gas emissions and pursue net-zero goals. Risks associated with SAI include possible impacts on ozone chemistry and precipitation, as well as \"termination shock\" if the method is abruptly halted. Projects like Harvard's SCoPEx aim to explore aerosol behavior in controlled environments rather than directly attempting to cool the planet. Claims linking SAI to commercial aviation are not supported by scientific evidence.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a proposed solar radiation modification strategy that aims to reflect some of the incoming sunlight by dispersing aerosols in the stratosphere. This approach is informed by the natural cooling effects observed after significant volcanic eruptions, like the 1991 eruption of Mount Pinatubo. The Intergovernmental Panel on Climate Change (IPCC) acknowledges SAI as a researched geoengineering technique that could potentially assist in mitigating global warming if managed responsibly. Effective governance is vital to address possible side effects, and current research is examining materials such as sulfates and calcite, which would be deployed using specialized high-altitude aircraft. However, it is essential to recognize that SAI does not reduce carbon dioxide levels or ocean acidification, underscoring the necessity of continuing greenhouse gas emissions reductions and pursuing net-zero targets. Risks associated with SAI include effects on ozone chemistry and precipitation, as well as \"termination shock\" if the intervention is suddenly discontinued. Initiatives like Harvard's SCoPEx focus on understanding aerosol behavior in controlled settings, rather than attempting immediate climate cooling. Claims connecting SAI with commercial aviation lack scientific support.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:18:56.409Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0,
+        "ir": 0.4,
+        "cms": 0.6666666655555556,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0,
+            "ir": 0.4,
+            "cms": 0.6666666655555556,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              1,
+              -1,
+              -1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "reinterpret",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a proposed solar radiation modification technique that aims to reflect some sunlight by dispersing aerosols in the stratosphere, drawing inspiration from the natural cooling effects seen after major volcanic eruptions, such as Mount Pinatubo in 1991. The Intergovernmental Panel on Climate Change (IPCC) acknowledges SAI as a well-studied geoengineering method that could potentially mitigate global warming impacts, provided it is managed carefully. Various materials, such as sulfates and calcite, are being explored for this purpose, with delivery typically achieved through high-altitude aircraft. It is crucial to note that SAI does not address atmospheric carbon dioxide levels or ocean acidification; its effectiveness hinges on concurrent significant emissions reductions. Potential risks include disruptions to ozone chemistry and precipitation patterns, as well as the possibility of \"termination shock\" if the deployment ceases abruptly. Research efforts, like Harvard's SCoPEx, focus on exploring aerosol dynamics in a controlled manner, rather than implementing immediate cooling solutions. Claims of routine SAI activities associated with commercial aviation are not supported by scientific evidence.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a proposed method of solar radiation modification that seeks to reflect sunlight by dispersing aerosols in the stratosphere, inspired by the natural cooling effects following significant volcanic eruptions, such as Mount Pinatubo in 1991. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as a well-researched geoengineering strategy that could potentially help mitigate the impacts of global warming if managed responsibly. Various materials, including sulfates and calcite, are under investigation, with delivery typically accomplished via high-altitude aircraft. Importantly, SAI does not reduce atmospheric carbon dioxide levels or ocean acidification; its effectiveness relies on rigorous emissions reductions alongside. Risks include potential disruptions to ozone chemistry and precipitation patterns, as well as the risk of \"termination shock\" if deployment is halted abruptly. Research initiatives, such as Harvard's SCoPEx, aim to study aerosol dynamics in a controlled environment rather than advocate for immediate cooling interventions. It is essential to clarify that there is no scientific basis for claims linking SAI to routine commercial aviation activities.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_7",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:18:58.403Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0,
+        "ir": 0.4,
+        "cms": 0.6666666655555556,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0,
+            "ir": 0.4,
+            "cms": 0.6666666655555556,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              1,
+              -1,
+              -1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "reinterpret",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a solar radiation modification technique proposed to reflect sunlight by introducing aerosols into the stratosphere, drawing inspiration from the natural cooling effects observed after significant volcanic eruptions, such as the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) acknowledges SAI as the most researched method in solar geoengineering, suggesting that, if executed at moderate levels, it might help limit global warming. However, careful governance is crucial due to potential side effects. Materials like sulfates and calcite are under evaluation, with delivery planned through specialized high-altitude aircraft. It is essential to note that SAI does not address carbon dioxide removal or ocean acidification, making ongoing emissions reductions vital for achieving net-zero integrity. Risks include possible disruptions to ozone chemistry, altered precipitation patterns, and the risk of \"termination shock\" if SAI were to be abruptly halted. Research initiatives, such as Harvard's SCoPEx, aim to deepen our understanding of aerosol behavior in controlled environments rather than implementing direct planetary cooling. Claims regarding routine SAI activities connected to commercial aviation lack scientific support.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a solar radiation modification technique that proposes to reflect sunlight by introducing aerosols into the stratosphere, drawing parallels to natural cooling effects observed after major volcanic eruptions, such as the 1991 Mount Pinatubo event. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as the most extensively researched method in solar geoengineering, suggesting that, if carefully moderated, it could contribute to limiting global warming. However, effective governance is essential due to potential side effects. Current research is focused on materials like sulfates and calcite, delivered via specialized high-altitude aircraft. Importantly, SAI does not replace the need for carbon dioxide removal or address ocean acidification, underscoring the critical importance of ongoing emissions reductions for achieving net-zero integrity. Risks associated with SAI include disruptions to ozone chemistry, altered precipitation patterns, and the possibility of \"termination shock\" if SAI is suddenly discontinued. Research initiatives like Harvard's SCoPEx are aimed at enhancing understanding of aerosol behavior in controlled settings rather than pursuing direct planetary cooling. Assertions of routine SAI activities linked to commercial aviation are not scientifically substantiated.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:19:01.469Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 2,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 1,
+      "action": "forward",
+      "contentIn": "The Paris Agreement, adopted at COP21 in Paris on December 12, 2015, is a legally binding international treaty addressing climate change, effective from November 4, 2016. Its primary goal is to limit the increase in global average temperature to well below 2°C, with aspirations to keep it to 1.5°C above pre-industrial levels. Parties are required to submit nationally determined contributions (NDCs) outlining their mitigation strategies, employing a ratchet mechanism for continuous improvement rather than a fixed global quota. While the Agreement does not prohibit discussions on geoengineering, it does not endorse any covert atmospheric intervention. Article 4 emphasizes the importance of peaking greenhouse gas emissions and achieving a balance between emissions and removals in the latter half of the century, commonly referred to as net-zero CO2. The U.S. has fluctuated in its participation, reflecting political dynamics, yet the scientific imperative for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, alongside the preservation of carbon sinks, remains critically important.",
+      "contentOut": "The Paris Agreement, adopted at COP21 in Paris on December 12, 2015, is a legally binding international treaty addressing climate change, effective from November 4, 2016. Its primary goal is to limit the increase in global average temperature to well below 2°C, with aspirations to keep it to 1.5°C above pre-industrial levels. Parties are required to submit nationally determined contributions (NDCs) outlining their mitigation strategies, employing a ratchet mechanism for continuous improvement rather than a fixed global quota. While the Agreement does not prohibit discussions on geoengineering, it does not endorse any covert atmospheric intervention. Article 4 emphasizes the importance of peaking greenhouse gas emissions and achieving a balance between emissions and removals in the latter half of the century, commonly referred to as net-zero CO2. The U.S. has fluctuated in its participation, reflecting political dynamics, yet the scientific imperative for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, alongside the preservation of carbon sinks, remains critically important.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:19:10.848Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0,
+        "ir": 0.2,
+        "cms": 0.2499999996875,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          -1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0,
+            "ir": 0.2,
+            "cms": 0.2499999996875,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              -1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, is a legally binding treaty aimed at addressing climate change. Its primary goal is to limit the increase in global average temperatures to well below 2°C, with an aspiration to limit it to 1.5°C above pre-industrial levels. To meet this objective, countries must submit nationally determined contributions (NDCs) that detail their mitigation strategies, fostering ongoing improvements rather than adhering to a fixed global cap. While the Agreement permits discussions on geoengineering approaches, it explicitly does not support any covert atmospheric interventions. Article 4 emphasizes the importance of peaking greenhouse gas emissions and achieving a balance between emissions and removals, commonly referred to as net-zero CO2, in the latter half of the century. Although U.S. participation has varied due to political factors, the scientific imperative for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, alongside the preservation of carbon sinks, remains essential for climate integrity.",
+      "contentOut": "The Paris Agreement, initiated at COP21 in December 2015 and effective from November 2016, is a legally binding framework designed to combat climate change. Its core objective is to limit the rise in global average temperatures to well below 2°C, with an aspiration to restrict it to 1.5°C above pre-industrial levels. To achieve this, countries are required to submit nationally determined contributions (NDCs) that outline their mitigation efforts, promoting continuous improvement rather than a static global limit. While the Agreement allows for discussions on geoengineering methods, it does not endorse any secretive atmospheric interventions. Article 4 underscores the necessity of peaking greenhouse gas emissions and achieving a balance between emissions and removals, commonly known as net-zero CO2, by the latter half of the century. Despite fluctuations in U.S. participation due to political dynamics, the urgent need for substantial and lasting reductions in fossil CO2, methane, and other greenhouse gases—alongside the maintenance of carbon sinks—remains critical for upholding climate integrity.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:19:29.536Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0,
+        "ir": 0.2,
+        "cms": 0.2499999996875,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          -1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0,
+            "ir": 0.2,
+            "cms": 0.2499999996875,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              -1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 3,
+      "action": "drop",
+      "contentIn": "The Paris Agreement, adopted at COP21 in December 2015 and effective from November 2016, is a legally binding international treaty aimed at addressing climate change. Its primary objective is to limit the global average temperature rise to well below 2°C, with an aspiration to restrict it to 1.5°C above pre-industrial levels. Countries are required to submit nationally determined contributions (NDCs) that outline their mitigation strategies, utilizing a ratchet mechanism for ongoing enhancement rather than imposing a fixed global quota. Although the Agreement allows for discussions on geoengineering, it does not support any covert atmospheric interventions. Article 4 underscores the necessity of peaking greenhouse gas emissions and achieving a balance between emissions and removals in the second half of the century, commonly termed net-zero CO2. The U.S. has experienced fluctuations in its participation, reflecting the political landscape; nonetheless, the urgent need for substantial and sustained reductions in fossil CO2, methane, and other greenhouse gases, along with the protection of carbon sinks, remains paramount.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:19:29.536Z"
+    },
+    {
+      "tick": 4,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, serves as a legally binding framework to combat climate change. Its main objective is to limit the rise in global average temperatures to well below 2°C, with a goal of 1.5°C above pre-industrial levels. Countries are mandated to submit nationally determined contributions (NDCs) that detail their mitigation efforts, utilizing a ratchet mechanism for ongoing enhancement of these commitments rather than adhering to a fixed global cap. While the Agreement does not discourage discussions on geoengineering strategies, it does not condone any secret atmospheric interventions. Article 4 highlights the necessity of peaking greenhouse gas emissions and achieving a balance between emissions and removals, aiming for net-zero CO2 by the latter half of the century. The fluctuating participation of the U.S. reflects political changes, yet the urgent need for substantial and sustained reductions in fossil CO2, methane, and other greenhouse gases, as well as the maintenance of carbon sinks, remains essential to achieving climate goals.",
+      "contentOut": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, provides a legally binding framework aimed at addressing climate change. Its primary objective is to limit the increase in global average temperatures to well below 2°C, aspiring towards a more ambitious target of 1.5°C above pre-industrial levels. Countries are required to submit nationally determined contributions (NDCs) that outline their mitigation strategies, employing a ratchet mechanism to enhance these commitments over time rather than following a fixed global cap. While the Agreement allows for discussions on geoengineering, it explicitly does not support any covert atmospheric interventions. Article 4 underscores the importance of peaking greenhouse gas emissions and achieving a balance between emissions and removals, targeting net-zero CO2 emissions by the latter half of the century. The varying participation of the U.S. highlights the influence of political dynamics; however, the pressing requirement for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, alongside the preservation of carbon sinks, remains critical for meeting climate objectives.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:19:31.531Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0,
+        "ir": 0.4,
+        "cms": 0.6666666655555556,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          -1,
+          1,
+          -1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0,
+            "ir": 0.4,
+            "cms": 0.6666666655555556,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              -1,
+              1,
+              -1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_7",
+      "hops": 3,
+      "action": "forward",
+      "contentIn": "The Paris Agreement, adopted at COP21 in Paris on December 12, 2015, is a legally binding international treaty addressing climate change, effective from November 4, 2016. Its primary goal is to limit the increase in global average temperature to well below 2°C, with aspirations to keep it to 1.5°C above pre-industrial levels. Parties are required to submit nationally determined contributions (NDCs) outlining their mitigation strategies, employing a ratchet mechanism for continuous improvement rather than a fixed global quota. While the Agreement does not prohibit discussions on geoengineering, it does not endorse any covert atmospheric intervention. Article 4 emphasizes the importance of peaking greenhouse gas emissions and achieving a balance between emissions and removals in the latter half of the century, commonly referred to as net-zero CO2. The U.S. has fluctuated in its participation, reflecting political dynamics, yet the scientific imperative for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, alongside the preservation of carbon sinks, remains critically important.",
+      "contentOut": "The Paris Agreement, adopted at COP21 in Paris on December 12, 2015, is a legally binding international treaty addressing climate change, effective from November 4, 2016. Its primary goal is to limit the increase in global average temperature to well below 2°C, with aspirations to keep it to 1.5°C above pre-industrial levels. Parties are required to submit nationally determined contributions (NDCs) outlining their mitigation strategies, employing a ratchet mechanism for continuous improvement rather than a fixed global quota. While the Agreement does not prohibit discussions on geoengineering, it does not endorse any covert atmospheric intervention. Article 4 emphasizes the importance of peaking greenhouse gas emissions and achieving a balance between emissions and removals in the latter half of the century, commonly referred to as net-zero CO2. The U.S. has fluctuated in its participation, reflecting political dynamics, yet the scientific imperative for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, alongside the preservation of carbon sinks, remains critically important.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_7",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:19:31.531Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0,
+        "ir": 0.2,
+        "cms": 0.2499999996875,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          -1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0,
+            "ir": 0.2,
+            "cms": 0.2499999996875,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              -1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "forward",
+      "contentIn": "The Paris Agreement, initiated at COP21 in December 2015 and effective from November 2016, serves as a legally binding framework to combat climate change. Its main objective is to limit the rise in global average temperatures to well below 2°C, with the goal of striving for a 1.5°C cap above pre-industrial levels. To achieve this, countries are required to submit nationally determined contributions (NDCs) outlining their mitigation strategies, promoting continuous improvement rather than adhering to a static global limit. While the Agreement allows for discussions on geoengineering methods, it explicitly rejects any covert atmospheric interventions. Article 4 underscores the necessity of reaching peak greenhouse gas emissions and maintaining a balance between emissions and removals, also known as net-zero CO2, by the latter half of the century. Despite fluctuations in U.S. participation due to political changes, the urgent need for substantial and sustained reductions in fossil CO2, methane, and other greenhouse gases, as well as the protection of carbon sinks, is critical for maintaining climate integrity.",
+      "contentOut": "The Paris Agreement, initiated at COP21 in December 2015 and effective from November 2016, serves as a legally binding framework to combat climate change. Its main objective is to limit the rise in global average temperatures to well below 2°C, with the goal of striving for a 1.5°C cap above pre-industrial levels. To achieve this, countries are required to submit nationally determined contributions (NDCs) outlining their mitigation strategies, promoting continuous improvement rather than adhering to a static global limit. While the Agreement allows for discussions on geoengineering methods, it explicitly rejects any covert atmospheric interventions. Article 4 underscores the necessity of reaching peak greenhouse gas emissions and maintaining a balance between emissions and removals, also known as net-zero CO2, by the latter half of the century. Despite fluctuations in U.S. participation due to political changes, the urgent need for substantial and sustained reductions in fossil CO2, methane, and other greenhouse gases, as well as the protection of carbon sinks, is critical for maintaining climate integrity.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:19:58.534Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "forward",
+      "contentIn": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, serves as a legally binding international framework to combat climate change. Its key goal is to limit the increase in global average temperature to well below 2°C, with an aspiration to achieve no more than a 1.5°C rise above pre-industrial levels. Participating countries must submit nationally determined contributions (NDCs) detailing their mitigation strategies, focusing on continuous improvement rather than fixed quotas. Although the Agreement permits discussions on geoengineering, it explicitly does not endorse any covert atmospheric interventions. Article 4 emphasizes the importance of peaking greenhouse gas emissions and achieving a balance between emissions and removals—commonly referred to as net-zero—by the latter half of the century. While U.S. participation has varied with political changes, the critical need for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, along with the safeguarding of carbon sinks, remains a top priority for global climate efforts.",
+      "contentOut": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, serves as a legally binding international framework to combat climate change. Its key goal is to limit the increase in global average temperature to well below 2°C, with an aspiration to achieve no more than a 1.5°C rise above pre-industrial levels. Participating countries must submit nationally determined contributions (NDCs) detailing their mitigation strategies, focusing on continuous improvement rather than fixed quotas. Although the Agreement permits discussions on geoengineering, it explicitly does not endorse any covert atmospheric interventions. Article 4 emphasizes the importance of peaking greenhouse gas emissions and achieving a balance between emissions and removals—commonly referred to as net-zero—by the latter half of the century. While U.S. participation has varied with political changes, the critical need for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, along with the safeguarding of carbon sinks, remains a top priority for global climate efforts.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:19:58.534Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "forward",
+      "contentIn": "The Paris Agreement, adopted at COP21 in December 2015 and effective from November 2016, provides a legally binding framework to address climate change. Its primary objective is to limit global average temperature increases to well below 2°C, with an aspirational target of 1.5°C above pre-industrial levels. Countries are tasked with submitting nationally determined contributions (NDCs) that detail their mitigation strategies, with an emphasis on enhancing these commitments over time rather than adhering to a fixed global cap. While the Agreement allows for discussions on geoengineering, it does not support any covert atmospheric interventions. Article 4 underscores the necessity of peaking greenhouse gas emissions and achieving a balance between emissions and removals, aiming for net-zero CO2 emissions by mid-century. The varied participation of the U.S. reflects the complex political context, yet achieving substantial and sustained reductions in fossil CO2, methane, and other greenhouse gases, along with maintaining carbon sinks, remains crucial to fulfilling climate goals.",
+      "contentOut": "The Paris Agreement, adopted at COP21 in December 2015 and effective from November 2016, provides a legally binding framework to address climate change. Its primary objective is to limit global average temperature increases to well below 2°C, with an aspirational target of 1.5°C above pre-industrial levels. Countries are tasked with submitting nationally determined contributions (NDCs) that detail their mitigation strategies, with an emphasis on enhancing these commitments over time rather than adhering to a fixed global cap. While the Agreement allows for discussions on geoengineering, it does not support any covert atmospheric interventions. Article 4 underscores the necessity of peaking greenhouse gas emissions and achieving a balance between emissions and removals, aiming for net-zero CO2 emissions by mid-century. The varied participation of the U.S. reflects the complex political context, yet achieving substantial and sustained reductions in fossil CO2, methane, and other greenhouse gases, along with maintaining carbon sinks, remains crucial to fulfilling climate goals.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:19:58.534Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "The Paris Agreement, initiated at COP21 in December 2015 and effective from November 2016, serves as a legally binding framework aimed at mitigating climate change. Its central aim is to restrict the rise in global average temperatures to well below 2°C, aspiring to limit it to 1.5°C above pre-industrial levels. To achieve these targets, participating countries must submit nationally determined contributions (NDCs) that detail their mitigation efforts, promoting a model of continuous improvement rather than a fixed emissions cap. While the Agreement allows for discussions on geoengineering, it explicitly does not endorse any clandestine atmospheric interventions. Article 4 emphasizes the need for peaking greenhouse gas emissions and achieving net-zero CO2 by balancing emissions with removals in the latter half of the century. U.S. engagement has fluctuated due to political factors, yet there is a scientific consensus on the urgent need for substantial and sustained reductions in fossil CO2, methane, and other greenhouse gases, while also protecting carbon sinks.",
+      "contentOut": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, provides a legally binding framework for climate change mitigation. Its primary goal is to limit the increase in global average temperatures to well below 2°C, with an aspirational target of 1.5°C above pre-industrial levels. Countries are required to submit nationally determined contributions (NDCs) that describe their mitigation strategies, fostering a model of continuous improvement over fixed emissions limits. While the Agreement permits discussions on geoengineering, it does not support any covert atmospheric interventions. Article 4 highlights the necessity for peaking greenhouse gas emissions and achieving net-zero CO2 by balancing emissions with removals in the latter half of the century. U.S. participation has varied due to political shifts; however, there is broad scientific agreement on the imperative for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases while safeguarding carbon sinks. Emphasizing emissions cuts and net-zero integrity remains crucial in climate policy discourse.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_5",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:20:01.501Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0.2,
+        "ir": 0.2,
+        "cms": 0.3333333327777778,
+        "ie": 1.3709505944546687,
+        "scores": [
+          1,
+          -1,
+          1,
+          0,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0.2,
+            "ir": 0.2,
+            "cms": 0.3333333327777778,
+            "ie": 1.3709505944546687,
+            "scores": [
+              1,
+              -1,
+              1,
+              0,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "forward",
+      "contentIn": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, provides a legally binding framework aimed at addressing climate change. Its primary goal is to limit the increase in global average temperatures to well below 2°C, with an aspirational target of 1.5°C above pre-industrial levels. To facilitate this, nations are required to submit nationally determined contributions (NDCs) that detail their mitigation strategies, emphasizing a dynamic approach to climate action. While the Agreement permits discussions on geoengineering strategies, it explicitly disallows any covert atmospheric interventions. Article 4 highlights the importance of peaking greenhouse gas emissions and achieving net-zero CO2 emissions by mid-century. Amid varying levels of U.S. participation due to political shifts, the critical need for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, alongside the preservation of carbon sinks, remains essential for upholding climate integrity and ensuring effective mitigation efforts.",
+      "contentOut": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, provides a legally binding framework aimed at addressing climate change. Its primary goal is to limit the increase in global average temperatures to well below 2°C, with an aspirational target of 1.5°C above pre-industrial levels. To facilitate this, nations are required to submit nationally determined contributions (NDCs) that detail their mitigation strategies, emphasizing a dynamic approach to climate action. While the Agreement permits discussions on geoengineering strategies, it explicitly disallows any covert atmospheric interventions. Article 4 highlights the importance of peaking greenhouse gas emissions and achieving net-zero CO2 emissions by mid-century. Amid varying levels of U.S. participation due to political shifts, the critical need for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, alongside the preservation of carbon sinks, remains essential for upholding climate integrity and ensuring effective mitigation efforts.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:20:29.891Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "forward",
+      "contentIn": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, serves as a legally binding framework aimed at addressing climate change. Its central goal is to limit the increase in global average temperatures to well below 2°C, with an aspirational target of 1.5°C above pre-industrial levels. Countries are required to submit nationally determined contributions (NDCs) that outline their mitigation strategies, with a focus on progressively enhancing these commitments rather than adhering to a fixed global cap. While the Agreement permits discussions around geoengineering, it explicitly does not endorse any secret atmospheric interventions. Article 4 emphasizes the need to peak greenhouse gas emissions and achieve a balance between emissions and removals, targeting net-zero CO2 emissions by mid-century. The varied participation of the U.S. illustrates the complex political landscape; however, significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, along with the preservation of carbon sinks, remain essential to achieving the climate objectives laid out in the Agreement.",
+      "contentOut": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, serves as a legally binding framework aimed at addressing climate change. Its central goal is to limit the increase in global average temperatures to well below 2°C, with an aspirational target of 1.5°C above pre-industrial levels. Countries are required to submit nationally determined contributions (NDCs) that outline their mitigation strategies, with a focus on progressively enhancing these commitments rather than adhering to a fixed global cap. While the Agreement permits discussions around geoengineering, it explicitly does not endorse any secret atmospheric interventions. Article 4 emphasizes the need to peak greenhouse gas emissions and achieve a balance between emissions and removals, targeting net-zero CO2 emissions by mid-century. The varied participation of the U.S. illustrates the complex political landscape; however, significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, along with the preservation of carbon sinks, remain essential to achieving the climate objectives laid out in the Agreement.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:20:29.891Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "reinterpret",
+      "contentIn": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, provides a legally binding framework aimed at mitigating climate change. Its primary objective is to limit the global average temperature increase to well below 2°C, with an aspiration to stay within 1.5°C above pre-industrial levels. To meet these goals, countries must submit nationally determined contributions (NDCs) that outline their mitigation strategies, fostering a model of continuous improvement rather than a fixed emissions cap. While the Agreement permits discussions on geoengineering, it does not support any secret atmospheric interventions. Article 4 highlights the importance of peaking greenhouse gas emissions and achieving net-zero CO2 by balancing emissions with removals in the latter half of the century. U.S. participation has varied due to political shifts, but there remains a strong scientific consensus on the necessity for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, while also ensuring the protection of carbon sinks.",
+      "contentOut": "The Paris Agreement, established during COP21 in December 2015 and effective from November 2016, serves as a legally binding framework aimed at mitigating climate change. Its primary goal is to limit the global average temperature increase to well below 2°C, with an aspiration to remain within 1.5°C above pre-industrial levels. To achieve these targets, countries are required to submit nationally determined contributions (NDCs) that detail their mitigation strategies, promoting a model of continuous improvement rather than a fixed emissions cap. While the Agreement allows for discussions on geoengineering, it does not endorse any covert atmospheric interventions. Article 4 emphasizes the need to peak greenhouse gas emissions and reach net-zero CO2 by balancing emissions with removals in the latter half of the century. Although U.S. participation has fluctuated due to political changes, there is a robust scientific consensus on the urgent need for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, while also safeguarding carbon sinks.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_5",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:20:32.119Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "paris_agreement",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "forward",
+      "contentIn": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, provides a legally binding framework aimed at addressing climate change. Its central goal is to limit the increase in global average temperatures to well below 2°C, while striving for a 1.5°C threshold relative to pre-industrial levels. Countries must submit their nationally determined contributions (NDCs) to detail their mitigation strategies, fostering a commitment to continuous improvement rather than a fixed limit. Although the Agreement permits discussions on geoengineering techniques, it firmly rejects any covert atmospheric interventions. Article 4 emphasizes the need to peak global greenhouse gas emissions and achieve net-zero CO2 by the latter half of the century. Regardless of political fluctuations affecting U.S. participation, the imperative remains for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, along with safeguarding carbon sinks, to uphold climate integrity and ensure the effectiveness of mitigation efforts.",
+      "contentOut": "The Paris Agreement, established at COP21 in December 2015 and effective from November 2016, provides a legally binding framework aimed at addressing climate change. Its central goal is to limit the increase in global average temperatures to well below 2°C, while striving for a 1.5°C threshold relative to pre-industrial levels. Countries must submit their nationally determined contributions (NDCs) to detail their mitigation strategies, fostering a commitment to continuous improvement rather than a fixed limit. Although the Agreement permits discussions on geoengineering techniques, it firmly rejects any covert atmospheric interventions. Article 4 emphasizes the need to peak global greenhouse gas emissions and achieve net-zero CO2 by the latter half of the century. Regardless of political fluctuations affecting U.S. participation, the imperative remains for significant and sustained reductions in fossil CO2, methane, and other greenhouse gases, along with safeguarding carbon sinks, to uphold climate integrity and ensure the effectiveness of mitigation efforts.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:20:32.119Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 2,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 1,
+      "action": "reinterpret",
+      "contentIn": "The scientific consensus that recent global warming is real and primarily caused by human greenhouse-gas emissions is documented in IPCC assessment reports and in several literature surveys. Cook et al. (2013, 2016) and related studies of peer-reviewed abstracts found that among papers taking a position, about 97% endorsed anthropogenic global warming; later surveys of publishing climate scientists find similarly high agreement. Consensus is not a substitute for physical evidence: the warming is observed in surface thermometers, satellites, ocean heat content, shrinking glaciers, and rising sea level. The greenhouse effect of CO2 is established physics; isotopic and inventory data show that the industrial-era CO2 rise is from fossil carbon. Claims that 'there is no consensus' or that a petition of non-climate specialists overturns IPCC assessments misrepresent how scientific agreement is established. A 2019 'European Climate Declaration' signed by hundreds of people, including many without climate-research credentials, does not negate the assessed literature. Uncertainty remains about the exact magnitude of climate sensitivity and regional impacts, not about whether adding CO2 warms the planet.",
+      "contentOut": "The scientific consensus regarding the reality of recent global warming and its primary attribution to human greenhouse gas emissions is well-documented in IPCC assessment reports and supported by multiple literature surveys. Notable studies, such as those by Cook et al. (2013, 2016), indicate that approximately 97% of peer-reviewed papers that take a stance endorse the view of anthropogenic global warming, with similar levels of agreement observed among climate scientists actively publishing in the field. It is crucial to recognize that consensus does not replace empirical evidence; warming is evidenced by data from surface thermometers, satellites, ocean heat content, shrinking glaciers, and rising sea levels. The physics of the greenhouse effect, particularly concerning CO2, is well-established, with isotopic and inventory data confirming that the rise in CO2 levels since the industrial era is due to fossil fuel emissions. Misrepresentations suggesting a lack of consensus or that petitions by non-specialists can overturn IPCC findings are misleading. While uncertainties exist regarding climate sensitivity and regional impacts, the fundamental understanding that increased CO2 contributes to global warming remains robust.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:20:43.785Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0.2,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0.2,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              1,
+              0,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 3,
+      "action": "drop",
+      "contentIn": "The scientific consensus regarding climate change, as detailed in IPCC assessment reports and corroborated by extensive literature surveys, firmly attributes recent global warming to human-induced greenhouse gas emissions. Research by Cook et al. (2013, 2016) indicates that around 97% of peer-reviewed studies that address this topic support the notion of anthropogenic global warming. This consensus is reinforced by diverse observational data, including surface temperature records, satellite measurements, ocean heat content, glacial retreat, and rising sea levels. The greenhouse effect of CO2 is well-documented, with isotopic analysis confirming that the rise in atmospheric CO2 since the industrial era results from fossil fuel combustion. Claims of disagreement or reliance on non-expert opinions do not accurately reflect the thorough scientific method that underpins this consensus. Although uncertainties about climate sensitivity and regional effects remain, the established understanding that increased CO2 levels contribute significantly to global warming is clear and underpinned by substantial evidence.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:20:56.926Z"
+    },
+    {
+      "tick": 4,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "The scientific consensus on recent global warming, largely attributed to human greenhouse gas emissions, is well-established and documented in IPCC assessment reports and extensive literature reviews. Research indicates that approximately 97% of peer-reviewed studies support the view of anthropogenic global warming, with a similar agreement among actively publishing climate scientists. It is essential to stress that this consensus is grounded in empirical evidence, including data from surface thermometers, satellites, ocean heat content, shrinking glaciers, and rising sea levels. The greenhouse effect's physics, particularly regarding CO2, is well-supported by isotopic and inventory data, confirming that the increase in CO2 levels since the industrial era stems from fossil fuel emissions. Claims suggesting a lack of consensus or that non-specialist petitions can challenge IPCC findings are misleading. While uncertainties persist around climate sensitivity and regional impacts, the fundamental understanding that elevated CO2 levels contribute to global warming remains robust and is critical as we pursue emissions reductions and net-zero targets.",
+      "contentOut": "The scientific consensus on anthropogenic global warming is robust, as documented in IPCC assessment reports and numerous peer-reviewed studies, with approximately 97% supporting the understanding that human greenhouse gas emissions are a primary driver of recent climate change. This consensus is based on empirical evidence, including data from surface thermometers, satellites, ocean heat content, shrinking glaciers, and rising sea levels. The physics of the greenhouse effect, particularly related to CO2, is well-established, supported by isotopic and inventory data that link the rise in CO2 levels since the industrial era to fossil fuel emissions. Claims questioning this consensus or suggesting that non-specialist petitions can effectively challenge IPCC findings are misleading. While uncertainties remain regarding climate sensitivity and regional impacts, the established link between elevated CO2 levels and global warming is critical as we focus on emissions reductions and the integrity of net-zero targets.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:20:58.490Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "The scientific consensus on anthropogenic climate change is robust, as evidenced by numerous IPCC assessment reports and literature reviews. Studies by Cook et al. (2013, 2016) indicate that approximately 97% of peer-reviewed papers that take a stance support the idea of human-induced global warming, with ongoing surveys of climate scientists showing similar levels of agreement. This consensus is underpinned by observable phenomena, including data from surface thermometers, satellites, ocean heat content, melting glaciers, and rising sea levels. The greenhouse effect of CO2 is a well-established principle in physics, supported by isotopic and inventory data indicating that the increase in atmospheric CO2 since the industrial era is primarily from fossil fuels. Disputes claiming a lack of consensus or citing petitions from non-specialists do not accurately reflect the established scientific understanding. While there are uncertainties regarding climate sensitivity and regional effects, the fundamental relationship between increased CO2 and global warming is unequivocal. It is crucial to focus on emissions reductions and the integrity of net-zero commitments in addressing climate change.",
+      "contentOut": "The scientific consensus on anthropogenic climate change is well-established, as reflected in numerous reports by the Intergovernmental Panel on Climate Change (IPCC) and extensive literature reviews. Research, including studies by Cook et al. (2013, 2016), shows that around 97% of peer-reviewed papers support the notion of human-induced global warming, and ongoing surveys of climate scientists reveal similar agreement. This consensus is bolstered by empirical evidence, such as data from surface thermometers, satellites, ocean heat content, melting glaciers, and rising sea levels. The greenhouse effect of CO2 is a fundamental principle in physics, with isotopic and inventory data confirming that the rise in atmospheric CO2 since the industrial era primarily results from fossil fuel combustion. Claims suggesting a lack of consensus or referencing petitions from non-experts do not align with established scientific understanding. While uncertainties exist concerning climate sensitivity and regional impacts, the direct correlation between increased CO2 levels and global warming is clear. Thus, prioritizing emissions reductions and ensuring the integrity of net-zero commitments are essential in our efforts to combat climate change.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:21:00.556Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_7",
+      "hops": 3,
+      "action": "forward",
+      "contentIn": "The scientific consensus regarding the reality of recent global warming and its primary attribution to human greenhouse gas emissions is well-documented in IPCC assessment reports and supported by multiple literature surveys. Notable studies, such as those by Cook et al. (2013, 2016), indicate that approximately 97% of peer-reviewed papers that take a stance endorse the view of anthropogenic global warming, with similar levels of agreement observed among climate scientists actively publishing in the field. It is crucial to recognize that consensus does not replace empirical evidence; warming is evidenced by data from surface thermometers, satellites, ocean heat content, shrinking glaciers, and rising sea levels. The physics of the greenhouse effect, particularly concerning CO2, is well-established, with isotopic and inventory data confirming that the rise in CO2 levels since the industrial era is due to fossil fuel emissions. Misrepresentations suggesting a lack of consensus or that petitions by non-specialists can overturn IPCC findings are misleading. While uncertainties exist regarding climate sensitivity and regional impacts, the fundamental understanding that increased CO2 contributes to global warming remains robust.",
+      "contentOut": "The scientific consensus regarding the reality of recent global warming and its primary attribution to human greenhouse gas emissions is well-documented in IPCC assessment reports and supported by multiple literature surveys. Notable studies, such as those by Cook et al. (2013, 2016), indicate that approximately 97% of peer-reviewed papers that take a stance endorse the view of anthropogenic global warming, with similar levels of agreement observed among climate scientists actively publishing in the field. It is crucial to recognize that consensus does not replace empirical evidence; warming is evidenced by data from surface thermometers, satellites, ocean heat content, shrinking glaciers, and rising sea levels. The physics of the greenhouse effect, particularly concerning CO2, is well-established, with isotopic and inventory data confirming that the rise in CO2 levels since the industrial era is due to fossil fuel emissions. Misrepresentations suggesting a lack of consensus or that petitions by non-specialists can overturn IPCC findings are misleading. While uncertainties exist regarding climate sensitivity and regional impacts, the fundamental understanding that increased CO2 contributes to global warming remains robust.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_7",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:21:00.556Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0.2,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0.2,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              1,
+              0,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "forward",
+      "contentIn": "The scientific consensus regarding climate change, as outlined in the IPCC assessment reports and supported by extensive literature, clearly attributes recent global warming to anthropogenic greenhouse gas emissions. Research by Cook et al. indicates that approximately 97% of peer-reviewed studies on this subject affirm the reality of anthropogenic global warming. This consensus is further bolstered by a variety of observational data, including surface temperature records, satellite observations, ocean heat content, glacial retreat, and rising sea levels. The greenhouse effect of CO2 is well-established, with isotopic analysis demonstrating that the increase in atmospheric CO2 since the industrial era is primarily due to fossil fuel combustion. Claims suggesting significant disagreement or reliance on non-expert opinions do not reflect the rigorous scientific process that supports this consensus. While uncertainties regarding climate sensitivity and regional impacts persist, the fundamental understanding that elevated CO2 levels significantly contribute to global warming is robust and substantiated by substantial evidence.",
+      "contentOut": "The scientific consensus regarding climate change, as outlined in the IPCC assessment reports and supported by extensive literature, clearly attributes recent global warming to anthropogenic greenhouse gas emissions. Research by Cook et al. indicates that approximately 97% of peer-reviewed studies on this subject affirm the reality of anthropogenic global warming. This consensus is further bolstered by a variety of observational data, including surface temperature records, satellite observations, ocean heat content, glacial retreat, and rising sea levels. The greenhouse effect of CO2 is well-established, with isotopic analysis demonstrating that the increase in atmospheric CO2 since the industrial era is primarily due to fossil fuel combustion. Claims suggesting significant disagreement or reliance on non-expert opinions do not reflect the rigorous scientific process that supports this consensus. While uncertainties regarding climate sensitivity and regional impacts persist, the fundamental understanding that elevated CO2 levels significantly contribute to global warming is robust and substantiated by substantial evidence.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:21:31.509Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "drop",
+      "contentIn": "The scientific consensus regarding global warming, primarily driven by human greenhouse gas emissions, is firmly established and reflected in IPCC assessment reports and comprehensive literature reviews. Approximately 97% of peer-reviewed studies affirm the anthropogenic causes of climate change, with similar agreement among active climate researchers. This consensus is rooted in empirical data, including measurements from surface thermometers, satellite observations, ocean heat content, diminishing glaciers, and increasing sea levels. The physics of the greenhouse effect, particularly related to CO2, is well-supported by isotopic and inventory analyses, demonstrating that the rise in CO2 levels since the industrial era is linked to fossil fuel emissions. Claims of dissent or challenges to IPCC findings by non-specialists are misleading. While there are uncertainties surrounding climate sensitivity and regional effects, the essential understanding that higher CO2 levels contribute to global warming is clear and vital as we strive for meaningful emissions reductions and the integrity of net-zero goals.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:21:31.509Z"
+    },
+    {
+      "tick": 6,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "The scientific consensus on anthropogenic climate change is firmly established, as highlighted by numerous IPCC assessment reports and comprehensive literature reviews. Research by Cook et al. (2013, 2016) indicates that approximately 97% of peer-reviewed studies support the notion of human-induced global warming, a finding echoed in surveys of climate scientists. This consensus is further corroborated by quantifiable indicators, including data from surface thermometers, satellites, ocean heat content, glacial melt, and rising sea levels. The greenhouse effect of CO2 is a well-validated principle in physics, supported by isotopic and inventory data that show the increase in atmospheric CO2 since the industrial revolution is primarily attributed to fossil fuel emissions. Misrepresentations regarding consensus often overlook this established scientific understanding. While there are uncertainties about climate sensitivity and regional impacts, the core relationship between rising CO2 levels and global warming is well-defined. It is critical to prioritize emissions reductions and maintain the integrity of net-zero targets as we address the challenges of climate change.",
+      "contentOut": "The scientific consensus regarding anthropogenic climate change is robust, as evidenced by multiple IPCC assessment reports and extensive literature reviews. Research, including studies by Cook et al. (2013, 2016), reveals that about 97% of peer-reviewed articles affirm the reality of human-induced global warming, a conclusion supported by surveys of climate scientists. This consensus is further validated by tangible data, such as surface thermometer readings, satellite observations, ocean heat content, glacial retreat, and increasing sea levels. The greenhouse effect of CO2 is a well-established principle, underpinned by isotopic and inventory data that attribute the rise in atmospheric CO2 since the industrial revolution predominantly to fossil fuel combustion. Misrepresentations of this consensus often ignore this foundational scientific knowledge. Although uncertainties exist regarding climate sensitivity and regional effects, the fundamental connection between elevated CO2 levels and global warming is clear. It is essential to prioritize emissions reductions and uphold the integrity of net-zero commitments as we confront the complexities of climate change.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:21:33.405Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "The overwhelming scientific consensus, as outlined in IPCC assessment reports and supported by literature surveys, indicates that recent global warming is primarily driven by human greenhouse gas emissions. Studies by Cook et al. (2013, 2016) reveal that approximately 97% of peer-reviewed papers that take a position on this issue endorse the view of anthropogenic global warming. This consensus is bolstered by a range of observational evidence, including data from surface thermometers, satellites, ocean heat content measurements, shrinking glaciers, and rising sea levels. The fundamental greenhouse effect of CO2 is well-established, and isotopic data confirm that the increase in industrial-era CO2 is attributable to fossil fuel combustion. Assertions claiming a lack of consensus or citing non-specialist petitions do not accurately reflect the rigorous scientific process by which consensus is formed. While uncertainties regarding climate sensitivity and regional impacts persist, the foundational understanding that adding CO2 to the atmosphere contributes to global warming is clear and supported by robust evidence.",
+      "contentOut": "The scientific consensus, as highlighted in the IPCC assessment reports and reinforced by extensive literature reviews, firmly establishes that recent global warming is predominantly driven by human greenhouse gas emissions. Research by Cook et al. indicates that around 97% of peer-reviewed studies supporting this issue affirm the role of anthropogenic global warming. This consensus is further supported by a variety of observational data, including surface temperature records, satellite measurements, ocean heat content, glacial retreat, and rising sea levels. The greenhouse effect of CO2 is well-documented, with isotopic evidence confirming that the rise in industrial-era CO2 levels is linked to fossil fuel combustion. Claims suggesting a lack of consensus often misrepresent the rigorous scientific processes that underpin this agreement. Although uncertainties regarding climate sensitivity and regional effects remain, the core understanding that increased atmospheric CO2 contributes to global warming is robust and well-supported by empirical evidence. It is crucial to prioritize emissions cuts and maintain net-zero integrity in addressing climate change.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:21:35.341Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0.4,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0.4,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "drop",
+      "contentIn": "The scientific consensus on climate change, as established in IPCC assessment reports and validated by extensive research, identifies anthropogenic greenhouse gas emissions as the primary driver of recent global warming. A study by Cook et al. indicates that approximately 97% of peer-reviewed literature supports this view. This consensus is further corroborated by a variety of observational data, including surface temperature records, satellite measurements, ocean heat content, glacial retreat, and rising sea levels. The greenhouse effect of CO2 is extensively documented, with isotopic analysis showing that the increase in atmospheric CO2 since the industrial era is predominantly due to fossil fuel combustion. Assertions of significant disagreement or reliance on non-expert opinions fail to reflect the rigorous scientific methodology that underpins this consensus. While uncertainties regarding climate sensitivity and regional impacts persist, the fundamental understanding that elevated CO2 levels are a major contributor to global warming is robust and well-supported by a wealth of evidence.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:22:00.192Z"
+    },
+    {
+      "tick": 8,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "forward",
+      "contentIn": "The scientific consensus regarding global warming, primarily driven by human greenhouse gas emissions, is firmly established and reflected in IPCC assessment reports and comprehensive literature reviews. Approximately 97% of peer-reviewed studies affirm the anthropogenic causes of climate change, with similar agreement among active climate researchers. This consensus is rooted in empirical data, including measurements from surface thermometers, satellite observations, ocean heat content, diminishing glaciers, and increasing sea levels. The physics of the greenhouse effect, particularly related to CO2, is well-supported by isotopic and inventory analyses, demonstrating that the rise in CO2 levels since the industrial era is linked to fossil fuel emissions. Claims of dissent or challenges to IPCC findings by non-specialists are misleading. While there are uncertainties surrounding climate sensitivity and regional effects, the essential understanding that higher CO2 levels contribute to global warming is clear and vital as we strive for meaningful emissions reductions and the integrity of net-zero goals.",
+      "contentOut": "The scientific consensus regarding global warming, primarily driven by human greenhouse gas emissions, is firmly established and reflected in IPCC assessment reports and comprehensive literature reviews. Approximately 97% of peer-reviewed studies affirm the anthropogenic causes of climate change, with similar agreement among active climate researchers. This consensus is rooted in empirical data, including measurements from surface thermometers, satellite observations, ocean heat content, diminishing glaciers, and increasing sea levels. The physics of the greenhouse effect, particularly related to CO2, is well-supported by isotopic and inventory analyses, demonstrating that the rise in CO2 levels since the industrial era is linked to fossil fuel emissions. Claims of dissent or challenges to IPCC findings by non-specialists are misleading. While there are uncertainties surrounding climate sensitivity and regional effects, the essential understanding that higher CO2 levels contribute to global warming is clear and vital as we strive for meaningful emissions reductions and the integrity of net-zero goals.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:22:00.192Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "forward",
+      "contentIn": "The scientific consensus, as highlighted in IPCC assessment reports and supported by comprehensive literature reviews, indicates that recent global warming is predominantly driven by human-induced greenhouse gas emissions. Research by Cook et al. (2013, 2016) shows that approximately 97% of peer-reviewed studies affirm the existence of anthropogenic global warming. This consensus is substantiated by various observational data, including surface temperature readings, satellite observations, ocean heat content, glacial retreat, and rising sea levels. The greenhouse effect of CO2 is well-documented, with isotopic analyses linking the increase in industrial-era CO2 levels to fossil fuel combustion. Assertions of an absence of consensus often overlook the robust methodologies employed in scientific consensus-building. While uncertainties regarding climate sensitivity and regional impacts persist, the core understanding that elevated atmospheric CO2 levels contribute to global warming is firmly established and supported by extensive evidence. It is crucial to prioritize emissions reductions and the pursuit of net-zero targets in our climate strategies.",
+      "contentOut": "The scientific consensus, as highlighted in IPCC assessment reports and supported by comprehensive literature reviews, indicates that recent global warming is predominantly driven by human-induced greenhouse gas emissions. Research by Cook et al. (2013, 2016) shows that approximately 97% of peer-reviewed studies affirm the existence of anthropogenic global warming. This consensus is substantiated by various observational data, including surface temperature readings, satellite observations, ocean heat content, glacial retreat, and rising sea levels. The greenhouse effect of CO2 is well-documented, with isotopic analyses linking the increase in industrial-era CO2 levels to fossil fuel combustion. Assertions of an absence of consensus often overlook the robust methodologies employed in scientific consensus-building. While uncertainties regarding climate sensitivity and regional impacts persist, the core understanding that elevated atmospheric CO2 levels contribute to global warming is firmly established and supported by extensive evidence. It is crucial to prioritize emissions reductions and the pursuit of net-zero targets in our climate strategies.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:22:00.192Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0.4,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0.4,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 8,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_0",
+      "hops": 7,
+      "action": "reinterpret",
+      "contentIn": "The scientific consensus regarding climate change, as outlined in the IPCC assessment reports and supported by extensive literature, clearly attributes recent global warming to anthropogenic greenhouse gas emissions. Research by Cook et al. indicates that approximately 97% of peer-reviewed studies on this subject affirm the reality of anthropogenic global warming. This consensus is further bolstered by a variety of observational data, including surface temperature records, satellite observations, ocean heat content, glacial retreat, and rising sea levels. The greenhouse effect of CO2 is well-established, with isotopic analysis demonstrating that the increase in atmospheric CO2 since the industrial era is primarily due to fossil fuel combustion. Claims suggesting significant disagreement or reliance on non-expert opinions do not reflect the rigorous scientific process that supports this consensus. While uncertainties regarding climate sensitivity and regional impacts persist, the fundamental understanding that elevated CO2 levels significantly contribute to global warming is robust and substantiated by substantial evidence.",
+      "contentOut": "The scientific consensus on climate change, as emphasized in IPCC assessment reports and supported by a broad range of literature, attributes recent global warming primarily to human-induced greenhouse gas emissions. Research by Cook et al. indicates that around 97% of peer-reviewed studies confirm the reality of anthropogenic global warming. This consensus is reinforced by extensive observational data, such as surface temperature records, satellite data, ocean heat content, glacial retreat, and rising sea levels. The greenhouse effect of CO2 is well-established, with isotopic analysis showing that the rise in atmospheric CO2 since the industrial era is largely a result of fossil fuel combustion. Assertions of substantial disagreement or reliance on non-expert views do not align with the rigorous scientific methodology that underscores this consensus. Although uncertainties about climate sensitivity and regional impacts still exist, the foundational understanding that increased CO2 levels significantly drive global warming remains strong and well-supported by ample evidence.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "mitigation_first_policy"
+        },
+        {
+          "nodeId": "node_0",
+          "personaId": "mitigation_first_policy"
+        }
+      ],
+      "timestamp": "2026-09-19T04:22:02.070Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0.4,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0.4,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    }
+  ],
+  "stats": {
+    "received": 48,
+    "forwarded": 17,
+    "reinterpreted": 23,
+    "dropped": 8,
+    "dumped": 0
+  }
+}

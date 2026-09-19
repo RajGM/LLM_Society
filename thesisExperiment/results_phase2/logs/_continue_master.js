@@ -90,9 +90,9 @@ function pgrep(pattern) {
   }
 }
 
-function latestRunDir(experimentName) {
-  if (!fs.existsSync(RUNS)) return null;
-  const dirs = fs
+function runDirsFor(experimentName) {
+  if (!fs.existsSync(RUNS)) return [];
+  return fs
     .readdirSync(RUNS)
     .filter((d) => d.startsWith(experimentName + "_") && fs.existsSync(path.join(RUNS, d, "metadata.json")))
     .map((d) => {
@@ -100,6 +100,10 @@ function latestRunDir(experimentName) {
       return { d, t: fs.statSync(p).mtimeMs, p };
     })
     .sort((a, b) => b.t - a.t);
+}
+
+function latestRunDir(experimentName) {
+  const dirs = runDirsFor(experimentName);
   return dirs.length ? dirs[0] : null;
 }
 
@@ -108,12 +112,41 @@ function usageCalls(meta) {
 }
 
 function classifyRun(experimentName, expectedCfg, liveCmdlines) {
-  const latest = latestRunDir(experimentName);
+  const dirs = runDirsFor(experimentName);
   const cfgRel = `thesisExperiment/configs/phase2/${experimentName}.json`;
   const live = liveCmdlines.some((l) => l.includes(cfgRel) || l.includes(`${experimentName}.json`));
-  if (!latest) {
+  if (!dirs.length) {
     return { state: live ? "in_progress" : "not_started", runDir: null, usage: 0, status: null };
   }
+  let bestComplete = null;
+  for (const dir of dirs) {
+    let meta = null;
+    try {
+      meta = readJSON(path.join(dir.p, "metadata.json"));
+    } catch {
+      continue;
+    }
+    const status = meta.status || null;
+    const usage = usageCalls(meta);
+    const okStatus = status === "completed" || status === "complete";
+    let seedOk = true;
+    let modeOk = true;
+    if (expectedCfg) {
+      const got = ((meta.config && meta.config.seedArticles) || []).join("|");
+      const want = (expectedCfg.seedArticles || []).join("|");
+      if (want && got !== want) seedOk = false;
+      if (expectedCfg.miScoringMode && meta.config && meta.config.miScoringMode !== expectedCfg.miScoringMode) {
+        modeOk = false;
+      }
+    }
+    if (okStatus && usage > 0 && seedOk && modeOk) {
+      if (!bestComplete || usage > bestComplete.usage) {
+        bestComplete = { state: "complete", runDir: dir.d, usage, status };
+      }
+    }
+  }
+  if (bestComplete) return bestComplete;
+  const latest = dirs[0];
   let meta = null;
   try {
     meta = readJSON(path.join(latest.p, "metadata.json"));
@@ -122,26 +155,13 @@ function classifyRun(experimentName, expectedCfg, liveCmdlines) {
   }
   const status = meta.status || null;
   const usage = usageCalls(meta);
-  const okStatus = status === "completed" || status === "complete";
-  let seedOk = true;
-  let modeOk = true;
-  if (expectedCfg) {
-    const got = ((meta.config && meta.config.seedArticles) || []).join("|");
-    const want = (expectedCfg.seedArticles || []).join("|");
-    if (want && got !== want) seedOk = false;
-    if (expectedCfg.miScoringMode && meta.config && meta.config.miScoringMode !== expectedCfg.miScoringMode) {
-      modeOk = false;
-    }
-  }
-  if (okStatus && usage > 0 && seedOk && modeOk) {
-    return { state: "complete", runDir: latest.d, usage, status };
-  }
   if (status === "failed") {
-    return { state: "incomplete", runDir: latest.d, usage, status };
+    return { state: live ? "in_progress" : "incomplete", runDir: latest.d, usage, status };
   }
   if (live) return { state: "in_progress", runDir: latest.d, usage, status };
   const ageMs = Date.now() - latest.t;
-  if (!okStatus && ageMs < 40 * 60 * 1000) {
+  const latestDone = status === "completed" || status === "complete";
+  if (!latestDone && ageMs < 40 * 60 * 1000) {
     return { state: "in_progress", runDir: latest.d, usage, status };
   }
   return { state: "incomplete", runDir: latest.d, usage, status };

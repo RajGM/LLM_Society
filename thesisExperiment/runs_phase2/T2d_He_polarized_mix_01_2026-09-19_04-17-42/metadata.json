@@ -1,0 +1,1815 @@
+{
+  "experimentId": "T2d_He_polarized_mix_01_2026-09-19_04-17-42",
+  "status": "complete",
+  "timestamp": "2026-09-19T04:30:19.287Z",
+  "config": {
+    "topology": "polarized",
+    "topologyParams": {
+      "numNodes": 8,
+      "edgeProbability": 0.3,
+      "intraEdgeProb": 0.75,
+      "interEdgeProb": 0.05,
+      "intraTrust": 0.88,
+      "interTrust": 0.1,
+      "personasByCluster": [
+        [
+          "conspiracy_believer",
+          "conspiracy_haarp_weather",
+          "conspiracy_depopulation",
+          "conspiracy_climate_piggyback",
+          "conspiracy_peripheral_skywatcher"
+        ],
+        [
+          "climate_action_advocate",
+          "climate_justice_youth",
+          "mitigation_first_policy",
+          "climate_action_sweden_scopex",
+          "environmental_concern",
+          "ozone_stratosphere_specialist",
+          "biodiversity_food_security",
+          "caregiver_air_quality",
+          "climate_scientist",
+          "science_journalist",
+          "platform_moderator_toxicity"
+        ]
+      ],
+      "minSeedOutDegree": 2
+    },
+    "maxTicks": 8,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "dual",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.15,
+      "actionWeights": {
+        "forward": 0.35,
+        "reinterpret": 0.5,
+        "drop": 0.15
+      },
+      "relationEvolution": true,
+      "trustDelta": 0.05,
+      "maxHops": 8,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017",
+      "chemtrails_gates_2018_2021",
+      "sai_geoengineering",
+      "paris_agreement",
+      "climate_consensus",
+      "polar_bears"
+    ],
+    "seedNodes": [
+      "node_0"
+    ],
+    "personasPath": "thesisExperiment/personas/phase2/hetero/mix_01.json",
+    "articlesPath": "thesisExperiment/articles/merged.json",
+    "outputRoot": "thesisExperiment/runs_phase2",
+    "graphRandomSeed": 42,
+    "_description": "Phase2 T-He dual polarized mix_01",
+    "experimentName": "T2d_He_polarized_mix_01",
+    "defaultPersonaAssignment": "by_cluster",
+    "pfeffer": {
+      "valence": "varied via 6 core articles",
+      "surprise": "held: drip seed node_0",
+      "identityAlignment": "heterogeneous mix_01",
+      "networkClustering": "polarized",
+      "informationEcho": "measured",
+      "temporalAcceleration": "8 hops/ticks (logged cut)"
+    }
+  },
+  "llmUsage": {
+    "calls": 689,
+    "promptTokens": 296818,
+    "completionTokens": 65444,
+    "totalTokens": 362262,
+    "errors": 556,
+    "model": "gpt-4o-mini",
+    "estimatedUsd": 0.0838
+  },
+  "results": {
+    "scopex_2017": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 89,
+            "forwarded": 38,
+            "reinterpreted": 35,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 3.5789473684210527,
+          "severity": "propaganda",
+          "eventCount": 21
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 88,
+            "forwarded": 32,
+            "reinterpreted": 36,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 3.5,
+          "severity": "propaganda",
+          "eventCount": 21
+        },
+        "node_2": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 79,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 3.923076923076923,
+          "severity": "propaganda",
+          "eventCount": 18
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 75,
+            "forwarded": 22,
+            "reinterpreted": 38,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 3.4615384615384617,
+          "severity": "propaganda",
+          "eventCount": 18
+        },
+        "node_4": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 60,
+            "forwarded": 18,
+            "reinterpreted": 37,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 3.8666666666666667,
+          "severity": "propaganda",
+          "eventCount": 15
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 66,
+            "forwarded": 14,
+            "reinterpreted": 39,
+            "dropped": 13,
+            "dumped": 0
+          },
+          "mpr": 3.857142857142857,
+          "severity": "propaganda",
+          "eventCount": 16
+        },
+        "node_6": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 56,
+            "forwarded": 23,
+            "reinterpreted": 26,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 3.5,
+          "severity": "propaganda",
+          "eventCount": 14
+        },
+        "node_7": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 60,
+            "forwarded": 11,
+            "reinterpreted": 41,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 4.153846153846154,
+          "severity": "propaganda",
+          "eventCount": 15
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": 4,
+            "node_1": 3,
+            "node_2": 4,
+            "node_3": 4,
+            "node_4": 4,
+            "node_5": 3,
+            "node_6": 4,
+            "node_7": 4
+          },
+          "networkMedian": 4
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "conspiracy_depopulation",
+            "reach": 19,
+            "meanMI": 3.5789473684210527,
+            "fidelity": 0.28421052631578947
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_justice_youth",
+            "reach": 16,
+            "meanMI": 3.5,
+            "fidelity": 0.30000000000000004
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "conspiracy_depopulation",
+            "reach": 15,
+            "meanMI": 3.8666666666666667,
+            "fidelity": 0.22666666666666668
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "biodiversity_food_security",
+            "reach": 14,
+            "meanMI": 3.857142857142857,
+            "fidelity": 0.22857142857142854
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "conspiracy_depopulation",
+            "reach": 13,
+            "meanMI": 3.923076923076923,
+            "fidelity": 0.2153846153846154
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 13,
+            "meanMI": 3.4615384615384617,
+            "fidelity": 0.3076923076923077
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "climate_justice_youth",
+            "reach": 13,
+            "meanMI": 4.153846153846154,
+            "fidelity": 0.16923076923076918
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "conspiracy_depopulation",
+            "reach": 12,
+            "meanMI": 3.5,
+            "fidelity": 0.30000000000000004
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 2,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 2.5,
+            "activeNodes": 4
+          },
+          {
+            "tick": 4,
+            "meanMI": 3.6666666666666665,
+            "activeNodes": 9
+          },
+          {
+            "tick": 5,
+            "meanMI": 3.7,
+            "activeNodes": 20
+          },
+          {
+            "tick": 6,
+            "meanMI": 3.888888888888889,
+            "activeNodes": 27
+          },
+          {
+            "tick": 7,
+            "meanMI": 4.08,
+            "activeNodes": 25
+          },
+          {
+            "tick": 8,
+            "meanMI": 3.7037037037037037,
+            "activeNodes": 27
+          }
+        ],
+        "giniCoefficient": 0.03493378617242856,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 4,
+            "fraction": 0.5,
+            "aboveThreshold": 4
+          },
+          {
+            "tick": 5,
+            "fraction": 0.875,
+            "aboveThreshold": 7
+          },
+          {
+            "tick": 6,
+            "fraction": 1,
+            "aboveThreshold": 8
+          },
+          {
+            "tick": 7,
+            "fraction": 1,
+            "aboveThreshold": 8
+          },
+          {
+            "tick": 8,
+            "fraction": 0.625,
+            "aboveThreshold": 5
+          }
+        ],
+        "structuralVirality": 1.8571428571428572,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.25565217391304307,
+          "meanMR": 0.5513043478260872,
+          "meanIR": 0.1930434782608695,
+          "meanCMS": 125217391.55797102,
+          "meanIE": 0.8438821485497833,
+          "eventCount": 115
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.6,
+            "meanMR": 0.30000000000000004,
+            "meanIR": 0.1,
+            "meanCMS": 0.1666666663888889
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.5,
+            "meanMR": 0.5,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.26666666666666666,
+            "meanMR": 0.6,
+            "meanIR": 0.13333333333333336,
+            "meanCMS": 111111111.22222222
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.26000000000000006,
+            "meanMR": 0.61,
+            "meanIR": 0.13000000000000003,
+            "meanCMS": 20000000.4
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.22222222222222232,
+            "meanMR": 0.6148148148148148,
+            "meanIR": 0.16296296296296298,
+            "meanCMS": 118518518.66666667
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.18400000000000002,
+            "meanMR": 0.5760000000000001,
+            "meanIR": 0.24,
+            "meanCMS": 216000000.08
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.2592592592592593,
+            "meanMR": 0.4518518518518518,
+            "meanIR": 0.288888888888889,
+            "meanCMS": 162962963.47530866
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanCR": 0.25762711864406784,
+            "meanMR": 0.48135593220339,
+            "meanIR": 0.2610169491525424,
+            "meanCMS": 186440678.22598872,
+            "eventCount": 59
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.3076923076923077,
+            "meanMR": 0.5538461538461538,
+            "meanIR": 0.13846153846153847,
+            "meanCMS": 76923077.17948717,
+            "eventCount": 13
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 0.24137931034482768,
+            "meanMR": 0.6206896551724138,
+            "meanIR": 0.13793103448275862,
+            "meanCMS": 68965517.5,
+            "eventCount": 29
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.22857142857142862,
+            "meanMR": 0.6999999999999998,
+            "meanIR": 0.07142857142857142,
+            "meanCMS": 28571428.785714287,
+            "eventCount": 14
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 1.9130434782608696,
+          "meanAgreement": 0.2332218700810716,
+          "meanDiscreteMI": 3.7217391304347824,
+          "meanContinuousMI": 2.0608695652173914,
+          "meanSignedGap": -1.6608695652173913,
+          "eventCount": 115
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "biodiversity_food_security",
+            "meanGap": 2.142857142857143,
+            "meanAgreement": 0.3250593863074566,
+            "meanDiscreteMI": 3.857142857142857,
+            "meanContinuousMI": 1.7142857142857142,
+            "meanSignedGap": -2.142857142857143,
+            "eventCount": 14
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanGap": 2.0384615384615383,
+            "meanAgreement": 0.3482738033247041,
+            "meanDiscreteMI": 3.4615384615384617,
+            "meanContinuousMI": 1.5769230769230769,
+            "meanSignedGap": -1.8846153846153846,
+            "eventCount": 13
+          },
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanGap": 1.88135593220339,
+            "meanAgreement": 0.15243478202843713,
+            "meanDiscreteMI": 3.711864406779661,
+            "meanContinuousMI": 2.2033898305084745,
+            "meanSignedGap": -1.5084745762711864,
+            "eventCount": 59
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanGap": 1.8103448275862069,
+            "meanAgreement": 0.2775756940173745,
+            "meanDiscreteMI": 3.793103448275862,
+            "meanContinuousMI": 2.1551724137931036,
+            "meanSignedGap": -1.6379310344827587,
+            "eventCount": 29
+          }
+        ]
+      }
+    },
+    "chemtrails_gates_2018_2021": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 89,
+            "forwarded": 38,
+            "reinterpreted": 35,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 3,
+          "severity": "lie",
+          "eventCount": 22
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 88,
+            "forwarded": 32,
+            "reinterpreted": 36,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 1.4,
+          "severity": "lie",
+          "eventCount": 22
+        },
+        "node_2": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 79,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 4,
+          "severity": "propaganda",
+          "eventCount": 20
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 75,
+            "forwarded": 22,
+            "reinterpreted": 38,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 1.3333333333333333,
+          "severity": "lie",
+          "eventCount": 19
+        },
+        "node_4": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 60,
+            "forwarded": 18,
+            "reinterpreted": 37,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 4,
+          "severity": "propaganda",
+          "eventCount": 15
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 66,
+            "forwarded": 14,
+            "reinterpreted": 39,
+            "dropped": 13,
+            "dumped": 0
+          },
+          "mpr": 2.5,
+          "severity": "lie",
+          "eventCount": 17
+        },
+        "node_6": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 56,
+            "forwarded": 23,
+            "reinterpreted": 26,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 14
+        },
+        "node_7": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 60,
+            "forwarded": 11,
+            "reinterpreted": 41,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 3,
+          "severity": "lie",
+          "eventCount": 15
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": 4,
+            "node_1": 6,
+            "node_2": 7,
+            "node_3": 7,
+            "node_4": 8,
+            "node_5": 7,
+            "node_6": null,
+            "node_7": 6
+          },
+          "networkMedian": 7
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "conspiracy_depopulation",
+            "reach": 19,
+            "meanMI": 3,
+            "fidelity": 0.4
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_justice_youth",
+            "reach": 10,
+            "meanMI": 1.4,
+            "fidelity": 0.72
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 3,
+            "meanMI": 1.3333333333333333,
+            "fidelity": 0.7333333333333334
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "biodiversity_food_security",
+            "reach": 2,
+            "meanMI": 2.5,
+            "fidelity": 0.5
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "conspiracy_depopulation",
+            "reach": 1,
+            "meanMI": 4,
+            "fidelity": 0.19999999999999996
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "conspiracy_depopulation",
+            "reach": 1,
+            "meanMI": 4,
+            "fidelity": 0.19999999999999996
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "climate_justice_youth",
+            "reach": 1,
+            "meanMI": 3,
+            "fidelity": 0.4
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 4,
+            "meanMI": 1.375,
+            "activeNodes": 8
+          },
+          {
+            "tick": 5,
+            "meanMI": 1.8,
+            "activeNodes": 5
+          },
+          {
+            "tick": 6,
+            "meanMI": 3.4285714285714284,
+            "activeNodes": 7
+          },
+          {
+            "tick": 7,
+            "meanMI": 3.2857142857142856,
+            "activeNodes": 7
+          },
+          {
+            "tick": 8,
+            "meanMI": 4,
+            "activeNodes": 6
+          }
+        ],
+        "giniCoefficient": 0.20351572171329538,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 7,
+            "fraction": 0.25,
+            "aboveThreshold": 2
+          },
+          {
+            "tick": 8,
+            "fraction": 0.25,
+            "aboveThreshold": 2
+          }
+        ],
+        "structuralVirality": 1.7142857142857142,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.508108108108108,
+          "meanMR": 0.3459459459459459,
+          "meanIR": 0.14594594594594595,
+          "meanCMS": 70270270.6081081,
+          "meanIE": 0.886736308984369,
+          "eventCount": 37
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.725,
+            "meanMR": 0.225,
+            "meanIR": 0.05,
+            "meanCMS": 0.24999999875
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.64,
+            "meanMR": 0.36,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.3142857142857142,
+            "meanMR": 0.42857142857142855,
+            "meanIR": 0.2571428571428571,
+            "meanCMS": 142857143.2857143
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.34285714285714286,
+            "meanMR": 0.4571428571428572,
+            "meanIR": 0.19999999999999998,
+            "meanCMS": 57142857.85714286
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.20000000000000004,
+            "meanMR": 0.49999999999999994,
+            "meanIR": 0.30000000000000004,
+            "meanCMS": 200000000.41666666
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanCR": 0.38095238095238093,
+            "meanMR": 0.38095238095238093,
+            "meanIR": 0.23809523809523808,
+            "meanCMS": 123809524.35714285,
+            "eventCount": 21
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 0.6909090909090908,
+            "meanMR": 0.2727272727272727,
+            "meanIR": 0.03636363636363637,
+            "meanCMS": 0.09090909068181817,
+            "eventCount": 11
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.7333333333333334,
+            "meanMR": 0.26666666666666666,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 3
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.5,
+            "meanMR": 0.5,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 2
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.7432432432432432,
+          "meanAgreement": 0.8711344033438332,
+          "meanDiscreteMI": 2.4594594594594597,
+          "meanContinuousMI": 1.7972972972972974,
+          "meanSignedGap": -0.6621621621621622,
+          "eventCount": 37
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanGap": 0.7857142857142857,
+            "meanAgreement": 0.8312478286779581,
+            "meanDiscreteMI": 3.0952380952380953,
+            "meanContinuousMI": 2.4047619047619047,
+            "meanSignedGap": -0.6904761904761905,
+            "eventCount": 21
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanGap": 0.7272727272727273,
+            "meanAgreement": 0.9079321588967493,
+            "meanDiscreteMI": 1.5454545454545454,
+            "meanContinuousMI": 0.9090909090909091,
+            "meanSignedGap": -0.6363636363636364,
+            "eventCount": 11
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanGap": 0.6666666666666666,
+            "meanAgreement": 1,
+            "meanDiscreteMI": 1.3333333333333333,
+            "meanContinuousMI": 0.6666666666666666,
+            "meanSignedGap": -0.6666666666666666,
+            "eventCount": 3
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanGap": 0.4999999999999999,
+            "meanAgreement": 0.9157147913594843,
+            "meanDiscreteMI": 2.5,
+            "meanContinuousMI": 2,
+            "meanSignedGap": -0.4999999999999999,
+            "eventCount": 2
+          }
+        ]
+      }
+    },
+    "sai_geoengineering": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 89,
+            "forwarded": 38,
+            "reinterpreted": 35,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 88,
+            "forwarded": 32,
+            "reinterpreted": 36,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_2": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 79,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 75,
+            "forwarded": 22,
+            "reinterpreted": 38,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_4": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 60,
+            "forwarded": 18,
+            "reinterpreted": 37,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 15
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 66,
+            "forwarded": 14,
+            "reinterpreted": 39,
+            "dropped": 13,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_6": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 56,
+            "forwarded": 23,
+            "reinterpreted": 26,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 14
+        },
+        "node_7": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 60,
+            "forwarded": 11,
+            "reinterpreted": 41,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 15
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_justice_youth",
+            "reach": 2,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "conspiracy_depopulation",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "conspiracy_depopulation",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "climate_justice_youth",
+            "reach": 1,
+            "meanMI": 2,
+            "fidelity": 0.6
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 6,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.6666666666666666,
+            "activeNodes": 3
+          }
+        ],
+        "giniCoefficient": 0.8,
+        "criticalMassThreshold": [
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.8571428571428572,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9333333333333332,
+          "meanMR": 0.06666666666666667,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0.1618250990757781,
+          "eventCount": 6
+        },
+        "ifdOverTime": [
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.8666666666666667,
+            "meanMR": 0.13333333333333333,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 2
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 0.8666666666666667,
+            "meanMR": 0.13333333333333333,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 3
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 1
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.3333333333333333,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0.3333333333333333,
+          "meanContinuousMI": 0,
+          "meanSignedGap": -0.3333333333333333,
+          "eventCount": 6
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "climate_justice_youth",
+            "meanGap": 0.6666666666666666,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0.6666666666666666,
+            "meanContinuousMI": 0,
+            "meanSignedGap": -0.6666666666666666,
+            "eventCount": 3
+          },
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanGap": 0,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0,
+            "meanContinuousMI": 0,
+            "meanSignedGap": 0,
+            "eventCount": 2
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanGap": 0,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0,
+            "meanContinuousMI": 0,
+            "meanSignedGap": 0,
+            "eventCount": 1
+          }
+        ]
+      }
+    },
+    "paris_agreement": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 89,
+            "forwarded": 38,
+            "reinterpreted": 35,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 88,
+            "forwarded": 32,
+            "reinterpreted": 36,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_2": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 79,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 75,
+            "forwarded": 22,
+            "reinterpreted": 38,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 60,
+            "forwarded": 18,
+            "reinterpreted": 37,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 66,
+            "forwarded": 14,
+            "reinterpreted": 39,
+            "dropped": 13,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_6": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 56,
+            "forwarded": 23,
+            "reinterpreted": 26,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 60,
+            "forwarded": 11,
+            "reinterpreted": 41,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [],
+        "networkMIOverTime": [],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": null,
+          "meanMR": null,
+          "meanIR": null,
+          "meanCMS": null,
+          "meanIE": null,
+          "eventCount": 0
+        },
+        "ifdOverTime": [],
+        "personaIFD": []
+      }
+    },
+    "climate_consensus": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 89,
+            "forwarded": 38,
+            "reinterpreted": 35,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 22
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 88,
+            "forwarded": 32,
+            "reinterpreted": 36,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_2": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 79,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 19
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 75,
+            "forwarded": 22,
+            "reinterpreted": 38,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_4": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 60,
+            "forwarded": 18,
+            "reinterpreted": 37,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 15
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 66,
+            "forwarded": 14,
+            "reinterpreted": 39,
+            "dropped": 13,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 16
+        },
+        "node_6": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 56,
+            "forwarded": 23,
+            "reinterpreted": 26,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 14
+        },
+        "node_7": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 60,
+            "forwarded": 11,
+            "reinterpreted": 41,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 15
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": 8,
+            "node_1": null,
+            "node_2": 8,
+            "node_3": null,
+            "node_4": 5,
+            "node_5": null,
+            "node_6": 7,
+            "node_7": 7
+          },
+          "networkMedian": 7
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "conspiracy_depopulation",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "conspiracy_depopulation",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "conspiracy_depopulation",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "conspiracy_depopulation",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "climate_justice_youth",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 5,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 7,
+            "meanMI": 5,
+            "activeNodes": 2
+          },
+          {
+            "tick": 8,
+            "meanMI": 5,
+            "activeNodes": 2
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 5,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 7,
+            "fraction": 0.25,
+            "aboveThreshold": 2
+          },
+          {
+            "tick": 8,
+            "fraction": 0.25,
+            "aboveThreshold": 2
+          }
+        ],
+        "structuralVirality": 1.8571428571428572,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0,
+          "meanMR": 0.56,
+          "meanIR": 0.44000000000000006,
+          "meanCMS": 440000000,
+          "meanIE": 0.53276585675934,
+          "eventCount": 5
+        },
+        "ifdOverTime": [
+          {
+            "tick": 5,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 7,
+            "meanCR": 0,
+            "meanMR": 0.8,
+            "meanIR": 0.2,
+            "meanCMS": 200000000
+          },
+          {
+            "tick": 8,
+            "meanCR": 0,
+            "meanMR": 0.6000000000000001,
+            "meanIR": 0.4,
+            "meanCMS": 400000000
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanCR": 0,
+            "meanMR": 0.45000000000000007,
+            "meanIR": 0.55,
+            "meanCMS": 550000000,
+            "eventCount": 4
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 0,
+            "meanMR": 1,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 1
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.7,
+          "meanAgreement": 0.6666666666666665,
+          "meanDiscreteMI": 5,
+          "meanContinuousMI": 4.3,
+          "meanSignedGap": -0.7,
+          "eventCount": 5
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "climate_justice_youth",
+            "meanGap": 2.5,
+            "meanAgreement": null,
+            "meanDiscreteMI": 5,
+            "meanContinuousMI": 2.5,
+            "meanSignedGap": -2.5,
+            "eventCount": 1
+          },
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanGap": 0.25,
+            "meanAgreement": 0.6666666666666665,
+            "meanDiscreteMI": 5,
+            "meanContinuousMI": 4.75,
+            "meanSignedGap": -0.25,
+            "eventCount": 4
+          }
+        ]
+      }
+    },
+    "polar_bears": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 89,
+            "forwarded": 38,
+            "reinterpreted": 35,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 88,
+            "forwarded": 32,
+            "reinterpreted": 36,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_2": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 79,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 75,
+            "forwarded": 22,
+            "reinterpreted": 38,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 60,
+            "forwarded": 18,
+            "reinterpreted": 37,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 66,
+            "forwarded": 14,
+            "reinterpreted": 39,
+            "dropped": 13,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_6": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 56,
+            "forwarded": 23,
+            "reinterpreted": 26,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 60,
+            "forwarded": 11,
+            "reinterpreted": 41,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [],
+        "networkMIOverTime": [],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": null,
+          "meanMR": null,
+          "meanIR": null,
+          "meanCMS": null,
+          "meanIE": null,
+          "eventCount": 0
+        },
+        "ifdOverTime": [],
+        "personaIFD": []
+      }
+    }
+  }
+}

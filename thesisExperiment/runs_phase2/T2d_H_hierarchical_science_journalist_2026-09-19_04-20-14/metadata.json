@@ -1,0 +1,1879 @@
+{
+  "experimentId": "T2d_H_hierarchical_science_journalist_2026-09-19_04-20-14",
+  "status": "complete",
+  "timestamp": "2026-09-19T04:28:01.218Z",
+  "config": {
+    "topology": "hierarchical",
+    "topologyParams": {
+      "numNodes": 8,
+      "edgeProbability": 0.3,
+      "branchingFactor": 3,
+      "downTrust": 0.85,
+      "upTrust": 0.3,
+      "personasByCluster": [
+        [
+          "conspiracy_believer",
+          "conspiracy_haarp_weather",
+          "conspiracy_depopulation",
+          "conspiracy_climate_piggyback",
+          "conspiracy_peripheral_skywatcher"
+        ],
+        [
+          "climate_action_advocate",
+          "climate_justice_youth",
+          "mitigation_first_policy",
+          "climate_action_sweden_scopex",
+          "environmental_concern",
+          "ozone_stratosphere_specialist",
+          "biodiversity_food_security",
+          "caregiver_air_quality",
+          "climate_scientist",
+          "science_journalist",
+          "platform_moderator_toxicity"
+        ]
+      ]
+    },
+    "maxTicks": 8,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "dual",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.15,
+      "actionWeights": {
+        "forward": 0.35,
+        "reinterpret": 0.5,
+        "drop": 0.15
+      },
+      "relationEvolution": true,
+      "trustDelta": 0.05,
+      "maxHops": 8,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017",
+      "chemtrails_gates_2018_2021",
+      "sai_geoengineering",
+      "paris_agreement",
+      "climate_consensus",
+      "polar_bears"
+    ],
+    "seedNodes": [
+      "node_0"
+    ],
+    "personasPath": "thesisExperiment/personas/phase2/homo/science_journalist.json",
+    "articlesPath": "thesisExperiment/articles/merged.json",
+    "outputRoot": "thesisExperiment/runs_phase2",
+    "graphRandomSeed": 42,
+    "_description": "Phase2 T-H dual hierarchical homogeneous science_journalist",
+    "experimentName": "T2d_H_hierarchical_science_journalist",
+    "defaultPersonaAssignment": "sequential",
+    "pfeffer": {
+      "valence": "varied via 6 core articles",
+      "surprise": "held: drip seed node_0",
+      "identityAlignment": "homogeneous science_journalist",
+      "networkClustering": "hierarchical",
+      "informationEcho": "measured",
+      "temporalAcceleration": "8 hops/ticks (logged cut)"
+    }
+  },
+  "llmUsage": {
+    "calls": 664,
+    "promptTokens": 302794,
+    "completionTokens": 40680,
+    "totalTokens": 343474,
+    "errors": 0,
+    "model": "gpt-4o-mini",
+    "estimatedUsd": 0.0698
+  },
+  "results": {
+    "scopex_2017": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 49,
+            "forwarded": 14,
+            "reinterpreted": 26,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 12
+        },
+        "node_1": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 52,
+            "forwarded": 20,
+            "reinterpreted": 22,
+            "dropped": 10,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 13
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 47,
+            "forwarded": 18,
+            "reinterpreted": 22,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 12
+        },
+        "node_3": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 40,
+            "forwarded": 16,
+            "reinterpreted": 22,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 9
+        },
+        "node_4": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 12,
+            "reinterpreted": 12,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 9
+        },
+        "node_5": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 13,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 9
+        },
+        "node_6": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 15,
+            "dropped": 4,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 9
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 27,
+            "forwarded": 8,
+            "reinterpreted": 16,
+            "dropped": 3,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 7
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "science_journalist",
+            "reach": 11,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "science_journalist",
+            "reach": 11,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "science_journalist",
+            "reach": 9,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "science_journalist",
+            "reach": 9,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "science_journalist",
+            "reach": 8,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "science_journalist",
+            "reach": 7,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "science_journalist",
+            "reach": 7,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 7,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 6
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 8
+          },
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 18
+          },
+          {
+            "tick": 6,
+            "meanMI": 0,
+            "activeNodes": 11
+          },
+          {
+            "tick": 7,
+            "meanMI": 0,
+            "activeNodes": 14
+          },
+          {
+            "tick": 8,
+            "meanMI": 0,
+            "activeNodes": 8
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 1,
+          "meanMR": 0,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0,
+          "eventCount": 69
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "science_journalist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 69
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0,
+          "meanContinuousMI": 0,
+          "meanSignedGap": 0,
+          "eventCount": 69
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "science_journalist",
+            "meanGap": 0,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0,
+            "meanContinuousMI": 0,
+            "meanSignedGap": 0,
+            "eventCount": 69
+          }
+        ]
+      }
+    },
+    "chemtrails_gates_2018_2021": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 49,
+            "forwarded": 14,
+            "reinterpreted": 26,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 11
+        },
+        "node_1": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 52,
+            "forwarded": 20,
+            "reinterpreted": 22,
+            "dropped": 10,
+            "dumped": 0
+          },
+          "mpr": 0.09090909090909091,
+          "severity": "factual_error",
+          "eventCount": 13
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 47,
+            "forwarded": 18,
+            "reinterpreted": 22,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.1,
+          "severity": "factual_error",
+          "eventCount": 11
+        },
+        "node_3": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 40,
+            "forwarded": 16,
+            "reinterpreted": 22,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 11
+        },
+        "node_4": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 12,
+            "reinterpreted": 12,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0.2,
+          "severity": "factual_error",
+          "eventCount": 7
+        },
+        "node_5": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 13,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 7
+        },
+        "node_6": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 15,
+            "dropped": 4,
+            "dumped": 0
+          },
+          "mpr": 0.2,
+          "severity": "factual_error",
+          "eventCount": 7
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 27,
+            "forwarded": 8,
+            "reinterpreted": 16,
+            "dropped": 3,
+            "dumped": 0
+          },
+          "mpr": 0.16666666666666666,
+          "severity": "factual_error",
+          "eventCount": 6
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "science_journalist",
+            "reach": 11,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "science_journalist",
+            "reach": 11,
+            "meanMI": 0.09090909090909091,
+            "fidelity": 0.9818181818181818
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "science_journalist",
+            "reach": 11,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "science_journalist",
+            "reach": 10,
+            "meanMI": 0.1,
+            "fidelity": 0.98
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "science_journalist",
+            "reach": 6,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 6,
+            "meanMI": 0.16666666666666666,
+            "fidelity": 0.9666666666666667
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "science_journalist",
+            "reach": 5,
+            "meanMI": 0.2,
+            "fidelity": 0.96
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "science_journalist",
+            "reach": 5,
+            "meanMI": 0.2,
+            "fidelity": 0.96
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 5
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 7
+          },
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 10
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.09090909090909091,
+            "activeNodes": 11
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.17647058823529413,
+            "activeNodes": 17
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.08333333333333333,
+            "activeNodes": 12
+          }
+        ],
+        "giniCoefficient": 0.48000000000000004,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9846153846153846,
+          "meanMR": 0.015384615384615385,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0.055532930375950945,
+          "eventCount": 65
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.9818181818181819,
+            "meanMR": 0.018181818181818184,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9647058823529413,
+            "meanMR": 0.03529411764705883,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.9833333333333334,
+            "meanMR": 0.016666666666666666,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.9846153846153846,
+            "meanMR": 0.015384615384615385,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 65
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.06153846153846154,
+          "meanAgreement": 1,
+          "meanDiscreteMI": 0.07692307692307693,
+          "meanContinuousMI": 0.015384615384615382,
+          "meanSignedGap": -0.06153846153846154,
+          "eventCount": 65
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "science_journalist",
+            "meanGap": 0.06153846153846154,
+            "meanAgreement": 1,
+            "meanDiscreteMI": 0.07692307692307693,
+            "meanContinuousMI": 0.015384615384615382,
+            "meanSignedGap": -0.06153846153846154,
+            "eventCount": 65
+          }
+        ]
+      }
+    },
+    "sai_geoengineering": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 49,
+            "forwarded": 14,
+            "reinterpreted": 26,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 1.1,
+          "severity": "lie",
+          "eventCount": 12
+        },
+        "node_1": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 52,
+            "forwarded": 20,
+            "reinterpreted": 22,
+            "dropped": 10,
+            "dumped": 0
+          },
+          "mpr": 1.6666666666666667,
+          "severity": "lie",
+          "eventCount": 13
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 47,
+            "forwarded": 18,
+            "reinterpreted": 22,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 1.1,
+          "severity": "lie",
+          "eventCount": 12
+        },
+        "node_3": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 40,
+            "forwarded": 16,
+            "reinterpreted": 22,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 1.3333333333333333,
+          "severity": "lie",
+          "eventCount": 10
+        },
+        "node_4": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 12,
+            "reinterpreted": 12,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 7
+        },
+        "node_5": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 13,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 1.4,
+          "severity": "lie",
+          "eventCount": 7
+        },
+        "node_6": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 15,
+            "dropped": 4,
+            "dumped": 0
+          },
+          "mpr": 1.1428571428571428,
+          "severity": "lie",
+          "eventCount": 7
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 27,
+            "forwarded": 8,
+            "reinterpreted": 16,
+            "dropped": 3,
+            "dumped": 0
+          },
+          "mpr": 1.6666666666666667,
+          "severity": "lie",
+          "eventCount": 7
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": 6,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": 6
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "science_journalist",
+            "reach": 10,
+            "meanMI": 1.1,
+            "fidelity": 0.78
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "science_journalist",
+            "reach": 10,
+            "meanMI": 1.1,
+            "fidelity": 0.78
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "science_journalist",
+            "reach": 9,
+            "meanMI": 1.6666666666666667,
+            "fidelity": 0.6666666666666666
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "science_journalist",
+            "reach": 9,
+            "meanMI": 1.3333333333333333,
+            "fidelity": 0.7333333333333334
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "science_journalist",
+            "reach": 7,
+            "meanMI": 1.1428571428571428,
+            "fidelity": 0.7714285714285715
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "science_journalist",
+            "reach": 6,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 6,
+            "meanMI": 1.6666666666666667,
+            "fidelity": 0.6666666666666666
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "science_journalist",
+            "reach": 5,
+            "meanMI": 1.4,
+            "fidelity": 0.72
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 1.6666666666666667,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 1.4,
+            "activeNodes": 5
+          },
+          {
+            "tick": 4,
+            "meanMI": 1.1428571428571428,
+            "activeNodes": 7
+          },
+          {
+            "tick": 5,
+            "meanMI": 1.5,
+            "activeNodes": 12
+          },
+          {
+            "tick": 6,
+            "meanMI": 1.6,
+            "activeNodes": 10
+          },
+          {
+            "tick": 7,
+            "meanMI": 1,
+            "activeNodes": 16
+          },
+          {
+            "tick": 8,
+            "meanMI": 1.125,
+            "activeNodes": 8
+          }
+        ],
+        "giniCoefficient": 0.103156450137237,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.741935483870968,
+          "meanMR": 0.03870967741935484,
+          "meanIR": 0.21935483870967745,
+          "meanCMS": 0.3440860209587814,
+          "meanIE": 0.6986783424487095,
+          "eventCount": 62
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.8,
+            "meanMR": 0.2,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.6666666666666666,
+            "meanMR": 0,
+            "meanIR": 0.3333333333333333,
+            "meanCMS": 0.5277777769328704
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.72,
+            "meanMR": 0.04,
+            "meanIR": 0.24000000000000005,
+            "meanCMS": 0.3666666660972223
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.7714285714285714,
+            "meanMR": 0.028571428571428574,
+            "meanIR": 0.2,
+            "meanCMS": 0.32142857090773813
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.6999999999999998,
+            "meanMR": 0.06666666666666667,
+            "meanIR": 0.23333333333333336,
+            "meanCMS": 0.36111111054398154
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.6799999999999999,
+            "meanMR": 0.06,
+            "meanIR": 0.25999999999999995,
+            "meanCMS": 0.42499999930208343
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.8,
+            "meanMR": 0.025,
+            "meanIR": 0.17500000000000002,
+            "meanCMS": 0.27083333290798617
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.7749999999999999,
+            "meanMR": 0,
+            "meanIR": 0.225,
+            "meanCMS": 0.3437499994661459
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.741935483870968,
+            "meanMR": 0.03870967741935484,
+            "meanIR": 0.21935483870967745,
+            "meanCMS": 0.3440860209587814,
+            "eventCount": 62
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 1.2741935483870968,
+          "meanAgreement": 0.9185586535436917,
+          "meanDiscreteMI": 1.2903225806451613,
+          "meanContinuousMI": 0.08064516129032258,
+          "meanSignedGap": -1.2096774193548387,
+          "eventCount": 62
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "science_journalist",
+            "meanGap": 1.2741935483870968,
+            "meanAgreement": 0.9185586535436917,
+            "meanDiscreteMI": 1.2903225806451613,
+            "meanContinuousMI": 0.08064516129032258,
+            "meanSignedGap": -1.2096774193548387,
+            "eventCount": 62
+          }
+        ]
+      }
+    },
+    "paris_agreement": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 49,
+            "forwarded": 14,
+            "reinterpreted": 26,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 52,
+            "forwarded": 20,
+            "reinterpreted": 22,
+            "dropped": 10,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 47,
+            "forwarded": 18,
+            "reinterpreted": 22,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_3": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 40,
+            "forwarded": 16,
+            "reinterpreted": 22,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 12,
+            "reinterpreted": 12,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 13,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_6": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 15,
+            "dropped": 4,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 27,
+            "forwarded": 8,
+            "reinterpreted": 16,
+            "dropped": 3,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [],
+        "networkMIOverTime": [],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": null,
+          "meanMR": null,
+          "meanIR": null,
+          "meanCMS": null,
+          "meanIE": null,
+          "eventCount": 0
+        },
+        "ifdOverTime": [],
+        "personaIFD": []
+      }
+    },
+    "climate_consensus": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 49,
+            "forwarded": 14,
+            "reinterpreted": 26,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 52,
+            "forwarded": 20,
+            "reinterpreted": 22,
+            "dropped": 10,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 47,
+            "forwarded": 18,
+            "reinterpreted": 22,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_3": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 40,
+            "forwarded": 16,
+            "reinterpreted": 22,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 12,
+            "reinterpreted": 12,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 13,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_6": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 15,
+            "dropped": 4,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 27,
+            "forwarded": 8,
+            "reinterpreted": 16,
+            "dropped": 3,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [],
+        "networkMIOverTime": [],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": null,
+          "meanMR": null,
+          "meanIR": null,
+          "meanCMS": null,
+          "meanIE": null,
+          "eventCount": 0
+        },
+        "ifdOverTime": [],
+        "personaIFD": []
+      }
+    },
+    "polar_bears": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 49,
+            "forwarded": 14,
+            "reinterpreted": 26,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 1.3,
+          "severity": "lie",
+          "eventCount": 12
+        },
+        "node_1": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 52,
+            "forwarded": 20,
+            "reinterpreted": 22,
+            "dropped": 10,
+            "dumped": 0
+          },
+          "mpr": 1.0909090909090908,
+          "severity": "lie",
+          "eventCount": 13
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 47,
+            "forwarded": 18,
+            "reinterpreted": 22,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 12
+        },
+        "node_3": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 40,
+            "forwarded": 16,
+            "reinterpreted": 22,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 10
+        },
+        "node_4": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 12,
+            "reinterpreted": 12,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0.8333333333333334,
+          "severity": "factual_error",
+          "eventCount": 7
+        },
+        "node_5": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 13,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 1.6666666666666667,
+          "severity": "lie",
+          "eventCount": 7
+        },
+        "node_6": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 30,
+            "forwarded": 11,
+            "reinterpreted": 15,
+            "dropped": 4,
+            "dumped": 0
+          },
+          "mpr": 1.2,
+          "severity": "lie",
+          "eventCount": 7
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 27,
+            "forwarded": 8,
+            "reinterpreted": 16,
+            "dropped": 3,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 7
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": 5,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": 7,
+            "node_5": 7,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": 7
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "science_journalist",
+            "reach": 11,
+            "meanMI": 1.0909090909090908,
+            "fidelity": 0.7818181818181819
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "science_journalist",
+            "reach": 10,
+            "meanMI": 1.3,
+            "fidelity": 0.74
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "science_journalist",
+            "reach": 10,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "science_journalist",
+            "reach": 9,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "science_journalist",
+            "reach": 6,
+            "meanMI": 0.8333333333333334,
+            "fidelity": 0.8333333333333333
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "science_journalist",
+            "reach": 6,
+            "meanMI": 1.6666666666666667,
+            "fidelity": 0.6666666666666666
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "science_journalist",
+            "reach": 5,
+            "meanMI": 1.2,
+            "fidelity": 0.76
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 5,
+            "meanMI": 1,
+            "fidelity": 0.8
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 2,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 1.3333333333333333,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 1.8,
+            "activeNodes": 5
+          },
+          {
+            "tick": 4,
+            "meanMI": 1.1428571428571428,
+            "activeNodes": 7
+          },
+          {
+            "tick": 5,
+            "meanMI": 1,
+            "activeNodes": 12
+          },
+          {
+            "tick": 6,
+            "meanMI": 1.3,
+            "activeNodes": 10
+          },
+          {
+            "tick": 7,
+            "meanMI": 1.1428571428571428,
+            "activeNodes": 14
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.6,
+            "activeNodes": 10
+          }
+        ],
+        "giniCoefficient": 0.11033333333333335,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.7741935483870968,
+          "meanMR": 0.04516129032258065,
+          "meanIR": 0.18064516129032263,
+          "meanCMS": 0.2970430102424955,
+          "meanIE": 0.6454547058340344,
+          "eventCount": 62
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.6,
+            "meanMR": 0,
+            "meanIR": 0.4,
+            "meanCMS": 0.6666666655555556
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.7333333333333334,
+            "meanMR": 0,
+            "meanIR": 0.26666666666666666,
+            "meanCMS": 0.38888888831018525
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.64,
+            "meanMR": 0,
+            "meanIR": 0.36,
+            "meanCMS": 0.5833333323819445
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.7714285714285715,
+            "meanMR": 0,
+            "meanIR": 0.2285714285714286,
+            "meanCMS": 0.38095238031746037
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.7999999999999999,
+            "meanMR": 0.03333333333333333,
+            "meanIR": 0.16666666666666666,
+            "meanCMS": 0.263888888431713
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.7399999999999999,
+            "meanMR": 0.06000000000000001,
+            "meanIR": 0.2,
+            "meanCMS": 0.3249999994687501
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.7714285714285715,
+            "meanMR": 0.09999999999999999,
+            "meanIR": 0.12857142857142856,
+            "meanCMS": 0.2559523804141865
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.8800000000000001,
+            "meanMR": 0.04,
+            "meanIR": 0.08,
+            "meanCMS": 0.099999999875
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.7741935483870968,
+            "meanMR": 0.04516129032258065,
+            "meanIR": 0.18064516129032263,
+            "meanCMS": 0.2970430102424955,
+            "eventCount": 62
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 1.0806451612903225,
+          "meanAgreement": 0.4177189636920171,
+          "meanDiscreteMI": 1.1290322580645162,
+          "meanContinuousMI": 0.08064516129032256,
+          "meanSignedGap": -1.0483870967741935,
+          "eventCount": 62
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "science_journalist",
+            "meanGap": 1.0806451612903225,
+            "meanAgreement": 0.4177189636920171,
+            "meanDiscreteMI": 1.1290322580645162,
+            "meanContinuousMI": 0.08064516129032256,
+            "meanSignedGap": -1.0483870967741935,
+            "eventCount": 62
+          }
+        ]
+      }
+    }
+  }
+}

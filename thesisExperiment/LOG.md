@@ -5137,3 +5137,2166 @@ END T2d_H_small_world_conspiracy_haarp_weather status=0 elapsedMs=1609655 runDir
 START T2d_H_small_world_environmental_concern config=thesisExperiment/configs/phase2/T2d_H_small_world_environmental_concern.json
 
 ---
+
+## 2026-09-19T04:20:14.033Z
+
+END T2d_H_hierarchical_conspiracy_haarp_weather status=0 elapsedMs=624087 runDir=T2d_H_hierarchical_conspiracy_haarp_weather_2026-09-19_04-09-49 usage=871 calls, 408101 prompt / 50771 completion tokens ~$0.0917 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:20:14.033Z
+
+START T2d_H_hierarchical_science_journalist config=thesisExperiment/configs/phase2/T2d_H_hierarchical_science_journalist.json
+
+---
+
+## 2026-09-19T04:20:17.161Z
+
+END T2d_He_hierarchical_mix_05 status=0 elapsedMs=78714 runDir=T2d_He_hierarchical_mix_05_2026-09-19_04-18-58 usage=112 calls, 53270 prompt / 6473 completion tokens ~$0.0119 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:20:32.110Z
+
+END T2d_He_scale_free_mix_01 status=0 elapsedMs=1345459 runDir=T2d_He_scale_free_mix_01_2026-09-19_03-58-06 usage=1739 calls, 788768 prompt / 101685 completion tokens ~$0.1793 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:20:32.110Z
+
+START T2d_He_echo_chamber_mix_01 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_01.json
+
+---
+
+## 2026-09-19T04:20:38.630Z
+
+END T2c_H_small_world_conspiracy_climate_piggyback status=0 elapsedMs=1193178 runDir=T2c_H_small_world_conspiracy_climate_piggyback_2026-09-19_04-00-45 usage=927 calls, 433945 prompt / 86143 completion tokens ~$0.1168 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:20:38.630Z
+
+START T2c_H_small_world_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2c_H_small_world_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:20:55.666Z
+
+CONTINUE_MASTER progress complete=178/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:21:12.023Z
+
+END T2d_He_hierarchical_mix_02 status=0 elapsedMs=198386 runDir=T2d_He_hierarchical_mix_02_2026-09-19_04-17-53 usage=256 calls, 117989 prompt / 16325 completion tokens ~$0.0275 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:21:12.023Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:21:24.505Z
+
+END T2c_H_small_world_mitigation_first_policy status=0 elapsedMs=1408107 runDir=T2c_H_small_world_mitigation_first_policy_2026-09-19_03-57-56 usage=1136 calls, 539478 prompt / 100343 completion tokens ~$0.1411 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:21:24.505Z
+
+START T2c_H_small_world_climate_scientist config=thesisExperiment/configs/phase2/T2c_H_small_world_climate_scientist.json
+
+---
+
+## 2026-09-19T04:21:26.987Z
+
+END T2c_H_scale_free_climate_action_advocate status=0 elapsedMs=1420616 runDir=T2c_H_scale_free_climate_action_advocate_2026-09-19_03-57-46 usage=1167 calls, 548733 prompt / 101843 completion tokens ~$0.1434 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:21:26.988Z
+
+START T2c_H_scale_free_environmental_concern config=thesisExperiment/configs/phase2/T2c_H_scale_free_environmental_concern.json
+
+---
+
+## 2026-09-19T04:21:34.049Z
+
+END T2d_H_small_world_mitigation_first_policy status=0 elapsedMs=1278467 runDir=T2d_H_small_world_mitigation_first_policy_2026-09-19_04-00-15 usage=1583 calls, 708495 prompt / 99103 completion tokens ~$0.1657 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:21:34.049Z
+
+START T2d_H_small_world_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2d_H_small_world_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:21:34.513Z
+
+END T2c_H_scale_free_conspiracy_climate_piggyback status=0 elapsedMs=1459777 runDir=T2c_H_scale_free_conspiracy_climate_piggyback_2026-09-19_03-57-14 usage=1176 calls, 562501 prompt / 104722 completion tokens ~$0.1472 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:21:34.513Z
+
+START T2c_H_scale_free_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2c_H_scale_free_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:22:46.618Z
+
+END T2c_H_small_world_environmental_concern status=0 elapsedMs=1240032 runDir=T2c_H_small_world_environmental_concern_2026-09-19_04-02-06 usage=929 calls, 440698 prompt / 87955 completion tokens ~$0.1189 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:22:46.618Z
+
+START T2c_H_small_world_science_journalist config=thesisExperiment/configs/phase2/T2c_H_small_world_science_journalist.json
+
+---
+
+## 2026-09-19T04:23:25.789Z
+
+CONTINUE_MASTER progress complete=183/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:23:40.315Z
+
+END T2d_H_small_world_climate_action_advocate status=0 elapsedMs=1526429 runDir=T2d_H_small_world_climate_action_advocate_2026-09-19_03-58-13 usage=1952 calls, 901698 prompt / 119114 completion tokens ~$0.2067 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:23:40.315Z
+
+START T2d_H_small_world_biodiversity_food_security config=thesisExperiment/configs/phase2/T2d_H_small_world_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:25:00.464Z
+
+END T2d_H_scale_free_climate_action_advocate status=0 elapsedMs=1636315 runDir=T2d_H_scale_free_climate_action_advocate_2026-09-19_03-57-44 usage=2243 calls, 1053053 prompt / 127199 completion tokens ~$0.2343 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:25:00.464Z
+
+START T2d_H_scale_free_mitigation_first_policy config=thesisExperiment/configs/phase2/T2d_H_scale_free_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:25:03.898Z
+
+END T2c_He_scale_free_mix_04 status=0 elapsedMs=1333397 runDir=T2c_He_scale_free_mix_04_2026-09-19_04-02-50 usage=1141 calls, 539047 prompt / 97128 completion tokens ~$0.1391 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:25:12.245Z
+
+END T2d_H_hierarchical_mitigation_first_policy status=0 elapsedMs=522016 runDir=T2d_H_hierarchical_mitigation_first_policy_2026-09-19_04-16-30 usage=662 calls, 304707 prompt / 42577 completion tokens ~$0.0713 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:25:12.318Z
+
+SKIP complete T2d_H_linear_chain_biodiversity_food_security (T2d_H_linear_chain_biodiversity_food_security_2026-09-19_02-53-05)
+
+---
+
+## 2026-09-19T04:25:12.388Z
+
+SKIP complete T2d_H_linear_chain_climate_action_advocate (T2d_H_linear_chain_climate_action_advocate_2026-09-19_02-50-54)
+
+---
+
+## 2026-09-19T04:25:12.458Z
+
+SKIP complete T2d_H_linear_chain_climate_justice_youth (T2d_H_linear_chain_climate_justice_youth_2026-09-19_02-51-14)
+
+---
+
+## 2026-09-19T04:25:12.525Z
+
+SKIP complete T2d_H_linear_chain_climate_scientist (T2d_H_linear_chain_climate_scientist_2026-09-19_02-53-33)
+
+---
+
+## 2026-09-19T04:25:12.591Z
+
+SKIP complete T2d_H_linear_chain_conspiracy_believer (T2d_H_linear_chain_conspiracy_believer_2026-09-19_02-49-25)
+
+---
+
+## 2026-09-19T04:25:12.656Z
+
+SKIP complete T2d_H_linear_chain_conspiracy_climate_piggyback (T2d_H_linear_chain_conspiracy_climate_piggyback_2026-09-19_02-49-25)
+
+---
+
+## 2026-09-19T04:25:12.719Z
+
+SKIP complete T2d_H_linear_chain_conspiracy_depopulation (T2d_H_linear_chain_conspiracy_depopulation_2026-09-19_02-49-25)
+
+---
+
+## 2026-09-19T04:25:12.781Z
+
+SKIP complete T2d_H_linear_chain_conspiracy_haarp_weather (T2d_H_linear_chain_conspiracy_haarp_weather_2026-09-19_02-49-25)
+
+---
+
+## 2026-09-19T04:25:12.843Z
+
+SKIP complete T2d_H_linear_chain_environmental_concern (T2d_H_linear_chain_environmental_concern_2026-09-19_02-51-20)
+
+---
+
+## 2026-09-19T04:25:12.903Z
+
+SKIP complete T2d_H_linear_chain_mitigation_first_policy (T2d_H_linear_chain_mitigation_first_policy_2026-09-19_02-51-19)
+
+---
+
+## 2026-09-19T04:25:12.962Z
+
+SKIP complete T2d_H_linear_chain_ozone_stratosphere_specialist (T2d_H_linear_chain_ozone_stratosphere_specialist_2026-09-19_02-53-04)
+
+---
+
+## 2026-09-19T04:25:13.021Z
+
+SKIP complete T2d_H_linear_chain_science_journalist (T2d_H_linear_chain_science_journalist_2026-09-19_02-54-17)
+
+---
+
+## 2026-09-19T04:25:13.021Z
+
+START T2d_H_polarized_biodiversity_food_security config=thesisExperiment/configs/phase2/T2d_H_polarized_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:25:36.877Z
+
+END T2d_H_hierarchical_environmental_concern status=0 elapsedMs=707295 runDir=T2d_H_hierarchical_environmental_concern_2026-09-19_04-13-49 usage=870 calls, 408214 prompt / 54967 completion tokens ~$0.0942 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:25:36.877Z
+
+START T2d_H_polarized_climate_action_advocate config=thesisExperiment/configs/phase2/T2d_H_polarized_climate_action_advocate.json
+
+---
+
+## 2026-09-19T04:25:43.393Z
+
+END T2d_He_scale_free_mix_05 status=0 elapsedMs=1651488 runDir=T2d_He_scale_free_mix_05_2026-09-19_03-58-11 usage=2247 calls, 1040234 prompt / 133480 completion tokens ~$0.2361 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:25:43.393Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:25:49.270Z
+
+END T2d_H_scale_free_conspiracy_climate_piggyback status=0 elapsedMs=1704999 runDir=T2d_H_scale_free_conspiracy_climate_piggyback_2026-09-19_03-57-24 usage=2236 calls, 1058762 prompt / 135357 completion tokens ~$0.24 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:25:49.270Z
+
+START T2d_H_scale_free_environmental_concern config=thesisExperiment/configs/phase2/T2d_H_scale_free_environmental_concern.json
+
+---
+
+## 2026-09-19T04:25:55.976Z
+
+CONTINUE_MASTER progress complete=189/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:26:01.818Z
+
+END T2c_H_hierarchical_conspiracy_haarp_weather status=0 elapsedMs=488194 runDir=T2c_H_hierarchical_conspiracy_haarp_weather_2026-09-19_04-17-53 usage=410 calls, 186640 prompt / 35228 completion tokens ~$0.0491 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:26:01.818Z
+
+START T2c_H_hierarchical_climate_action_advocate config=thesisExperiment/configs/phase2/T2c_H_hierarchical_climate_action_advocate.json
+
+---
+
+## 2026-09-19T04:26:13.005Z
+
+END T2d_H_small_world_climate_justice_youth status=0 elapsedMs=1665435 runDir=T2d_H_small_world_climate_justice_youth_2026-09-19_03-58-27 usage=2279 calls, 1021878 prompt / 129998 completion tokens ~$0.2313 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:26:13.006Z
+
+START T2d_H_small_world_climate_scientist config=thesisExperiment/configs/phase2/T2d_H_small_world_climate_scientist.json
+
+---
+
+## 2026-09-19T04:26:39.453Z
+
+END T2d_H_small_world_mitigation_first_policy status=0 elapsedMs=1574133 runDir=T2d_H_small_world_mitigation_first_policy_2026-09-19_04-00-25 usage=2014 calls, 907683 prompt / 124316 completion tokens ~$0.2107 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:26:39.453Z
+
+START T2d_H_small_world_biodiversity_food_security config=thesisExperiment/configs/phase2/T2d_H_small_world_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:26:51.042Z
+
+END T2c_H_hierarchical_conspiracy_climate_piggyback status=0 elapsedMs=537411 runDir=T2c_H_hierarchical_conspiracy_climate_piggyback_2026-09-19_04-17-53 usage=435 calls, 208883 prompt / 40227 completion tokens ~$0.0555 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:26:51.042Z
+
+START T2c_H_hierarchical_climate_justice_youth config=thesisExperiment/configs/phase2/T2c_H_hierarchical_climate_justice_youth.json
+
+---
+
+## 2026-09-19T04:26:57.291Z
+
+END T2d_H_scale_free_climate_justice_youth status=0 elapsedMs=1742134 runDir=T2d_H_scale_free_climate_justice_youth_2026-09-19_03-57-55 usage=2326 calls, 1044087 prompt / 136160 completion tokens ~$0.2383 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:26:57.292Z
+
+START T2d_H_scale_free_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2d_H_scale_free_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:27:06.632Z
+
+END T2d_H_small_world_climate_justice_youth status=0 elapsedMs=1743154 runDir=T2d_H_small_world_climate_justice_youth_2026-09-19_03-58-03 usage=2375 calls, 1077863 prompt / 138578 completion tokens ~$0.2448 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:27:06.632Z
+
+START T2d_H_small_world_climate_scientist config=thesisExperiment/configs/phase2/T2d_H_small_world_climate_scientist.json
+
+---
+
+## 2026-09-19T04:28:01.298Z
+
+END T2d_H_hierarchical_science_journalist status=0 elapsedMs=467167 runDir=T2d_H_hierarchical_science_journalist_2026-09-19_04-20-14 usage=664 calls, 302794 prompt / 40680 completion tokens ~$0.0698 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:28:01.298Z
+
+START T2d_H_polarized_climate_justice_youth config=thesisExperiment/configs/phase2/T2d_H_polarized_climate_justice_youth.json
+
+---
+
+## 2026-09-19T04:28:02.335Z
+
+END T2c_H_hierarchical_conspiracy_depopulation status=0 elapsedMs=608710 runDir=T2c_H_hierarchical_conspiracy_depopulation_2026-09-19_04-17-53 usage=504 calls, 231265 prompt / 45314 completion tokens ~$0.0619 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:28:02.335Z
+
+START T2c_H_hierarchical_mitigation_first_policy config=thesisExperiment/configs/phase2/T2c_H_hierarchical_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:28:19.877Z
+
+END T2c_H_hierarchical_conspiracy_believer status=0 elapsedMs=626258 runDir=T2c_H_hierarchical_conspiracy_believer_2026-09-19_04-17-53 usage=553 calls, 259161 prompt / 44782 completion tokens ~$0.0657 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:28:19.878Z
+
+START T2c_H_hierarchical_environmental_concern config=thesisExperiment/configs/phase2/T2c_H_hierarchical_environmental_concern.json
+
+---
+
+## 2026-09-19T04:28:26.178Z
+
+CONTINUE_MASTER progress complete=196/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:28:33.041Z
+
+END T2d_H_hierarchical_ozone_stratosphere_specialist status=0 elapsedMs=660276 runDir=T2d_H_hierarchical_ozone_stratosphere_specialist_2026-09-19_04-17-32 usage=850 calls, 386767 prompt / 52775 completion tokens ~$0.0897 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:28:33.041Z
+
+START T2d_H_polarized_climate_scientist config=thesisExperiment/configs/phase2/T2d_H_polarized_climate_scientist.json
+
+---
+
+## 2026-09-19T04:28:36.190Z
+
+END T2c_He_polarized_mix_00 status=0 elapsedMs=653653 runDir=T2c_He_polarized_mix_00_2026-09-19_04-17-42 usage=529 calls, 249346 prompt / 48128 completion tokens ~$0.0663 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:28:36.190Z
+
+START T2c_He_polarized_mix_04 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_04.json
+
+---
+
+## 2026-09-19T04:30:03.086Z
+
+END T2c_H_small_world_ozone_stratosphere_specialist status=0 elapsedMs=1374039 runDir=T2c_H_small_world_ozone_stratosphere_specialist_2026-09-19_04-07-09 usage=978 calls, 436855 prompt / 101365 completion tokens ~$0.1263 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:04.244Z
+
+END T2c_He_echo_chamber_mix_00 status=0 elapsedMs=997109 runDir=T2c_He_echo_chamber_mix_00_2026-09-19_04-13-27 usage=771 calls, 346187 prompt / 74547 completion tokens ~$0.0967 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:04.244Z
+
+START T2c_He_echo_chamber_mix_04 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_04.json
+
+---
+
+## 2026-09-19T04:30:09.755Z
+
+END T2d_He_echo_chamber_mix_02 status=0 elapsedMs=1002606 runDir=T2d_He_echo_chamber_mix_02_2026-09-19_04-13-27 usage=1107 calls, 498970 prompt / 84416 completion tokens ~$0.1255 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:09.755Z
+
+START T2d_He_echo_chamber_mix_04 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_04.json
+
+---
+
+## 2026-09-19T04:30:10.568Z
+
+END T2d_He_polarized_mix_00 status=0 elapsedMs=748043 runDir=T2d_He_polarized_mix_00_2026-09-19_04-17-42 usage=793 calls, 353196 prompt / 61194 completion tokens ~$0.0897 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:10.568Z
+
+START T2d_He_polarized_mix_04 config=thesisExperiment/configs/phase2/T2d_He_polarized_mix_04.json
+
+---
+
+## 2026-09-19T04:30:13.163Z
+
+END T2d_He_echo_chamber_mix_01 status=0 elapsedMs=1006024 runDir=T2d_He_echo_chamber_mix_01_2026-09-19_04-13-27 usage=1067 calls, 484406 prompt / 84618 completion tokens ~$0.1234 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:13.163Z
+
+START T2d_He_echo_chamber_mix_05 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_05.json
+
+---
+
+## 2026-09-19T04:30:13.546Z
+
+END T2c_He_echo_chamber_mix_01 status=0 elapsedMs=1006410 runDir=T2c_He_echo_chamber_mix_01_2026-09-19_04-13-27 usage=726 calls, 319989 prompt / 76508 completion tokens ~$0.0939 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:13.547Z
+
+START T2c_He_echo_chamber_mix_05 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_05.json
+
+---
+
+## 2026-09-19T04:30:15.499Z
+
+END T2c_He_polarized_mix_05 status=0 elapsedMs=713736 runDir=T2c_He_polarized_mix_05_2026-09-19_04-18-21 usage=493 calls, 214621 prompt / 56771 completion tokens ~$0.0663 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:15.539Z
+
+SKIP complete T2c_He_random_er_mix_00 (T2c_He_random_er_mix_00_2026-09-19_02-54-09)
+
+---
+
+## 2026-09-19T04:30:15.577Z
+
+SKIP complete T2c_He_random_er_mix_01 (T2c_He_random_er_mix_01_2026-09-19_02-54-39)
+
+---
+
+## 2026-09-19T04:30:15.614Z
+
+SKIP complete T2c_He_random_er_mix_02 (T2c_He_random_er_mix_02_2026-09-19_02-54-46)
+
+---
+
+## 2026-09-19T04:30:15.649Z
+
+SKIP complete T2c_He_random_er_mix_03 (T2c_He_random_er_mix_03_2026-09-19_02-55-13)
+
+---
+
+## 2026-09-19T04:30:15.683Z
+
+SKIP complete T2c_He_random_er_mix_04 (T2c_He_random_er_mix_04_2026-09-19_03-11-03)
+
+---
+
+## 2026-09-19T04:30:15.716Z
+
+SKIP complete T2c_He_random_er_mix_05 (T2c_He_random_er_mix_05_2026-09-19_03-14-24)
+
+---
+
+## 2026-09-19T04:30:15.748Z
+
+SKIP complete T2c_He_ring_mix_00 (T2c_He_ring_mix_00_2026-09-19_02-51-24)
+
+---
+
+## 2026-09-19T04:30:15.779Z
+
+SKIP complete T2c_He_ring_mix_01 (T2c_He_ring_mix_01_2026-09-19_02-51-34)
+
+---
+
+## 2026-09-19T04:30:15.808Z
+
+SKIP complete T2c_He_ring_mix_02 (T2c_He_ring_mix_02_2026-09-19_02-52-45)
+
+---
+
+## 2026-09-19T04:30:15.836Z
+
+SKIP complete T2c_He_ring_mix_03 (T2c_He_ring_mix_03_2026-09-19_02-52-49)
+
+---
+
+## 2026-09-19T04:30:15.863Z
+
+SKIP complete T2c_He_ring_mix_04 (T2c_He_ring_mix_04_2026-09-19_02-53-12)
+
+---
+
+## 2026-09-19T04:30:15.889Z
+
+SKIP complete T2c_He_ring_mix_05 (T2c_He_ring_mix_05_2026-09-19_02-53-31)
+
+---
+
+## 2026-09-19T04:30:15.914Z
+
+SKIP complete T2c_He_scale_free_mix_00 (T2c_He_scale_free_mix_00_2026-09-19_03-47-49)
+
+---
+
+## 2026-09-19T04:30:15.938Z
+
+SKIP complete T2c_He_scale_free_mix_01 (T2c_He_scale_free_mix_01_2026-09-19_03-50-20)
+
+---
+
+## 2026-09-19T04:30:15.960Z
+
+SKIP complete T2c_He_scale_free_mix_02 (T2c_He_scale_free_mix_02_2026-09-19_03-35-37)
+
+---
+
+## 2026-09-19T04:30:15.981Z
+
+SKIP complete T2c_He_scale_free_mix_03 (T2c_He_scale_free_mix_03_2026-09-19_03-35-37)
+
+---
+
+## 2026-09-19T04:30:16.001Z
+
+SKIP complete T2c_He_scale_free_mix_04 (T2c_He_scale_free_mix_04_2026-09-19_04-02-50)
+
+---
+
+## 2026-09-19T04:30:16.013Z
+
+DEFER in-flight T2c_He_scale_free_mix_05
+
+---
+
+## 2026-09-19T04:30:16.071Z
+
+END T2c_He_polarized_mix_04 status=0 elapsedMs=99879 runDir=T2c_He_polarized_mix_04_2026-09-19_04-28-36 usage=47 calls, 20762 prompt / 7170 completion tokens ~$0.0074 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:16.072Z
+
+SKIP complete T2c_He_polarized_mix_05
+
+---
+
+## 2026-09-19T04:30:17.249Z
+
+END T2d_H_small_world_environmental_concern status=0 elapsedMs=1643664 runDir=T2d_H_small_world_environmental_concern_2026-09-19_04-02-53 usage=1749 calls, 802301 prompt / 131859 completion tokens ~$0.1995 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:17.249Z
+
+START T2d_H_small_world_science_journalist config=thesisExperiment/configs/phase2/T2d_H_small_world_science_journalist.json
+
+---
+
+## 2026-09-19T04:30:19.317Z
+
+END T2d_He_polarized_mix_01 status=0 elapsedMs=756782 runDir=T2d_He_polarized_mix_01_2026-09-19_04-17-42 usage=689 calls, 296818 prompt / 65444 completion tokens ~$0.0838 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:19.318Z
+
+START T2d_He_polarized_mix_05 config=thesisExperiment/configs/phase2/T2d_He_polarized_mix_05.json
+
+---
+
+## 2026-09-19T04:30:19.546Z
+
+END T2c_He_polarized_mix_04 status=0 elapsedMs=720555 runDir=T2c_He_polarized_mix_04_2026-09-19_04-18-19 usage=509 calls, 240724 prompt / 55062 completion tokens ~$0.0691 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:19.565Z
+
+SKIP complete T2c_He_small_world_mix_00 (T2c_He_small_world_mix_00_2026-09-19_03-18-01)
+
+---
+
+## 2026-09-19T04:30:19.582Z
+
+SKIP complete T2c_He_small_world_mix_01 (T2c_He_small_world_mix_01_2026-09-19_03-21-24)
+
+---
+
+## 2026-09-19T04:30:19.598Z
+
+SKIP complete T2c_He_small_world_mix_02 (T2c_He_small_world_mix_02_2026-09-19_03-22-26)
+
+---
+
+## 2026-09-19T04:30:19.612Z
+
+SKIP complete T2c_He_small_world_mix_03 (T2c_He_small_world_mix_03_2026-09-19_03-23-28)
+
+---
+
+## 2026-09-19T04:30:19.625Z
+
+SKIP complete T2c_He_small_world_mix_04 (T2c_He_small_world_mix_04_2026-09-19_03-37-44)
+
+---
+
+## 2026-09-19T04:30:19.637Z
+
+SKIP complete T2c_He_small_world_mix_05 (T2c_He_small_world_mix_05_2026-09-19_03-41-18)
+
+---
+
+## 2026-09-19T04:30:19.647Z
+
+SKIP complete T2c_He_echo_chamber_mix_00 (T2c_He_echo_chamber_mix_00_2026-09-19_04-13-27)
+
+---
+
+## 2026-09-19T04:30:19.658Z
+
+SKIP complete T2c_He_echo_chamber_mix_01 (T2c_He_echo_chamber_mix_01_2026-09-19_04-13-27)
+
+---
+
+## 2026-09-19T04:30:19.664Z
+
+DEFER in-flight T2c_He_echo_chamber_mix_02
+
+---
+
+## 2026-09-19T04:30:26.870Z
+
+END T2c_He_scale_free_mix_05 status=0 elapsedMs=1468285 runDir=T2c_He_scale_free_mix_05_2026-09-19_04-05-58 usage=1123 calls, 512458 prompt / 112831 completion tokens ~$0.1446 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:26.870Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:30:26.890Z
+
+MASTER slice T2c_He exit=1
+
+---
+
+## 2026-09-19T04:30:28.060Z
+
+END T2d_He_echo_chamber_mix_03 status=0 elapsedMs=1020908 runDir=T2d_He_echo_chamber_mix_03_2026-09-19_04-13-27 usage=1054 calls, 474893 prompt / 85109 completion tokens ~$0.1223 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:28.336Z
+
+END T2c_He_polarized_mix_02 status=0 elapsedMs=765776 runDir=T2c_He_polarized_mix_02_2026-09-19_04-17-42 usage=455 calls, 189568 prompt / 61822 completion tokens ~$0.0655 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:31.025Z
+
+DEFER in-flight T2c_He_echo_chamber_mix_03
+
+---
+
+## 2026-09-19T04:30:33.038Z
+
+END T2d_He_echo_chamber_mix_00 status=0 elapsedMs=1025905 runDir=T2d_He_echo_chamber_mix_00_2026-09-19_04-13-27 usage=982 calls, 433554 prompt / 87290 completion tokens ~$0.1174 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:34.708Z
+
+SKIP complete T2c_He_polarized_mix_00 (T2c_He_polarized_mix_00_2026-09-19_04-17-42)
+
+---
+
+## 2026-09-19T04:30:34.722Z
+
+DEFER in-flight T2c_He_polarized_mix_01
+
+---
+
+## 2026-09-19T04:30:38.813Z
+
+END T2c_H_echo_chamber_conspiracy_haarp_weather status=0 elapsedMs=1031672 runDir=T2c_H_echo_chamber_conspiracy_haarp_weather_2026-09-19_04-13-27 usage=673 calls, 303753 prompt / 85101 completion tokens ~$0.0966 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:38.813Z
+
+START T2c_H_echo_chamber_climate_action_advocate config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_climate_action_advocate.json
+
+---
+
+## 2026-09-19T04:30:38.872Z
+
+END T2c_He_polarized_mix_03 status=0 elapsedMs=776306 runDir=T2c_He_polarized_mix_03_2026-09-19_04-17-42 usage=486 calls, 209144 prompt / 62099 completion tokens ~$0.0686 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:42.089Z
+
+END T2d_H_small_world_ozone_stratosphere_specialist status=0 elapsedMs=1273691 runDir=T2d_H_small_world_ozone_stratosphere_specialist_2026-09-19_04-09-28 usage=1102 calls, 466800 prompt / 104760 completion tokens ~$0.1329 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:42.319Z
+
+END T2d_H_polarized_conspiracy_depopulation status=0 elapsedMs=779819 runDir=T2d_H_polarized_conspiracy_depopulation_2026-09-19_04-17-42 usage=582 calls, 241933 prompt / 67644 completion tokens ~$0.0769 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:42.319Z
+
+START T2d_H_polarized_climate_action_advocate config=thesisExperiment/configs/phase2/T2d_H_polarized_climate_action_advocate.json
+
+---
+
+## 2026-09-19T04:30:42.455Z
+
+END T2c_H_polarized_conspiracy_climate_piggyback status=0 elapsedMs=779982 runDir=T2c_H_polarized_conspiracy_climate_piggyback_2026-09-19_04-17-42 usage=402 calls, 167902 prompt / 66499 completion tokens ~$0.0651 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:42.456Z
+
+START T2c_H_polarized_climate_action_advocate config=thesisExperiment/configs/phase2/T2c_H_polarized_climate_action_advocate.json
+
+---
+
+## 2026-09-19T04:30:44.269Z
+
+END T2d_He_polarized_mix_03 status=0 elapsedMs=781721 runDir=T2d_He_polarized_mix_03_2026-09-19_04-17-42 usage=515 calls, 219694 prompt / 67928 completion tokens ~$0.0737 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:46.035Z
+
+SKIP complete T2c_He_polarized_mix_02 (T2c_He_polarized_mix_02_2026-09-19_04-17-42)
+
+---
+
+## 2026-09-19T04:30:46.042Z
+
+SKIP complete T2c_He_polarized_mix_03 (T2c_He_polarized_mix_03_2026-09-19_04-17-42)
+
+---
+
+## 2026-09-19T04:30:46.048Z
+
+SKIP complete T2c_He_scale_free_mix_05 (T2c_He_scale_free_mix_05_2026-09-19_04-05-58)
+
+---
+
+## 2026-09-19T04:30:46.052Z
+
+DEFER in-flight T2c_He_echo_chamber_mix_02
+
+---
+
+## 2026-09-19T04:30:46.798Z
+
+END T2c_H_small_world_environmental_concern status=0 elapsedMs=678266 runDir=T2c_H_small_world_environmental_concern_2026-09-19_04-19-28 usage=299 calls, 111849 prompt / 56606 completion tokens ~$0.0507 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:46.798Z
+
+START T2c_H_small_world_biodiversity_food_security config=thesisExperiment/configs/phase2/T2c_H_small_world_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:30:49.112Z
+
+END T2c_H_polarized_conspiracy_believer status=0 elapsedMs=786648 runDir=T2c_H_polarized_conspiracy_believer_2026-09-19_04-17-42 usage=460 calls, 209107 prompt / 64620 completion tokens ~$0.0701 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:49.112Z
+
+START T2c_H_polarized_climate_justice_youth config=thesisExperiment/configs/phase2/T2c_H_polarized_climate_justice_youth.json
+
+---
+
+## 2026-09-19T04:30:49.725Z
+
+END T2c_He_polarized_mix_01 status=0 elapsedMs=787174 runDir=T2c_He_polarized_mix_01_2026-09-19_04-17-42 usage=428 calls, 168177 prompt / 65814 completion tokens ~$0.0647 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:49.726Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:30:49.732Z
+
+DEFER in-flight T2c_He_echo_chamber_mix_03
+
+---
+
+## 2026-09-19T04:30:50.057Z
+
+END T2d_He_echo_chamber_mix_00 status=0 elapsedMs=793350 runDir=T2d_He_echo_chamber_mix_00_2026-09-19_04-17-36 usage=482 calls, 196755 prompt / 69750 completion tokens ~$0.0714 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:50.058Z
+
+SKIP complete T2d_He_echo_chamber_mix_02
+
+---
+
+## 2026-09-19T04:30:50.059Z
+
+SKIP complete T2d_He_echo_chamber_mix_03
+
+---
+
+## 2026-09-19T04:30:50.060Z
+
+START T2d_He_echo_chamber_mix_04 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_04.json
+
+---
+
+## 2026-09-19T04:30:50.925Z
+
+END T2c_H_small_world_climate_justice_youth status=0 elapsedMs=1411259 runDir=T2c_H_small_world_climate_justice_youth_2026-09-19_04-07-19 usage=948 calls, 394584 prompt / 112776 completion tokens ~$0.1269 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:50.925Z
+
+START T2c_H_small_world_climate_scientist config=thesisExperiment/configs/phase2/T2c_H_small_world_climate_scientist.json
+
+---
+
+## 2026-09-19T04:30:53.539Z
+
+END T2c_He_echo_chamber_mix_03 status=0 elapsedMs=1046390 runDir=T2c_He_echo_chamber_mix_03_2026-09-19_04-13-27 usage=626 calls, 276041 prompt / 84667 completion tokens ~$0.0922 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:55.047Z
+
+END T2d_He_scale_free_mix_04 status=0 elapsedMs=1307861 runDir=T2d_He_scale_free_mix_04_2026-09-19_04-09-07 usage=1110 calls, 497908 prompt / 115655 completion tokens ~$0.1441 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:55.047Z
+
+START T2d_He_echo_chamber_mix_05 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_05.json
+
+---
+
+## 2026-09-19T04:30:56.389Z
+
+CONTINUE_MASTER progress complete=217/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:30:57.431Z
+
+END T2c_He_echo_chamber_mix_05 status=0 elapsedMs=978297 runDir=T2c_He_echo_chamber_mix_05_2026-09-19_04-14-39 usage=515 calls, 203903 prompt / 83985 completion tokens ~$0.081 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:57.436Z
+
+SKIP complete T2c_He_polarized_mix_01 (T2c_He_polarized_mix_01_2026-09-19_04-17-42)
+
+---
+
+## 2026-09-19T04:30:57.440Z
+
+DEFER in-flight T2c_He_echo_chamber_mix_02
+
+---
+
+## 2026-09-19T04:30:57.714Z
+
+END T2c_He_echo_chamber_mix_02 status=0 elapsedMs=1050568 runDir=T2c_He_echo_chamber_mix_02_2026-09-19_04-13-27 usage=597 calls, 236393 prompt / 87095 completion tokens ~$0.0877 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:58.811Z
+
+END T2d_He_echo_chamber_mix_01 status=0 elapsedMs=626701 runDir=T2d_He_echo_chamber_mix_01_2026-09-19_04-20-32 usage=351 calls, 140493 prompt / 55166 completion tokens ~$0.0542 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:58.813Z
+
+SKIP complete T2d_He_polarized_mix_00
+
+---
+
+## 2026-09-19T04:30:58.814Z
+
+SKIP complete T2d_He_polarized_mix_01
+
+---
+
+## 2026-09-19T04:30:58.814Z
+
+START T2d_He_polarized_mix_02 config=thesisExperiment/configs/phase2/T2d_He_polarized_mix_02.json
+
+---
+
+## 2026-09-19T04:30:59.499Z
+
+END T2d_H_polarized_conspiracy_haarp_weather status=0 elapsedMs=797003 runDir=T2d_H_polarized_conspiracy_haarp_weather_2026-09-19_04-17-42 usage=494 calls, 207295 prompt / 71472 completion tokens ~$0.074 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:30:59.500Z
+
+START T2d_H_polarized_climate_justice_youth config=thesisExperiment/configs/phase2/T2d_H_polarized_climate_justice_youth.json
+
+---
+
+## 2026-09-19T04:31:01.057Z
+
+SKIP complete T2c_He_echo_chamber_mix_03 (T2c_He_echo_chamber_mix_03_2026-09-19_04-13-27)
+
+---
+
+## 2026-09-19T04:31:01.060Z
+
+SKIP complete T2c_He_echo_chamber_mix_02 (T2c_He_echo_chamber_mix_02_2026-09-19_04-13-27)
+
+---
+
+## 2026-09-19T04:31:07.418Z
+
+END T2c_H_hierarchical_climate_action_advocate status=0 elapsedMs=305600 runDir=T2c_H_hierarchical_climate_action_advocate_2026-09-19_04-26-01 usage=143 calls, 55703 prompt / 25283 completion tokens ~$0.0235 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:07.419Z
+
+START T2c_H_hierarchical_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2c_H_hierarchical_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:31:07.565Z
+
+END T2d_H_polarized_conspiracy_climate_piggyback status=0 elapsedMs=805052 runDir=T2d_H_polarized_conspiracy_climate_piggyback_2026-09-19_04-17-42 usage=433 calls, 176246 prompt / 71944 completion tokens ~$0.0696 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:07.565Z
+
+START T2d_H_polarized_mitigation_first_policy config=thesisExperiment/configs/phase2/T2d_H_polarized_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:31:09.767Z
+
+END T2d_He_scale_free_mix_05 status=0 elapsedMs=883727 runDir=T2d_He_scale_free_mix_05_2026-09-19_04-16-26 usage=526 calls, 215914 prompt / 78990 completion tokens ~$0.0798 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:09.771Z
+
+SKIP complete T2d_He_polarized_mix_03
+
+---
+
+## 2026-09-19T04:31:09.771Z
+
+START T2d_He_polarized_mix_04 config=thesisExperiment/configs/phase2/T2d_He_polarized_mix_04.json
+
+---
+
+## 2026-09-19T04:31:10.469Z
+
+END T2c_He_echo_chamber_mix_04 status=0 elapsedMs=991367 runDir=T2c_He_echo_chamber_mix_04_2026-09-19_04-14-39 usage=474 calls, 200483 prompt / 85363 completion tokens ~$0.0813 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:12.447Z
+
+T2c_He finished completed=48 failed=0 skipped=38 pending=0 llmCalls=2312 estUsd=0.3376
+
+---
+
+## 2026-09-19T04:31:12.520Z
+
+END T2c_H_hierarchical_climate_justice_youth status=0 elapsedMs=261477 runDir=T2c_H_hierarchical_climate_justice_youth_2026-09-19_04-26-51 usage=119 calls, 46081 prompt / 19935 completion tokens ~$0.0189 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:12.520Z
+
+START T2c_H_hierarchical_biodiversity_food_security config=thesisExperiment/configs/phase2/T2c_H_hierarchical_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:31:17.536Z
+
+END T2d_H_scale_free_environmental_concern status=0 elapsedMs=328265 runDir=T2d_H_scale_free_environmental_concern_2026-09-19_04-25-49 usage=167 calls, 65430 prompt / 24005 completion tokens ~$0.0242 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:17.536Z
+
+START T2d_H_scale_free_biodiversity_food_security config=thesisExperiment/configs/phase2/T2d_H_scale_free_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:31:18.053Z
+
+END T2d_H_small_world_environmental_concern status=0 elapsedMs=696466 runDir=T2d_H_small_world_environmental_concern_2026-09-19_04-19-41 usage=333 calls, 127693 prompt / 58722 completion tokens ~$0.0544 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:18.053Z
+
+START T2d_H_small_world_science_journalist config=thesisExperiment/configs/phase2/T2d_H_small_world_science_journalist.json
+
+---
+
+## 2026-09-19T04:31:18.164Z
+
+T2c_He finished completed=48 failed=0 skipped=0 pending=0 llmCalls=26456 estUsd=3.3717
+
+---
+
+## 2026-09-19T04:31:18.594Z
+
+END T2c_H_hierarchical_mitigation_first_policy status=0 elapsedMs=196256 runDir=T2c_H_hierarchical_mitigation_first_policy_2026-09-19_04-28-02 usage=72 calls, 28016 prompt / 12769 completion tokens ~$0.0119 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:18.594Z
+
+START T2c_H_hierarchical_climate_scientist config=thesisExperiment/configs/phase2/T2c_H_hierarchical_climate_scientist.json
+
+---
+
+## 2026-09-19T04:31:18.867Z
+
+END T2c_H_echo_chamber_conspiracy_believer status=0 elapsedMs=1071737 runDir=T2c_H_echo_chamber_conspiracy_believer_2026-09-19_04-13-27 usage=564 calls, 257648 prompt / 89521 completion tokens ~$0.0924 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:18.867Z
+
+START T2c_H_echo_chamber_climate_justice_youth config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_climate_justice_youth.json
+
+---
+
+## 2026-09-19T04:31:21.814Z
+
+END T2d_H_polarized_conspiracy_believer status=0 elapsedMs=819331 runDir=T2d_H_polarized_conspiracy_believer_2026-09-19_04-17-42 usage=457 calls, 205538 prompt / 70619 completion tokens ~$0.0732 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:21.815Z
+
+START T2d_H_polarized_environmental_concern config=thesisExperiment/configs/phase2/T2d_H_polarized_environmental_concern.json
+
+---
+
+## 2026-09-19T04:31:24.721Z
+
+END T2c_H_echo_chamber_conspiracy_climate_piggyback status=0 elapsedMs=1077573 runDir=T2c_H_echo_chamber_conspiracy_climate_piggyback_2026-09-19_04-13-27 usage=480 calls, 193787 prompt / 95890 completion tokens ~$0.0866 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:24.721Z
+
+START T2c_H_echo_chamber_mitigation_first_policy config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:31:27.100Z
+
+END T2c_H_hierarchical_environmental_concern status=0 elapsedMs=187221 runDir=T2c_H_hierarchical_environmental_concern_2026-09-19_04-28-19 usage=67 calls, 27664 prompt / 11474 completion tokens ~$0.011 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:27.100Z
+
+START T2c_H_hierarchical_science_journalist config=thesisExperiment/configs/phase2/T2c_H_hierarchical_science_journalist.json
+
+---
+
+## 2026-09-19T04:31:34.118Z
+
+END T2c_H_small_world_climate_scientist status=0 elapsedMs=609612 runDir=T2c_H_small_world_climate_scientist_2026-09-19_04-21-24 usage=263 calls, 103171 prompt / 52984 completion tokens ~$0.0473 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:34.985Z
+
+END T2c_H_polarized_conspiracy_haarp_weather status=0 elapsedMs=832519 runDir=T2c_H_polarized_conspiracy_haarp_weather_2026-09-19_04-17-42 usage=411 calls, 162804 prompt / 72215 completion tokens ~$0.0677 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:34.985Z
+
+START T2c_H_polarized_mitigation_first_policy config=thesisExperiment/configs/phase2/T2c_H_polarized_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:31:35.639Z
+
+END T2d_He_polarized_mix_02 status=0 elapsedMs=833098 runDir=T2d_He_polarized_mix_02_2026-09-19_04-17-42 usage=434 calls, 161834 prompt / 71462 completion tokens ~$0.0672 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:37.120Z
+
+END T2c_H_echo_chamber_conspiracy_depopulation status=0 elapsedMs=1089977 runDir=T2c_H_echo_chamber_conspiracy_depopulation_2026-09-19_04-13-27 usage=515 calls, 200535 prompt / 93946 completion tokens ~$0.0864 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:37.120Z
+
+START T2c_H_echo_chamber_environmental_concern config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_environmental_concern.json
+
+---
+
+## 2026-09-19T04:31:40.205Z
+
+END T2d_H_small_world_biodiversity_food_security status=0 elapsedMs=479889 runDir=T2d_H_small_world_biodiversity_food_security_2026-09-19_04-23-40 usage=251 calls, 93846 prompt / 38459 completion tokens ~$0.0372 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:40.205Z
+
+SKIP complete T2d_H_scale_free_conspiracy_believer
+
+---
+
+## 2026-09-19T04:31:40.206Z
+
+SKIP complete T2d_H_scale_free_conspiracy_haarp_weather
+
+---
+
+## 2026-09-19T04:31:40.210Z
+
+SKIP complete T2d_H_scale_free_conspiracy_depopulation
+
+---
+
+## 2026-09-19T04:31:40.211Z
+
+SKIP complete T2d_H_scale_free_conspiracy_climate_piggyback
+
+---
+
+## 2026-09-19T04:31:40.216Z
+
+SKIP complete T2d_H_scale_free_climate_action_advocate
+
+---
+
+## 2026-09-19T04:31:40.217Z
+
+SKIP complete T2d_H_scale_free_climate_justice_youth
+
+---
+
+## 2026-09-19T04:31:40.217Z
+
+START T2d_H_scale_free_mitigation_first_policy config=thesisExperiment/configs/phase2/T2d_H_scale_free_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:31:42.227Z
+
+END Dnet_d_He_mixed status=0 elapsedMs=1293191 runDir=Dnet_d_He_mixed_2026-09-19_04-10-09 usage=722 calls, 315726 prompt / 115515 completion tokens ~$0.1167 killedFor=none done=true failed=true
+
+---
+
+## 2026-09-19T04:31:45.139Z
+
+END T2c_H_polarized_conspiracy_depopulation status=0 elapsedMs=842670 runDir=T2c_H_polarized_conspiracy_depopulation_2026-09-19_04-17-42 usage=387 calls, 149644 prompt / 69950 completion tokens ~$0.0644 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:45.139Z
+
+START T2c_H_polarized_environmental_concern config=thesisExperiment/configs/phase2/T2c_H_polarized_environmental_concern.json
+
+---
+
+## 2026-09-19T04:31:45.276Z
+
+END T2d_H_polarized_biodiversity_food_security status=0 elapsedMs=392153 runDir=T2d_H_polarized_biodiversity_food_security_2026-09-19_04-25-13 usage=221 calls, 79245 prompt / 30239 completion tokens ~$0.03 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:31:45.344Z
+
+SKIP complete T2d_H_polarized_conspiracy_believer (T2d_H_polarized_conspiracy_believer_2026-09-19_04-17-42)
+
+---
+
+## 2026-09-19T04:31:45.412Z
+
+SKIP complete T2d_H_polarized_conspiracy_climate_piggyback (T2d_H_polarized_conspiracy_climate_piggyback_2026-09-19_04-17-42)
+
+---
+
+## 2026-09-19T04:31:45.479Z
+
+SKIP complete T2d_H_polarized_conspiracy_depopulation (T2d_H_polarized_conspiracy_depopulation_2026-09-19_04-17-42)
+
+---
+
+## 2026-09-19T04:31:45.544Z
+
+SKIP complete T2d_H_polarized_conspiracy_haarp_weather (T2d_H_polarized_conspiracy_haarp_weather_2026-09-19_04-17-42)
+
+---
+
+## 2026-09-19T04:31:45.544Z
+
+START T2d_H_polarized_environmental_concern config=thesisExperiment/configs/phase2/T2d_H_polarized_environmental_concern.json
+
+---
+
+## 2026-09-19T04:31:50.836Z
+
+END Dnet_c_He_mixed status=0 elapsedMs=1440190 runDir=Dnet_c_He_mixed_2026-09-19_04-07-50 usage=719 calls, 325981 prompt / 124225 completion tokens ~$0.1234 killedFor=none done=true failed=false
+
+---
+
+## 2026-09-19T04:31:50.836Z
+
+CAMPAIGN_DNET finished n=4
+
+---
+
+## 2026-09-19T04:32:03.839Z
+
+END T2c_H_small_world_ozone_stratosphere_specialist status=0 elapsedMs=685208 runDir=T2c_H_small_world_ozone_stratosphere_specialist_2026-09-19_04-20-38 usage=284 calls, 103461 prompt / 52336 completion tokens ~$0.0469 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:03.840Z
+
+START T2c_H_small_world_science_journalist config=thesisExperiment/configs/phase2/T2c_H_small_world_science_journalist.json
+
+---
+
+## 2026-09-19T04:32:03.934Z
+
+END T2d_He_polarized_mix_02 status=0 elapsedMs=65120 runDir=T2d_He_polarized_mix_02_2026-09-19_04-30-58 usage=62 calls, 32382 prompt / 2618 completion tokens ~$0.0064 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:03.935Z
+
+START T2d_He_polarized_mix_05 config=thesisExperiment/configs/phase2/T2d_He_polarized_mix_05.json
+
+---
+
+## 2026-09-19T04:32:04.836Z
+
+END T2d_H_polarized_climate_action_advocate status=0 elapsedMs=387860 runDir=T2d_H_polarized_climate_action_advocate_2026-09-19_04-25-36 usage=239 calls, 100377 prompt / 30822 completion tokens ~$0.0335 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:04.836Z
+
+START T2d_H_polarized_mitigation_first_policy config=thesisExperiment/configs/phase2/T2d_H_polarized_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:32:13.770Z
+
+END T2d_He_polarized_mix_05 status=0 elapsedMs=114451 runDir=T2d_He_polarized_mix_05_2026-09-19_04-30-19 usage=95 calls, 49225 prompt / 4480 completion tokens ~$0.0101 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:14.111Z
+
+END T2c_H_small_world_biodiversity_food_security status=0 elapsedMs=938263 runDir=T2c_H_small_world_biodiversity_food_security_2026-09-19_04-16-35 usage=427 calls, 143697 prompt / 74099 completion tokens ~$0.066 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:15.311Z
+
+END T2d_He_echo_chamber_mix_04 status=0 elapsedMs=125555 runDir=T2d_He_echo_chamber_mix_04_2026-09-19_04-30-09 usage=91 calls, 47694 prompt / 4972 completion tokens ~$0.0101 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:22.587Z
+
+END T2d_H_polarized_climate_justice_youth status=0 elapsedMs=261189 runDir=T2d_H_polarized_climate_justice_youth_2026-09-19_04-28-01 usage=174 calls, 78708 prompt / 16834 completion tokens ~$0.0219 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:22.588Z
+
+START T2d_H_polarized_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2d_H_polarized_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:32:23.841Z
+
+END T2c_H_scale_free_ozone_stratosphere_specialist status=0 elapsedMs=649328 runDir=T2c_H_scale_free_ozone_stratosphere_specialist_2026-09-19_04-21-34 usage=287 calls, 102455 prompt / 49968 completion tokens ~$0.0453 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:23.842Z
+
+START T2c_H_scale_free_biodiversity_food_security config=thesisExperiment/configs/phase2/T2c_H_scale_free_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:32:23.995Z
+
+END T2c_H_scale_free_environmental_concern status=0 elapsedMs=657006 runDir=T2c_H_scale_free_environmental_concern_2026-09-19_04-21-27 usage=253 calls, 96314 prompt / 48472 completion tokens ~$0.0435 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:23.995Z
+
+START T2c_H_scale_free_climate_scientist config=thesisExperiment/configs/phase2/T2c_H_scale_free_climate_scientist.json
+
+---
+
+## 2026-09-19T04:32:26.280Z
+
+END T2d_H_small_world_climate_scientist status=0 elapsedMs=319647 runDir=T2d_H_small_world_climate_scientist_2026-09-19_04-27-06 usage=190 calls, 82737 prompt / 21979 completion tokens ~$0.0256 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:26.398Z
+
+END T2d_He_polarized_mix_04 status=0 elapsedMs=135830 runDir=T2d_He_polarized_mix_04_2026-09-19_04-30-10 usage=104 calls, 54018 prompt / 5039 completion tokens ~$0.0111 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:26.398Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:32:32.258Z
+
+END T2c_H_small_world_mitigation_first_policy status=0 elapsedMs=1001904 runDir=T2c_H_small_world_mitigation_first_policy_2026-09-19_04-15-50 usage=429 calls, 163171 prompt / 83263 completion tokens ~$0.0744 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:32.258Z
+
+SKIP complete T2c_H_scale_free_conspiracy_believer
+
+---
+
+## 2026-09-19T04:32:32.259Z
+
+SKIP complete T2c_H_scale_free_conspiracy_haarp_weather
+
+---
+
+## 2026-09-19T04:32:32.260Z
+
+SKIP complete T2c_H_scale_free_conspiracy_depopulation
+
+---
+
+## 2026-09-19T04:32:32.261Z
+
+SKIP complete T2c_H_scale_free_conspiracy_climate_piggyback
+
+---
+
+## 2026-09-19T04:32:32.262Z
+
+SKIP complete T2c_H_scale_free_climate_action_advocate
+
+---
+
+## 2026-09-19T04:32:32.262Z
+
+SKIP complete T2c_H_scale_free_climate_justice_youth
+
+---
+
+## 2026-09-19T04:32:32.263Z
+
+START T2c_H_scale_free_mitigation_first_policy config=thesisExperiment/configs/phase2/T2c_H_scale_free_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:32:32.423Z
+
+END T2c_H_echo_chamber_climate_action_advocate status=0 elapsedMs=113610 runDir=T2c_H_echo_chamber_climate_action_advocate_2026-09-19_04-30-38 usage=38 calls, 19240 prompt / 4168 completion tokens ~$0.0054 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:32.424Z
+
+START T2c_H_echo_chamber_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:32:36.659Z
+
+END T2d_H_polarized_climate_scientist status=0 elapsedMs=243516 runDir=T2d_H_polarized_climate_scientist_2026-09-19_04-28-33 usage=163 calls, 75673 prompt / 15052 completion tokens ~$0.0204 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:36.659Z
+
+START T2d_H_polarized_science_journalist config=thesisExperiment/configs/phase2/T2d_H_polarized_science_journalist.json
+
+---
+
+## 2026-09-19T04:32:40.426Z
+
+END T2d_H_scale_free_mitigation_first_policy status=0 elapsedMs=459960 runDir=T2d_H_scale_free_mitigation_first_policy_2026-09-19_04-25-00 usage=260 calls, 109190 prompt / 33857 completion tokens ~$0.0367 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:40.426Z
+
+START T2d_H_scale_free_climate_scientist config=thesisExperiment/configs/phase2/T2d_H_scale_free_climate_scientist.json
+
+---
+
+## 2026-09-19T04:32:40.666Z
+
+END T2c_H_small_world_biodiversity_food_security status=0 elapsedMs=113867 runDir=T2c_H_small_world_biodiversity_food_security_2026-09-19_04-30-46 usage=41 calls, 21481 prompt / 3278 completion tokens ~$0.0052 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:40.667Z
+
+SKIP complete T2c_H_scale_free_environmental_concern
+
+---
+
+## 2026-09-19T04:32:40.668Z
+
+SKIP complete T2c_H_scale_free_ozone_stratosphere_specialist
+
+---
+
+## 2026-09-19T04:32:40.668Z
+
+START T2c_H_scale_free_biodiversity_food_security config=thesisExperiment/configs/phase2/T2c_H_scale_free_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:32:43.003Z
+
+END T2c_H_hierarchical_ozone_stratosphere_specialist status=0 elapsedMs=95584 runDir=T2c_H_hierarchical_ozone_stratosphere_specialist_2026-09-19_04-31-07 usage=30 calls, 13563 prompt / 3780 completion tokens ~$0.0043 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:43.524Z
+
+END T2c_H_hierarchical_climate_scientist status=0 elapsedMs=84929 runDir=T2c_H_hierarchical_climate_scientist_2026-09-19_04-31-18 usage=30 calls, 13841 prompt / 4716 completion tokens ~$0.0049 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:44.265Z
+
+END T2d_H_scale_free_ozone_stratosphere_specialist status=0 elapsedMs=346972 runDir=T2d_H_scale_free_ozone_stratosphere_specialist_2026-09-19_04-26-57 usage=206 calls, 91650 prompt / 23585 completion tokens ~$0.0279 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:44.265Z
+
+START T2d_H_scale_free_science_journalist config=thesisExperiment/configs/phase2/T2d_H_scale_free_science_journalist.json
+
+---
+
+## 2026-09-19T04:32:44.554Z
+
+END T2d_H_polarized_environmental_concern status=0 elapsedMs=82739 runDir=T2d_H_polarized_environmental_concern_2026-09-19_04-31-21 usage=60 calls, 31712 prompt / 3935 completion tokens ~$0.0071 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:44.555Z
+
+START T2d_H_polarized_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2d_H_polarized_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:32:52.087Z
+
+END T2c_He_echo_chamber_mix_04 status=0 elapsedMs=167840 runDir=T2c_He_echo_chamber_mix_04_2026-09-19_04-30-04 usage=57 calls, 29616 prompt / 6748 completion tokens ~$0.0085 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:52.144Z
+
+END T2c_H_polarized_climate_action_advocate status=0 elapsedMs=129687 runDir=T2c_H_polarized_climate_action_advocate_2026-09-19_04-30-42 usage=37 calls, 18460 prompt / 3371 completion tokens ~$0.0048 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:52.144Z
+
+START T2c_H_polarized_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2c_H_polarized_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:32:52.378Z
+
+END T2d_H_small_world_ozone_stratosphere_specialist status=0 elapsedMs=678329 runDir=T2d_H_small_world_ozone_stratosphere_specialist_2026-09-19_04-21-34 usage=380 calls, 151590 prompt / 52711 completion tokens ~$0.0544 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:52.379Z
+
+SKIP complete T2d_H_scale_free_environmental_concern
+
+---
+
+## 2026-09-19T04:32:52.380Z
+
+SKIP complete T2d_H_scale_free_ozone_stratosphere_specialist
+
+---
+
+## 2026-09-19T04:32:52.381Z
+
+START T2d_H_scale_free_biodiversity_food_security config=thesisExperiment/configs/phase2/T2d_H_scale_free_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:32:53.473Z
+
+END T2c_H_small_world_science_journalist status=0 elapsedMs=606855 runDir=T2c_H_small_world_science_journalist_2026-09-19_04-22-46 usage=289 calls, 108222 prompt / 50172 completion tokens ~$0.0463 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:53.473Z
+
+PHASE_P2 THe n=0 concurrency=4 topology=small_world slice=T2c_H
+
+---
+
+## 2026-09-19T04:32:53.473Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:32:54.258Z
+
+END T2c_H_scale_free_mitigation_first_policy status=0 elapsedMs=800628 runDir=T2c_H_scale_free_mitigation_first_policy_2026-09-19_04-19-33 usage=337 calls, 129786 prompt / 62675 completion tokens ~$0.0571 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:54.258Z
+
+START T2c_H_scale_free_science_journalist config=thesisExperiment/configs/phase2/T2c_H_scale_free_science_journalist.json
+
+---
+
+## 2026-09-19T04:32:55.697Z
+
+END T2d_He_echo_chamber_mix_05 status=0 elapsedMs=120649 runDir=T2d_He_echo_chamber_mix_05_2026-09-19_04-30-55 usage=70 calls, 35222 prompt / 5466 completion tokens ~$0.0086 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:55.698Z
+
+SKIP complete T2d_He_hierarchical_mix_00
+
+---
+
+## 2026-09-19T04:32:55.699Z
+
+SKIP complete T2d_He_hierarchical_mix_01
+
+---
+
+## 2026-09-19T04:32:55.700Z
+
+SKIP complete T2d_He_hierarchical_mix_02
+
+---
+
+## 2026-09-19T04:32:55.701Z
+
+SKIP complete T2d_He_hierarchical_mix_03
+
+---
+
+## 2026-09-19T04:32:55.701Z
+
+SKIP complete T2d_He_hierarchical_mix_04
+
+---
+
+## 2026-09-19T04:32:55.703Z
+
+SKIP complete T2d_He_hierarchical_mix_05
+
+---
+
+## 2026-09-19T04:32:56.072Z
+
+END T2d_He_echo_chamber_mix_05 status=0 elapsedMs=162907 runDir=T2d_He_echo_chamber_mix_05_2026-09-19_04-30-13 usage=121 calls, 62648 prompt / 6170 completion tokens ~$0.0131 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:32:56.072Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:33:03.480Z
+
+END T2c_H_hierarchical_biodiversity_food_security status=0 elapsedMs=110960 runDir=T2c_H_hierarchical_biodiversity_food_security_2026-09-19_04-31-12 usage=45 calls, 20553 prompt / 4832 completion tokens ~$0.006 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:33:08.348Z
+
+END T2d_H_polarized_climate_action_advocate status=0 elapsedMs=146028 runDir=T2d_H_polarized_climate_action_advocate_2026-09-19_04-30-42 usage=119 calls, 59690 prompt / 6807 completion tokens ~$0.013 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:33:08.349Z
+
+SKIP complete T2d_H_polarized_biodiversity_food_security
+
+---
+
+## 2026-09-19T04:33:08.350Z
+
+SKIP complete T2d_H_polarized_climate_scientist
+
+---
+
+## 2026-09-19T04:33:08.350Z
+
+START T2d_H_polarized_science_journalist config=thesisExperiment/configs/phase2/T2d_H_polarized_science_journalist.json
+
+---
+
+## 2026-09-19T04:33:26.604Z
+
+CONTINUE_MASTER progress complete=256/288 dnet=4/4
+
+---
+
+## 2026-09-19T04:34:02.889Z
+
+END T2d_H_small_world_biodiversity_food_security status=0 elapsedMs=443434 runDir=T2d_H_small_world_biodiversity_food_security_2026-09-19_04-26-39 usage=408 calls, 181933 prompt / 29485 completion tokens ~$0.045 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:34:25.913Z
+
+END T2c_He_echo_chamber_mix_05 status=0 elapsedMs=252366 runDir=T2c_He_echo_chamber_mix_05_2026-09-19_04-30-13 usage=176 calls, 88718 prompt / 8956 completion tokens ~$0.0187 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:34:25.914Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:34:34.727Z
+
+END T2d_H_polarized_climate_justice_youth status=0 elapsedMs=215227 runDir=T2d_H_polarized_climate_justice_youth_2026-09-19_04-30-59 usage=342 calls, 171777 prompt / 10848 completion tokens ~$0.0323 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:34:43.643Z
+
+END T2d_He_echo_chamber_mix_04 status=0 elapsedMs=233583 runDir=T2d_He_echo_chamber_mix_04_2026-09-19_04-30-50 usage=374 calls, 191248 prompt / 11895 completion tokens ~$0.0358 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:34:58.870Z
+
+END T2d_H_small_world_climate_scientist status=0 elapsedMs=525863 runDir=T2d_H_small_world_climate_scientist_2026-09-19_04-26-13 usage=575 calls, 270008 prompt / 36995 completion tokens ~$0.0627 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:34:58.871Z
+
+START T2d_H_scale_free_climate_scientist config=thesisExperiment/configs/phase2/T2d_H_scale_free_climate_scientist.json
+
+---
+
+## 2026-09-19T04:35:13.799Z
+
+END T2c_H_hierarchical_science_journalist status=0 elapsedMs=226699 runDir=T2c_H_hierarchical_science_journalist_2026-09-19_04-31-27 usage=220 calls, 112346 prompt / 10259 completion tokens ~$0.023 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:35:13.799Z
+
+PHASE_P2 THe n=0 concurrency=4 topology=hierarchical slice=T2c_H
+
+---
+
+## 2026-09-19T04:35:13.800Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:35:19.267Z
+
+END T2d_He_polarized_mix_04 status=0 elapsedMs=249495 runDir=T2d_He_polarized_mix_04_2026-09-19_04-31-09 usage=446 calls, 224649 prompt / 12663 completion tokens ~$0.0413 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:35:56.792Z
+
+CONTINUE_MASTER progress complete=263/288 dnet=4/4
+
+---
+
+## 2026-09-19T04:36:59.791Z
+
+END T2c_H_polarized_climate_justice_youth status=0 elapsedMs=370679 runDir=T2c_H_polarized_climate_justice_youth_2026-09-19_04-30-49 usage=382 calls, 199186 prompt / 14745 completion tokens ~$0.0387 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:36:59.791Z
+
+START T2c_H_polarized_biodiversity_food_security config=thesisExperiment/configs/phase2/T2c_H_polarized_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:37:21.053Z
+
+T2c_He finished completed=48 failed=0 skipped=0 pending=0 llmCalls=25700 estUsd=3.2366
+
+---
+
+
+## 2026-09-19T04:38:03.577Z
+
+Phase 2 T2c_He CONTINUOUS slice finished (all 8 topologies)
+
+**Slice.** Heterogeneous persona×article, `miScoringMode: continuous`. Configs: 48 = 8 topologies × 6 mixes. Concurrency 4. Skip completed. Isolation `runs_phase2`.
+
+**Key loaded:** yes (length=164; value not logged). dotenv from `/workspace/.env`. `KEY_READY.md` present.
+
+**Probe.** `probe_T2c_He` usage>0 (first 2 calls; later re-probe 1 call).
+
+**Grid.** completed=48 failed=0 skipped=34 pending=0. LLM calls (slice+probe)=25700. Est. USD=$3.2366. Did not dry-run. Did not invent MI/MPR.
+
+**Retry.** 18 echo/hierarchical/polarized cells first crashed on unknown cluster persona ids; re-run after engine fallback; all 18 completed with real usage.
+
+**Isolation.** Did not write `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not git commit.
+
+**Status.** `thesisExperiment/runs_phase2/_status/T2c_He.md`.
+
+---
+
+## 2026-09-19T04:39:41.763Z
+
+END T2d_H_small_world_science_journalist status=0 elapsedMs=564511 runDir=T2d_H_small_world_science_journalist_2026-09-19_04-30-17 usage=1184 calls, 601401 prompt / 31865 completion tokens ~$0.1093 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:39:41.763Z
+
+PHASE_P2 THe n=0 concurrency=4 topology=small_world slice=T2d_H
+
+---
+
+## 2026-09-19T04:39:41.764Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:40:48.324Z
+
+END T2c_H_small_world_climate_scientist status=0 elapsedMs=597397 runDir=T2c_H_small_world_climate_scientist_2026-09-19_04-30-51 usage=700 calls, 374629 prompt / 24444 completion tokens ~$0.0709 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:40:48.325Z
+
+START T2c_H_scale_free_climate_scientist config=thesisExperiment/configs/phase2/T2c_H_scale_free_climate_scientist.json
+
+---
+
+## 2026-09-19T04:40:57.246Z
+
+CONTINUE_MASTER progress complete=261/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:41:35.612Z
+
+END T2d_H_polarized_mitigation_first_policy status=0 elapsedMs=628045 runDir=T2d_H_polarized_mitigation_first_policy_2026-09-19_04-31-07 usage=1466 calls, 775027 prompt / 36585 completion tokens ~$0.1382 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:42:29.439Z
+
+END T2d_H_small_world_science_journalist status=0 elapsedMs=671383 runDir=T2d_H_small_world_science_journalist_2026-09-19_04-31-18 usage=1537 calls, 818093 prompt / 41136 completion tokens ~$0.1474 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:42:29.439Z
+
+START T2d_H_scale_free_science_journalist config=thesisExperiment/configs/phase2/T2d_H_scale_free_science_journalist.json
+
+---
+
+## 2026-09-19T04:42:33.847Z
+
+END T2c_H_polarized_mitigation_first_policy status=0 elapsedMs=658860 runDir=T2c_H_polarized_mitigation_first_policy_2026-09-19_04-31-35 usage=727 calls, 380587 prompt / 34399 completion tokens ~$0.0777 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:42:33.847Z
+
+START T2c_H_polarized_climate_scientist config=thesisExperiment/configs/phase2/T2c_H_polarized_climate_scientist.json
+
+---
+
+## 2026-09-19T04:43:07.712Z
+
+END T2d_H_polarized_mitigation_first_policy status=0 elapsedMs=662775 runDir=T2d_H_polarized_mitigation_first_policy_2026-09-19_04-32-04 usage=1193 calls, 596987 prompt / 46993 completion tokens ~$0.1177 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:43:07.775Z
+
+SKIP complete T2d_H_random_er_biodiversity_food_security (T2d_H_random_er_biodiversity_food_security_2026-09-19_03-35-36)
+
+---
+
+## 2026-09-19T04:43:07.837Z
+
+SKIP complete T2d_H_random_er_climate_action_advocate (T2d_H_random_er_climate_action_advocate_2026-09-19_03-08-33)
+
+---
+
+## 2026-09-19T04:43:07.896Z
+
+SKIP complete T2d_H_random_er_climate_justice_youth (T2d_H_random_er_climate_justice_youth_2026-09-19_03-14-49)
+
+---
+
+## 2026-09-19T04:43:07.954Z
+
+SKIP complete T2d_H_random_er_climate_scientist (T2d_H_random_er_climate_scientist_2026-09-19_03-37-35)
+
+---
+
+## 2026-09-19T04:43:08.013Z
+
+SKIP complete T2d_H_random_er_conspiracy_believer (T2d_H_random_er_conspiracy_believer_2026-09-19_02-59-49)
+
+---
+
+## 2026-09-19T04:43:08.071Z
+
+SKIP complete T2d_H_random_er_conspiracy_climate_piggyback (T2d_H_random_er_conspiracy_climate_piggyback_2026-09-19_03-01-49)
+
+---
+
+## 2026-09-19T04:43:08.128Z
+
+SKIP complete T2d_H_random_er_conspiracy_depopulation (T2d_H_random_er_conspiracy_depopulation_2026-09-19_03-01-29)
+
+---
+
+## 2026-09-19T04:43:08.182Z
+
+SKIP complete T2d_H_random_er_conspiracy_haarp_weather (T2d_H_random_er_conspiracy_haarp_weather_2026-09-19_02-59-53)
+
+---
+
+## 2026-09-19T04:43:08.235Z
+
+SKIP complete T2d_H_random_er_environmental_concern (T2d_H_random_er_environmental_concern_2026-09-19_03-21-07)
+
+---
+
+## 2026-09-19T04:43:08.287Z
+
+SKIP complete T2d_H_random_er_mitigation_first_policy (T2d_H_random_er_mitigation_first_policy_2026-09-19_03-20-54)
+
+---
+
+## 2026-09-19T04:43:08.340Z
+
+SKIP complete T2d_H_random_er_ozone_stratosphere_specialist (T2d_H_random_er_ozone_stratosphere_specialist_2026-09-19_03-25-53)
+
+---
+
+## 2026-09-19T04:43:08.391Z
+
+SKIP complete T2d_H_random_er_science_journalist (T2d_H_random_er_science_journalist_2026-09-19_03-41-01)
+
+---
+
+## 2026-09-19T04:43:08.440Z
+
+SKIP complete T2d_H_ring_biodiversity_food_security (T2d_H_ring_biodiversity_food_security_2026-09-19_02-58-23)
+
+---
+
+## 2026-09-19T04:43:08.487Z
+
+SKIP complete T2d_H_ring_climate_action_advocate (T2d_H_ring_climate_action_advocate_2026-09-19_02-56-28)
+
+---
+
+## 2026-09-19T04:43:08.532Z
+
+SKIP complete T2d_H_ring_climate_justice_youth (T2d_H_ring_climate_justice_youth_2026-09-19_02-56-57)
+
+---
+
+## 2026-09-19T04:43:08.577Z
+
+SKIP complete T2d_H_ring_climate_scientist (T2d_H_ring_climate_scientist_2026-09-19_02-59-25)
+
+---
+
+## 2026-09-19T04:43:08.593Z
+
+END T2c_H_echo_chamber_mitigation_first_policy status=0 elapsedMs=703870 runDir=T2c_H_echo_chamber_mitigation_first_policy_2026-09-19_04-31-24 usage=818 calls, 446196 prompt / 32395 completion tokens ~$0.0864 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:43:08.594Z
+
+START T2c_H_echo_chamber_biodiversity_food_security config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:43:08.620Z
+
+SKIP complete T2d_H_ring_conspiracy_believer (T2d_H_ring_conspiracy_believer_2026-09-19_02-55-05)
+
+---
+
+## 2026-09-19T04:43:08.663Z
+
+SKIP complete T2d_H_ring_conspiracy_climate_piggyback (T2d_H_ring_conspiracy_climate_piggyback_2026-09-19_02-56-03)
+
+---
+
+## 2026-09-19T04:43:08.704Z
+
+SKIP complete T2d_H_ring_conspiracy_depopulation (T2d_H_ring_conspiracy_depopulation_2026-09-19_02-56-00)
+
+---
+
+## 2026-09-19T04:43:08.744Z
+
+SKIP complete T2d_H_ring_conspiracy_haarp_weather (T2d_H_ring_conspiracy_haarp_weather_2026-09-19_02-55-11)
+
+---
+
+## 2026-09-19T04:43:08.782Z
+
+SKIP complete T2d_H_ring_environmental_concern (T2d_H_ring_environmental_concern_2026-09-19_02-58-00)
+
+---
+
+## 2026-09-19T04:43:08.820Z
+
+SKIP complete T2d_H_ring_mitigation_first_policy (T2d_H_ring_mitigation_first_policy_2026-09-19_02-57-25)
+
+---
+
+## 2026-09-19T04:43:08.856Z
+
+SKIP complete T2d_H_ring_ozone_stratosphere_specialist (T2d_H_ring_ozone_stratosphere_specialist_2026-09-19_02-58-05)
+
+---
+
+## 2026-09-19T04:43:08.891Z
+
+SKIP complete T2d_H_ring_science_journalist (T2d_H_ring_science_journalist_2026-09-19_02-59-47)
+
+---
+
+## 2026-09-19T04:43:08.891Z
+
+START T2d_H_scale_free_biodiversity_food_security config=thesisExperiment/configs/phase2/T2d_H_scale_free_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:43:11.818Z
+
+END T2c_H_polarized_environmental_concern status=0 elapsedMs=686678 runDir=T2c_H_polarized_environmental_concern_2026-09-19_04-31-45 usage=764 calls, 406956 prompt / 34281 completion tokens ~$0.0816 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:43:11.818Z
+
+START T2c_H_polarized_science_journalist config=thesisExperiment/configs/phase2/T2c_H_polarized_science_journalist.json
+
+---
+
+## 2026-09-19T04:43:27.480Z
+
+CONTINUE_MASTER progress complete=265/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:43:56.220Z
+
+END T2c_H_small_world_science_journalist status=0 elapsedMs=712378 runDir=T2c_H_small_world_science_journalist_2026-09-19_04-32-03 usage=750 calls, 392204 prompt / 43338 completion tokens ~$0.0848 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:43:56.220Z
+
+START T2c_H_scale_free_science_journalist config=thesisExperiment/configs/phase2/T2c_H_scale_free_science_journalist.json
+
+---
+
+## 2026-09-19T04:44:21.038Z
+
+CONTINUE_MASTER progress complete=270/288 dnet=4/4
+
+---
+
+## 2026-09-19T04:44:21.516Z
+
+CONTINUE_MASTER progress complete=270/288 dnet=4/4
+
+---
+
+## 2026-09-19T04:44:22.298Z
+
+END T2d_H_scale_free_biodiversity_food_security status=0 elapsedMs=784761 runDir=T2d_H_scale_free_biodiversity_food_security_2026-09-19_04-31-17 usage=1554 calls, 817076 prompt / 49604 completion tokens ~$0.1523 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:45:00.694Z
+
+END T2d_H_polarized_environmental_concern status=0 elapsedMs=795078 runDir=T2d_H_polarized_environmental_concern_2026-09-19_04-31-45 usage=1450 calls, 749303 prompt / 51970 completion tokens ~$0.1436 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:45:00.731Z
+
+SKIP complete T2d_H_scale_free_climate_action_advocate (T2d_H_scale_free_climate_action_advocate_2026-09-19_03-57-44)
+
+---
+
+## 2026-09-19T04:45:00.765Z
+
+SKIP complete T2d_H_scale_free_climate_justice_youth (T2d_H_scale_free_climate_justice_youth_2026-09-19_03-57-55)
+
+---
+
+## 2026-09-19T04:45:00.765Z
+
+START T2d_H_scale_free_climate_scientist config=thesisExperiment/configs/phase2/T2d_H_scale_free_climate_scientist.json
+
+---
+
+## 2026-09-19T04:45:38.088Z
+
+END T2c_H_echo_chamber_environmental_concern status=0 elapsedMs=840967 runDir=T2c_H_echo_chamber_environmental_concern_2026-09-19_04-31-37 usage=867 calls, 455582 prompt / 45098 completion tokens ~$0.0954 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:45:38.088Z
+
+START T2c_H_echo_chamber_climate_scientist config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_climate_scientist.json
+
+---
+
+## 2026-09-19T04:45:58.358Z
+
+END T2c_H_echo_chamber_climate_justice_youth status=0 elapsedMs=879490 runDir=T2c_H_echo_chamber_climate_justice_youth_2026-09-19_04-31-18 usage=929 calls, 487340 prompt / 48010 completion tokens ~$0.1019 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:45:58.358Z
+
+START T2c_H_echo_chamber_science_journalist config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_science_journalist.json
+
+---

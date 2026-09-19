@@ -1,108 +1,30 @@
 {
-  "updatedAt": "2026-09-19T04:19:56.791Z",
   "slice": "T2c_He",
+  "finishedAt": "2026-09-19T04:38:03.597Z",
   "mode": "real",
-  "keyLength": 164,
+  "model": "gpt-4o-mini",
+  "miScoringMode": "continuous",
+  "concurrency": 4,
+  "outputRoot": "thesisExperiment/runs_phase2",
+  "keyCheck": {
+    "ok": true,
+    "OPENAI_API_KEY_length": 164,
+    "source": "/workspace/.env"
+  },
   "counts": {
     "configs": 48,
-    "completed": 35,
+    "completed": 48,
     "failed": 0,
-    "skipped": 0,
-    "pending": 13,
-    "inflight": 13,
-    "not_started": 0,
-    "llmCalls": 18686,
-    "estUsd": 2.2901
+    "skipped": 34,
+    "pending": 0,
+    "llmCalls": 25700,
+    "estUsd": 3.2366
   },
-  "byTopology": {
-    "echo_chamber": {
-      "configs": 6,
-      "completed": 0,
-      "failed": 0,
-      "skipped": 0,
-      "pending": 6,
-      "inflight": 6
-    },
-    "hierarchical": {
-      "configs": 6,
-      "completed": 6,
-      "failed": 0,
-      "skipped": 0,
-      "pending": 0,
-      "inflight": 0
-    },
-    "linear_chain": {
-      "configs": 6,
-      "completed": 6,
-      "failed": 0,
-      "skipped": 0,
-      "pending": 0,
-      "inflight": 0
-    },
-    "polarized": {
-      "configs": 6,
-      "completed": 0,
-      "failed": 0,
-      "skipped": 0,
-      "pending": 6,
-      "inflight": 6
-    },
-    "random_er": {
-      "configs": 6,
-      "completed": 6,
-      "failed": 0,
-      "skipped": 0,
-      "pending": 0,
-      "inflight": 0
-    },
-    "ring": {
-      "configs": 6,
-      "completed": 6,
-      "failed": 0,
-      "skipped": 0,
-      "pending": 0,
-      "inflight": 0
-    },
-    "scale_free": {
-      "configs": 6,
-      "completed": 5,
-      "failed": 0,
-      "skipped": 0,
-      "pending": 1,
-      "inflight": 1
-    },
-    "small_world": {
-      "configs": 6,
-      "completed": 6,
-      "failed": 0,
-      "skipped": 0,
-      "pending": 0,
-      "inflight": 0
-    }
-  },
-  "probe": {
-    "experimentName": "probe_T2c_He",
-    "status": "complete",
-    "failed": false,
-    "usageCalls": 1,
-    "usageLine": "1 calls, 604 prompt / 28 completion tokens ~$0.0001"
-  },
-  "orchestrators": [
-    {
-      "pid": 155290,
-      "cmd": "/exec-daemon/node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He.json "
-    },
-    {
-      "pid": 181271,
-      "cmd": "node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology echo_chamber --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_echo_chamber.json "
-    },
-    {
-      "pid": 181981,
-      "cmd": "node thesisExperiment/scripts/run_t2c_he.js "
-    },
-    {
-      "pid": 182799,
-      "cmd": "node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology polarized --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_polarized.json "
-    }
-  ]
+  "isolation": {
+    "didNotWrite": [
+      "thesisExperiment/runs",
+      "thesisExperiment/results/tables"
+    ],
+    "didNotGitCommit": true
+  }
 }

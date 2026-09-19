@@ -1,6 +1,6 @@
 # T2c_He status (continuous heterogeneous, all 8 topologies)
 
-**Updated:** 2026-09-19T04:19:56.791Z
+**Updated:** 2026-09-19T04:31:00Z
 **OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -8,43 +8,48 @@
 **Concurrency:** 4
 **Isolation:** `thesisExperiment/runs_phase2` only (not Phase 1 `runs/` or `results/tables/`)
 
-**Phase:** grid (sibling T2c_He orchestrator live; concurrency 4; skip completed).
+**Phase:** finished. completed=48 failed=0 skipped=34 pending=0.
 
-Orchestrators: pid 155290, pid 181271, pid 181981, pid 182799.
+Key loaded from gitignored `/workspace/.env` (dotenv). Sibling `KEY_READY.md` present. Polled 2s; file already existed.
 
 ## Counts (configs; each seeds 6 core articles)
 
 | Count | n |
 | --- | ---: |
 | configs | 48 |
-| completed | 35 |
+| completed | 48 |
 | failed | 0 |
-| skipped (already complete continuous) | 0 |
-| in-flight | 13 |
-| pending / not_started | 13 |
-| LLM calls (this slice + probe) | 18686 |
-| Est. USD | $2.2901 |
+| skipped (already complete continuous) | 34 |
+| pending / not_started | 0 |
+| LLM calls (this slice + probe) | 25700 |
+| Est. USD | $3.2366 |
 
 ## By topology
 
-| topology | configs | completed | failed | skipped | pending | in-flight |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| echo_chamber | 6 | 0 | 0 | 0 | 6 | 6 |
-| hierarchical | 6 | 6 | 0 | 0 | 0 | 0 |
-| linear_chain | 6 | 6 | 0 | 0 | 0 | 0 |
-| polarized | 6 | 0 | 0 | 0 | 6 | 6 |
-| random_er | 6 | 6 | 0 | 0 | 0 | 0 |
-| ring | 6 | 6 | 0 | 0 | 0 | 0 |
-| scale_free | 6 | 5 | 0 | 0 | 1 | 1 |
-| small_world | 6 | 6 | 0 | 0 | 0 | 0 |
+| topology | configs | completed | failed | skipped | pending |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| echo_chamber | 6 | 6 | 0 | 4 | 0 |
+| hierarchical | 6 | 6 | 0 | 0 | 0 |
+| linear_chain | 6 | 6 | 0 | 6 | 0 |
+| polarized | 6 | 6 | 0 | 0 | 0 |
+| random_er | 6 | 6 | 0 | 6 | 0 |
+| ring | 6 | 6 | 0 | 6 | 0 |
+| scale_free | 6 | 6 | 0 | 6 | 0 |
+| small_world | 6 | 6 | 0 | 6 | 0 |
 
 ## Probe (continuous)
 
 - experiment: `probe_T2c_He`
-- status: complete
-- failed: false
-- usage: 1 calls, 604 prompt / 28 completion tokens ~$0.0001
-- usageCalls: 1
+- first probe: `probe_T2c_He_2026-09-19_02-51-00` status=complete failed=false usage=2 calls, 1056 prompt / 220 completion tokens ~$0.0003
+- later re-probe: `probe_T2c_He_2026-09-19_04-14-23` status=complete failed=false usage=1 calls, 604 prompt / 28 completion tokens ~$0.0001
+- usageCalls (latest): 1
+- usage>0 before grid: yes
+
+## Notes
+
+- First 18 echo/hierarchical/polarized attempts (04:08Z) crashed on unknown cluster persona ids (`conspiracy_peripheral_skywatcher`, `climate_action_sweden_scopex`) before the engine fallback in `src/Simulation.js`. Those cells were **not** treated as thesis results. After the fallback, all 18 were re-run with real LLM usage and completed.
+- Did not stop after one topology. Skip-completed used `metadata.status` complete + `miScoringMode: continuous`.
+- 8 hops/ticks is a logged cost cut vs CIKM K=30, not Debnath.
 
 ## Isolation
 
