@@ -1,6 +1,6 @@
 # T2c_H status — continuous homogeneous, all 8 topologies
 
-**When.** 2026-09-19T03:34:56.923Z
+**When.** 2026-09-19T03:59:24.000Z
 **OPENAI_API_KEY found.** **yes** (length only; value not logged)
 **Dry-run.** no. **MI invented.** no.
 **Isolation.** `thesisExperiment/runs_phase2` + `thesisExperiment/results_phase2` only.
@@ -11,10 +11,10 @@
 
 | metric | n |
 |---|---:|
-| completed | 31 |
+| completed | 40 |
 | failed | 0 |
 | skipped (already complete+continuous+usage>0) | 0 |
-| remaining | 65 |
+| remaining | 56 |
 | configs | 96 |
 
 ## Per topology (keep going across all eight)
@@ -23,9 +23,9 @@
 |---|---:|---:|---:|---:|
 | linear_chain | 12 | 12 | 0 | 0 |
 | ring | 12 | 12 | 0 | 0 |
-| random_er | 12 | 7 | 0 | 5 |
-| small_world | 12 | 0 | 0 | 12 |
-| scale_free | 12 | 0 | 0 | 12 |
+| random_er | 12 | 11 | 0 | 1 |
+| small_world | 12 | 3 | 0 | 9 |
+| scale_free | 12 | 2 | 0 | 10 |
 | echo_chamber | 12 | 0 | 0 | 12 |
 | polarized | 12 | 0 | 0 | 12 |
 | hierarchical | 12 | 0 | 0 | 12 |
@@ -45,5 +45,5 @@ Worker monitors the live T2c_H pool (concurrency 4). Skips complete+continuous+u
 
 Did not write Phase 1 `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not write `phase2_manifest.json`. Did not git checkout or commit.
 
-T2c_H_rows.csv data rows=210 (real events only).
+T2c_H_rows.csv data rows=288 (real events only).
 

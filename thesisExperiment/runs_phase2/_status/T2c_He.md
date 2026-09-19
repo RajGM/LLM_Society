@@ -1,6 +1,6 @@
 # T2c_He status (continuous heterogeneous, all 8 topologies)
 
-**Updated:** 2026-09-19T03:34:52.691Z
+**Updated:** 2026-09-19T03:59:14.823Z
 **OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -10,20 +10,20 @@
 
 **Phase:** grid (sibling T2c_He orchestrator live; concurrency 4; skip completed).
 
-Orchestrators: pid 155290.
+Orchestrators: pid 155290, pid 172920.
 
 ## Counts (configs; each seeds 6 core articles)
 
 | Count | n |
 | --- | ---: |
 | configs | 48 |
-| completed | 18 |
+| completed | 25 |
 | failed | 0 |
 | skipped (already complete continuous) | 0 |
-| in-flight | 4 |
-| pending / not_started | 30 |
-| LLM calls (this slice + probe) | 6052 |
-| Est. USD | $0.7453 |
+| in-flight | 5 |
+| pending / not_started | 23 |
+| LLM calls (this slice + probe) | 13567 |
+| Est. USD | $1.65 |
 
 ## By topology
 
@@ -35,8 +35,8 @@ Orchestrators: pid 155290.
 | polarized | 6 | 0 | 0 | 0 | 6 | 0 |
 | random_er | 6 | 6 | 0 | 0 | 0 | 0 |
 | ring | 6 | 6 | 0 | 0 | 0 | 0 |
-| scale_free | 6 | 0 | 0 | 0 | 6 | 0 |
-| small_world | 6 | 0 | 0 | 0 | 6 | 4 |
+| scale_free | 6 | 3 | 0 | 0 | 3 | 3 |
+| small_world | 6 | 4 | 0 | 0 | 2 | 2 |
 
 ## Probe (continuous)
 
