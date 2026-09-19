@@ -1,0 +1,381 @@
+{
+  "nodeId": "node_3",
+  "personaId": "science_journalist",
+  "modelId": "gpt-4o-mini",
+  "relations": {
+    "node_4": 0.7
+  },
+  "params": {
+    "trustThreshold": 0.08,
+    "actionWeights": {
+      "forward": 0.1,
+      "reinterpret": 0.85,
+      "drop": 0.05
+    },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 8,
+    "strippedProperties": [],
+    "activityPattern": "always",
+    "edgeDeletionThreshold": 0.05,
+    "maxInboxSize": 4
+  },
+  "inbox": [],
+  "history": [
+    {
+      "tick": 4,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_2",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), proposed by Harvard University, aimed to investigate the behavior of aerosol particles in the stratosphere to enhance computer models for solar geoengineering. Led by principal investigator Frank Keutsch, the initiative was publicly discussed at the American Geophysical Union Fall Meeting in 2017. Importantly, SCoPEx was not intended to deploy geoengineering or cool the planet, but rather to gather data on aerosol microphysics and chemistry.\n\nThe experiment involved a gondola carried by a scientific balloon at around 20 km altitude, releasing a very small amount of calcium carbonate—between 100 grams and 2 kilograms—into a controlled volume. However, a planned platform test in Sweden in 2021 was halted by the SCoPEx Advisory Committee for societal engagement purposes, with no particles being released. In March 2024, Harvard announced that Keutsch would no longer pursue SCoPEx, and the platform is set to be repurposed for unrelated stratospheric research.",
+      "contentOut": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), led by Frank Keutsch at Harvard University, aimed to enhance understanding of aerosol particles in the stratosphere to improve solar geoengineering models. Discussed publicly at the American Geophysical Union Fall Meeting in 2017, SCoPEx was designed solely for data collection on aerosol microphysics and chemistry, not for actual geoengineering or planetary cooling.\n\nThe experiment planned to use a scientific balloon to release between 100 grams and 2 kilograms of calcium carbonate at approximately 20 kilometers altitude. However, a scheduled test in Sweden in 2021 was canceled by the SCoPEx Advisory Committee to prioritize societal engagement, meaning no particles were released. In March 2024, Harvard announced that Keutsch would discontinue the SCoPEx initiative, with the experiment platform being repurposed for other stratospheric research. It's important to note that claims of secret geoengineering operations, such as chemtrails, are unfounded and contradicted by atmospheric science.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T02:54:22.229Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "chemtrails_gates_2018_2021",
+      "sourceNodeId": "node_2",
+      "hops": 3,
+      "action": "drop",
+      "contentIn": "The chemtrail conspiracy theory claims that persistent contrails are actually chemical agents used for weather manipulation. However, the scientific community asserts that these trails, known as contrails, are merely ice crystals formed under specific atmospheric conditions. There is no evidence supporting the existence of chemtrails as a separate phenomenon. A recent study by Debnath et al. (iScience, 2023) analyzed over 814,000 tweets tagged with #geoengineering from 2009 to 2021, finding that discussions about chemtrails significantly overshadowed other topics. Notably, a spike in tweets occurred following the launch of Harvard's SCoPEx solar geoengineering project in April 2017. While organizations like the Bill and Melinda Gates Foundation fund solar geoengineering research, this does not confirm any clandestine spraying programs. The study emphasizes that the rise of aggressive chemtrail narratives distracts from critical environmental issues such as ozone depletion and biodiversity loss.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T02:54:35.269Z"
+    },
+    {
+      "tick": 4,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_2",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a proposed method of solar radiation modification intended to reflect some incoming sunlight by releasing aerosols into the stratosphere. This technique mimics the natural cooling effect observed after major volcanic eruptions, such as the 1991 eruption of Mount Pinatubo. The Intergovernmental Panel on Climate Change (IPCC) has identified SAI as the most extensively researched form of solar geoengineering. While it has potential to help mitigate global warming, SAI poses several risks, including potential negative impacts on ozone layers, precipitation patterns, and governance issues. Importantly, it does not tackle the root causes of climate change, such as rising carbon dioxide levels and ocean acidification, and would require continued commitment amid persistent high emissions. Current research, exemplified by Harvard's SCoPEx project, focuses on understanding aerosol microphysics rather than implementing large-scale solutions. Additionally, claims that commercial aviation is secretly employing SAI materials, commonly referred to as \"chemtrails,\" have been widely debunked and contradict established atmospheric science.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a proposed solar radiation modification technique that aims to reflect some sunlight by releasing aerosols into the stratosphere. This approach mimics the cooling effects seen after significant volcanic eruptions, such as the 1991 Mount Pinatubo eruption. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as the most researched form of solar geoengineering. While it may help mitigate global warming, SAI carries risks, including potential harm to ozone layers and changes in precipitation patterns. It does not address the root causes of climate change, such as rising carbon dioxide levels, and would require ongoing efforts in the face of persistent emissions. Current research, such as Harvard's SCoPEx project, mainly investigates aerosol microphysics rather than large-scale deployment. Furthermore, conspiracy theories suggesting that commercial aviation is secretly using SAI materials, known as \"chemtrails,\" have been thoroughly debunked and are inconsistent with established atmospheric science.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T02:54:44.339Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0,
+        "ir": 0.4,
+        "cms": 0.6666666655555556,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0,
+            "ir": 0.4,
+            "cms": 0.6666666655555556,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              1,
+              -1,
+              -1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_2",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "Recent assessments by the Intergovernmental Panel on Climate Change (IPCC) highlight that human activities, particularly greenhouse gas emissions, are the main drivers of global warming. Research led by Cook et al. shows that approximately 97% of peer-reviewed climate studies support the understanding of anthropogenic climate change. This scientific consensus is backed by various forms of evidence, including surface thermometer readings, satellite data, ocean heat measurements, and observations of melting glaciers and rising sea levels. The greenhouse effect caused by carbon dioxide is well-established, with isotopic analyses linking the recent increase in CO2 levels directly to fossil fuel combustion. While some dissenting claims exist, they often originate from non-expert sources and do not reflect the prevailing view in the scientific community. Although uncertainties about climate sensitivity and regional impacts persist, it is clear that rising CO2 levels substantially contribute to global warming. Additionally, assertions regarding chemtrails as a form of geoengineering are unfounded and contradict established atmospheric science.",
+      "contentOut": "Recent assessments from the Intergovernmental Panel on Climate Change (IPCC) confirm that human activities, particularly greenhouse gas emissions, are the primary drivers of global warming. Research by Cook et al. indicates that around 97% of peer-reviewed climate studies endorse the concept of anthropogenic climate change. This consensus is supported by various forms of evidence, including temperature records, satellite observations, ocean heat data, and indicators like melting glaciers and rising sea levels. The greenhouse effect linked to carbon dioxide is well-documented, with isotopic analyses showing that the recent rise in CO2 levels is largely due to fossil fuel combustion. While dissenting views do exist, they typically come from non-experts and do not represent the scientific majority. Although uncertainties remain concerning climate sensitivity and regional impacts, it is evident that increasing CO2 levels significantly drive global warming. Claims about chemtrails as a form of geoengineering are unfounded and contradict established atmospheric science.",
+      "misinfoIndex": 0,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T02:55:04.068Z",
+      "ifd": {
+        "mi": 0,
+        "cr": 1,
+        "mr": 0,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0,
+        "scores": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 4,
+      "articleId": "polar_bears",
+      "sourceNodeId": "node_2",
+      "hops": 3,
+      "action": "reinterpret",
+      "contentIn": "Polar bears (Ursus maritimus) are facing significant threats due to the rapid decline of Arctic sea ice, which has been shrinking in both extent and thickness at approximately twice the rate of global temperatures. According to the International Union for Conservation of Nature (IUCN) and Arctic scientists, the primary long-term risk to these animals is the loss of their sea-ice hunting habitat. While some subpopulations have shown stability or growth, this does not diminish their reliance on sea ice, nor does it address the concerning projections of increased fasting and lower cub survival as ice-free seasons become more frequent, particularly in southern regions. It is crucial to recognize that polar bear populations are assessed in different management units, leading to varying results. In addition to habitat loss, other threats include conservation hunting quotas and pollution. Claims suggesting that polar bears are thriving due to chemtrails or that global warming is a hoax lack scientific backing and contradict established atmospheric science.",
+      "contentOut": "Polar bears (Ursus maritimus) are increasingly threatened by the rapid decline of Arctic sea ice, which is diminishing in both extent and thickness at nearly double the rate of global temperature increases. The International Union for Conservation of Nature (IUCN) and Arctic scientists emphasize that the primary long-term risk to these iconic animals is the loss of their sea-ice hunting habitat. While some subpopulations have shown signs of stability or growth, their dependence on sea ice remains critical, and projections indicate that increased ice-free seasons, particularly in southern regions, will lead to more fasting periods and lower cub survival rates. Furthermore, polar bear populations are assessed in various management units, resulting in different outcomes. Additional threats include conservation hunting quotas and pollution. Notably, claims that polar bears are thriving due to chemtrails or that global warming is a hoax are unfounded and contradict established atmospheric science.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T02:55:16.161Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0,
+        "ir": 0.2,
+        "cms": 0.2499999996875,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          -1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0,
+            "ir": 0.2,
+            "cms": 0.2499999996875,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              -1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    }
+  ],
+  "stats": {
+    "received": 5,
+    "forwarded": 0,
+    "reinterpreted": 4,
+    "dropped": 1,
+    "dumped": 0
+  }
+}

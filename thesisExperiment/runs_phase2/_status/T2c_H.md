@@ -1,29 +1,28 @@
 # T2c_H status — continuous homogeneous, all 8 topologies
 
-**When.** 2026-09-18T20:51:37.362Z
-**OPENAI_API_KEY found.** **no** (value not logged)
+**When.** 2026-09-19T02:58:51.239Z
+**OPENAI_API_KEY found.** **yes** (length only; value not logged)
 **Dry-run.** no. **MI invented.** no.
 **Isolation.** `thesisExperiment/runs_phase2` + `thesisExperiment/results_phase2` only.
 **N=1, hops/ticks=8, concurrency=4.** Model `gpt-4o-mini`. `miScoringMode: continuous`.
 **Configs.** 96 = 8 topologies × 12 personas. Does not stop after one topology.
 
-**Phase.** polling for OPENAI_API_KEY (4)
+**Phase.** running T2c_H (watch + resume remaining)
 
 | metric | n |
 |---|---:|
-| completed | 0 |
+| completed | 19 |
 | failed | 0 |
 | skipped (already complete+continuous+usage>0) | 0 |
-| remaining | 96 |
-| attempted this process | 0 |
+| remaining | 77 |
 | configs | 96 |
 
 ## Per topology (keep going across all eight)
 
 | topology | configs | completed | failed | remaining |
 |---|---:|---:|---:|---:|
-| linear_chain | 12 | 0 | 0 | 12 |
-| ring | 12 | 0 | 0 | 12 |
+| linear_chain | 12 | 12 | 0 | 0 |
+| ring | 12 | 7 | 0 | 5 |
 | random_er | 12 | 0 | 0 | 12 |
 | small_world | 12 | 0 | 0 | 12 |
 | scale_free | 12 | 0 | 0 | 12 |
@@ -31,11 +30,20 @@
 | polarized | 12 | 0 | 0 | 12 |
 | hierarchical | 12 | 0 | 0 | 12 |
 
+## Probe (2-node continuous, usage must be > 0)
+
+- failed: False
+- usageCalls: 2
+- runDir: probe_p2_continuous_2026-09-19_02-50-40
+- usageLine: 2 calls
+
 ## Note
 
-Poll 4: /workspace/.env exists=false; KEY_READY.md exists=false; process length=0; file length=0. Value not logged.
+Worker monitors the live T2c_H pool (concurrency 4). Skips complete+continuous+usage>0. Resumes remaining if the pool exits. No dry-run. No invented MI.
 
 ## Isolation
 
 Did not write Phase 1 `thesisExperiment/runs/` or `thesisExperiment/results/tables/`. Did not write `phase2_manifest.json`. Did not git checkout or commit.
+
+T2c_H_rows.csv data rows=138 (real events only).
 

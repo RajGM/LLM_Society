@@ -1,41 +1,50 @@
 # T2c_He status (continuous heterogeneous, all 8 topologies)
 
-**Updated:** 2026-09-18T20:51:39.058Z
-**OPENAI_API_KEY present:** no (length=0; value not logged)
+**Updated:** 2026-09-19T02:58:49.946Z
+**OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
 **Continuous:** headline MI/MPR is float ~0–5 (`src/Auditor.js` `miScoringMode: continuous`)
 **Concurrency:** 4
 **Isolation:** `thesisExperiment/runs_phase2` only (not Phase 1 `runs/` or `results/tables/`)
 
-**Phase:** polling for key (attempt 5; every 20s, max ~15 min).
+**Phase:** grid (sibling T2c_He orchestrator live; concurrency 4; skip completed).
 
-Did not invent a key. Did not write `.env`.
+Orchestrators: pid 155290.
 
 ## Counts (configs; each seeds 6 core articles)
 
 | Count | n |
 | --- | ---: |
 | configs | 48 |
-| completed | 0 |
+| completed | 12 |
 | failed | 0 |
 | skipped (already complete continuous) | 0 |
-| pending / not_started | 48 |
-| LLM calls (this slice + probe) | 0 |
-| Est. USD | $0 |
+| in-flight | 4 |
+| pending / not_started | 36 |
+| LLM calls (this slice + probe) | 859 |
+| Est. USD | $0.1132 |
 
 ## By topology
 
-| topology | configs | completed | failed | skipped | pending |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| echo_chamber | 6 | 0 | 0 | 0 | 6 |
-| hierarchical | 6 | 0 | 0 | 0 | 6 |
-| linear_chain | 6 | 0 | 0 | 0 | 6 |
-| polarized | 6 | 0 | 0 | 0 | 6 |
-| random_er | 6 | 0 | 0 | 0 | 6 |
-| ring | 6 | 0 | 0 | 0 | 6 |
-| scale_free | 6 | 0 | 0 | 0 | 6 |
-| small_world | 6 | 0 | 0 | 0 | 6 |
+| topology | configs | completed | failed | skipped | pending | in-flight |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| echo_chamber | 6 | 0 | 0 | 0 | 6 | 0 |
+| hierarchical | 6 | 0 | 0 | 0 | 6 | 0 |
+| linear_chain | 6 | 6 | 0 | 0 | 0 | 0 |
+| polarized | 6 | 0 | 0 | 0 | 6 | 0 |
+| random_er | 6 | 0 | 0 | 0 | 6 | 4 |
+| ring | 6 | 6 | 0 | 0 | 0 | 0 |
+| scale_free | 6 | 0 | 0 | 0 | 6 | 0 |
+| small_world | 6 | 0 | 0 | 0 | 6 | 0 |
+
+## Probe (continuous)
+
+- experiment: `probe_T2c_He`
+- status: complete
+- failed: false
+- usage: 2 calls, 1056 prompt / 220 completion tokens ~$0.0003
+- usageCalls: 2
 
 ## Isolation
 

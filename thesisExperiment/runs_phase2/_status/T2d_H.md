@@ -1,16 +1,14 @@
 # T2d_H status (dual homogeneous, all 8 topologies)
 
-**Updated:** 2026-09-18T20:51:46.672Z
-**OPENAI_API_KEY present:** no (length=0; value not logged)
+**Updated:** 2026-09-19T02:50:24.018Z
+**OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
 **Dual:** 2 auditor LLM calls per event (`src/Auditor.js` `miScoringMode: dual`)
 **Concurrency:** 4
 **Isolation:** `thesisExperiment/runs_phase2` only (not Phase 1 `runs/` or `results/tables/`)
 
-**Phase:** polling for key (attempt 5; every 20s, max ~15 min).
-
-Did not invent a key. Did not write `.env`.
+**Phase:** grid START T2d_H_echo_chamber_climate_scientist (queue left 92).
 
 ## Counts (configs; each seeds 6 core articles)
 
@@ -21,8 +19,8 @@ Did not invent a key. Did not write `.env`.
 | failed | 0 |
 | skipped (already complete dual) | 0 |
 | pending / not_started | 96 |
-| LLM calls (this slice + probe) | 0 |
-| Est. USD | $0 |
+| LLM calls (this slice + probe) | 3 |
+| Est. USD | $0.0004 |
 
 ## By topology
 
@@ -36,6 +34,14 @@ Did not invent a key. Did not write `.env`.
 | ring | 12 | 0 | 0 | 0 | 12 |
 | scale_free | 12 | 0 | 0 | 0 | 12 |
 | small_world | 12 | 0 | 0 | 0 | 12 |
+
+## Probe (dual)
+
+- experiment: `probe_p2_dual`
+- status: 0
+- failed: false
+- usage: 3 calls, 1522 prompt / 249 completion tokens ~$0.0004
+- usageCalls: 3
 
 ## Isolation
 
