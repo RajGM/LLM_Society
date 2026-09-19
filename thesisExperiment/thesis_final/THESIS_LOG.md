@@ -11,7 +11,12 @@
 - Build precedent and package set: `latex_phase2/`.
 - Template search result: `6aaeb12d2d2eaea03e67a80b` was not found.
 - Round-1 reviews: `reviews/round1/01`–`12`, `08A_MODULARITY_CORRECTION.md`,
-  and `analysis_full/API_ERROR_AUDIT.md`.
+  `REVISION_MATRIX.md`, `REVISION_SUMMARY.md`, and
+  `analysis_full/API_ERROR_AUDIT.md`.
+- Round-2 reviews: `reviews/round2/01_EVIDENCE.md`, `02_TUM_LANGUAGE.md`,
+  `03_LATEX.md`, `04_EXAMINER.md` (canonical copies under
+  `thesisExperiment/thesis_final/reviews/`; identical mirrors at repo-root
+  `reviews/`).
 
 ## Integration decisions
 
@@ -157,3 +162,73 @@ Review: `reviews/round2/03_LATEX.md` (mirrored under
 - Fonts: 32 subset-embedded Type 1; `lmtt` bx→b fallback unchanged.
 - PDF metadata: title/subject/keywords set; author Raj Gaurav Maurya;
   untagged; no XMP stream.
+
+## Final consolidation milestones (2026-09-19)
+
+Preserved thesis commit: `389b0bf85d5e054a1f972989217f7c7009e04e6d`
+(`Fix remaining thesis overfull boxes and record round-2 LaTeX check`).
+Science, LaTeX source, and PDF were not rewritten in this consolidation.
+The only missing review artefact was copied from
+`cursor/round2-evidence-a349` (`179ec7a`); all other round-1/round-2 reports
+were already on `main`.
+
+| Milestone | Commit | Artefact |
+|---|---|---|
+| Initial integration | `13e4ca4` | Assemble complete Phase 2 master's thesis into `thesis_final/` |
+| Initial PDF | `4383827` | First verified `main.pdf` |
+| 12 round-1 reviews | on `main` | `reviews/round1/01`–`12` (TUM, narrative, methods, stats, numbers, literature, figures, Debnath/Pfeffer, validity, language, LaTeX, award jury) |
+| Modularity correction | `47b4f52`, `d804c52` | Unique-undirected Newman–Girvan; \(Q=0\) / \(Q=0.4297\); `08A_MODULARITY_CORRECTION.md` |
+| API-failure audit | `d6cb55c`, `8cd6a85`, `0a22657` | `analysis_full/API_ERROR_AUDIT.md`; 203,928 successes; 64,270 HTTP-error counters; continuous He−H not robust |
+| Round-1 revision | `7e75c52`, `0420234` | `REVISION_MATRIX.md` (148 accepted, 18 deferred, 0 rejected); `REVISION_SUMMARY.md`; 116-page rebuild |
+| Submission metadata pass | `d86f285`, `e98f7f8` | Verifiable fields filled; remainder as `[USER INPUT REQUIRED]`; `SUBMISSION_INPUTS_REQUIRED.md` |
+| Round-2 examiner | `280c016` | `reviews/round2/04_EXAMINER.md` (severe MA report; no grade implied) |
+| Round-2 evidence | `179ec7a` (now on `main`) | `reviews/round2/01_EVIDENCE.md` (PASS; thesis not edited) |
+| Round-2 TUM language | `8da2383`, `560d766` | `reviews/round2/02_TUM_LANGUAGE.md`; PASS after critical/major prose repairs |
+| Round-2 LaTeX | `389b0bf` | `reviews/round2/03_LATEX.md`; 0 overfull boxes |
+
+### Review inventory on `main`
+
+Canonical directory: `thesisExperiment/thesis_final/reviews/`.
+Identical mirrors: repo-root `reviews/`.
+
+- Round 1: **15** files (12 reviews + `08A_MODULARITY_CORRECTION.md` +
+  `REVISION_MATRIX.md` + `REVISION_SUMMARY.md`).
+- Round 2: **4** files (`01_EVIDENCE`, `02_TUM_LANGUAGE`, `03_LATEX`,
+  `04_EXAMINER`).
+- Also present: `SUBMISSION_INPUTS_REQUIRED.md`, `CLAIM_EVIDENCE_MATRIX.md`.
+
+### Final PDF (thesis source unchanged from `389b0bf`)
+
+- Path: `thesisExperiment/thesis_final/main.pdf`
+- Pages: 116
+- Bytes: 2,242,482
+- PDF-extracted words: 37,892
+- Undefined citations / cross-references: 0 / 0
+- Overfull boxes: 0
+- Underfull boxes: 78 hbox / 10 vbox (narrow tables; cosmetic)
+
+### Unresolved user inputs (not invented)
+
+See `SUBMISSION_INPUTS_REQUIRED.md`. Remaining `\UserInput{…}` sites: **14**
+(12 in `main.tex`, 1 in Chapter 7 ethics, 1 in Appendix data-availability)
+plus **8** `[CANDIDATE MUST CONFIRM]` contribution lines.
+
+Must still come from the candidate/office:
+
+1. Matriculation number
+2. Official title metadata
+3. Official chair / programme / degree wording
+4. First-examiner / advisor labels
+5. Official submission date
+6. Official school/programme LaTeX template
+7. Statutory declaration (verbatim)
+8. Generative-AI disclosure (verbatim)
+9. Place and date of signature
+10. Wet-ink or accepted electronic signature
+11. CRediT / contribution confirmation (8 labelled lines)
+12. Ethics determination artefact
+13. Archive licence
+14. Archive DOI (only if one is minted)
+
+Search the compiled PDF for `USER INPUT REQUIRED`. Do not invent values.
+Do not commit `.env`. No grade is implied.
