@@ -136,6 +136,9 @@ function classifyRun(experimentName, expectedCfg, liveCmdlines) {
   if (okStatus && usage > 0 && seedOk && modeOk) {
     return { state: "complete", runDir: latest.d, usage, status };
   }
+  if (status === "failed") {
+    return { state: "incomplete", runDir: latest.d, usage, status };
+  }
   if (live) return { state: "in_progress", runDir: latest.d, usage, status };
   const ageMs = Date.now() - latest.t;
   if (!okStatus && ageMs < 40 * 60 * 1000) {
