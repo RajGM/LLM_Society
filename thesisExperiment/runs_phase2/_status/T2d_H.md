@@ -1,6 +1,6 @@
 # T2d_H status (dual homogeneous, all 8 topologies)
 
-**Updated:** 2026-09-19T03:11:22.374Z
+**Updated:** 2026-09-19T03:32:51.852Z
 **OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -8,29 +8,29 @@
 **Concurrency:** 4
 **Isolation:** `thesisExperiment/runs_phase2` only (not Phase 1 `runs/` or `results/tables/`)
 
-**Phase:** grid START T2d_H_echo_chamber_conspiracy_climate_piggyback (queue left 90).
+**Phase:** grid START T2d_H_echo_chamber_environmental_concern (queue left 87).
 
 ## Counts (configs; each seeds 6 core articles)
 
 | Count | n |
 | --- | ---: |
 | configs | 96 |
-| completed | 27 |
+| completed | 34 |
 | failed | 0 |
-| skipped (already complete dual) | 25 |
-| pending / not_started | 69 |
-| LLM calls (this slice + probe) | 3084 |
-| Est. USD | $0.317 |
+| skipped (already complete dual) | 29 |
+| pending / not_started | 62 |
+| LLM calls (this slice + probe) | 8652 |
+| Est. USD | $0.9003 |
 
 ## By topology
 
 | topology | configs | completed | failed | skipped | pending |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| echo_chamber | 12 | 2 | 0 | 0 | 10 |
+| echo_chamber | 12 | 5 | 0 | 0 | 7 |
 | hierarchical | 12 | 0 | 0 | 0 | 12 |
 | linear_chain | 12 | 12 | 0 | 0 | 0 |
 | polarized | 12 | 0 | 0 | 0 | 12 |
-| random_er | 12 | 1 | 0 | 0 | 11 |
+| random_er | 12 | 5 | 0 | 0 | 7 |
 | ring | 12 | 12 | 0 | 0 | 0 |
 | scale_free | 12 | 0 | 0 | 0 | 12 |
 | small_world | 12 | 0 | 0 | 0 | 12 |

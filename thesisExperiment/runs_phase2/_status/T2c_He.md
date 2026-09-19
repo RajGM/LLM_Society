@@ -1,6 +1,6 @@
 # T2c_He status (continuous heterogeneous, all 8 topologies)
 
-**Updated:** 2026-09-19T03:14:31.097Z
+**Updated:** 2026-09-19T03:34:52.691Z
 **OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -17,13 +17,13 @@ Orchestrators: pid 155290.
 | Count | n |
 | --- | ---: |
 | configs | 48 |
-| completed | 14 |
+| completed | 18 |
 | failed | 0 |
 | skipped (already complete continuous) | 0 |
 | in-flight | 4 |
-| pending / not_started | 34 |
-| LLM calls (this slice + probe) | 2598 |
-| Est. USD | $0.3259 |
+| pending / not_started | 30 |
+| LLM calls (this slice + probe) | 6052 |
+| Est. USD | $0.7453 |
 
 ## By topology
 
@@ -33,10 +33,10 @@ Orchestrators: pid 155290.
 | hierarchical | 6 | 0 | 0 | 0 | 6 | 0 |
 | linear_chain | 6 | 6 | 0 | 0 | 0 | 0 |
 | polarized | 6 | 0 | 0 | 0 | 6 | 0 |
-| random_er | 6 | 2 | 0 | 0 | 4 | 4 |
+| random_er | 6 | 6 | 0 | 0 | 0 | 0 |
 | ring | 6 | 6 | 0 | 0 | 0 | 0 |
 | scale_free | 6 | 0 | 0 | 0 | 6 | 0 |
-| small_world | 6 | 0 | 0 | 0 | 6 | 0 |
+| small_world | 6 | 0 | 0 | 0 | 6 | 4 |
 
 ## Probe (continuous)
 
