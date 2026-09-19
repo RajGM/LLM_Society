@@ -1,0 +1,77 @@
+{
+  "personasPath": "thesisExperiment/personas/phase2/homo/conspiracy_haarp_weather.json",
+  "articlesPath": "thesisExperiment/articles/merged.json",
+  "outputRoot": "thesisExperiment/runs_phase2",
+  "defaultModel": "gpt-4o-mini",
+  "auditorModel": "gpt-4o-mini",
+  "miScoringMode": "continuous",
+  "seedNodes": [
+    "node_0"
+  ],
+  "graphRandomSeed": 42,
+  "_description": "Phase2 T-H continuous echo_chamber homogeneous conspiracy_haarp_weather",
+  "experimentName": "T2c_H_echo_chamber_conspiracy_haarp_weather",
+  "topology": "echo_chamber",
+  "topologyParams": {
+    "numNodes": 8,
+    "numChambers": 2,
+    "intraEdgeProb": 0.75,
+    "interEdgeProb": 0.08,
+    "intraTrust": 0.85,
+    "interTrust": 0.15,
+    "minSeedOutDegree": 2,
+    "personasByCluster": [
+      [
+        "conspiracy_believer",
+        "conspiracy_haarp_weather",
+        "conspiracy_depopulation",
+        "conspiracy_climate_piggyback",
+        "conspiracy_peripheral_skywatcher"
+      ],
+      [
+        "climate_action_advocate",
+        "climate_justice_youth",
+        "mitigation_first_policy",
+        "climate_action_sweden_scopex",
+        "environmental_concern",
+        "ozone_stratosphere_specialist",
+        "biodiversity_food_security",
+        "caregiver_air_quality",
+        "climate_scientist",
+        "science_journalist",
+        "platform_moderator_toxicity"
+      ]
+    ]
+  },
+  "defaultPersonaAssignment": "sequential",
+  "maxTicks": 8,
+  "seedArticles": [
+    "scopex_2017",
+    "chemtrails_gates_2018_2021",
+    "sai_geoengineering",
+    "paris_agreement",
+    "climate_consensus",
+    "polar_bears"
+  ],
+  "pfeffer": {
+    "valence": "varied via 6 core articles",
+    "surprise": "held: drip seed node_0",
+    "identityAlignment": "homogeneous conspiracy_haarp_weather",
+    "networkClustering": "echo_chamber",
+    "informationEcho": "measured",
+    "temporalAcceleration": "8 hops/ticks (logged cut)"
+  },
+  "nodeParams": {
+    "trustThreshold": 0.15,
+    "actionWeights": {
+      "forward": 0.35,
+      "reinterpret": 0.5,
+      "drop": 0.15
+    },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 8,
+    "maxInboxSize": 4,
+    "activityPattern": "always"
+  }
+}

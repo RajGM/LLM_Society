@@ -1,0 +1,1742 @@
+{
+  "experimentId": "T2d_H_ring_conspiracy_believer_2026-09-19_02-55-05",
+  "status": "complete",
+  "timestamp": "2026-09-19T02:56:28.955Z",
+  "config": {
+    "topology": "ring",
+    "topologyParams": {
+      "numNodes": 8,
+      "edgeProbability": 0.3
+    },
+    "maxTicks": 8,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "dual",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.08,
+      "actionWeights": {
+        "forward": 0.1,
+        "reinterpret": 0.85,
+        "drop": 0.05
+      },
+      "relationEvolution": true,
+      "trustDelta": 0.05,
+      "maxHops": 8,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017",
+      "chemtrails_gates_2018_2021",
+      "sai_geoengineering",
+      "paris_agreement",
+      "climate_consensus",
+      "polar_bears"
+    ],
+    "seedNodes": [
+      "node_0"
+    ],
+    "personasPath": "thesisExperiment/personas/phase2/homo/conspiracy_believer.json",
+    "articlesPath": "thesisExperiment/articles/merged.json",
+    "outputRoot": "thesisExperiment/runs_phase2",
+    "graphRandomSeed": 42,
+    "_description": "Phase2 T-H dual ring homogeneous conspiracy_believer",
+    "experimentName": "T2d_H_ring_conspiracy_believer",
+    "defaultPersonaAssignment": "sequential",
+    "pfeffer": {
+      "valence": "varied via 6 core articles",
+      "surprise": "held: drip seed node_0",
+      "identityAlignment": "homogeneous conspiracy_believer",
+      "networkClustering": "ring",
+      "informationEcho": "measured",
+      "temporalAcceleration": "8 hops/ticks (logged cut)"
+    }
+  },
+  "llmUsage": {
+    "calls": 76,
+    "promptTokens": 34753,
+    "completionTokens": 5436,
+    "totalTokens": 40189,
+    "errors": 0,
+    "model": "gpt-4o-mini",
+    "estimatedUsd": 0.0085
+  },
+  "results": {
+    "scopex_2017": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 6,
+            "forwarded": 1,
+            "reinterpreted": 4,
+            "dropped": 1,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 5,
+            "forwarded": 1,
+            "reinterpreted": 2,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 1
+        },
+        "node_2": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_3": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_4": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 3,
+          "severity": "lie",
+          "eventCount": 1
+        },
+        "node_5": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 3,
+          "severity": "lie",
+          "eventCount": 1
+        },
+        "node_6": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_7": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": 3,
+            "node_3": 4,
+            "node_4": 5,
+            "node_5": 6,
+            "node_6": 7,
+            "node_7": 8
+          },
+          "networkMedian": 6
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 2,
+            "fidelity": 0.6
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 2,
+            "fidelity": 0.6
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 3,
+            "fidelity": 0.4
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 3,
+            "fidelity": 0.4
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 2,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 2,
+            "activeNodes": 1
+          },
+          {
+            "tick": 3,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 4,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 5,
+            "meanMI": 3,
+            "activeNodes": 1
+          },
+          {
+            "tick": 6,
+            "meanMI": 3,
+            "activeNodes": 1
+          },
+          {
+            "tick": 7,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 8,
+            "meanMI": 5,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0.18333333333333332,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 4,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 8,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          }
+        ],
+        "structuralVirality": 3,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.25,
+          "meanMR": 0.05,
+          "meanIR": 0.7,
+          "meanCMS": 500000000.4583333,
+          "meanIE": 0.4854752972273343,
+          "eventCount": 8
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.6,
+            "meanMR": 0.4,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.6,
+            "meanMR": 0,
+            "meanIR": 0.4,
+            "meanCMS": 0.6666666655555556
+          },
+          {
+            "tick": 3,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 4,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.4,
+            "meanMR": 0,
+            "meanIR": 0.6,
+            "meanCMS": 1.4999999962499997
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.4,
+            "meanMR": 0,
+            "meanIR": 0.6,
+            "meanCMS": 1.4999999962499997
+          },
+          {
+            "tick": 7,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 8,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanCR": 0.25,
+            "meanMR": 0.05,
+            "meanIR": 0.7,
+            "meanCMS": 500000000.4583333,
+            "eventCount": 8
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 1.625,
+          "meanAgreement": 0.8888888888888888,
+          "meanDiscreteMI": 3.75,
+          "meanContinuousMI": 2.375,
+          "meanSignedGap": -1.375,
+          "eventCount": 8
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanGap": 1.625,
+            "meanAgreement": 0.8888888888888888,
+            "meanDiscreteMI": 3.75,
+            "meanContinuousMI": 2.375,
+            "meanSignedGap": -1.375,
+            "eventCount": 8
+          }
+        ]
+      }
+    },
+    "chemtrails_gates_2018_2021": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 6,
+            "forwarded": 1,
+            "reinterpreted": 4,
+            "dropped": 1,
+            "dumped": 0
+          },
+          "mpr": 4,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 5,
+            "forwarded": 1,
+            "reinterpreted": 2,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_2": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_3": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_6": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": 1,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": 1
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 4,
+            "fidelity": 0.19999999999999996
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 4,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          }
+        ],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.2,
+          "meanMR": 0.4,
+          "meanIR": 0.4,
+          "meanCMS": 1.99999999,
+          "meanIE": 1.5219280948873621,
+          "eventCount": 1
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.2,
+            "meanMR": 0.4,
+            "meanIR": 0.4,
+            "meanCMS": 1.99999999
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanCR": 0.2,
+            "meanMR": 0.4,
+            "meanIR": 0.4,
+            "meanCMS": 1.99999999,
+            "eventCount": 1
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 1,
+          "meanAgreement": 1,
+          "meanDiscreteMI": 4,
+          "meanContinuousMI": 3,
+          "meanSignedGap": -1,
+          "eventCount": 1
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanGap": 1,
+            "meanAgreement": 1,
+            "meanDiscreteMI": 4,
+            "meanContinuousMI": 3,
+            "meanSignedGap": -1,
+            "eventCount": 1
+          }
+        ]
+      }
+    },
+    "sai_geoengineering": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 6,
+            "forwarded": 1,
+            "reinterpreted": 4,
+            "dropped": 1,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 5,
+            "forwarded": 1,
+            "reinterpreted": 2,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_2": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_3": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_6": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 2,
+            "fidelity": 0.6
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 2,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.6,
+          "meanMR": 0,
+          "meanIR": 0.4,
+          "meanCMS": 0.6666666655555556,
+          "meanIE": 0.9709505944546686,
+          "eventCount": 1
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.6,
+            "meanMR": 0,
+            "meanIR": 0.4,
+            "meanCMS": 0.6666666655555556
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanCR": 0.6,
+            "meanMR": 0,
+            "meanIR": 0.4,
+            "meanCMS": 0.6666666655555556,
+            "eventCount": 1
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 2,
+          "meanAgreement": null,
+          "meanDiscreteMI": 2,
+          "meanContinuousMI": 0,
+          "meanSignedGap": -2,
+          "eventCount": 1
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanGap": 2,
+            "meanAgreement": null,
+            "meanDiscreteMI": 2,
+            "meanContinuousMI": 0,
+            "meanSignedGap": -2,
+            "eventCount": 1
+          }
+        ]
+      }
+    },
+    "paris_agreement": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 6,
+            "forwarded": 1,
+            "reinterpreted": 4,
+            "dropped": 1,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 5,
+            "forwarded": 1,
+            "reinterpreted": 2,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_2": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_3": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_6": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [],
+        "networkMIOverTime": [],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": null,
+          "meanMR": null,
+          "meanIR": null,
+          "meanCMS": null,
+          "meanIE": null,
+          "eventCount": 0
+        },
+        "ifdOverTime": [],
+        "personaIFD": []
+      }
+    },
+    "climate_consensus": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 6,
+            "forwarded": 1,
+            "reinterpreted": 4,
+            "dropped": 1,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 5,
+            "forwarded": 1,
+            "reinterpreted": 2,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_2": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_3": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_4": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_5": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_6": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_7": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": 1,
+            "node_1": 2,
+            "node_2": 3,
+            "node_3": 4,
+            "node_4": 5,
+            "node_5": 6,
+            "node_6": 7,
+            "node_7": 8
+          },
+          "networkMedian": 5
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 3,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 4,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 5,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 6,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 7,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 8,
+            "meanMI": 5,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 2,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 3,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 4,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 5,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 6,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 7,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 8,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          }
+        ],
+        "structuralVirality": 3,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0,
+          "meanMR": 0.05,
+          "meanIR": 0.95,
+          "meanCMS": 950000000,
+          "meanIE": 0.12136882430683357,
+          "eventCount": 8
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 2,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 3,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 4,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 5,
+            "meanCR": 0,
+            "meanMR": 0.4,
+            "meanIR": 0.6,
+            "meanCMS": 600000000
+          },
+          {
+            "tick": 6,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 7,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          },
+          {
+            "tick": 8,
+            "meanCR": 0,
+            "meanMR": 0,
+            "meanIR": 1,
+            "meanCMS": 999999999.9999999
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanCR": 0,
+            "meanMR": 0.05,
+            "meanIR": 0.95,
+            "meanCMS": 950000000,
+            "eventCount": 8
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0,
+          "meanAgreement": null,
+          "meanDiscreteMI": 5,
+          "meanContinuousMI": 5,
+          "meanSignedGap": 0,
+          "eventCount": 8
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanGap": 0,
+            "meanAgreement": null,
+            "meanDiscreteMI": 5,
+            "meanContinuousMI": 5,
+            "meanSignedGap": 0,
+            "eventCount": 8
+          }
+        ]
+      }
+    },
+    "polar_bears": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 6,
+            "forwarded": 1,
+            "reinterpreted": 4,
+            "dropped": 1,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 5,
+            "forwarded": 1,
+            "reinterpreted": 2,
+            "dropped": 2,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_2": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_3": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_4": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_5": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_6": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        },
+        "node_7": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 3,
+            "forwarded": 0,
+            "reinterpreted": 3,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 5,
+          "severity": "propaganda",
+          "eventCount": 1
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": 6,
+            "node_6": 7,
+            "node_7": 8
+          },
+          "networkMedian": 7
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 5,
+            "fidelity": 0
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 6,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 7,
+            "meanMI": 5,
+            "activeNodes": 1
+          },
+          {
+            "tick": 8,
+            "meanMI": 5,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0.625,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 7,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 8,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          }
+        ],
+        "structuralVirality": 3,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.625,
+          "meanMR": 0.375,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0,
+          "eventCount": 8
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 0,
+            "meanMR": 1,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 0,
+            "meanMR": 1,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 0,
+            "meanMR": 1,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanCR": 0.625,
+            "meanMR": 0.375,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 8
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.625,
+          "meanAgreement": null,
+          "meanDiscreteMI": 1.875,
+          "meanContinuousMI": 1.25,
+          "meanSignedGap": -0.625,
+          "eventCount": 8
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanGap": 0.625,
+            "meanAgreement": null,
+            "meanDiscreteMI": 1.875,
+            "meanContinuousMI": 1.25,
+            "meanSignedGap": -0.625,
+            "eventCount": 8
+          }
+        ]
+      }
+    }
+  }
+}

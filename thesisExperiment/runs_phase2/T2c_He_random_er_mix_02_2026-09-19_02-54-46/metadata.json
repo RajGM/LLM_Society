@@ -1,0 +1,2525 @@
+{
+  "experimentId": "T2c_He_random_er_mix_02_2026-09-19_02-54-46",
+  "status": "complete",
+  "timestamp": "2026-09-19T03:21:24.629Z",
+  "config": {
+    "topology": "random_er",
+    "topologyParams": {
+      "numNodes": 8,
+      "edgeProbability": 0.42,
+      "minSeedOutDegree": 2
+    },
+    "maxTicks": 8,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "continuous",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.15,
+      "actionWeights": {
+        "forward": 0.35,
+        "reinterpret": 0.5,
+        "drop": 0.15
+      },
+      "relationEvolution": true,
+      "trustDelta": 0.05,
+      "maxHops": 8,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017",
+      "chemtrails_gates_2018_2021",
+      "sai_geoengineering",
+      "paris_agreement",
+      "climate_consensus",
+      "polar_bears"
+    ],
+    "seedNodes": [
+      "node_0"
+    ],
+    "personasPath": "thesisExperiment/personas/phase2/hetero/mix_02.json",
+    "articlesPath": "thesisExperiment/articles/merged.json",
+    "outputRoot": "thesisExperiment/runs_phase2",
+    "graphRandomSeed": 42,
+    "_description": "Phase2 T-He continuous random_er mix_02",
+    "experimentName": "T2c_He_random_er_mix_02",
+    "defaultPersonaAssignment": "sequential",
+    "pfeffer": {
+      "valence": "varied via 6 core articles",
+      "surprise": "held: drip seed node_0",
+      "identityAlignment": "heterogeneous mix_02",
+      "networkClustering": "random_er",
+      "informationEcho": "measured",
+      "temporalAcceleration": "8 hops/ticks (logged cut)"
+    }
+  },
+  "llmUsage": {
+    "calls": 1261,
+    "promptTokens": 570970,
+    "completionTokens": 115213,
+    "totalTokens": 686183,
+    "errors": 0,
+    "model": "gpt-4o-mini",
+    "estimatedUsd": 0.1548
+  },
+  "results": {
+    "scopex_2017": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 111,
+            "forwarded": 32,
+            "reinterpreted": 58,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.17857142857142858,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 122,
+            "forwarded": 41,
+            "reinterpreted": 58,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0.11538461538461535,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 127,
+            "forwarded": 51,
+            "reinterpreted": 51,
+            "dropped": 25,
+            "dumped": 0
+          },
+          "mpr": 0.031249999999999993,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 110,
+            "forwarded": 32,
+            "reinterpreted": 60,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.062499999999999986,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_4": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 118,
+            "forwarded": 39,
+            "reinterpreted": 61,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.18421052631578946,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 127,
+            "forwarded": 38,
+            "reinterpreted": 70,
+            "dropped": 19,
+            "dumped": 0
+          },
+          "mpr": 0.17857142857142858,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 104,
+            "forwarded": 34,
+            "reinterpreted": 49,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.1875,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 131,
+            "forwarded": 48,
+            "reinterpreted": 66,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0.07142857142857141,
+          "severity": "factual_error",
+          "eventCount": 21
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 21,
+            "meanMI": 0.07142857142857141,
+            "fidelity": 0.9857142857142858
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 19,
+            "meanMI": 0.18421052631578946,
+            "fidelity": 0.9631578947368421
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 16,
+            "meanMI": 0.031249999999999993,
+            "fidelity": 0.99375
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 16,
+            "meanMI": 0.062499999999999986,
+            "fidelity": 0.9875
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "climate_scientist",
+            "reach": 16,
+            "meanMI": 0.1875,
+            "fidelity": 0.9625
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 14,
+            "meanMI": 0.17857142857142858,
+            "fidelity": 0.9642857142857143
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "biodiversity_food_security",
+            "reach": 14,
+            "meanMI": 0.17857142857142858,
+            "fidelity": 0.9642857142857143
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_justice_youth",
+            "reach": 13,
+            "meanMI": 0.11538461538461535,
+            "fidelity": 0.9769230769230769
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 6
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 16
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.039999999999999994,
+            "activeNodes": 25
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.16666666666666663,
+            "activeNodes": 27
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.24074074074074073,
+            "activeNodes": 27
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.16,
+            "activeNodes": 25
+          }
+        ],
+        "giniCoefficient": 0.25843121631542193,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4285714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9751937984496127,
+          "meanMR": 0.04961240310077519,
+          "meanIR": 0,
+          "meanCMS": 0.03094622858150546,
+          "meanIE": 0.09668952933431002,
+          "eventCount": 129
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.992,
+            "meanMR": 0.016,
+            "meanIR": 0,
+            "meanCMS": 0.008888888879012343
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.9666666666666666,
+            "meanMR": 0.06666666666666667,
+            "meanIR": 0,
+            "meanCMS": 0.03909465015975079
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9518518518518517,
+            "meanMR": 0.0962962962962963,
+            "meanIR": 0,
+            "meanCMS": 0.06407995288252477
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.968,
+            "meanMR": 0.064,
+            "meanIR": 0,
+            "meanCMS": 0.03936507931589821
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 0.9625,
+            "meanMR": 0.07500000000000001,
+            "meanIR": 0,
+            "meanCMS": 0.049355158664646126,
+            "eventCount": 16
+          },
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 0.963157894736842,
+            "meanMR": 0.07368421052631578,
+            "meanIR": 0,
+            "meanCMS": 0.047410192085368015,
+            "eventCount": 19
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.9642857142857143,
+            "meanMR": 0.07142857142857142,
+            "meanIR": 0,
+            "meanCMS": 0.0464852607096066,
+            "eventCount": 14
+          },
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 0.9642857142857144,
+            "meanMR": 0.07142857142857142,
+            "meanIR": 0,
+            "meanCMS": 0.04648526070960659,
+            "eventCount": 14
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 0.976923076923077,
+            "meanMR": 0.04615384615384616,
+            "meanIR": 0,
+            "meanCMS": 0.025641025612535603,
+            "eventCount": 13
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.9857142857142857,
+            "meanMR": 0.028571428571428574,
+            "meanIR": 0,
+            "meanCMS": 0.015873015855379185,
+            "eventCount": 21
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.9875,
+            "meanMR": 0.025,
+            "meanIR": 0,
+            "meanCMS": 0.013888888873456786,
+            "eventCount": 16
+          },
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 0.99375,
+            "meanMR": 0.0125,
+            "meanIR": 0,
+            "meanCMS": 0.006944444436728393,
+            "eventCount": 16
+          }
+        ]
+      }
+    },
+    "chemtrails_gates_2018_2021": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 111,
+            "forwarded": 32,
+            "reinterpreted": 58,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.9687499999999999,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 122,
+            "forwarded": 41,
+            "reinterpreted": 58,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0.9999999999999998,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 127,
+            "forwarded": 51,
+            "reinterpreted": 51,
+            "dropped": 25,
+            "dumped": 0
+          },
+          "mpr": 1.0333333333333332,
+          "severity": "lie",
+          "eventCount": 22
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 110,
+            "forwarded": 32,
+            "reinterpreted": 60,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.9666666666666666,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_4": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 118,
+            "forwarded": 39,
+            "reinterpreted": 61,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 1.1944444444444444,
+          "severity": "lie",
+          "eventCount": 21
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 127,
+            "forwarded": 38,
+            "reinterpreted": 70,
+            "dropped": 19,
+            "dumped": 0
+          },
+          "mpr": 0.9999999999999998,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 104,
+            "forwarded": 34,
+            "reinterpreted": 49,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.9999999999999999,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 131,
+            "forwarded": 48,
+            "reinterpreted": 66,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0.9444444444444442,
+          "severity": "factual_error",
+          "eventCount": 23
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": 5,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": 5
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_justice_youth",
+            "reach": 18,
+            "meanMI": 0.9999999999999998,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 18,
+            "meanMI": 1.1944444444444444,
+            "fidelity": 0.7611111111111111
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 18,
+            "meanMI": 0.9444444444444442,
+            "fidelity": 0.8111111111111111
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "biodiversity_food_security",
+            "reach": 17,
+            "meanMI": 0.9999999999999998,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 16,
+            "meanMI": 0.9687499999999999,
+            "fidelity": 0.80625
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 15,
+            "meanMI": 1.0333333333333332,
+            "fidelity": 0.7933333333333333
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 15,
+            "meanMI": 0.9666666666666666,
+            "fidelity": 0.8066666666666666
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "climate_scientist",
+            "reach": 13,
+            "meanMI": 0.9999999999999999,
+            "fidelity": 0.8
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0.4999999999999999,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0.6666666666666665,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 0.8124999999999999,
+            "activeNodes": 8
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.9565217391304346,
+            "activeNodes": 23
+          },
+          {
+            "tick": 5,
+            "meanMI": 1.1041666666666667,
+            "activeNodes": 24
+          },
+          {
+            "tick": 6,
+            "meanMI": 1.0576923076923077,
+            "activeNodes": 26
+          },
+          {
+            "tick": 7,
+            "meanMI": 1.04,
+            "activeNodes": 25
+          },
+          {
+            "tick": 8,
+            "meanMI": 1.0499999999999998,
+            "activeNodes": 20
+          }
+        ],
+        "giniCoefficient": 0.03356531049250537,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4285714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.7969230769230755,
+          "meanMR": 0.387692307692307,
+          "meanIR": 0.009230769230769232,
+          "meanCMS": 0.2605006101629482,
+          "meanIE": 0.7184624865456636,
+          "eventCount": 130
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.9,
+            "meanMR": 0.2,
+            "meanIR": 0,
+            "meanCMS": 0.11111111098765429
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.8666666666666667,
+            "meanMR": 0.26666666666666666,
+            "meanIR": 0,
+            "meanCMS": 0.15740740722093619
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.8375,
+            "meanMR": 0.325,
+            "meanIR": 0,
+            "meanCMS": 0.19791666642505784
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.8086956521739133,
+            "meanMR": 0.38260869565217404,
+            "meanIR": 0,
+            "meanCMS": 0.23792270501794804
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.7791666666666668,
+            "meanMR": 0.40833333333333344,
+            "meanIR": 0.016666666666666666,
+            "meanCMS": 0.296130951973161
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.7884615384615385,
+            "meanMR": 0.42307692307692313,
+            "meanIR": 0,
+            "meanCMS": 0.2706043952573095
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.7920000000000003,
+            "meanMR": 0.3840000000000001,
+            "meanIR": 0.016,
+            "meanCMS": 0.2666666663222221
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.7900000000000003,
+            "meanMR": 0.3800000000000001,
+            "meanIR": 0.02,
+            "meanCMS": 0.2708333329809026
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 0.7611111111111112,
+            "meanMR": 0.38888888888888895,
+            "meanIR": 0.044444444444444446,
+            "meanCMS": 0.33906525523569986,
+            "eventCount": 18
+          },
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 0.7933333333333334,
+            "meanMR": 0.36000000000000004,
+            "meanIR": 0.02666666666666667,
+            "meanCMS": 0.2685185181653805,
+            "eventCount": 15
+          },
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 0.8,
+            "meanMR": 0.4,
+            "meanIR": 0,
+            "meanCMS": 0.25305250273148744,
+            "eventCount": 13
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 0.8000000000000003,
+            "meanMR": 0.40000000000000013,
+            "meanIR": 0,
+            "meanCMS": 0.24999999968749986,
+            "eventCount": 18
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.8000000000000002,
+            "meanMR": 0.4000000000000001,
+            "meanIR": 0,
+            "meanCMS": 0.24999999968749986,
+            "eventCount": 17
+          },
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 0.8062500000000002,
+            "meanMR": 0.38750000000000007,
+            "meanIR": 0,
+            "meanCMS": 0.2413194441437595,
+            "eventCount": 16
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.8066666666666669,
+            "meanMR": 0.3866666666666667,
+            "meanIR": 0,
+            "meanCMS": 0.24074074044084348,
+            "eventCount": 15
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.8111111111111113,
+            "meanMR": 0.3777777777777779,
+            "meanIR": 0,
+            "meanCMS": 0.2345679009430726,
+            "eventCount": 18
+          }
+        ]
+      }
+    },
+    "sai_geoengineering": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 111,
+            "forwarded": 32,
+            "reinterpreted": 58,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.11111111111111109,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 122,
+            "forwarded": 41,
+            "reinterpreted": 58,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0.04999999999999999,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 127,
+            "forwarded": 51,
+            "reinterpreted": 51,
+            "dropped": 25,
+            "dumped": 0
+          },
+          "mpr": 0.04999999999999999,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 110,
+            "forwarded": 32,
+            "reinterpreted": 60,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.062499999999999986,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_4": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 118,
+            "forwarded": 39,
+            "reinterpreted": 61,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.1333333333333333,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 127,
+            "forwarded": 38,
+            "reinterpreted": 70,
+            "dropped": 19,
+            "dumped": 0
+          },
+          "mpr": 0.07499999999999998,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 104,
+            "forwarded": 34,
+            "reinterpreted": 49,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.09375000000000001,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 131,
+            "forwarded": 48,
+            "reinterpreted": 66,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0.07500000000000001,
+          "severity": "factual_error",
+          "eventCount": 23
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_justice_youth",
+            "reach": 20,
+            "meanMI": 0.04999999999999999,
+            "fidelity": 0.99
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 20,
+            "meanMI": 0.04999999999999999,
+            "fidelity": 0.99
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "biodiversity_food_security",
+            "reach": 20,
+            "meanMI": 0.07499999999999998,
+            "fidelity": 0.985
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 20,
+            "meanMI": 0.07500000000000001,
+            "fidelity": 0.985
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 18,
+            "meanMI": 0.11111111111111109,
+            "fidelity": 0.9777777777777777
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 16,
+            "meanMI": 0.062499999999999986,
+            "fidelity": 0.9875
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "climate_scientist",
+            "reach": 16,
+            "meanMI": 0.09375000000000001,
+            "fidelity": 0.98125
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 15,
+            "meanMI": 0.1333333333333333,
+            "fidelity": 0.9733333333333334
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 0.09999999999999998,
+            "activeNodes": 10
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.02083333333333333,
+            "activeNodes": 24
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.07142857142857141,
+            "activeNodes": 28
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.09259259259259259,
+            "activeNodes": 27
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.12,
+            "activeNodes": 25
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.09259259259259256,
+            "activeNodes": 27
+          }
+        ],
+        "giniCoefficient": 0.18876734258271077,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4642857142857142,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9841379310344827,
+          "meanMR": 0.02344827586206897,
+          "meanIR": 0.00413793103448276,
+          "meanCMS": 0.019321291711261197,
+          "meanIE": 0.06416124624066737,
+          "eventCount": 145
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.9800000000000001,
+            "meanMR": 0,
+            "meanIR": 0.02,
+            "meanCMS": 0.024999999968749995
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.9958333333333332,
+            "meanMR": 0.008333333333333333,
+            "meanIR": 0,
+            "meanCMS": 0.004629629624485596
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.9857142857142857,
+            "meanMR": 0.028571428571428574,
+            "meanIR": 0,
+            "meanCMS": 0.015873015855379185
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.9814814814814814,
+            "meanMR": 0.022222222222222227,
+            "meanIR": 0.007407407407407408,
+            "meanCMS": 0.02410346851609231
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9760000000000001,
+            "meanMR": 0.04800000000000001,
+            "meanIR": 0,
+            "meanCMS": 0.030476190436885865
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.9814814814814815,
+            "meanMR": 0.022222222222222227,
+            "meanIR": 0.007407407407407408,
+            "meanCMS": 0.02160493824631344
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 0.9733333333333334,
+            "meanMR": 0,
+            "meanIR": 0.02666666666666667,
+            "meanCMS": 0.03333333329166666,
+            "eventCount": 15
+          },
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 0.98125,
+            "meanMR": 0.0375,
+            "meanIR": 0,
+            "meanCMS": 0.026785714247448987,
+            "eventCount": 16
+          },
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 0.9777777777777779,
+            "meanMR": 0.044444444444444446,
+            "meanIR": 0,
+            "meanCMS": 0.02469135799725651,
+            "eventCount": 18
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.985,
+            "meanMR": 0.01,
+            "meanIR": 0.01,
+            "meanCMS": 0.02142857139795919,
+            "eventCount": 20
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.9850000000000001,
+            "meanMR": 0.030000000000000006,
+            "meanIR": 0,
+            "meanCMS": 0.016666666648148143,
+            "eventCount": 20
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.9875,
+            "meanMR": 0.025,
+            "meanIR": 0,
+            "meanCMS": 0.013888888873456786,
+            "eventCount": 16
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 0.9899999999999999,
+            "meanMR": 0.02,
+            "meanIR": 0,
+            "meanCMS": 0.01111111109876543,
+            "eventCount": 20
+          },
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 0.9899999999999999,
+            "meanMR": 0.02,
+            "meanIR": 0,
+            "meanCMS": 0.01111111109876543,
+            "eventCount": 20
+          }
+        ]
+      }
+    },
+    "paris_agreement": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 111,
+            "forwarded": 32,
+            "reinterpreted": 58,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 122,
+            "forwarded": 41,
+            "reinterpreted": 58,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 127,
+            "forwarded": 51,
+            "reinterpreted": 51,
+            "dropped": 25,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 110,
+            "forwarded": 32,
+            "reinterpreted": 60,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_4": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 118,
+            "forwarded": 39,
+            "reinterpreted": 61,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 127,
+            "forwarded": 38,
+            "reinterpreted": 70,
+            "dropped": 19,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 104,
+            "forwarded": 34,
+            "reinterpreted": 49,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 131,
+            "forwarded": 48,
+            "reinterpreted": 66,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 23
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_5",
+            "personaId": "biodiversity_food_security",
+            "reach": 23,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 21,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 19,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 17,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 17,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 16,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_justice_youth",
+            "reach": 16,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "climate_scientist",
+            "reach": 14,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 9
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 24
+          },
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 28
+          },
+          {
+            "tick": 6,
+            "meanMI": 0,
+            "activeNodes": 23
+          },
+          {
+            "tick": 7,
+            "meanMI": 0,
+            "activeNodes": 28
+          },
+          {
+            "tick": 8,
+            "meanMI": 0,
+            "activeNodes": 27
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4285714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 1,
+          "meanMR": 0,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0,
+          "eventCount": 143
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 16
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 16
+          },
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 17
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 17
+          },
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 19
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 23
+          },
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 14
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 21
+          }
+        ]
+      }
+    },
+    "climate_consensus": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 111,
+            "forwarded": 32,
+            "reinterpreted": 58,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.24999999999999994,
+          "severity": "factual_error",
+          "eventCount": 16
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 122,
+            "forwarded": 41,
+            "reinterpreted": 58,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0.062499999999999986,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 127,
+            "forwarded": 51,
+            "reinterpreted": 51,
+            "dropped": 25,
+            "dumped": 0
+          },
+          "mpr": 0.12499999999999997,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 110,
+            "forwarded": 32,
+            "reinterpreted": 60,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.3571428571428571,
+          "severity": "factual_error",
+          "eventCount": 16
+        },
+        "node_4": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 118,
+            "forwarded": 39,
+            "reinterpreted": 61,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.24999999999999994,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 127,
+            "forwarded": 38,
+            "reinterpreted": 70,
+            "dropped": 19,
+            "dumped": 0
+          },
+          "mpr": 0.28124999999999994,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 104,
+            "forwarded": 34,
+            "reinterpreted": 49,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.409090909090909,
+          "severity": "factual_error",
+          "eventCount": 14
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 131,
+            "forwarded": 48,
+            "reinterpreted": 66,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0.13888888888888884,
+          "severity": "factual_error",
+          "eventCount": 21
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 18,
+            "meanMI": 0.13888888888888884,
+            "fidelity": 0.9722222222222222
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_justice_youth",
+            "reach": 16,
+            "meanMI": 0.062499999999999986,
+            "fidelity": 0.9875
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 16,
+            "meanMI": 0.12499999999999997,
+            "fidelity": 0.975
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "biodiversity_food_security",
+            "reach": 16,
+            "meanMI": 0.28124999999999994,
+            "fidelity": 0.94375
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 14,
+            "meanMI": 0.24999999999999994,
+            "fidelity": 0.95
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 14,
+            "meanMI": 0.3571428571428571,
+            "fidelity": 0.9285714285714286
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 14,
+            "meanMI": 0.24999999999999994,
+            "fidelity": 0.95
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "climate_scientist",
+            "reach": 11,
+            "meanMI": 0.409090909090909,
+            "fidelity": 0.9181818181818182
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 3
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.09999999999999998,
+            "activeNodes": 10
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.19047619047619044,
+            "activeNodes": 21
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.23076923076923073,
+            "activeNodes": 26
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.2857142857142857,
+            "activeNodes": 28
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.26785714285714285,
+            "activeNodes": 28
+          }
+        ],
+        "giniCoefficient": 0.2677565876549152,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4285714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9554621848739494,
+          "meanMR": 0.08907563025210087,
+          "meanIR": 0,
+          "meanCMS": 0.055088702079313163,
+          "meanIE": 0.1653046407163286,
+          "eventCount": 119
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.9800000000000001,
+            "meanMR": 0.04,
+            "meanIR": 0,
+            "meanCMS": 0.024999999968749995
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.961904761904762,
+            "meanMR": 0.0761904761904762,
+            "meanIR": 0,
+            "meanCMS": 0.0476190475595238
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.9538461538461539,
+            "meanMR": 0.0923076923076923,
+            "meanIR": 0,
+            "meanCMS": 0.056623931554338786
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.942857142857143,
+            "meanMR": 0.1142857142857143,
+            "meanIR": 0,
+            "meanCMS": 0.07043650784956458
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.9464285714285715,
+            "meanMR": 0.10714285714285714,
+            "meanIR": 0,
+            "meanCMS": 0.06646825388571978
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 0.9181818181818181,
+            "meanMR": 0.1636363636363636,
+            "meanIR": 0,
+            "meanCMS": 0.10101010088524127,
+            "eventCount": 11
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.9285714285714287,
+            "meanMR": 0.14285714285714285,
+            "meanIR": 0,
+            "meanCMS": 0.08928571417410712,
+            "eventCount": 14
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.9437500000000001,
+            "meanMR": 0.11249999999999999,
+            "meanIR": 0,
+            "meanCMS": 0.06944444435860338,
+            "eventCount": 16
+          },
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 0.9500000000000001,
+            "meanMR": 0.09999999999999999,
+            "meanIR": 0,
+            "meanCMS": 0.06150793643215387,
+            "eventCount": 14
+          },
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 0.9500000000000001,
+            "meanMR": 0.1,
+            "meanIR": 0,
+            "meanCMS": 0.06150793643215386,
+            "eventCount": 14
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.9722222222222222,
+            "meanMR": 0.05555555555555555,
+            "meanIR": 0,
+            "meanCMS": 0.033950617242369675,
+            "eventCount": 18
+          },
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 0.9750000000000001,
+            "meanMR": 0.05,
+            "meanIR": 0,
+            "meanCMS": 0.031249999960937493,
+            "eventCount": 16
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 0.9875,
+            "meanMR": 0.025,
+            "meanIR": 0,
+            "meanCMS": 0.015624999980468747,
+            "eventCount": 16
+          }
+        ]
+      }
+    },
+    "polar_bears": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 111,
+            "forwarded": 32,
+            "reinterpreted": 58,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 15
+        },
+        "node_1": {
+          "personaId": "climate_justice_youth",
+          "stats": {
+            "received": 122,
+            "forwarded": 41,
+            "reinterpreted": 58,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 127,
+            "forwarded": 51,
+            "reinterpreted": 51,
+            "dropped": 25,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 110,
+            "forwarded": 32,
+            "reinterpreted": 60,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_4": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 118,
+            "forwarded": 39,
+            "reinterpreted": 61,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_5": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 127,
+            "forwarded": 38,
+            "reinterpreted": 70,
+            "dropped": 19,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 104,
+            "forwarded": 34,
+            "reinterpreted": 49,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_7": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 131,
+            "forwarded": 48,
+            "reinterpreted": 66,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 20
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 18,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "biodiversity_food_security",
+            "reach": 18,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_justice_youth",
+            "reach": 16,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "science_journalist",
+            "reach": 16,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 15,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 14,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "climate_scientist",
+            "reach": 13,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 12,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 4
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 11
+          },
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 24
+          },
+          {
+            "tick": 6,
+            "meanMI": 0,
+            "activeNodes": 27
+          },
+          {
+            "tick": 7,
+            "meanMI": 0,
+            "activeNodes": 27
+          },
+          {
+            "tick": 8,
+            "meanMI": 0,
+            "activeNodes": 26
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4285714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 1,
+          "meanMR": 0,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0,
+          "eventCount": 122
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 12
+          },
+          {
+            "personaId": "climate_justice_youth",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 16
+          },
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 18
+          },
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 14
+          },
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 15
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 18
+          },
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 13
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 16
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,2072 @@
+{
+  "experimentId": "T2c_He_random_er_mix_04_2026-09-19_03-11-03",
+  "status": "complete",
+  "timestamp": "2026-09-19T03:23:28.777Z",
+  "config": {
+    "topology": "random_er",
+    "topologyParams": {
+      "numNodes": 8,
+      "edgeProbability": 0.42,
+      "minSeedOutDegree": 2
+    },
+    "maxTicks": 8,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "continuous",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.15,
+      "actionWeights": {
+        "forward": 0.35,
+        "reinterpret": 0.5,
+        "drop": 0.15
+      },
+      "relationEvolution": true,
+      "trustDelta": 0.05,
+      "maxHops": 8,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017",
+      "chemtrails_gates_2018_2021",
+      "sai_geoengineering",
+      "paris_agreement",
+      "climate_consensus",
+      "polar_bears"
+    ],
+    "seedNodes": [
+      "node_0"
+    ],
+    "personasPath": "thesisExperiment/personas/phase2/hetero/mix_04.json",
+    "articlesPath": "thesisExperiment/articles/merged.json",
+    "outputRoot": "thesisExperiment/runs_phase2",
+    "graphRandomSeed": 42,
+    "_description": "Phase2 T-He continuous random_er mix_04",
+    "experimentName": "T2c_He_random_er_mix_04",
+    "defaultPersonaAssignment": "sequential",
+    "pfeffer": {
+      "valence": "varied via 6 core articles",
+      "surprise": "held: drip seed node_0",
+      "identityAlignment": "heterogeneous mix_04",
+      "networkClustering": "random_er",
+      "informationEcho": "measured",
+      "temporalAcceleration": "8 hops/ticks (logged cut)"
+    }
+  },
+  "llmUsage": {
+    "calls": 646,
+    "promptTokens": 296809,
+    "completionTokens": 54921,
+    "totalTokens": 351730,
+    "errors": 0,
+    "model": "gpt-4o-mini",
+    "estimatedUsd": 0.0775
+  },
+  "results": {
+    "scopex_2017": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 69,
+            "forwarded": 24,
+            "reinterpreted": 30,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0.05882352941176469,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_1": {
+          "personaId": "conspiracy_peripheral_skywatcher",
+          "stats": {
+            "received": 60,
+            "forwarded": 24,
+            "reinterpreted": 29,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.3,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 38,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.05882352941176469,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_3": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 47,
+            "forwarded": 13,
+            "reinterpreted": 26,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0.5833333333333334,
+          "severity": "factual_error",
+          "eventCount": 15
+        },
+        "node_4": {
+          "personaId": "climate_action_sweden_scopex",
+          "stats": {
+            "received": 52,
+            "forwarded": 24,
+            "reinterpreted": 23,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0.42857142857142855,
+          "severity": "factual_error",
+          "eventCount": 16
+        },
+        "node_5": {
+          "personaId": "platform_moderator_toxicity",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 37,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0.029411764705882346,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_6": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 54,
+            "forwarded": 20,
+            "reinterpreted": 29,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0.3571428571428571,
+          "severity": "factual_error",
+          "eventCount": 16
+        },
+        "node_7": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 57,
+            "forwarded": 23,
+            "reinterpreted": 27,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.6714285714285715,
+          "severity": "factual_error",
+          "eventCount": 16
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": 6,
+            "node_4": 8,
+            "node_5": null,
+            "node_6": null,
+            "node_7": 8
+          },
+          "networkMedian": 8
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 17,
+            "meanMI": 0.05882352941176469,
+            "fidelity": 0.9882352941176471
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "science_journalist",
+            "reach": 17,
+            "meanMI": 0.05882352941176469,
+            "fidelity": 0.9882352941176471
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "platform_moderator_toxicity",
+            "reach": 17,
+            "meanMI": 0.029411764705882346,
+            "fidelity": 0.9941176470588236
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "conspiracy_peripheral_skywatcher",
+            "reach": 15,
+            "meanMI": 0.3,
+            "fidelity": 0.94
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "climate_action_sweden_scopex",
+            "reach": 14,
+            "meanMI": 0.42857142857142855,
+            "fidelity": 0.9142857142857143
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 14,
+            "meanMI": 0.3571428571428571,
+            "fidelity": 0.9285714285714286
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "conspiracy_depopulation",
+            "reach": 14,
+            "meanMI": 0.6714285714285715,
+            "fidelity": 0.8657142857142857
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "biodiversity_food_security",
+            "reach": 12,
+            "meanMI": 0.5833333333333334,
+            "fidelity": 0.8833333333333333
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 4
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 8
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.04761904761904761,
+            "activeNodes": 21
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.24,
+            "activeNodes": 25
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.42758620689655175,
+            "activeNodes": 29
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.5,
+            "activeNodes": 30
+          }
+        ],
+        "giniCoefficient": 0.4162279713980069,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.3571428571428572,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.942666666666667,
+          "meanMR": 0.07333333333333335,
+          "meanIR": 0.02,
+          "meanCMS": 0.1107292197083674,
+          "meanIE": 0.17111140212541784,
+          "eventCount": 120
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.9904761904761905,
+            "meanMR": 0.01904761904761905,
+            "meanIR": 0,
+            "meanCMS": 0.010582010570252789
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.9519999999999997,
+            "meanMR": 0.096,
+            "meanIR": 0,
+            "meanCMS": 0.07111111099654321
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9144827586206897,
+            "meanMR": 0.09655172413793103,
+            "meanIR": 0.034482758620689655,
+            "meanCMS": 0.11869890690664113
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.9,
+            "meanMR": 0.10666666666666667,
+            "meanIR": 0.04666666666666666,
+            "meanCMS": 0.26150793559408697
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_action_sweden_scopex",
+            "meanCR": 0.9142857142857144,
+            "meanMR": 0.05714285714285715,
+            "meanIR": 0.05714285714285715,
+            "meanCMS": 0.3174603159964727,
+            "eventCount": 14
+          },
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanCR": 0.8657142857142859,
+            "meanMR": 0.08571428571428573,
+            "meanIR": 0.08571428571428573,
+            "meanCMS": 0.24219149978472196,
+            "eventCount": 14
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.8833333333333333,
+            "meanMR": 0.2333333333333333,
+            "meanIR": 0,
+            "meanCMS": 0.21164021124556984,
+            "eventCount": 12
+          },
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 0.9285714285714287,
+            "meanMR": 0.08571428571428573,
+            "meanIR": 0.028571428571428574,
+            "meanCMS": 0.09013605430693904,
+            "eventCount": 14
+          },
+          {
+            "personaId": "conspiracy_peripheral_skywatcher",
+            "meanCR": 0.9400000000000001,
+            "meanMR": 0.11999999999999998,
+            "meanIR": 0,
+            "meanCMS": 0.07301587292567396,
+            "eventCount": 15
+          },
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 0.9882352941176471,
+            "meanMR": 0.023529411764705882,
+            "meanIR": 0,
+            "meanCMS": 0.01307189541031227,
+            "eventCount": 17
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.9882352941176471,
+            "meanMR": 0.023529411764705882,
+            "meanIR": 0,
+            "meanCMS": 0.01307189541031227,
+            "eventCount": 17
+          },
+          {
+            "personaId": "platform_moderator_toxicity",
+            "meanCR": 0.9941176470588234,
+            "meanMR": 0.011764705882352941,
+            "meanIR": 0,
+            "meanCMS": 0.006535947705156135,
+            "eventCount": 17
+          }
+        ]
+      }
+    },
+    "chemtrails_gates_2018_2021": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 69,
+            "forwarded": 24,
+            "reinterpreted": 30,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "conspiracy_peripheral_skywatcher",
+          "stats": {
+            "received": 60,
+            "forwarded": 24,
+            "reinterpreted": 29,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 38,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_3": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 47,
+            "forwarded": 13,
+            "reinterpreted": 26,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "climate_action_sweden_scopex",
+          "stats": {
+            "received": 52,
+            "forwarded": 24,
+            "reinterpreted": 23,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "platform_moderator_toxicity",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 37,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_6": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 54,
+            "forwarded": 20,
+            "reinterpreted": 29,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 57,
+            "forwarded": 23,
+            "reinterpreted": 27,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [],
+        "networkMIOverTime": [],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": null,
+          "meanMR": null,
+          "meanIR": null,
+          "meanCMS": null,
+          "meanIE": null,
+          "eventCount": 0
+        },
+        "ifdOverTime": [],
+        "personaIFD": []
+      }
+    },
+    "sai_geoengineering": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 69,
+            "forwarded": 24,
+            "reinterpreted": 30,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0.4999999999999999,
+          "severity": "factual_error",
+          "eventCount": 2
+        },
+        "node_1": {
+          "personaId": "conspiracy_peripheral_skywatcher",
+          "stats": {
+            "received": 60,
+            "forwarded": 24,
+            "reinterpreted": 29,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 38,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.4999999999999999,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_3": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 47,
+            "forwarded": 13,
+            "reinterpreted": 26,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "climate_action_sweden_scopex",
+          "stats": {
+            "received": 52,
+            "forwarded": 24,
+            "reinterpreted": 23,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "platform_moderator_toxicity",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 37,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_6": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 54,
+            "forwarded": 20,
+            "reinterpreted": 29,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 57,
+            "forwarded": 23,
+            "reinterpreted": 27,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 1,
+            "meanMI": 0.4999999999999999,
+            "fidelity": 0.9
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "science_journalist",
+            "reach": 1,
+            "meanMI": 0.4999999999999999,
+            "fidelity": 0.9
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0.4999999999999999,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0.4999999999999999,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9,
+          "meanMR": 0.2,
+          "meanIR": 0,
+          "meanCMS": 0.11111111098765429,
+          "meanIE": 0.4689955935892811,
+          "eventCount": 2
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.9,
+            "meanMR": 0.2,
+            "meanIR": 0,
+            "meanCMS": 0.11111111098765429
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.9,
+            "meanMR": 0.2,
+            "meanIR": 0,
+            "meanCMS": 0.11111111098765429
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 0.9,
+            "meanMR": 0.2,
+            "meanIR": 0,
+            "meanCMS": 0.11111111098765429,
+            "eventCount": 1
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.9,
+            "meanMR": 0.2,
+            "meanIR": 0,
+            "meanCMS": 0.11111111098765429,
+            "eventCount": 1
+          }
+        ]
+      }
+    },
+    "paris_agreement": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 69,
+            "forwarded": 24,
+            "reinterpreted": 30,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0.32,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_1": {
+          "personaId": "conspiracy_peripheral_skywatcher",
+          "stats": {
+            "received": 60,
+            "forwarded": 24,
+            "reinterpreted": 29,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 1.4933333333333332,
+          "severity": "lie",
+          "eventCount": 17
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 38,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.5666666666666665,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_3": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 47,
+            "forwarded": 13,
+            "reinterpreted": 26,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 1.2272727272727273,
+          "severity": "lie",
+          "eventCount": 15
+        },
+        "node_4": {
+          "personaId": "climate_action_sweden_scopex",
+          "stats": {
+            "received": 52,
+            "forwarded": 24,
+            "reinterpreted": 23,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 1.96875,
+          "severity": "lie",
+          "eventCount": 16
+        },
+        "node_5": {
+          "personaId": "platform_moderator_toxicity",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 37,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0.7647058823529411,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_6": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 54,
+            "forwarded": 20,
+            "reinterpreted": 29,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 1.41875,
+          "severity": "lie",
+          "eventCount": 16
+        },
+        "node_7": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 57,
+            "forwarded": 23,
+            "reinterpreted": 27,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 2.7285714285714286,
+          "severity": "lie",
+          "eventCount": 16
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": 5,
+            "node_2": null,
+            "node_3": 5,
+            "node_4": 5,
+            "node_5": 6,
+            "node_6": 5,
+            "node_7": 4
+          },
+          "networkMedian": 5
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_5",
+            "personaId": "platform_moderator_toxicity",
+            "reach": 17,
+            "meanMI": 0.7647058823529411,
+            "fidelity": 0.8470588235294118
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "climate_action_sweden_scopex",
+            "reach": 16,
+            "meanMI": 1.96875,
+            "fidelity": 0.60625
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 16,
+            "meanMI": 1.41875,
+            "fidelity": 0.71625
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 15,
+            "meanMI": 0.32,
+            "fidelity": 0.9359999999999999
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "conspiracy_peripheral_skywatcher",
+            "reach": 15,
+            "meanMI": 1.4933333333333332,
+            "fidelity": 0.7013333333333334
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "science_journalist",
+            "reach": 15,
+            "meanMI": 0.5666666666666665,
+            "fidelity": 0.8866666666666667
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "conspiracy_depopulation",
+            "reach": 14,
+            "meanMI": 2.7285714285714286,
+            "fidelity": 0.4542857142857143
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "biodiversity_food_security",
+            "reach": 11,
+            "meanMI": 1.2272727272727273,
+            "fidelity": 0.7545454545454545
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 0.13333333333333344,
+            "activeNodes": 3
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.7857142857142856,
+            "activeNodes": 7
+          },
+          {
+            "tick": 5,
+            "meanMI": 1.3363636363636362,
+            "activeNodes": 22
+          },
+          {
+            "tick": 6,
+            "meanMI": 1.2586206896551724,
+            "activeNodes": 29
+          },
+          {
+            "tick": 7,
+            "meanMI": 1.393103448275862,
+            "activeNodes": 29
+          },
+          {
+            "tick": 8,
+            "meanMI": 1.630769230769231,
+            "activeNodes": 26
+          }
+        ],
+        "giniCoefficient": 0.3128295559796825,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 8,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          }
+        ],
+        "structuralVirality": 1.3571428571428572,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.7401680672268909,
+          "meanMR": 0.36974789915966366,
+          "meanIR": 0.0722689075630252,
+          "meanCMS": 42016807.155459285,
+          "meanIE": 0.4956315282532082,
+          "eventCount": 119
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.9733333333333333,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0.028985507214870854
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.8428571428571429,
+            "meanMR": 0.2571428571428572,
+            "meanIR": 0.028571428571428574,
+            "meanCMS": 0.30158730094466485
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.7327272727272728,
+            "meanMR": 0.23636363636363636,
+            "meanIR": 0.14545454545454548,
+            "meanCMS": 90909091.2411616
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.7482758620689655,
+            "meanMR": 0.3931034482758621,
+            "meanIR": 0.05517241379310344,
+            "meanCMS": 34482759.02818829
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.7213793103448276,
+            "meanMR": 0.4,
+            "meanIR": 0.07586206896551725,
+            "meanCMS": 34482759.16707717
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.6738461538461539,
+            "meanMR": 0.5384615384615387,
+            "meanIR": 0.05384615384615384,
+            "meanCMS": 38461539.012820505
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanCR": 0.45428571428571424,
+            "meanMR": 0.34285714285714286,
+            "meanIR": 0.37142857142857144,
+            "meanCMS": 214285715.18310657,
+            "eventCount": 14
+          },
+          {
+            "personaId": "climate_action_sweden_scopex",
+            "meanCR": 0.60625,
+            "meanMR": 0.5375,
+            "meanIR": 0.125,
+            "meanCMS": 125000000.5267857,
+            "eventCount": 16
+          },
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 0.71625,
+            "meanMR": 0.5125000000000001,
+            "meanIR": 0.025,
+            "meanCMS": 0.580357141636639,
+            "eventCount": 16
+          },
+          {
+            "personaId": "conspiracy_peripheral_skywatcher",
+            "meanCR": 0.7013333333333335,
+            "meanMR": 0.5066666666666666,
+            "meanIR": 0.04000000000000001,
+            "meanCMS": 0.5621463066981234,
+            "eventCount": 15
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.7545454545454546,
+            "meanMR": 0.45454545454545453,
+            "meanIR": 0.018181818181818184,
+            "meanCMS": 0.47727272633522727,
+            "eventCount": 11
+          },
+          {
+            "personaId": "platform_moderator_toxicity",
+            "meanCR": 0.8470588235294118,
+            "meanMR": 0.3058823529411765,
+            "meanIR": 0,
+            "meanCMS": 0.24019607804071352,
+            "eventCount": 17
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.8866666666666667,
+            "meanMR": 0.2,
+            "meanIR": 0.013333333333333334,
+            "meanCMS": 0.14523809505144553,
+            "eventCount": 15
+          },
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 0.936,
+            "meanMR": 0.10666666666666667,
+            "meanIR": 0,
+            "meanCMS": 0.08518518507150205,
+            "eventCount": 15
+          }
+        ]
+      }
+    },
+    "climate_consensus": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 69,
+            "forwarded": 24,
+            "reinterpreted": 30,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0.5714285714285714,
+          "severity": "factual_error",
+          "eventCount": 11
+        },
+        "node_1": {
+          "personaId": "conspiracy_peripheral_skywatcher",
+          "stats": {
+            "received": 60,
+            "forwarded": 24,
+            "reinterpreted": 29,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 1.525,
+          "severity": "lie",
+          "eventCount": 9
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 38,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.35,
+          "severity": "factual_error",
+          "eventCount": 10
+        },
+        "node_3": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 47,
+            "forwarded": 13,
+            "reinterpreted": 26,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 1.625,
+          "severity": "lie",
+          "eventCount": 4
+        },
+        "node_4": {
+          "personaId": "climate_action_sweden_scopex",
+          "stats": {
+            "received": 52,
+            "forwarded": 24,
+            "reinterpreted": 23,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 2.125,
+          "severity": "lie",
+          "eventCount": 5
+        },
+        "node_5": {
+          "personaId": "platform_moderator_toxicity",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 37,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0.5,
+          "severity": "factual_error",
+          "eventCount": 10
+        },
+        "node_6": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 54,
+            "forwarded": 20,
+            "reinterpreted": 29,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 1.5,
+          "severity": "lie",
+          "eventCount": 6
+        },
+        "node_7": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 57,
+            "forwarded": 23,
+            "reinterpreted": 27,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 2.857142857142857,
+          "severity": "lie",
+          "eventCount": 9
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": 8,
+            "node_2": null,
+            "node_3": 8,
+            "node_4": 7,
+            "node_5": null,
+            "node_6": 7,
+            "node_7": 6
+          },
+          "networkMedian": 7
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_2",
+            "personaId": "science_journalist",
+            "reach": 10,
+            "meanMI": 0.35,
+            "fidelity": 0.93
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "conspiracy_peripheral_skywatcher",
+            "reach": 8,
+            "meanMI": 1.525,
+            "fidelity": 0.6950000000000001
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "platform_moderator_toxicity",
+            "reach": 8,
+            "meanMI": 0.5,
+            "fidelity": 0.9
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 7,
+            "meanMI": 0.5714285714285714,
+            "fidelity": 0.8857142857142857
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "conspiracy_depopulation",
+            "reach": 7,
+            "meanMI": 2.857142857142857,
+            "fidelity": 0.4285714285714286
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 6,
+            "meanMI": 1.5,
+            "fidelity": 0.7
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "biodiversity_food_security",
+            "reach": 4,
+            "meanMI": 1.625,
+            "fidelity": 0.675
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "climate_action_sweden_scopex",
+            "reach": 4,
+            "meanMI": 2.125,
+            "fidelity": 0.575
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.49999999999999983,
+            "activeNodes": 3
+          },
+          {
+            "tick": 6,
+            "meanMI": 1.0625,
+            "activeNodes": 8
+          },
+          {
+            "tick": 7,
+            "meanMI": 1.657142857142857,
+            "activeNodes": 14
+          },
+          {
+            "tick": 8,
+            "meanMI": 1.4375,
+            "activeNodes": 24
+          }
+        ],
+        "giniCoefficient": 0.326373182552504,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0.125,
+            "aboveThreshold": 1
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.5357142857142858,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.7492592592592594,
+          "meanMR": 0.2925925925925926,
+          "meanIR": 0.1037037037037037,
+          "meanCMS": 92592592.8993974,
+          "meanIE": 0.40681705440105737,
+          "eventCount": 54
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.9,
+            "meanMR": 0.20000000000000004,
+            "meanIR": 0,
+            "meanCMS": 0.12037037022505141
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.7875,
+            "meanMR": 0.175,
+            "meanIR": 0.125,
+            "meanCMS": 125000000.11607142
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.6685714285714285,
+            "meanMR": 0.37142857142857144,
+            "meanIR": 0.14285714285714285,
+            "meanCMS": 142857143.14795917
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.7125,
+            "meanMR": 0.3583333333333334,
+            "meanIR": 0.10833333333333334,
+            "meanCMS": 83333333.80026454
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanCR": 0.42857142857142855,
+            "meanMR": 0,
+            "meanIR": 0.5714285714285714,
+            "meanCMS": 571428571.4285713,
+            "eventCount": 7
+          },
+          {
+            "personaId": "climate_action_sweden_scopex",
+            "meanCR": 0.575,
+            "meanMR": 0.35,
+            "meanIR": 0.25,
+            "meanCMS": 250000000.31249997,
+            "eventCount": 4
+          },
+          {
+            "personaId": "conspiracy_peripheral_skywatcher",
+            "meanCR": 0.695,
+            "meanMR": 0.45,
+            "meanIR": 0.075,
+            "meanCMS": 0.839285711205676,
+            "eventCount": 8
+          },
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 0.7000000000000001,
+            "meanMR": 0.6,
+            "meanIR": 0,
+            "meanCMS": 0.5714285703265306,
+            "eventCount": 6
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.675,
+            "meanMR": 0.65,
+            "meanIR": 0,
+            "meanCMS": 0.5416666657326389,
+            "eventCount": 4
+          },
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 0.8857142857142856,
+            "meanMR": 0.2285714285714286,
+            "meanIR": 0,
+            "meanCMS": 0.14852607690311972,
+            "eventCount": 7
+          },
+          {
+            "personaId": "platform_moderator_toxicity",
+            "meanCR": 0.9,
+            "meanMR": 0.19999999999999998,
+            "meanIR": 0,
+            "meanCMS": 0.12996031729022975,
+            "eventCount": 8
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.93,
+            "meanMR": 0.13999999999999999,
+            "meanIR": 0,
+            "meanCMS": 0.09285714273341837,
+            "eventCount": 10
+          }
+        ]
+      }
+    },
+    "polar_bears": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_action_advocate",
+          "stats": {
+            "received": 69,
+            "forwarded": 24,
+            "reinterpreted": 30,
+            "dropped": 15,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_1": {
+          "personaId": "conspiracy_peripheral_skywatcher",
+          "stats": {
+            "received": 60,
+            "forwarded": 24,
+            "reinterpreted": 29,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.033333333333333326,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_2": {
+          "personaId": "science_journalist",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 38,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.06666666666666665,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_3": {
+          "personaId": "biodiversity_food_security",
+          "stats": {
+            "received": 47,
+            "forwarded": 13,
+            "reinterpreted": 26,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0.04166666666666666,
+          "severity": "factual_error",
+          "eventCount": 13
+        },
+        "node_4": {
+          "personaId": "climate_action_sweden_scopex",
+          "stats": {
+            "received": 52,
+            "forwarded": 24,
+            "reinterpreted": 23,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 15
+        },
+        "node_5": {
+          "personaId": "platform_moderator_toxicity",
+          "stats": {
+            "received": 65,
+            "forwarded": 20,
+            "reinterpreted": 37,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_6": {
+          "personaId": "ozone_stratosphere_specialist",
+          "stats": {
+            "received": 54,
+            "forwarded": 20,
+            "reinterpreted": 29,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 16
+        },
+        "node_7": {
+          "personaId": "conspiracy_depopulation",
+          "stats": {
+            "received": 57,
+            "forwarded": 23,
+            "reinterpreted": 27,
+            "dropped": 7,
+            "dumped": 0
+          },
+          "mpr": 0.5,
+          "severity": "factual_error",
+          "eventCount": 16
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": 6
+          },
+          "networkMedian": 6
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "conspiracy_peripheral_skywatcher",
+            "reach": 15,
+            "meanMI": 0.033333333333333326,
+            "fidelity": 0.9933333333333333
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "science_journalist",
+            "reach": 15,
+            "meanMI": 0.06666666666666665,
+            "fidelity": 0.9866666666666667
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "platform_moderator_toxicity",
+            "reach": 15,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "conspiracy_depopulation",
+            "reach": 15,
+            "meanMI": 0.5,
+            "fidelity": 0.9
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_action_advocate",
+            "reach": 14,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "climate_action_sweden_scopex",
+            "reach": 13,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "ozone_stratosphere_specialist",
+            "reach": 13,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "biodiversity_food_security",
+            "reach": 12,
+            "meanMI": 0.04166666666666666,
+            "fidelity": 0.9916666666666667
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 3
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 6
+          },
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 16
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.10714285714285714,
+            "activeNodes": 28
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.15517241379310345,
+            "activeNodes": 29
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.07407407407407406,
+            "activeNodes": 27
+          }
+        ],
+        "giniCoefficient": 0.7775974025974026,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.3571428571428572,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9830357142857142,
+          "meanMR": 0.019642857142857146,
+          "meanIR": 0.0071428571428571435,
+          "meanCMS": 0.09424603091909171,
+          "meanIE": 0.03405333537085435,
+          "eventCount": 112
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.9785714285714285,
+            "meanMR": 0.04285714285714286,
+            "meanIR": 0,
+            "meanCMS": 0.03968253960670194
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9689655172413794,
+            "meanMR": 0.006896551724137932,
+            "meanIR": 0.027586206896551727,
+            "meanCMS": 0.3103448244827587
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.9851851851851853,
+            "meanMR": 0.02962962962962963,
+            "meanIR": 0,
+            "meanCMS": 0.01646090533150434
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_depopulation",
+            "meanCR": 0.9,
+            "meanMR": 0.09333333333333332,
+            "meanIR": 0.05333333333333334,
+            "meanCMS": 0.6740740679325103,
+            "eventCount": 15
+          },
+          {
+            "personaId": "science_journalist",
+            "meanCR": 0.9866666666666667,
+            "meanMR": 0.02666666666666667,
+            "meanIR": 0,
+            "meanCMS": 0.014814814798353905,
+            "eventCount": 15
+          },
+          {
+            "personaId": "biodiversity_food_security",
+            "meanCR": 0.9916666666666667,
+            "meanMR": 0.016666666666666666,
+            "meanIR": 0,
+            "meanCMS": 0.009259259248971191,
+            "eventCount": 12
+          },
+          {
+            "personaId": "conspiracy_peripheral_skywatcher",
+            "meanCR": 0.9933333333333334,
+            "meanMR": 0.013333333333333334,
+            "meanIR": 0,
+            "meanCMS": 0.007407407399176952,
+            "eventCount": 15
+          },
+          {
+            "personaId": "climate_action_advocate",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 14
+          },
+          {
+            "personaId": "climate_action_sweden_scopex",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 13
+          },
+          {
+            "personaId": "platform_moderator_toxicity",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 15
+          },
+          {
+            "personaId": "ozone_stratosphere_specialist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 13
+          }
+        ]
+      }
+    }
+  }
+}

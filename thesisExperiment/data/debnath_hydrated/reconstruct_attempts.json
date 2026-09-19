@@ -1,0 +1,119 @@
+{
+  "at": "2026-09-18T16:41:55.957Z",
+  "attempts": [
+    {
+      "step": "detect_twitter_bearer",
+      "ok": false,
+      "envName": null,
+      "note": "absent — will not invent tweets"
+    },
+    {
+      "step": "detect_openai",
+      "ok": false,
+      "note": "absent — Dnet configs written, LLM not run"
+    },
+    {
+      "step": "github_ramit1201_geoeng",
+      "ok": true,
+      "dest": "thesisExperiment/data/debnath_geoeng/"
+    },
+    {
+      "step": "mendeley_files_api",
+      "ok": false,
+      "status": 200,
+      "url": "https://data.mendeley.com/public-api/datasets/546hsym93p/files",
+      "bytes": 13,
+      "dest": "thesisExperiment/data/debnath_hydrated/mendeley_files_api.json",
+      "note": "API body error 400"
+    },
+    {
+      "step": "mendeley_files_api",
+      "ok": false,
+      "status": 200,
+      "url": "https://data.mendeley.com/public-api/datasets/546hsym93p/files?folder_id=root",
+      "bytes": 13,
+      "dest": "thesisExperiment/data/debnath_hydrated/mendeley_files_api.json",
+      "note": "API body error 400"
+    },
+    {
+      "step": "mendeley_files_api",
+      "ok": false,
+      "status": 404,
+      "url": "https://api.elsevier.com/content/datasets/doi/10.17632/546hsym93p.1",
+      "bytes": 111,
+      "dest": "thesisExperiment/data/debnath_hydrated/mendeley_files_api.json",
+      "note": null
+    },
+    {
+      "step": "mendeley_landing",
+      "ok": true,
+      "dest": "thesisExperiment/data/raw/mendeley_546hsym93p_landing.html",
+      "note": "Landing page only; tweet-ID dump not retrieved."
+    },
+    {
+      "step": "osf_guid",
+      "ok": true,
+      "status": 200,
+      "bytes": 4270
+    },
+    {
+      "step": "osf_node_files",
+      "ok": true,
+      "status": 200,
+      "bytes": 2230
+    },
+    {
+      "step": "osf_dataset_sample",
+      "ok": true,
+      "status": 200,
+      "url": "https://files.osf.io/v1/resources/75ye3/providers/osfstorage/63a03f8750be9e0d13772c09",
+      "lines": 4043,
+      "bytes": 847849,
+      "contentType": "application/octet-stream",
+      "html": false,
+      "looksCsv": true,
+      "sampled": true,
+      "stopReason": "max_lines",
+      "piiDiscarded": true,
+      "nIdsScientificNotation": 1169,
+      "nIdsUsableDigits": 0,
+      "note": null
+    },
+    {
+      "step": "twitter_hydrate",
+      "ok": false,
+      "skipped": true,
+      "reason": "no_bearer_token",
+      "note": "No Twitter/X bearer in env. Not inventing tweets."
+    },
+    {
+      "step": "hashtag_cooccurrence_fallback",
+      "ok": true,
+      "nUsers": 63,
+      "nEdges": 228,
+      "note": "NOT a retweet cascade."
+    },
+    {
+      "step": "realgraphimporter_validate",
+      "ok": true,
+      "nNodes": 63,
+      "nEdges": 228,
+      "seedNodes": [
+        "user_chemtrails_hub"
+      ]
+    },
+    {
+      "step": "subsample_for_llm",
+      "ok": true,
+      "fullNodes": 63,
+      "simNodes": 63,
+      "subsampled": false,
+      "rule": "subsample 50-80 only if n>200"
+    },
+    {
+      "step": "write_dnet_configs",
+      "ok": true,
+      "n": 4
+    }
+  ]
+}

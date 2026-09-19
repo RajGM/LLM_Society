@@ -1,0 +1,2089 @@
+{
+  "experimentId": "T2d_H_echo_chamber_mitigation_first_policy_2026-09-19_03-38-45",
+  "status": "complete",
+  "timestamp": "2026-09-19T03:57:50.089Z",
+  "config": {
+    "topology": "echo_chamber",
+    "topologyParams": {
+      "numNodes": 8,
+      "edgeProbability": 0.3,
+      "numChambers": 2,
+      "intraEdgeProb": 0.75,
+      "interEdgeProb": 0.08,
+      "intraTrust": 0.85,
+      "interTrust": 0.15,
+      "minSeedOutDegree": 2,
+      "personasByCluster": [
+        [
+          "conspiracy_believer",
+          "conspiracy_haarp_weather",
+          "conspiracy_depopulation",
+          "conspiracy_climate_piggyback",
+          "conspiracy_peripheral_skywatcher"
+        ],
+        [
+          "climate_action_advocate",
+          "climate_justice_youth",
+          "mitigation_first_policy",
+          "climate_action_sweden_scopex",
+          "environmental_concern",
+          "ozone_stratosphere_specialist",
+          "biodiversity_food_security",
+          "caregiver_air_quality",
+          "climate_scientist",
+          "science_journalist",
+          "platform_moderator_toxicity"
+        ]
+      ]
+    },
+    "maxTicks": 8,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "dual",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.15,
+      "actionWeights": {
+        "forward": 0.35,
+        "reinterpret": 0.5,
+        "drop": 0.15
+      },
+      "relationEvolution": true,
+      "trustDelta": 0.05,
+      "maxHops": 8,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017",
+      "chemtrails_gates_2018_2021",
+      "sai_geoengineering",
+      "paris_agreement",
+      "climate_consensus",
+      "polar_bears"
+    ],
+    "seedNodes": [
+      "node_0"
+    ],
+    "personasPath": "thesisExperiment/personas/phase2/homo/mitigation_first_policy.json",
+    "articlesPath": "thesisExperiment/articles/merged.json",
+    "outputRoot": "thesisExperiment/runs_phase2",
+    "graphRandomSeed": 42,
+    "_description": "Phase2 T-H dual echo_chamber homogeneous mitigation_first_policy",
+    "experimentName": "T2d_H_echo_chamber_mitigation_first_policy",
+    "defaultPersonaAssignment": "sequential",
+    "pfeffer": {
+      "valence": "varied via 6 core articles",
+      "surprise": "held: drip seed node_0",
+      "identityAlignment": "homogeneous mitigation_first_policy",
+      "networkClustering": "echo_chamber",
+      "informationEcho": "measured",
+      "temporalAcceleration": "8 hops/ticks (logged cut)"
+    }
+  },
+  "llmUsage": {
+    "calls": 1437,
+    "promptTokens": 651347,
+    "completionTokens": 99884,
+    "totalTokens": 751231,
+    "errors": 206,
+    "model": "gpt-4o-mini",
+    "estimatedUsd": 0.1576
+  },
+  "results": {
+    "scopex_2017": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 115,
+            "forwarded": 38,
+            "reinterpreted": 56,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.125,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_1": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 93,
+            "forwarded": 33,
+            "reinterpreted": 42,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 42,
+            "reinterpreted": 45,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0.07692307692307693,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_3": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 81,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 14
+        },
+        "node_4": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 39,
+            "reinterpreted": 53,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.13333333333333333,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_5": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 83,
+            "forwarded": 23,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 13
+        },
+        "node_6": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 103,
+            "forwarded": 34,
+            "reinterpreted": 52,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0.11764705882352941,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_7": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 78,
+            "forwarded": 22,
+            "reinterpreted": 45,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 12
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_6",
+            "personaId": "mitigation_first_policy",
+            "reach": 17,
+            "meanMI": 0.11764705882352941,
+            "fidelity": 0.9764705882352941
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "mitigation_first_policy",
+            "reach": 16,
+            "meanMI": 0.125,
+            "fidelity": 0.975
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "mitigation_first_policy",
+            "reach": 15,
+            "meanMI": 0.13333333333333333,
+            "fidelity": 0.9733333333333334
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "mitigation_first_policy",
+            "reach": 13,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 13,
+            "meanMI": 0.07692307692307693,
+            "fidelity": 0.9846153846153847
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "mitigation_first_policy",
+            "reach": 12,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "mitigation_first_policy",
+            "reach": 11,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "mitigation_first_policy",
+            "reach": 9,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 3
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 10
+          },
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 16
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.1111111111111111,
+            "activeNodes": 18
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.14814814814814814,
+            "activeNodes": 27
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.034482758620689655,
+            "activeNodes": 29
+          }
+        ],
+        "giniCoefficient": 0.5487365748064276,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4642857142857142,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9867924528301886,
+          "meanMR": 0.01320754716981132,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0.0476744968321843,
+          "eventCount": 106
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.9777777777777779,
+            "meanMR": 0.022222222222222223,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9703703703703704,
+            "meanMR": 0.02962962962962963,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.993103448275862,
+            "meanMR": 0.006896551724137932,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 0.9867924528301886,
+            "meanMR": 0.01320754716981132,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 106
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.0660377358490566,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0.0660377358490566,
+          "meanContinuousMI": 0,
+          "meanSignedGap": -0.0660377358490566,
+          "eventCount": 106
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanGap": 0.0660377358490566,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0.0660377358490566,
+            "meanContinuousMI": 0,
+            "meanSignedGap": -0.0660377358490566,
+            "eventCount": 106
+          }
+        ]
+      }
+    },
+    "chemtrails_gates_2018_2021": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 115,
+            "forwarded": 38,
+            "reinterpreted": 56,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.1111111111111111,
+          "severity": "factual_error",
+          "eventCount": 24
+        },
+        "node_1": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 93,
+            "forwarded": 33,
+            "reinterpreted": 42,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.21052631578947367,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 42,
+            "reinterpreted": 45,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0.058823529411764705,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_3": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 81,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0.11764705882352941,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_4": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 39,
+            "reinterpreted": 53,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.3333333333333333,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_5": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 83,
+            "forwarded": 23,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0.08333333333333333,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_6": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 103,
+            "forwarded": 34,
+            "reinterpreted": 52,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0.13333333333333333,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_7": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 78,
+            "forwarded": 22,
+            "reinterpreted": 45,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 0.23529411764705882,
+          "severity": "factual_error",
+          "eventCount": 18
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_4",
+            "personaId": "mitigation_first_policy",
+            "reach": 21,
+            "meanMI": 0.3333333333333333,
+            "fidelity": 0.9333333333333333
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "mitigation_first_policy",
+            "reach": 19,
+            "meanMI": 0.21052631578947367,
+            "fidelity": 0.9578947368421052
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "mitigation_first_policy",
+            "reach": 18,
+            "meanMI": 0.1111111111111111,
+            "fidelity": 0.9777777777777777
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 17,
+            "meanMI": 0.058823529411764705,
+            "fidelity": 0.9882352941176471
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "mitigation_first_policy",
+            "reach": 17,
+            "meanMI": 0.11764705882352941,
+            "fidelity": 0.9764705882352941
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "mitigation_first_policy",
+            "reach": 17,
+            "meanMI": 0.23529411764705882,
+            "fidelity": 0.9529411764705882
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "mitigation_first_policy",
+            "reach": 15,
+            "meanMI": 0.13333333333333333,
+            "fidelity": 0.9733333333333334
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "mitigation_first_policy",
+            "reach": 12,
+            "meanMI": 0.08333333333333333,
+            "fidelity": 0.9833333333333333
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 9
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.18181818181818182,
+            "activeNodes": 22
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.07692307692307693,
+            "activeNodes": 26
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.18518518518518517,
+            "activeNodes": 27
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.24,
+            "activeNodes": 25
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.2608695652173913,
+            "activeNodes": 23
+          }
+        ],
+        "giniCoefficient": 0.2917347923395473,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.5357142857142858,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.966176470588235,
+          "meanMR": 0.03382352941176472,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0.11861353372859762,
+          "eventCount": 136
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.9636363636363636,
+            "meanMR": 0.03636363636363637,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.9846153846153847,
+            "meanMR": 0.015384615384615385,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.9629629629629631,
+            "meanMR": 0.037037037037037035,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9520000000000002,
+            "meanMR": 0.048,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.9478260869565219,
+            "meanMR": 0.05217391304347826,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 0.966176470588235,
+            "meanMR": 0.03382352941176472,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 136
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.15294117647058825,
+          "meanAgreement": 1,
+          "meanDiscreteMI": 0.16911764705882354,
+          "meanContinuousMI": 0.016176470588235292,
+          "meanSignedGap": -0.15294117647058825,
+          "eventCount": 136
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanGap": 0.15294117647058825,
+            "meanAgreement": 1,
+            "meanDiscreteMI": 0.16911764705882354,
+            "meanContinuousMI": 0.016176470588235292,
+            "meanSignedGap": -0.15294117647058825,
+            "eventCount": 136
+          }
+        ]
+      }
+    },
+    "sai_geoengineering": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 115,
+            "forwarded": 38,
+            "reinterpreted": 56,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "node_1": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 93,
+            "forwarded": 33,
+            "reinterpreted": 42,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 42,
+            "reinterpreted": 45,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_3": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 81,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_4": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 39,
+            "reinterpreted": 53,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_5": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 83,
+            "forwarded": 23,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_6": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 103,
+            "forwarded": 34,
+            "reinterpreted": 52,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "node_7": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 78,
+            "forwarded": 22,
+            "reinterpreted": 45,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [],
+        "networkMIOverTime": [],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": null,
+          "meanMR": null,
+          "meanIR": null,
+          "meanCMS": null,
+          "meanIE": null,
+          "eventCount": 0
+        },
+        "ifdOverTime": [],
+        "personaIFD": []
+      }
+    },
+    "paris_agreement": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 115,
+            "forwarded": 38,
+            "reinterpreted": 56,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 1.4444444444444444,
+          "severity": "lie",
+          "eventCount": 21
+        },
+        "node_1": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 93,
+            "forwarded": 33,
+            "reinterpreted": 42,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 1.0714285714285714,
+          "severity": "lie",
+          "eventCount": 17
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 42,
+            "reinterpreted": 45,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0.9444444444444444,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_3": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 81,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 1.0909090909090908,
+          "severity": "lie",
+          "eventCount": 14
+        },
+        "node_4": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 39,
+            "reinterpreted": 53,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 1.2222222222222223,
+          "severity": "lie",
+          "eventCount": 20
+        },
+        "node_5": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 83,
+            "forwarded": 23,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 1.0714285714285714,
+          "severity": "lie",
+          "eventCount": 15
+        },
+        "node_6": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 103,
+            "forwarded": 34,
+            "reinterpreted": 52,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 1.1428571428571428,
+          "severity": "lie",
+          "eventCount": 18
+        },
+        "node_7": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 78,
+            "forwarded": 22,
+            "reinterpreted": 45,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 1.2857142857142858,
+          "severity": "lie",
+          "eventCount": 14
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "mitigation_first_policy",
+            "reach": 18,
+            "meanMI": 1.4444444444444444,
+            "fidelity": 0.7111111111111111
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 18,
+            "meanMI": 0.9444444444444444,
+            "fidelity": 0.8111111111111111
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "mitigation_first_policy",
+            "reach": 18,
+            "meanMI": 1.2222222222222223,
+            "fidelity": 0.7555555555555555
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "mitigation_first_policy",
+            "reach": 14,
+            "meanMI": 1.0714285714285714,
+            "fidelity": 0.7857142857142857
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "mitigation_first_policy",
+            "reach": 14,
+            "meanMI": 1.0714285714285714,
+            "fidelity": 0.7857142857142857
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "mitigation_first_policy",
+            "reach": 14,
+            "meanMI": 1.1428571428571428,
+            "fidelity": 0.7714285714285715
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "mitigation_first_policy",
+            "reach": 14,
+            "meanMI": 1.2857142857142858,
+            "fidelity": 0.7428571428571429
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "mitigation_first_policy",
+            "reach": 11,
+            "meanMI": 1.0909090909090908,
+            "fidelity": 0.7818181818181819
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 2,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 1,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 1.3333333333333333,
+            "activeNodes": 3
+          },
+          {
+            "tick": 4,
+            "meanMI": 1.4444444444444444,
+            "activeNodes": 9
+          },
+          {
+            "tick": 5,
+            "meanMI": 1.0454545454545454,
+            "activeNodes": 22
+          },
+          {
+            "tick": 6,
+            "meanMI": 1.0740740740740742,
+            "activeNodes": 27
+          },
+          {
+            "tick": 7,
+            "meanMI": 1.1724137931034482,
+            "activeNodes": 29
+          },
+          {
+            "tick": 8,
+            "meanMI": 1.2142857142857142,
+            "activeNodes": 28
+          }
+        ],
+        "giniCoefficient": 0.06841787909437486,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.6785714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.7669421487603296,
+          "meanMR": 0,
+          "meanIR": 0.23305785123966907,
+          "meanCMS": 0.36570247875774786,
+          "meanIE": 0.6302062746432646,
+          "eventCount": 121
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.6,
+            "meanMR": 0,
+            "meanIR": 0.4,
+            "meanCMS": 0.6666666655555556
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.8,
+            "meanMR": 0,
+            "meanIR": 0.2,
+            "meanCMS": 0.3333333327777778
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.7333333333333334,
+            "meanMR": 0,
+            "meanIR": 0.26666666666666666,
+            "meanCMS": 0.38888888831018525
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.711111111111111,
+            "meanMR": 0,
+            "meanIR": 0.2888888888888889,
+            "meanCMS": 0.4537037029822531
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.7909090909090911,
+            "meanMR": 0,
+            "meanIR": 0.20909090909090916,
+            "meanCMS": 0.3143939389125632
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.7851851851851853,
+            "meanMR": 0,
+            "meanIR": 0.21481481481481488,
+            "meanCMS": 0.34259259204089504
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.7655172413793105,
+            "meanMR": 0,
+            "meanIR": 0.23448275862068974,
+            "meanCMS": 0.37356321778975093
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.7571428571428573,
+            "meanMR": 0,
+            "meanIR": 0.24285714285714294,
+            "meanCMS": 0.3809523803472222
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 0.7669421487603296,
+            "meanMR": 0,
+            "meanIR": 0.23305785123966907,
+            "meanCMS": 0.36570247875774786,
+            "eventCount": 121
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 1.1487603305785123,
+          "meanAgreement": 0.6123724356957942,
+          "meanDiscreteMI": 1.165289256198347,
+          "meanContinuousMI": 0.016528925619834708,
+          "meanSignedGap": -1.1487603305785123,
+          "eventCount": 121
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanGap": 1.1487603305785123,
+            "meanAgreement": 0.6123724356957942,
+            "meanDiscreteMI": 1.165289256198347,
+            "meanContinuousMI": 0.016528925619834708,
+            "meanSignedGap": -1.1487603305785123,
+            "eventCount": 121
+          }
+        ]
+      }
+    },
+    "climate_consensus": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 115,
+            "forwarded": 38,
+            "reinterpreted": 56,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.7,
+          "severity": "factual_error",
+          "eventCount": 24
+        },
+        "node_1": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 93,
+            "forwarded": 33,
+            "reinterpreted": 42,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.5,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 42,
+            "reinterpreted": 45,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0.42105263157894735,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_3": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 81,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0.75,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_4": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 39,
+            "reinterpreted": 53,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0.42105263157894735,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_5": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 83,
+            "forwarded": 23,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0.7142857142857143,
+          "severity": "factual_error",
+          "eventCount": 17
+        },
+        "node_6": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 103,
+            "forwarded": 34,
+            "reinterpreted": 52,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0.8421052631578947,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_7": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 78,
+            "forwarded": 22,
+            "reinterpreted": 45,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 0.38461538461538464,
+          "severity": "factual_error",
+          "eventCount": 17
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "mitigation_first_policy",
+            "reach": 20,
+            "meanMI": 0.7,
+            "fidelity": 0.86
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 19,
+            "meanMI": 0.42105263157894735,
+            "fidelity": 0.9157894736842105
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "mitigation_first_policy",
+            "reach": 19,
+            "meanMI": 0.42105263157894735,
+            "fidelity": 0.9157894736842105
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "mitigation_first_policy",
+            "reach": 19,
+            "meanMI": 0.8421052631578947,
+            "fidelity": 0.8315789473684211
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "mitigation_first_policy",
+            "reach": 14,
+            "meanMI": 0.5,
+            "fidelity": 0.9
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "mitigation_first_policy",
+            "reach": 14,
+            "meanMI": 0.7142857142857143,
+            "fidelity": 0.8571428571428572
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "mitigation_first_policy",
+            "reach": 13,
+            "meanMI": 0.38461538461538464,
+            "fidelity": 0.9230769230769231
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "mitigation_first_policy",
+            "reach": 12,
+            "meanMI": 0.75,
+            "fidelity": 0.85
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0.3333333333333333,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 0.2222222222222222,
+            "activeNodes": 9
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.6,
+            "activeNodes": 15
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.52,
+            "activeNodes": 25
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.52,
+            "activeNodes": 25
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.6428571428571429,
+            "activeNodes": 28
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.875,
+            "activeNodes": 24
+          }
+        ],
+        "giniCoefficient": 0.1565266601902597,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.5357142857142858,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.8815384615384605,
+          "meanMR": 0.1,
+          "meanIR": 0.018461538461538463,
+          "meanCMS": 0.026282051243856845,
+          "meanIE": 0.3652012506966608,
+          "eventCount": 130
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.9333333333333332,
+            "meanMR": 0.06666666666666667,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.9555555555555555,
+            "meanMR": 0.044444444444444446,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.8800000000000001,
+            "meanMR": 0.06666666666666667,
+            "meanIR": 0.05333333333333334,
+            "meanCMS": 0.08333333320138889
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.8960000000000004,
+            "meanMR": 0.08800000000000001,
+            "meanIR": 0.016,
+            "meanCMS": 0.019999999975000002
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.8960000000000001,
+            "meanMR": 0.072,
+            "meanIR": 0.032,
+            "meanCMS": 0.046666666597222226
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.8714285714285717,
+            "meanMR": 0.12142857142857143,
+            "meanIR": 0.0071428571428571435,
+            "meanCMS": 0.008928571417410715
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.8250000000000002,
+            "meanMR": 0.16666666666666666,
+            "meanIR": 0.008333333333333333,
+            "meanCMS": 0.010416666653645833
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 0.8815384615384605,
+            "meanMR": 0.1,
+            "meanIR": 0.018461538461538463,
+            "meanCMS": 0.026282051243856845,
+            "eventCount": 130
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.5807692307692308,
+          "meanAgreement": 0.8061862178478973,
+          "meanDiscreteMI": 0.5923076923076923,
+          "meanContinuousMI": 0.011538461538461536,
+          "meanSignedGap": -0.5807692307692308,
+          "eventCount": 130
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanGap": 0.5807692307692308,
+            "meanAgreement": 0.8061862178478973,
+            "meanDiscreteMI": 0.5923076923076923,
+            "meanContinuousMI": 0.011538461538461536,
+            "meanSignedGap": -0.5807692307692308,
+            "eventCount": 130
+          }
+        ]
+      }
+    },
+    "polar_bears": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 115,
+            "forwarded": 38,
+            "reinterpreted": 56,
+            "dropped": 21,
+            "dumped": 0
+          },
+          "mpr": 0.631578947368421,
+          "severity": "factual_error",
+          "eventCount": 24
+        },
+        "node_1": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 93,
+            "forwarded": 33,
+            "reinterpreted": 42,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_2": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 42,
+            "reinterpreted": 45,
+            "dropped": 23,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_3": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 81,
+            "forwarded": 21,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 18
+        },
+        "node_4": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 110,
+            "forwarded": 39,
+            "reinterpreted": 53,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_5": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 83,
+            "forwarded": 23,
+            "reinterpreted": 44,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 19
+        },
+        "node_6": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 103,
+            "forwarded": 34,
+            "reinterpreted": 52,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_7": {
+          "personaId": "mitigation_first_policy",
+          "stats": {
+            "received": 78,
+            "forwarded": 22,
+            "reinterpreted": 45,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 17
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "mitigation_first_policy",
+            "reach": 19,
+            "meanMI": 0.631578947368421,
+            "fidelity": 0.8736842105263158
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "mitigation_first_policy",
+            "reach": 2,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "mitigation_first_policy",
+            "reach": 2,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "mitigation_first_policy",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "mitigation_first_policy",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "mitigation_first_policy",
+            "reach": 1,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "mitigation_first_policy",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "mitigation_first_policy",
+            "reach": 1,
+            "meanMI": 2,
+            "fidelity": 0.6
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 2,
+            "activeNodes": 1
+          },
+          {
+            "tick": 3,
+            "meanMI": 0.5,
+            "activeNodes": 2
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.25,
+            "activeNodes": 4
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.6,
+            "activeNodes": 5
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.75,
+            "activeNodes": 8
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.5714285714285714,
+            "activeNodes": 7
+          },
+          {
+            "tick": 8,
+            "meanMI": 0,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0.6107954545454545,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4642857142857142,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.8785714285714288,
+          "meanMR": 0,
+          "meanIR": 0.12142857142857143,
+          "meanCMS": 0.18749999970610123,
+          "meanIE": 0.33697657289874366,
+          "eventCount": 28
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.6,
+            "meanMR": 0,
+            "meanIR": 0.4,
+            "meanCMS": 0.6666666655555556
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.9,
+            "meanMR": 0,
+            "meanIR": 0.1,
+            "meanCMS": 0.12499999984375
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.95,
+            "meanMR": 0,
+            "meanIR": 0.05,
+            "meanCMS": 0.062499999921875
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.8800000000000001,
+            "meanMR": 0,
+            "meanIR": 0.12000000000000002,
+            "meanCMS": 0.18333333304861113
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.8499999999999999,
+            "meanMR": 0,
+            "meanIR": 0.15000000000000002,
+            "meanCMS": 0.22916666631076393
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.8857142857142858,
+            "meanMR": 0,
+            "meanIR": 0.1142857142857143,
+            "meanCMS": 0.19047619015873019
+          },
+          {
+            "tick": 8,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanCR": 0.8785714285714288,
+            "meanMR": 0,
+            "meanIR": 0.12142857142857143,
+            "meanCMS": 0.18749999970610123,
+            "eventCount": 28
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.6071428571428571,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0.6071428571428571,
+          "meanContinuousMI": 0,
+          "meanSignedGap": -0.6071428571428571,
+          "eventCount": 28
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "mitigation_first_policy",
+            "meanGap": 0.6071428571428571,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0.6071428571428571,
+            "meanContinuousMI": 0,
+            "meanSignedGap": -0.6071428571428571,
+            "eventCount": 28
+          }
+        ]
+      }
+    }
+  }
+}

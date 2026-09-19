@@ -17,7 +17,9 @@ All files live under `thesisExperiment/data/`. No 814k tweet dump.
 | `raw/wikipedia_sea_level_rise.json` | Wikipedia API | Sea-level article |
 | `raw/wikipedia_polar_bear.json` | Wikipedia API | Polar-bear article |
 | `raw/wikipedia_retreat_of_glaciers.json` | Wikipedia API | Glacier article |
-| `raw/osf_75ye3_landing.html` | OSF 75ye3 landing (not dataset.csv) | Confirmed tweet-ID dump; **662MB CSV not downloaded** |
+| `raw/osf_75ye3_landing.html` | OSF 75ye3 landing (not dataset.csv) | File exists (`dataset.csv` 661,867,256 bytes, guid `mx97s`) |
+| `debnath_hydrated/osf_id_sample.json` | OSF sample metadata only | 5k-line peek discarded (CSV has tweet text + user fields; `tweet_id` is scientific notation). **No PII stored.** |
+| `derived/debnath_hashtag_cascade.json` | Documented hashtag co-occurrence fallback | FakeNewsNet-shaped; **NOT a retweet cascade**; used by Dnet configs |
 
 ## Fallbacks (documented, not faked)
 
@@ -26,4 +28,4 @@ All files live under `thesisExperiment/data/`. No 814k tweet dump.
 3. **ClimateFEVER** `amandakonet/climate_fever` parquet URL 404; used `tdiggelm/climate_fever` via datasets-server (40 test-split claims). Keyword search endpoints timed out / 500.
 4. **ADS search API** 401 without a token; AGU 2017 abstract saved as `raw/agu_2017_scopex_abstract.txt`.
 5. **Cell Press** HTML/PDF 403; **PMC HTML** saved (`debnath_iscience_2023_pmc.html`, PMC10040962). Notes: `derived/debnath_iscience_notes.txt`.
-6. **OSF `osf.io/75ye3` `dataset.csv` ~662 MB** (tweet IDs). Not downloaded. Paper-quoted slice: `derived/debnath_paper_slice.json`. Reduced BPs: `derived/debnath_bps.md`.
+6. **OSF `osf.io/75ye3` `dataset.csv` ~662 MB.** Not an IDs-only dump: columns include tweet text and user fields. A 5k-line sample was streamed then **deleted**. `tweet_id` is scientific notation (unusable). No Twitter/X bearer → no hydration; tweets not invented. Reconstruct fallback: `derived/debnath_hashtag_cascade.json`.

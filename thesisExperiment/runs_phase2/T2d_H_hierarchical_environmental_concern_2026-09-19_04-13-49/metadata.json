@@ -1,0 +1,2327 @@
+{
+  "experimentId": "T2d_H_hierarchical_environmental_concern_2026-09-19_04-13-49",
+  "status": "complete",
+  "timestamp": "2026-09-19T04:25:36.798Z",
+  "config": {
+    "topology": "hierarchical",
+    "topologyParams": {
+      "numNodes": 8,
+      "edgeProbability": 0.3,
+      "branchingFactor": 3,
+      "downTrust": 0.85,
+      "upTrust": 0.3,
+      "personasByCluster": [
+        [
+          "conspiracy_believer",
+          "conspiracy_haarp_weather",
+          "conspiracy_depopulation",
+          "conspiracy_climate_piggyback",
+          "conspiracy_peripheral_skywatcher"
+        ],
+        [
+          "climate_action_advocate",
+          "climate_justice_youth",
+          "mitigation_first_policy",
+          "climate_action_sweden_scopex",
+          "environmental_concern",
+          "ozone_stratosphere_specialist",
+          "biodiversity_food_security",
+          "caregiver_air_quality",
+          "climate_scientist",
+          "science_journalist",
+          "platform_moderator_toxicity"
+        ]
+      ]
+    },
+    "maxTicks": 8,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "dual",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.15,
+      "actionWeights": {
+        "forward": 0.35,
+        "reinterpret": 0.5,
+        "drop": 0.15
+      },
+      "relationEvolution": true,
+      "trustDelta": 0.05,
+      "maxHops": 8,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017",
+      "chemtrails_gates_2018_2021",
+      "sai_geoengineering",
+      "paris_agreement",
+      "climate_consensus",
+      "polar_bears"
+    ],
+    "seedNodes": [
+      "node_0"
+    ],
+    "personasPath": "thesisExperiment/personas/phase2/homo/environmental_concern.json",
+    "articlesPath": "thesisExperiment/articles/merged.json",
+    "outputRoot": "thesisExperiment/runs_phase2",
+    "graphRandomSeed": 42,
+    "_description": "Phase2 T-H dual hierarchical homogeneous environmental_concern",
+    "experimentName": "T2d_H_hierarchical_environmental_concern",
+    "defaultPersonaAssignment": "sequential",
+    "pfeffer": {
+      "valence": "varied via 6 core articles",
+      "surprise": "held: drip seed node_0",
+      "identityAlignment": "homogeneous environmental_concern",
+      "networkClustering": "hierarchical",
+      "informationEcho": "measured",
+      "temporalAcceleration": "8 hops/ticks (logged cut)"
+    }
+  },
+  "llmUsage": {
+    "calls": 870,
+    "promptTokens": 408214,
+    "completionTokens": 54967,
+    "totalTokens": 463181,
+    "errors": 0,
+    "model": "gpt-4o-mini",
+    "estimatedUsd": 0.0942
+  },
+  "results": {
+    "scopex_2017": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 67,
+            "forwarded": 32,
+            "reinterpreted": 24,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 12
+        },
+        "node_1": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 24,
+            "reinterpreted": 32,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 13
+        },
+        "node_2": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 19,
+            "reinterpreted": 39,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 13
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 56,
+            "forwarded": 19,
+            "reinterpreted": 32,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 9
+        },
+        "node_4": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 12,
+            "reinterpreted": 16,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 8
+        },
+        "node_5": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 15,
+            "reinterpreted": 16,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 8
+        },
+        "node_6": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 14,
+            "reinterpreted": 16,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 8
+        },
+        "node_7": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 39,
+            "forwarded": 15,
+            "reinterpreted": 15,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 7
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "environmental_concern",
+            "reach": 12,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "environmental_concern",
+            "reach": 10,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "environmental_concern",
+            "reach": 9,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 9,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "environmental_concern",
+            "reach": 8,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "environmental_concern",
+            "reach": 7,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "environmental_concern",
+            "reach": 7,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "environmental_concern",
+            "reach": 6,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 7
+          },
+          {
+            "tick": 4,
+            "meanMI": 0,
+            "activeNodes": 9
+          },
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 15
+          },
+          {
+            "tick": 6,
+            "meanMI": 0,
+            "activeNodes": 10
+          },
+          {
+            "tick": 7,
+            "meanMI": 0,
+            "activeNodes": 14
+          },
+          {
+            "tick": 8,
+            "meanMI": 0,
+            "activeNodes": 9
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 1,
+          "meanMR": 0,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0,
+          "eventCount": 68
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 68
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0,
+          "meanContinuousMI": 0,
+          "meanSignedGap": 0,
+          "eventCount": 68
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "environmental_concern",
+            "meanGap": 0,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0,
+            "meanContinuousMI": 0,
+            "meanSignedGap": 0,
+            "eventCount": 68
+          }
+        ]
+      }
+    },
+    "chemtrails_gates_2018_2021": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 67,
+            "forwarded": 32,
+            "reinterpreted": 24,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 10
+        },
+        "node_1": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 24,
+            "reinterpreted": 32,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 13
+        },
+        "node_2": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 19,
+            "reinterpreted": 39,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 10
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 56,
+            "forwarded": 19,
+            "reinterpreted": 32,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 10
+        },
+        "node_4": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 12,
+            "reinterpreted": 16,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 8
+        },
+        "node_5": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 15,
+            "reinterpreted": 16,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 8
+        },
+        "node_6": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 14,
+            "reinterpreted": 16,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 8
+        },
+        "node_7": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 39,
+            "forwarded": 15,
+            "reinterpreted": 15,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 2,
+          "severity": "lie",
+          "eventCount": 5
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "environmental_concern",
+            "reach": 12,
+            "meanMI": 2,
+            "fidelity": 0.6
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "environmental_concern",
+            "reach": 10,
+            "meanMI": 2,
+            "fidelity": 0.6
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "environmental_concern",
+            "reach": 8,
+            "meanMI": 2,
+            "fidelity": 0.6
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 7,
+            "meanMI": 2,
+            "fidelity": 0.6
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "environmental_concern",
+            "reach": 7,
+            "meanMI": 2,
+            "fidelity": 0.6
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "environmental_concern",
+            "reach": 7,
+            "meanMI": 2,
+            "fidelity": 0.6
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "environmental_concern",
+            "reach": 5,
+            "meanMI": 2,
+            "fidelity": 0.6
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "environmental_concern",
+            "reach": 3,
+            "meanMI": 2,
+            "fidelity": 0.6
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 2,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 2,
+            "activeNodes": 1
+          },
+          {
+            "tick": 3,
+            "meanMI": 2,
+            "activeNodes": 4
+          },
+          {
+            "tick": 4,
+            "meanMI": 2,
+            "activeNodes": 5
+          },
+          {
+            "tick": 5,
+            "meanMI": 2,
+            "activeNodes": 13
+          },
+          {
+            "tick": 6,
+            "meanMI": 2,
+            "activeNodes": 10
+          },
+          {
+            "tick": 7,
+            "meanMI": 2,
+            "activeNodes": 14
+          },
+          {
+            "tick": 8,
+            "meanMI": 2,
+            "activeNodes": 11
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.6000000000000006,
+          "meanMR": 0.3999999999999997,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0.9709505944546691,
+          "eventCount": 59
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.6,
+            "meanMR": 0.4,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.6,
+            "meanMR": 0.4,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.6,
+            "meanMR": 0.4,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.6,
+            "meanMR": 0.4,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.5999999999999999,
+            "meanMR": 0.4,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.5999999999999999,
+            "meanMR": 0.39999999999999997,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.5999999999999999,
+            "meanMR": 0.4,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.5999999999999999,
+            "meanMR": 0.39999999999999997,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.6000000000000006,
+            "meanMR": 0.3999999999999997,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 59
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.9830508474576272,
+          "meanAgreement": 0.9840993589572706,
+          "meanDiscreteMI": 2,
+          "meanContinuousMI": 1.0169491525423728,
+          "meanSignedGap": -0.9830508474576272,
+          "eventCount": 59
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "environmental_concern",
+            "meanGap": 0.9830508474576272,
+            "meanAgreement": 0.9840993589572706,
+            "meanDiscreteMI": 2,
+            "meanContinuousMI": 1.0169491525423728,
+            "meanSignedGap": -0.9830508474576272,
+            "eventCount": 59
+          }
+        ]
+      }
+    },
+    "sai_geoengineering": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 67,
+            "forwarded": 32,
+            "reinterpreted": 24,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 11
+        },
+        "node_1": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 24,
+            "reinterpreted": 32,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0.875,
+          "severity": "factual_error",
+          "eventCount": 11
+        },
+        "node_2": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 19,
+            "reinterpreted": 39,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 1.4444444444444444,
+          "severity": "lie",
+          "eventCount": 12
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 56,
+            "forwarded": 19,
+            "reinterpreted": 32,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 9
+        },
+        "node_4": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 12,
+            "reinterpreted": 16,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 1.3333333333333333,
+          "severity": "lie",
+          "eventCount": 6
+        },
+        "node_5": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 15,
+            "reinterpreted": 16,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 6
+        },
+        "node_6": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 14,
+            "reinterpreted": 16,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 1.2,
+          "severity": "lie",
+          "eventCount": 6
+        },
+        "node_7": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 39,
+            "forwarded": 15,
+            "reinterpreted": 15,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 0.25,
+          "severity": "factual_error",
+          "eventCount": 5
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "environmental_concern",
+            "reach": 9,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "environmental_concern",
+            "reach": 9,
+            "meanMI": 1.4444444444444444,
+            "fidelity": 0.7111111111111111
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 9,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "environmental_concern",
+            "reach": 8,
+            "meanMI": 0.875,
+            "fidelity": 0.825
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "environmental_concern",
+            "reach": 6,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "environmental_concern",
+            "reach": 5,
+            "meanMI": 1.2,
+            "fidelity": 0.76
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "environmental_concern",
+            "reach": 4,
+            "meanMI": 0.25,
+            "fidelity": 0.95
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "environmental_concern",
+            "reach": 3,
+            "meanMI": 1.3333333333333333,
+            "fidelity": 0.7333333333333334
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 1.5,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 1,
+            "activeNodes": 3
+          },
+          {
+            "tick": 4,
+            "meanMI": 1.4,
+            "activeNodes": 5
+          },
+          {
+            "tick": 5,
+            "meanMI": 1.2,
+            "activeNodes": 10
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.8,
+            "activeNodes": 10
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.7692307692307693,
+            "activeNodes": 13
+          },
+          {
+            "tick": 8,
+            "meanMI": 1.2222222222222223,
+            "activeNodes": 9
+          }
+        ],
+        "giniCoefficient": 0.17359444634898866,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.7924528301886794,
+          "meanMR": 0.04905660377358491,
+          "meanIR": 0.1584905660377359,
+          "meanCMS": 0.24213836440382594,
+          "meanIE": 0.6242522053646065,
+          "eventCount": 53
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.8,
+            "meanMR": 0.2,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.7,
+            "meanMR": 0.1,
+            "meanIR": 0.2,
+            "meanCMS": 0.3333333327777778
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.7999999999999999,
+            "meanMR": 0,
+            "meanIR": 0.20000000000000004,
+            "meanCMS": 0.30555555508101856
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.72,
+            "meanMR": 0.04,
+            "meanIR": 0.24000000000000005,
+            "meanCMS": 0.3666666660972223
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.7599999999999999,
+            "meanMR": 0.02,
+            "meanIR": 0.22000000000000003,
+            "meanCMS": 0.32499999951041675
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.8399999999999999,
+            "meanMR": 0.06000000000000001,
+            "meanIR": 0.1,
+            "meanCMS": 0.14166666646180556
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.8461538461538461,
+            "meanMR": 0.07692307692307693,
+            "meanIR": 0.07692307692307693,
+            "meanCMS": 0.12179487159989318
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.7555555555555555,
+            "meanMR": 0.022222222222222223,
+            "meanIR": 0.2222222222222222,
+            "meanCMS": 0.3518518512885803
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.7924528301886794,
+            "meanMR": 0.04905660377358491,
+            "meanIR": 0.1584905660377359,
+            "meanCMS": 0.24213836440382594,
+            "eventCount": 53
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 1.0377358490566038,
+          "meanAgreement": 0.8749999999999999,
+          "meanDiscreteMI": 1.0377358490566038,
+          "meanContinuousMI": 0.1509433962264151,
+          "meanSignedGap": -0.8867924528301887,
+          "eventCount": 53
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "environmental_concern",
+            "meanGap": 1.0377358490566038,
+            "meanAgreement": 0.8749999999999999,
+            "meanDiscreteMI": 1.0377358490566038,
+            "meanContinuousMI": 0.1509433962264151,
+            "meanSignedGap": -0.8867924528301887,
+            "eventCount": 53
+          }
+        ]
+      }
+    },
+    "paris_agreement": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 67,
+            "forwarded": 32,
+            "reinterpreted": 24,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 0.125,
+          "severity": "factual_error",
+          "eventCount": 11
+        },
+        "node_1": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 24,
+            "reinterpreted": 32,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 11
+        },
+        "node_2": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 19,
+            "reinterpreted": 39,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0.5,
+          "severity": "factual_error",
+          "eventCount": 12
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 56,
+            "forwarded": 19,
+            "reinterpreted": 32,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0.2857142857142857,
+          "severity": "factual_error",
+          "eventCount": 8
+        },
+        "node_4": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 12,
+            "reinterpreted": 16,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0.6666666666666666,
+          "severity": "factual_error",
+          "eventCount": 4
+        },
+        "node_5": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 15,
+            "reinterpreted": 16,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 4
+        },
+        "node_6": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 14,
+            "reinterpreted": 16,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 4
+        },
+        "node_7": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 39,
+            "forwarded": 15,
+            "reinterpreted": 15,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 0.4,
+          "severity": "factual_error",
+          "eventCount": 7
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_2",
+            "personaId": "environmental_concern",
+            "reach": 10,
+            "meanMI": 0.5,
+            "fidelity": 0.9
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "environmental_concern",
+            "reach": 8,
+            "meanMI": 0.125,
+            "fidelity": 0.975
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "environmental_concern",
+            "reach": 7,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 7,
+            "meanMI": 0.2857142857142857,
+            "fidelity": 0.9428571428571428
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "environmental_concern",
+            "reach": 5,
+            "meanMI": 0.4,
+            "fidelity": 0.92
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "environmental_concern",
+            "reach": 4,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "environmental_concern",
+            "reach": 3,
+            "meanMI": 0.6666666666666666,
+            "fidelity": 0.8666666666666667
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "environmental_concern",
+            "reach": 2,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0.5,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 0.3333333333333333,
+            "activeNodes": 3
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.4,
+            "activeNodes": 5
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.16666666666666666,
+            "activeNodes": 6
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.5,
+            "activeNodes": 8
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.16666666666666666,
+            "activeNodes": 12
+          },
+          {
+            "tick": 8,
+            "meanMI": 0,
+            "activeNodes": 9
+          }
+        ],
+        "giniCoefficient": 0.5390577965081276,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9478260869565218,
+          "meanMR": 0,
+          "meanIR": 0.05217391304347827,
+          "meanCMS": 0.07971014480374398,
+          "meanIE": 0.14720684255148095,
+          "eventCount": 46
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.8,
+            "meanMR": 0,
+            "meanIR": 0.2,
+            "meanCMS": 0.2499999996875
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.9,
+            "meanMR": 0,
+            "meanIR": 0.1,
+            "meanCMS": 0.12499999984375
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.9333333333333332,
+            "meanMR": 0,
+            "meanIR": 0.06666666666666667,
+            "meanCMS": 0.08333333322916667
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.9199999999999999,
+            "meanMR": 0,
+            "meanIR": 0.08,
+            "meanCMS": 0.13333333311111112
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.9666666666666667,
+            "meanMR": 0,
+            "meanIR": 0.03333333333333333,
+            "meanCMS": 0.041666666614583334
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.8999999999999999,
+            "meanMR": 0,
+            "meanIR": 0.1,
+            "meanCMS": 0.1666666663888889
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9666666666666667,
+            "meanMR": 0,
+            "meanIR": 0.03333333333333333,
+            "meanCMS": 0.05555555546296297
+          },
+          {
+            "tick": 8,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.9478260869565218,
+            "meanMR": 0,
+            "meanIR": 0.05217391304347827,
+            "meanCMS": 0.07971014480374398,
+            "eventCount": 46
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.2608695652173913,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0.2608695652173913,
+          "meanContinuousMI": 0,
+          "meanSignedGap": -0.2608695652173913,
+          "eventCount": 46
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "environmental_concern",
+            "meanGap": 0.2608695652173913,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0.2608695652173913,
+            "meanContinuousMI": 0,
+            "meanSignedGap": -0.2608695652173913,
+            "eventCount": 46
+          }
+        ]
+      }
+    },
+    "climate_consensus": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 67,
+            "forwarded": 32,
+            "reinterpreted": 24,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 0.7,
+          "severity": "factual_error",
+          "eventCount": 12
+        },
+        "node_1": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 24,
+            "reinterpreted": 32,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0.8,
+          "severity": "factual_error",
+          "eventCount": 13
+        },
+        "node_2": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 19,
+            "reinterpreted": 39,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0.7,
+          "severity": "factual_error",
+          "eventCount": 13
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 56,
+            "forwarded": 19,
+            "reinterpreted": 32,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0.8888888888888888,
+          "severity": "factual_error",
+          "eventCount": 10
+        },
+        "node_4": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 12,
+            "reinterpreted": 16,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0.6666666666666666,
+          "severity": "factual_error",
+          "eventCount": 7
+        },
+        "node_5": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 15,
+            "reinterpreted": 16,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0.6666666666666666,
+          "severity": "factual_error",
+          "eventCount": 7
+        },
+        "node_6": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 14,
+            "reinterpreted": 16,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0.42857142857142855,
+          "severity": "factual_error",
+          "eventCount": 7
+        },
+        "node_7": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 39,
+            "forwarded": 15,
+            "reinterpreted": 15,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 0.4,
+          "severity": "factual_error",
+          "eventCount": 7
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "environmental_concern",
+            "reach": 10,
+            "meanMI": 0.7,
+            "fidelity": 0.86
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "environmental_concern",
+            "reach": 10,
+            "meanMI": 0.8,
+            "fidelity": 0.84
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "environmental_concern",
+            "reach": 10,
+            "meanMI": 0.7,
+            "fidelity": 0.86
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 9,
+            "meanMI": 0.8888888888888888,
+            "fidelity": 0.8222222222222222
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "environmental_concern",
+            "reach": 7,
+            "meanMI": 0.42857142857142855,
+            "fidelity": 0.9142857142857143
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "environmental_concern",
+            "reach": 6,
+            "meanMI": 0.6666666666666666,
+            "fidelity": 0.8666666666666667
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "environmental_concern",
+            "reach": 6,
+            "meanMI": 0.6666666666666666,
+            "fidelity": 0.8666666666666667
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "environmental_concern",
+            "reach": 5,
+            "meanMI": 0.4,
+            "fidelity": 0.92
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 0.3333333333333333,
+            "activeNodes": 3
+          },
+          {
+            "tick": 3,
+            "meanMI": 0.8571428571428571,
+            "activeNodes": 7
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.4444444444444444,
+            "activeNodes": 9
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.38461538461538464,
+            "activeNodes": 13
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.5555555555555556,
+            "activeNodes": 9
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.6923076923076923,
+            "activeNodes": 13
+          },
+          {
+            "tick": 8,
+            "meanMI": 1.625,
+            "activeNodes": 8
+          }
+        ],
+        "giniCoefficient": 0.12885429262394194,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.8634920634920632,
+          "meanMR": 0.10793650793650798,
+          "meanIR": 0.028571428571428567,
+          "meanCMS": 0.03968253962632275,
+          "meanIE": 0.4165229608196187,
+          "eventCount": 63
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.9333333333333332,
+            "meanMR": 0,
+            "meanIR": 0.06666666666666667,
+            "meanCMS": 0.08333333322916667
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.8285714285714285,
+            "meanMR": 0.028571428571428574,
+            "meanIR": 0.14285714285714285,
+            "meanCMS": 0.20238095208829368
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.911111111111111,
+            "meanMR": 0.08888888888888889,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.9230769230769231,
+            "meanMR": 0.06153846153846154,
+            "meanIR": 0.015384615384615385,
+            "meanCMS": 0.01923076920673077
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.8888888888888888,
+            "meanMR": 0.08888888888888889,
+            "meanIR": 0.022222222222222223,
+            "meanCMS": 0.03703703697530865
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.8615384615384616,
+            "meanMR": 0.12307692307692308,
+            "meanIR": 0.015384615384615385,
+            "meanCMS": 0.01923076920673077
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.6749999999999999,
+            "meanMR": 0.325,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.8634920634920632,
+            "meanMR": 0.10793650793650798,
+            "meanIR": 0.028571428571428567,
+            "meanCMS": 0.03968253962632275,
+            "eventCount": 63
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.6587301587301587,
+          "meanAgreement": 0.8707908118985982,
+          "meanDiscreteMI": 0.6825396825396826,
+          "meanContinuousMI": 0.05555555555555554,
+          "meanSignedGap": -0.626984126984127,
+          "eventCount": 63
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "environmental_concern",
+            "meanGap": 0.6587301587301587,
+            "meanAgreement": 0.8707908118985982,
+            "meanDiscreteMI": 0.6825396825396826,
+            "meanContinuousMI": 0.05555555555555554,
+            "meanSignedGap": -0.626984126984127,
+            "eventCount": 63
+          }
+        ]
+      }
+    },
+    "polar_bears": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 67,
+            "forwarded": 32,
+            "reinterpreted": 24,
+            "dropped": 11,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 11
+        },
+        "node_1": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 24,
+            "reinterpreted": 32,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 1.4285714285714286,
+          "severity": "lie",
+          "eventCount": 11
+        },
+        "node_2": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 72,
+            "forwarded": 19,
+            "reinterpreted": 39,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0.5454545454545454,
+          "severity": "factual_error",
+          "eventCount": 12
+        },
+        "node_3": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 56,
+            "forwarded": 19,
+            "reinterpreted": 32,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0.5,
+          "severity": "factual_error",
+          "eventCount": 10
+        },
+        "node_4": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 12,
+            "reinterpreted": 16,
+            "dropped": 8,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 3
+        },
+        "node_5": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 15,
+            "reinterpreted": 16,
+            "dropped": 5,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 3
+        },
+        "node_6": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 36,
+            "forwarded": 14,
+            "reinterpreted": 16,
+            "dropped": 6,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 3
+        },
+        "node_7": {
+          "personaId": "environmental_concern",
+          "stats": {
+            "received": 39,
+            "forwarded": 15,
+            "reinterpreted": 15,
+            "dropped": 9,
+            "dumped": 0
+          },
+          "mpr": 0.16666666666666666,
+          "severity": "factual_error",
+          "eventCount": 8
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_2",
+            "personaId": "environmental_concern",
+            "reach": 11,
+            "meanMI": 0.5454545454545454,
+            "fidelity": 0.8909090909090909
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "environmental_concern",
+            "reach": 10,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "environmental_concern",
+            "reach": 10,
+            "meanMI": 0.5,
+            "fidelity": 0.9
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "environmental_concern",
+            "reach": 7,
+            "meanMI": 1.4285714285714286,
+            "fidelity": 0.7142857142857143
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "environmental_concern",
+            "reach": 6,
+            "meanMI": 0.16666666666666666,
+            "fidelity": 0.9666666666666667
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "environmental_concern",
+            "reach": 3,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "environmental_concern",
+            "reach": 3,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "environmental_concern",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 2,
+            "activeNodes": 2
+          },
+          {
+            "tick": 3,
+            "meanMI": 1,
+            "activeNodes": 3
+          },
+          {
+            "tick": 4,
+            "meanMI": 0.5,
+            "activeNodes": 6
+          },
+          {
+            "tick": 5,
+            "meanMI": 0.3333333333333333,
+            "activeNodes": 9
+          },
+          {
+            "tick": 6,
+            "meanMI": 0.6,
+            "activeNodes": 10
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.4,
+            "activeNodes": 10
+          },
+          {
+            "tick": 8,
+            "meanMI": 0.8,
+            "activeNodes": 10
+          }
+        ],
+        "giniCoefficient": 0.5826397146254458,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 2.25,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.8745098039215686,
+          "meanMR": 0,
+          "meanIR": 0.1254901960784314,
+          "meanCMS": 0.19934640490876906,
+          "meanIE": 0.33242992739676214,
+          "eventCount": 51
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.8,
+            "meanMR": 0,
+            "meanIR": 0.2,
+            "meanCMS": 0.2499999996875
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.6,
+            "meanMR": 0,
+            "meanIR": 0.4,
+            "meanCMS": 0.6666666655555556
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.8000000000000002,
+            "meanMR": 0,
+            "meanIR": 0.20000000000000004,
+            "meanCMS": 0.30555555508101856
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.8999999999999999,
+            "meanMR": 0,
+            "meanIR": 0.10000000000000002,
+            "meanCMS": 0.15277777754050928
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.9333333333333333,
+            "meanMR": 0,
+            "meanIR": 0.06666666666666668,
+            "meanCMS": 0.10185185169367285
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.8800000000000001,
+            "meanMR": 0,
+            "meanIR": 0.12,
+            "meanCMS": 0.18333333304861113
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9199999999999999,
+            "meanMR": 0,
+            "meanIR": 0.08,
+            "meanCMS": 0.13333333311111112
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.8400000000000001,
+            "meanMR": 0,
+            "meanIR": 0.16,
+            "meanCMS": 0.26666666622222224
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "environmental_concern",
+            "meanCR": 0.8745098039215686,
+            "meanMR": 0,
+            "meanIR": 0.1254901960784314,
+            "meanCMS": 0.19934640490876906,
+            "eventCount": 51
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.6274509803921569,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0.6274509803921569,
+          "meanContinuousMI": 0,
+          "meanSignedGap": -0.6274509803921569,
+          "eventCount": 51
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "environmental_concern",
+            "meanGap": 0.6274509803921569,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0.6274509803921569,
+            "meanContinuousMI": 0,
+            "meanSignedGap": -0.6274509803921569,
+            "eventCount": 51
+          }
+        ]
+      }
+    }
+  }
+}

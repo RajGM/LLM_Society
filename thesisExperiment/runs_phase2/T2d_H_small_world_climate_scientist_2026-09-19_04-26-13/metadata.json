@@ -1,0 +1,1738 @@
+{
+  "experimentId": "T2d_H_small_world_climate_scientist_2026-09-19_04-26-13",
+  "status": "complete",
+  "timestamp": "2026-09-19T04:34:58.840Z",
+  "config": {
+    "topology": "small_world",
+    "topologyParams": {
+      "numNodes": 8,
+      "edgeProbability": 0.3,
+      "k": 4,
+      "beta": 0.1
+    },
+    "maxTicks": 8,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "dual",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.15,
+      "actionWeights": {
+        "forward": 0.35,
+        "reinterpret": 0.5,
+        "drop": 0.15
+      },
+      "relationEvolution": true,
+      "trustDelta": 0.05,
+      "maxHops": 8,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017",
+      "chemtrails_gates_2018_2021",
+      "sai_geoengineering",
+      "paris_agreement",
+      "climate_consensus",
+      "polar_bears"
+    ],
+    "seedNodes": [
+      "node_0"
+    ],
+    "personasPath": "thesisExperiment/personas/phase2/homo/climate_scientist.json",
+    "articlesPath": "thesisExperiment/articles/merged.json",
+    "outputRoot": "thesisExperiment/runs_phase2",
+    "graphRandomSeed": 42,
+    "_description": "Phase2 T-H dual small_world homogeneous climate_scientist",
+    "experimentName": "T2d_H_small_world_climate_scientist",
+    "defaultPersonaAssignment": "sequential",
+    "pfeffer": {
+      "valence": "varied via 6 core articles",
+      "surprise": "held: drip seed node_0",
+      "identityAlignment": "homogeneous climate_scientist",
+      "networkClustering": "small_world",
+      "informationEcho": "measured",
+      "temporalAcceleration": "8 hops/ticks (logged cut)"
+    }
+  },
+  "llmUsage": {
+    "calls": 575,
+    "promptTokens": 270008,
+    "completionTokens": 36995,
+    "totalTokens": 307003,
+    "errors": 1824,
+    "model": "gpt-4o-mini",
+    "estimatedUsd": 0.0627
+  },
+  "results": {
+    "scopex_2017": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 143,
+            "forwarded": 47,
+            "reinterpreted": 78,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 25
+        },
+        "node_1": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 66,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_2": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 131,
+            "forwarded": 45,
+            "reinterpreted": 69,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_3": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 128,
+            "forwarded": 49,
+            "reinterpreted": 63,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_4": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 127,
+            "forwarded": 39,
+            "reinterpreted": 71,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_5": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 129,
+            "forwarded": 51,
+            "reinterpreted": 62,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 132,
+            "forwarded": 42,
+            "reinterpreted": 70,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_7": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 68,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 23
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_5",
+            "personaId": "climate_scientist",
+            "reach": 2,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "climate_scientist",
+            "reach": 2,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "climate_scientist",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "climate_scientist",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 6,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 7,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 8,
+            "meanMI": 0,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4642857142857142,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 1,
+          "meanMR": 0,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0,
+          "eventCount": 6
+        },
+        "ifdOverTime": [
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 6
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0,
+          "meanContinuousMI": 0,
+          "meanSignedGap": 0,
+          "eventCount": 6
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "climate_scientist",
+            "meanGap": 0,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0,
+            "meanContinuousMI": 0,
+            "meanSignedGap": 0,
+            "eventCount": 6
+          }
+        ]
+      }
+    },
+    "chemtrails_gates_2018_2021": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 143,
+            "forwarded": 47,
+            "reinterpreted": 78,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 24
+        },
+        "node_1": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 66,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 23
+        },
+        "node_2": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 131,
+            "forwarded": 45,
+            "reinterpreted": 69,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_3": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 128,
+            "forwarded": 49,
+            "reinterpreted": 63,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_4": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 127,
+            "forwarded": 39,
+            "reinterpreted": 71,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_5": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 129,
+            "forwarded": 51,
+            "reinterpreted": 62,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 132,
+            "forwarded": 42,
+            "reinterpreted": 70,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_7": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 68,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_scientist",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "climate_scientist",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 3,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 6,
+            "meanMI": 0,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4285714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 1,
+          "meanMR": 0,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0,
+          "eventCount": 2
+        },
+        "ifdOverTime": [
+          {
+            "tick": 3,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 2
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0,
+          "meanContinuousMI": 0,
+          "meanSignedGap": 0,
+          "eventCount": 2
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "climate_scientist",
+            "meanGap": 0,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0,
+            "meanContinuousMI": 0,
+            "meanSignedGap": 0,
+            "eventCount": 2
+          }
+        ]
+      }
+    },
+    "sai_geoengineering": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 143,
+            "forwarded": 47,
+            "reinterpreted": 78,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 24
+        },
+        "node_1": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 66,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_2": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 131,
+            "forwarded": 45,
+            "reinterpreted": 69,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_3": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 128,
+            "forwarded": 49,
+            "reinterpreted": 63,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0.5,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_4": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 127,
+            "forwarded": 39,
+            "reinterpreted": 71,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_5": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 129,
+            "forwarded": 51,
+            "reinterpreted": 62,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 132,
+            "forwarded": 42,
+            "reinterpreted": 70,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_7": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 68,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 23
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_3",
+            "personaId": "climate_scientist",
+            "reach": 2,
+            "meanMI": 0.5,
+            "fidelity": 0.9
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 4,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 7,
+            "meanMI": 0,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4285714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.9,
+          "meanMR": 0,
+          "meanIR": 0.1,
+          "meanCMS": 0.12499999984375,
+          "meanIE": 0.36096404744368116,
+          "eventCount": 2
+        },
+        "ifdOverTime": [
+          {
+            "tick": 4,
+            "meanCR": 0.8,
+            "meanMR": 0,
+            "meanIR": 0.2,
+            "meanCMS": 0.2499999996875
+          },
+          {
+            "tick": 7,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 0.9,
+            "meanMR": 0,
+            "meanIR": 0.1,
+            "meanCMS": 0.12499999984375,
+            "eventCount": 2
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0.5,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0.5,
+          "meanContinuousMI": 0,
+          "meanSignedGap": -0.5,
+          "eventCount": 2
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "climate_scientist",
+            "meanGap": 0.5,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0.5,
+            "meanContinuousMI": 0,
+            "meanSignedGap": -0.5,
+            "eventCount": 2
+          }
+        ]
+      }
+    },
+    "paris_agreement": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 143,
+            "forwarded": 47,
+            "reinterpreted": 78,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 24
+        },
+        "node_1": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 66,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_2": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 131,
+            "forwarded": 45,
+            "reinterpreted": 69,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_3": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 128,
+            "forwarded": 49,
+            "reinterpreted": 63,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_4": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 127,
+            "forwarded": 39,
+            "reinterpreted": 71,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 1,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_5": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 129,
+            "forwarded": 51,
+            "reinterpreted": 62,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 132,
+            "forwarded": 42,
+            "reinterpreted": 70,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_7": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 68,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 23
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_scientist",
+            "reach": 2,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "climate_scientist",
+            "reach": 2,
+            "meanMI": 1,
+            "fidelity": 0.8
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_scientist",
+            "reach": 1,
+            "meanMI": 1,
+            "fidelity": 0.8
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 3,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 4,
+            "meanMI": 2,
+            "activeNodes": 1
+          },
+          {
+            "tick": 6,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 7,
+            "meanMI": 0.5,
+            "activeNodes": 2
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4285714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.8,
+          "meanMR": 0,
+          "meanIR": 0.2,
+          "meanCMS": 0.2833333329236111,
+          "meanIE": 0.627346975823351,
+          "eventCount": 5
+        },
+        "ifdOverTime": [
+          {
+            "tick": 3,
+            "meanCR": 0.8,
+            "meanMR": 0,
+            "meanIR": 0.2,
+            "meanCMS": 0.2499999996875
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.6,
+            "meanMR": 0,
+            "meanIR": 0.4,
+            "meanCMS": 0.6666666655555556
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.8,
+            "meanMR": 0,
+            "meanIR": 0.2,
+            "meanCMS": 0.2499999996875
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.9,
+            "meanMR": 0,
+            "meanIR": 0.1,
+            "meanCMS": 0.12499999984375
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 0.8,
+            "meanMR": 0,
+            "meanIR": 0.2,
+            "meanCMS": 0.2833333329236111,
+            "eventCount": 5
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 1,
+          "meanAgreement": null,
+          "meanDiscreteMI": 1,
+          "meanContinuousMI": 0,
+          "meanSignedGap": -1,
+          "eventCount": 5
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "climate_scientist",
+            "meanGap": 1,
+            "meanAgreement": null,
+            "meanDiscreteMI": 1,
+            "meanContinuousMI": 0,
+            "meanSignedGap": -1,
+            "eventCount": 5
+          }
+        ]
+      }
+    },
+    "climate_consensus": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 143,
+            "forwarded": 47,
+            "reinterpreted": 78,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_1": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 66,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_2": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 131,
+            "forwarded": 45,
+            "reinterpreted": 69,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        },
+        "node_3": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 128,
+            "forwarded": 49,
+            "reinterpreted": 63,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_4": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 127,
+            "forwarded": 39,
+            "reinterpreted": 71,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_5": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 129,
+            "forwarded": 51,
+            "reinterpreted": 62,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 20
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 132,
+            "forwarded": 42,
+            "reinterpreted": 70,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 22
+        },
+        "node_7": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 68,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 21
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_7",
+            "personaId": "climate_scientist",
+            "reach": 7,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_scientist",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "climate_scientist",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "climate_scientist",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "climate_scientist",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 5,
+            "meanMI": 0,
+            "activeNodes": 3
+          },
+          {
+            "tick": 6,
+            "meanMI": 0,
+            "activeNodes": 1
+          },
+          {
+            "tick": 7,
+            "meanMI": 0,
+            "activeNodes": 2
+          },
+          {
+            "tick": 8,
+            "meanMI": 0,
+            "activeNodes": 5
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4285714285714286,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 1,
+          "meanMR": 0,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0,
+          "eventCount": 11
+        },
+        "ifdOverTime": [
+          {
+            "tick": 5,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 6,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 7,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          },
+          {
+            "tick": 8,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 11
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 0,
+          "meanAgreement": null,
+          "meanDiscreteMI": 0,
+          "meanContinuousMI": 0,
+          "meanSignedGap": 0,
+          "eventCount": 11
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "climate_scientist",
+            "meanGap": 0,
+            "meanAgreement": null,
+            "meanDiscreteMI": 0,
+            "meanContinuousMI": 0,
+            "meanSignedGap": 0,
+            "eventCount": 11
+          }
+        ]
+      }
+    },
+    "polar_bears": {
+      "nodeSummaries": {
+        "node_0": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 143,
+            "forwarded": 47,
+            "reinterpreted": 78,
+            "dropped": 18,
+            "dumped": 0
+          },
+          "mpr": 1.6,
+          "severity": "lie",
+          "eventCount": 25
+        },
+        "node_1": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 66,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 1.7619047619047619,
+          "severity": "lie",
+          "eventCount": 23
+        },
+        "node_2": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 131,
+            "forwarded": 45,
+            "reinterpreted": 69,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 1.6666666666666667,
+          "severity": "lie",
+          "eventCount": 22
+        },
+        "node_3": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 128,
+            "forwarded": 49,
+            "reinterpreted": 63,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 1.3333333333333333,
+          "severity": "lie",
+          "eventCount": 22
+        },
+        "node_4": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 127,
+            "forwarded": 39,
+            "reinterpreted": 71,
+            "dropped": 17,
+            "dumped": 0
+          },
+          "mpr": 1.8095238095238095,
+          "severity": "lie",
+          "eventCount": 22
+        },
+        "node_5": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 129,
+            "forwarded": 51,
+            "reinterpreted": 62,
+            "dropped": 16,
+            "dumped": 0
+          },
+          "mpr": 1.7777777777777777,
+          "severity": "lie",
+          "eventCount": 22
+        },
+        "node_6": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 132,
+            "forwarded": 42,
+            "reinterpreted": 70,
+            "dropped": 20,
+            "dumped": 0
+          },
+          "mpr": 1.55,
+          "severity": "lie",
+          "eventCount": 22
+        },
+        "node_7": {
+          "personaId": "climate_scientist",
+          "stats": {
+            "received": 135,
+            "forwarded": 53,
+            "reinterpreted": 68,
+            "dropped": 14,
+            "dumped": 0
+          },
+          "mpr": 1.619047619047619,
+          "severity": "lie",
+          "eventCount": 23
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "node_0": null,
+            "node_1": null,
+            "node_2": null,
+            "node_3": null,
+            "node_4": null,
+            "node_5": null,
+            "node_6": null,
+            "node_7": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "node_1",
+            "personaId": "climate_scientist",
+            "reach": 21,
+            "meanMI": 1.7619047619047619,
+            "fidelity": 0.6476190476190476
+          },
+          {
+            "nodeId": "node_2",
+            "personaId": "climate_scientist",
+            "reach": 21,
+            "meanMI": 1.6666666666666667,
+            "fidelity": 0.6666666666666666
+          },
+          {
+            "nodeId": "node_4",
+            "personaId": "climate_scientist",
+            "reach": 21,
+            "meanMI": 1.8095238095238095,
+            "fidelity": 0.638095238095238
+          },
+          {
+            "nodeId": "node_7",
+            "personaId": "climate_scientist",
+            "reach": 21,
+            "meanMI": 1.619047619047619,
+            "fidelity": 0.6761904761904762
+          },
+          {
+            "nodeId": "node_0",
+            "personaId": "climate_scientist",
+            "reach": 20,
+            "meanMI": 1.6,
+            "fidelity": 0.6799999999999999
+          },
+          {
+            "nodeId": "node_6",
+            "personaId": "climate_scientist",
+            "reach": 20,
+            "meanMI": 1.55,
+            "fidelity": 0.69
+          },
+          {
+            "nodeId": "node_3",
+            "personaId": "climate_scientist",
+            "reach": 18,
+            "meanMI": 1.3333333333333333,
+            "fidelity": 0.7333333333333334
+          },
+          {
+            "nodeId": "node_5",
+            "personaId": "climate_scientist",
+            "reach": 18,
+            "meanMI": 1.7777777777777777,
+            "fidelity": 0.6444444444444445
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 1,
+            "activeNodes": 1
+          },
+          {
+            "tick": 2,
+            "meanMI": 1.5,
+            "activeNodes": 4
+          },
+          {
+            "tick": 3,
+            "meanMI": 1.6,
+            "activeNodes": 15
+          },
+          {
+            "tick": 4,
+            "meanMI": 1.7857142857142858,
+            "activeNodes": 28
+          },
+          {
+            "tick": 5,
+            "meanMI": 1.6551724137931034,
+            "activeNodes": 29
+          },
+          {
+            "tick": 6,
+            "meanMI": 1.5769230769230769,
+            "activeNodes": 26
+          },
+          {
+            "tick": 7,
+            "meanMI": 1.7241379310344827,
+            "activeNodes": 29
+          },
+          {
+            "tick": 8,
+            "meanMI": 1.5357142857142858,
+            "activeNodes": 28
+          }
+        ],
+        "giniCoefficient": 0.047696472865872086,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 2,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 3,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 4,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 5,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 6,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 7,
+            "fraction": 0,
+            "aboveThreshold": 0
+          },
+          {
+            "tick": 8,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 1.4642857142857142,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 0.6712499999999983,
+          "meanMR": 0,
+          "meanIR": 0.32874999999999976,
+          "meanCMS": 0.521354165830946,
+          "meanIE": 0.8733693490715637,
+          "eventCount": 160
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 0.8,
+            "meanMR": 0,
+            "meanIR": 0.2,
+            "meanCMS": 0.2499999996875
+          },
+          {
+            "tick": 2,
+            "meanCR": 0.7,
+            "meanMR": 0,
+            "meanIR": 0.3,
+            "meanCMS": 0.4583333326215278
+          },
+          {
+            "tick": 3,
+            "meanCR": 0.6799999999999999,
+            "meanMR": 0,
+            "meanIR": 0.32000000000000006,
+            "meanCMS": 0.4999999992083334
+          },
+          {
+            "tick": 4,
+            "meanCR": 0.6428571428571429,
+            "meanMR": 0,
+            "meanIR": 0.3571428571428572,
+            "meanCMS": 0.577380951440972
+          },
+          {
+            "tick": 5,
+            "meanCR": 0.6689655172413795,
+            "meanMR": 0,
+            "meanIR": 0.3310344827586208,
+            "meanCMS": 0.5229885049113983
+          },
+          {
+            "tick": 6,
+            "meanCR": 0.6846153846153846,
+            "meanMR": 0,
+            "meanIR": 0.3153846153846155,
+            "meanCMS": 0.5032051273944977
+          },
+          {
+            "tick": 7,
+            "meanCR": 0.6551724137931035,
+            "meanMR": 0,
+            "meanIR": 0.3448275862068967,
+            "meanCMS": 0.5517241370402297
+          },
+          {
+            "tick": 8,
+            "meanCR": 0.692857142857143,
+            "meanMR": 0,
+            "meanIR": 0.3071428571428573,
+            "meanCMS": 0.479166665908978
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "climate_scientist",
+            "meanCR": 0.6712499999999983,
+            "meanMR": 0,
+            "meanIR": 0.32874999999999976,
+            "meanCMS": 0.521354165830946,
+            "eventCount": 160
+          }
+        ],
+        "ifdDualMetrics": {
+          "meanGap": 1.64375,
+          "meanAgreement": null,
+          "meanDiscreteMI": 1.64375,
+          "meanContinuousMI": 0,
+          "meanSignedGap": -1.64375,
+          "eventCount": 160
+        },
+        "personaIFDDual": [
+          {
+            "personaId": "climate_scientist",
+            "meanGap": 1.64375,
+            "meanAgreement": null,
+            "meanDiscreteMI": 1.64375,
+            "meanContinuousMI": 0,
+            "meanSignedGap": -1.64375,
+            "eventCount": 160
+          }
+        ]
+      }
+    }
+  }
+}

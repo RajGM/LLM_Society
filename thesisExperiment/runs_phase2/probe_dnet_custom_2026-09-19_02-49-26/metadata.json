@@ -1,0 +1,261 @@
+{
+  "experimentId": "probe_dnet_custom_2026-09-19_02-49-26",
+  "status": "complete",
+  "timestamp": "2026-09-19T02:49:31.424Z",
+  "config": {
+    "topology": "custom",
+    "topologyParams": {
+      "numNodes": 5,
+      "edgeProbability": 0.3
+    },
+    "maxTicks": 1,
+    "defaultModel": "gpt-4o-mini",
+    "auditorModel": "gpt-4o-mini",
+    "auditorQuestions": 5,
+    "miScoringMode": "continuous",
+    "enableBeliefs": false,
+    "enableFrameAnalysis": false,
+    "enableProvenance": false,
+    "provenanceRecencyDiscount": 0.9,
+    "enableStrategicAgents": false,
+    "enableNetworkEvolution": false,
+    "networkEvolutionParams": {
+      "creationProb": 0.05,
+      "severingThreshold": 0.25,
+      "maxNewEdges": 3,
+      "trustForNewEdge": 0.4
+    },
+    "enableOpinionDynamics": false,
+    "opinionDynamicsParams": {
+      "steps": 50,
+      "epsilon": 0.3,
+      "voterRuns": 10
+    },
+    "enableInstitutionalTrust": false,
+    "institutionalTrustParams": {
+      "erosionRate": 0.03,
+      "recoveryRate": 0.01
+    },
+    "competitiveGroups": [],
+    "interventions": [],
+    "nodeParams": {
+      "trustThreshold": 0.15,
+      "actionWeights": {
+        "forward": 0.5,
+        "reinterpret": 0.5,
+        "drop": 0
+      },
+      "relationEvolution": false,
+      "trustDelta": 0.05,
+      "maxHops": 1,
+      "strippedProperties": [],
+      "activityPattern": "always",
+      "edgeDeletionThreshold": 0.05,
+      "maxInboxSize": 4
+    },
+    "seedArticles": [
+      "scopex_2017"
+    ],
+    "seedNodes": [
+      "user_chemtrails_hub"
+    ],
+    "_description": "Tiny custom-graph API probe (3 Debnath hashtag nodes, 1 tick, 1 seed). Not a thesis cell. NOT a retweet cascade.",
+    "_honesty": {
+      "notARetweetCascade": true,
+      "graphSource": "debnath_hashtag_cooccurrence_fallback_subsample",
+      "probeOnly": true
+    },
+    "experimentName": "probe_dnet_custom",
+    "personasPath": "thesisExperiment/personas/phase2/homogeneous_conspiracy.json",
+    "articlesPath": "thesisExperiment/articles/merged.json",
+    "outputRoot": "thesisExperiment/runs_phase2",
+    "graphRandomSeed": 42,
+    "nodes": [
+      {
+        "nodeId": "user_chemtrails_hub",
+        "personaId": "conspiracy_believer",
+        "modelId": "gpt-4o-mini",
+        "params": {
+          "trustThreshold": 0.15,
+          "actionWeights": {
+            "forward": 0.5,
+            "reinterpret": 0.5,
+            "drop": 0
+          },
+          "relationEvolution": false,
+          "maxHops": 1,
+          "maxInboxSize": 4,
+          "activityPattern": "always"
+        }
+      },
+      {
+        "nodeId": "user_haarp_hub",
+        "personaId": "conspiracy_believer",
+        "modelId": "gpt-4o-mini",
+        "params": {
+          "trustThreshold": 0.15,
+          "actionWeights": {
+            "forward": 0.5,
+            "reinterpret": 0.5,
+            "drop": 0
+          },
+          "relationEvolution": false,
+          "maxHops": 1,
+          "maxInboxSize": 4,
+          "activityPattern": "always"
+        }
+      },
+      {
+        "nodeId": "user_chemtrails_amp_1",
+        "personaId": "conspiracy_believer",
+        "modelId": "gpt-4o-mini",
+        "params": {
+          "trustThreshold": 0.15,
+          "actionWeights": {
+            "forward": 0.5,
+            "reinterpret": 0.5,
+            "drop": 0
+          },
+          "relationEvolution": false,
+          "maxHops": 1,
+          "maxInboxSize": 4,
+          "activityPattern": "always"
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "user_chemtrails_hub",
+        "to": "user_haarp_hub",
+        "trust": 0.82
+      },
+      {
+        "from": "user_chemtrails_hub",
+        "to": "user_chemtrails_amp_1",
+        "trust": 0.8
+      }
+    ]
+  },
+  "llmUsage": {
+    "calls": 2,
+    "promptTokens": 1086,
+    "completionTokens": 255,
+    "totalTokens": 1341,
+    "errors": 0,
+    "model": "gpt-4o-mini",
+    "estimatedUsd": 0.0003
+  },
+  "results": {
+    "scopex_2017": {
+      "nodeSummaries": {
+        "user_chemtrails_hub": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 1,
+            "forwarded": 0,
+            "reinterpreted": 1,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 1
+        },
+        "user_haarp_hub": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 0,
+            "forwarded": 0,
+            "reinterpreted": 0,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        },
+        "user_chemtrails_amp_1": {
+          "personaId": "conspiracy_believer",
+          "stats": {
+            "received": 0,
+            "forwarded": 0,
+            "reinterpreted": 0,
+            "dropped": 0,
+            "dumped": 0
+          },
+          "mpr": 0,
+          "severity": "factual_error",
+          "eventCount": 0
+        }
+      },
+      "metrics": {
+        "informationHalfLife": {
+          "perNode": {
+            "user_chemtrails_hub": null,
+            "user_haarp_hub": null,
+            "user_chemtrails_amp_1": null
+          },
+          "networkMedian": null
+        },
+        "cascadeReachVsFidelity": [
+          {
+            "nodeId": "user_chemtrails_hub",
+            "personaId": "conspiracy_believer",
+            "reach": 1,
+            "meanMI": 0,
+            "fidelity": 1
+          }
+        ],
+        "networkMIOverTime": [
+          {
+            "tick": 1,
+            "meanMI": 0,
+            "activeNodes": 1
+          }
+        ],
+        "giniCoefficient": 0,
+        "criticalMassThreshold": [
+          {
+            "tick": 1,
+            "fraction": 0,
+            "aboveThreshold": 0
+          }
+        ],
+        "structuralVirality": 0,
+        "frameMetrics": {
+          "meanFrameShift": null,
+          "meanSentimentDelta": null,
+          "totalNewClaims": 0,
+          "uniqueNewClaims": 0
+        },
+        "ifdMetrics": {
+          "meanCR": 1,
+          "meanMR": 0,
+          "meanIR": 0,
+          "meanCMS": 0,
+          "meanIE": 0,
+          "eventCount": 1
+        },
+        "ifdOverTime": [
+          {
+            "tick": 1,
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0
+          }
+        ],
+        "personaIFD": [
+          {
+            "personaId": "conspiracy_believer",
+            "meanCR": 1,
+            "meanMR": 0,
+            "meanIR": 0,
+            "meanCMS": 0,
+            "eventCount": 1
+          }
+        ]
+      }
+    }
+  }
+}

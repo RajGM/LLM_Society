@@ -1,0 +1,421 @@
+{
+  "nodeId": "node_5",
+  "personaId": "science_journalist",
+  "modelId": "gpt-4o-mini",
+  "relations": {
+    "node_6": 0.7
+  },
+  "params": {
+    "trustThreshold": 0.08,
+    "actionWeights": {
+      "forward": 0.1,
+      "reinterpret": 0.85,
+      "drop": 0.05
+    },
+    "relationEvolution": true,
+    "trustDelta": 0.05,
+    "maxHops": 8,
+    "strippedProperties": [],
+    "activityPattern": "always",
+    "edgeDeletionThreshold": 0.05,
+    "maxInboxSize": 4
+  },
+  "inbox": [],
+  "history": [
+    {
+      "tick": 6,
+      "articleId": "scopex_2017",
+      "sourceNodeId": "node_4",
+      "hops": 5,
+      "action": "drop",
+      "contentIn": "The Stratospheric Controlled Perturbation Experiment (SCoPEx), spearheaded by researchers at Harvard University, including Principal Investigator Frank Keutsch, aims to explore the behavior of aerosol particles in the stratosphere. First introduced at the 2017 American Geophysical Union Fall Meeting, SCoPEx seeks to improve computer models assessing the risks and benefits of solar geoengineering, without executing any actual interventions.\n\nThe experiment proposed using a scientific balloon to release a small amount of calcium carbonate—between 100 grams and 2 kilograms—at an altitude of around 20 kilometers. A hardware test conducted in Sweden in 2021 focused solely on platform testing, with no particle release taking place as societal discussions about geoengineering continued.\n\nAs of March 2024, Harvard announced that Keutsch will step down as the leader of SCoPEx, and the project will pivot towards other areas of stratospheric research. This shift highlights the ongoing ethical debates in the field of geoengineering and underscores the need for responsible scientific inquiry amidst these complex discussions.",
+      "contentOut": null,
+      "misinfoIndex": null,
+      "frameAnalysis": null,
+      "reason": "action_sampled",
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T02:59:58.042Z"
+    },
+    {
+      "tick": 6,
+      "articleId": "chemtrails_gates_2018_2021",
+      "sourceNodeId": "node_4",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "The chemtrail conspiracy theory posits that aircraft condensation trails, or contrails, are actually harmful chemical agents for undisclosed purposes like weather modification. However, scientific consensus refutes this claim, asserting that contrails are simply ice crystals formed under specific atmospheric conditions. A 2023 study by Debnath and colleagues, published in *iScience*, analyzed over 814,000 tweets tagged with #geoengineering from 2009 to 2021. The findings indicated that discussions about chemtrails dominate the conversation, particularly in relation to the Harvard SCoPEx project, which highlights a mix of curiosity and misinformation. While there is documented funding for solar geoengineering research, including contributions from the Bill and Melinda Gates Foundation, this does not suggest any covert spraying activities. Furthermore, the study noted that from 2018 to 2021, conversations about chemtrails became increasingly toxic, diverting attention from critical environmental issues such as ozone depletion and biodiversity loss.",
+      "contentOut": "The chemtrail conspiracy theory claims that aircraft contrails are actually harmful chemicals used for undisclosed purposes, including weather modification. However, the scientific community firmly rejects this notion, confirming that contrails are merely ice crystals that form under specific atmospheric conditions. A 2023 study by Debnath et al., published in *iScience*, examined over 814,000 tweets tagged with #geoengineering from 2009 to 2021, revealing that discussions around chemtrails overwhelmingly dominate the discourse, particularly in relation to the Harvard SCoPEx project. This highlights a troubling mix of curiosity and misinformation. While there is legitimate funding for solar geoengineering research, including from the Bill and Melinda Gates Foundation, it does not imply any secretive spraying activities. Additionally, the study found that from 2018 to 2021, conversations about chemtrails became increasingly toxic, distracting from urgent environmental issues such as ozone depletion and biodiversity loss.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T03:00:10.924Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0.2,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          1,
+          0,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0.2,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              1,
+              0,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0.4999999999999999,
+            "cr": 0.9,
+            "mr": 0.2,
+            "ir": 0,
+            "cms": 0.11111111098765429,
+            "ie": 0.4689955935892811,
+            "scores": [
+              1,
+              1,
+              1,
+              0.5,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 0.5000000000000001,
+          "agreement": 1
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "sai_geoengineering",
+      "sourceNodeId": "node_4",
+      "hops": 5,
+      "action": "forward",
+      "contentIn": "Stratospheric aerosol injection (SAI) is a geoengineering technique designed to reflect sunlight by dispersing aerosols into the stratosphere, inspired by the natural cooling effects of major volcanic eruptions like Mount Pinatubo in 1991. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as the most researched method for solar radiation modification, suggesting it could help mitigate global warming if implemented cautiously. However, it does not reduce carbon dioxide levels or ocean acidification and presents significant management risks.\n\nCurrently, no global SAI programs are active. Research is focused on materials such as sulfates and calcite, which would be delivered by specialized high-altitude aircraft. Projects like Harvard's SCoPEx aim to study aerosol behavior rather than provide immediate cooling solutions. Claims that commercial aviation is conducting SAI through 'chemtrails' are unsupported by atmospheric science and categorized as conspiracy theories. Additionally, evaluations of SAI raise concerns about potential impacts on ozone chemistry, precipitation patterns, and governance challenges.",
+      "contentOut": "Stratospheric aerosol injection (SAI) is a geoengineering technique designed to reflect sunlight by dispersing aerosols into the stratosphere, inspired by the natural cooling effects of major volcanic eruptions like Mount Pinatubo in 1991. The Intergovernmental Panel on Climate Change (IPCC) recognizes SAI as the most researched method for solar radiation modification, suggesting it could help mitigate global warming if implemented cautiously. However, it does not reduce carbon dioxide levels or ocean acidification and presents significant management risks.\n\nCurrently, no global SAI programs are active. Research is focused on materials such as sulfates and calcite, which would be delivered by specialized high-altitude aircraft. Projects like Harvard's SCoPEx aim to study aerosol behavior rather than provide immediate cooling solutions. Claims that commercial aviation is conducting SAI through 'chemtrails' are unsupported by atmospheric science and categorized as conspiracy theories. Additionally, evaluations of SAI raise concerns about potential impacts on ozone chemistry, precipitation patterns, and governance challenges.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T03:00:23.512Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0,
+        "ir": 0.4,
+        "cms": 0.6666666655555556,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          1,
+          -1,
+          -1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0,
+            "ir": 0.4,
+            "cms": 0.6666666655555556,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              1,
+              -1,
+              -1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "climate_consensus",
+      "sourceNodeId": "node_4",
+      "hops": 5,
+      "action": "reinterpret",
+      "contentIn": "The scientific consensus regarding climate change is unequivocal: human-induced greenhouse gas emissions are the primary cause of recent global warming, a conclusion supported by the Intergovernmental Panel on Climate Change (IPCC). Research by Cook et al. shows that approximately 97% of peer-reviewed studies endorse this view, a finding corroborated by surveys of climate scientists. This consensus is reinforced by robust evidence, including surface and satellite temperature records, rising ocean heat, melting glaciers, and increased sea levels. Isotopic analysis has established a direct link between the rise in carbon dioxide levels since the industrial era and fossil fuel consumption, which amplifies the greenhouse effect. While uncertainties around climate sensitivity and regional impacts remain, the connection between rising CO2 and global warming is firmly established. Furthermore, claims of secretive geoengineering efforts, such as chemtrails, lack scientific basis and are classified as conspiracy theories that contradict established atmospheric science.",
+      "contentOut": "The scientific consensus on climate change is clear: human-induced greenhouse gas emissions are the primary drivers of recent global warming, a conclusion backed by the Intergovernmental Panel on Climate Change (IPCC). A study by Cook et al. indicates that about 97% of peer-reviewed research supports this perspective, a view echoed in surveys of climate scientists. This consensus is bolstered by substantial evidence, including surface and satellite temperature data, rising ocean heat, melting glaciers, and increasing sea levels. Isotopic analysis confirms a direct correlation between the surge in carbon dioxide levels since the industrial era and fossil fuel use, intensifying the greenhouse effect. While uncertainties about climate sensitivity and regional impacts exist, the link between rising CO2 and global warming is well-established. Additionally, claims surrounding secret geoengineering efforts, such as chemtrails, lack scientific credibility and are categorized as conspiracy theories that contradict recognized atmospheric science.",
+      "misinfoIndex": 2,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T03:00:59.535Z",
+      "ifd": {
+        "mi": 2,
+        "cr": 0.6,
+        "mr": 0.4,
+        "ir": 0,
+        "cms": 0,
+        "ie": 0.9709505944546686,
+        "scores": [
+          1,
+          1,
+          0,
+          0,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 2,
+            "cr": 0.6,
+            "mr": 0.4,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0.9709505944546686,
+            "scores": [
+              1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 2,
+          "agreement": null
+        }
+      }
+    },
+    {
+      "tick": 6,
+      "articleId": "polar_bears",
+      "sourceNodeId": "node_4",
+      "hops": 5,
+      "action": "forward",
+      "contentIn": "Polar bears (Ursus maritimus) face increasing threats due to the rapid decline of Arctic sea ice, which is crucial for their hunting and survival. The Arctic is warming approximately twice as fast as the global average, a phenomenon known as Arctic amplification. According to the International Union for Conservation of Nature (IUCN) and Arctic scientists, the loss of sea ice presents a significant long-term risk to polar bear populations. Although some subpopulations may appear stable in recent surveys, they are heavily reliant on ice, facing longer fasting periods and reduced cub survival as ice-free seasons lengthen, particularly in southern regions. Claims suggesting polar bears are thriving due to chemtrails or that global warming is a hoax are unsupported by scientific evidence. Additionally, while conservation hunting quotas and pollution pose challenges, they do not address the critical threat posed by diminishing sea ice.",
+      "contentOut": "Polar bears (Ursus maritimus) face increasing threats due to the rapid decline of Arctic sea ice, which is crucial for their hunting and survival. The Arctic is warming approximately twice as fast as the global average, a phenomenon known as Arctic amplification. According to the International Union for Conservation of Nature (IUCN) and Arctic scientists, the loss of sea ice presents a significant long-term risk to polar bear populations. Although some subpopulations may appear stable in recent surveys, they are heavily reliant on ice, facing longer fasting periods and reduced cub survival as ice-free seasons lengthen, particularly in southern regions. Claims suggesting polar bears are thriving due to chemtrails or that global warming is a hoax are unsupported by scientific evidence. Additionally, while conservation hunting quotas and pollution pose challenges, they do not address the critical threat posed by diminishing sea ice.",
+      "misinfoIndex": 1,
+      "frameAnalysis": null,
+      "reason": null,
+      "chainTrust": null,
+      "provenance": [
+        {
+          "nodeId": "node_0",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_1",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_2",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_3",
+          "personaId": "science_journalist"
+        },
+        {
+          "nodeId": "node_4",
+          "personaId": "science_journalist"
+        }
+      ],
+      "timestamp": "2026-09-19T03:01:13.638Z",
+      "ifd": {
+        "mi": 1,
+        "cr": 0.8,
+        "mr": 0,
+        "ir": 0.2,
+        "cms": 0.2499999996875,
+        "ie": 0.7219280948873623,
+        "scores": [
+          1,
+          1,
+          -1,
+          1,
+          1
+        ],
+        "mode": "dual",
+        "dual": {
+          "discrete": {
+            "mi": 1,
+            "cr": 0.8,
+            "mr": 0,
+            "ir": 0.2,
+            "cms": 0.2499999996875,
+            "ie": 0.7219280948873623,
+            "scores": [
+              1,
+              1,
+              -1,
+              1,
+              1
+            ],
+            "mode": "discrete"
+          },
+          "continuous": {
+            "mi": 0,
+            "cr": 1,
+            "mr": 0,
+            "ir": 0,
+            "cms": 0,
+            "ie": 0,
+            "scores": [
+              1,
+              1,
+              1,
+              1,
+              1
+            ],
+            "mode": "continuous"
+          },
+          "gap": 1,
+          "agreement": null
+        }
+      }
+    }
+  ],
+  "stats": {
+    "received": 5,
+    "forwarded": 2,
+    "reinterpreted": 2,
+    "dropped": 1,
+    "dumped": 0
+  }
+}

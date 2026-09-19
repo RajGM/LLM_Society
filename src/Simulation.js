@@ -577,7 +577,12 @@ class Simulation {
           this.experimentDir, nodeConfigs,
           tp.intraEdgeProb ?? 0.75, tp.interEdgeProb ?? 0.05,
           tp.intraTrust ?? 0.88, tp.interTrust ?? 0.10,
-          tp.bridgeNodeIds ?? [], this.personaMap
+          tp.bridgeNodeIds ?? [], this.personaMap,
+          {
+            rng: this._graphRng(),
+            seedNodeIds: this.config.seedNodes || ["node_0"],
+            minSeedOutDegree: tp.minSeedOutDegree ?? 2,
+          }
         );
       case "hierarchical":
         return SocietyGraph.buildHierarchical(
@@ -655,9 +660,14 @@ class Simulation {
       } else if (strategy === "by_cluster" && clusterPools.length > 0) {
         const numChambers = tp.numChambers ?? clusterPools.length;
         const cluster = i % numChambers;
-        const pool = clusterPools[cluster] || allPersonaIds;
-        personaId = pool[i % pool.length];
+        const raw = clusterPools[cluster] || allPersonaIds;
+        const pool = raw.filter((id) => this.personaMap[id]);
+        const use = pool.length ? pool : allPersonaIds;
+        personaId = use[i % use.length];
       } else {
+        personaId = allPersonaIds[i % allPersonaIds.length];
+      }
+      if (!this.personaMap[personaId] && allPersonaIds.length) {
         personaId = allPersonaIds[i % allPersonaIds.length];
       }
       return {
@@ -708,8 +718,18 @@ class Simulation {
   _getPersonaForNode(state) {
     const persona = this.personaMap[state.personaId];
     if (!persona) {
-      console.warn(`Unknown personaId ${state.personaId}, using neutral`);
-      return this.personaMap["neutral"];
+      const fallbackId = this.personaMap.neutral
+        ? "neutral"
+        : Object.keys(this.personaMap)[0];
+      console.warn(
+        `Unknown personaId ${state.personaId}, using ${fallbackId || "synthetic"}`
+      );
+      if (fallbackId && this.personaMap[fallbackId]) return this.personaMap[fallbackId];
+      return {
+        id: state.personaId || "unknown",
+        name: state.personaId || "unknown",
+        systemPrompt: "You are a social media user. Rewrite the incoming post in your own words.",
+      };
     }
     const stripped = (state.params && state.params.strippedProperties) || [];
     if (stripped.length === 0) return persona;
