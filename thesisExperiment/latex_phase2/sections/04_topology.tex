@@ -1,0 +1,113 @@
+\section{All eight topologies}
+\label{sec:topology}
+
+Topology is the clustering knob in the remapping of \textcite{pfeffer2014firestorms}.
+Phase~2 swept eight generators rather than the Phase~1 pair (scale-free versus ER).
+\Cref{fig:topo} shows live-cell mean \texttt{meanMI} by topology and article across arms and modes.
+Rank order is not the same across scoring modes.
+A single \enquote{best topology} from a pooled number is not available from this harvest.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig17_topology_article_mpr.png}
+\caption[Topology $\times$ article \MPR{}]{Live-cell mean \texttt{meanMI} by topology and article, all arms and modes.
+Discrete (T2d) and continuous (T2c) panels are not averaged.
+$N=1$.
+Source: \texttt{fig17\_topology\_article\_mpr.png}.}
+\label{fig:topo}
+\end{figure}
+
+\Cref{tab:topoH,tab:topoHe} list the same means with live counts, \kstar{} rates, and dead rates.
+Linear chain and ring are short, low-degree paths.
+Hierarchical is a different degree sequence.
+With $N=1$ the gaps are descriptive.
+They are not a significance claim about ER versus scale-free.
+
+\begin{table}[p]
+\centering
+\caption{Homogeneous (H) topology headlines.
+Each topology has 72 cells per mode (12 personas $\times$ 6 articles).
+Live means exclude hatched dead cells.}
+\label{tab:topoH}
+\scriptsize
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Topology & $n$ live dual & Disc.\ \MPR{} & \kstar{} dual & Dead dual & $n$ live cont. & Cont.\ \MPR{} & \kstar{} cont. & Dead cont. \\
+\midrule
+linear chain & 68/72 & 1.6127 & 14.7\% & 5.6\% & 62/72 & 0.9129 & 14.5\% & 13.9\% \\
+ring & 61/72 & 1.6402 & 18.0\% & 15.3\% & 65/72 & 0.9160 & 15.4\% & 9.7\% \\
+random ER & 56/72 & 1.7809 & 19.6\% & 22.2\% & 57/72 & 0.8736 & 14.0\% & 20.8\% \\
+small world & 59/72 & 1.5977 & 20.3\% & 18.1\% & 56/72 & 0.7215 & 12.5\% & 22.2\% \\
+scale-free & 57/72 & 1.7034 & 21.1\% & 20.8\% & 60/72 & 0.9205 & 16.7\% & 16.7\% \\
+echo chamber & 61/72 & 1.7984 & 23.0\% & 15.3\% & 63/72 & 0.8490 & 12.3\% & 12.5\% \\
+polarised & 57/72 & 1.7005 & 21.1\% & 20.8\% & 65/72 & 0.8356 & 15.4\% & 9.7\% \\
+hierarchical & 59/72 & 1.6315 & 23.7\% & 18.1\% & 52/72 & 0.8751 & 11.5\% & 27.8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[p]
+\centering
+\caption{Heterogeneous (He) topology headlines.
+Each topology has 36 cells per mode (6 mixes $\times$ 6 articles).}
+\label{tab:topoHe}
+\scriptsize
+\begin{tabular}{lrrrrrrrr}
+\toprule
+Topology & $n$ live dual & Disc.\ \MPR{} & \kstar{} dual & Dead dual & $n$ live cont. & Cont.\ \MPR{} & \kstar{} cont. & Dead cont. \\
+\midrule
+linear chain & 33/36 & 2.0852 & 24.2\% & 8.3\% & 32/36 & 0.8638 & 0.0\% & 11.1\% \\
+ring & 33/36 & 2.1768 & 39.4\% & 8.3\% & 33/36 & 0.8760 & 3.0\% & 8.3\% \\
+random ER & 29/36 & 2.0412 & 27.6\% & 19.4\% & 29/36 & 0.6593 & 0.0\% & 19.4\% \\
+small world & 32/36 & 1.9096 & 28.1\% & 11.1\% & 31/36 & 0.7545 & 3.2\% & 13.9\% \\
+scale-free & 29/36 & 1.9924 & 31.0\% & 19.4\% & 30/36 & 0.8157 & 6.7\% & 16.7\% \\
+echo chamber & 30/36 & 1.9632 & 23.3\% & 16.7\% & 32/36 & 1.3775 & 9.4\% & 11.1\% \\
+polarised & 26/36 & 1.8830 & 42.3\% & 27.8\% & 25/36 & 1.4137 & 12.0\% & 30.6\% \\
+hierarchical & 28/36 & 2.5934 & 42.9\% & 22.2\% & 26/36 & 1.5242 & 30.8\% & 27.8\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On homogeneous continuous cells, scale-free is highest ($0.9205$) and small-world is lowest ($0.7215$).
+Echo-chamber H continuous is $0.8490$ ($n=63$ live).
+On homogeneous dual-discrete cells, echo chamber is highest ($1.7984$) and small-world is lowest ($1.5977$).
+On heterogeneous continuous cells, hierarchical is highest ($1.5242$) and ER is lowest ($0.6593$).
+On heterogeneous dual-discrete cells, hierarchical is highest ($2.5934$) and polarised is lowest ($1.8830$).
+
+Hierarchical and polarised He cells also show high dead rates (about 28--31\% continuous).
+A live-only mean on a half-dead topology inflates uncertainty.
+Those rows describe the surviving cascades, not a clean generator effect.
+
+\Cref{fig:kstar} reports \kstar{} occurrence on live cells.
+He dual-discrete \kstar{} rates sit well above He continuous rates (32.1\% versus 7.6\% collapsed).
+The discrete instrument crosses and stays above $3$ more often in this harvest.
+That is still a scoring-mode fact, not a second firestorm clock on a shared unit.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig19_kstar_rates.png}
+\caption[k-star rates]{Share of live cells with irreversible network \kstar{} (mean \MI{}$>3$ with no later recovery), by topology and scoring mode.
+Dual \kstar{} uses the discrete series; continuous \kstar{} uses the continuous series.
+The two rates are not added.
+Right-censored at eight ticks.
+$N=1$.
+Source: \texttt{fig19\_kstar\_rates.png}.}
+\label{fig:kstar}
+\end{figure}
+
+\Cref{fig:dead} shows hatched dead-cell rates.
+Overall, 292 of 1,728 thesis cells are hatched after LLM.
+Hierarchical H continuous is 27.8\% dead; polarised He continuous is 30.6\% dead.
+Those generators contribute fewer scored events.
+The hatch pattern is part of the result, not a footnote.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig18_dead_rates.png}
+\caption[Hatched dead rates]{Hatched dead-cell rate by topology, arm, and scoring mode.
+Dead means \texttt{nScored}$\le 1$ after real LLM calls.
+Hatched cells are kept and are not scored as mix immunity.
+$N=1$.
+Source: \texttt{fig18\_dead\_rates.png}.}
+\label{fig:dead}
+\end{figure}
