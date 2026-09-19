@@ -57,8 +57,13 @@ See `REVISION_MATRIX.md` for finding-by-finding status.
 
 ## Build
 
-Recorded after `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex`
-with Biber. See `THESIS_LOG.md` for pages, words, undefined refs/cites, and
-remaining warnings.
+- Command: `latexmk -g -pdf -interaction=nonstopmode -halt-on-error main.tex`
+- PDF: `thesisExperiment/thesis_final/main.pdf`
+- Pages: 116
+- Words (pdftotext): 37,016
+- Undefined refs/cites: 0 / 0
+- Warnings: 3 overfull hboxes (3.32 pt TOC; 3.90 pt methods table; 8.69 pt
+  appendix CSV names); 85 underfull boxes; `lmtt` bold fallback
+- Appendix numbering: A / A.1 / Table A.10
 
 No grade is implied by this revision.
