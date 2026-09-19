@@ -23,7 +23,7 @@ Read `thesisExperiment/AGENT_HANDOFF.md` first. This file is a path map, not fin
 - `thesisExperiment/results_phase2/summary.md` — Debnath vs sim writeup (not MPR equality)
 - `thesisExperiment/results_phase2/dnet_manifest.json` — runner log; `failed=true` on He is **stale vs MASTER complete**
 - `thesisExperiment/analysis_phase2/` — SUMMARY.md, RESULTS.md, stats.json, plot_phase2.py, tables/, figures/, HYDRATION.md
-- `thesisExperiment/analysis_full/` — sibling full comparisons (COMPARISONS.md ingested into AGENT_HANDOFF.md)
+- `thesisExperiment/analysis_full/` — sibling full comparisons (COMPARISONS.md + PFEFFER_DEBNATH_VS_SIM.md ingested into AGENT_HANDOFF.md §7 / §7.1)
 - `thesisExperiment/latex_phase2/` — sibling TUM LaTeX draft (present on disk; untracked at handoff write time)
 
 ## Phase 1 isolation (read-only)
@@ -54,7 +54,8 @@ Read `thesisExperiment/AGENT_HANDOFF.md` first. This file is a path map, not fin
 - `thesisExperiment/articles/articles.json` — 12 campaign articles
 - `thesisExperiment/articles/merged.json` — 24 (12 + extras); grid uses 6 core
 - `thesisExperiment/pfeffer_mapping.md` — thesis six-knob operationalisation
-- `thesisExperiment/analysis_full/PFEFFER_DEBNATH_VS_SIM.md` — D-net split homo/mixed (if present)
+- `thesisExperiment/analysis_full/PFEFFER_DEBNATH_VS_SIM.md` — ingested §7.1: no new LLM; 56/63 persona-id match; clustering pre-sim; echo label-dependent; temporal N/A
+- `thesisExperiment/analysis_full/pfeffer_debnath_vs_sim.json` — machine companion (`generatedAt=2026-09-19T12:26:19.169Z`, `newLlmRuns=false`)
 - `thesisExperiment/analysis_phase2/PFEFFER_FIRESTORM.md` — on PR2 branch `cursor/pfeffer-firestorm-extract-d727` (may be absent on other checkouts)
 
 ## Scripts
@@ -68,6 +69,7 @@ Read `thesisExperiment/AGENT_HANDOFF.md` first. This file is a path map, not fin
 - `thesisExperiment/scripts/build_phase2.js` — generated configs/phase2
 - `thesisExperiment/analysis_phase2/plot_phase2.py` — regenerate analysis_phase2
 - `thesisExperiment/analysis_full/analyze_full.py` — regenerate analysis_full
+- `thesisExperiment/scripts/pfeffer_debnath_vs_sim.js` — score existing Dnet vs empirical graph (no new LLM)
 - `src/Auditor.js` — dual = two LLM calls; gap is `Math.abs`
 - `src/loadEnv.js` — loads `/workspace/.env`; never print key
 - `src/Simulation.js` — persona-name fallback (commit 438af78)

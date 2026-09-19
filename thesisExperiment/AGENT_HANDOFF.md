@@ -3,7 +3,7 @@
 **Audience.** Future AI agents continuing this repo. Not examiners. Density over prose.  
 **Written from live disk** `/workspace` on 2026-09-19. Numbers below are copied from files named here. Do not invent MI/MPR. **Never print `OPENAI_API_KEY`.**  
 **Official parse timestamp.** `thesisExperiment/results_phase2/summary.json` → `"generatedAt": "2026-09-19T05:14:37.163Z"`. Also copied to `results_phase2/PARSE.md` and `runs_phase2/_status/PARSE.md`. Prefer this stamp over later MASTER.md recheck prose that mentions `2026-09-19T05:27:59.674Z` / hatch 290.  
-**`analysis_full/` ingested.** YES (`COMPARISONS.md`, `key_numbers.json`, `README.md` present on disk at write time).  
+**`analysis_full/` ingested.** YES (`COMPARISONS.md`, `key_numbers.json`, `README.md`, **`PFEFFER_DEBNATH_VS_SIM.md` + `pfeffer_debnath_vs_sim.json`**). JSON `generatedAt=2026-09-19T12:26:19.169Z`, `newLlmRuns=false`.  
 **`latex_phase2/`.** Present on disk as sibling untracked draft (`main.tex` + `sections/01`–`05` + `references.bib`). Do not treat as harvest-canonical.
 
 Companion path index: `thesisExperiment/AGENT_HANDOFF_INDEX.md`.
@@ -636,7 +636,95 @@ Hop-wise MI / CR / MR / IR **absent** from parse tables — analysis_full omitte
 
 Figures: `analysis_full/figures/fig00`–`fig22` (list in README). Notes: `notes/01`–`05`.
 
-`analysis_full/PFEFFER_DEBNATH_VS_SIM.md` (if present): split homo vs mixed echo (summary.md averaged H+He into edgeHomophily=1 — **homo artefact**). Intended BP vs mixed Dnet persona-id match **56/63**; 7 seats type-match only (table in that file). No new LLM runs.
+### 7.1 `analysis_full/PFEFFER_DEBNATH_VS_SIM.md` — INGESTED (no new LLM)
+
+Companion JSON: `thesisExperiment/analysis_full/pfeffer_debnath_vs_sim.json` (`generatedAt=2026-09-19T12:26:19.169Z`, **`newLlmRuns: false`**). Regenerator if present: `thesisExperiment/scripts/pfeffer_debnath_vs_sim.js`. Scored **already-complete** Dnet cells only. Mapping already in `configs/phase2/Dnet_*.json`. Isolation: analysis overlay; no Phase 1 overwrite; `.env` not read for a new sim.
+
+**Do not treat as absent.** The four Dnet cells (`Dnet_c_H`, `Dnet_c_He`, `Dnet_d_H`, `Dnet_d_He`) were already complete; this note did **not** launch LLM. Empirical object = hashtag co-occurrence `data/derived/debnath_hashtag_cascade.json` (**63 nodes, 228 directed**). Comparable sim graph = **this D-net 63-node custom topology**, not T2 n=8 generators.
+
+Honesty copied from that file (do not violate): no empirical MPR; not a retweet/`conversation_id` cascade; 814,924 IDs not hydrated; BPs theory-faithful not HDBSCAN centroids; **temporal N/A** (`temporalAvailable: false`; no tweet clock; timestamps synthetic); cross-media held; 8 ticks ≠ Debnath skip-gram eight; `results_phase2/summary.md` averaged H+He into one sim echo row (`edgeHomophily=1`) = **homo artefact** — this note **splits** H vs He.
+
+#### Persona-id match **56/63** (7 type-only mismatches)
+
+`mapping.nMapped=63`, `nExactPersonaMatch=56`, `nMismatch=7`. Conspiracy / climate-action / environmental-concern **types match nodes already in Dnet**. Homo Dnet overwrites **every** seat to `conspiracy_believer`. Mixed `personaId` is the seat used at run time; reconstruct `user_profiles[].intended_debnath_bp` is the hashtag→BP rule.
+
+Type counts (copied):
+
+| Layer | conspiracy | climate action | environmental | expert / other |
+|---|---:|---:|---:|---:|
+| Empirical hashtag **cluster identity** | 28 (chemtrails 26 + piggyback 2) | 19 (climate_action 16 + geo 3) | 14 | 2 expert |
+| Reconstruct **intended BP family** | 28 | 19 (`climate_action_advocate` 18 + `mitigation_first_policy` 1; `#ipcc` already `climate_scientist`) | 13 remaining env BPs after mitigation | 3 (`climate_scientist`×2 + `science_journalist`) |
+| Mixed Dnet **persona family** | 28 | 19 | 13 | 3 |
+| Homo Dnet | 63 | 0 | 0 | 0 |
+
+Seven seats stay in the same Debnath **type** but use a coarser mixed-library id (`†` in the full 63-row map in that MD):
+
+| Node | Hashtag | Reconstruct intended BP | Mixed Dnet `personaId` | Type still match? |
+|---|---|---|---|---|
+| `user_depopulation_amp` | `#depopulation` | `conspiracy_depopulation` | `conspiracy_believer` | yes (conspiracy) |
+| `user_climateaction_piggyback_amp` | `#climateaction` (piggyback) | `conspiracy_climate_piggyback` | `conspiracy_believer` | yes (conspiracy) |
+| `user_climateaction_piggyback_peri_1` | `#climateaction` (piggyback) | `conspiracy_climate_piggyback` | `conspiracy_believer` | yes (conspiracy) |
+| `user_biodiversity_hub` | `#biodiversity` | `biodiversity_food_security` | `environmental_concern` | yes (environmental) |
+| `user_biodiversity_peri_1` | `#biodiversity` | `biodiversity_food_security` | `environmental_concern` | yes (environmental) |
+| `user_foodsecurity_amp` | `#foodsecurity` | `biodiversity_food_security` | `environmental_concern` | yes (environmental) |
+| `user_mitigation_amp` | `#mitigation` | `mitigation_first_policy` | `climate_action_advocate` | family yes; **cluster** is environmental |
+
+Seed: `user_chemtrails_hub` (`#chemtrails`, `conspiracy_believer`). Articles scored here: `scopex_2017`, `chemtrails_gates_2018_2021`. Full 63-row map stays in that MD — do not invent missing seats.
+
+Empirical identity mix: conspiracy **0.4444** (28/63) / other **0.5556**. Intended BP mix is **12 ids**, not 3. Averaged compare `conspiracyShare=0.722` is H+He pooled, not a third mix. Identity on the 63-node graph is **majority non-conspiracy (55.6%)**; treating D-net as a chemtrails-only firestorm is the **H cell**, not Debnath’s three discourse types.
+
+#### Where observables were applied
+
+**(a) Empirical structure, before simulation.** Metrics on `debnath_hashtag_cascade.json` only (no auditor scores).  
+**(b) Simulated cascades, after existing Dnet runs.** Same 63/228 topology. Primary dirs (duplicates `04-07-50`, `04-10-09`, `02-49-25` **not** used):
+
+| Cell | Mix | MI mode | Primary `runDir` |
+|---|---|---|---|
+| Dnet_c_H | homo conspiracy | continuous | `Dnet_c_H_conspiracy_2026-09-19_02-49-31` |
+| Dnet_c_He | mixed Debnath BPs | continuous | `Dnet_c_He_mixed_2026-09-19_04-05-50` |
+| Dnet_d_H | homo conspiracy | dual | `Dnet_d_H_conspiracy_2026-09-19_02-49-31` |
+| Dnet_d_He | mixed Debnath BPs | dual | `Dnet_d_He_mixed_2026-09-19_04-07-40` |
+
+**H and He share identical edge sets.** Clustering coefficients therefore match empirical structure. Homophily and conspiracy-cut modularity **change with labels**. JSON `structureNote`: clustering identical; homophily and Q differ because persona labels differ.
+
+#### Clustering is **pre-sim** (not a sim result)
+
+Transitivity **0.3146** / local clustering **0.5153** / mixed-label Q **0.4039** live on the hashtag graph *before* any LLM call. MD rounds 0.315 / 0.515 / 0.404. D-net **copies** that graph; it does not grow clusters. T2 8-node graphs are **not** this measurement.
+
+JSON `empiricalPfeffer.clustering` / graph: n=63, 228 directed, `nUniqueUndirectedEdges=171`, `meanUniqueDegree=5.4286` (MD 5.43), `hubUniqueDegree=33` (`chemtrails_hub`), directed-incidence `meanUndirectedDegree=7.2381` (MD 7.24; bidirected pairs counted twice; campaign `compare_phase2` number), `maxUndirectedDegree=53` (stub incidence, ≠ unique-neighbour 33), `nWedges=1211`, `nClosedTriads=381`, `hubShareOfStubs=0.1162`. Sim cells copy transitivity 0.3146 / local 0.5153 / meanUndirectedDegree 7.2381. Q **0.4039** on mixed labels; Q **0.4566** (MD 0.457) if every node labelled conspiracy (H). Not Watts–Strogatz generative clustering; not retweet triadic closure; n=63 ≠ Outlook #4 hundreds of neighbours.
+
+#### Echo is **label-dependent** (do not pool H+He)
+
+Empirical: identity (cluster) homophily **0.8728** (MD 0.873), BP-family **0.8377** (MD 0.838), exact-persona **0.5439** (MD 0.544). Sparse cross-cluster bridges at trust 0.32 (p0210-style).
+
+Sim **He** (mixed labels on same edges): identity homophily **0.8377**, persona **0.636**, family **0.8377**. Sim **H**: identity **1.0** / persona **1.0** / family **1.0** **by construction**. Mixed sim reproduces block echo; homo sim **cannot** measure echo (every edge same-persona). `summary.md` “sim homophily=1” is **not** the mixed-graph result.
+
+#### Temporal **N/A** empirically
+
+JSON `temporal.available=false` / reason: hashtag co-occurrence has no tweet clock; timestamps synthetic. Sim: held **8 ticks / 8 hops**, always-on, inbox 4. All four primary cells: `maxTickObserved=8`, **61/63** nodes reached. Cannot recover half-life, inter-arrival, or SCoPEx April 2017 dynamics. Ticks ≠ hours. k\* is a thesis rule, not a Pfeffer statistic.
+
+Surprise held drip: `seedNodes: [user_chemtrails_hub]` only. Paper-quoted SCoPEx April 2017 ~8k interactions/day (~+300% vs Feb) is a **citation**, not a reconstructed series (`reconstructedShockSeries: false`). Cross-media **held**. Binary/Outlook #2: engine ternary; JSON action shares forward ~0.33–0.37, reinterpret ~0.46–0.53, drop ~0.13–0.17; not Schelling binary; ablation not run.
+
+Valence is **proxy-to-auditor, never MPR-to-MPR**. Paper toxicity mean 0.17 / severe 0.12; hashtag prior proxy 0.1097. Dual vs continuous must not be averaged. Dual discrete headline does **not** preserve continuous article order on He.
+
+#### Primary sim MI (auditor only; copied)
+
+| Cell | Article | mean MI | n scored | k\* (mean MI>3, stays) | n nodes reached |
+|---|---|---:|---:|---:|---:|
+| Dnet_c_H | scopex_2017 | 1.735 | 970 | — | 61 |
+| Dnet_c_H | chemtrails_gates_2018_2021 | 3.338 | 984 | 2 | 61 |
+| Dnet_c_He | scopex_2017 | 0.998 | 591 | — | 61 |
+| Dnet_c_He | chemtrails_gates_2018_2021 | 2.507 | 1035 | — | 61 |
+| Dnet_d_H | scopex_2017 | 4.254 | 1076 | 2 | 61 |
+| Dnet_d_H | chemtrails_gates_2018_2021 | 3.730 | 749 | 4 | 61 |
+| Dnet_d_He | scopex_2017 | 2.688 | 407 | 7 | 61 |
+| Dnet_d_He | chemtrails_gates_2018_2021 | 1.530 | 1027 | — | 61 |
+
+JSON unrounded means: c_H 1.7349 / 3.3378; c_He 0.9983 / 2.5068; d_H 4.2537 / 3.7303; d_He 2.688 / 1.5297.
+
+Structural compare (already in `debnath_compare.json`, nReal=1): empirical depth 4 / breadth 33 / size 61 / SV 2.7 vs sim means depth 2.56 / breadth 40.9 / size 53.5 / SV 1.80. DTFS 0.275, `isValidated=false`. That table is **cascade-shape**, not a Pfeffer factor.
+
+Highlights to keep in later prose: (1) clustering pre-sim, (2) echo label-dependent, (3) identity mix majority non-conspiracy, (4) valence proxy≠MPR, (5) surprise/temporal held or missing, (6) hub unique degree 33 is not Outlook #4 scale, (7) larger graph = D-net 63 not T2 n=8.
 
 ---
 
@@ -712,6 +800,8 @@ Binary choice (#2): engine is **ternary** forward/reinterpret/drop — no dedica
 
 `analysis_phase2/PFEFFER_FIRESTORM.md` lives on PR2 branch `cursor/pfeffer-firestorm-extract-d727` (may be absent on other checkouts). Do not dump copyrighted full text.
 
+Pfeffer-on-Debnath **vs this harvest’s D-net** is §7.1 (`PFEFFER_DEBNATH_VS_SIM.md`): **no new LLM**; persona-id match **56/63**; clustering **pre-sim**; echo **label-dependent**; temporal **N/A**.
+
 ---
 
 ## 10. Honesty flags (keep these in any later prose)
@@ -731,7 +821,8 @@ Binary choice (#2): engine is **ternary** forward/reinterpret/drop — no dedica
 | gpt-4o-mini roleplay | not wild chemtrails communities |
 | Phase 1 discrete 12×12 | different campaign; do not splice MPR |
 | KS/JS nReal=1 | cannot support twin-validation; DTFS failed 0.70 |
-| surprise / cross-media / temporal | held |
+| surprise / cross-media / temporal | held; empirical Debnath temporal **N/A** (`temporalAvailable: false`) |
+| `PFEFFER_DEBNATH_VS_SIM` | **no new LLM**; 56/63 exact persona match; clustering pre-sim; echo label-dependent; do not pool H+He homophily |
 
 ---
 
