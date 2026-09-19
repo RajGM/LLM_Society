@@ -103,20 +103,23 @@ is implied.
 ## Build record
 
 - Build command: `latexmk -g -pdf -interaction=nonstopmode -halt-on-error main.tex`.
-- Status: successful; `pdflatex` and `biber` completed (Biber 2.19; 46 citekeys).
+- Round-2 P0 rebuild (2026-09-19 17:27 UTC): successful; `pdflatex` and `biber`
+  completed. Author metadata is Raj Gaurav Maurya. Remaining blanks print as
+  `[USER INPUT REQUIRED: ...]`.
 - PDF: `thesisExperiment/thesis_final/main.pdf`.
 - Page count: 116.
-- PDF-extracted word count: 37,016.
+- PDF-extracted word count: 38,032.
 - Undefined citations: 0.
 - Undefined cross-references: 0.
 - Appendix numbering: Appendix A / A.1 / Table A.10.
-- Residual warnings: TOC overfull 3.32 pt; methods comparison table 3.90 pt;
-  appendix CSV field names 8.69 pt; 85 underfull boxes in narrow tables;
-  `lmtt` bold fallback (`bx` → `b`). These do not hide thesis text.
-- PDF metadata: title/subject/keywords set; author remains `[CANDIDATE NAME]`.
-- No language checker was installed. The manuscript was checked through the
-  round-1 revision matrix, compilation diagnostics, citation-key audit, and
-  claim--evidence audit.
+- Residual warnings: methods comparison table 3.90 pt; two declaration
+  placeholder overfulls (1.09 pt and 27.50 pt); underfull boxes in narrow
+  tables; `lmtt` bold fallback (`bx` → `b`). These do not hide thesis text.
+- PDF metadata: title/subject/keywords set; author is Raj Gaurav Maurya.
+- Archive SHA recorded: `origin/main`
+  `042023488cefb343e739ad4b4bdba5d23171ff48`.
+- Prior round-1 PDF: 116 pages; 37,016 extracted words; `pdfauthor` was still
+  `[CANDIDATE NAME]`. That author field is now filled.
 
 ## Round-2 TUM language verification (2026-09-19)
 
