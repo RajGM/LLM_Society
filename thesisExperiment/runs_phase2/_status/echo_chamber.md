@@ -1,8 +1,12 @@
 # Phase 2 echo_chamber status
 
-**When.** 2026-09-18T16:41:00Z  
+**When.** 2026-09-18T16:41:00Z; recheck 2026-09-18T16:42:00Z  
 **Key present.** **no** (length=0)  
 **Aborted.** yes — see `thesisExperiment/runs_phase2/_blockers/echo_chamber_no_key.md`
+
+## Recheck (follow-up)
+
+Immediate + ~15s later: `/workspace/.env` missing, `thesisExperiment/.env` missing, `process.env OPENAI_API_KEY` unset (len=0), `thesisExperiment/runs_phase2/_status/KEY_READY.md` missing. Did **not** run cells. Did **not** fabricate MI. Still **0 / 216** completed.
 
 ## Counts
 
