@@ -109,22 +109,54 @@ function degreeStats(nodes, edges) {
   };
 }
 
-function modularityConspiracy(nodes, edges, identityOf) {
-  const outDegree = {};
-  for (const n of nodes) outDegree[n] = 0;
-  for (const e of edges) outDegree[e.from] = (outDegree[e.from] || 0) + 1;
+function uniqueUndirectedModularity(nodes, edges, labelOf) {
+  const pairs = new Set();
+  for (const e of edges) {
+    if (!e.from || !e.to || e.from === e.to) continue;
+    pairs.add(e.from < e.to ? `${e.from}\0${e.to}` : `${e.to}\0${e.from}`);
+  }
+  const m = pairs.size;
+  if (!m) return null;
+  const degree = Object.fromEntries(nodes.map((n) => [n, 0]));
+  const internal = {};
+  for (const key of pairs) {
+    const [u, v] = key.split("\0");
+    degree[u] = (degree[u] || 0) + 1;
+    degree[v] = (degree[v] || 0) + 1;
+    if (labelOf(u) === labelOf(v)) internal[labelOf(u)] = (internal[labelOf(u)] || 0) + 1;
+  }
+  const degreeSum = {};
+  for (const n of nodes) degreeSum[labelOf(n)] = (degreeSum[labelOf(n)] || 0) + (degree[n] || 0);
+  let q = 0;
+  for (const label of new Set(nodes.map(labelOf))) {
+    q += (internal[label] || 0) / m - ((degreeSum[label] || 0) / (2 * m)) ** 2;
+  }
+  return round4(Math.abs(q) < 1e-12 ? 0 : q);
+}
+
+function directedModularity(nodes, edges, labelOf) {
   const m = edges.length;
   if (!m) return null;
-  let q = 0;
+  const outDegree = Object.fromEntries(nodes.map((n) => [n, 0]));
+  const inDegree = Object.fromEntries(nodes.map((n) => [n, 0]));
+  const internal = {};
   for (const e of edges) {
-    const ki = outDegree[e.from] || 0;
-    const kj = outDegree[e.to] || 0;
-    const same = identityOf(e.from) === "conspiracy" && identityOf(e.to) === "conspiracy" ? 1
-      : identityOf(e.from) !== "conspiracy" && identityOf(e.to) !== "conspiracy" ? 1
-      : 0;
-    q += same - (ki * kj) / (2 * m);
+    outDegree[e.from] = (outDegree[e.from] || 0) + 1;
+    inDegree[e.to] = (inDegree[e.to] || 0) + 1;
+    if (labelOf(e.from) === labelOf(e.to)) internal[labelOf(e.from)] = (internal[labelOf(e.from)] || 0) + 1;
   }
-  return round4(q / (2 * m));
+  const outSum = {};
+  const inSum = {};
+  for (const n of nodes) {
+    const label = labelOf(n);
+    outSum[label] = (outSum[label] || 0) + (outDegree[n] || 0);
+    inSum[label] = (inSum[label] || 0) + (inDegree[n] || 0);
+  }
+  let q = 0;
+  for (const label of new Set(nodes.map(labelOf))) {
+    q += (internal[label] || 0) / m - ((outSum[label] || 0) * (inSum[label] || 0)) / (m * m);
+  }
+  return round4(Math.abs(q) < 1e-12 ? 0 : q);
 }
 
 function echoStats(edges, labelOf) {
@@ -267,7 +299,13 @@ const hubUnique = Object.keys(uniqueAdj).sort((a, b) => uniqueAdj[b].size - uniq
 
 const empDeg = degreeStats(nodeIds, edges);
 const empClust = clusteringCoeffUndirected(nodeIds, edges);
-const empQ = modularityConspiracy(nodeIds, edges, identityOf);
+const conspiracyCutOf = (id) => identityOf(id) === "conspiracy" ? "conspiracy" : "non_conspiracy";
+const clusterOf = (id) => profiles[id] && profiles[id].cluster;
+const empQ = uniqueUndirectedModularity(nodeIds, edges, conspiracyCutOf);
+const empQDirected = directedModularity(nodeIds, edges, conspiracyCutOf);
+const empQGraphCommunity = uniqueUndirectedModularity(nodeIds, edges, clusterOf);
+const empQIdentity = uniqueUndirectedModularity(nodeIds, edges, identityOf);
+const empQFamily = uniqueUndirectedModularity(nodeIds, edges, familyOf);
 const empEchoIdentity = echoStats(edges, identityOf);
 const empEchoBp = echoStats(edges, intendedOf);
 const empEchoFamily = echoStats(edges, familyOf);
@@ -301,10 +339,15 @@ function topoFromCfg(cfg, personaMap) {
     if (fam === "environmental_concern") return "environmental_concern";
     return "other";
   };
+  const cutOf = (nid) => idOf(nid) === "conspiracy" ? "conspiracy" : "non_conspiracy";
+  const familyLabelOf = (nid) => bpFamily(personaMap[nid]);
   return {
     deg: degreeStats(nodes, edgesCfg),
     clust: clusteringCoeffUndirected(nodes, edgesCfg),
-    Q: modularityConspiracy(nodes, edgesCfg, idOf),
+    Q: uniqueUndirectedModularity(nodes, edgesCfg, cutOf),
+    QDirected: directedModularity(nodes, edgesCfg, cutOf),
+    QIdentity: uniqueUndirectedModularity(nodes, edgesCfg, idOf),
+    QFamily: uniqueUndirectedModularity(nodes, edgesCfg, familyLabelOf),
     echoIdentity: echoStats(edgesCfg, idOf),
     echoPersona: echoStats(edgesCfg, (nid) => personaMap[nid]),
     echoFamily: echoStats(edgesCfg, (nid) => bpFamily(personaMap[nid])),
@@ -353,6 +396,9 @@ for (const [name, dir] of Object.entries(PRIMARY)) {
         globalTransitivity: topo.clust.globalTransitivity,
         meanLocalClustering: topo.clust.meanLocalClustering,
         modularityConspiracy: topo.Q,
+        modularityIdentityLabels: topo.QIdentity,
+        modularityPersonaFamily: topo.QFamily,
+        modularityConvention: "Newman-Girvan, unweighted unique-undirected pairs",
       },
       echo: {
         identityHomophily: topo.echoIdentity.homophily,
@@ -449,6 +495,11 @@ const report = {
       ...empDeg,
       ...empClust,
       modularityConspiracyCut: empQ,
+      modularityConspiracyCutDirectedSensitivity: empQDirected,
+      modularityGraphCommunities: empQGraphCommunity,
+      modularityAssignedIdentity: empQIdentity,
+      modularityIntendedBpFamily: empQFamily,
+      modularityConvention: "Newman-Girvan, unweighted unique-undirected pairs; graph communities use six assigned cluster labels",
     },
     echo: {
       identityHomophily: empEchoIdentity.homophily,
@@ -462,7 +513,7 @@ const report = {
   simulatedPfeffer: {
     cells: simCells,
     structureNote:
-      "H and He share the same 63/228 custom topology; clustering coefficients are therefore identical. Homophily and Q differ because persona labels differ.",
+      "H and He share the same 63/228 custom topology, so clustering coefficients are identical. Newman-Girvan identity-label modularity depends on the partition: mixed conspiracy/non-conspiracy Q=0.4297 and homogeneous one-community Q=0. Graph-community modularity is a separate six-cluster quantity.",
   },
 };
 

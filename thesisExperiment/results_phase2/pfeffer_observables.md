@@ -25,12 +25,14 @@ Do not write “Pfeffer identified six factors.” Do not write “Pfeffer ident
 | **Valence** | Affective / indignation character of firestorm messages (definition), not a numbered Outlook factor | Paper-quoted toxicity mean ~0.17 / hashtag toxicity proxy | Mean auditor MI; frame sentiment if FrameAuditor is on | Varied via articles + persona tone. **Not Twitter MI.** |
 | **Surprise** | #1 speed and volume (shock vs drip) | Paper notes SCoPEx April 2017 volume spike; not a reconstructed shock series | Drip `seedNodes: [node_0]` unless a shock cell exists | **Held** (drip) |
 | **Identity** | #5 lack of diversity | Hashtag mix: conspiracy vs climate-action vs environmental vs other | BP mix / conspiracy vs other personas on `graph_topology.json` | Swept homo vs hetero in T-H / T-He; measured on D-net |
-| **Clustering** | #3 network clusters | Degree / conspiracy-cut modularity on hashtag graph | Degree / modularity on `graph_topology.json` | Swept in topology grid; measured on custom graph |
+| **Clustering** | #3 network clusters | Transitivity / local clustering on topology; assigned-label modularity reported separately | Same fixed topology; identity-label modularity changes with labels | Swept in topology grid; measured on custom graph |
 | **Echo** | #3 clusters + #4 unrestrained flow + parts of #5 | Edge homophily on hashtag identity | Edge homophily on persona / conspiracy cut | Measured |
 | **Temporal** | #1 speed and volume; #7 network-triggered decisions | **Not available** on a hashtag co-occurrence fallback (no tweet clock) | `speedTicks` / `maxTicks` / hops | **Held** at 8 ticks (compression, not Debnath) |
 | **Cross-media** | #6 cross-media dynamics | Not in the reconstruct used here | No legacy-media broadcast agent | **Held**, no engine knob |
 
 **Binary choices (Pfeffer 2014 #2)** has no dedicated observable row: the engine is three-way (forward / reinterpret / drop), not like/share binary. It is implicit in action weights, not swept.
+
+Clustering coefficients are properties of the fixed edge set. Modularity additionally requires a partition: the six assigned graph clusters, the assigned discourse identities, and the simulation persona families are different partitions and therefore different statistics. A homogeneous one-community partition has Newman--Girvan \(Q=0\); homophily remains 1 by construction.
 
 ## Honesty
 

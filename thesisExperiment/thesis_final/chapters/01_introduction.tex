@@ -1,0 +1,218 @@
+\chapter{Introduction}
+\label{chap:introduction}
+
+\section{Problem and motivation}
+\label{sec:introduction_problem}
+
+Online misinformation changes as people repeat, reinterpret, and contest it.
+Such semantic transformation occurs when communicators attach a scientific proposal to an established conspiracy narrative.
+Solar geoengineering provides such a case.
+Public discussion of stratospheric aerosol intervention and Harvard's SCoPEx project has intersected with claims about chemtrails, weather control, and elite manipulation \parencite{debnath2023conspiracy}.
+The relevant problem is therefore not only whether false content travels.
+It is also how network structure and social identity shape factual change during transmission.
+
+Online-firestorm theory motivates attention to clustered, rapid,
+identity-structured communication. This thesis does not test whether a
+firestorm occurs, because it does not measure negative word-of-mouth,
+empirical communication speed, or cross-media escalation. It instead uses
+selected firestorm mechanisms as design prompts for a controlled study of how
+factual claims change during synthetic transmission.
+Pfeffer, Zorbach, and Carley describe an online firestorm as a sudden volume of negative word of mouth directed at a person, company, or group \parencite{pfeffer2014firestorms}.
+Their Outlook identifies seven interrelated factors: speed and volume, binary choices, network clusters, unrestrained information flow, lack of diversity, cross-media dynamics, and network-triggered decision processes.
+The theory explains why particular communication environments can intensify collective reactions.
+It does not specify a generative agent model or a quantitative tipping rule.
+
+Geoengineering discourse supplies an empirical setting in which several of these mechanisms may matter.
+Debnath and colleagues analysed 814,924 English-language tweets containing the geoengineering hashtag between 2009 and 2021 \parencite{debnath2023conspiracy}.
+They identified a prominent chemtrails discourse alongside climate-action and environmental-concern themes.
+They also documented temporal changes around solar-radiation-management projects and governance events.
+Their study maps observed discourse at scale.
+It does not provide controlled counterfactuals in which the same message enters different networks or identity compositions.
+
+Agent simulation can provide such control, but it introduces a separate validity problem.
+Classical cascade models represent diffusion through states or activation probabilities \parencite{kempe2003influence}.
+They can isolate structural mechanisms, but they do not directly represent claim-level changes in natural language.
+Large language model agents can transform text while retaining persona and interaction context.
+Their outputs, however, reflect prompts, model behaviour, and scoring choices rather than observed human conduct.
+Generative social simulations must therefore expose their assumptions and restrict claims to the evidence that their design supports \parencite{sargent2013verification,larooij2025validation}.
+
+Maurya and colleagues provide the immediate technical basis for this thesis.
+Their 2025 arXiv preprint introduced an auditor--node framework for
+persona-conditioned rewrites on linear chains \parencite{maurya2025simulating}.
+The framework scores factual degradation through a misinformation index (MI) and aggregates scores through a misinformation propagation rate (MPR).
+That study used general-news domains, fixed chains of up to 30 rewrites, and a discrete question-answering auditor.
+Its framework and published findings are prior work.
+This thesis neither reintroduces those metrics nor reuses its crime and commercial results as new evidence.
+
+\section{Research gap}
+\label{sec:introduction_gap}
+
+The three preceding research strands leave a specific methodological gap.
+Pfeffer et al.\ provide a theory of firestorm conditions without a generative testbed.
+Debnath et al.\ provide an observational account of geoengineering discourse without controlled interventions on network structure or identity composition.
+Maurya et al.\ provide a generative misinformation instrument without a climate corpus, a graph-topology comparison, or an explicit mapping to firestorm theory.
+This thesis addresses how researchers can design and audit synthetic semantic
+propagation without treating simulation output as observed social behaviour.
+
+The proposal framed this intersection as six factors: valence, surprise, identity alignment, network clustering, information echo, and temporal acceleration.
+Those labels are not Pfeffer et al.'s original seven-factor list.
+This thesis treats them as a computational remapping.
+It also records the parts that the simulation does not implement.
+Cross-media dynamics has no media-broadcast layer.
+Binary platform choices have no direct analogue because agents may forward, reinterpret, or drop a message.
+Surprise is not manipulated: every run uses the same single-node,
+single-time seed, and the temporal horizon remains fixed.
+The study therefore evaluates selected mechanisms rather than claiming to reproduce the complete firestorm theory.
+
+Measurement creates a second gap inside the simulation.
+The prior discrete auditor counts omitted and contradicted answers.
+The present campaign also uses a continuous factual-recovery score.
+These instruments share an approximate range but not a common measurement scale.
+A difference between their outputs may reflect scoring design rather than a different social process.
+The analysis must therefore keep discrete and continuous MI separate.
+
+Empirical grounding creates a third constraint.
+The public Debnath artefacts available to this study did not yield hydrated tweet text or conversation cascades.
+The thesis consequently uses theory-faithful behavioural-profile reductions.
+It also uses a 63-node hashtag co-occurrence graph as a structural fallback.
+Neither object is an empirical user cluster or a retweet network.
+This distinction prevents the simulation from being described as a digital twin of Twitter.
+
+\section{Aim and analytical approach}
+\label{sec:introduction_aim}
+
+This thesis evaluates an exploratory testbed for audited semantic degradation
+in climate and geoengineering messages.
+The testbed extends the prior auditor--node framework with climate and geoengineering seeds, Debnath-grounded behavioural profiles, and configurable network topologies.
+It maps the firestorm theory to simulation controls, held conditions, and measured outcomes.
+Its primary question is whether conclusions about persona composition and
+network conditions remain stable under two auditor regimes. Composition and
+network comparisons are secondary descriptions of bundled configurations.
+
+The main campaign crosses eight graph topologies with two identity designs and two scoring modes.
+The topologies are a linear chain, ring, Erdős--Rényi graph, small-world graph, scale-free graph, echo chamber, polarised graph, and hierarchy.
+The homogeneous arm assigns one of 12 behavioural profiles to all eight nodes.
+The heterogeneous arm assigns one of six eight-profile mixtures.
+Each configuration processes six climate or geoengineering articles over eight ticks.
+The resulting design contains 1,728 article-level cells.
+All cells use \texttt{gpt-4o-mini}. The parser retains one stochastic run per
+configuration. Although configurations record seed 42, several graph builders
+and action sampling use unseeded randomness.
+
+The analysis reports MI and mean node MPR within each scoring mode.
+It defines \(k^{*}\) as the first tick at which mean MI exceeds 3 and remains above 3 for every later observed tick.
+This quantity is a right-censored simulator clock.
+It is not an estimate of ignition time on social media.
+The analysis also retains 292 cells with at most one scored event as hatched dead cascades and excludes these cells from live-cell means without recoding them as zero.
+
+A separate D-net analysis places the same agents on the 63-node hashtag graph.
+This analysis compares simulated cascade shape with the documented fallback structure.
+It also compares homogeneous conspiracy profiles with a mixed profile assignment on the same edge set.
+The comparison concerns graph structure and simulated auditor scores.
+Debnath et al.\ report no empirical MI or MPR against which those scores could be validated.
+
+\section{Research questions}
+\label{sec:introduction_rqs}
+
+The study addresses four research questions.
+Each question follows from a design choice that the available evidence can evaluate.
+
+\begin{enumerate}
+    \item[\textbf{RQ1}] \textbf{How sensitive are claim-recoverability levels and network-condition orderings to the continuous and dual-discrete auditor regimes?}
+
+    RQ1 treats scoring mode as a measurement question.
+    It compares modes without averaging their values or interpreting their gap as a third misinformation measure.
+
+    \item[\textbf{RQ2}] \textbf{Within each auditor regime, how do live-cell mean MI and within-window \(k^{*}\) occurrence vary across named persona families and heterogeneous compositions?}
+
+    RQ2 compares persona families and named mixtures.
+    It treats composition as substantive and H or He as an assignment description.
+
+    \item[\textbf{RQ3}] \textbf{How do the eight bundled network conditions differ in same-regime H/He contrasts, live-cell mean MI, and scorable-cell survival?}
+
+    RQ3 compares the eight generated topologies.
+    It reports dead-cell rates with live-cell means because cascade survival changes the observed population.
+
+    \item[\textbf{RQ4}] \textbf{What can the 63-node constructed hashtag-graph stress test establish about recurring composition patterns, and where does that comparison fail?}
+
+    RQ4 separates constructed graph properties from simulated content scores.
+    It tests a documented fallback rather than claiming reconstruction of Debnath et al.'s tweet cascades.
+\end{enumerate}
+
+These questions support descriptive comparisons.
+They do not support population estimates or causal effects.
+The single stochastic run also precludes confirmatory inference about topology, identity, or scoring mode.
+
+\section{Contributions}
+\label{sec:introduction_contributions}
+
+This thesis makes four bounded contributions.
+
+\begin{enumerate}
+    \item It provides an explicit mapping from Pfeffer et al.'s seven firestorm factors to the simulation's varied, held, measured, and absent elements.
+    The mapping corrects the proposal's six-factor shorthand and retains cross-media dynamics as an unimplemented boundary.
+
+    \item It documents a climate and geoengineering simulation layer for the prior auditor--node framework.
+    This layer contains six campaign articles, 12 homogeneous behavioural profiles, six heterogeneous mixtures, eight topologies, and reproducible configuration files.
+    The profiles reduce themes reported by Debnath et al.; they are not clusters estimated from 814,924 tweets.
+
+    \item It evaluates identity composition and network topology under two distinct factual-degradation instruments.
+    The analysis preserves dead cascades, separates continuous from discrete scores, and distinguishes persona composition from the broad homogeneous--heterogeneous contrast.
+
+    \item It links a 63-node hashtag co-occurrence structure to a custom simulation graph and audits the limits of that comparison.
+    This analysis reports structural mismatch as well as similarity.
+    It does not equate auditor MI with Twitter behaviour.
+\end{enumerate}
+
+These contributions concern operationalisation, experimental design, and measurement reporting.
+They do not include the original auditor--node architecture, MI, MPR, or the published linear-chain findings.
+They also do not establish a validated model of public response to geoengineering.
+
+\section{Scope and limitations}
+\label{sec:introduction_scope}
+
+The empirical scope is deliberately narrow.
+The campaign uses six authored or curated climate articles and a finite set of prompt-based behavioural profiles.
+It runs eight-node graphs for eight processing ticks with one model and one
+retained realisation per configuration.
+The design changes text through LLM role-play.
+It does not model stable human belief, individual psychology, or platform recommendation systems.
+
+The data scope is narrower than the proposal anticipated.
+The study did not hydrate the 814,924 tweet identifiers.
+It did not estimate HDBSCAN profiles, reconstruct conversation trees, or reproduce Debnath et al.'s temporal series.
+The hashtag graph records co-occurrence structure, not retweet transmission.
+The simulation clock cannot be converted into minutes, days, or empirical hop distance.
+
+The inferential scope follows these design limits.
+The results describe one stochastic campaign.
+They do not warrant significance claims, robust rankings, or general laws about homogeneous and heterogeneous groups.
+The two auditors remain model-based measurements.
+Their disagreement is evidence about the instrument, not an independent factual ground truth.
+The \(k^{*}\) measure is conditional on the eight-tick observation window.
+A value of ``none'' means that no crossing sustained through the final later
+scored observation appeared within that window.
+
+\section{Thesis roadmap}
+\label{sec:introduction_roadmap}
+
+Chapter~\ref{chap:related_work} develops the theoretical and empirical background.
+It covers online firestorms, climate and geoengineering discourse, diffusion models, LLM-agent simulation, and automated factuality assessment.
+Chapter~\ref{chap:theory} maps Pfeffer et al.'s seven factors to the thesis design.
+Chapter~\ref{chap:methods} separates the inherited system from the
+climate-specific design and documents the articles, behavioural profiles,
+hashtag graph, campaign, auditor regimes, hatch rule, and \(k^{*}\).
+Chapter~\ref{chap:results} answers RQ1 by establishing instrument sensitivity,
+RQ2 by comparing named persona compositions, RQ3 by examining
+topology-conditioned same-regime contrasts, and RQ4 through the separate
+D-net stress test.
+Chapter~\ref{chap:discussion} interprets the findings in the same RQ1--RQ4 order.
+Chapter~\ref{chap:limitations} addresses validity, ethics, and reproducibility.
+Chapter~\ref{chap:conclusion} answers the research questions and states the conditions required for stronger claims.
+
+The thesis therefore proceeds from theory to operationalisation, from operationalisation to measurement, and from measurement to bounded interpretation.
+Its central claim is methodological.
+In this campaign, conclusions about semantic degradation depend on the
+auditor regime; persona-prompt composition is more informative than the pooled
+H/He label, and bundled network conditions alter survivor-only outcomes. The
+simulation does not represent the relevant human population.

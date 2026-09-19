@@ -1,6 +1,6 @@
 # Phase 2 comparison — Debnath hashtag graph vs simulated D-net
 
-Generated: 2026-09-19T05:14:43.373Z
+Generated: 2026-09-19T16:36:41.411Z
 
 ## Honesty
 
@@ -62,7 +62,7 @@ Seven rows: thesis remapping including held cross-media. See `pfeffer_observable
 | valence | toxicity / hashtag proxy (not MPR) | 0.1097 (paper mean 0.17) | mean MI 2.5529 (auditor; **not** Twitter MI) | measured_proxy |
 | surprise | Pfeffer #1 speed/volume | paper SCoPEx spike quoted; not reconstructed | held (drip) | held_drip |
 | identity | Pfeffer #5 lack of diversity | conspiracy 0.4444 / other 0.5556 | conspiracy share 0.7222 | measured_hashtag_mix |
-| clustering | Pfeffer #3 network clusters | n=63 meanDeg=7.2381 Q_conspiracy=0.4039 | n=63 meanDeg=7.2381 Q=0.4566 | measured_hashtag_graph |
+| clustering | Pfeffer #3 network clusters | n=63 meanDeg=7.2381 Q_conspiracy=0.4297 | n=63 meanDeg=7.2381 Q=0 | measured_hashtag_graph |
 | echo | edge homophily | identityHomophily=0.864 | edgeHomophily=1 identityHomophily=1 | measured_edge_homophily |
 | temporal | Pfeffer #1 / #7 | not available empirically | ticks 7 (sim clock only) | not_available_empirically |
 | cross-media | Pfeffer #6 | held | held (no engine knob) | held_no_engine_knob |

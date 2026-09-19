@@ -1,0 +1,881 @@
+\chapter{System, Data, and Methods}
+\label{chap:methods}
+\sloppy
+
+Chapter~\ref{chap:theory} specified the relations that the campaign seeks to
+observe and the claims it cannot support. This chapter translates that
+framework into the executed persona assignments, network conditions,
+propagation protocol, auditor regimes, and analysis rules. It first separates
+inherited components from the thesis-specific work.
+
+\section{Prior-work boundary}
+The co-authored arXiv preprint introduced the auditor--node architecture, the Misinformation Index (MI), and the Misinformation Propagation Rate (MPR) \parencite{maurya2025simulating}. This thesis uses that system as an inherited instrument. Its thesis-specific layer comprises the climate corpus, the Pfeffer mapping, the Phase~2 factorial design, the composition analysis, and the D-net stress test. A conservative, artefact-linked contribution draft appears in the front matter. Each allocation is labelled for candidate and supervisor confirmation; the repository does not contain a certified CRediT split.
+
+\section{Simulation design}
+\label{sec:methods-simulation}
+
+This study used the repository's agent-based information-diffusion engine to
+compare the propagation of climate and geoengineering claims across network
+structures and persona compositions.  The design adapts the homogeneous and
+heterogeneous conditions of the prior auditor--node preprint
+\parencite{maurya2025simulating}; it does not reproduce that study's crime-news
+corpus.  The present campaign instead uses climate-specific articles and belief
+profiles.  All values reported in this section are taken from the executed
+Phase~2 configurations, engine source, campaign plan, hand-off record, and raw
+run schemas.
+
+\subsection{Experimental units and factorial design}
+\label{subsec:simulation-grid}
+
+The principal experimental unit was one configuration--article cell.  The
+factorial grid crossed eight network topologies with either 12 homogeneous
+persona conditions or six heterogeneous persona mixes, two scoring modes, and
+six seed articles:
+\begin{equation}
+  \underbrace{8 \times 12 \times 2 \times 6}_{\text{homogeneous}}
+  +
+  \underbrace{8 \times 6 \times 2 \times 6}_{\text{heterogeneous}}
+  = 1{,}728 \text{ cells}.
+  \label{eq:phase2-grid}
+\end{equation}
+The parser retained one analytical run per configuration (\(N=1\)); 77
+experiment names had multiple archived directories. It selected the most
+recently modified complete directory with at least one successful call, a rule
+that is not equivalent to one execution per configuration. Accordingly, article cells
+within a configuration are repeated observations from one simulation run, not
+independent campaign replicates.  The design supports descriptive comparison
+of the executed cells but not seed-to-seed uncertainty estimation.
+
+The two scoring modes were continuous-only (\texttt{T2c}) and dual
+(\texttt{T2d}).  In a dual run, the discrete score is the headline score and a
+continuous score is stored as a sidecar for the same event.  The two modes are
+separate measurement instruments and were not averaged.  Phase~1
+discrete-only results were likewise not inserted into the Phase~2 grid.
+
+\subsection{Articles and ground truth}
+\label{subsec:simulation-articles}
+
+The merged article library contains 24 records, but every cell in the main grid
+uses the same six campaign articles: \texttt{scopex\_2017},
+\texttt{chemtrails\_gates\_2018\_2021},
+\texttt{sai\_geoengineering}, \texttt{paris\_agreement},
+\texttt{climate\_consensus}, and \texttt{polar\_bears}.  The set spans
+geoengineering research, a chemtrails conspiracy narrative, and established
+climate-science claims.  Each article record contains an identifier, title,
+source text, five yes/no audit questions, the corresponding Boolean
+ground-truth answers, and source notes.  These structured question--answer
+pairs provide the reference against which propagated text is scored.  The
+remaining 18 records in the merged library are not additional observations in
+the \(1{,}728\)-cell grid. \Cref{tab:article-provenance} records the scholarly
+or institutional sources used to author the six campaign summaries and
+Boolean keys. The executable stimulus is the checked-in JSON; the table does
+not claim that the summaries are verbatim reprints of those sources.
+
+\begin{table}[tbp]
+  \centering
+  \caption{Provenance of the six campaign articles. Each record has five
+  yes/no questions and Boolean expected answers in
+  \texttt{articles/merged.json}. Access date: 2026-09-19.}
+  \label{tab:article-provenance}
+  \small
+  \begin{tabularx}{\textwidth}{@{}lX@{}}
+    \toprule
+    Identifier & Principal sources \\
+    \midrule
+    \texttt{scopex\_2017} &
+      Keutsch Group SCoPEx documentation \parencite{keutsch2024scopex};
+      Debnath et al.\ on the 2017 volume peak
+      \parencite{debnath2023conspiracy}. \\
+    \texttt{chemtrails\_gates\_2018\_2021} &
+      Debnath et al.\ on chemtrails spillover
+      \parencite{debnath2023conspiracy}. \\
+    \texttt{sai\_geoengineering} &
+      IPCC WG~I assessment of solar radiation modification
+      \parencite{ipcc2021ar6}. \\
+    \texttt{paris\_agreement} &
+      UNFCCC Paris Agreement text \parencite{unfccc2015paris}. \\
+    \texttt{climate\_consensus} &
+      IPCC WG~I \parencite{ipcc2021ar6}; Cook et al.\ consensus analysis
+      \parencite{cook2013consensus}. \\
+    \texttt{polar\_bears} &
+      IPCC WG~I Arctic/sea-ice assessment \parencite{ipcc2021ar6}. \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+Articles were processed sequentially within a configuration. Before processing
+each article, the simulation cleared the article's prior history and all node
+inboxes.
+The complete source text was then inserted into the designated seed node at
+tick zero.  No competing article group or intervention was enabled in the
+Phase~2 configurations considered here.
+
+\subsection{Persona conditions}
+\label{subsec:simulation-personas}
+
+The merged persona library contains 17 belief profiles.  A profile provides at
+least an identifier, a display name, and a system prompt; the richer campaign
+records also contain tags, emotional tone, ideological bias, topic expertise,
+Debnath-type annotations, stylistic attributes, hashtag repertoires, and
+provenance.  These profiles are theory-informed reductions of discourse types,
+not HDBSCAN centroids reconstructed from the full Debnath Twitter corpus
+\parencite{debnath2023conspiracy}.  Their purpose is controlled role
+conditioning, not demographic representation.
+
+The homogeneous arm (\(H\)) uses 12 profiles, one profile per configuration
+and the same profile at all eight nodes.  They comprise four conspiracy
+profiles (\texttt{conspiracy\_believer},
+\texttt{conspiracy\_haarp\_weather},
+\texttt{conspiracy\_depopulation}, and
+\texttt{conspiracy\_climate\_piggyback}); three climate-action profiles
+(\texttt{climate\_action\_advocate}, \texttt{climate\_justice\_youth}, and
+\texttt{mitigation\_first\_policy}); and five science/environment profiles
+(\texttt{environmental\_concern},
+\texttt{ozone\_stratosphere\_specialist},
+\texttt{biodiversity\_food\_security}, \texttt{climate\_scientist}, and
+\texttt{science\_journalist}).
+
+The heterogeneous arm (\(He\)) declares six ordered mixes of eight
+identifiers. The sequential generators realise these orders directly.
+In particular, \texttt{mix\_00} contains four conspiracy and four
+climate/environment profiles, \texttt{mix\_01} contains two conspiracy and six
+climate/environment profiles, and \texttt{mix\_02} contains no conspiracy
+profile.  Mixes \texttt{mix\_03}--\texttt{mix\_05} introduce the additional
+moderator, SCoPEx climate-action, and peripheral-skywatcher profiles recorded
+in the merged library. Node assignment follows the order in each mix for the
+linear, ring, ER, small-world, and scale-free generators. Echo-chamber,
+polarised, and hierarchical configurations instead use cluster assignment.
+For five of six mixes this filtering and cycling realises only four or five
+unique personas, repeated across eight seats; \texttt{mix\_02} is the only
+declared order realised as listed. Polarised persona assignment alternates by
+node index and therefore does not align with the graph's two contiguous
+halves. Consequently, \(H\) versus \(He\) is a bundled assignment contrast in
+persona prevalence, diversity, placement, and sometimes assignment procedure,
+not a controlled test of diversity.
+
+\subsection{Network topologies}
+\label{subsec:simulation-topologies}
+
+Every main-grid graph contains eight directed nodes.  The eight topology
+families and their executed parameters are summarised in
+\Cref{tab:simulation-topologies}.  Edge trust is stored on the source node.
+For generators that use persona homophily, identical persona identifiers keep
+the unadjusted base trust. Otherwise the source code sets
+\(\mathrm{clip}(\mathrm{baseTrust}-0.2+0.5\cdot\mathrm{Jaccard}(\mathrm{tags}),0.05,0.95)\).
+
+\begin{table}[tbp]
+  \centering
+  \caption{Network topologies in the Phase~2 main grid.}
+  \label{tab:simulation-topologies}
+  \small
+  \begin{tabularx}{\textwidth}{@{}lX@{}}
+    \toprule
+    Topology & Construction and configured parameters \\
+    \midrule
+    Linear chain &
+      Directed path \(v_i\rightarrow v_{i+1}\), initial edge trust \(0.7\). \\
+    Ring &
+      Directed cycle \(v_i\rightarrow v_{(i+1)\bmod 8}\), initial edge trust
+      \(0.7\). \\
+    Random ER &
+      Directed Erdős--Rényi graph with edge probability \(p=0.42\).
+      The configuration records \texttt{minSeedOutDegree}=2 and a seeded RNG,
+      but \texttt{buildRandomER} ignores both and samples unseeded
+      \texttt{Math.random}; edge trust is \(0.3+U(0,0.5)\)
+      \parencite{erdos1960evolution}. \\
+    Small world &
+      Watts--Strogatz-style directed ring lattice with \(k=4\) and rewiring
+      probability \(\beta=0.1\) \parencite{watts1998collective}. \\
+    Scale free &
+      Preferential attachment with \(m=2\), beginning from a fully connected
+      seed of \(m+1\) nodes \parencite{barabasi1999emergence}. \\
+    Echo chamber &
+      Two alternating chambers; within-/between-chamber edge probabilities
+      \(0.75/0.08\), base trusts \(0.85/0.15\), and minimum seed out-degree 2. \\
+    Polarised &
+      Two halves; within-/between-group edge probabilities \(0.75/0.05\),
+      base trusts \(0.88/0.10\), and minimum seed out-degree 2. \\
+    Hierarchical &
+      Bidirectional rooted 3-ary tree with downward/upward base trusts
+      \(0.85/0.30\). \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+The linear chain is retained as the direct structural link to the earlier
+prior linear-chain design.  The other generators test cyclic, random, clustered,
+hub-dominated, ideologically partitioned, and authority--audience structures.
+The eight network conditions in \Cref{tab:simulation-topologies} are experimental
+mechanisms. Echo-chamber, polarised, and hierarchical generators are bespoke
+treatments; their names do not imply validated platform models. Linear-chain
+and ring configurations also use a more rewrite-heavy action policy and a
+lower trust threshold than the other six generators, so chain- or
+ring-versus-graph differences estimate a bundled protocol contrast.
+
+\subsection{Seeding and propagation protocol}
+\label{subsec:simulation-propagation}
+
+Each article is seeded once into \texttt{node\_0} at tick zero. The seed message has
+source \texttt{ORIGIN}, hop count zero, tick zero, the unmodified article text,
+and an empty provenance chain.  Nodes are always active and have an inbox cap
+of four messages per article.  Processing then proceeds synchronously for at
+most eight ticks.  Messages produced during tick \(t\) are delivered only
+after all nodes have completed that tick and are therefore available from the
+next tick.  The simulation stops early when a tick produces no outgoing
+message.
+
+For a received message \(x\), the node first rejects the message if its hop
+count has reached the configured limit or if effective source trust is below
+the node's threshold. The receiver looks up its reverse relation to the source
+and otherwise uses the hard-coded default \(0.5\); this need not equal trust
+on the edge that carried the message. It then samples one of three configured actions:
+\[
+  A(x)\in\{\text{forward},\text{reinterpret},\text{drop}\}.
+\]
+Linear-chain and ring configurations use
+\begin{equation}
+  P(A)=\bigl(0.10,\;0.85,\;0.05\bigr),
+  \qquad \tau=0.08,
+  \label{eq:chain-actions}
+\end{equation}
+where the tuple is ordered as forward, reinterpret, and drop, and \(\tau\) is
+the trust threshold. The other six main-grid configurations use
+\begin{equation}
+  P(A)=\bigl(0.35,\;0.50,\;0.15\bigr),
+  \qquad \tau=0.15.
+  \label{eq:graph-actions}
+\end{equation}
+A forward action preserves the received content.  A reinterpret action sends
+the content to the node's persona-conditioned language model with an
+instruction to rewrite it in 100--200 words and return only the rewritten
+text.  A drop action records no outgoing text.  Forwarded and reinterpreted
+messages are broadcast to all of the node's outgoing neighbours with hop count
+incremented by one.
+The four-message inbox cap silently discards excess deliveries; capacity loss
+is not logged as a sampled drop.
+
+\Cref{fig:simulation-pseudocode} summarises the executed protocol.
+\begin{figure}[tbp]
+  \centering
+  \begin{minipage}{0.94\textwidth}
+    \small
+    \textbf{Input:} one configuration and the six fixed seed articles.
+    \begin{enumerate}
+      \item For each article \(a\), clear inboxes and prior history for \(a\),
+      then deliver \(a\) to \texttt{node\_0} with \(h=0,t=0\).
+      \item For \(t=1,\ldots,8\), process every message at every active node.
+      If \(h\geq8\) or source trust is below \(\tau_v\), record
+      \textsc{drop}.  Otherwise sample
+      \(A\in\{\textsc{forward},\textsc{reinterpret},\textsc{drop}\}\).
+      For \textsc{reinterpret}, rewrite the message using the node persona and
+      \texttt{gpt-4o-mini}.  For either non-drop action, queue the resulting
+      text for all out-neighbours with \(h\leftarrow h+1\).
+      \item Deliver all queued messages synchronously.  Stop early if the
+      queue is empty; otherwise continue with the next tick.
+      \item After propagation of all six articles, score every forward or
+      reinterpret output against its article's five ground-truth items.
+    \end{enumerate}
+  \end{minipage}
+  \caption{Synchronous propagation of six articles under an eight-tick budget,
+  followed by post-hoc auditing. Messages delivered after tick eight are not
+  processed. The figure shows the executed protocol, not a validated social
+  process.}
+  \label{fig:simulation-pseudocode}
+\end{figure}
+
+The configuration includes \texttt{relationEvolution=true} and
+\texttt{trustDelta}=0.05.  In the executed source, however, propagation of all
+six articles is completed before the audit phase begins.  The auditor then
+raises or lowers stored source trust by \(0.05\) according to whether the
+event's misinformation index is at most or above 3.  Thus these post-hoc trust
+updates cannot alter the already-completed propagation trajectories in the
+same run.  Belief-state updates, frame analysis, strategic-agent behaviour,
+network evolution, opinion dynamics, institutional trust, competitive groups,
+and interventions are disabled in the raw Phase~2 metadata.
+
+\subsection{Agent and auditor models}
+\label{subsec:simulation-model}
+
+Both rewriting agents and the auditor use the mutable alias
+\texttt{gpt-4o-mini}. Chat Completions requests used temperature \(0.7\),
+\texttt{max\_tokens}=700, a 120-second socket timeout, no API seed, no response
+schema, and no retry or backoff. The runner normally used concurrency two.
+Response identifiers, model fingerprints, and raw auditor responses were not
+archived. The agent is conditioned by the assigned persona's system prompt.
+The auditor receives the
+propagated text, each of the five article questions, and the expected yes/no
+answers.  Scores are therefore LLM-as-judge measurements rather than human
+annotations \parencite{zheng2023judge}.  Auditing occurs after propagation and
+only for events whose action is forward or reinterpret and whose output text
+is present.
+
+For discrete scoring, question \(j\) receives
+\(d_j\in\{-1,0,1\}\), denoting contradiction/distortion, missing information,
+or a correct statement, respectively.  For \(m=5\) questions, the discrete
+misinformation index is
+\begin{equation}
+  \mathrm{MI}_{\mathrm{disc}}
+  = \sum_{j=1}^{m}\mathbb{I}(d_j\leq 0)
+  = n_{\mathrm{missing}}+n_{\mathrm{incorrect}},
+  \qquad \mathrm{MI}_{\mathrm{disc}}\in\{0,\ldots,5\}.
+  \label{eq:mm-mi-discrete}
+\end{equation}
+For continuous scoring, the auditor returns
+\(c_j\in[0,1]\), where 1 denotes fully correct, 0.5 missing or neutral
+information, and 0 contradiction.  The implemented score is
+\begin{equation}
+  \overline{c}=\frac{1}{m}\sum_{j=1}^{m}c_j,
+  \qquad
+  \mathrm{MI}_{\mathrm{cont}}=m(1-\overline{c}).
+  \label{eq:mm-mi-continuous}
+\end{equation}
+The two nominal 0--5 ranges are not commensurate. A missing discrete item adds
+1, whereas a neutral or missing continuous score of 0.5 adds 0.5. Five
+missing items therefore yield 5 discretely but 2.5 continuously. The common
+\(\mathrm{MI}>3\) cut has different meanings under the two instruments.
+
+In dual mode, the discrete and continuous auditor calls are issued in parallel
+for the same text.  The event's top-level \texttt{misinfoIndex} is
+\(\mathrm{MI}_{\mathrm{disc}}\).  The raw event additionally stores both score
+objects, the absolute diagnostic gap
+\begin{equation}
+  \Delta_{\mathrm{dual}}
+  =\left|\mathrm{MI}_{\mathrm{disc}}-\mathrm{MI}_{\mathrm{cont}}\right|,
+  \label{eq:dual-gap}
+\end{equation}
+and Pearson agreement after mapping the discrete item scores from
+\(\{-1,0,1\}\) to \(\{0,0.5,1\}\).  The gap is a measurement diagnostic, not a
+third misinformation scale.
+
+\subsection{Eight-tick horizon and computational budget}
+\label{subsec:eight-hop-budget}
+
+The prior linear-chain study used 30 positions or hops
+\parencite{maurya2025simulating}. Phase~2 limits each graph to eight nodes,
+eight processing ticks, and a configured maximum of eight message hops. This is an explicit
+computational-cost reduction: propagation can require an LLM rewrite for each
+reinterpretation, followed by one auditor call per scored event in continuous
+mode and two in dual mode.  Dense and cyclic graphs can generate many events
+per tick, so retaining the 30-step horizon while expanding to eight
+topologies, 288 configurations, six articles, and dual auditing would multiply
+paid model calls. The eight-tick horizon therefore prioritises factorial
+coverage over long-tail cascade depth. Messages delivered after tick eight
+are not processed; the archived event records therefore contain audited input
+hops 0--7 and no hop-8 events.
+
+This truncation changes the estimand.  It measures early diffusion and
+semantic change within a short, common budget; it does not establish that a
+cascade has converged, and it weakens any claim of late-stage
+propagation.  The number eight is also unrelated to Debnath et al.'s
+eight-word skip-gram context window \parencite{debnath2023conspiracy}.  The
+latter is a word-embedding hyperparameter, not a social-network hop protocol.
+
+\subsection{Raw records and derived cell summaries}
+\label{subsec:simulation-schema}
+
+Each timestamped run directory contains \texttt{metadata.json},
+\texttt{state.json}, \texttt{graph\_topology.json}, one
+\texttt{results\_<articleId>.json} file per article, a
+\texttt{human\_eval\_template.csv}, and one state file per node.  The raw
+schemas were used as follows:
+\begin{description}
+  \item[\texttt{metadata.json}] run status, fully merged configuration,
+  model-usage counts, and per-article result pointers;
+  \item[\texttt{state.json}] propagation and audit checkpoints, completed
+  article lists, current tick, errors, and last-update time;
+  \item[\texttt{graph\_topology.json}] realised node labels, directed edges,
+  and initial edge trusts;
+  \item[\texttt{nodes/node\_*.json}] node and persona identifiers, model,
+  relations, node parameters, inbox, action counters, and event history;
+  \item[\texttt{results\_<articleId>.json}] node summaries and aggregate
+  network, provenance, frame, and IFD metrics.
+\end{description}
+An event history record contains the tick, article, source node, hop count,
+action, input and output text, misinformation index, reason, provenance,
+timestamp, and---when auditing succeeds---the IFD score object.  This
+event-level record, rather than the aggregate result file, is the parser's
+source for Phase~2 headline scores.
+
+For article \(a\), let \(E_a^\star\) be the set of history events with a
+non-null top-level misinformation index.  The parsed cell headline is the
+event-weighted mean
+\begin{equation}
+  \overline{\mathrm{MI}}_a
+  = \frac{1}{|E_a^\star|}
+    \sum_{e\in E_a^\star}\mathrm{MI}_e.
+  \label{eq:cell-mean-mi}
+\end{equation}
+The parser also reports a mean of node-level means.  It is retained as a
+separate quantity because it weights nodes equally rather than weighting all
+events equally.  A cell with at most one scored event is marked dead and
+hatched. Configuration-level \texttt{llmCalls>0} does not prove that the
+particular article cell received an auditor call. Dead cells are retained in
+the ledger, excluded from live means, and never imputed as zero.
+
+\subsection{API failures and scoring coverage}
+\label{subsec:api-failures}
+
+Across the 288 selected directories, \texttt{llmUsage.calls} records 203,928
+successful responses and \texttt{llmUsage.errors} records 64,270 parseable
+HTTP responses with status at least 400. These counters are not retries or
+duplicate reruns: the client has no retry loop and each selected directory is
+counted once. They are also not a request ledger, because request identifiers
+were not retained and concurrent dual calls can hide a sibling rejection.
+At least one HTTP error affected 121 runs.
+
+Rewrite-request failure caused the engine to propagate the input text
+unchanged while retaining action \texttt{reinterpret}. Auditor-request failure
+left MI null. Of 129,664 audit-eligible final-state events, 93,470 were scored
+and 36,194 remained null; null events were excluded from means and
+\(k^{*}\), and could change hatch status. The parser's all-correct fallback
+for malformed auditor output is a latent fail-open risk, but the selected log
+sections contained no parse-fallback warnings and node files contained no
+recoverable scored-payload anomalies. The observed fallback count is therefore
+zero, not an estimated source of score bias.
+
+Only five affected experiment names have a complete zero-error alternative
+run. Stochastic reruns were not silently substituted. Canonical tables,
+identity-output exclusion, unaffected-cell, and zero-error-run analyses are
+reported separately; none is a causal correction.
+
+\subsection{Reproducibility and limitations}
+\label{subsec:simulation-reproducibility}
+
+The campaign records \texttt{graphRandomSeed: 42}, all merged configurations,
+the realised topology, node histories, checkpoints, model-usage totals, and
+the complete parser inputs.  The graph seed is consumed by the echo-chamber
+and polarised builders.  Exact replay must nevertheless not be claimed.  In
+the checked source revision, the ER, small-world, and scale-free builders, as
+well as action sampling, call JavaScript's unseeded \texttt{Math.random};
+the ER builder does not consume the additional seeded-options argument passed
+by the simulation wrapper.  Language-model generation and judging can also
+vary across calls.  Together with \(N=1\), these facts make the archived
+realised graphs and event logs the reproducible record of what was executed,
+while a fresh run is a protocol replication rather than a bitwise
+reproduction.
+
+\subsection{Campaign isolation}
+\label{subsec:simulation-isolation}
+
+Phase~2 was isolated at both configuration and output level.  New
+configurations reside in
+\texttt{thesisExperiment/configs/phase2/}; raw runs in
+\texttt{thesisExperiment/runs\_phase2/}; and parsed outputs in
+\texttt{thesisExperiment/results\_phase2/}.  The Phase~1 directories
+\texttt{thesisExperiment/runs/},
+\texttt{thesisExperiment/results/tables/}, and
+\texttt{thesisExperiment/configs/full/} were designated read-only and were not
+overwritten.  Parser selection is by experiment name and retains the latest
+complete timestamped run with positive LLM-call usage.  This separation
+prevents the earlier discrete \(12\times12\) campaign, probes, and custom
+Debnath-network runs from silently entering the main \(1{,}728\)-cell
+factorial analysis.
+
+
+\section{Measurement and analysis}
+\label{sec:methods-measurement}
+
+The preceding section defined the simulation and raw event records. This
+section now defines the analytical units, estimands, exclusion rule, and
+comparisons applied to those records.
+
+\subsection{Analytical scope and unit of observation}
+\label{sec:mm-scope}
+
+The measurement analysis used four nested units: audit item, scored event,
+node--article MPR, and configuration--article cell. All scores are
+LLM-as-judge measurements produced by \texttt{gpt-4o-mini}; they are neither
+human annotations nor observations from Twitter.
+
+Four nested measurement units must be distinguished:
+\begin{enumerate}
+  \item an \emph{item} is one of the five ground-truth questions;
+  \item a \emph{scored event} is one agent's audited handling of one article;
+  \item a \emph{node MPR} is the mean event-level misinformation index for one node and
+        article; and
+  \item an \emph{article cell} is one configuration--article combination.
+\end{enumerate}
+The primary cell statistic is \texttt{meanMI}, the arithmetic mean of event-level MI
+over scored events.  The parser also records \texttt{meanNodeMPR}, the mean of the
+node-level means.  These quantities use the same event-level instrument but weight
+nodes differently; they are retained as separate columns and are not substituted for
+one another.
+
+\subsection{IFD scoring and the MI--MPR hierarchy}
+\label{sec:mm-ifd}
+
+The engine labels the auditor record \emph{IFD}.  For each event, the record contains a
+misinformation index (MI), correct, missing, and incorrect rates
+(\(\mathrm{CR}\), \(\mathrm{MR}\), and \(\mathrm{IR}\)), and auxiliary fields.  The
+analysis uses MI as the event score.  It does not report hop-wise CR, MR, or IR because
+those fields are absent from the live analysis tables.
+
+\subsubsection{Discrete instrument}
+\label{sec:mm-discrete}
+
+For question \(j\), the discrete auditor returns
+\[
+  s_j\in\{-1,0,+1\},
+\]
+where \(+1\) denotes a correct answer, \(0\) a missing answer, and \(-1\) an incorrect
+answer.  With \(m=5\) questions, let \(n_C,n_M,n_I\) denote the corresponding counts.
+The implementation computes
+\[
+  \mathrm{CR}=\frac{n_C}{m},\qquad
+  \mathrm{MR}=\frac{n_M}{m},\qquad
+  \mathrm{IR}=\frac{n_I}{m},
+\]
+and
+\begin{equation}
+  \mathrm{MI}_{d}=n_M+n_I.
+  \label{eq:mi-discrete}
+\end{equation}
+Thus \(\mathrm{MI}_{d}\in\{0,1,2,3,4,5\}\).  Missing and incorrect answers contribute
+equally to MI even though the IFD record preserves their separate rates.  The
+dual-scoring campaign, denoted T2d, uses this discrete MI as its top-level
+\texttt{misinfoIndex} and hence as its headline instrument.
+
+\subsubsection{Continuous instrument}
+\label{sec:mm-continuous}
+
+The continuous auditor returns one score \(q_j\in[0,1]\) per question.  Its correctness
+rate and MI are
+\begin{equation}
+  \mathrm{CR}_{c}=\frac{1}{m}\sum_{j=1}^{m}q_j,
+  \qquad
+  \mathrm{MI}_{c}=m(1-\mathrm{CR}_{c}).
+  \label{eq:mi-continuous}
+\end{equation}
+For the five-question articles, \(\mathrm{MI}_{c}\) is a real-valued score on the same
+nominal \(0\)--\(5\) range.  Scores at least \(0.67\) are counted as correct and scores
+at most \(0.33\) as incorrect when the continuous IFD record derives CR/MR/IR counts;
+intermediate scores are counted as missing.  The continuous-only campaign, denoted
+T2c, makes one continuous auditor call per scored event and stores
+\(\mathrm{MI}_{c}\) as the event's headline \texttt{misinfoIndex}.
+
+\subsubsection{MPR aggregation}
+\label{sec:mm-mpr}
+
+For node \(v\), article \(a\), and instrument \(r\in\{d,c\}\), the node-level
+misinformation propagation rate (MPR) is
+\begin{equation}
+  \mathrm{MPR}^{(r)}_{v,a}
+  =\frac{1}{|E_{v,a}|}\sum_{e\in E_{v,a}}\mathrm{MI}^{(r)}_e,
+  \label{eq:mm-node-mpr}
+\end{equation}
+where \(E_{v,a}\) is the set of scored events for that node and article.  At cell level,
+\texttt{meanMI} instead averages over all scored events directly:
+\begin{equation}
+  \overline{\mathrm{MI}}^{(r)}_{\mathrm{cell}}
+  =\frac{1}{|E_{\mathrm{cell}}|}
+   \sum_{e\in E_{\mathrm{cell}}}\mathrm{MI}^{(r)}_e.
+  \label{eq:cell-mi}
+\end{equation}
+The parser's \texttt{meanNodeMPR} is
+\(\frac{1}{|V_{\mathrm{scored}}|}\sum_v\mathrm{MPR}_{v,a}\).  It gives each reached
+node equal weight, whereas \texttt{meanMI} gives each scored event equal weight.
+The chapter therefore uses \texttt{meanMI} as the cell headline and presents
+\texttt{meanNodeMPR} only as a companion summary.
+
+\subsection{Dual scoring and instrument separation}
+\label{sec:mm-dual}
+
+In a T2d event the auditor makes two separate LLM calls in parallel: one discrete
+call and one continuous call.  The returned top-level IFD object mirrors the discrete
+record.  A nested \texttt{ifd.dual} sidecar stores the discrete record, the continuous
+record, an absolute gap, and an agreement coefficient:
+\begin{align}
+  g_e
+    &=\left|\mathrm{MI}_{d,e}-\mathrm{MI}_{c,e}\right|,\\
+  a_e
+    &=\operatorname{cor}\!\left(
+       \frac{s_{1,e}+1}{2},\ldots,\frac{s_{m,e}+1}{2};
+       q_{1,e},\ldots,q_{m,e}\right).
+\end{align}
+The normalisation maps discrete item scores \(-1,0,+1\) to \(0,0.5,1\), after which
+the code computes Pearson's correlation with the continuous item scores.  The stored
+gap is \emph{absolute}; it is not a signed discrete-minus-continuous difference.
+
+This design yields two campaign instruments and one within-event diagnostic:
+\begin{itemize}
+  \item T2c headline: continuous MI from continuous-only events;
+  \item T2d headline: discrete MI from dual-run events; and
+  \item T2d sidecar: continuous MI, absolute gap, and item-score agreement on those
+        same dual-run events.
+\end{itemize}
+The sidecar continuous score is not the T2c headline because it was obtained in a
+different campaign call on a different realised event.  Likewise, the absolute gap is
+a scorer-disagreement diagnostic, not a third MPR.  Discrete and continuous means are
+therefore shown in separate columns or panels, never averaged into a common headline.
+Cross-instrument differences are explicitly labelled as instrument contrasts and
+cannot identify a change in misinformation while holding the measurement process
+fixed.
+
+\subsection{\texorpdfstring{Network threshold \(k^{*}\)}{Network threshold k*}}
+\label{sec:mm-kstar}
+
+The parser forms a network mean MI at every observed tick \(t\):
+\[
+  \overline{\mathrm{MI}}_t
+  =\frac{1}{|E_t|}\sum_{e\in E_t}\mathrm{MI}_e.
+\]
+It then defines
+\begin{equation}
+  k^{*}
+  =\min\left\{t:
+       \overline{\mathrm{MI}}_t>3
+       \ \land\
+       \overline{\mathrm{MI}}_u>3
+       \text{ for every later observed }u
+     \right\}.
+  \label{eq:kstar}
+\end{equation}
+A temporary crossing that later returns to \(3\) or below does not qualify. If no
+crossing sustained through the last later scored observation is observed,
+\(k^{*}\) is undefined rather than zero. The observation window ends at eight
+ticks, so a crossing at the final scored tick is right-censored and does not
+establish persistence beyond the window. T2d \(k^{*}\) is
+calculated from the discrete series; T2c \(k^{*}\) from the continuous series.  Their
+rates remain separate.  This threshold measures simulated semantic degradation under
+the study's MI rule; it is not a Twitter ignition time or an empirical firestorm
+duration.
+
+\subsection{Hatch policy and analysis population}
+\label{sec:mm-hatch}
+
+A cell is classified as dead when it contains at most one scored event:
+\[
+  \texttt{dead}\iff \texttt{nScored}\leq 1.
+\]
+If the run nevertheless records positive LLM usage, the parser labels the row
+\texttt{hatched\_dead\_after\_llm}.  Such rows remain in the harvest and in the dead-cell
+ledger, but are hatched in plots and excluded from live-cell means.  They are neither
+deleted nor imputed as \(\mathrm{MI}=0\).  Consequently, a dead heterogeneous cell is
+not evidence that heterogeneity prevented propagation.  Missing and in-progress rows,
+if present, would likewise not be empirical zeros.
+
+The official harvest contains 292 hatched-dead cells out of 1,728 (16.9\%): 96 in
+T2c\_H, 98 in T2d\_H, 50 in T2c\_He, and 48 in T2d\_He. Of these, 232 have
+zero scored events and 60 have one scored event. The 60 one-event cells
+contain observed MI but are excluded from live means by the hatch rule. The
+four live populations are
+therefore 480, 478, 238, and 240 cells, respectively.  All reported means, medians,
+paired-cell contrasts, and sign counts use the live subset unless a count is
+explicitly described as a full-harvest or dead-cell count.
+
+\subsection{Pre-specified comparison structure}
+\label{sec:mm-comparisons}
+
+The five comparison families in \Cref{tab:mm-c1-c5} were designed to make the held and varied dimensions
+visible.  A ``same topology'' comparison means that summaries are aligned by one of
+the eight topology labels; it does not imply that independently executed T2c and T2d
+runs share identical event histories.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Comparison families and admissible interpretation.}
+  \label{tab:mm-c1-c5}
+  \small
+  \begin{tabular}{@{}p{0.07\textwidth}p{0.30\textwidth}p{0.23\textwidth}p{0.26\textwidth}@{}}
+    \hline
+    ID & Compared slices & Held/varied dimensions & Interpretation rule\\
+    \hline
+    C1 &
+    T2c\_H vs.\ T2c\_He; T2d\_H vs.\ T2d\_He &
+    topology and instrument held; identity arrangement varied &
+    H--He contrasts are estimated separately for each instrument.\\
+
+    C2 &
+    T2c\_H vs.\ T2d\_H &
+    topology and homogeneous arm held; instrument varied &
+    an instrument comparison, not a common-scale treatment effect.\\
+
+    C3 &
+    T2c\_He vs.\ T2d\_He &
+    topology and heterogeneous arm held; instrument varied &
+    same restriction as C2; dual sidecar is reported separately.\\
+
+    C4 &
+    T2c\_H vs.\ T2d\_He; T2d\_H vs.\ T2c\_He &
+    topology held; identity arrangement and instrument both varied &
+    two labelled, confounded contrasts; no pooled C4 headline.\\
+
+    C5 &
+    live cells concatenated within a labelled slice or composition
+    subset; D-net reported separately &
+    cell-level table union across generated topologies &
+    descriptive pooled summaries only; no physical super-graph.\\
+    \hline
+  \end{tabular}
+\end{table}
+
+For C1, H and He means are first calculated within topology and mode.  Both
+cell-pooled and topology-equal summaries are retained because unequal live counts can
+change weighting.  C2 and C3 additionally use paired live cells joined on topology,
+persona or mix, and article.  A pair enters only when both corresponding cells are
+live; a dead cell on either side is never replaced by zero.  C4 deliberately crosses
+identity arrangement and instrument.  Its two directions are shown separately because
+averaging them would manufacture a third, uninterpretable MPR.
+
+\subsection{Pooled table union versus a physical super-graph}
+\label{sec:mm-pooling}
+
+In C5, ``pooled'' means row concatenation.  Let
+\(\mathcal{L}_{r,z,g}\) be the live article-cell rows for instrument \(r\), identity arm
+\(z\), and topology \(g\).  The all-topology pool is the disjoint table union
+\[
+  \mathcal{P}_{r,z}
+  =\biguplus_{g=1}^{8}\mathcal{L}_{r,z,g}.
+\]
+The pooled mean weights each live article cell equally.  The topology-equal companion
+first calculates one mean per topology and then gives each of the eight topology means
+weight \(1/8\).  Reporting both exposes weighting sensitivity.
+
+No edges are added between runs, no node identifiers are merged, and no propagation is
+rerun on the union.  It is therefore incorrect to interpret C5 as a graph with 64
+nodes, as a union of adjacency matrices, or as a synthetic super-cascade.  The D-net
+analysis is also not part of this pool.  D-net is a separately executed 63-node,
+228-directed-edge custom topology based on a hashtag co-occurrence object.  The edge
+container is not a hydrated retweet cascade, and the object has no empirical
+Twitter MPR.
+
+\subsection{Descriptive and exploratory statistical procedures}
+\label{sec:mm-statistics}
+
+The primary analysis is descriptive.  It reports cell counts, live and dead counts,
+arithmetic means of \texttt{meanMI} and \texttt{meanNodeMPR}, medians of paired
+differences where relevant, \(k^{*}\) occurrence rates among live cells, dead-cell
+rates over all harvested cells, and absolute dual-gap and agreement means from the
+dual sidecar.  Grouped summaries are produced by topology, article, persona or mix,
+identity arm, and instrument.  Heat-map entries with no live cell are left missing,
+not displayed as zero.
+
+The analysis reports sign counts, medians, ranges, denominators, and rank
+coefficients as descriptive diagnostics. It does not use \(p\)-values as
+evidence because the eight network conditions are fixed design strata, pooled
+cells are nested within runs, and no sampling distribution over independent
+campaign replicates exists. No causal claim, confidence interval, or
+population-level effect is inferred.
+
+\subsection{D-net structural validation}
+\label{sec:mm-dnet-validation}
+
+\subsubsection{Comparable cascade-shape metrics}
+
+The validation code compares three structural quantities:
+\begin{description}
+  \item[Depth] the longest breadth-first-search path from the inferred root;
+  \item[Breadth] the maximum number of reached nodes at any depth level; and
+  \item[Structural virality] the mean pairwise shortest-path distance among reached
+        nodes after treating propagation edges as undirected.
+\end{description}
+Cascade size is reported for context but excluded from the structural-similarity
+score.  Simulated propagation trees are reconstructed from event provenance for
+forward and reinterpret actions.  The implementation also records simulation span in
+ticks; the empirical hashtag object has no usable tweet clock, so ticks cannot be
+converted to hours.
+
+For structural metric \(j\in\{\text{depth},\text{breadth},\text{virality}\}\), the
+relative error is
+\[
+  e_j=\left|\frac{x^{\mathrm{sim}}_j}{x^{\mathrm{real}}_j}-1\right|,
+\]
+and the aggregate structural similarity is
+\begin{equation}
+  S_{\mathrm{struct}}
+  =\max\left(0,1-\frac{1}{3}\sum_j e_j\right).
+  \label{eq:struct-sim}
+\end{equation}
+The implementation additionally marks a metric as a scalar match when
+\(e_j<0.30\).  For D-net, the empirical values were depth 4, breadth 33, and structural
+virality 2.7; the corresponding means over 16 simulated cascades were 2.5625,
+40.9375, and 1.7963.  Only breadth met the 30\% rule, yielding
+\(S_{\mathrm{struct}}=0.6885\).  These are cascade-shape comparisons, not comparisons
+of simulated MI with an empirical Twitter MI.
+
+\subsubsection{KS and Jensen--Shannon comparisons}
+
+For each of depth, breadth, and structural virality, the validation module compares
+the empirical and simulated value arrays with an approximate two-sample
+Kolmogorov--Smirnov (KS) test.  The KS statistic is the maximum distance between the
+two empirical cumulative distribution functions.  A small statistic indicates closer
+empirical distributions; the code reports a Kolmogorov-distribution approximation to
+the \(p\)-value.
+
+The same arrays are discretised into 20 common-width bins for Jensen--Shannon (JS)
+divergence.  With base-2 logarithms, JS lies in \([0,1]\): zero denotes identical
+binned distributions and one complete separation.  The code labels a distributional
+match only when KS \(p>0.05\) \emph{and} JS \(<0.10\).  It defines the aggregate
+distributional score as
+\begin{equation}
+  D= \max\left(0,1-\frac{1}{3}
+       \sum_j \mathrm{JS}_j\right).
+  \label{eq:distribution-score}
+\end{equation}
+
+The D-net comparison has one empirical object and 16 simulated cascades.  The observed
+KS statistics were 1.0000 for depth, 0.8125 for breadth, and 1.0000 for structural
+virality, with approximate \(p\)-values 0.1104, 0.2954, and 0.1104.  JS divergence was
+1.0000 for all three metrics, so no metric met the joint match rule and \(D=0\).
+Because \(n_{\mathrm{real}}=1\), the KS \(p\)-values are severely underpowered and do
+not establish distributional equivalence.  In particular, failure to reject is not
+evidence that the empirical and simulated distributions match.
+
+\subsubsection{Digital Twin Fidelity Score}
+
+The code combines structural similarity, distributional score, and a bounded content
+correlation into the Digital Twin Fidelity Score (DTFS):
+\begin{equation}
+  \mathrm{DTFS}
+  =0.40S_{\mathrm{struct}}+0.40D+0.20\rho_{\mathrm{content}},
+  \label{eq:dtfs}
+\end{equation}
+with each component clipped to \([0,1]\). These weights, component definitions,
+and the \(0.70\) threshold are implementation choices from the repository, not
+externally validated criteria. DTFS is reported only to document that the
+implemented check failed. The implementation's validation threshold
+is \(\mathrm{DTFS}\geq0.70\).  D-net has
+\(S_{\mathrm{struct}}=0.6885\), \(D=0\), and
+\(\rho_{\mathrm{content}}=0\), giving
+\[
+  \mathrm{DTFS}=0.2754<0.70.
+\]
+Accordingly, \texttt{isValidated} is \texttt{false}.  This failure concerns the
+implemented structural/distributional digital-twin check.  It does not turn the
+hashtag graph into a retweet cascade, and it does not license an empirical MPR claim:
+Debnath's data provide no empirical \(0\)--\(5\) MI/MPR against which the auditor
+scores could be validated.
+
+\subsection{Source register and reproducibility boundary}
+\label{sec:mm-sources}
+
+All operational definitions and numerical counts in this chapter are traceable to the
+following repository artefacts:
+\begin{itemize}
+  \item IFD formulas, dual calls, absolute gap, and agreement:
+        \path{src/Auditor.js};
+  \item event collection, cell means, node means, \(k^{*}\), and hatch policy:
+        \path{thesisExperiment/scripts/parse_phase2.js};
+  \item harvested counts and the \(N=1\) parse-selection rule:
+        \path{thesisExperiment/results_phase2/summary.json};
+  \item C1--C5 joins, pooled summaries, and descriptive procedures:
+        \path{thesisExperiment/analysis_full/analyze_full.py} and
+        \path{thesisExperiment/analysis_full/tables/};
+  \item structural metric extraction:
+        \path{src/ValidationMetrics.js};
+  \item KS, JS, structural similarity, and DTFS definitions:
+        \path{src/ValidationComparison.js}; and
+  \item D-net validation inputs and outputs:
+        \path{thesisExperiment/results_phase2/debnath_compare.json}.
+\end{itemize}
+Phase~1 tables are not joined to these Phase~2 headlines because they use a different
+campaign and schema.  D-net rows are not concatenated into the 1,728-cell factorial
+grid.  These boundaries preserve the separation among instruments, campaigns, and
+graph objects throughout the analysis.
+
+The Results therefore proceed in four steps: auditor-regime sensitivity
+(RQ1), named persona compositions (RQ2), topology-conditioned same-regime
+contrasts with dead-cell rates (RQ3), and the separate D-net stress test
+(RQ4). All means are live-cell descriptions; dead-cell rates are reported as
+a distinct outcome.
+\fussy

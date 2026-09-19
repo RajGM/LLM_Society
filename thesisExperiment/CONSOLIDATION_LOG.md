@@ -168,3 +168,48 @@ Starting from `origin/main` `c80655c`:
 2. Incoming conflict copies: `thesisExperiment/CONSOLIDATED_OVERLAPS/<source-branch>/thesisExperiment/...`
 3. Hatch-290 analysis snapshot: `thesisExperiment/CONSOLIDATED_OVERLAPS/analysis_phase2_hatch290/`
 4. Git: `git log --first-parent --oneline origin/main..HEAD` on this branch.
+
+---
+
+## Final thesis on `main` (2026-09-19)
+
+Phase 2 harvest consolidation above is unchanged. This section records the
+completed master's manuscript and the review pack now living on `origin/main`.
+Remote `cursor/*` branches were **not** deleted.
+
+**Final thesis path.** `thesisExperiment/thesis_final/main.pdf`  
+**Thesis source/PDF SHA.** `389b0bf85d5e054a1f972989217f7c7009e04e6d`
+(`Fix remaining thesis overfull boxes and record round-2 LaTeX check`).  
+That commit is an ancestor of current `main`. Science and PDF were not
+rewritten when the missing round-2 evidence report was copied on.
+
+**Working tree.** branch `main`, tracking `origin/main`. No force-push.
+
+**Review pack on `main` (canonical under `thesisExperiment/thesis_final/reviews/`,
+identical mirrors at repo-root `reviews/`):**
+
+| Round | Count | Files |
+|---|---:|---|
+| 1 | 15 | `01`–`12`, `08A_MODULARITY_CORRECTION.md`, `REVISION_MATRIX.md`, `REVISION_SUMMARY.md` |
+| 2 | 4 | `01_EVIDENCE.md`, `02_TUM_LANGUAGE.md`, `03_LATEX.md`, `04_EXAMINER.md` |
+
+`01_EVIDENCE.md` was the only review artefact still only on
+`cursor/round2-evidence-a349` (`179ec7a`). Copied; other round-1/round-2
+files were already identical on `main`.
+
+**Also on `main`:** `thesisExperiment/thesis_final/SUBMISSION_INPUTS_REQUIRED.md`,
+`CLAIM_EVIDENCE_MATRIX.md`, `THESIS_LOG.md`.
+
+**PDF at the preserved thesis SHA.** 116 pages; 2,242,482 bytes; 37,892
+extracted words; 0 undefined citations/references; 0 overfull boxes.
+
+**Clean compile (2026-09-19 17:40 UTC).** `latexmk -g` in
+`thesisExperiment/thesis_final/` succeeded with the same page/word/byte
+counts and 0 overfull boxes. The rebuilt PDF hash differed only by
+CreationDate; the committed file was left at `389b0bf` so the thesis
+binary was not overwritten. Reviews-on-main commit:
+`9426dcc96aaff1e5c024fc267d6cb671f6b3d1f2`.
+
+**Unresolved user inputs:** see `SUBMISSION_INPUTS_REQUIRED.md` (14
+`\UserInput` sites + 8 contribution confirmations). `.env` was not printed
+or committed.
