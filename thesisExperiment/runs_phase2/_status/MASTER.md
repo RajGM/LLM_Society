@@ -54,4 +54,12 @@ Dual headline ≠ continuous (separate modes; dual Dnet_d_* carry both discrete 
 - Sibling slice workers were not killed. Extra topology workers used skip-complete.
 - ManagePullRequest not in this toolset; commits pushed to PR https://github.com/RajGM/LLM_Society/pull/1 (`cursor/need-openai-api-key-caf6` → `main`).
 
+## Wrap-up verification
+
+Independent disk recount at 2026-09-19T05:14:46Z: **288/288** grid configs attempted and complete (each has a 6-article dir with `llmCalls>0`); **nMissingCells=0**; **nInProgress=0**. Official parse harvest `results_phase2/` at 2026-09-19T05:14:37Z (TH 1152 / THe 576 / all_rows 1741 / missing_cells empty). This replaces the 2026-09-18 abort (`nMissingCells=1728`, empty `TH_rows`). `tables/T2c_H_rows.csv` is a live-worker sidecar, not the official grid table.
+
+Leftover `T2c_H_echo_chamber_*` `index.js` processes at wrap-up time were **duplicate re-runs** of already-harvested configs. Wrap-up did not rerun the grid and did not kill sibling node processes.
+
+Dnet compare `simPending=false`. Isolation held. No dry-run. No invented MI. `.env` / API key not committed.
+
 Sibling slice agents may also write `runs_phase2`. This master skips completed cells and does not kill other node processes.
