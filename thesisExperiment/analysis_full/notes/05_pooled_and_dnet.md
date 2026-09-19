@@ -1,0 +1,1 @@
+Pooling concatenates cells, not a super-graph. Pooled He>H (T2c Δ=0.1549; T2d Δ=0.3986) but conspiracy family still high and mix_02 still low. D-net 63-node: H conspiracy > He mixed on both seeds/modes.

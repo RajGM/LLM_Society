@@ -1522,7 +1522,9 @@ def write_markdown(key, c1, c2, c3, c4, pooled, pooled_meta, topo_df, persona_df
     )
     c.append("")
     c.append(f"**1.1** Cell-pooled same-mode Δ(He−H): continuous **{fmt4(key['c1_T2c_He_minus_H_cell_pool'])}** (H {fmt4(key['meanMI_T2c_H'])} vs He {fmt4(key['meanMI_T2c_He'])}); dual-discrete **{fmt4(key['c1_T2d_He_minus_H_cell_pool'])}** (H {fmt4(key['meanMI_T2d_H'])} vs He {fmt4(key['meanMI_T2d_He'])}). Collapsed He is higher on both instruments.")
-    c.append(f"**1.2** Topology-mean Δ(He−H) averaged over 8 topologies: T2c **{fmt4(key['c1_T2c_mean_topo_delta'])}**; T2d **{fmt4(key['c1_T2d_mean_topo_delta'])}**. He>H on **{key['c1_T2c_n_topologies_He_gt_H']}/8** topologies (continuous) and **{key['c1_T2d_n_topologies_He_gt_H']}/8** (dual-discrete).")
+    c1_t2c_he_gt = ", ".join(c1.loc[c1["delta_He_minus_H_T2c"] > 0, "topology"].tolist()) or "none"
+    c1_t2c_h_gt = ", ".join(c1.loc[c1["delta_He_minus_H_T2c"] < 0, "topology"].tolist()) or "none"
+    c.append(f"**1.2** Topology-mean Δ(He−H) averaged over 8 topologies: T2c **{fmt4(key['c1_T2c_mean_topo_delta'])}**; T2d **{fmt4(key['c1_T2d_mean_topo_delta'])}**. He>H on **{key['c1_T2c_n_topologies_He_gt_H']}/8** topologies (continuous) and **{key['c1_T2d_n_topologies_He_gt_H']}/8** (dual-discrete). Continuous He>H is **not uniform**: He higher on {c1_t2c_he_gt}; H higher on {c1_t2c_h_gt}. Dual-discrete He>H on every topology. Exploratory Wilcoxon median Δ on T2c is near 0 because the four negative path-graph deltas cancel the four large echo/polar/hier positives — cell-pooled and topo-equal means stay positive because the positive gaps are larger.")
     c.append("**1.3** That is **not** “hetero buffers firestorms.” Collapsed H mixes conspiracy BPs with scientists; collapsed He mixes conspiracy-heavy `mix_00`/`mix_01` with conspiracy-free `mix_02`. See §5.")
     c.append(f"**1.4** Exploratory Wilcoxon on 8 topology means: T2c {_test_line(tests['c1_wilcoxon_T2c_He_vs_H_topo8'])}; T2d {_test_line(tests['c1_wilcoxon_T2d_He_vs_H_topo8'])}. N=1 seed.")
     c.append("**1.5** Dead He cells are hatched (`nScored≤1` after LLM), not evidence that mix immunises.")
