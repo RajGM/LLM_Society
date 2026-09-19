@@ -1,0 +1,1800 @@
+{
+  "generatedAt": "2026-09-19T12:26:19.169Z",
+  "newLlmRuns": false,
+  "graph": {
+    "file": "thesisExperiment/data/derived/debnath_hashtag_cascade.json",
+    "kind": "hashtag_cooccurrence",
+    "notARetweetCascade": true,
+    "nNodes": 63,
+    "nDirectedEdges": 228,
+    "nUniqueUndirectedEdges": 171,
+    "temporalAvailable": false,
+    "empiricalMPR": false,
+    "vsT2": "Dnet 63-node custom graph is the larger empirical stand-in; T2 topologies are 8-node generators"
+  },
+  "mapping": {
+    "source": "Dnet configs already assign personaId; reconstruct intended_debnath_bp on user_profiles",
+    "nMapped": 63,
+    "nExactPersonaMatch": 56,
+    "nMismatch": 7,
+    "empiricalIdentityMix": {
+      "conspiracy": 28,
+      "climate_action": 19,
+      "environmental_concern": 14,
+      "other": 2
+    },
+    "empiricalIntendedPersonaCounts": {
+      "climate_action_advocate": 18,
+      "environmental_concern": 6,
+      "biodiversity_food_security": 3,
+      "conspiracy_believer": 15,
+      "conspiracy_peripheral_skywatcher": 4,
+      "climate_scientist": 2,
+      "conspiracy_climate_piggyback": 2,
+      "conspiracy_depopulation": 1,
+      "conspiracy_haarp_weather": 6,
+      "mitigation_first_policy": 1,
+      "ozone_stratosphere_specialist": 4,
+      "science_journalist": 1
+    },
+    "empiricalClusters": {
+      "climate_action": 16,
+      "environmental": 14,
+      "chemtrails": 26,
+      "expert": 2,
+      "piggyback": 2,
+      "geo": 3
+    },
+    "mixedPersonaCounts": {
+      "climate_action_advocate": 19,
+      "environmental_concern": 9,
+      "conspiracy_believer": 18,
+      "conspiracy_peripheral_skywatcher": 4,
+      "climate_scientist": 2,
+      "conspiracy_haarp_weather": 6,
+      "ozone_stratosphere_specialist": 4,
+      "science_journalist": 1
+    },
+    "mixedFamilyCounts": {
+      "conspiracy_cluster": 28,
+      "climate_action": 19,
+      "environmental_concern": 13,
+      "expert_added": 3,
+      "other": 0
+    },
+    "homo": "every node conspiracy_believer",
+    "mismatches": [
+      {
+        "node": "user_biodiversity_hub",
+        "hashtag": "#biodiversity",
+        "cluster": "environmental",
+        "intendedBp": "biodiversity_food_security",
+        "mixedPersonaId": "environmental_concern",
+        "reason": "mixed Dnet collapses biodiversity/food-security tags onto environmental_concern (same Debnath type)"
+      },
+      {
+        "node": "user_biodiversity_peri_1",
+        "hashtag": "#biodiversity",
+        "cluster": "environmental",
+        "intendedBp": "biodiversity_food_security",
+        "mixedPersonaId": "environmental_concern",
+        "reason": "mixed Dnet collapses biodiversity/food-security tags onto environmental_concern (same Debnath type)"
+      },
+      {
+        "node": "user_climateaction_piggyback_amp",
+        "hashtag": "#climateaction",
+        "cluster": "piggyback",
+        "intendedBp": "conspiracy_climate_piggyback",
+        "mixedPersonaId": "conspiracy_believer",
+        "reason": "mixed Dnet maps piggyback nodes to conspiracy_believer; intended reconstruct BP is conspiracy_climate_piggyback"
+      },
+      {
+        "node": "user_climateaction_piggyback_peri_1",
+        "hashtag": "#climateaction",
+        "cluster": "piggyback",
+        "intendedBp": "conspiracy_climate_piggyback",
+        "mixedPersonaId": "conspiracy_believer",
+        "reason": "mixed Dnet maps piggyback nodes to conspiracy_believer; intended reconstruct BP is conspiracy_climate_piggyback"
+      },
+      {
+        "node": "user_depopulation_amp",
+        "hashtag": "#depopulation",
+        "cluster": "chemtrails",
+        "intendedBp": "conspiracy_depopulation",
+        "mixedPersonaId": "conspiracy_believer",
+        "reason": "mixed Dnet maps depopulation to conspiracy_believer; intended reconstruct BP is conspiracy_depopulation"
+      },
+      {
+        "node": "user_foodsecurity_amp",
+        "hashtag": "#foodsecurity",
+        "cluster": "environmental",
+        "intendedBp": "biodiversity_food_security",
+        "mixedPersonaId": "environmental_concern",
+        "reason": "mixed Dnet collapses biodiversity/food-security tags onto environmental_concern (same Debnath type)"
+      },
+      {
+        "node": "user_mitigation_amp",
+        "hashtag": "#mitigation",
+        "cluster": "environmental",
+        "intendedBp": "mitigation_first_policy",
+        "mixedPersonaId": "climate_action_advocate",
+        "reason": "mixed Dnet maps #mitigation to climate_action_advocate; intended reconstruct BP is mitigation_first_policy (cluster still environmental)"
+      }
+    ],
+    "rows": [
+      {
+        "empiricalId": "actonclimate_amp",
+        "simNodeId": "user_actonclimate_amp",
+        "hashtag": "#actonclimate",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "airpollution_amp",
+        "simNodeId": "user_airpollution_amp",
+        "hashtag": "#airpollution",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "environmental_concern",
+        "mixedPersonaId": "environmental_concern",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "airpollution_peri_1",
+        "simNodeId": "user_airpollution_peri_1",
+        "hashtag": "#airpollution",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "environmental_concern",
+        "mixedPersonaId": "environmental_concern",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "biodiversity_hub",
+        "simNodeId": "user_biodiversity_hub",
+        "hashtag": "#biodiversity",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "biodiversity_food_security",
+        "mixedPersonaId": "environmental_concern",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": false
+      },
+      {
+        "empiricalId": "biodiversity_peri_1",
+        "simNodeId": "user_biodiversity_peri_1",
+        "hashtag": "#biodiversity",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "biodiversity_food_security",
+        "mixedPersonaId": "environmental_concern",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": false
+      },
+      {
+        "empiricalId": "chemtrails_amp_1",
+        "simNodeId": "user_chemtrails_amp_1",
+        "hashtag": "#chemtrails",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "chemtrails_amp_2",
+        "simNodeId": "user_chemtrails_amp_2",
+        "hashtag": "#chemtrails",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "chemtrails_hub",
+        "simNodeId": "user_chemtrails_hub",
+        "hashtag": "#chemtrails",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "chemtrails_peri_3",
+        "simNodeId": "user_chemtrails_peri_3",
+        "hashtag": "#chemtrails",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_peripheral_skywatcher",
+        "mixedPersonaId": "conspiracy_peripheral_skywatcher",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "climate_amp",
+        "simNodeId": "user_climate_amp",
+        "hashtag": "#climate",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "climate_scientist_hub",
+        "simNodeId": "user_climate_scientist_hub",
+        "hashtag": "#climatescience",
+        "cluster": "expert",
+        "empiricalIdentity": "other",
+        "intendedBp": "climate_scientist",
+        "mixedPersonaId": "climate_scientist",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "expert_added",
+        "intendedFamily": "expert_added",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "climateaction_amp_1",
+        "simNodeId": "user_climateaction_amp_1",
+        "hashtag": "#climateaction",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "climateaction_hub",
+        "simNodeId": "user_climateaction_hub",
+        "hashtag": "#climateaction",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "climateaction_piggyback_amp",
+        "simNodeId": "user_climateaction_piggyback_amp",
+        "hashtag": "#climateaction",
+        "cluster": "piggyback",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_climate_piggyback",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": false
+      },
+      {
+        "empiricalId": "climateaction_piggyback_peri_1",
+        "simNodeId": "user_climateaction_piggyback_peri_1",
+        "hashtag": "#climateaction",
+        "cluster": "piggyback",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_climate_piggyback",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": false
+      },
+      {
+        "empiricalId": "climatejustice_amp_1",
+        "simNodeId": "user_climatejustice_amp_1",
+        "hashtag": "#climatejustice",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "climatejustice_hub",
+        "simNodeId": "user_climatejustice_hub",
+        "hashtag": "#climatejustice",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "cop26_amp",
+        "simNodeId": "user_cop26_amp",
+        "hashtag": "#cop26",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "deepstate_amp",
+        "simNodeId": "user_deepstate_amp",
+        "hashtag": "#deepstate",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "depopulation_amp",
+        "simNodeId": "user_depopulation_amp",
+        "hashtag": "#depopulation",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_depopulation",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": false
+      },
+      {
+        "empiricalId": "ecology_amp",
+        "simNodeId": "user_ecology_amp",
+        "hashtag": "#ecology",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "environmental_concern",
+        "mixedPersonaId": "environmental_concern",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "environment_amp",
+        "simNodeId": "user_environment_amp",
+        "hashtag": "#environment",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "environmental_concern",
+        "mixedPersonaId": "environmental_concern",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "foodsecurity_amp",
+        "simNodeId": "user_foodsecurity_amp",
+        "hashtag": "#foodsecurity",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "biodiversity_food_security",
+        "mixedPersonaId": "environmental_concern",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": false
+      },
+      {
+        "empiricalId": "fridaysforfuture_amp",
+        "simNodeId": "user_fridaysforfuture_amp",
+        "hashtag": "#fridaysforfuture",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "geoengineering_amp_1",
+        "simNodeId": "user_geoengineering_amp_1",
+        "hashtag": "#geoengineering",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "geoengineering_hub",
+        "simNodeId": "user_geoengineering_hub",
+        "hashtag": "#geoengineering",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "gmo_amp",
+        "simNodeId": "user_gmo_amp",
+        "hashtag": "#gmo",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "greatawakening_amp",
+        "simNodeId": "user_greatawakening_amp",
+        "hashtag": "#greatawakening",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "haarp_amp_1",
+        "simNodeId": "user_haarp_amp_1",
+        "hashtag": "#haarp",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_haarp_weather",
+        "mixedPersonaId": "conspiracy_haarp_weather",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "haarp_hub",
+        "simNodeId": "user_haarp_hub",
+        "hashtag": "#haarp",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_haarp_weather",
+        "mixedPersonaId": "conspiracy_haarp_weather",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "illuminati_amp",
+        "simNodeId": "user_illuminati_amp",
+        "hashtag": "#illuminati",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "india_amp",
+        "simNodeId": "user_india_amp",
+        "hashtag": "#india",
+        "cluster": "geo",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "ipcc_amp",
+        "simNodeId": "user_ipcc_amp",
+        "hashtag": "#ipcc",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_scientist",
+        "mixedPersonaId": "climate_scientist",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "expert_added",
+        "intendedFamily": "expert_added",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "maga_amp",
+        "simNodeId": "user_maga_amp",
+        "hashtag": "#maga",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "mitigation_amp",
+        "simNodeId": "user_mitigation_amp",
+        "hashtag": "#mitigation",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "mitigation_first_policy",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": false
+      },
+      {
+        "empiricalId": "monsanto_amp",
+        "simNodeId": "user_monsanto_amp",
+        "hashtag": "#monsanto",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "netzero_amp",
+        "simNodeId": "user_netzero_amp",
+        "hashtag": "#netzero",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "nexrad_amp",
+        "simNodeId": "user_nexrad_amp",
+        "hashtag": "#nexrad",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_haarp_weather",
+        "mixedPersonaId": "conspiracy_haarp_weather",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "nwo_amp",
+        "simNodeId": "user_nwo_amp",
+        "hashtag": "#nwo",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "nwo_peri_1",
+        "simNodeId": "user_nwo_peri_1",
+        "hashtag": "#nwo",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_peripheral_skywatcher",
+        "mixedPersonaId": "conspiracy_peripheral_skywatcher",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "ozone_hub",
+        "simNodeId": "user_ozone_hub",
+        "hashtag": "#ozone",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "ozone_stratosphere_specialist",
+        "mixedPersonaId": "ozone_stratosphere_specialist",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "ozone_peri_1",
+        "simNodeId": "user_ozone_peri_1",
+        "hashtag": "#ozone",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "ozone_stratosphere_specialist",
+        "mixedPersonaId": "ozone_stratosphere_specialist",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "publichealth_amp",
+        "simNodeId": "user_publichealth_amp",
+        "hashtag": "#publichealth",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "environmental_concern",
+        "mixedPersonaId": "environmental_concern",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "publichealth_peri_1",
+        "simNodeId": "user_publichealth_peri_1",
+        "hashtag": "#publichealth",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "environmental_concern",
+        "mixedPersonaId": "environmental_concern",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "sag_amp",
+        "simNodeId": "user_sag_amp",
+        "hashtag": "#sag",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "sai_amp",
+        "simNodeId": "user_sai_amp",
+        "hashtag": "#sai",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "ozone_stratosphere_specialist",
+        "mixedPersonaId": "ozone_stratosphere_specialist",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "science_journalist_hub",
+        "simNodeId": "user_science_journalist_hub",
+        "hashtag": "#climatenews",
+        "cluster": "expert",
+        "empiricalIdentity": "other",
+        "intendedBp": "science_journalist",
+        "mixedPersonaId": "science_journalist",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "expert_added",
+        "intendedFamily": "expert_added",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "scopex_hub",
+        "simNodeId": "user_scopex_hub",
+        "hashtag": "#scopex",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "scopex_peri_1",
+        "simNodeId": "user_scopex_peri_1",
+        "hashtag": "#scopex",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "srm_amp",
+        "simNodeId": "user_srm_amp",
+        "hashtag": "#srm",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "srm_peri_1",
+        "simNodeId": "user_srm_peri_1",
+        "hashtag": "#srm",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_peripheral_skywatcher",
+        "mixedPersonaId": "conspiracy_peripheral_skywatcher",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "stopspraying_amp",
+        "simNodeId": "user_stopspraying_amp",
+        "hashtag": "#stopspraying",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_believer",
+        "mixedPersonaId": "conspiracy_believer",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "stopspraying_peri_1",
+        "simNodeId": "user_stopspraying_peri_1",
+        "hashtag": "#stopspraying",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_peripheral_skywatcher",
+        "mixedPersonaId": "conspiracy_peripheral_skywatcher",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "stratosphere_amp",
+        "simNodeId": "user_stratosphere_amp",
+        "hashtag": "#stratosphere",
+        "cluster": "environmental",
+        "empiricalIdentity": "environmental_concern",
+        "intendedBp": "ozone_stratosphere_specialist",
+        "mixedPersonaId": "ozone_stratosphere_specialist",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "environmental_concern",
+        "intendedFamily": "environmental_concern",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "sweden_hub",
+        "simNodeId": "user_sweden_hub",
+        "hashtag": "#sweden",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "sweden_peri_1",
+        "simNodeId": "user_sweden_peri_1",
+        "hashtag": "#sweden",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "uk_amp",
+        "simNodeId": "user_uk_amp",
+        "hashtag": "#uk",
+        "cluster": "geo",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "usa_amp",
+        "simNodeId": "user_usa_amp",
+        "hashtag": "#usa",
+        "cluster": "geo",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "weathermodification_amp",
+        "simNodeId": "user_weathermodification_amp",
+        "hashtag": "#weathermodification",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_haarp_weather",
+        "mixedPersonaId": "conspiracy_haarp_weather",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "weathermodification_peri_1",
+        "simNodeId": "user_weathermodification_peri_1",
+        "hashtag": "#weathermodification",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_haarp_weather",
+        "mixedPersonaId": "conspiracy_haarp_weather",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "weatherwarfare_amp",
+        "simNodeId": "user_weatherwarfare_amp",
+        "hashtag": "#weatherwarfare",
+        "cluster": "chemtrails",
+        "empiricalIdentity": "conspiracy",
+        "intendedBp": "conspiracy_haarp_weather",
+        "mixedPersonaId": "conspiracy_haarp_weather",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "conspiracy_cluster",
+        "intendedFamily": "conspiracy_cluster",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "wedonotconsent_amp_1",
+        "simNodeId": "user_wedonotconsent_amp_1",
+        "hashtag": "#wedonotconsent",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      },
+      {
+        "empiricalId": "wedonotconsent_hub",
+        "simNodeId": "user_wedonotconsent_hub",
+        "hashtag": "#wedonotconsent",
+        "cluster": "climate_action",
+        "empiricalIdentity": "climate_action",
+        "intendedBp": "climate_action_advocate",
+        "mixedPersonaId": "climate_action_advocate",
+        "homoPersonaId": "conspiracy_believer",
+        "mixedFamily": "climate_action",
+        "intendedFamily": "climate_action",
+        "mappingMatch": true
+      }
+    ]
+  },
+  "empiricalPfeffer": {
+    "uniqueUndirectedEdges": 171,
+    "meanUniqueDegree": 5.4286,
+    "hubUniqueDegree": 33,
+    "hubUniqueNode": "chemtrails_hub",
+    "valence": {
+      "toxicityMeanPaper": 0.17,
+      "toxicitySeverePaper": 0.12,
+      "hashtagToxicityProxy": 0.1097,
+      "notMPR": true
+    },
+    "surprise": {
+      "paperQuoted": "SCoPEx April 2017 ~8000 interactions/day (~+300% vs Feb 2017)",
+      "reconstructedShockSeries": false,
+      "status": "paper_quoted_not_reconstructed"
+    },
+    "identity": {
+      "counts": {
+        "conspiracy": 28,
+        "climate_action": 19,
+        "environmental_concern": 14,
+        "other": 2
+      },
+      "conspiracyShare": 0.4444,
+      "intendedPersonaCounts": {
+        "climate_action_advocate": 18,
+        "environmental_concern": 6,
+        "biodiversity_food_security": 3,
+        "conspiracy_believer": 15,
+        "conspiracy_peripheral_skywatcher": 4,
+        "climate_scientist": 2,
+        "conspiracy_climate_piggyback": 2,
+        "conspiracy_depopulation": 1,
+        "conspiracy_haarp_weather": 6,
+        "mitigation_first_policy": 1,
+        "ozone_stratosphere_specialist": 4,
+        "science_journalist": 1
+      }
+    },
+    "clustering": {
+      "nNodes": 63,
+      "nDirectedEdges": 228,
+      "nUndirectedPairs": 228,
+      "meanUndirectedDegree": 7.2381,
+      "meanOutDegree": 3.619,
+      "maxUndirectedDegree": 53,
+      "maxNode": "chemtrails_hub",
+      "hubShareOfStubs": 0.1162,
+      "globalTransitivity": 0.3146,
+      "meanLocalClustering": 0.5153,
+      "nWedges": 1211,
+      "nClosedTriads": 381,
+      "modularityConspiracyCut": 0.4039
+    },
+    "echo": {
+      "identityHomophily": 0.8728,
+      "intendedBpHomophily": 0.5439,
+      "familyHomophily": 0.8377
+    },
+    "temporal": {
+      "available": false,
+      "reason": "hashtag co-occurrence has no tweet clock; timestamps synthetic"
+    },
+    "crossMedia": {
+      "available": false,
+      "held": true
+    },
+    "binaryChoices": {
+      "available": false,
+      "note": "no like/retweet actions on a hashtag graph"
+    }
+  },
+  "simulatedPfeffer": {
+    "cells": [
+      {
+        "cell": "Dnet_c_H_conspiracy",
+        "runDir": "Dnet_c_H_conspiracy_2026-09-19_02-49-31",
+        "mix": "homogeneous_conspiracy",
+        "miScoringMode": "continuous",
+        "articleId": "scopex_2017",
+        "nNodes": 63,
+        "nEdges": 228,
+        "seedNodes": [
+          "user_chemtrails_hub"
+        ],
+        "surprise": "held_drip",
+        "identity": {
+          "conspiracyShare": 1,
+          "note": "all 63 nodes conspiracy_believer"
+        },
+        "clustering": {
+          "meanUndirectedDegree": 7.2381,
+          "maxUndirectedDegree": 53,
+          "globalTransitivity": 0.3146,
+          "meanLocalClustering": 0.5153,
+          "modularityConspiracy": 0.4566
+        },
+        "echo": {
+          "identityHomophily": 1,
+          "personaHomophily": 1,
+          "familyHomophily": 1
+        },
+        "valence": {
+          "nScored": 970,
+          "meanMI": 1.7349,
+          "tickMeans": [
+            {
+              "tick": 1,
+              "meanMI": 0,
+              "n": 1
+            },
+            {
+              "tick": 2,
+              "meanMI": 1,
+              "n": 23
+            },
+            {
+              "tick": 3,
+              "meanMI": 1.3852,
+              "n": 61
+            },
+            {
+              "tick": 4,
+              "meanMI": 1.514,
+              "n": 143
+            },
+            {
+              "tick": 5,
+              "meanMI": 1.7609,
+              "n": 179
+            },
+            {
+              "tick": 6,
+              "meanMI": 1.8344,
+              "n": 186
+            },
+            {
+              "tick": 7,
+              "meanMI": 1.9758,
+              "n": 186
+            },
+            {
+              "tick": 8,
+              "meanMI": 1.7539,
+              "n": 191
+            }
+          ],
+          "kStar": null,
+          "note": "auditor IFD, not Twitter MI / MPR"
+        },
+        "temporal": {
+          "maxTicks": 8,
+          "maxHops": 8,
+          "maxTickObserved": 8,
+          "kStar": null,
+          "nReached": 61,
+          "note": "simulation ticks, not empirical tweet time"
+        },
+        "binaryChoices": {
+          "n": 1263,
+          "forwardShare": 0.35,
+          "reinterpretShare": 0.5178,
+          "dropShare": 0.1322,
+          "ternaryNotBinary": true
+        },
+        "nEvents": 1263
+      },
+      {
+        "cell": "Dnet_c_H_conspiracy",
+        "runDir": "Dnet_c_H_conspiracy_2026-09-19_02-49-31",
+        "mix": "homogeneous_conspiracy",
+        "miScoringMode": "continuous",
+        "articleId": "chemtrails_gates_2018_2021",
+        "nNodes": 63,
+        "nEdges": 228,
+        "seedNodes": [
+          "user_chemtrails_hub"
+        ],
+        "surprise": "held_drip",
+        "identity": {
+          "conspiracyShare": 1,
+          "note": "all 63 nodes conspiracy_believer"
+        },
+        "clustering": {
+          "meanUndirectedDegree": 7.2381,
+          "maxUndirectedDegree": 53,
+          "globalTransitivity": 0.3146,
+          "meanLocalClustering": 0.5153,
+          "modularityConspiracy": 0.4566
+        },
+        "echo": {
+          "identityHomophily": 1,
+          "personaHomophily": 1,
+          "familyHomophily": 1
+        },
+        "valence": {
+          "nScored": 984,
+          "meanMI": 3.3378,
+          "tickMeans": [
+            {
+              "tick": 2,
+              "meanMI": 3.3333,
+              "n": 24
+            },
+            {
+              "tick": 3,
+              "meanMI": 3.2931,
+              "n": 58
+            },
+            {
+              "tick": 4,
+              "meanMI": 3.2926,
+              "n": 135
+            },
+            {
+              "tick": 5,
+              "meanMI": 3.3064,
+              "n": 187
+            },
+            {
+              "tick": 6,
+              "meanMI": 3.3813,
+              "n": 193
+            },
+            {
+              "tick": 7,
+              "meanMI": 3.3401,
+              "n": 192
+            },
+            {
+              "tick": 8,
+              "meanMI": 3.3677,
+              "n": 195
+            }
+          ],
+          "kStar": 2,
+          "note": "auditor IFD, not Twitter MI / MPR"
+        },
+        "temporal": {
+          "maxTicks": 8,
+          "maxHops": 8,
+          "maxTickObserved": 8,
+          "kStar": 2,
+          "nReached": 61,
+          "note": "simulation ticks, not empirical tweet time"
+        },
+        "binaryChoices": {
+          "n": 1252,
+          "forwardShare": 0.3339,
+          "reinterpretShare": 0.5312,
+          "dropShare": 0.135,
+          "ternaryNotBinary": true
+        },
+        "nEvents": 1252
+      },
+      {
+        "cell": "Dnet_c_He_mixed",
+        "runDir": "Dnet_c_He_mixed_2026-09-19_04-05-50",
+        "mix": "heterogeneous_debnath_bps",
+        "miScoringMode": "continuous",
+        "articleId": "scopex_2017",
+        "nNodes": 63,
+        "nEdges": 228,
+        "seedNodes": [
+          "user_chemtrails_hub"
+        ],
+        "surprise": "held_drip",
+        "identity": {
+          "conspiracyShare": 0.4444,
+          "climateActionShare": 0.3016,
+          "environmentalShare": 0.2063,
+          "expertShare": 0.0476,
+          "personaCounts": {
+            "climate_action_advocate": 19,
+            "environmental_concern": 9,
+            "conspiracy_believer": 18,
+            "conspiracy_peripheral_skywatcher": 4,
+            "climate_scientist": 2,
+            "conspiracy_haarp_weather": 6,
+            "ozone_stratosphere_specialist": 4,
+            "science_journalist": 1
+          }
+        },
+        "clustering": {
+          "meanUndirectedDegree": 7.2381,
+          "maxUndirectedDegree": 53,
+          "globalTransitivity": 0.3146,
+          "meanLocalClustering": 0.5153,
+          "modularityConspiracy": 0.4039
+        },
+        "echo": {
+          "identityHomophily": 0.8377,
+          "personaHomophily": 0.636,
+          "familyHomophily": 0.8377
+        },
+        "valence": {
+          "nScored": 591,
+          "meanMI": 0.9983,
+          "tickMeans": [
+            {
+              "tick": 1,
+              "meanMI": 0,
+              "n": 1
+            },
+            {
+              "tick": 2,
+              "meanMI": 0.3,
+              "n": 10
+            },
+            {
+              "tick": 3,
+              "meanMI": 0.6034,
+              "n": 29
+            },
+            {
+              "tick": 4,
+              "meanMI": 0.8264,
+              "n": 72
+            },
+            {
+              "tick": 5,
+              "meanMI": 0.8624,
+              "n": 109
+            },
+            {
+              "tick": 6,
+              "meanMI": 1.1949,
+              "n": 118
+            },
+            {
+              "tick": 7,
+              "meanMI": 1.0705,
+              "n": 129
+            },
+            {
+              "tick": 8,
+              "meanMI": 1.113,
+              "n": 123
+            }
+          ],
+          "kStar": null,
+          "note": "auditor IFD, not Twitter MI / MPR"
+        },
+        "temporal": {
+          "maxTicks": 8,
+          "maxHops": 8,
+          "maxTickObserved": 8,
+          "kStar": null,
+          "nReached": 61,
+          "note": "simulation ticks, not empirical tweet time"
+        },
+        "binaryChoices": {
+          "n": 1252,
+          "forwardShare": 0.3474,
+          "reinterpretShare": 0.4888,
+          "dropShare": 0.1637,
+          "ternaryNotBinary": true
+        },
+        "nEvents": 1252
+      },
+      {
+        "cell": "Dnet_c_He_mixed",
+        "runDir": "Dnet_c_He_mixed_2026-09-19_04-05-50",
+        "mix": "heterogeneous_debnath_bps",
+        "miScoringMode": "continuous",
+        "articleId": "chemtrails_gates_2018_2021",
+        "nNodes": 63,
+        "nEdges": 228,
+        "seedNodes": [
+          "user_chemtrails_hub"
+        ],
+        "surprise": "held_drip",
+        "identity": {
+          "conspiracyShare": 0.4444,
+          "climateActionShare": 0.3016,
+          "environmentalShare": 0.2063,
+          "expertShare": 0.0476,
+          "personaCounts": {
+            "climate_action_advocate": 19,
+            "environmental_concern": 9,
+            "conspiracy_believer": 18,
+            "conspiracy_peripheral_skywatcher": 4,
+            "climate_scientist": 2,
+            "conspiracy_haarp_weather": 6,
+            "ozone_stratosphere_specialist": 4,
+            "science_journalist": 1
+          }
+        },
+        "clustering": {
+          "meanUndirectedDegree": 7.2381,
+          "maxUndirectedDegree": 53,
+          "globalTransitivity": 0.3146,
+          "meanLocalClustering": 0.5153,
+          "modularityConspiracy": 0.4039
+        },
+        "echo": {
+          "identityHomophily": 0.8377,
+          "personaHomophily": 0.636,
+          "familyHomophily": 0.8377
+        },
+        "valence": {
+          "nScored": 1035,
+          "meanMI": 2.5068,
+          "tickMeans": [
+            {
+              "tick": 1,
+              "meanMI": 2,
+              "n": 1
+            },
+            {
+              "tick": 2,
+              "meanMI": 2.1,
+              "n": 27
+            },
+            {
+              "tick": 3,
+              "meanMI": 2.045,
+              "n": 60
+            },
+            {
+              "tick": 4,
+              "meanMI": 2.2221,
+              "n": 145
+            },
+            {
+              "tick": 5,
+              "meanMI": 2.2324,
+              "n": 185
+            },
+            {
+              "tick": 6,
+              "meanMI": 2.5851,
+              "n": 202
+            },
+            {
+              "tick": 7,
+              "meanMI": 2.7531,
+              "n": 207
+            },
+            {
+              "tick": 8,
+              "meanMI": 2.8163,
+              "n": 208
+            }
+          ],
+          "kStar": null,
+          "note": "auditor IFD, not Twitter MI / MPR"
+        },
+        "temporal": {
+          "maxTicks": 8,
+          "maxHops": 8,
+          "maxTickObserved": 8,
+          "kStar": null,
+          "nReached": 61,
+          "note": "simulation ticks, not empirical tweet time"
+        },
+        "binaryChoices": {
+          "n": 1248,
+          "forwardShare": 0.3454,
+          "reinterpretShare": 0.484,
+          "dropShare": 0.1707,
+          "ternaryNotBinary": true
+        },
+        "nEvents": 1248
+      },
+      {
+        "cell": "Dnet_d_H_conspiracy",
+        "runDir": "Dnet_d_H_conspiracy_2026-09-19_02-49-31",
+        "mix": "homogeneous_conspiracy",
+        "miScoringMode": "dual",
+        "articleId": "scopex_2017",
+        "nNodes": 63,
+        "nEdges": 228,
+        "seedNodes": [
+          "user_chemtrails_hub"
+        ],
+        "surprise": "held_drip",
+        "identity": {
+          "conspiracyShare": 1,
+          "note": "all 63 nodes conspiracy_believer"
+        },
+        "clustering": {
+          "meanUndirectedDegree": 7.2381,
+          "maxUndirectedDegree": 53,
+          "globalTransitivity": 0.3146,
+          "meanLocalClustering": 0.5153,
+          "modularityConspiracy": 0.4566
+        },
+        "echo": {
+          "identityHomophily": 1,
+          "personaHomophily": 1,
+          "familyHomophily": 1
+        },
+        "valence": {
+          "nScored": 1076,
+          "meanMI": 4.2537,
+          "tickMeans": [
+            {
+              "tick": 1,
+              "meanMI": 3,
+              "n": 1
+            },
+            {
+              "tick": 2,
+              "meanMI": 4.1111,
+              "n": 27
+            },
+            {
+              "tick": 3,
+              "meanMI": 3.9605,
+              "n": 76
+            },
+            {
+              "tick": 4,
+              "meanMI": 4.2188,
+              "n": 160
+            },
+            {
+              "tick": 5,
+              "meanMI": 4.1959,
+              "n": 194
+            },
+            {
+              "tick": 6,
+              "meanMI": 4.2594,
+              "n": 212
+            },
+            {
+              "tick": 7,
+              "meanMI": 4.335,
+              "n": 200
+            },
+            {
+              "tick": 8,
+              "meanMI": 4.3835,
+              "n": 206
+            }
+          ],
+          "kStar": 2,
+          "note": "auditor IFD, not Twitter MI / MPR"
+        },
+        "temporal": {
+          "maxTicks": 8,
+          "maxHops": 8,
+          "maxTickObserved": 8,
+          "kStar": 2,
+          "nReached": 61,
+          "note": "simulation ticks, not empirical tweet time"
+        },
+        "binaryChoices": {
+          "n": 1278,
+          "forwardShare": 0.356,
+          "reinterpretShare": 0.5023,
+          "dropShare": 0.1416,
+          "ternaryNotBinary": true
+        },
+        "nEvents": 1278
+      },
+      {
+        "cell": "Dnet_d_H_conspiracy",
+        "runDir": "Dnet_d_H_conspiracy_2026-09-19_02-49-31",
+        "mix": "homogeneous_conspiracy",
+        "miScoringMode": "dual",
+        "articleId": "chemtrails_gates_2018_2021",
+        "nNodes": 63,
+        "nEdges": 228,
+        "seedNodes": [
+          "user_chemtrails_hub"
+        ],
+        "surprise": "held_drip",
+        "identity": {
+          "conspiracyShare": 1,
+          "note": "all 63 nodes conspiracy_believer"
+        },
+        "clustering": {
+          "meanUndirectedDegree": 7.2381,
+          "maxUndirectedDegree": 53,
+          "globalTransitivity": 0.3146,
+          "meanLocalClustering": 0.5153,
+          "modularityConspiracy": 0.4566
+        },
+        "echo": {
+          "identityHomophily": 1,
+          "personaHomophily": 1,
+          "familyHomophily": 1
+        },
+        "valence": {
+          "nScored": 749,
+          "meanMI": 3.7303,
+          "tickMeans": [
+            {
+              "tick": 2,
+              "meanMI": 1.5,
+              "n": 14
+            },
+            {
+              "tick": 3,
+              "meanMI": 2.9231,
+              "n": 39
+            },
+            {
+              "tick": 4,
+              "meanMI": 3.4592,
+              "n": 98
+            },
+            {
+              "tick": 5,
+              "meanMI": 3.6519,
+              "n": 135
+            },
+            {
+              "tick": 6,
+              "meanMI": 3.8824,
+              "n": 153
+            },
+            {
+              "tick": 7,
+              "meanMI": 3.9742,
+              "n": 155
+            },
+            {
+              "tick": 8,
+              "meanMI": 3.9806,
+              "n": 155
+            }
+          ],
+          "kStar": 4,
+          "note": "auditor IFD, not Twitter MI / MPR"
+        },
+        "temporal": {
+          "maxTicks": 8,
+          "maxHops": 8,
+          "maxTickObserved": 8,
+          "kStar": 4,
+          "nReached": 61,
+          "note": "simulation ticks, not empirical tweet time"
+        },
+        "binaryChoices": {
+          "n": 1266,
+          "forwardShare": 0.3681,
+          "reinterpretShare": 0.4621,
+          "dropShare": 0.1698,
+          "ternaryNotBinary": true
+        },
+        "nEvents": 1266
+      },
+      {
+        "cell": "Dnet_d_He_mixed",
+        "runDir": "Dnet_d_He_mixed_2026-09-19_04-07-40",
+        "mix": "heterogeneous_debnath_bps",
+        "miScoringMode": "dual",
+        "articleId": "scopex_2017",
+        "nNodes": 63,
+        "nEdges": 228,
+        "seedNodes": [
+          "user_chemtrails_hub"
+        ],
+        "surprise": "held_drip",
+        "identity": {
+          "conspiracyShare": 0.4444,
+          "climateActionShare": 0.3016,
+          "environmentalShare": 0.2063,
+          "expertShare": 0.0476,
+          "personaCounts": {
+            "climate_action_advocate": 19,
+            "environmental_concern": 9,
+            "conspiracy_believer": 18,
+            "conspiracy_peripheral_skywatcher": 4,
+            "climate_scientist": 2,
+            "conspiracy_haarp_weather": 6,
+            "ozone_stratosphere_specialist": 4,
+            "science_journalist": 1
+          }
+        },
+        "clustering": {
+          "meanUndirectedDegree": 7.2381,
+          "maxUndirectedDegree": 53,
+          "globalTransitivity": 0.3146,
+          "meanLocalClustering": 0.5153,
+          "modularityConspiracy": 0.4039
+        },
+        "echo": {
+          "identityHomophily": 0.8377,
+          "personaHomophily": 0.636,
+          "familyHomophily": 0.8377
+        },
+        "valence": {
+          "nScored": 407,
+          "meanMI": 2.688,
+          "tickMeans": [
+            {
+              "tick": 2,
+              "meanMI": 0.1429,
+              "n": 7
+            },
+            {
+              "tick": 3,
+              "meanMI": 0.8421,
+              "n": 19
+            },
+            {
+              "tick": 4,
+              "meanMI": 2.098,
+              "n": 51
+            },
+            {
+              "tick": 5,
+              "meanMI": 2.5278,
+              "n": 72
+            },
+            {
+              "tick": 6,
+              "meanMI": 2.8272,
+              "n": 81
+            },
+            {
+              "tick": 7,
+              "meanMI": 3.1124,
+              "n": 89
+            },
+            {
+              "tick": 8,
+              "meanMI": 3.2045,
+              "n": 88
+            }
+          ],
+          "kStar": 7,
+          "note": "auditor IFD, not Twitter MI / MPR"
+        },
+        "temporal": {
+          "maxTicks": 8,
+          "maxHops": 8,
+          "maxTickObserved": 8,
+          "kStar": 7,
+          "nReached": 61,
+          "note": "simulation ticks, not empirical tweet time"
+        },
+        "binaryChoices": {
+          "n": 1261,
+          "forwardShare": 0.3553,
+          "reinterpretShare": 0.5004,
+          "dropShare": 0.1443,
+          "ternaryNotBinary": true
+        },
+        "nEvents": 1261
+      },
+      {
+        "cell": "Dnet_d_He_mixed",
+        "runDir": "Dnet_d_He_mixed_2026-09-19_04-07-40",
+        "mix": "heterogeneous_debnath_bps",
+        "miScoringMode": "dual",
+        "articleId": "chemtrails_gates_2018_2021",
+        "nNodes": 63,
+        "nEdges": 228,
+        "seedNodes": [
+          "user_chemtrails_hub"
+        ],
+        "surprise": "held_drip",
+        "identity": {
+          "conspiracyShare": 0.4444,
+          "climateActionShare": 0.3016,
+          "environmentalShare": 0.2063,
+          "expertShare": 0.0476,
+          "personaCounts": {
+            "climate_action_advocate": 19,
+            "environmental_concern": 9,
+            "conspiracy_believer": 18,
+            "conspiracy_peripheral_skywatcher": 4,
+            "climate_scientist": 2,
+            "conspiracy_haarp_weather": 6,
+            "ozone_stratosphere_specialist": 4,
+            "science_journalist": 1
+          }
+        },
+        "clustering": {
+          "meanUndirectedDegree": 7.2381,
+          "maxUndirectedDegree": 53,
+          "globalTransitivity": 0.3146,
+          "meanLocalClustering": 0.5153,
+          "modularityConspiracy": 0.4039
+        },
+        "echo": {
+          "identityHomophily": 0.8377,
+          "personaHomophily": 0.636,
+          "familyHomophily": 0.8377
+        },
+        "valence": {
+          "nScored": 1027,
+          "meanMI": 1.5297,
+          "tickMeans": [
+            {
+              "tick": 1,
+              "meanMI": 0,
+              "n": 1
+            },
+            {
+              "tick": 2,
+              "meanMI": 2,
+              "n": 27
+            },
+            {
+              "tick": 3,
+              "meanMI": 2.0308,
+              "n": 65
+            },
+            {
+              "tick": 4,
+              "meanMI": 1.7778,
+              "n": 144
+            },
+            {
+              "tick": 5,
+              "meanMI": 1.4944,
+              "n": 180
+            },
+            {
+              "tick": 6,
+              "meanMI": 1.8241,
+              "n": 199
+            },
+            {
+              "tick": 7,
+              "meanMI": 1.4903,
+              "n": 206
+            },
+            {
+              "tick": 8,
+              "meanMI": 0.9268,
+              "n": 205
+            }
+          ],
+          "kStar": null,
+          "note": "auditor IFD, not Twitter MI / MPR"
+        },
+        "temporal": {
+          "maxTicks": 8,
+          "maxHops": 8,
+          "maxTickObserved": 8,
+          "kStar": null,
+          "nReached": 61,
+          "note": "simulation ticks, not empirical tweet time"
+        },
+        "binaryChoices": {
+          "n": 1222,
+          "forwardShare": 0.3306,
+          "reinterpretShare": 0.5098,
+          "dropShare": 0.1596,
+          "ternaryNotBinary": true
+        },
+        "nEvents": 1222
+      }
+    ],
+    "structureNote": "H and He share the same 63/228 custom topology; clustering coefficients are therefore identical. Homophily and Q differ because persona labels differ."
+  }
+}
