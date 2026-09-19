@@ -1,18 +1,18 @@
 {
-  "updatedAt": "2026-09-19T03:59:14.823Z",
+  "updatedAt": "2026-09-19T04:19:56.791Z",
   "slice": "T2c_He",
   "mode": "real",
   "keyLength": 164,
   "counts": {
     "configs": 48,
-    "completed": 25,
+    "completed": 35,
     "failed": 0,
     "skipped": 0,
-    "pending": 23,
-    "inflight": 5,
-    "not_started": 18,
-    "llmCalls": 13567,
-    "estUsd": 1.65
+    "pending": 13,
+    "inflight": 13,
+    "not_started": 0,
+    "llmCalls": 18686,
+    "estUsd": 2.2901
   },
   "byTopology": {
     "echo_chamber": {
@@ -21,14 +21,14 @@
       "failed": 0,
       "skipped": 0,
       "pending": 6,
-      "inflight": 0
+      "inflight": 6
     },
     "hierarchical": {
       "configs": 6,
-      "completed": 0,
+      "completed": 6,
       "failed": 0,
       "skipped": 0,
-      "pending": 6,
+      "pending": 0,
       "inflight": 0
     },
     "linear_chain": {
@@ -45,7 +45,7 @@
       "failed": 0,
       "skipped": 0,
       "pending": 6,
-      "inflight": 0
+      "inflight": 6
     },
     "random_er": {
       "configs": 6,
@@ -65,27 +65,27 @@
     },
     "scale_free": {
       "configs": 6,
-      "completed": 3,
+      "completed": 5,
       "failed": 0,
       "skipped": 0,
-      "pending": 3,
-      "inflight": 3
+      "pending": 1,
+      "inflight": 1
     },
     "small_world": {
       "configs": 6,
-      "completed": 4,
+      "completed": 6,
       "failed": 0,
       "skipped": 0,
-      "pending": 2,
-      "inflight": 2
+      "pending": 0,
+      "inflight": 0
     }
   },
   "probe": {
     "experimentName": "probe_T2c_He",
     "status": "complete",
     "failed": false,
-    "usageCalls": 2,
-    "usageLine": "2 calls, 1056 prompt / 220 completion tokens ~$0.0003"
+    "usageCalls": 1,
+    "usageLine": "1 calls, 604 prompt / 28 completion tokens ~$0.0001"
   },
   "orchestrators": [
     {
@@ -93,8 +93,16 @@
       "cmd": "/exec-daemon/node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He.json "
     },
     {
-      "pid": 172920,
-      "cmd": "node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology scale_free --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_scale_free.json "
+      "pid": 181271,
+      "cmd": "node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology echo_chamber --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_echo_chamber.json "
+    },
+    {
+      "pid": 181981,
+      "cmd": "node thesisExperiment/scripts/run_t2c_he.js "
+    },
+    {
+      "pid": 182799,
+      "cmd": "node thesisExperiment/scripts/run_phase2.js --skip-probe --no-parse --phase all --slice T2c_He --topology polarized --concurrency 4 --manifest thesisExperiment/results_phase2/manifest_T2c_He_polarized.json "
     }
   ]
 }

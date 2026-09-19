@@ -3853,3 +3853,1287 @@ START T2d_H_small_world_climate_justice_youth config=thesisExperiment/configs/ph
 END T2d_He_scale_free_mix_00 status=0 elapsedMs=1376588 runDir=T2d_He_scale_free_mix_00_2026-09-19_03-35-37 usage=1687 calls, 751022 prompt / 114915 completion tokens ~$0.1816 killedFor=none done=true
 
 ---
+
+## 2026-09-19T03:59:48.077Z
+
+END T2d_He_scale_free_mix_03 status=0 elapsedMs=1450284 runDir=T2d_He_scale_free_mix_03_2026-09-19_03-35-38 usage=1656 calls, 782285 prompt / 129492 completion tokens ~$0.195 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:00:15.581Z
+
+END T2d_H_small_world_conspiracy_believer status=0 elapsedMs=970318 runDir=T2d_H_small_world_conspiracy_believer_2026-09-19_03-44-05 usage=926 calls, 427256 prompt / 76276 completion tokens ~$0.1099 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:00:15.581Z
+
+START T2d_H_small_world_mitigation_first_policy config=thesisExperiment/configs/phase2/T2d_H_small_world_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:00:25.319Z
+
+END T2d_H_small_world_conspiracy_haarp_weather status=0 elapsedMs=1487605 runDir=T2d_H_small_world_conspiracy_haarp_weather_2026-09-19_03-35-38 usage=1769 calls, 807746 prompt / 133534 completion tokens ~$0.2013 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:00:25.320Z
+
+START T2d_H_small_world_mitigation_first_policy config=thesisExperiment/configs/phase2/T2d_H_small_world_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:00:39.908Z
+
+CONTINUE_MASTER progress complete=146/288 dnet=0/4
+
+---
+
+## 2026-09-19T04:00:45.452Z
+
+END T2c_H_random_er_science_journalist status=0 elapsedMs=1171194 runDir=T2c_H_random_er_science_journalist_2026-09-19_03-41-14 usage=868 calls, 377181 prompt / 91888 completion tokens ~$0.1117 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:00:45.452Z
+
+START T2c_H_small_world_conspiracy_climate_piggyback config=thesisExperiment/configs/phase2/T2c_H_small_world_conspiracy_climate_piggyback.json
+
+---
+
+## 2026-09-19T04:01:22.035Z
+
+END T2c_H_scale_free_conspiracy_believer status=0 elapsedMs=1544115 runDir=T2c_H_scale_free_conspiracy_believer_2026-09-19_03-35-38 usage=1083 calls, 509251 prompt / 102512 completion tokens ~$0.1379 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:01:22.035Z
+
+START T2c_H_scale_free_climate_justice_youth config=thesisExperiment/configs/phase2/T2c_H_scale_free_climate_justice_youth.json
+
+---
+
+## 2026-09-19T04:02:06.584Z
+
+END T2c_H_small_world_conspiracy_climate_piggyback status=0 elapsedMs=1589079 runDir=T2c_H_small_world_conspiracy_climate_piggyback_2026-09-19_03-35-37 usage=1217 calls, 564993 prompt / 131357 completion tokens ~$0.1636 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:02:06.585Z
+
+START T2c_H_small_world_environmental_concern config=thesisExperiment/configs/phase2/T2c_H_small_world_environmental_concern.json
+
+---
+
+## 2026-09-19T04:02:14.916Z
+
+END T2c_He_scale_free_mix_02 status=0 elapsedMs=1597260 runDir=T2c_He_scale_free_mix_02_2026-09-19_03-35-37 usage=1225 calls, 536258 prompt / 125410 completion tokens ~$0.1557 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:02:50.498Z
+
+END T2c_He_small_world_mix_04 status=0 elapsedMs=1506431 runDir=T2c_He_small_world_mix_04_2026-09-19_03-37-44 usage=1216 calls, 558914 prompt / 117209 completion tokens ~$0.1542 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:02:50.499Z
+
+SKIP complete T2c_He_scale_free_mix_02
+
+---
+
+## 2026-09-19T04:02:50.500Z
+
+SKIP complete T2c_He_scale_free_mix_03
+
+---
+
+## 2026-09-19T04:02:50.500Z
+
+START T2c_He_scale_free_mix_04 config=thesisExperiment/configs/phase2/T2c_He_scale_free_mix_04.json
+
+---
+
+## 2026-09-19T04:02:53.584Z
+
+END T2d_H_small_world_conspiracy_believer status=0 elapsedMs=1635892 runDir=T2d_H_small_world_conspiracy_believer_2026-09-19_03-35-37 usage=1719 calls, 781758 prompt / 121332 completion tokens ~$0.1901 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:02:53.585Z
+
+START T2d_H_small_world_environmental_concern config=thesisExperiment/configs/phase2/T2d_H_small_world_environmental_concern.json
+
+---
+
+## 2026-09-19T04:03:09.997Z
+
+CONTINUE_MASTER progress complete=149/288 dnet=0/4
+
+---
+
+## 2026-09-19T04:05:15.695Z
+
+END T2d_H_hierarchical_biodiversity_food_security status=0 elapsedMs=585061 runDir=T2d_H_hierarchical_biodiversity_food_security_2026-09-19_03-55-30 usage=805 calls, 367769 prompt / 44986 completion tokens ~$0.0822 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:05:15.695Z
+
+START T2d_H_hierarchical_conspiracy_believer config=thesisExperiment/configs/phase2/T2d_H_hierarchical_conspiracy_believer.json
+
+---
+
+## 2026-09-19T04:05:50.570Z
+
+END Dnet_c_H_conspiracy status=0 elapsedMs=4585859 runDir=Dnet_c_H_conspiracy_2026-09-19_02-49-25 usage=3129 calls, 1492919 prompt / 272691 completion tokens ~$0.3876 killedFor=none done=true failed=false
+
+---
+
+## 2026-09-19T04:05:50.571Z
+
+START Dnet_c_He_mixed config=thesisExperiment/configs/phase2/Dnet_c_He_mixed.json
+
+---
+
+## 2026-09-19T04:05:58.584Z
+
+END T2c_He_small_world_mix_05 status=0 elapsedMs=1480247 runDir=T2c_He_small_world_mix_05_2026-09-19_03-41-18 usage=1194 calls, 539724 prompt / 114266 completion tokens ~$0.1495 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:05:58.585Z
+
+START T2c_He_scale_free_mix_05 config=thesisExperiment/configs/phase2/T2c_He_scale_free_mix_05.json
+
+---
+
+## 2026-09-19T04:05:59.104Z
+
+END T2d_H_hierarchical_climate_action_advocate status=0 elapsedMs=496292 runDir=T2d_H_hierarchical_climate_action_advocate_2026-09-19_03-57-42 usage=664 calls, 310979 prompt / 37911 completion tokens ~$0.0694 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:05:59.105Z
+
+START T2d_H_hierarchical_conspiracy_climate_piggyback config=thesisExperiment/configs/phase2/T2d_H_hierarchical_conspiracy_climate_piggyback.json
+
+---
+
+## 2026-09-19T04:06:38.234Z
+
+END T2d_H_hierarchical_climate_scientist status=0 elapsedMs=517233 runDir=T2d_H_hierarchical_climate_scientist_2026-09-19_03-58-00 usage=724 calls, 354211 prompt / 40295 completion tokens ~$0.0773 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:06:38.235Z
+
+START T2d_H_hierarchical_conspiracy_depopulation config=thesisExperiment/configs/phase2/T2d_H_hierarchical_conspiracy_depopulation.json
+
+---
+
+## 2026-09-19T04:07:09.046Z
+
+END T2c_H_small_world_climate_action_advocate status=0 elapsedMs=955157 runDir=T2c_H_small_world_climate_action_advocate_2026-09-19_03-51-13 usage=856 calls, 402865 prompt / 68506 completion tokens ~$0.1015 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:07:09.046Z
+
+START T2c_H_small_world_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2c_H_small_world_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:07:19.663Z
+
+END T2c_H_small_world_conspiracy_believer status=0 elapsedMs=1402229 runDir=T2c_H_small_world_conspiracy_believer_2026-09-19_03-43-57 usage=1078 calls, 529655 prompt / 90159 completion tokens ~$0.1335 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:07:19.665Z
+
+SKIP complete T2c_H_small_world_climate_action_advocate
+
+---
+
+## 2026-09-19T04:07:19.665Z
+
+START T2c_H_small_world_climate_justice_youth config=thesisExperiment/configs/phase2/T2c_H_small_world_climate_justice_youth.json
+
+---
+
+## 2026-09-19T04:07:20.545Z
+
+END T2c_He_scale_free_mix_04 status=0 elapsedMs=1022922 runDir=T2c_He_scale_free_mix_04_2026-09-19_03-50-17 usage=910 calls, 436138 prompt / 72886 completion tokens ~$0.1092 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:07:40.527Z
+
+END Dnet_d_H_conspiracy status=0 elapsedMs=4695789 runDir=Dnet_d_H_conspiracy_2026-09-19_02-49-25 usage=4953 calls, 2314012 prompt / 313427 completion tokens ~$0.5352 killedFor=none done=true failed=false
+
+---
+
+## 2026-09-19T04:07:40.527Z
+
+START Dnet_d_He_mixed config=thesisExperiment/configs/phase2/Dnet_d_He_mixed.json
+
+---
+
+## 2026-09-19T04:07:50.643Z
+
+END Dnet_d_H_conspiracy status=0 elapsedMs=4699207 runDir=Dnet_d_H_conspiracy_2026-09-19_02-49-31 usage=4941 calls, 2352945 prompt / 319810 completion tokens ~$0.5448 killedFor=none done=true failed=false
+
+---
+
+## 2026-09-19T04:07:50.644Z
+
+START Dnet_c_He_mixed config=thesisExperiment/configs/phase2/Dnet_c_He_mixed.json
+
+---
+
+## 2026-09-19T04:08:10.289Z
+
+CONTINUE_MASTER progress complete=155/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:08:51.036Z
+
+END T2c_He_scale_free_mix_00 status=0 elapsedMs=1261775 runDir=T2c_He_scale_free_mix_00_2026-09-19_03-47-49 usage=1091 calls, 499701 prompt / 88701 completion tokens ~$0.1282 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:08:51.036Z
+
+START T2c_He_echo_chamber_mix_00 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_00.json
+
+---
+
+## 2026-09-19T04:08:51.108Z
+
+END T2c_He_echo_chamber_mix_00 status=1 elapsedMs=71 runDir=T2c_He_echo_chamber_mix_00_2026-09-19_04-08-51 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:51.108Z
+
+START T2c_He_echo_chamber_mix_01 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_01.json
+
+---
+
+## 2026-09-19T04:08:51.164Z
+
+END T2c_He_echo_chamber_mix_01 status=1 elapsedMs=56 runDir=T2c_He_echo_chamber_mix_01_2026-09-19_04-08-51 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:51.165Z
+
+START T2c_He_echo_chamber_mix_02 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_02.json
+
+---
+
+## 2026-09-19T04:08:51.205Z
+
+END T2c_He_echo_chamber_mix_02 status=1 elapsedMs=40 runDir=T2c_He_echo_chamber_mix_02_2026-09-19_04-08-51 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:51.206Z
+
+START T2c_He_echo_chamber_mix_03 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_03.json
+
+---
+
+## 2026-09-19T04:08:53.181Z
+
+END T2c_He_echo_chamber_mix_03 status=1 elapsedMs=1975 runDir=T2c_He_echo_chamber_mix_03_2026-09-19_04-08-51 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:53.182Z
+
+START T2c_He_echo_chamber_mix_04 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_04.json
+
+---
+
+## 2026-09-19T04:08:53.223Z
+
+END T2c_He_echo_chamber_mix_04 status=1 elapsedMs=40 runDir=T2c_He_echo_chamber_mix_04_2026-09-19_04-08-53 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:53.223Z
+
+START T2c_He_echo_chamber_mix_05 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_05.json
+
+---
+
+## 2026-09-19T04:08:53.262Z
+
+END T2c_He_echo_chamber_mix_05 status=1 elapsedMs=38 runDir=T2c_He_echo_chamber_mix_05_2026-09-19_04-08-53 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:53.262Z
+
+START T2c_He_polarized_mix_00 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_00.json
+
+---
+
+## 2026-09-19T04:08:55.530Z
+
+END T2c_He_polarized_mix_00 status=1 elapsedMs=2267 runDir=T2c_He_polarized_mix_00_2026-09-19_04-08-53 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:55.530Z
+
+START T2c_He_polarized_mix_01 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_01.json
+
+---
+
+## 2026-09-19T04:08:55.572Z
+
+END T2c_He_polarized_mix_01 status=1 elapsedMs=42 runDir=T2c_He_polarized_mix_01_2026-09-19_04-08-55 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:55.572Z
+
+START T2c_He_polarized_mix_02 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_02.json
+
+---
+
+## 2026-09-19T04:08:55.613Z
+
+END T2c_He_polarized_mix_02 status=1 elapsedMs=41 runDir=T2c_He_polarized_mix_02_2026-09-19_04-08-55 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:55.614Z
+
+START T2c_He_polarized_mix_03 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_03.json
+
+---
+
+## 2026-09-19T04:08:58.367Z
+
+END T2c_He_polarized_mix_03 status=1 elapsedMs=2753 runDir=T2c_He_polarized_mix_03_2026-09-19_04-08-55 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:58.367Z
+
+START T2c_He_polarized_mix_04 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_04.json
+
+---
+
+## 2026-09-19T04:08:58.409Z
+
+END T2c_He_polarized_mix_04 status=1 elapsedMs=41 runDir=T2c_He_polarized_mix_04_2026-09-19_04-08-58 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:58.409Z
+
+START T2c_He_polarized_mix_05 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_05.json
+
+---
+
+## 2026-09-19T04:08:58.450Z
+
+END T2c_He_polarized_mix_05 status=1 elapsedMs=40 runDir=T2c_He_polarized_mix_05_2026-09-19_04-08-58 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:08:58.450Z
+
+START T2c_He_hierarchical_mix_00 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_00.json
+
+---
+
+## 2026-09-19T04:09:00.843Z
+
+END T2c_He_hierarchical_mix_00 status=1 elapsedMs=2393 runDir=T2c_He_hierarchical_mix_00_2026-09-19_04-08-58 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:09:00.843Z
+
+START T2c_He_hierarchical_mix_01 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_01.json
+
+---
+
+## 2026-09-19T04:09:00.882Z
+
+END T2c_He_hierarchical_mix_01 status=1 elapsedMs=38 runDir=T2c_He_hierarchical_mix_01_2026-09-19_04-09-00 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:09:00.882Z
+
+START T2c_He_hierarchical_mix_02 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_02.json
+
+---
+
+## 2026-09-19T04:09:00.920Z
+
+END T2c_He_hierarchical_mix_02 status=1 elapsedMs=37 runDir=T2c_He_hierarchical_mix_02_2026-09-19_04-09-00 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:09:00.920Z
+
+START T2c_He_hierarchical_mix_03 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_03.json
+
+---
+
+## 2026-09-19T04:09:02.963Z
+
+END T2c_He_hierarchical_mix_03 status=1 elapsedMs=2042 runDir=T2c_He_hierarchical_mix_03_2026-09-19_04-09-00 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:09:02.963Z
+
+START T2c_He_hierarchical_mix_04 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_04.json
+
+---
+
+## 2026-09-19T04:09:03.003Z
+
+END T2c_He_hierarchical_mix_04 status=1 elapsedMs=39 runDir=T2c_He_hierarchical_mix_04_2026-09-19_04-09-02 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:09:03.003Z
+
+START T2c_He_hierarchical_mix_05 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_05.json
+
+---
+
+## 2026-09-19T04:09:03.041Z
+
+END T2c_He_hierarchical_mix_05 status=1 elapsedMs=37 runDir=T2c_He_hierarchical_mix_05_2026-09-19_04-09-03 usage=n/a killedFor=none done=false
+
+---
+
+## 2026-09-19T04:09:07.184Z
+
+END T2d_He_scale_free_mix_00 status=0 elapsedMs=1042495 runDir=T2d_He_scale_free_mix_00_2026-09-19_03-51-44 usage=1474 calls, 660774 prompt / 77964 completion tokens ~$0.1459 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:09:07.185Z
+
+START T2d_He_scale_free_mix_04 config=thesisExperiment/configs/phase2/T2d_He_scale_free_mix_04.json
+
+---
+
+## 2026-09-19T04:09:28.398Z
+
+END T2d_H_small_world_climate_action_advocate status=0 elapsedMs=852414 runDir=T2d_H_small_world_climate_action_advocate_2026-09-19_03-55-16 usage=1153 calls, 536624 prompt / 64527 completion tokens ~$0.1192 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:09:28.398Z
+
+START T2d_H_small_world_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2d_H_small_world_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:09:49.841Z
+
+END T2d_H_hierarchical_climate_justice_youth status=0 elapsedMs=719329 runDir=T2d_H_hierarchical_climate_justice_youth_2026-09-19_03-57-50 usage=938 calls, 424784 prompt / 52469 completion tokens ~$0.0952 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:09:49.841Z
+
+START T2d_H_hierarchical_conspiracy_haarp_weather config=thesisExperiment/configs/phase2/T2d_H_hierarchical_conspiracy_haarp_weather.json
+
+---
+
+## 2026-09-19T04:10:09.034Z
+
+END Dnet_c_H_conspiracy status=0 elapsedMs=4837600 runDir=Dnet_c_H_conspiracy_2026-09-19_02-49-31 usage=3273 calls, 1583151 prompt / 296009 completion tokens ~$0.4151 killedFor=none done=true failed=false
+
+---
+
+## 2026-09-19T04:10:09.034Z
+
+START Dnet_d_He_mixed config=thesisExperiment/configs/phase2/Dnet_d_He_mixed.json
+
+---
+
+## 2026-09-19T04:10:40.404Z
+
+CONTINUE_MASTER progress complete=156/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:13:10.496Z
+
+CONTINUE_MASTER progress complete=155/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:13:25.206Z
+
+CONTINUE_MASTER progress complete=155/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:13:27.127Z
+
+PHASE_P2 TH n=12 concurrency=4 topology=echo_chamber slice=T2c_H
+
+---
+
+## 2026-09-19T04:13:27.128Z
+
+START T2c_H_echo_chamber_conspiracy_believer config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_conspiracy_believer.json
+
+---
+
+## 2026-09-19T04:13:27.129Z
+
+PHASE_P2 TH n=0 concurrency=4 topology=echo_chamber slice=T2c_He
+
+---
+
+## 2026-09-19T04:13:27.129Z
+
+PHASE_P2 THe n=6 concurrency=4 topology=echo_chamber slice=T2c_He
+
+---
+
+## 2026-09-19T04:13:27.130Z
+
+PHASE_P2 TH n=0 concurrency=4 topology=echo_chamber slice=T2d_He
+
+---
+
+## 2026-09-19T04:13:27.130Z
+
+PHASE_P2 THe n=6 concurrency=4 topology=echo_chamber slice=T2d_He
+
+---
+
+## 2026-09-19T04:13:27.131Z
+
+START T2d_He_echo_chamber_mix_00 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_00.json
+
+---
+
+## 2026-09-19T04:13:27.132Z
+
+START T2c_He_echo_chamber_mix_00 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_00.json
+
+---
+
+## 2026-09-19T04:13:27.136Z
+
+START T2c_He_echo_chamber_mix_01 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_01.json
+
+---
+
+## 2026-09-19T04:13:27.139Z
+
+START T2d_He_echo_chamber_mix_01 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_01.json
+
+---
+
+## 2026-09-19T04:13:27.139Z
+
+START T2c_He_echo_chamber_mix_02 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_02.json
+
+---
+
+## 2026-09-19T04:13:27.140Z
+
+START T2c_H_echo_chamber_conspiracy_haarp_weather config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_conspiracy_haarp_weather.json
+
+---
+
+## 2026-09-19T04:13:27.142Z
+
+START T2c_H_echo_chamber_conspiracy_depopulation config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_conspiracy_depopulation.json
+
+---
+
+## 2026-09-19T04:13:27.146Z
+
+START T2c_H_echo_chamber_conspiracy_climate_piggyback config=thesisExperiment/configs/phase2/T2c_H_echo_chamber_conspiracy_climate_piggyback.json
+
+---
+
+## 2026-09-19T04:13:27.147Z
+
+START T2d_He_echo_chamber_mix_02 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_02.json
+
+---
+
+## 2026-09-19T04:13:27.148Z
+
+START T2c_He_echo_chamber_mix_03 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_03.json
+
+---
+
+## 2026-09-19T04:13:27.151Z
+
+START T2d_He_echo_chamber_mix_03 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_03.json
+
+---
+
+## 2026-09-19T04:13:49.489Z
+
+END T2d_H_hierarchical_conspiracy_depopulation status=0 elapsedMs=431154 runDir=T2d_H_hierarchical_conspiracy_depopulation_2026-09-19_04-06-38 usage=521 calls, 235992 prompt / 32966 completion tokens ~$0.0552 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:13:49.489Z
+
+START T2d_H_hierarchical_environmental_concern config=thesisExperiment/configs/phase2/T2d_H_hierarchical_environmental_concern.json
+
+---
+
+## 2026-09-19T04:13:58.039Z
+
+END T2c_He_scale_free_mix_01 status=0 elapsedMs=1417547 runDir=T2c_He_scale_free_mix_01_2026-09-19_03-50-20 usage=1191 calls, 535918 prompt / 101542 completion tokens ~$0.1413 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:14:23.123Z
+
+T2c_He slice start n=48 topologies=echo_chamber,hierarchical,linear_chain,polarized,random_er,ring,scale_free,small_world concurrency=4
+
+---
+
+## 2026-09-19T04:14:23.193Z
+
+T2c_He key present (length=164, source=/workspace/.env). Probe continuous.
+
+---
+
+## 2026-09-19T04:14:24.027Z
+
+PROBE_T2c_He continuous attempt=1 status=0 failed=false elapsedMs=787 usage=1 calls, 604 prompt / 28 completion tokens ~$0.0001
+
+---
+
+## 2026-09-19T04:14:24.027Z
+
+PHASE_T2c_He n=48 concurrency=4
+
+---
+
+## 2026-09-19T04:14:24.073Z
+
+DEFER in-flight T2c_He_echo_chamber_mix_00
+
+---
+
+## 2026-09-19T04:14:24.097Z
+
+DEFER in-flight T2c_He_echo_chamber_mix_01
+
+---
+
+## 2026-09-19T04:14:24.120Z
+
+DEFER in-flight T2c_He_echo_chamber_mix_02
+
+---
+
+## 2026-09-19T04:14:24.144Z
+
+DEFER in-flight T2c_He_echo_chamber_mix_03
+
+---
+
+## 2026-09-19T04:14:39.075Z
+
+START T2c_He_echo_chamber_mix_04 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_04.json
+
+---
+
+## 2026-09-19T04:14:39.104Z
+
+START T2c_He_echo_chamber_mix_05 config=thesisExperiment/configs/phase2/T2c_He_echo_chamber_mix_05.json
+
+---
+
+## 2026-09-19T04:14:39.130Z
+
+START T2c_He_hierarchical_mix_00 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_00.json
+
+---
+
+## 2026-09-19T04:14:39.158Z
+
+START T2c_He_hierarchical_mix_01 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_01.json
+
+---
+
+## 2026-09-19T04:15:22.421Z
+
+END T2c_He_hierarchical_mix_01 status=0 elapsedMs=43190 runDir=T2c_He_hierarchical_mix_01_2026-09-19_04-14-39 usage=39 calls, 18853 prompt / 3210 completion tokens ~$0.0048 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:15:22.422Z
+
+START T2c_He_hierarchical_mix_02 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_02.json
+
+---
+
+## 2026-09-19T04:15:33.399Z
+
+END T2c_He_hierarchical_mix_00 status=0 elapsedMs=54199 runDir=T2c_He_hierarchical_mix_00_2026-09-19_04-14-39 usage=44 calls, 21541 prompt / 3659 completion tokens ~$0.0054 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:15:33.400Z
+
+START T2c_He_hierarchical_mix_03 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_03.json
+
+---
+
+## 2026-09-19T04:15:50.352Z
+
+END T2c_H_small_world_conspiracy_depopulation status=0 elapsedMs=1087235 runDir=T2c_H_small_world_conspiracy_depopulation_2026-09-19_03-57-43 usage=890 calls, 436086 prompt / 72340 completion tokens ~$0.1088 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:15:50.353Z
+
+START T2c_H_small_world_mitigation_first_policy config=thesisExperiment/configs/phase2/T2c_H_small_world_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:15:55.398Z
+
+CONTINUE_MASTER progress complete=158/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:16:17.852Z
+
+END T2c_He_hierarchical_mix_03 status=0 elapsedMs=44379 runDir=T2c_He_hierarchical_mix_03_2026-09-19_04-15-33 usage=37 calls, 18699 prompt / 3417 completion tokens ~$0.0049 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:16:17.853Z
+
+START T2c_He_hierarchical_mix_04 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_04.json
+
+---
+
+## 2026-09-19T04:16:26.039Z
+
+END T2d_He_small_world_mix_05 status=0 elapsedMs=1555140 runDir=T2d_He_small_world_mix_05_2026-09-19_03-50-30 usage=2220 calls, 1025874 prompt / 123781 completion tokens ~$0.2281 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:16:26.040Z
+
+START T2d_He_scale_free_mix_05 config=thesisExperiment/configs/phase2/T2d_He_scale_free_mix_05.json
+
+---
+
+## 2026-09-19T04:16:30.118Z
+
+END T2d_H_hierarchical_conspiracy_climate_piggyback status=0 elapsedMs=630895 runDir=T2d_H_hierarchical_conspiracy_climate_piggyback_2026-09-19_04-05-59 usage=781 calls, 370573 prompt / 50041 completion tokens ~$0.0856 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:16:30.118Z
+
+START T2d_H_hierarchical_mitigation_first_policy config=thesisExperiment/configs/phase2/T2d_H_hierarchical_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:16:35.847Z
+
+END T2c_H_small_world_climate_justice_youth status=0 elapsedMs=1329153 runDir=T2c_H_small_world_climate_justice_youth_2026-09-19_03-54-26 usage=1166 calls, 521668 prompt / 91618 completion tokens ~$0.1332 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:16:35.847Z
+
+START T2c_H_small_world_biodiversity_food_security config=thesisExperiment/configs/phase2/T2c_H_small_world_biodiversity_food_security.json
+
+---
+
+## 2026-09-19T04:16:36.542Z
+
+END T2c_He_hierarchical_mix_04 status=0 elapsedMs=18619 runDir=T2c_He_hierarchical_mix_04_2026-09-19_04-16-17 usage=16 calls, 8105 prompt / 1220 completion tokens ~$0.0019 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:16:36.543Z
+
+START T2c_He_hierarchical_mix_05 config=thesisExperiment/configs/phase2/T2c_He_hierarchical_mix_05.json
+
+---
+
+## 2026-09-19T04:16:37.973Z
+
+END T2d_He_scale_free_mix_04 status=0 elapsedMs=1120839 runDir=T2d_He_scale_free_mix_04_2026-09-19_03-57-57 usage=1531 calls, 713944 prompt / 88295 completion tokens ~$0.1601 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:17:28.426Z
+
+END T2c_He_scale_free_mix_05 status=0 elapsedMs=1285337 runDir=T2c_He_scale_free_mix_05_2026-09-19_03-56-03 usage=1103 calls, 526274 prompt / 94142 completion tokens ~$0.1354 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:17:28.426Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:17:32.671Z
+
+END T2d_H_hierarchical_conspiracy_believer status=0 elapsedMs=736880 runDir=T2d_H_hierarchical_conspiracy_believer_2026-09-19_04-05-15 usage=968 calls, 449993 prompt / 55575 completion tokens ~$0.1008 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:17:32.671Z
+
+START T2d_H_hierarchical_ozone_stratosphere_specialist config=thesisExperiment/configs/phase2/T2d_H_hierarchical_ozone_stratosphere_specialist.json
+
+---
+
+## 2026-09-19T04:17:36.706Z
+
+END T2d_He_scale_free_mix_03 status=0 elapsedMs=1169997 runDir=T2d_He_scale_free_mix_03_2026-09-19_03-58-06 usage=1538 calls, 718567 prompt / 90334 completion tokens ~$0.162 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:17:36.706Z
+
+START T2d_He_echo_chamber_mix_00 config=thesisExperiment/configs/phase2/T2d_He_echo_chamber_mix_00.json
+
+---
+
+## 2026-09-19T04:17:42.461Z
+
+PHASE_P2 TH n=12 concurrency=4 topology=polarized slice=T2c_H
+
+---
+
+## 2026-09-19T04:17:42.461Z
+
+START T2c_H_polarized_conspiracy_believer config=thesisExperiment/configs/phase2/T2c_H_polarized_conspiracy_believer.json
+
+---
+
+## 2026-09-19T04:17:42.465Z
+
+START T2c_H_polarized_conspiracy_haarp_weather config=thesisExperiment/configs/phase2/T2c_H_polarized_conspiracy_haarp_weather.json
+
+---
+
+## 2026-09-19T04:17:42.468Z
+
+START T2c_H_polarized_conspiracy_depopulation config=thesisExperiment/configs/phase2/T2c_H_polarized_conspiracy_depopulation.json
+
+---
+
+## 2026-09-19T04:17:42.472Z
+
+START T2c_H_polarized_conspiracy_climate_piggyback config=thesisExperiment/configs/phase2/T2c_H_polarized_conspiracy_climate_piggyback.json
+
+---
+
+## 2026-09-19T04:17:42.477Z
+
+PHASE_P2 TH n=12 concurrency=4 topology=polarized slice=T2d_H
+
+---
+
+## 2026-09-19T04:17:42.477Z
+
+START T2d_H_polarized_conspiracy_believer config=thesisExperiment/configs/phase2/T2d_H_polarized_conspiracy_believer.json
+
+---
+
+## 2026-09-19T04:17:42.495Z
+
+START T2d_H_polarized_conspiracy_haarp_weather config=thesisExperiment/configs/phase2/T2d_H_polarized_conspiracy_haarp_weather.json
+
+---
+
+## 2026-09-19T04:17:42.499Z
+
+START T2d_H_polarized_conspiracy_depopulation config=thesisExperiment/configs/phase2/T2d_H_polarized_conspiracy_depopulation.json
+
+---
+
+## 2026-09-19T04:17:42.513Z
+
+START T2d_H_polarized_conspiracy_climate_piggyback config=thesisExperiment/configs/phase2/T2d_H_polarized_conspiracy_climate_piggyback.json
+
+---
+
+## 2026-09-19T04:17:42.520Z
+
+PHASE_P2 TH n=0 concurrency=4 topology=polarized slice=T2d_He
+
+---
+
+## 2026-09-19T04:17:42.520Z
+
+PHASE_P2 THe n=6 concurrency=4 topology=polarized slice=T2d_He
+
+---
+
+## 2026-09-19T04:17:42.522Z
+
+START T2d_He_polarized_mix_00 config=thesisExperiment/configs/phase2/T2d_He_polarized_mix_00.json
+
+---
+
+## 2026-09-19T04:17:42.523Z
+
+PHASE_P2 TH n=0 concurrency=4 topology=polarized slice=T2c_He
+
+---
+
+## 2026-09-19T04:17:42.524Z
+
+PHASE_P2 THe n=6 concurrency=4 topology=polarized slice=T2c_He
+
+---
+
+## 2026-09-19T04:17:42.524Z
+
+START T2c_He_polarized_mix_00 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_00.json
+
+---
+
+## 2026-09-19T04:17:42.535Z
+
+START T2d_He_polarized_mix_01 config=thesisExperiment/configs/phase2/T2d_He_polarized_mix_01.json
+
+---
+
+## 2026-09-19T04:17:42.539Z
+
+START T2d_He_polarized_mix_02 config=thesisExperiment/configs/phase2/T2d_He_polarized_mix_02.json
+
+---
+
+## 2026-09-19T04:17:42.546Z
+
+START T2d_He_polarized_mix_03 config=thesisExperiment/configs/phase2/T2d_He_polarized_mix_03.json
+
+---
+
+## 2026-09-19T04:17:42.551Z
+
+START T2c_He_polarized_mix_01 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_01.json
+
+---
+
+## 2026-09-19T04:17:42.559Z
+
+START T2c_He_polarized_mix_02 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_02.json
+
+---
+
+## 2026-09-19T04:17:42.566Z
+
+START T2c_He_polarized_mix_03 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_03.json
+
+---
+
+## 2026-09-19T04:17:48.661Z
+
+END T2c_He_hierarchical_mix_05 status=0 elapsedMs=72050 runDir=T2c_He_hierarchical_mix_05_2026-09-19_04-16-36 usage=56 calls, 26465 prompt / 5415 completion tokens ~$0.0072 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:17:48.704Z
+
+SKIP complete T2c_He_linear_chain_mix_00 (T2c_He_linear_chain_mix_00_2026-09-19_02-49-25)
+
+---
+
+## 2026-09-19T04:17:48.747Z
+
+SKIP complete T2c_He_linear_chain_mix_01 (T2c_He_linear_chain_mix_01_2026-09-19_02-49-25)
+
+---
+
+## 2026-09-19T04:17:48.788Z
+
+SKIP complete T2c_He_linear_chain_mix_02 (T2c_He_linear_chain_mix_02_2026-09-19_02-49-24)
+
+---
+
+## 2026-09-19T04:17:48.827Z
+
+SKIP complete T2c_He_linear_chain_mix_03 (T2c_He_linear_chain_mix_03_2026-09-19_02-49-24)
+
+---
+
+## 2026-09-19T04:17:48.866Z
+
+SKIP complete T2c_He_linear_chain_mix_04 (T2c_He_linear_chain_mix_04_2026-09-19_02-50-57)
+
+---
+
+## 2026-09-19T04:17:48.903Z
+
+SKIP complete T2c_He_linear_chain_mix_05 (T2c_He_linear_chain_mix_05_2026-09-19_02-51-10)
+
+---
+
+## 2026-09-19T04:17:48.923Z
+
+DEFER in-flight T2c_He_polarized_mix_00
+
+---
+
+## 2026-09-19T04:17:51.653Z
+
+END T2c_He_hierarchical_mix_02 status=0 elapsedMs=149171 runDir=T2c_He_hierarchical_mix_02_2026-09-19_04-15-22 usage=128 calls, 58252 prompt / 11474 completion tokens ~$0.0156 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:17:51.672Z
+
+DEFER in-flight T2c_He_polarized_mix_01
+
+---
+
+## 2026-09-19T04:17:53.618Z
+
+PHASE_P2 TH n=12 concurrency=4 topology=hierarchical slice=T2c_H
+
+---
+
+## 2026-09-19T04:17:53.618Z
+
+START T2c_H_hierarchical_conspiracy_believer config=thesisExperiment/configs/phase2/T2c_H_hierarchical_conspiracy_believer.json
+
+---
+
+## 2026-09-19T04:17:53.623Z
+
+START T2c_H_hierarchical_conspiracy_haarp_weather config=thesisExperiment/configs/phase2/T2c_H_hierarchical_conspiracy_haarp_weather.json
+
+---
+
+## 2026-09-19T04:17:53.624Z
+
+PHASE_P2 TH n=0 concurrency=4 topology=hierarchical slice=T2d_He
+
+---
+
+## 2026-09-19T04:17:53.624Z
+
+START T2c_H_hierarchical_conspiracy_depopulation config=thesisExperiment/configs/phase2/T2c_H_hierarchical_conspiracy_depopulation.json
+
+---
+
+## 2026-09-19T04:17:53.626Z
+
+PHASE_P2 THe n=6 concurrency=4 topology=hierarchical slice=T2d_He
+
+---
+
+## 2026-09-19T04:17:53.626Z
+
+START T2d_He_hierarchical_mix_00 config=thesisExperiment/configs/phase2/T2d_He_hierarchical_mix_00.json
+
+---
+
+## 2026-09-19T04:17:53.631Z
+
+START T2c_H_hierarchical_conspiracy_climate_piggyback config=thesisExperiment/configs/phase2/T2c_H_hierarchical_conspiracy_climate_piggyback.json
+
+---
+
+## 2026-09-19T04:17:53.635Z
+
+START T2d_He_hierarchical_mix_01 config=thesisExperiment/configs/phase2/T2d_He_hierarchical_mix_01.json
+
+---
+
+## 2026-09-19T04:17:53.637Z
+
+START T2d_He_hierarchical_mix_02 config=thesisExperiment/configs/phase2/T2d_He_hierarchical_mix_02.json
+
+---
+
+## 2026-09-19T04:17:53.649Z
+
+START T2d_He_hierarchical_mix_03 config=thesisExperiment/configs/phase2/T2d_He_hierarchical_mix_03.json
+
+---
+
+## 2026-09-19T04:18:03.945Z
+
+DEFER in-flight T2c_He_polarized_mix_02
+
+---
+
+## 2026-09-19T04:18:06.695Z
+
+DEFER in-flight T2c_He_polarized_mix_03
+
+---
+
+## 2026-09-19T04:18:11.723Z
+
+PHASE_P2 TH n=0 concurrency=4 topology=hierarchical slice=T2c_He
+
+---
+
+## 2026-09-19T04:18:11.723Z
+
+PHASE_P2 THe n=6 concurrency=4 topology=hierarchical slice=T2c_He
+
+---
+
+## 2026-09-19T04:18:11.725Z
+
+SKIP complete T2c_He_hierarchical_mix_00
+
+---
+
+## 2026-09-19T04:18:11.726Z
+
+SKIP complete T2c_He_hierarchical_mix_01
+
+---
+
+## 2026-09-19T04:18:11.727Z
+
+SKIP complete T2c_He_hierarchical_mix_02
+
+---
+
+## 2026-09-19T04:18:11.728Z
+
+SKIP complete T2c_He_hierarchical_mix_03
+
+---
+
+## 2026-09-19T04:18:11.728Z
+
+SKIP complete T2c_He_hierarchical_mix_04
+
+---
+
+## 2026-09-19T04:18:11.730Z
+
+SKIP complete T2c_He_hierarchical_mix_05
+
+---
+
+## 2026-09-19T04:18:11.730Z
+
+CAMPAIGN_P2 finished phase=all
+
+---
+
+## 2026-09-19T04:18:18.951Z
+
+START T2c_He_polarized_mix_04 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_04.json
+
+---
+
+## 2026-09-19T04:18:21.698Z
+
+START T2c_He_polarized_mix_05 config=thesisExperiment/configs/phase2/T2c_He_polarized_mix_05.json
+
+---
+
+## 2026-09-19T04:18:25.528Z
+
+CONTINUE_MASTER progress complete=167/288 dnet=2/4
+
+---
+
+## 2026-09-19T04:18:25.532Z
+
+END T2d_He_hierarchical_mix_00 status=0 elapsedMs=31903 runDir=T2d_He_hierarchical_mix_00_2026-09-19_04-17-53 usage=44 calls, 21155 prompt / 2376 completion tokens ~$0.0046 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:18:25.532Z
+
+START T2d_He_hierarchical_mix_04 config=thesisExperiment/configs/phase2/T2d_He_hierarchical_mix_04.json
+
+---
+
+## 2026-09-19T04:18:58.445Z
+
+END T2d_He_hierarchical_mix_01 status=0 elapsedMs=64810 runDir=T2d_He_hierarchical_mix_01_2026-09-19_04-17-53 usage=79 calls, 37374 prompt / 4859 completion tokens ~$0.0085 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:18:58.446Z
+
+START T2d_He_hierarchical_mix_05 config=thesisExperiment/configs/phase2/T2d_He_hierarchical_mix_05.json
+
+---
+
+## 2026-09-19T04:19:05.316Z
+
+END T2d_He_hierarchical_mix_03 status=0 elapsedMs=71666 runDir=T2d_He_hierarchical_mix_03_2026-09-19_04-17-53 usage=86 calls, 40096 prompt / 5432 completion tokens ~$0.0093 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:19:09.317Z
+
+END T2d_He_hierarchical_mix_04 status=0 elapsedMs=43785 runDir=T2d_He_hierarchical_mix_04_2026-09-19_04-18-25 usage=60 calls, 28815 prompt / 3572 completion tokens ~$0.0065 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:19:28.530Z
+
+END T2c_H_small_world_conspiracy_haarp_weather status=0 elapsedMs=1611696 runDir=T2c_H_small_world_conspiracy_haarp_weather_2026-09-19_03-52-36 usage=1355 calls, 636546 prompt / 116715 completion tokens ~$0.1655 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:19:28.531Z
+
+START T2c_H_small_world_environmental_concern config=thesisExperiment/configs/phase2/T2c_H_small_world_environmental_concern.json
+
+---
+
+## 2026-09-19T04:19:33.629Z
+
+END T2c_H_scale_free_climate_justice_youth status=0 elapsedMs=1091593 runDir=T2c_H_scale_free_climate_justice_youth_2026-09-19_04-01-22 usage=913 calls, 405607 prompt / 76671 completion tokens ~$0.1068 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:19:33.629Z
+
+START T2c_H_scale_free_mitigation_first_policy config=thesisExperiment/configs/phase2/T2c_H_scale_free_mitigation_first_policy.json
+
+---
+
+## 2026-09-19T04:19:41.586Z
+
+END T2d_H_small_world_conspiracy_haarp_weather status=0 elapsedMs=1609655 runDir=T2d_H_small_world_conspiracy_haarp_weather_2026-09-19_03-52-51 usage=2214 calls, 1039417 prompt / 127164 completion tokens ~$0.2322 killedFor=none done=true
+
+---
+
+## 2026-09-19T04:19:41.586Z
+
+START T2d_H_small_world_environmental_concern config=thesisExperiment/configs/phase2/T2d_H_small_world_environmental_concern.json
+
+---

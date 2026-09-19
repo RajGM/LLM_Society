@@ -1,6 +1,6 @@
 # T2d_He status (dual heterogeneous, all 8 topologies)
 
-**Updated:** 2026-09-19T03:59:13.873Z
+**Updated:** 2026-09-19T04:19:51.800Z
 **OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -9,33 +9,33 @@
 **Isolation:** `thesisExperiment/runs_phase2` only (not Phase 1 `runs/` or `results/tables/`)
 **Git commit:** no
 
-**Phase:** peer T2d_He orchestrator live (pids 155296,173017). Watching; skip completed/in-progress; will run leftovers. Do not stop after one topology.
+**Phase:** peer T2d_He orchestrator live (pids 155296,173017,181273,182840,183081). Watching; skip completed/in-progress; will run leftovers. Do not stop after one topology.
 
 ## Counts (configs; each seeds 6 core articles)
 
 | Count | n |
 | --- | ---: |
 | configs | 48 |
-| completed | 26 |
+| completed | 33 |
 | failed | 0 |
-| skipped (already complete dual) | 26 |
-| in_progress | 4 |
-| pending / not_started | 18 |
-| LLM calls (this slice + probe) | 24694 |
-| Est. USD | $2.6357 |
+| skipped (already complete dual) | 33 |
+| in_progress | 11 |
+| pending / not_started | 4 |
+| LLM calls (this slice + probe) | 28434 |
+| Est. USD | $3.0007 |
 
 ## By topology
 
 | topology | configs | completed | failed | skipped | in_progress | pending |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| echo_chamber | 6 | 0 | 0 | 0 | 0 | 6 |
-| hierarchical | 6 | 0 | 0 | 0 | 0 | 6 |
+| echo_chamber | 6 | 0 | 0 | 0 | 4 | 2 |
+| hierarchical | 6 | 4 | 0 | 4 | 2 | 0 |
 | linear_chain | 6 | 6 | 0 | 6 | 0 | 0 |
-| polarized | 6 | 0 | 0 | 0 | 0 | 6 |
+| polarized | 6 | 0 | 0 | 0 | 4 | 2 |
 | random_er | 6 | 6 | 0 | 6 | 0 | 0 |
 | ring | 6 | 6 | 0 | 6 | 0 | 0 |
-| scale_free | 6 | 3 | 0 | 3 | 3 | 0 |
-| small_world | 6 | 5 | 0 | 5 | 1 | 0 |
+| scale_free | 6 | 5 | 0 | 5 | 1 | 0 |
+| small_world | 6 | 6 | 0 | 6 | 0 | 0 |
 
 ## Probe (dual)
 

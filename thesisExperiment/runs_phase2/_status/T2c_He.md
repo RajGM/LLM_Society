@@ -1,6 +1,6 @@
 # T2c_He status (continuous heterogeneous, all 8 topologies)
 
-**Updated:** 2026-09-19T03:59:14.823Z
+**Updated:** 2026-09-19T04:19:56.791Z
 **OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -10,41 +10,41 @@
 
 **Phase:** grid (sibling T2c_He orchestrator live; concurrency 4; skip completed).
 
-Orchestrators: pid 155290, pid 172920.
+Orchestrators: pid 155290, pid 181271, pid 181981, pid 182799.
 
 ## Counts (configs; each seeds 6 core articles)
 
 | Count | n |
 | --- | ---: |
 | configs | 48 |
-| completed | 25 |
+| completed | 35 |
 | failed | 0 |
 | skipped (already complete continuous) | 0 |
-| in-flight | 5 |
-| pending / not_started | 23 |
-| LLM calls (this slice + probe) | 13567 |
-| Est. USD | $1.65 |
+| in-flight | 13 |
+| pending / not_started | 13 |
+| LLM calls (this slice + probe) | 18686 |
+| Est. USD | $2.2901 |
 
 ## By topology
 
 | topology | configs | completed | failed | skipped | pending | in-flight |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| echo_chamber | 6 | 0 | 0 | 0 | 6 | 0 |
-| hierarchical | 6 | 0 | 0 | 0 | 6 | 0 |
+| echo_chamber | 6 | 0 | 0 | 0 | 6 | 6 |
+| hierarchical | 6 | 6 | 0 | 0 | 0 | 0 |
 | linear_chain | 6 | 6 | 0 | 0 | 0 | 0 |
-| polarized | 6 | 0 | 0 | 0 | 6 | 0 |
+| polarized | 6 | 0 | 0 | 0 | 6 | 6 |
 | random_er | 6 | 6 | 0 | 0 | 0 | 0 |
 | ring | 6 | 6 | 0 | 0 | 0 | 0 |
-| scale_free | 6 | 3 | 0 | 0 | 3 | 3 |
-| small_world | 6 | 4 | 0 | 0 | 2 | 2 |
+| scale_free | 6 | 5 | 0 | 0 | 1 | 1 |
+| small_world | 6 | 6 | 0 | 0 | 0 | 0 |
 
 ## Probe (continuous)
 
 - experiment: `probe_T2c_He`
 - status: complete
 - failed: false
-- usage: 2 calls, 1056 prompt / 220 completion tokens ~$0.0003
-- usageCalls: 2
+- usage: 1 calls, 604 prompt / 28 completion tokens ~$0.0001
+- usageCalls: 1
 
 ## Isolation
 
