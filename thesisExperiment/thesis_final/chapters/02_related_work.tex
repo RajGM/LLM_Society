@@ -3,10 +3,10 @@
 
 This chapter locates the thesis at the intersection of misinformation diffusion,
 online-firestorm theory, geoengineering discourse, network science, and
-large-language-model (LLM) agent simulation.  The distinction between these
-literatures matters.  A model may reproduce the reach of a cascade without
-representing how its claims change, while fluent agent output may look socially
-plausible without constituting a valid model of people.  The review therefore
+large-language-model (LLM) agent simulation.  These research areas address different analytical objects. A model may
+reproduce cascade reach without representing changes in claims. Conversely,
+fluent agent output may appear socially plausible without providing a valid
+model of human behaviour.  The review therefore
 connects substantive theory to the thesis's observables and closes by stating
 the specific gap addressed by the experiments.
 
@@ -21,16 +21,18 @@ than treating falsity as a classification problem alone.  Large-scale
 observational evidence confirms that diffusion is socially structured:
 \textcite{vosoughi2018false} found that false news on Twitter travelled farther,
 faster, deeper, and more broadly than true news in their data.  Novelty and
-emotional response helped distinguish false from true cascades, while automated
-accounts accelerated both.  These findings motivate models with content and
+emotional response helped distinguish false from true cascades. Bots
+accelerated true and false news at roughly the same rate; the differential
+spread was attributed primarily to humans.  These findings motivate models with content and
 agent state, but they do not imply that every simulated cascade should reproduce
 the same ordering.
 
 Classical diffusion models provide useful null formalisms.  In the independent
 cascade model, an activated node receives one probabilistic opportunity to
-activate each neighbour \parencite{kempe2003influence}.  Related compartmental
-and threshold models reduce the state of a node to susceptible, active, adopted,
-or an opinion scalar.  Their abstraction is an advantage for identifying
+activate each neighbour \parencite{kempe2003influence}.  Compartmental
+epidemic models \parencite{kermack1927epidemics} and threshold models
+\parencite{granovetter1978threshold} reduce the state of a node to
+susceptible, active, adopted, or an opinion scalar.  Their abstraction is an advantage for identifying
 conditions for reach or consensus, but an edge transmits a state rather than
 rewriting a proposition.  This thesis instead studies a transmission in which
 the text itself can lose, invert, or acquire claims.  The distinction is between
@@ -58,7 +60,7 @@ flow, lack of diversity, cross-media dynamics, and network-triggered decision
 processes.  It does not present an agent-based generative model, a semantic
 misinformation scale, or a tipping-time estimator.
 
-This point prevents a common attribution error.  The six simulation dimensions
+The distinction is necessary because the thesis dimensions are not Pfeffer et al.'s original factors.  The six simulation dimensions
 used in this thesis---valence, surprise, identity alignment, network clustering,
 information echo, and temporal acceleration---are a \emph{computational
 remapping}, not Pfeffer et al.'s original list.  Valence represents the affective
@@ -108,7 +110,9 @@ they are not user clusters or fitted population proportions.  The public data
 deposit contains tweet identifiers \parencite{debnath2023dataset}.  The thesis
 did not hydrate and recluster the 814,924 tweets and therefore does not claim to
 replicate Debnath et al.'s analysis, infer their social graph, or construct a
-Twitter digital twin.
+Twitter digital twin. The DataCite record for version~1 of that deposit is
+Debnath's 2022 ``Geoengineering on Twitter'' dataset
+\parencite{debnath2022dataset}; version~2 is a 2023 update.
 
 This separation supports a defensible use of the case.  The observational study
 supplies the empirical phenomenon---chemtrails-related spillover, affect, and
@@ -163,8 +167,7 @@ included, their prevalence, their network positions, and whether prompts create
 genuine behavioural variation or merely labels.
 
 The immediate methodological predecessor is the auditor--node system of
-\textcite{maurya2025simulating}, presented at the LASS workshop at ACM CIKM
-2025.  It compares persona-homogeneous and persona-heterogeneous linear rewrite
+\textcite{maurya2025simulating}, available as a 2025 arXiv preprint.  It compares persona-homogeneous and persona-heterogeneous linear rewrite
 chains and introduces the discrete Misinformation Index (MI) and branch-level
 Misinformation Propagation Rate (MPR).  Those general-news linear-chain findings
 are \emph{prior work}, not results of this thesis.  The present work retains the
@@ -185,9 +188,10 @@ an agent as a model of a person.
 
 Most directly, \textcite{li2026diffusion} condition LLM-agent forwarding on
 psychological traits and compare diffusion under different network structures,
-including an empirical Higgs community.  Their topology-sensitive forwarding
-study is close to this thesis, but the focal state remains sharing and diffusion
-rather than audited claim-by-claim mutation in geoengineering text.  The
+including an empirical Higgs community. Adjacent LLM-enhanced influence
+simulators such as LAID also treat information propagation as the focal
+process \parencite{hu2024laid}. Their focal state remains sharing and
+diffusion rather than audited claim-by-claim mutation in geoengineering text.  The
 literatures are complementary: one asks whether an item is forwarded; this
 thesis asks how the item's factual content changes as a function of identity
 mix and topology.
@@ -199,7 +203,8 @@ from selected economic experiments \parencite{horton2023silicus}.  Such results
 support LLMs as inexpensive theory probes, not synthetic replacements for human
 participants.  Training-data contamination, prompt sensitivity, stochasticity,
 stereotype amplification, limited within-group variance, and obedience to
-experimenter instructions all threaten behavioural interpretation.  In this
+experimenter instructions all threaten behavioural interpretation
+\parencite{larooij2025validation,argyle2023one}.  In this
 thesis, ``homogeneous'' and ``heterogeneous'' consequently describe prompt
 conditions in a computational experiment.  They do not denote representative
 human populations.
@@ -222,10 +227,10 @@ QA-based factuality evaluation supplies a methodological warrant.
 \textcite{fabbri2022qafacteval} show that question answering can assess factual
 consistency in summarisation more directly than lexical overlap.  LLM judges can
 also agree substantially with human preferences, but exhibit position,
-verbosity, and self-enhancement biases \parencite{zheng2023judge}.  Neither result
-validates this thesis's exact instrument: fixed binary questions about
-geoengineering, answered by an LLM judge, are a different construct and use
-case.
+verbosity, and self-enhancement biases \parencite{zheng2023judge}.  Neither QA-based factuality evaluation nor reported LLM-judge agreement
+validates the instrument used here. This instrument asks an LLM judge to
+answer fixed binary questions about geoengineering and therefore measures a
+different construct in a different setting.
 
 The distinction between discrete and continuous scoring must therefore remain
 visible.  In discrete MI, each item is classified as recovered, missing, or
@@ -256,7 +261,7 @@ fail-closed parsing, deterministic judging where possible, manual inspection,
 human coding of a sample, and agreement reported at the decision boundary used
 for the substantive claim.  Until such evidence exists, MI and MPR are best
 described as \emph{simulation audit scores}, not validated measures of human
-misinformation belief.
+misinformation belief \parencite{lewandowsky2012misinformation}.
 
 \section{Validation of generative social simulation}
 \label{sec:lit-simulation-validation}
@@ -302,24 +307,23 @@ shape but usually treats content as a binary or fixed state
 \parencite{kempe2003influence,centola2007complex}.  Debnath et al. provide a
 large observational map of geoengineering conspiracy spillovers but not
 controlled counterfactual societies \parencite{debnath2023conspiracy}.  LLM
-societies generate heterogeneous behaviour at increasing scale, yet their
-misinformation evaluations commonly emphasise sharing, aggregate plausibility,
-or believability rather than a validated trajectory of proposition-level change.
+societies generate heterogeneous behaviour at increasing scale, yet the
+systems reviewed here commonly emphasise sharing, aggregate plausibility,
+or believability rather than a validated trajectory of proposition-level change
+\parencite{larooij2025validation}.
 Finally, the prior auditor--node study supplies MI/MPR and homogeneous versus
 heterogeneous chains, but not a geoengineering-grounded network experiment
 \parencite{maurya2025simulating}.
 
-The gap filled by this thesis is therefore \emph{not} a new general-purpose agent
-architecture and not a replication of an 814,924-tweet study.  It is a
-theory-mapped, auditable test of how network topology and Debnath-grounded
-identity composition jointly condition semantic misinformation trajectories in
-geoengineering discourse.  It connects (i) an explicit seven-to-six Pfeffer
-operationalisation, (ii) controlled homogeneous and heterogeneous LLM-agent
-societies, and (iii) discrete and continuous claim-recovery instruments whose
-validity limits remain explicit.  The empirical contribution is the resulting
-climate-domain comparison and its validation evidence; the methodological
-contribution is a separation of transmission, semantic mutation, firestorm
-timing, and instrument choice.  This design addresses a question not answered
-by any one parent literature: under fixed scientific seeds, are apparent
-firestorm thresholds robust to who occupies the network, how those agents are
-connected, and how factual degradation is measured?
+This thesis neither proposes a general-purpose agent architecture nor
+replicates the 814,924-tweet study. Within the literature reviewed here,
+prior studies do not combine geoengineering-specific persona prompts, multiple
+small-network generators, and claim-recovery auditing in one controlled
+campaign. The contribution is this documented combination and its
+measurement-sensitivity analysis.
+
+The review therefore leaves three requirements for the analytical framework:
+separate content change from cascade reach, model persona composition jointly
+with network position, and treat auditor output as a measurement rather than
+ground truth. Chapter~\ref{chap:theory} turns these requirements into a
+generative process, five propositions, and an explicit evidence boundary.

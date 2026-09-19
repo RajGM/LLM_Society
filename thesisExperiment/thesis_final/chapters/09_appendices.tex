@@ -1,20 +1,17 @@
-% Draft reproducibility appendix for the full thesis.
-% Expected parent packages: booktabs, longtable, array, listings, xcolor,
-% hyperref, xurl, amsmath, and enumitem.
-% This is an input fragment, not a standalone document.
-
-\appendix
+% \appendix
 \chapter{Reproducibility materials}
 \label{app:reproducibility}
 
 This appendix records the executable specification of the Phase~2 campaign.
-Paths are relative to the repository root.  The canonical machine-readable
-design is \path{thesisExperiment/configs/grid_phase2.json}; where this appendix
-and a generated artefact disagree, that file and the raw run metadata take
-precedence.  The campaign used one graph seed (\texttt{graphRandomSeed: 42})
-and one replicate, and therefore is not a replicated inferential experiment.
-Continuous and dual-discrete misinformation indices are separate instruments
-and must not be averaged.
+Paths are relative to the repository root. The file
+\path{thesisExperiment/configs/grid_phase2.json} provides the canonical
+machine-readable design. If the appendix conflicts with a generated artefact,
+readers should follow this file and the raw run metadata. Configurations
+recorded \texttt{graphRandomSeed: 42}, but only the echo-chamber and polarised
+builders consumed it; ER, small-world, scale-free, and action sampling used
+unseeded \texttt{Math.random}. The parser retained one complete
+positive-call directory per configuration. Continuous and dual-discrete
+misinformation indices are separate instruments and must not be averaged.
 
 \section{Configuration matrix}
 \label{app:config-matrix}
@@ -50,12 +47,13 @@ Probes & field checks & selected & custom or chain & selected & 5 configs & 5 pa
 \end{longtable}
 
 All T2 configurations use \texttt{gpt-4o-mini} for both the propagating agent
-and auditor, eight nodes, eight ticks, a maximum of eight hops, one drip seed
-(\texttt{node\_0}), an inbox cap of four, an always-active schedule, relation
-evolution with \texttt{trustDelta=0.05}, and six seed articles.  Graph
-configurations use action weights 0.35/0.50/0.15 for
-forward/reinterpret/drop and trust threshold 0.15.  The linear chain is the
-deliberately rewrite-heavy exception: 0.10/0.85/0.05 and threshold 0.08.
+and auditor, eight nodes, eight processing ticks, a configured maximum of
+eight hops, a single-node single-time seed into \texttt{node\_0}, an inbox cap
+of four, an always-active schedule, relation evolution with
+\texttt{trustDelta=0.05}, and six seed articles. Linear-chain and ring
+configurations use action weights 0.10/0.85/0.05 for
+forward/reinterpret/drop and trust threshold 0.08. The other six main-grid
+generators use 0.35/0.50/0.15 and threshold 0.15.
 Output is isolated under \path{thesisExperiment/runs_phase2/}; Phase~1
 \path{runs/}, \path{results/tables/}, and \path{configs/full/} are not inputs to
 the Phase~2 headlines.
@@ -100,8 +98,8 @@ Identifier & Parameters & Construction\\
 $v_i\rightarrow v_{i+1}$ for $i=0,\ldots,6$.\\
 \texttt{ring} & edge trust 0.7 & Linear chain plus
 $v_7\rightarrow v_0$.\\
-\texttt{random\_er} & $p=0.42$; minimum seed out-degree 2 & Each ordered
-non-self pair is sampled; a guard adds outgoing seed edges if required.\\
+\texttt{random\_er} & $p=0.42$; recorded \texttt{minSeedOutDegree}=2 is ignored & Each ordered
+non-self pair is sampled with unseeded \texttt{Math.random}; no seed-degree guard is applied; edge trust is $0.3+U(0,0.5)$.\\
 \texttt{small\_world} & $k=4$, $\beta=0.1$ & Directed ring lattice to two
 neighbours on each side; forward-side edges are rewired with probability
 $\beta$.\\
@@ -201,6 +199,12 @@ mix_05 = [climate_scientist, climate_action_advocate,
   ozone_stratosphere_specialist, conspiracy_peripheral_skywatcher]
 \end{lstlisting}
 
+These declared orders are realised for linear, ring, ER, small-world, and
+scale-free generators. Echo-chamber, polarised, and hierarchical
+configurations assign from filtered cluster pools and, for five of six mixes,
+realise only four or five unique personas. Polarised assignment alternates by
+node index and does not align with the graph's two contiguous halves.
+
 \subsection{Articles}
 
 \begin{longtable}{@{}p{0.28\textwidth}p{0.19\textwidth}p{0.10\textwidth}p{0.31\textwidth}@{}}
@@ -246,8 +250,10 @@ Article identifier & Domain & Use & Short topic\\
 \end{longtable}
 
 The source text, exact questions, expected Boolean answers, and source URLs are
-stored in \path{thesisExperiment/articles/merged.json}.  The inventories above
-identify experimental inputs; they do not reproduce the full stimuli.
+stored in \path{thesisExperiment/articles/merged.json}. Scholarly provenance for
+the six core articles is summarised in \Cref{tab:article-provenance}. The
+inventories above identify experimental inputs; they do not reproduce the full
+stimuli.
 
 \section{Prompt templates and IFD fields}
 \label{app:prompts-ifd}
@@ -297,6 +303,9 @@ Text:
 Questions (with expected answers):
 1. <question> (expected: Yes|No)
 ...
+
+IFD_SCORE_QUERY: Return only the JSON with values 1, 0, or -1.
+CONTINUOUS_SCORE_QUERY: Return only the JSON with float scores 0.0 to 1.0.
 \end{lstlisting}
 
 For $m=5$ questions, discrete scores $s_i\in\{-1,0,1\}$ produce
@@ -617,27 +626,23 @@ Path & Purpose\\
 \path{thesisExperiment/CONSOLIDATED_OVERLAPS/} & retained non-canonical conflict copies\\
 \end{longtable}
 
-\section{Credential handling and consolidation provenance}
+\section{Data availability and consolidation provenance}
 \label{app:security-provenance}
 
-The OpenAI credential is runtime infrastructure, not a research artefact.
-It must be supplied through \texttt{OPENAI\_API\_KEY} or an ignored local
-\path{.env} file.  Never paste a value into a configuration, manuscript,
-terminal transcript, issue, manifest, or committed file; never print
-\path{.env}.  The safe readiness check is
-\begin{lstlisting}[language=bash,basicstyle=\ttfamily\small]
-node thesisExperiment/scripts/check_openai_key.js
-\end{lstlisting}
-which reports only presence, length, and candidate locations.  Repository
-ignore rules cover \path{.env}, \path{.env.local}, and
-\path{.env.*.local}.  Raw metadata records usage and model names but no API
-credential.
+A public persistent archive, release tag, licence, and checksums were not
+available at integration time. The present PDF therefore documents a
+repository-relative, traceable harvest rather than a DOI-backed release.
+\textbf{[ARCHIVE: insert repository URL, commit SHA, licence, and checksums
+before submission.]} API credentials must not appear in configurations,
+manuscripts, terminal transcripts, issues, manifests, committed files, or
+printed \path{.env} contents.
 
 The consolidation record is
-\path{thesisExperiment/CONSOLIDATION_LOG.md}.  It identifies source branches,
+\path{thesisExperiment/CONSOLIDATION_LOG.md}. It identifies source branches,
 merge order, retained overlap copies, official artefact locations, and the
-resolution of the historical 290-versus-292 dead-cell discrepancy.  The
-canonical parse ledger contains 292 dead T2 cells; older 290-cell analysis
-copies remain under
-\path{thesisExperiment/CONSOLIDATED_OVERLAPS/analysis_phase2_hatch290/} for
-auditability and must not replace the canonical tables.
+resolution of the historical 290-versus-292 dead-cell discrepancy. The
+canonical parse ledger contains 292 dead T2 cells. The repository retains
+older 290-cell analysis copies under
+\path{thesisExperiment/CONSOLIDATED_OVERLAPS/analysis_phase2_hatch290/}
+for provenance; these copies are non-canonical and must not be used in place
+of the 292-cell tables.

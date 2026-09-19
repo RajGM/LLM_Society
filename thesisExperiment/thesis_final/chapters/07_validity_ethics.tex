@@ -1,26 +1,24 @@
-% Draft chapter fragment: validity, ethics, and future work.
-% This file is intentionally candid about the Phase 2 harvest and must not be
-% read as a claim of empirical Twitter/X validation.
-
 \chapter{Validity, Ethics, and Reproducibility}
 \label{chap:limitations}
 
-The Phase~2 results are evidence about the behaviour of one configured
-simulation campaign, not estimates of population effects and not a validated
-digital twin of online climate discourse.  The harvest itself records
-\texttt{thesisGrade=false}.  Its main value is therefore diagnostic: it shows
-which patterns appeared under the specified graph generators, personas,
-articles, language model, and scoring instruments, while exposing where those
-patterns are sensitive to design choices.
+The Phase~2 results describe one configured simulation campaign. They are not
+population estimates and not a validated digital twin of online climate
+discourse. The harvest is therefore diagnostic: it shows which patterns
+appeared under the specified graph generators, personas, articles, language
+model, and scoring instruments, and where those patterns are sensitive to
+design choices and API availability.
 
-\subsection{Internal and statistical validity}
+\section{Internal and statistical validity}
 
 \paragraph{One replicate.}
-Every grid cell was run once with \texttt{graphRandomSeed=42} ($N=1$).
-Events from the same run are dependent because they share a graph, node
-states, inboxes, trust updates, and article history.  Article-cells and scored
-events consequently cannot be treated as independent experimental
-replicates.  The reported means, rank orders, and exploratory tests are
+The parser retained one run per configuration ($N=1$). Configurations
+recorded \texttt{graphRandomSeed: 42}, but only the echo-chamber and polarised
+builders consumed it; ER, small-world, scale-free, and action sampling used
+unseeded \texttt{Math.random}. Article cells within a configuration share the
+realised graph, persona assignment, protocol, and hosted-model context, so they
+are not independent campaign replicates. Inboxes and per-article histories
+were cleared between articles, and post-hoc trust updates could not alter
+already completed trajectories.  The reported means and rank orders are
 descriptive comparisons of this harvest; they do not provide confidence
 intervals, population-level significance tests, or causal estimates of a
 topology or identity-mix effect.  In particular, a small \(p\)-value computed
@@ -37,12 +35,12 @@ independent run.
 
 \paragraph{Eight-hop horizon.}
 The campaign stops after eight ticks/hops, a cost compression relative to the
-CIKM chain length of 30.  This horizon is neither an empirical firestorm
+prior linear-chain length of 30.  This horizon is neither an empirical firestorm
 duration nor Debnath et al.'s protocol: their \enquote{eight} is a skip-gram
 context window of eight words.  The short horizon right-censors propagation
 and weakens the interpretation of \(k^{\ast}\), which is defined as the first
 observed tick above the threshold with no later observed recovery.  A cascade
-that appears irreversible at tick eight may recover at tick nine.
+that appears sustained within the window at tick eight may recover at tick nine.
 
 \emph{Mitigation.}  Tick counts are not translated into clock time, and
 \(k^{\ast}\) is reported as an eight-tick simulation outcome.  Future work
@@ -98,8 +96,12 @@ fallback flags on events.  Propagation sparsity, rewrite failure, audit
 failure, and parse failure should be separate denominators.
 
 \paragraph{Auditor circularity.}
-The same model family generates the messages and judges them against five
-author-curated questions.  Shared model priors can create correlated generator
+The generator and judge use the same \texttt{gpt-4o-mini} endpoint and client
+defaults, so dual scoring tests two prompts of one model rather than two
+independent instruments. High conspiracy-persona scores may primarily measure
+role-prompt compliance. The campaign has no human or cross-family criterion
+for accuracy, realism, or calibration. The same model family generates the
+messages and judges them against five author-curated questions.  Shared model priors can create correlated generator
 and judge errors, while the selected questions determine what counts as
 missing or incorrect.  Discrete and continuous scores are also different
 instruments: the dual-run discrete headline, its continuous sidecar, and the
@@ -115,7 +117,9 @@ used to generate the content.
 
 \paragraph{Hatched-cell policy.}
 Of 1,728 thesis cells, 292 are hatched because
-\texttt{nScored}$\leq 1$ despite real LLM calls.  They are kept in the ledger
+\texttt{nScored}$\leq 1$ (232 with zero scored events and 60 with one).
+Positive configuration-level LLM usage does not prove that the article cell
+itself received a successful auditor call.  They are kept in the ledger
 but excluded from live-only means; they are neither zeros nor evidence that a
 mix prevented misinformation.  If death depends on topology, persona, or
 scoring mode, complete-case means describe surviving cascades and may be
@@ -128,7 +132,7 @@ mechanism producing unscored cells, predefine a minimum-information rule,
 rerun failed cells under the same protocol, and report sensitivity bounds or
 selection models rather than relying only on complete cases.
 
-\subsection{Construct and external validity}
+\section{Construct and external validity}
 
 \paragraph{Descriptive comparisons, not interventions.}
 The grid changes several consequential features at once.  Homogeneous and
@@ -161,14 +165,14 @@ with domain experts and affected communities, represent uncertainty and
 within-group variation, test multiple prompt formulations, and audit outputs
 for caricature and disparate treatment.
 
-\paragraph{Hashtag graph, hydration failure, and absent empirical \MPR{}.}
+\paragraph{Hashtag graph, hydration failure, and absent empirical MPR.}
 The 63-node D-net object is a hashtag co-occurrence reconstruction with 228
 directed importer edges; it is explicitly marked
 \texttt{notARetweetCascade=true}.  The edge container must not be read as
-observed retweets, replies, or follower ties.  Hydration of the reported
-814,924 tweet identifiers did not occur: the accessible OSF identifiers were
-stored in lossy scientific notation, the Mendeley identifier dump was not
-retrieved, and no Twitter/X bearer token was available.  The fallback therefore
+observed retweets, replies, or follower ties.  The study did not hydrate the
+reported 814,924 tweet identifiers. The accessible OSF identifiers were stored
+in lossy scientific notation, the Mendeley identifier dump was unavailable to
+the study, and the researchers had no Twitter/X bearer token.  The fallback therefore
 cannot reproduce user-level diffusion or temporal ordering.  Debnath et al.
 did not report the present 0--5 misinformation index or \MPR{}, so there is no
 empirical Twitter \MPR{} against which simulated \MPR{} can be matched.
@@ -185,9 +189,9 @@ validated annotation protocol rather than retrofitting simulated \MPR{}.
 The KS and Jensen--Shannon comparisons use one empirical graph against
 simulated cascades.  With \(n_{\mathrm{real}}=1\), a two-sample KS result has
 little power and does not estimate natural variation among empirical
-firestorms.  The failed DTFS score (\(0.2754<0.70\)) is evidence against the
-configured validation threshold, not a near-success to be rescued by
-individual metric matches.  Breadth similarity alone does not establish a
+firestorms.  The DTFS of \(0.2754\) falls below the configured validation threshold of
+\(0.70\). Individual metric matches do not alter this failed implementation
+diagnostic.  Breadth similarity alone does not establish a
 digital twin.
 
 \emph{Mitigation.}  These quantities are presented as diagnostics and the
@@ -196,7 +200,7 @@ empirical cascades, define metrics and tolerances before looking at simulation
 outputs, use uncertainty-aware posterior predictive checks, and validate
 structure, timing, content, and intervention response separately.
 
-\subsection{Reproducibility and resource constraints}
+\section{Reproducibility and resource constraints}
 
 The repository retains configs, model names, seeds, raw outputs, parser code,
 derived tables, hatch rules, and the official harvest timestamp.  These
@@ -216,13 +220,13 @@ fixture for testing parsers without paid calls.  Replication plans should
 budget API calls in advance and prioritise statistically informative
 replicates over a larger but unreplicated grid.
 
-\subsection{Privacy, research ethics, and dual use}
+\section{Privacy, research ethics, and dual use}
 
 \paragraph{API privacy and cost.}
 Sending content to hosted APIs transfers data to a third party and may create
-retention, jurisdiction, and terms-of-service obligations.  Although this
-campaign uses curated articles and synthetic personas, future hydration could
-introduce usernames, tweet text, profile fields, or deleted content.  Public
+retention, jurisdiction, and terms-of-service obligations.  Although the present campaign uses curated articles and synthetic personas, a
+future empirical collection could process usernames, tweet text, profile
+fields, or subsequently deleted content.  Public
 availability does not remove contextual privacy or justify redistributing
 personal data.  API access is also financially unequal and can make nominally
 reproducible research inaccessible to groups without equivalent budgets.
@@ -252,11 +256,15 @@ content to live platforms.
 
 \paragraph{No human evaluation.}
 Human-evaluation templates exist in run directories, but no completed,
-ethics-approved human study was conducted.  There is therefore no evidence
+ethics-approved human study was conducted. There is therefore no evidence
 that people find the rewrites realistic, that experts agree with the auditor,
-or that the personas faithfully represent lived discourse.  The absence of
-human evaluation is a validity limitation and an ethical safeguard: incomplete
-templates must not be presented as participant data.
+or that the personas faithfully represent lived discourse. The absence of
+human evaluation is a criterion-validity limitation as well as an ethical
+safeguard: incomplete templates must not be presented as participant data.
+The computational campaign used curated public texts and synthetic personas.
+\textbf{[ETHICS DETERMINATION: record whether the school required review,
+exemption, or a not-required determination.]} Licensing of OSF/Mendeley
+identifier access is a submission-time documentation requirement.
 
 \emph{Mitigation and future work.}  A follow-up study should obtain ethics
 approval before recruitment, use informed consent and fair compensation,
@@ -267,10 +275,10 @@ blind raters to condition, measure inter-rater agreement, and compare human,
 independent-model, and current-auditor scores.  Human review should complement,
 not merely rubber-stamp, automated scoring.
 
-\subsection{Priority future work}
+\section{Priority future work}
 
-The most consequential next step is not a larger unreplicated grid.  It is a
-smaller, preregistered validation study with independent seeds, matched
+The next study should prioritise a smaller, preregistered validation design
+over a larger unreplicated grid. Such a study should use independent seeds, matched
 compositions, longer horizons, cross-model generation and judging, and blinded
 human annotation.  In parallel, empirical comparison should remain structural
 until multiple lawfully obtained, timestamped cascades and a validated content

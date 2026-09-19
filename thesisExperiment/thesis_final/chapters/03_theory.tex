@@ -7,10 +7,7 @@
 \subsection{Purpose and analytical levels}
 
 This thesis explains how factual content changes while it moves through a synthetic social network.
-The explanation has three levels.
-Persona composition defines the agents that transform a message.
-Topology defines who can expose whom.
-Propagation joins these elements over time.
+The explanation distinguishes three levels: persona composition determines which agents transform a message, topology determines potential exposure, and propagation links agent transformations and exposure over time.
 The resulting texts are then scored with an explicit measurement instrument.
 
 This sequence separates mechanism from measurement.
@@ -30,11 +27,11 @@ Therefore, Misinformation Index (MI) and Misinformation Propagation Rate (MPR) d
 
 Three kinds of statement follow from this distinction.
 \emph{Theory} states a proposed relation among composition, topology, exposure, and content change.
-\emph{Operationalization} states how the relation is represented in the simulation.
+\emph{Operationalisation} states how the relation is represented in the simulation.
 \emph{Evidence} states what an observed source or experiment can support.
 The distinction is maintained throughout this chapter.
 
-\subsection{The integrated causal argument}
+\subsection{The integrated generative argument}
 \label{subsec:integrated-causal-argument}
 
 Let \(G=(V,E,W)\) be a directed network.
@@ -112,14 +109,15 @@ One may place a conspiracy persona at a hub.
 The other may place the same persona at the periphery.
 The label ``heterogeneous'' does not capture this difference.
 
-This point follows directly from the award paper's results.
+Results from the prior auditor--node preprint illustrate this dependence on composition and order.
 In homogeneous 30-node branches, identity- and ideology-laden personas often accelerated drift.
 Expert and neutral personas often stabilized factual content \parencite{maurya2025simulating}.
-Yet the controlled-random heterogeneous branches reached the propaganda tier in about \(85\%\) of branch--domain pairs.
+Yet the controlled-random heterogeneous branches reached the high-loss band
+(\(\mathrm{MI}>3\)) in about \(85\%\) of branch--domain pairs.
 The prior study therefore does not establish a general ``diversity buffers misinformation'' law.
 It shows that persona effects depend on order, content, and repeated interaction.
 
-\paragraph{Operationalization.}
+\paragraph{Operationalisation.}
 The thesis assigns persona identifiers and prompts to nodes.
 Homogeneous conditions repeat a focal identity.
 Heterogeneous conditions combine several identities.
@@ -129,7 +127,7 @@ Results should also be conditioned on persona family.
 A lower network mean may otherwise reflect fewer conspiracy seats rather than corrective interaction.
 
 \paragraph{Evidence.}
-The award paper provides simulation evidence for persona-conditioned drift on linear branches.
+The prior arXiv preprint provides simulation evidence for persona-conditioned drift on linear branches.
 It does not provide human behavioural validation.
 It also does not provide evidence about complex-network placement.
 The present experiments can provide evidence about synthetic agents under fixed prompts and models.
@@ -139,8 +137,7 @@ They cannot establish that real users with similar labels would behave identical
 \label{subsec:topology-exposure}
 
 \paragraph{Theory.}
-Topology does not directly alter a sentence.
-It changes the opportunities for alteration.
+Topology affects factual content indirectly by determining which agents can receive and transform a message.
 Degree controls how many transmissions can follow an event.
 Path length controls how many sequential transformations can occur.
 Clustering creates repeated exposure from connected neighbours.
@@ -155,26 +152,26 @@ That agreement is not evidence of an emergent echo chamber.
 Likewise, a scale-free graph is primarily a hub contrast.
 It is not automatically a clustering contrast.
 
-\paragraph{Operationalization.}
+\paragraph{Operationalisation.}
 The topology generator defines \(E\) and initial edge conditions.
 Persona assignment then defines the relation between social position and identity.
-The design includes chains, rings, random graphs, small-world graphs, scale-free graphs, echo chambers, polarized graphs, and hierarchical graphs.
+The design includes chains, rings, random graphs, small-world graphs, scale-free graphs, echo chambers, polarised graphs, and hierarchical graphs.
 Each topology represents a distinct exposure opportunity structure.
 No generator is treated as a complete model of a platform.
 
-The linear chain is the direct link to the award paper.
-The small-world graph is the clearest named operationalization of local clustering \parencite{watts1998collective}.
+The linear chain is the direct link to the prior arXiv preprint.
+The small-world graph is the clearest named operationalisation of local clustering \parencite{watts1998collective}.
 The scale-free graph represents unequal connectivity and hub exposure \parencite{barabasi1999emergence}.
 The random graph provides a stochastic baseline \parencite{erdos1960evolution}.
-The echo and polarized graphs encode pre-existing segregation.
+The echo and polarised graphs encode pre-existing segregation.
 They do not demonstrate that segregation emerged during the run.
 The hierarchical graph represents asymmetric transmission.
-It does not operationalize legacy-media feedback.
+It does not operationalise legacy-media feedback.
 
 \paragraph{Evidence.}
 Differences between topology cells are evidence about the implemented generators.
 They are not evidence about all networks in the same named class.
-One graph seed per cell does not identify a topology-wide effect.
+One archived realisation per cell does not identify a topology-wide effect.
 Dead cascades also carry information about reachability.
 They must not be recoded as zero misinformation.
 
@@ -203,7 +200,7 @@ Pfeffer describes this local echo as a consequence of network clusters \parencit
 In the simulation, however, repeated receipt is an implemented exposure pattern.
 It is not direct evidence of human persuasion.
 
-\paragraph{Operationalization.}
+\paragraph{Operationalisation.}
 The simulator records event time, hop count, sender, receiver, action, and rewritten text.
 Ticks and hops answer different questions.
 A tick is a simulation update.
@@ -235,14 +232,14 @@ The auditor evaluates whether each answer remains recoverable from a rewrite.
 MI summarizes deviation at one scored event.
 MPR summarizes MI over a specified collection of events.
 
-In the award paper, the answer vector has ten binary items.
+In the prior arXiv preprint, the answer vector has ten binary items.
 MI is the Hamming count between the reference and audited vectors.
 Branch MPR is the mean MI across a 30-node branch.
 Despite its name, MPR is not a temporal derivative.
 It is a branch-level average severity measure.
 This matters when the concept is transferred to a graph.
 
-\paragraph{Operationalization.}
+\paragraph{Operationalisation.}
 For discrete scoring with \(m\) questions, let \(z_{ej}=1\) when answer \(j\) is not preserved at event \(e\).
 Then
 \begin{equation}
@@ -252,7 +249,7 @@ Then
 \label{eq:discrete-mi}
 \end{equation}
 The present climate instrument uses \(m=5\).
-Its numerical range therefore differs from the award paper's ten-item instrument.
+Its numerical range therefore differs from the prior arXiv preprint's ten-item instrument.
 
 On a graph, there is no unique branch average.
 The aggregation set must be named.
@@ -277,10 +274,13 @@ A network-time summary can instead average scored events at tick \(t\):
 These quantities answer different questions.
 Neither should be labelled simply ``MPR'' without its aggregation rule.
 
-The propaganda threshold is also operational.
-The award paper labels averages at or below \(1\) as factual error.
+The high-loss threshold is also operational.
+The prior arXiv preprint labels averages at or below \(1\) as factual error.
 It labels values above \(1\) and at or below \(3\) as lies.
-It labels values above \(3\) as propaganda \parencite{maurya2025simulating}.
+It labels values above \(3\) as a high-loss or ``propaganda'' band in that
+ten-item instrument \parencite{maurya2025simulating}. The present five-item
+reuse of \(>3\) is an arbitrary sensitivity cut, not a calibrated propaganda
+category.
 The thesis reuses these cuts.
 They are design thresholds.
 They are not validated psychometric boundaries.
@@ -290,7 +290,7 @@ MI supports a claim about auditor-detected recoverability of selected source cla
 It does not directly measure belief, intent, toxicity, affect, or public harm.
 MPR supports a claim about the average of those event scores over a declared set.
 It does not show that misinformation propagated faster.
-The award paper assumes a perfect auditor in its limitations.
+The prior arXiv preprint assumes a perfect auditor in its limitations.
 The present thesis must instead treat auditor error as a validity threat.
 
 \subsection{Instrument dependence}
@@ -310,7 +310,7 @@ Changing \(r\) can change levels, rankings, and threshold crossings.
 The latent text \(X_e\) may remain unchanged.
 Therefore, a score difference across instruments is not automatically a content difference.
 
-\paragraph{Operationalization.}
+\paragraph{Operationalisation.}
 The continuous campaign and the dual-discrete campaign are separate measurement regimes.
 The continuous auditor returns graded claim-level assessments.
 The discrete headline counts claim failures.
@@ -338,7 +338,7 @@ LLM-as-judge studies motivate automated assessment, but they do not validate thi
 \label{subsec:complex-network-generalization}
 
 \paragraph{Theory.}
-The award paper studies sequential transmission chains.
+The prior arXiv preprint studies sequential transmission chains.
 Each node has one predecessor in the realized branch.
 Depth and exposure order are therefore aligned.
 A complex network breaks this alignment.
@@ -358,7 +358,7 @@ The generalization therefore preserves the event-level MI concept.
 It does not preserve every branch-level interpretation.
 Graph analyses must report path, node, event, and time aggregation separately.
 
-\paragraph{Operationalization.}
+\paragraph{Operationalisation.}
 The chain serves as a bridge to prior work.
 The topology grid then changes the adjacency structure while retaining the same basic rewrite and audit process.
 Persona composition is crossed with topology where the design permits.
@@ -375,7 +375,7 @@ The opportunity structures differ too sharply.
 
 \paragraph{Evidence.}
 The complex-network experiments can show whether a prior pattern survives a domain and structure shift.
-They cannot reproduce the award paper merely by reusing MI and MPR.
+They cannot reproduce the prior arXiv preprint merely by reusing MI and MPR.
 Evidence of generalization requires directional stability under the changed object.
 Evidence of failure is also informative.
 It places a boundary on the chain result.
@@ -398,7 +398,7 @@ Added scientist, journalist, and moderation roles supply institutional accuracy 
 These added roles support the experimental contrast.
 They are not empirical Debnath clusters.
 
-\paragraph{Operationalization.}
+\paragraph{Operationalisation.}
 The persona library translates discourse types into prompts, tags, tones, and expertise fields.
 This is a theory-faithful reduction.
 It is not a reconstruction of individual Twitter users.
@@ -447,12 +447,12 @@ Cross-media dynamics concerns an external feedback layer.
 The affective character of firestorms belongs to the definition.
 It is not an eighth numbered factor.
 
-\paragraph{Operationalization.}
+\paragraph{Operationalisation.}
 The thesis uses a computational remapping.
-Identity composition operationalizes part of lack of diversity.
-Graph generators operationalize selected cluster and flow conditions.
-Seed fan-out can operationalize shock versus drip.
-Ticks and activity schedules can operationalize simulated opportunity rates.
+Identity composition operationalises part of lack of diversity.
+Graph generators operationalise selected cluster and flow conditions.
+Seed fan-out can operationalise shock versus drip.
+Ticks and activity schedules can operationalise simulated opportunity rates.
 These mappings are partial.
 
 Two factors remain especially constrained.
@@ -483,7 +483,7 @@ The second axis is content degradation.
 It includes event MI and declared MPR aggregates.
 Firestorm interpretation also requires negative or affective content.
 
-This yields four conceptual cases.
+This yields four conceptual cases (\Cref{tab:two-axis-outcomes}).
 \begin{table}[t]
 \centering
 \caption{Communication escalation and factual degradation are distinct outcomes.}
@@ -512,7 +512,9 @@ No single mean MI can establish all three conditions.
 \label{subsec:derived-propositions}
 
 The framework yields five propositions.
-They organize the empirical analysis.
+P1 and P5 are examined directly in the present campaign.
+P2--P4 identify mechanisms that the current bundled design can describe only
+indirectly and that require matched ablations for a direct test.
 They do not report findings.
 
 \paragraph{P1: composition--alignment proposition.}
@@ -542,17 +544,20 @@ A substantive conclusion is robust only when its direction survives justified me
 Instrument disagreement is a result about measurement.
 It is not evidence of two underlying cascades in the same run.
 
-\subsection{Theory, operationalization, and evidence ledger}
+\subsection{Theory, operationalisation, and evidence ledger}
 \label{subsec:theory-ledger}
 
-\begin{table}[p]
+The ledger in \Cref{tab:theory-operation-evidence} separates theoretical
+constructs, operational choices, and admissible evidence.
+
+\begin{table}[tbp]
 \centering
 \caption{Separation of theoretical constructs, operational choices, and admissible evidence.}
 \label{tab:theory-operation-evidence}
 \scriptsize
 \begin{tabular}{p{0.13\textwidth}p{0.22\textwidth}p{0.24\textwidth}p{0.22\textwidth}}
 \toprule
-Construct & Theory & Operationalization & Evidence boundary \\
+Construct & Theory & Operationalisation & Evidence boundary \\
 \midrule
 Persona composition
 & Distribution and placement of interpretive priors shape text transformation.
@@ -562,7 +567,7 @@ Persona composition
 Topology
 & Adjacency, clustering, hubs, and bridges shape exposure opportunities.
 & Eight graph generators plus an imported custom graph.
-& Generator-specific evidence. One graph seed does not identify a topology class. \\
+& Generator-specific evidence. One archived realisation does not identify a topology class. \\
 
 Propagation
 & Selective forwarding, rewriting, and dropping jointly determine realized paths.
@@ -618,5 +623,4 @@ The contribution is an explicit bridge across three literatures.
 Pfeffer supplies the macro conditions of online firestorms.
 Debnath supplies the climate-conspiracy identities and domain.
 Maurya et al.\ supply the persona rewrite and QA-auditor instrument.
-The thesis joins these elements in a complex-network design.
-It then tests where the bridge holds, where it depends on measurement, and where it fails.
+The thesis combines these elements in a complex-network design and tests which findings persist across network structures and measurement instruments.

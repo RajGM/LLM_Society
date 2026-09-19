@@ -2,7 +2,7 @@
 \label{chap:results}
 \sloppy
 
-The results follow the analytical sequence established in the research questions. Instrument sensitivity is reported before persona composition and topology are interpreted. The D-net evidence then tests whether those patterns survive a change from generated eight-node graphs to the separate 63-node complex network.
+The results follow the research questions. Auditor-regime sensitivity is reported first, then named persona compositions, then bundled network-condition contrasts, then the separate D-net stress test. The D-net analysis examines whether selected descriptive patterns recur on a 63-node constructed hashtag graph; it does not test whether those patterns survive as identified effects.
 
 % Drafted from thesisExperiment/analysis_full live outputs on 2026-09-19.
 % Primary sources:
@@ -14,24 +14,28 @@ The results follow the analytical sequence established in the research questions
 %   tables/ifd_dual_agreement_gap.csv
 %   key_numbers.json
 
-\section{Results: MPR instrument contrasts}
+\section{Auditor-regime contrasts in live-cell mean MI}
 \label{sec:results-mpr}
 
-This section compares the continuous-only campaign (T2c) with the
-dual campaign's discrete headline (T2d).  The comparison is between
-instruments, not between two estimates on a common ground-truth scale.
-For each scored event, the discrete instrument counts the five audit items
-classified as missing or incorrect and therefore returns an integer from
-0 to 5.  The continuous instrument combines graded item scores into a
-floating-point value on approximately the same range.  In a dual run, the
-discrete value is the headline; the continuous value produced for the same
-event is retained only as a sidecar diagnostic.
+This section compares the continuous-only campaign (T2c) with the dual
+campaign's discrete headline (T2d). The comparison is a whole-pipeline
+sensitivity, not two instruments applied to the same generated texts.
+T2c and T2d are separately executed stochastic campaigns. Same-event
+evidence is restricted to the dual sidecar.
 
-All results below are descriptive point estimates from one campaign
-replicate and eight hops.  Dead cells are excluded from means and are never
-replaced by zero.  ``Paired'' denotes a shared topology--persona/mix--article
-cell that was live in both separately run campaigns; it does not turn the
-two auditor outputs into repeated measurements by a single instrument.
+The two instruments also apply different missing-item penalties on a
+nominal 0--5 range. A discrete missing item adds 1, whereas a continuous
+missing or neutral score of 0.5 adds 0.5. Five missing items therefore
+yield 5 discretely but 2.5 continuously, so a common $\mathrm{MI}>3$ cut
+is not threshold-equivalent. Dual-discrete scores exceeding continuous
+scores therefore combine scoring rules, separate realisations, and API
+coverage.
+
+All results below are descriptive point estimates from one retained run
+per configuration and eight processing ticks. Dead cells (\texttt{nScored}$\leq 1$)
+are excluded from live-cell means and are never replaced by zero.
+``Paired'' denotes a shared topology--persona/mix--article label that was
+live in both separately run campaigns.
 
 \subsection{C2: homogeneous arm, different instruments}
 \label{subsec:c2-mpr}
@@ -52,9 +56,10 @@ and 16 in both, so none of these cells enters the paired difference.
 
 \begin{table}[t]
 \centering
-\caption{C2 and C3 live-cell headline means by topology.  Each
-$\Delta$ is dual-discrete minus continuous within the stated arm.  Values
-are reported to four decimal places from the live full-analysis tables.}
+\caption{C2 and C3 live-cell mean MI by network condition. Continuous (T2c) and
+dual-discrete (T2d) remain separate instruments. Each \(\Delta\) is dual-discrete
+minus continuous within the stated arm, using equal-weight live-cell means.
+\(N=1\); dead cells (\texttt{nScored}$\leq 1$) are excluded rather than set to zero.}
 \label{tab:c2c3-mpr}
 \small
 \begin{tabular}{lrrrrrr}
@@ -79,10 +84,13 @@ Mean topology $\Delta$
 \end{tabular}
 \end{table}
 
-The dual-run diagnostics locate this separation inside the scoring
-procedure.  On the same dual events, the mean absolute gap between the
-discrete headline and its continuous sidecar is 0.8804 in H, while mean
-agreement is 0.6487.  Agreement is the Pearson correlation between the
+The dual-run diagnostics show that the difference also occurs when both
+instruments score the same event.  On live dual cells with a defined
+cell-mean agreement, the equal-cell-weighted mean absolute gap between the
+discrete headline and its continuous sidecar is 0.8804 in H ($n=478$ live
+cells), while mean agreement is 0.6487. Agreement is defined for only 270 of
+478 live H dual cells (56.5\%) because Pearson $r$ is undefined when either
+five-item vector is constant.  Agreement is the Pearson correlation between the
 item-level continuous scores and discrete responses mapped from
 $\{-1,0,+1\}$ to $\{0,0.5,1\}$.  It is therefore a within-event scoring
 diagnostic, not accuracy against external labels.  Likewise, the absolute
@@ -105,8 +113,10 @@ paired difference is 0.97785; 169 differences are positive, 25 are negative,
 and 4 are zero.  Cells dead on one side are again excluded: 42 are dead only
 in T2c, 40 only in T2d, and 8 in both.
 
-Within the He dual runs, the same-event mean absolute dual gap is 1.1145
-and mean agreement is 0.6174.  The gap is larger and agreement lower than
+Within the He dual runs, the equal-cell-weighted mean absolute dual gap is
+1.1145 and mean agreement is 0.6174. Agreement is defined for 171 of 240 live
+He dual cells (71.3\%). These are means of available cell-level correlations,
+not agreement across all live dual events.  The gap is larger and agreement lower than
 their H summaries, but these are descriptive diagnostics; with one
 replicate they do not establish an arm effect.  The live tables do not
 contain CR, MR, IR, or hop-level MI, so no corresponding contrasts are
@@ -114,10 +124,11 @@ reported.
 
 \begin{table}[t]
 \centering
-\caption{Same-event dual diagnostics by topology.  Gap is the mean
-absolute difference between the discrete headline and continuous sidecar;
-agreement is their item-level response correlation.  Neither column is an
-additional MPR.}
+\caption{Same-event dual diagnostics by network condition. Gap is the
+equal-cell-weighted mean absolute difference between the discrete headline and
+continuous sidecar. Agreement is the mean of cell-level five-item Pearson
+correlations among cells with a defined value (270/478 live H dual cells;
+171/240 live He dual cells). Neither column is a third MI or MPR.}
 \label{tab:mpr-diagnostics}
 \small
 \begin{tabular}{lrrrr}
@@ -138,7 +149,7 @@ Live-cell summary & 0.8804 & 0.6487 & 1.1145 & 0.6174 \\
 \end{tabular}
 \end{table}
 
-\subsection{Why level and rank need not agree}
+\subsection{Differences between score levels and topology rankings}
 \label{subsec:mpr-ranks}
 
 The consistent level ordering does not imply a consistent topology ranking.
@@ -181,8 +192,8 @@ whereas comparing T2c He with T2d H gives
   = -0.6475878488 .
 \]
 The sign reverses on every topology when the instrument is swapped against
-the arm (\cref{tab:c4-mpr}).  This is expected given the large
-instrument-level separation in C2 and C3.  It prevents either cross-mode
+the arm (\cref{tab:c4-mpr}).  The sign reversal is consistent with the large
+instrument-level differences observed in C2 and C3.  It prevents either cross-mode
 difference from being interpreted as an H--He effect: each combines
 identity composition and scoring mode, and neither factor is held fixed.
 
@@ -215,13 +226,12 @@ Mean topology $\Delta$
 \end{tabular}
 \end{table}
 
-Accordingly, C4 remains a labelled sensitivity contrast.  Averaging its two
-deltas would cancel differences created by swapping instruments and would
-produce a quantity with no instrument-specific interpretation.  No pooled
-C4 MPR is therefore reported.
+C4 is reported only as a labelled sensitivity contrast. Averaging its two
+deltas would cancel instrument-specific differences and yield an
+uninterpretable quantity; hence the analysis reports no pooled C4 mean.
 
 
-\section{Persona composition, article valence, and cascade persistence}
+\section{Persona composition, article identity, and within-window persistence}
 \label{sec:results-personas}
 
 This section separates the homogeneous-persona (\textbf{H}) and heterogeneous-mix
@@ -237,38 +247,75 @@ by itself identify an effect of diversity.
 
 \subsection{Homogeneous persona families}
 
-Figures~10--12 cross the twelve H personas with the six articles.  Figure~10
-shows mean misinformation persistence rate (MPR), Figure~11 shows maximum
-misinformation intensity (MI), and Figure~12 shows the irreversible crossing
-time \(k^*\).  The columns in these heatmaps are not replicates: each cell is
-one seed, and dead cells are excluded rather than entered as zero.
+\Cref{fig:h-persona-article-mpr,fig:h-persona-article-maxmi,fig:h-persona-article-kstar}
+cross the twelve H personas with the six articles. They show event-weighted
+live-cell mean MI, maximum event-level Misinformation Index, and within-window
+\(k^{*}\) occurrence. The columns are not replicates: each cell is one
+executed configuration--article observation, and cells with at most one scored
+event are excluded rather than entered as zero.
 
-The strongest separation is by persona family.  Across live H cells, the four
-conspiracy personas have continuous MPR \(2.2194\) (\(168\) live cells) and
-dual-discrete MPR \(3.1691\) (\(159\) live cells).  Their \(k^*\) rates are
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig10_h_persona_article_mpr.png}
+\caption{Homogeneous persona-by-article live-cell mean MI (event-weighted cell
+mean) under continuous (T2c) and dual-discrete (T2d) instruments. Each cell is
+one configuration--article observation, not an independent replicate. Hatched
+or missing cells have at most one scored event and are excluded from live
+means.}
+\label{fig:h-persona-article-mpr}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig11_h_persona_article_maxmi.png}
+\caption{Homogeneous persona-by-article maximum event-level Misinformation
+Index among scored events. Continuous and dual-discrete panels remain
+separate. A high maximum is not a within-window sustained crossing.}
+\label{fig:h-persona-article-maxmi}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig12_h_persona_article_kstar.png}
+\caption{Homogeneous persona-by-article occurrence of \(k^{*}\), the first
+scored tick above MI~3 sustained through the last later scored observation
+within eight ticks. Grey cells indicate no such crossing in the observed
+window.}
+\label{fig:h-persona-article-kstar}
+\end{figure}
+\FloatBarrier
+
+
+
+\Cref{tab:results-personas} reports the twelve homogeneous personas.  Across live H cells, the four
+conspiracy personas have continuous live-cell mean MI \(2.2194\) (\(168\) live cells) and
+dual-discrete live-cell mean MI \(3.1691\) (\(159\) live cells).  Their \(k^*\) rates are
 \(40.5\%\) and \(59.7\%\), respectively.  Climate-action personas are much
-lower: continuous MPR \(0.1729\) (\(117\) live) and dual-discrete MPR \(1.0488\)
+lower: continuous live-cell mean MI \(0.1729\) (\(117\) live) and dual-discrete live-cell mean MI \(1.0488\)
 (\(126\) live), with \(k^*\) rates \(0.0\%\) and \(0.8\%\).  The
-science/environment family is lowest on continuous MPR, \(0.1118\) (\(195\)
-live), but its dual-discrete MPR, \(0.8687\) (\(193\) live), is not zero; its
+science/environment family is lowest on continuous live-cell mean MI, \(0.1118\) (\(195\)
+live), but its dual-discrete live-cell mean MI, \(0.8687\) (\(193\) live), is not zero; its
 \(k^*\) rate is \(0.0\%\) in both instruments.  Thus the discrete instrument
-can assign nonzero persistence to science/environment personas without those
-runs ever locking above the \(k^*\) threshold.  Figure~20 supports reading
-this as instrument disagreement: across all live H dual cells the mean
-discrete-minus-sidecar-continuous gap is \(0.8804\), and mean agreement is
-\(0.6487\).
+can assign nonzero scores to science/environment personas without those
+runs remaining above the \(k^{*}\) threshold through the last later scored
+observation. \Cref{fig:dual-gap-agreement} supports reading this as instrument
+disagreement: among H dual cells with a defined agreement mean the
+equal-cell-weighted gap is \(0.8804\), and mean agreement is \(0.6487\).
 
 \begin{table}[t]
 \centering
-\caption{Homogeneous personas, collapsed across eight topologies and six
-articles.  MPR means and \(k^*\) rates use live cells only; each persona has 48
-expected cells per instrument.}
+\caption{Homogeneous personas, collapsed across eight network conditions and six
+articles. Live-cell mean MI (\(\overline{\mathrm{MI}}\)) is the equal-weight mean of
+event-weighted cell means. Subscripts \(c\) and \(d\) denote continuous (T2c) and
+dual-discrete (T2d). \(n\) is the live-cell count; Dead \(c/d\) counts cells with at
+most one scored event. \(k^{*}\) is an eight-tick sustained crossing among live
+cells. Each persona has 48 expected cells per instrument.}
 \label{tab:results-personas}
 \scriptsize
 \begin{tabular}{llrrrrrrrr}
 \toprule
-Persona & Family & \(n_c\) & MPR\(_c\) & \(k^*_c\) &
-\(n_d\) & MPR\(_d\) & \(k^*_d\) & Dead \(c/d\) \\
+Persona & Family & \(n_c\) & \(\overline{\mathrm{MI}}_c\) & \(k^*_c\) &
+\(n_d\) & \(\overline{\mathrm{MI}}_d\) & \(k^*_d\) & Dead \(c/d\) \\
 \midrule
 conspiracy\_believer & conspiracy & 44 & 2.4842 & 47.7\% & 38 & 3.3522 & 65.8\% & 4/10 \\
 conspiracy\_haarp\_weather & conspiracy & 40 & 2.4829 & 47.5\% & 44 & 3.3571 & 70.5\% & 8/4 \\
@@ -286,7 +333,7 @@ climate\_scientist & science/env. & 41 & 0.0130 & 0.0\% & 43 & 0.7517 & 0.0\% & 
 \end{tabular}
 \end{table}
 
-The individual rows qualify the family averages.  On continuous MPR,
+The individual rows qualify the family averages.  On continuous live-cell mean MI,
 \texttt{conspiracy\_believer} (\(2.4842\)) and
 \texttt{conspiracy\_haarp\_weather} (\(2.4829\)) are nearly tied, whereas
 \texttt{conspiracy\_depopulation} (\(1.9535\)) and
@@ -304,37 +351,82 @@ only non-conspiracy H persona with any observed \(k^*\), a \(2.2\%\) dual rate
 (one of 46 live cells).  \texttt{mitigation\_first\_policy} is lowest in that
 family (continuous \(0.0464\), dual \(0.7571\)).  Within science/environment,
 \texttt{biodiversity\_food\_security} is highest (continuous \(0.2115\), dual
-\(1.1470\)), while \texttt{climate\_scientist} has the lowest continuous MPR
-(\(0.0130\)) and \texttt{science\_journalist} the lowest dual MPR (\(0.6745\)).
-These differences are visible by article in Figures~10 and~12 and by topology
-in Figure~15.  Figure~11 is also important methodologically: maximum MI can be
-high when average persistence is modest, so a transient peak should not be
-reported as a sustained firestorm.
+\(1.1470\)), while \texttt{climate\_scientist} has the lowest continuous live-cell mean MI
+(\(0.0130\)) and \texttt{science\_journalist} the lowest dual-discrete live-cell mean MI (\(0.6745\)).
+These differences are visible by article in
+\Cref{fig:h-persona-article-mpr,fig:h-persona-article-kstar} and by network
+condition in \Cref{fig:persona-topology-mpr}.
+\Cref{fig:h-persona-article-maxmi} is also important methodologically:
+maximum event MI can be high when live-cell mean MI is modest, so a transient
+peak should not be reported as a sustained firestorm.
 
 \subsection{Heterogeneous compositions}
 
-Figures~13 and~14 provide the corresponding mix-by-article heatmaps for mean
-MPR and maximum MI, and Figure~16 crosses each mix with topology.  The
-conspiracy content of the mix tracks the principal MPR gradient more closely
-than the generic He label.  The most direct contrast is between
+\Cref{fig:he-mix-article-mpr,fig:he-mix-article-maxmi} provide the
+corresponding mix-by-article heatmaps for live-cell mean MI and maximum event
+MI, and \Cref{fig:mix-topology-mpr} crosses each mix with network condition.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig13_he_mix_article_mpr.png}
+\caption{Heterogeneous mix-by-article live-cell mean MI under continuous and
+dual-discrete instruments. Live cells only; hatched cells have at most one
+scored event.}
+\label{fig:he-mix-article-mpr}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig14_he_mix_article_maxmi.png}
+\caption{Heterogeneous mix-by-article maximum event-level Misinformation Index.
+Continuous and dual-discrete panels remain separate.}
+\label{fig:he-mix-article-maxmi}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig15_persona_topology_mpr.png}
+\caption{Homogeneous persona-by-network-condition live-cell mean MI. The linear
+chain and ring also differ in action probabilities and trust threshold, so the
+eight-condition ranking is not a topology-only contrast.}
+\label{fig:persona-topology-mpr}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig16_mix_topology_mpr.png}
+\caption{Heterogeneous mix-by-network-condition live-cell mean MI. Echo-chamber,
+polarised, and hierarchical mixes generally do not realise the declared
+eight-seat order.}
+\label{fig:mix-topology-mpr}
+\end{figure}
+\FloatBarrier
+
+\Cref{tab:results-mixes} reports the six heterogeneous mixes. The
+conspiracy content of the mix tracks the principal live-cell mean-MI gradient
+more closely than the generic He label. The most direct contrast is between
 \texttt{mix\_00} (four conspiracy plus four climate/environment personas) and
 \texttt{mix\_02} (zero conspiracy plus eight science/climate personas).
-\texttt{mix\_00} reaches continuous MPR \(1.7712\) and dual-discrete MPR
-\(3.1321\), compared with \(0.2645\) and \(1.1882\) for \texttt{mix\_02}.
+\texttt{mix\_00} reaches continuous live-cell mean MI \(1.7712\) and
+dual-discrete live-cell mean MI \(3.1321\), compared with \(0.2645\) and
+\(1.1882\) for \texttt{mix\_02}.
 Its \(k^*\) rates are \(12.8\%\) continuous and \(57.5\%\) dual, whereas
 \texttt{mix\_02} is \(0.0\%\) on both.
 
 \begin{table}[t]
 \centering
-\caption{Heterogeneous mixes collapsed across topologies and articles.  Counts
-and \(k^*\) rates refer to live cells; each mix has 48 expected cells per
-instrument.}
+\caption{Heterogeneous mixes collapsed across network conditions and articles.
+Live-cell mean MI (\(\overline{\mathrm{MI}}\)) is the equal-weight mean of event-weighted
+cell means. Subscripts \(c\) and \(d\) denote continuous (T2c) and dual-discrete (T2d).
+\(n\) is the live-cell count; Dead \(c/d\) counts cells with at most one scored event.
+\(k^{*}\) is an eight-tick sustained crossing among live cells. Each mix has 48 expected
+cells per instrument. Echo-chamber, polarised, and hierarchical realisations generally
+do not instantiate the declared eight-seat order.}
 \label{tab:results-mixes}
 \scriptsize
 \begin{tabular}{llrrrrrrrr}
 \toprule
-Mix & Composition & \(n_c\) & MPR\(_c\) & \(k^*_c\) &
-\(n_d\) & MPR\(_d\) & \(k^*_d\) & Dead \(c/d\) \\
+Mix & Composition & \(n_c\) & \(\overline{\mathrm{MI}}_c\) & \(k^*_c\) &
+\(n_d\) & \(\overline{\mathrm{MI}}_d\) & \(k^*_d\) & Dead \(c/d\) \\
 \midrule
 mix\_00 & 4 conspiracy + 4 climate/env. & 39 & 1.7712 & 12.8\% & 40 & 3.1321 & 57.5\% & 9/8 \\
 mix\_01 & 2 conspiracy + 6 climate/env. & 41 & 1.4770 & 9.8\% & 41 & 2.7795 & 58.5\% & 7/7 \\
@@ -349,7 +441,7 @@ mix\_05 & 2 conspiracy-adj. + 6 other & 40 & 1.0134 & 7.5\% & 43 & 1.6713 & 23.3
 \texttt{mix\_01}, with two conspiracy personas, remains high (continuous
 \(1.4770\), dual \(2.7795\)) and has the highest dual \(k^*\) rate,
 \(58.5\%\).  A single conspiracy persona in \texttt{mix\_03} is associated
-with MPR \(0.8945\) continuous and \(2.0410\) dual, with \(k^*\) rates
+with live-cell mean MI \(0.8945\) continuous and \(2.0410\) dual, with \(k^*\) rates
 \(10.3\%\) and \(33.3\%\).  The two conspiracy-adjacent compositions do not
 produce a monotone dose response: \texttt{mix\_04} is lower than
 \texttt{mix\_05} continuously (\(0.7021\) versus \(1.0134\)), but slightly
@@ -360,15 +452,44 @@ is therefore compositional---conspiracy-heavy mixes generally score above the
 conspiracy-free mix---rather than a universal claim that heterogeneous
 networks amplify or suppress a cascade.
 
-\subsection{Article valence and topology}
+\subsection{Article-specific and topology-conditioned differences}
 
-Article effects cut across persona composition.  Figures~21 and~22 collapse
-the six articles separately for H and He, while Figure~17 shows the
-topology-by-article pattern.  The exact article means are:
+Article effects cut across persona composition.
+\Cref{fig:article-valence-h,fig:article-valence-he} collapse the six articles
+separately for H and He, while \Cref{fig:topology-article-mpr} shows the
+network-condition-by-article pattern. The exact article means are:
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig17_topology_article_mpr.png}
+\caption{Network-condition-by-article live-cell mean MI under both instruments.
+Values exclude cells with at most one scored event.}
+\label{fig:topology-article-mpr}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{fig21_article_valence_h.png}
+\caption{Homogeneous-arm article-level live-cell mean MI. Article identity
+bundles topic, wording, ground-truth questions, and persona fit; the figure
+does not isolate valence.}
+\label{fig:article-valence-h}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{fig22_article_valence_he.png}
+\caption{Heterogeneous-arm article-level live-cell mean MI, using the same
+0--5 axis convention as the homogeneous panel. Instruments remain separate.}
+\label{fig:article-valence-he}
+\end{figure}
+\FloatBarrier
 
 \begin{table}[t]
 \centering
-\caption{Article-level live-cell MPR by arm and instrument.}
+\caption{Article-level live-cell mean MI by arm and instrument. Values are
+equal-cell-weighted means of event-weighted cell \texttt{meanMI}; dead cells
+are excluded and the two instruments are not averaged.}
 \label{tab:results-articles}
 \scriptsize
 \begin{tabular}{lrrrr}
@@ -392,57 +513,93 @@ four (\(0.0185\), \(1.0399\), \(0.0415\), and \(1.1444\), respectively).
 The chemtrails--Gates article is consistently above SCoPEx: \(1.3541\) versus
 \(0.7322\) in H continuous, \(2.1383\) versus \(1.5390\) in H dual,
 \(1.7852\) versus \(0.7694\) in He continuous, and \(2.3885\) versus
-\(2.3718\) in He dual.  However, ``valence'' bundles topic, framing, and fit
-with a persona's prior narrative.  Figures~10 and~13 show that it is an
-interaction, not an article-only treatment.
+\(2.3718\) in He dual.  Because the study did not manipulate valence independently, these article
+differences jointly reflect topic, framing, and compatibility with persona
+prompts. \Cref{fig:h-persona-article-mpr,fig:he-mix-article-mpr} show that the
+pattern is an interaction, not an article-only treatment.
 
-\subsection{\texorpdfstring{\(k^*\)}{k-star} and dead-cell sensitivity}
+\subsection{\texorpdfstring{\(k^{*}\)}{k-star} and dead-cell sensitivity}
 
-Figure~19 summarizes irreversible crossings over eight ticks.  Collapsed H
-\(k^*\) rates are \(14.2\%\) continuous and \(20.1\%\) dual; collapsed He
-rates are \(7.6\%\) and \(32.1\%\).  The reversed continuous/dual H--He
-ordering is further evidence against assigning a single causal meaning to the
-arm label.  It also shows why \(k^*\) should not be inferred from MPR alone:
-the dual He arm has both a much higher crossing rate and a different scoring
-scale.  With only eight ticks, ``no \(k^*\)'' means no observed irreversible
-crossing within the window, not proof that a later crossing is impossible.
+\Cref{fig:kstar-rates} summarises within-window sustained crossings over eight
+ticks. Collapsed H \(k^{*}\) rates are \(14.2\%\) continuous and \(20.1\%\)
+dual; collapsed He rates are \(7.6\%\) and \(32.1\%\). The reversed
+continuous/dual H--He ordering is further evidence against assigning a single
+causal meaning to the arm label. It also shows why \(k^{*}\) should not be
+inferred from live-cell mean MI alone: the dual He arm has both a much higher
+crossing rate and a different scoring scale. With only eight ticks, ``no
+\(k^{*}\)'' means no observed within-window sustained crossing, not proof that
+a later crossing is impossible.
 
-Figure~18 reports the missingness generated after real LLM calls.  Of 1,728
-expected thesis cells, 292 are dead (\texttt{nScored}\(\leq 1\)); they remain
-hatched and are never converted to zeros.  By arm and instrument, dead rates
-are \(16.7\%\) for H continuous (480/576 live), \(17.4\%\) for He continuous
-(238/288 live), \(17.0\%\) for H dual (478/576 live), and \(16.7\%\) for He
-dual (240/288 live).  Missingness is not uniform by topology.  The largest
-rate is polarised He continuous at \(30.6\%\) (25/36 live), followed by
-hierarchical H continuous and hierarchical He continuous, both \(27.8\%\)
-(52/72 and 26/36 live), and polarised He dual at \(27.8\%\) (26/36 live).
-At the low end, linear-chain H dual is \(5.6\%\) dead (68/72 live), and ring
-He is \(8.3\%\) dead in both instruments (33/36 live).
+\Cref{fig:dead-rates} reports missingness after the executed campaign. Of
+1,728 expected thesis cells, 292 are dead (\texttt{nScored}\(\leq 1\)): 232
+have zero scored events and 60 have one. They remain hatched and are never
+converted to zeros. Configuration-level LLM usage does not prove that a given
+article cell received a successful auditor call. Client invocations also
+recorded 64,270 HTTP-error responses across 121 of 288 selected runs, and
+36,194 audit-eligible events remained null. Hatch counts therefore mix sparse
+propagation with scoring unavailability.
 
-Accordingly, the means in Figures~10--17 and~21--22 describe surviving scored
-cascades.  The dead-rate pattern is part of the result: a pale heatmap cell
-means low MPR among live runs, while a hatched cell supplies no MPR estimate.
-Neither dead He cells nor the \(0.0\%\) \(k^*\) rate of \texttt{mix\_02}
-demonstrates that heterogeneous or expert-inclusive networks are immune.
-Together, Figures~10--22 support a narrower conclusion: persona and article
-composition strongly structure observed persistence, the dual instrument
-usually scores higher and crosses \(k^*\) more often, and topology-dependent
-dead cells limit causal interpretation of the H/He contrast.
+By arm and instrument, dead rates are \(16.7\%\) for H continuous (480/576
+live), \(17.4\%\) for He continuous (238/288 live), \(17.0\%\) for H dual
+(478/576 live), and \(16.7\%\) for He dual (240/288 live). Missingness is not
+uniform by topology. The largest rate is polarised He continuous at
+\(30.6\%\) (25/36 live), followed by hierarchical H continuous and
+hierarchical He continuous, both \(27.8\%\) (52/72 and 26/36 live), and
+polarised He dual at \(27.8\%\) (26/36 live). At the low end, linear-chain H
+dual is \(5.6\%\) dead (68/72 live), and ring He is \(8.3\%\) dead in both
+instruments (33/36 live).
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{fig18_dead_rates.png}
+\caption{Share of hatched-dead cells (\texttt{nScored}$\leq 1$) by network
+condition and instrument. Dead cells remain in the ledger and are never
+imputed as zero. The hatch mixes sparse propagation with auditor/API
+unavailability.}
+\label{fig:dead-rates}
+\end{figure}
 
-% Draft results section: topology and same-mode H--He comparison (C1).
-% Sources: analysis_full/COMPARISONS.md, key_numbers.json, and
-% tables/c1_same_mode_h_vs_he_by_topology.csv.
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{fig19_kstar_rates.png}
+\caption{Share of live cells with a within-window \(k^{*}\) under each
+instrument. The cut $\mathrm{MI}>3$ is not equivalent across discrete and
+continuous scoring.}
+\label{fig:kstar-rates}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.92\textwidth]{fig20_ifd_dual_gap_agreement.png}
+\caption{Same-event dual diagnostics: equal-cell-weighted mean absolute gap
+and Pearson agreement where defined. Agreement is missing when either
+five-item vector is constant (H: 270/478 live dual cells; He: 171/240).}
+\label{fig:dual-gap-agreement}
+\end{figure}
+\FloatBarrier
+
+Accordingly, the live-cell means in
+\Cref{fig:h-persona-article-mpr,fig:he-mix-article-mpr,fig:persona-topology-mpr,fig:mix-topology-mpr,fig:topology-article-mpr,fig:article-valence-h,fig:article-valence-he}
+describe surviving scored cascades. A pale heatmap cell means low live-cell
+mean MI, while a hatched cell supplies no live mean. Neither dead He cells nor
+the \(0.0\%\) \(k^{*}\) rate of \texttt{mix\_02} demonstrates that
+heterogeneous or expert-inclusive networks are immune. Across both
+instruments, conspiracy-heavy mixes generally scored above the conspiracy-free
+mix; the ordering among intermediate mixes was not monotonic.
 
 \section{Topology results}
 \label{sec:results-topology}
 
-This section reports the eight-topology sweep and comparison C1, which holds
-the scoring mode fixed while comparing homogeneous (H) and heterogeneous (He)
-identity assignments.  The harvest contains one graph seed
-(\texttt{graphRandomSeed=42}; $N=1$), so all differences below are descriptive
-properties of these runs.  They do not identify a causal effect of topology or
-identity composition.
+This section describes outcomes across eight named network conditions and
+comparison C1, which holds the scoring mode fixed while comparing homogeneous
+(H) and heterogeneous (He) assignments. The linear-chain and ring conditions
+also differ in action probabilities and trust threshold, so the full
+eight-condition ranking is not attributable to topology alone. Comparisons
+among the remaining six graph-policy conditions still describe one realised
+graph per configuration. Configurations recorded \texttt{graphRandomSeed: 42},
+but only selected generators consumed it. The differences below are therefore
+descriptive properties of bundled network conditions. They do not identify a
+causal effect of topology or identity composition.
 
 There were 72 candidate H cells per topology and mode (12 personas $\times$ 6
 articles) and 36 candidate He cells (6 mixes $\times$ 6 articles).  A cell was
@@ -497,11 +654,12 @@ Pooling live cells instead gave H 0.8643 ($n=480/576$ live) and He 1.0192
 live-cell counts vary; neither treats the 146 dead continuous cells as zeros.
 
 The near-balanced signs are visible in the continuous panel of
-\Cref{fig:c1-h-he,fig:c1-delta}.  An exploratory signed-rank summary of the
-eight topology means was $W=14$, $p=0.6406$, with median delta $-0.0035$
-($n_{+}=4$, $n_{-}=4$).  These eight means come from one seed and are not
-independent experimental replicates; the calculation is therefore a compact
-description, not replicate-level inference.
+\Cref{fig:c1-delta}. Restricting the same contrast to zero-HTTP-error runs
+changes the pooled continuous He--H difference from \(+0.1549\) to
+\(-0.0295\); that direction is therefore not robust. Sign counts of the eight
+topology-level differences are four positive and four negative, with median
+delta \(-0.0035\). These eight means are fixed design strata, not independent
+experimental replicates.
 
 \subsection{Dual-discrete instrument}
 \label{sec:results-topology-dual}
@@ -536,46 +694,45 @@ hierarchical & 59/72 & 13 & 1.6315 & 28/36 & 8  & 2.5934 & 0.9618 \\
 \end{tabular}
 \end{table}
 
-He exceeded H on all eight dual-discrete topology means.  The topology-equal
-mean difference was 0.3974.  Pooling live cells gave H 1.6814
+He exceeded H on all eight dual-discrete topology means. The topology-equal
+mean difference was 0.3974. Pooling live cells gave H 1.6814
 ($n=478/576$ live) and He 2.0800 ($n=240/288$ live), a difference of 0.3986;
-the 146 dead dual cells were not imputed.  The largest topology-level gap was
-hierarchical (0.9618), and the smallest was echo chamber (0.1647).
-
-For completeness, the exploratory signed-rank summary across the eight
-topology means was $W=0$, $p=0.007812$, with median delta 0.3005
-($n_{+}=8$, $n_{-}=0$).  Because $N=1$, this is not evidence of a general
-identity-mix effect.  In particular, collapsed H combines conspiracy personas
-with low-scoring scientist personas, while collapsed He combines
-conspiracy-heavy and conspiracy-free mixes.  The observed ordering therefore
-does not support a causal claim that heterogeneity increases or buffers
-firestorms.
+the 146 dead dual cells were not imputed. In zero-HTTP-error runs the pooled
+dual-discrete difference remained positive (\(0.4695\)). The largest
+topology-level gap was hierarchical (0.9618), and the smallest was echo
+chamber (0.1647). Sign counts of the eight topology-level differences are
+eight positive and zero negative, with median delta 0.3005. Because \(N=1\),
+this is not evidence of a general identity-mix effect. In particular,
+collapsed H combines conspiracy personas with low-scoring scientist personas,
+while collapsed He combines conspiracy-heavy and conspiracy-free mixes. The
+observed ordering therefore does not support a causal claim that
+heterogeneity increases or buffers firestorms.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/fig01_c1_h_vs_he_same_mode.png}
-\caption{C1 same-mode H and He live-cell means for all eight topologies.
-Continuous and dual-discrete panels remain separate; dead cells are excluded
-from means rather than set to zero.  $N=1$.}
+\includegraphics[width=\textwidth]{fig01_c1_h_vs_he_same_mode.png}
+\caption{C1 same-mode H and He live-cell mean MI for all eight network
+conditions. Continuous and dual-discrete panels remain separate; dead cells
+are excluded from means rather than set to zero. The dashed line at 3, if
+present, is the event-level \(k^{*}\) cut and is not a topology-level
+criterion. \(N=1\).}
 \label{fig:c1-h-he}
 \end{figure}
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/fig02_c1_delta_he_minus_h.png}
+\includegraphics[width=\textwidth]{fig02_c1_delta_he_minus_h.png}
 \caption{C1 topology-level $\Delta(\mathrm{He}-\mathrm{H})$.  Continuous has
 four positive and four negative differences; dual-discrete has eight positive
 differences.  These are descriptive one-seed contrasts.}
 \label{fig:c1-delta}
 \end{figure}
 
-The article-resolved topology pattern is shown in
-\texttt{fig17\_topology\_article\_mpr.png}; topology-by-persona and
-topology-by-mix views are in \texttt{fig15\_persona\_topology\_mpr.png} and
-\texttt{fig16\_mix\_topology\_mpr.png}.  The corresponding denominators and
-hatch pattern are visualised in \texttt{fig18\_dead\_rates.png}.  Those
-figures should be read with the same live-only and mode-separation rules used
-in the tables above.
+The article-resolved network-condition pattern is shown in
+\Cref{fig:topology-article-mpr}; persona and mix views are in
+\Cref{fig:persona-topology-mpr,fig:mix-topology-mpr}. Dead-cell denominators
+are visualised in \Cref{fig:dead-rates}. Those displays follow the same
+live-only and instrument-separation rules used in the tables.
 
 
 \section{Results on the 63-node D-net}
@@ -617,7 +774,7 @@ mapped Debnath type:
 Thus the heterogeneous arm placed 28 conspiracy-family, 19
 climate-action, 13 environmental, and three expert personas.  The
 homogeneous arm instead assigned \texttt{conspiracy\_believer} to all 63
-nodes.  The empirical hashtag identities were 28 conspiracy, 19
+nodes.  The assigned reconstruction identities were 28 conspiracy, 19
 climate-action, 14 environmental-concern, and two other nodes; this
 difference in counting reflects the coarser simulation placement, including
 the type-only fallback for \texttt{user\_mitigation\_amp}, rather than a
@@ -671,12 +828,13 @@ exceeded chemtrails--Gates in both dual-discrete arms.
 
 \subsection{Do the small-topology findings hold?}
 
-Only the composition result transfers cleanly.  In the eight-node grid,
+One directional pattern recurs in D-net: the conspiracy-only assignment
+scores above the mixed assignment for both articles under both auditor
+regimes. This recurrence is consistent with the small-grid finding that
 conspiracy-family homogeneous cells were the high-score family on both
-instruments (3.1691 dual-discrete and 2.2194 continuous).  The D-net result
-is consistent with that finding: replacing the mixed type placement with
-63 conspiracy-believer seats raised the score for both articles under both
-auditors.
+instruments (3.1691 dual-discrete and 2.2194 continuous). It is not a
+replication, because graph size, assignment definitions, event counts, and
+article coverage differ.
 
 The collapsed H/He result does not transfer as an H/He law.  Across the
 eight small topologies, collapsed He exceeded collapsed H by 0.1549 under
@@ -713,7 +871,7 @@ averaged.
 
 \subsection{Structural comparison and validation diagnostics}
 
-The copied graph has global transitivity 0.3146, mean local clustering
+The imported hashtag co-occurrence graph has a global transitivity of 0.3146, mean local clustering
 0.5153, and mean unique degree 5.4286.  The
 \texttt{user\_chemtrails\_hub} node has 33 unique neighbours.  Using
 unweighted unique-undirected pairs, the mixed-label conspiracy cut has
@@ -722,7 +880,7 @@ has modularity 0.  Mixed-label identity homophily is 0.8377
 in the simulation; homogeneous identity homophily is 1.0 by construction,
 so the latter is not evidence of an emergent echo chamber.
 
-For the rooted cascade-shape comparison, the empirical object had depth
+For the rooted cascade-shape comparison, the constructed hashtag object had depth
 4, breadth 33, reached size 61, and structural virality 2.7.  Across 16
 simulated D-net cascades, the corresponding means were 2.5625, 40.9375,
 53.5, and 1.7963.  Breadth was the only one of the three validation metrics
@@ -730,18 +888,19 @@ simulated D-net cascades, the corresponding means were 2.5625, 40.9375,
 30\% band; the resulting structural-similarity score was 0.6885.
 
 The distributional diagnostics do not validate a digital twin.
-With one empirical object and 16 simulated cascades, the
-Kolmogorov--Smirnov results were $D=1.0000$, $p=0.1104$ for depth;
-$D=0.8125$, $p=0.2954$ for breadth; and $D=1.0000$, $p=0.1104$ for
-structural virality.  Jensen--Shannon divergence was 1.0000 for all three
-metrics, and all three distribution-match flags were false.  The empirical
-sample size of one makes the KS comparisons underpowered; their
-non-significant $p$-values are not evidence of equivalence.  Finally, DTFS
-was 0.2754, below the 0.70 validation threshold
-(\texttt{isValidated=false}).  Its content-correlation component was fixed
-at zero because no empirical \textsc{mpr} or tweet-text \textsc{mi} exists.
-The structural evidence therefore supports a comparison of cascade shape,
-not empirical misinformation fidelity or digital-twin validation.
+With one constructed reference graph and 16 simulated cascades, the
+Kolmogorov--Smirnov distances were \(D=1.0000\) for depth,
+\(D=0.8125\) for breadth, and \(D=1.0000\) for structural virality.
+Jensen--Shannon divergence was 1.0000 for all three metrics, and all three
+distribution-match flags were false. Because \(n_{\mathrm{real}}=1\), the KS
+reference distribution is not a campaign-level sampling distribution; those
+distances are reported only as implementation diagnostics. Finally, DTFS
+was 0.2754, below the 0.70 software threshold
+(\texttt{isValidated=false}). Its weights \(0.40/0.40/0.20\), the 0.70 cut,
+and the content-correlation component fixed at zero because no empirical
+Twitter MI exists are repository choices, not validated fidelity criteria.
+The structural evidence therefore supports a comparison of cascade shape on
+a designed reference graph, not empirical misinformation fidelity.
 
 
 \section{Applying the Pfeffer firestorm framework}
@@ -776,7 +935,7 @@ factor~1.
 
 The thesis vocabulary---valence, surprise, identity, clustering, echo,
 temporal, and cross-media---is consequently a computational remapping, not a
-renaming of Pfeffer et al.'s list.  The first six terms describe variables or
+renaming of Pfeffer et al.'s list (\Cref{tab:pfeffer-original-remap}).  The first six terms describe variables or
 observables that can at least partly be represented in the simulation;
 cross-media is included as a seventh ledger row but is held because the model
 has no legacy-media layer.  Conversely, Pfeffer et al.'s binary-choice factor
@@ -819,7 +978,15 @@ terminology.}
 \end{tabular}
 \end{table}
 
-\subsection{Order of application: empirical structure before simulation}
+\subsection{Order of application: constructed structure before simulation}
+
+The application proceeds in two stages. First, structural observables are
+calculated on a 63-node hashtag co-occurrence fallback derived from published
+discourse categories. Because tweet hydration failed, this object is not an
+observed user graph, retweet cascade, or temporal diffusion record. Second,
+D-net imports that fixed fallback structure and simulates propagation on it.
+The simulation therefore tests behaviour on a documented stand-in; it does
+not reconstruct or validate the original Twitter network.
 
 The application proceeds in two distinct stages.  First, structural
 observables are calculated on the empirical fallback derived from
@@ -866,20 +1033,25 @@ node the same identity.  Mixed belief-profile families have \(Q=0.4908\),
 and the mixed binary conspiracy cut has \(Q=0.4297\).  Under homogeneous
 labels there is only one community, for which \(Q=0\).
 
-Across the four primary D-net cells, 61 of 63 nodes receive a message within
-the held eight-tick horizon.  This demonstrates reach under the engine's
-rules on the imported graph.  It does not establish that the empirical
-Twitter discourse spread to 61 users in eight equivalent units of time.
+Across all eight article-level D-net cells (four configurations), 61 of 63
+nodes receive a message within the held eight-tick horizon. Reaching 61/63
+is saturation of the seeded connected component under the engine; the two
+unreached seats form a separate expert component. This does not establish
+that the Twitter discourse spread to 61 users in eight equivalent units of
+time.
 Simulation ticks have no defensible conversion to hours, and the eight-hop
 budget is a computationally compressed horizon.
 
 \subsection{What the application can and cannot reveal}
 
+\Cref{tab:pfeffer-reveal-limits} summarises what the application can and
+cannot reveal.
+
 \begin{table}[t]
 \centering
-\caption{Interpretive boundary of the Pfeffer application.  Empirical values
-refer to the hashtag graph before simulation; simulated values refer to
-D-net after a run.}
+\caption{Interpretive boundary of the Pfeffer application. Pre-simulation
+values refer to the reconstructed hashtag graph; simulated values refer to
+D-net after a run. Homogeneous one-community modularity is \(Q=0\).}
 \label{tab:pfeffer-reveal-limits}
 \scriptsize
 \begin{tabular}{p{0.12\textwidth}p{0.36\textwidth}p{0.42\textwidth}}
@@ -889,7 +1061,7 @@ Observable & What the method reveals & What the method cannot reveal \\
 Clustering
 & Before simulation, the hashtag construction contains substantial closure:
   transitivity \(0.315\), local clustering \(0.515\), and a hub of degree
-  33.  The mixed-label cut has \(Q=0.404\).
+  33.  The mixed-label conspiracy cut has \(Q=0.4297\).
 & These values are not retweet triadic closure or emergent D-net clusters.
   The graph is a documented co-occurrence construction, not a
   Watts--Strogatz fit, and previously reported Debnath eigenvector
@@ -905,7 +1077,7 @@ Echo
   and cannot measure echo formation. \\
 
 Identity
-& The comparison separates a mixed empirical-type composition
+& The comparison separates a mixed assigned-label composition
   (conspiracy share \(0.444\)) from the homogeneous intervention
   (share \(1.0\)).  It therefore isolates identity composition as a model
   input on a common topology.
@@ -927,7 +1099,7 @@ Valence proxy
 
 Surprise
 & The ledger records the seeded regime: a single
-  \texttt{user\_chemtrails\_hub} provides drip seeding.  The
+  \texttt{user\_chemtrails\_hub} provides a single-node, single-time seed.  The
   paper-reported SCoPEx volume spike motivates the construct.
 & Surprise is held, not tested.  There is no all-node shock condition and no
   reconstructed empirical volume series, novelty half-life, or attention
@@ -967,13 +1139,13 @@ based on simulated \(\mathrm{MI}\).  It is neither a statistic introduced by
 not repair this gap: the available comparison has one empirical graph, and
 its reported digital-twin fit score is \(0.2754\), below the \(0.70\)
 validation threshold.  The D-net application should therefore be read as a
-controlled, theory-mapped simulation on an empirical structural stand-in,
+controlled, theory-mapped simulation on a constructed hashtag stand-in,
 not as a validated digital twin of the geoengineering conversation.
 
 \subsection{Interpretation}
 
 The application supports three bounded conclusions.  First, clustering and
-block homophily are properties of the empirical hashtag representation
+block homophily are properties of the reconstructed hashtag graph
 before simulation; they are consistent with the structural mechanisms in
 Pfeffer et al.'s factors 3 and 5, but do not prove a user-level firestorm.
 Second, holding topology fixed while changing the belief-profile

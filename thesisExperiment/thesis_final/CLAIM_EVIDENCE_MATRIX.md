@@ -21,5 +21,11 @@
 | Cross-media and empirical temporal evidence are unavailable. | `analysis_full/PFEFFER_DEBNATH_VS_SIM.md` | Hierarchy does not substitute for cross-media. |
 | Debnath provides no empirical 0--5 MPR. | `analysis_phase2/HYDRATION.md`; Debnath article | Simulated MI is not Twitter MPR. |
 | Hydration was impossible in this campaign. | `analysis_phase2/HYDRATION.md` | No IDs, tweets, or users were invented. |
+| Canonical harvest records 203,928 successful calls and 64,270 HTTP-error counters. | `analysis_full/API_ERROR_AUDIT.md`; selected-run metadata | 121/288 runs affected; counters are not a request ledger. |
+| 36,194 audit-eligible events remained unscored. | API-error audit JSON/CSV | Null scores excluded from MI/MPR/\(k^*\); can change hatch status. |
+| No observed auditor parse/all-correct fallback. | selected log sections; node files | Fail-open path exists in code but was not observed. |
+| Continuous He−H is +0.1549 canonical and −0.0295 in zero-error runs. | API-error sensitivity tables | Not robust; not a causal correction. Only 5 clean alternative reruns exist. |
+| Dual He−H is +0.3986 canonical and +0.4695 in zero-error runs. | API-error sensitivity tables | Direction remains positive; still a conditioned comparison. |
+| Homogeneous D-net one-community modularity is \(Q=0\). | `08A_MODULARITY_CORRECTION.md`; unique-undirected Newman–Girvan | Mixed conspiracy cut is \(Q=0.4297\). Old \(Q=0.404/0.457\) withdrawn. |
 | Human evaluation is absent. | Raw templates and `chapters/07_validity_ethics.tex` | Templates are not participant data. |
 | MI/MPR and the auditor--node framework are prior co-authored work. | Maurya et al. (2025), arXiv:2511.10384 | Thesis contribution starts at the climate layer. |
