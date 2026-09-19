@@ -464,7 +464,8 @@ Field & Meaning\\
 \texttt{hatchStatus}, \texttt{hatchNote} & Live/dead rendering status and interpretation warning.\\
 \end{longtable}
 
-\texttt{dual\_gap.csv} is narrow. Its fields are
+\begin{sloppypar}\raggedright
+The file \texttt{dual\_gap.csv} is narrow. Its fields are
 \texttt{experimentName}, \texttt{articleId}, \texttt{topology},
 \texttt{meanDualGap}, \texttt{meanAgreement}, \texttt{meanDiscreteMI}, and
 \texttt{meanContinuousMI}. Join it to the wide dual table with experiment
@@ -472,6 +473,7 @@ name and article identifier as the composite key. Pair T2c with T2d with
 topology, persona or mix, and article identifier as the composite key. Never
 join by row number. Dead cells remain in the ledger and are excluded from live
 means rather than imputed as zero.
+\end{sloppypar}
 
 \section{D-net mapping}
 \label{app:dnet-mapping}
@@ -584,10 +586,11 @@ node thesisExperiment/scripts/run_dnet.js
 node thesisExperiment/scripts/master_phase2.js --skip-probe
 \end{lstlisting}
 
-The present file is an input fragment.  Once the full thesis master exists,
-include it with \verb|\input{drafts/15_APPENDICES}| and compile that master
-with its normal \texttt{latexmk} or \texttt{pdflatex}/\texttt{biber} sequence.
-No master file is assumed in this draft.
+This appendix is compiled with the thesis master
+\path{thesisExperiment/thesis_final/main.tex}. Rebuild from
+\path{thesisExperiment/thesis_final/} with
+\texttt{latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex},
+as recorded in \path{thesisExperiment/thesis_final/BUILD.md}.
 
 \section{Artifact index}
 \label{app:artifact-index}
@@ -629,11 +632,39 @@ Path & Purpose\\
 \section{Data availability and consolidation provenance}
 \label{app:security-provenance}
 
-A public persistent archive, release tag, licence, and checksums were not
-available at integration time. The present PDF therefore documents a
-repository-relative, traceable harvest rather than a DOI-backed release.
-\textbf{[ARCHIVE: insert repository URL, commit SHA, licence, and checksums
-before submission.]} API credentials must not appear in configurations,
+A public persistent DOI was not present in the repository when this statement
+was written and is not invented here.
+The present PDF therefore documents a GitHub-hosted, commit-addressable
+harvest rather than a DOI-backed release.
+The public repository URL is
+\url{https://github.com/RajGM/LLM_Society}.
+The \texttt{origin/main} commit recorded here is
+\texttt{042023488cefb343e739ad4b4bdba5d23171ff48}
+(author date 2026-09-19 17:12:23 UTC).
+No \texttt{LICENSE} file was found at the repository root.
+The README licence badge claims MIT; \texttt{package.json} lists
+\texttt{ISC}.
+Those claims do not substitute for a licence file.
+\UserInput{choose and deposit a licence file; add an archive DOI only if one
+exists}
+SHA-256 checksums of canonical harvest index files, computed from the
+working tree used to compile this PDF:
+\begin{center}
+\footnotesize
+\begin{tabular}{@{}lp{0.62\textwidth}@{}}
+\texttt{198f9efd40a424a561a6f85a2cca88e071992a9bda305a93a99d4c0cdb285b27} &
+\path{thesisExperiment/results_phase2/summary.json}\\
+\texttt{21b030d54897aba7832a21d975b09dd5b49099198563544e65a2cb2f23f4f95b} &
+\path{thesisExperiment/results_phase2/PARSE.md}\\
+\texttt{275262b044c551109594e12912091de23394d812dd1009ec96d0ce772d81fe70} &
+\path{thesisExperiment/CONSOLIDATION_LOG.md}\\
+\texttt{55a4d4e6e4253d088d6fb5ec780f5d38388c51f414baa9b45f89ec30ac0c3835} &
+\path{thesisExperiment/analysis_full/key_numbers.json}\\
+\texttt{35a6afa4afb63b5da7d2084892469aea601094c1d5bc0784c2e0ed0268ccf673} &
+\path{thesisExperiment/data/derived/debnath_hashtag_cascade.json}\\
+\end{tabular}
+\end{center}
+API credentials must not appear in configurations,
 manuscripts, terminal transcripts, issues, manifests, committed files, or
 printed \path{.env} contents.
 

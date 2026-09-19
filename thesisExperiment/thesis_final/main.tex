@@ -7,7 +7,7 @@
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
-\usepackage[british]{babel}
+\usepackage[ngerman,british]{babel}
 \usepackage[autostyle,english=british]{csquotes}
 \usepackage{microtype}
 \usepackage[inner=3.0cm,outer=2.5cm,top=2.5cm,bottom=2.7cm]{geometry}
@@ -35,11 +35,13 @@
 \addbibresource{references.bib}
 \usepackage[hidelinks,pdfencoding=auto,
   pdftitle={Audited Semantic Degradation in LLM-Agent Networks},
-  pdfauthor={[CANDIDATE NAME]},
+  pdfauthor={Raj Gaurav Maurya},
   pdfsubject={Master's thesis on measurement sensitivity in synthetic semantic propagation},
   pdfkeywords={LLM agents, semantic degradation, measurement sensitivity, network simulation}]{hyperref}
 \usepackage{xurl}
 \usepackage[nameinlink,capitalize,noabbrev]{cleveref}
+% Bold Roman lining figures such as xvii overflow KOMA's default TOC page-number box.
+\DeclareTOCStyleEntry[pagenumberwidth=2.6em]{tocline}{chapter}
 
 \captionsetup{format=plain,labelfont={bf,small},font=small,skip=6pt,
   justification=RaggedRight,singlelinecheck=false}
@@ -55,10 +57,12 @@
 \newcommand{\eg}{\textit{e.g.}}
 \newcommand{\cf}{\textit{cf.}}
 
+\newcommand{\UserInput}[1]{\textbf{\texttt{[USER INPUT REQUIRED: #1]}}}
+
 \title{Audited Semantic Degradation in LLM-Agent Networks\\
 Measurement Sensitivity, Persona Composition, and Network Conditions}
-\author{}
-\date{[SUBMISSION DATE]}
+\author{Raj Gaurav Maurya}
+\date{\UserInput{official submission date}}
 
 \begin{document}
 \frontmatter
@@ -66,21 +70,31 @@ Measurement Sensitivity, Persona Composition, and Network Conditions}
 \begin{titlepage}
 \centering
 {\Large Technical University of Munich\par}
-\vspace{0.4cm}
+{\large School of Social Sciences and Technology\par}
+\vspace{0.35cm}
 {\large Master's Thesis\par}
-\vspace{2.2cm}
+{\large M.Sc.\ Data \& Society\par}
+\vspace{1.6cm}
 {\huge\bfseries Audited Semantic Degradation in LLM-Agent Networks\par}
 \vspace{0.4cm}
 {\Large Measurement Sensitivity, Persona Composition, and Network Conditions\par}
+\vspace{0.8cm}
+{\large Raj Gaurav Maurya\par}
 \vfill
-\vspace{1.2cm}
-\begin{tabular}{@{}ll@{}}
-Candidate ID: & [CANDIDATE ID] \\
-Supervisors: & [SUPERVISORS] \\
-Submission date: & [SUBMISSION DATE] \\
+\begin{tabular}{@{}p{0.34\textwidth}p{0.52\textwidth}@{}}
+Matriculation number: & \UserInput{matriculation number} \\
+Official title metadata: & \UserInput{confirm registered title with examination office} \\
+Chair / programme wording: & \UserInput{official chair and degree wording} \\
+Primary supervisor: & Prof.\ Dr.\ J\"urgen Pfeffer \\
+External co-supervisor: & Dr.\ Ramit Debnath \\
+First examiner / advisor: & \UserInput{official first-examiner and advisor labels} \\
+Submission date: & \UserInput{official submission date} \\
 \end{tabular}
 \vfill
-{\small [OFFICIAL TUM TEMPLATE TO BE APPLIED BEFORE SUBMISSION]\par}
+{\small The named official school template was not present in this repository
+(identifier \texttt{6aaeb12d2d2eaea03e67a80b}).
+This KOMA-Script page is a fallback.
+\UserInput{apply current official TUM school/programme template}\par}
 \end{titlepage}
 
 \chapter*{Abstract}
@@ -122,27 +136,165 @@ conducted.
 
 \chapter*{Zusammenfassung}
 \addcontentsline{toc}{chapter}{Zusammenfassung}
-\textbf{[GERMAN ABSTRACT: insert the official German abstract if required by
-the responsible examination office.]}
+\begin{otherlanguage}{ngerman}
+Diese Arbeit untersucht, wie sich automatisierte Kennwerte der
+Anspruchswiedergewinnbarkeit ändern, wenn Agenten auf Basis großer
+Sprachmodelle (LLM) Klima- und Geoengineering-Texte weitergeben.
+Der Hauptbeitrag ist eine messmethodische Sensitivitätsprüfung eines zuvor
+veröffentlichten Auditor-Knoten-Instruments.
+Nachgeordnete Analysen beschreiben Personenkompositionen, acht gebündelte
+Netzwerkbedingungen und einen gesonderten, literaturinformierten
+63-Knoten-Hashtag-Graphen.
+Die Studie prüft nicht, ob ein Online-Firestorm stattgefunden hat.
 
-\chapter*{Acknowledgements}
-\addcontentsline{toc}{chapter}{Acknowledgements}
-\textbf{[ACKNOWLEDGEMENTS: insert personal thanks after identity fields are
-final; omit this page if the official template does not require it.]}
+Die kanonische Phase-2-Auswertung behielt einen Lauf je Konfiguration:
+288 Konfigurationen und 1.728 Artikelzellen über acht Verarbeitungstakte.
+292 Zellen mit höchstens einem bewerteten Ereignis wurden nach der
+vorab festgelegten Schraffurregel als nicht auswertbar klassifiziert.
+Stetige und dual-diskrete zellweise Mittelwerte des Misinformationsindex
+(MI) blieben getrennt, weil fehlende Items unterschiedlich bestraft werden
+und eine gemeinsame Schwelle über die Instrumente nicht äquivalent ist.
+Dual-diskrete Werte lagen auf jedem Aggregat der Netzwerkbedingungen über
+den stetigen Werten.
+Dieser durchgängige Unterschied zeigt eine Sensitivität der gesamten
+Pipeline, keinen Anstieg auf einer gemeinsamen Messskala und keinen
+kausalen Instrumenteneffekt.
+Konspirativ ausgerichtete Personas und konspirationslastige Mischungen
+lagen in beiden Instrumenten über wissenschaftlichen Personas und der
+konspirationsfreien Mischung.
+Netzwerkbedingungen modulierten diese Kontraste; eine universelle Rangfolge
+entstand nicht.
+
+Der D-Net-Stresstest umfasste vier Konfigurationen und acht artikelbezogene
+Zellen auf einem konstruierten 63-Knoten-Hashtag-Graphen.
+Rein konspirative Zuweisungen lagen in allen vier paarweisen Vergleichen
+über gemischten Zuweisungen.
+Dieses Wiederkehren ist keine Replikation und keine Validierung eines
+digitalen Zwillings.
+Über die Hauptgitterläufe waren 203.928 Aufrufe erfolgreich; die
+Clientaufrufe verzeichneten 64.270 HTTP-Fehlerantworten.
+121 von 288 Läufen waren betroffen, und 36.194 auditfähige Ereignisse
+blieben unbewertet.
+Ein Auditor-Parse- bzw.\ Alles-korrekt-Rückfall wurde nicht beobachtet.
+Der stetige H--He-Unterschied wechselte von \(+0{,}1549\) im kanonischen
+Satz auf \(-0{,}0295\) in fehlerfreien Läufen und ist nicht robust.
+Der dual-diskrete Unterschied blieb positiv (\( +0{,}3986 \) kanonisch;
+\( +0{,}4695 \) fehlerfrei).
+Diese bedingten Vergleiche identifizieren keine kausalen oder
+instrumentunabhängigen Effekte.
+Es wurde keine menschliche Bewertung von Faktentreue, Realismus oder
+Personengültigkeit durchgeführt.
+Die Misinformation Propagation Rate (MPR) bleibt die knoten- bzw.\
+zweigweise Mittelung des MI und ist keine zeitnormierte Rate.
+\end{otherlanguage}
 
 \chapter*{Individual contribution and prior-work boundary}
 \addcontentsline{toc}{chapter}{Individual contribution and prior-work boundary}
-The auditor--node engine, MI, MPR, and the general-news linear-chain study are
-co-authored prior work \parencite{maurya2025simulating}. The climate corpus,
-Phase~2 campaign, Pfeffer operationalisation, composition analysis, and D-net
-stress test form the thesis research layer. \textbf{[CONTRIBUTION SPLIT:
-insert the verified allocation of conception, software, stimuli, execution,
-analysis, figures, and writing before submission.]}
+This page is a \emph{conservative draft} compiled from repository artefacts
+and git history.
+It is \textbf{not} a supervisor-confirmed CRediT statement and \textbf{not}
+a claim of sole authorship of the prior MI/MPR paper.
+Each allocation below is labelled for candidate confirmation.
+Percentages are omitted because none are recorded in the repository.
+
+\paragraph{Prior co-authored work (excluded from the thesis originality claim).}
+The auditor--node engine, the Misinformation Index (MI), the Misinformation
+Propagation Rate (MPR), and the general-news linear-chain study are
+co-authored prior work \parencite{maurya2025simulating}.
+The bibliographic record lists Raj Gaurav Maurya as first author together
+with Vaibhav Shukla, Raj Abhijit Dandekar, Rajat Dandekar, and Sreedath Panat.
+\textbf{[CANDIDATE MUST CONFIRM: no additional unpublished co-author claims
+apply to that paper; first-author status matches the version submitted with
+this thesis.]}
+This thesis does \emph{not} claim sole authorship of that paper, of the
+engine, of MI, or of MPR.
+
+\paragraph{Traceable thesis-layer artefacts.}
+The climate corpus, Phase~2 campaign, Pfeffer operationalisation, composition
+analysis, measurement-sensitivity audit, and D-net stress test form the
+thesis research layer.
+The following allocations are inferred from git history of
+\url{https://github.com/RajGM/LLM_Society} and from files under
+\path{thesisExperiment/}; they remain unconfirmed until the candidate and
+supervisors sign them.
+
+\begin{description}[style=nextline,leftmargin=1.2em]
+  \item[Conception]
+    Proposal extract names Raj Gaurav Maurya as candidate for a TUM
+    M.Sc.\ Data \& Society thesis under Prof.\ Dr.\ J\"urgen Pfeffer and
+    Dr.\ Ramit Debnath, with a climate/geoengineering simulation layer.
+    \textbf{[CANDIDATE MUST CONFIRM: independent conception of the climate
+    layer, factorial design, and estimands; record any supervisor-originated
+    design decisions.]}
+  \item[Software]
+    Candidate-authored commits from 2026-05-20 established the repository
+    engine under \path{src/}.
+    Later \path{thesisExperiment/} runners, parsers, and analysis scripts
+    include commits attributed to Cursor Agent as well as to the candidate.
+    \textbf{[CANDIDATE MUST CONFIRM: which thesis-layer modules were written,
+    reviewed, or only executed by the candidate; do not treat agent commits
+    as undocumented ghost-writing.]}
+  \item[Stimuli]
+    Climate/geoengineering articles, ground-truth questions, and persona
+    files are present under \path{thesisExperiment/articles/} and
+    \path{thesisExperiment/personas/}, including candidate commit
+    \texttt{6bbcbba} (2026-09-18).
+    \textbf{[CANDIDATE MUST CONFIRM: authorship of item text and Boolean
+    expected answers; no uncredited co-author of the corpus.]}
+  \item[Campaign execution]
+    The canonical Phase~2 harvest (288/288 configurations; four D-net
+    configurations) is archived under \path{thesisExperiment/runs_phase2/}
+    and \path{thesisExperiment/results_phase2/}.
+    Harvest-completion commits in this clone are predominantly Cursor Agent.
+    \textbf{[CANDIDATE MUST CONFIRM: who launched, monitored, and accepted
+    the live \texttt{gpt-4o-mini} campaign.]}
+  \item[Analysis and figures]
+    Canonical tables and figures live under
+    \path{thesisExperiment/analysis_full/},
+    \path{thesisExperiment/results_phase2/}, and
+    \path{thesisExperiment/thesis_final/figures/}.
+    \textbf{[CANDIDATE MUST CONFIRM: intellectual ownership of the
+    measurement-sensitivity audit, hatch rule, API-error ledger, modularity
+    correction, and displayed figures.]}
+  \item[Writing]
+    The present PDF was assembled in \path{thesisExperiment/thesis_final/}.
+    Integration commits include Cursor Agent.
+    \textbf{[CANDIDATE MUST CONFIRM: which chapters were drafted, revised,
+    or only compiled by the candidate, and the permitted extent of
+    generative-AI assistance for the statutory disclosure.]}
+  \item[Supervision]
+    Prof.\ Dr.\ J\"urgen Pfeffer (primary supervisor in the proposal extract)
+    and Dr.\ Ramit Debnath (external co-supervisor in the same extract).
+    \textbf{[CANDIDATE MUST CONFIRM: official first-examiner/advisor labels
+    and that neither supervisor is omitted from, nor assigned a fabricated
+    share of, the thesis-layer work.]}
+\end{description}
+
+\noindent
+\textbf{[CANDIDATE AND SUPERVISORS MUST CONFIRM this entire page before
+deposit. Until then it is a labelled draft, not a certified split.]}
 
 \chapter*{Declaration}
 \addcontentsline{toc}{chapter}{Declaration}
-\textbf{[OFFICIAL DECLARATION: insert the current statutory TUM wording,
-signature fields, and required generative-AI disclosure verbatim.]}
+This page does not paraphrase TUM statutory wording.
+No official declaration template, place, date, signature, or generative-AI
+disclosure text is present in the repository.
+
+\vspace{1.2em}
+\UserInput{paste the current statutory TUM declaration verbatim from the
+responsible examination office, including originality wording}
+
+\vspace{1.2em}
+\UserInput{paste any currently required generative-AI disclosure verbatim}
+
+\vspace{1.2em}
+\begin{tabular}{@{}p{0.45\textwidth}p{0.45\textwidth}@{}}
+Place: \UserInput{place of signature} &
+Date: \UserInput{date of signature} \\[2.2em]
+\rule{0.42\textwidth}{0.4pt} & \\
+Signature of Raj Gaurav Maurya &
+\UserInput{wet-ink or accepted electronic signature} \\
+\end{tabular}
 
 \tableofcontents
 \listoffigures

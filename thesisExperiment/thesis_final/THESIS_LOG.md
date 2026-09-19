@@ -61,13 +61,38 @@
 
 ## Unresolved placeholders
 
-- Candidate name, matriculation number, programme, school or department.
-- First examiner, supervisor, advisor, and submission date.
-- Exact individual contribution split among co-authors.
-- Official statutory declaration and any required generative-AI disclosure.
-- Confirmation of the final title and chair-approved citation style.
-- Adaptation to the missing official template if it becomes available.
-- Public archive URL, DOI, licence, and checksums.
+See `SUBMISSION_INPUTS_REQUIRED.md` for the remaining user-only fields.
+Round-2 P0 filled every field that the repository could verify and left the
+rest as conspicuous `[USER INPUT REQUIRED: ...]`.
+
+## Round-2 P0 submission-blocker pass (2026-09-19)
+
+Filled from repository evidence only:
+
+- Candidate: Raj Gaurav Maurya (`hyperref` `pdfauthor` matched).
+- University / school / programme as attested in the proposal extract:
+  Technical University of Munich; School of Social Sciences and Technology;
+  M.Sc. Data \& Society. Official template wording remains a user input.
+- Supervisors: Prof.\ Dr.\ Jürgen Pfeffer; Dr.\ Ramit Debnath.
+- German abstract written from the English abstract; MI/MPR caveats retained.
+- Acknowledgements page omitted (no “insert thanks”).
+- Contribution page: conservative, artefact-linked draft; each assertion
+  labelled for candidate confirmation; prior MI/MPR paper not claimed as
+  sole authorship.
+- Ethics: no determination/approval artefact in the repository; exemption
+  not claimed.
+- Archive: `https://github.com/RajGM/LLM_Society`;
+  `origin/main` SHA `042023488cefb343e739ad4b4bdba5d23171ff48`;
+  no `LICENSE` file found; no DOI invented; SHA-256 of five harvest index
+  files recorded.
+
+Still required from the candidate/office (not invented):
+
+- Matriculation number; official title metadata; chair/programme wording;
+  first-examiner/advisor labels; submission date; official template;
+  verbatim statutory declaration and AI disclosure; signature;
+  confirmed CRediT split; ethics determination artefact; licence choice;
+  archive DOI if one is minted.
 
 ## Round-1 revision (2026-09-19)
 
@@ -92,3 +117,20 @@ is implied.
 - No language checker was installed. The manuscript was checked through the
   round-1 revision matrix, compilation diagnostics, citation-key audit, and
   claim--evidence audit.
+
+## Round-2 TUM language verification (2026-09-19)
+
+Source: uploaded skill `SKILL_TUM-ACADEMIC_WRITING_042a.md` and the chair-guide
+extract in `thesis_work/drafts/00_TEMPLATE_COMPLIANCE.md`. Scope: abstract,
+introduction, transitions, discussion, conclusion, sentence length, RQ
+alignment, and grade/award hype. Only critical/major prose was edited;
+numerical claims were preserved.
+
+- Review: `reviews/round2/02_TUM_LANGUAGE.md` (mirrored under
+  `thesisExperiment/thesis_final/reviews/round2/`).
+- Verdict: **PASS** after those repairs. No grade is implied.
+- Principal repairs: removed Conclusion grade-meta sentence; aligned
+  Discussion RQ1--RQ4 headings and order; merged duplicate measurement
+  block into RQ1; split the 50-word D-net contrast sentence; replaced
+  remaining promotional/defensive phrasing in intro, theory close,
+  discussion, and Results handover.
