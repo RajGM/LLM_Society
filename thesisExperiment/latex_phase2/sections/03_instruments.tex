@@ -10,7 +10,7 @@ The sidecar continuous value is a scoring diagnostic.
 Dual gap (discrete minus sidecar continuous) is not a third ground-truth \MPR{}.
 
 These two headlines are not the same quantity.
-Dual-discrete H ($1.6814$) is not \enquote{the same \MPR{} as continuous H ($0.8608$) but higher}.
+Dual-discrete H ($1.6814$) is not \enquote{the same \MPR{} as continuous H ($0.8643$) but higher}.
 The auditors are different instruments.
 Dual-discrete sits higher than continuous on every topology in this harvest.
 That pattern is a scoring-mode effect.
@@ -34,31 +34,30 @@ Do not pool the two columns or the two rows.}
 \toprule
 Arm & Cont.\ \MPR{} (T2c) & $n$ live cont. & Dual-disc.\ \MPR{} (T2d) & $n$ live dual \\
 \midrule
-H (homogeneous) & 0.8608 & 482 & 1.6814 & 478 \\
+H (homogeneous) & 0.8643 & 480 & 1.6814 & 478 \\
 He (heterogeneous) & 1.0192 & 238 & 2.0800 & 240 \\
 \midrule
-He $-$ H (same mode only) & 0.1584 & --- & 0.3986 & --- \\
+He $-$ H (same mode only) & 0.1549 & --- & 0.3986 & --- \\
 Mean dual gap (sidecar) & --- & --- & 0.8804 (H) / 1.1145 (He) & --- \\
 \bottomrule
 \end{tabular}
 \end{threeparttable}
 \end{table}
 
-The same cells as \texttt{meanNodeMPR} (not interchangeable with \texttt{meanMI}) are H continuous $0.8595$, H dual $1.6839$, He continuous $1.0140$, He dual $2.0737$.
+The same cells as \texttt{meanNodeMPR} (not interchangeable with \texttt{meanMI}) are H continuous $0.8630$, H dual $1.6839$, He continuous $1.0140$, He dual $2.0737$.
 This chapter leads with \texttt{meanMI} and treats \texttt{meanNodeMPR} as a sidecar of the same instrument.
 
-\Cref{fig:dualgap} plots mean dual gap by topology.
-The gap is large on every generator.
+\Cref{fig:dualgap} plots dual gap and agreement.
+The gap is large on both arms.
 Using it as an \MPR{} would smuggle the discrete--continuous disagreement into a third league table.
 The figure is a diagnostic only.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/fig10_dual_gap_diagnostic.png}
-\caption{Mean dual gap (discrete headline minus sidecar continuous) by topology and arm.
+\includegraphics[width=\textwidth]{figures/fig20_ifd_dual_gap_agreement.png}
+\caption[Dual gap and agreement]{Dual gap (discrete headline minus sidecar continuous) and dual agreement.
 The gap is a scoring diagnostic, not a ground-truth \MPR{}.
-$N=1$, \texttt{gpt-4o-mini}, eight hops.
-Source: \texttt{results\_phase2/figures/fig10\_dual\_gap\_diagnostic.png}.
-If \texttt{analysis\_full} later replaces this panel, keep this caption number.}
+$N=1$, eight hops.
+Source: \texttt{fig20\_ifd\_dual\_gap\_agreement.png}.}
 \label{fig:dualgap}
 \end{figure}

@@ -20,28 +20,12 @@ The two scalars sit beside each other; they are not mixed into one number.
 
 \begin{figure}[t]
 \centering
-\begin{tikzpicture}[
-  font=\small\sffamily,
-  box/.style={draw, rounded corners=2pt, align=center, inner sep=6pt, fill=black!4},
-  arr/.style={-{Latex}, thick}
-]
-\node[box] (seed) {Seed article\\(six climate texts)};
-\node[box, right=1.15cm of seed] (graph) {8-node graph\\drip: \texttt{node\_0}};
-\node[box, right=1.15cm of graph] (agent) {Persona LLM\\forward / reinterpret / drop};
-\node[box, below=1.05cm of agent] (aud) {Auditor LLM\\5 QA items $\to$ \MI{}};
-\node[box, left=1.15cm of aud] (agg) {Cell headline\\live \texttt{meanMI}};
-\node[box, left=1.15cm of agg] (split) {Two instruments\\T2c vs T2d};
-\draw[arr] (seed) -- (graph);
-\draw[arr] (graph) -- (agent);
-\draw[arr] (agent) -- (aud);
-\draw[arr] (aud) -- (agg);
-\draw[arr] (agg) -- (split);
-\end{tikzpicture}
+\includegraphics[width=\textwidth]{figures/fig00_methods.png}
 \caption[Methods schematic for Phase~2]{Methods schematic for Phase~2.
 A ground-truth climate article is rewritten by persona-conditioned \texttt{gpt-4o-mini} nodes on an eight-node graph, then scored by a five-item auditor.
 Discrete and continuous campaigns are separate configs.
 Network \kstar{} is the first irreversible crossing of mean \MI{}$>3$, censored at eight ticks.
-This drawing is a protocol snapshot, not an empirical result.}
+Source: \texttt{analysis\_full/figures/fig00\_methods.png}.}
 \label{fig:methods}
 \end{figure}
 
@@ -63,28 +47,30 @@ The harvest reports $0$ missing cells.
 \begin{table}[t]
 \centering
 \caption[Phase~2 harvest grid]{Phase~2 harvest grid.
-Source: \texttt{results\_phase2/summary.json} (stamp 2026-09-19T05:27:59.674Z).
+Live means follow \texttt{analysis\_full/COMPARISONS.md}.
 Dead cells are hatched after real LLM calls (\texttt{nScored}$\le 1$, \texttt{llmCalls}$>0$) and are excluded from live means.}
 \label{tab:grid}
 \begin{threeparttable}
 \small
 \begin{tabular}{lrrrr}
 \toprule
-Slice & Configs & Cells & Hatched dead & Status \\
+Slice & Cells & $n$ live & Hatched dead & meanMI (live) \\
 \midrule
-T2c\_H (cont., homo.) & 96/96 & 576/576 & 94 & complete \\
-T2d\_H (dual-disc., homo.) & 96/96 & 576/576 & 98 & complete \\
-T2c\_He (cont., hetero.) & 48/48 & 288/288 & 50 & complete \\
-T2d\_He (dual-disc., hetero.) & 48/48 & 288/288 & 48 & complete \\
-D-net custom graph & 4 configs & 8 article-rows & 0 & complete \\
+T2c\_H (cont., homo.) & 576 & 480 & 96 & 0.8643 \\
+T2d\_H (dual-disc., homo.) & 576 & 478 & 98 & 1.6814 \\
+T2c\_He (cont., hetero.) & 288 & 238 & 50 & 1.0192 \\
+T2d\_He (dual-disc., hetero.) & 288 & 240 & 48 & 2.0800 \\
+D-net custom graph & 8 article-rows & 8 & 0 & (separate graph) \\
 \midrule
-Thesis grid (T2 only) & 288 & 1,728 & 290 & \texttt{thesisGrade} false \\
+Thesis grid (T2 only) & 1,728 & 1,436 & 292 & \texttt{thesisGrade} false \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[para,flushleft]
 \footnotesize
-An earlier parse note counted 292 hatched rows; the official harvest tables use 290.
-This chapter uses 290.
+An earlier harvest brief counted 290 hatched rows.
+The full-analysis tables count 292.
+This chapter uses 292.
+D-net is not concatenated into the 1,728-cell grid.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

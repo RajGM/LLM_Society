@@ -18,7 +18,7 @@ $(MAIN).pdf: $(MAIN).tex references.bib \
 	sections/03_instruments.tex \
 	sections/04_topology.tex \
 	sections/05_h_vs_he.tex \
-	sections/06_four_designs.tex \
+	sections/06_comparisons.tex \
 	sections/07_pooled.tex \
 	sections/08_dnet_pfeffer.tex \
 	sections/09_limitations.tex \

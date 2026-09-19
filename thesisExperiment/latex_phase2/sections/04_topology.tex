@@ -3,20 +3,17 @@
 
 Topology is the clustering knob in the remapping of \textcite{pfeffer2014firestorms}.
 Phase~2 swept eight generators rather than the Phase~1 pair (scale-free versus ER).
-\Cref{fig:topo} shows live-cell mean \texttt{meanMI} for each generator, with discrete and continuous bars side by side and H and He in separate panels.
+\Cref{fig:topo} shows live-cell mean \texttt{meanMI} by topology and article across arms and modes.
 Rank order is not the same across scoring modes.
 A single \enquote{best topology} from a pooled number is not available from this harvest.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/fig01_topology_mpr_discrete_vs_continuous.png}
-\caption{Live-cell mean \texttt{meanMI} by topology, scoring mode, and arm.
-Left: homogeneous.
-Right: heterogeneous.
-Discrete (T2d) and continuous (T2c) bars are not averaged.
-Dashed line in later figures marks the propaganda threshold \MI{}$=3$; this panel uses the raw $0$--$5$ scale.
+\includegraphics[width=\textwidth]{figures/fig17_topology_article_mpr.png}
+\caption[Topology $\times$ article \MPR{}]{Live-cell mean \texttt{meanMI} by topology and article, all arms and modes.
+Discrete (T2d) and continuous (T2c) panels are not averaged.
 $N=1$.
-Source: \texttt{fig01\_topology\_mpr\_discrete\_vs\_continuous.png}.}
+Source: \texttt{fig17\_topology\_article\_mpr.png}.}
 \label{fig:topo}
 \end{figure}
 
@@ -42,7 +39,7 @@ ring & 61/72 & 1.6402 & 18.0\% & 15.3\% & 65/72 & 0.9160 & 15.4\% & 9.7\% \\
 random ER & 56/72 & 1.7809 & 19.6\% & 22.2\% & 57/72 & 0.8736 & 14.0\% & 20.8\% \\
 small world & 59/72 & 1.5977 & 20.3\% & 18.1\% & 56/72 & 0.7215 & 12.5\% & 22.2\% \\
 scale-free & 57/72 & 1.7034 & 21.1\% & 20.8\% & 60/72 & 0.9205 & 16.7\% & 16.7\% \\
-echo chamber & 61/72 & 1.7984 & 23.0\% & 15.3\% & 65/72 & 0.8233 & 12.3\% & 9.7\% \\
+echo chamber & 61/72 & 1.7984 & 23.0\% & 15.3\% & 63/72 & 0.8490 & 12.3\% & 12.5\% \\
 polarised & 57/72 & 1.7005 & 21.1\% & 20.8\% & 65/72 & 0.8356 & 15.4\% & 9.7\% \\
 hierarchical & 59/72 & 1.6315 & 23.7\% & 18.1\% & 52/72 & 0.8751 & 11.5\% & 27.8\% \\
 \bottomrule
@@ -72,6 +69,7 @@ hierarchical & 28/36 & 2.5934 & 42.9\% & 22.2\% & 26/36 & 1.5242 & 30.8\% & 27.8
 \end{table}
 
 On homogeneous continuous cells, scale-free is highest ($0.9205$) and small-world is lowest ($0.7215$).
+Echo-chamber H continuous is $0.8490$ ($n=63$ live).
 On homogeneous dual-discrete cells, echo chamber is highest ($1.7984$) and small-world is lowest ($1.5977$).
 On heterogeneous continuous cells, hierarchical is highest ($1.5242$) and ER is lowest ($0.6593$).
 On heterogeneous dual-discrete cells, hierarchical is highest ($2.5934$) and polarised is lowest ($1.8830$).
@@ -87,29 +85,29 @@ That is still a scoring-mode fact, not a second firestorm clock on a shared unit
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/fig09_kstar_rates.png}
-\caption{Share of live cells with irreversible network \kstar{} (mean \MI{}$>3$ with no later recovery), by topology and scoring mode.
+\includegraphics[width=\textwidth]{figures/fig19_kstar_rates.png}
+\caption[k-star rates]{Share of live cells with irreversible network \kstar{} (mean \MI{}$>3$ with no later recovery), by topology and scoring mode.
 Dual \kstar{} uses the discrete series; continuous \kstar{} uses the continuous series.
 The two rates are not added.
 Right-censored at eight ticks.
 $N=1$.
-Source: \texttt{fig09\_kstar\_rates.png}.}
+Source: \texttt{fig19\_kstar\_rates.png}.}
 \label{fig:kstar}
 \end{figure}
 
 \Cref{fig:dead} shows hatched dead-cell rates.
-Overall, 290 of 1,728 thesis cells (16.8\%) are hatched after LLM.
+Overall, 292 of 1,728 thesis cells are hatched after LLM.
 Hierarchical H continuous is 27.8\% dead; polarised He continuous is 30.6\% dead.
 Those generators contribute fewer scored events.
 The hatch pattern is part of the result, not a footnote.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/fig08_dead_cell_rates.png}
-\caption{Hatched dead-cell rate by topology, arm, and scoring mode.
+\includegraphics[width=\textwidth]{figures/fig18_dead_rates.png}
+\caption[Hatched dead rates]{Hatched dead-cell rate by topology, arm, and scoring mode.
 Dead means \texttt{nScored}$\le 1$ after real LLM calls.
 Hatched cells are kept and are not scored as mix immunity.
 $N=1$.
-Source: \texttt{fig08\_dead\_cell\_rates.png}.}
+Source: \texttt{fig18\_dead\_rates.png}.}
 \label{fig:dead}
 \end{figure}
