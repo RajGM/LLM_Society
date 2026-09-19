@@ -60,5 +60,16 @@
 
 ## Build record
 
-Final compilation status, counts, and residual warnings are appended after the
-verified build.
+- Build command: `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex`.
+- Status: successful; `pdflatex` and `biber` completed.
+- PDF: `main.pdf`.
+- Page count: 104.
+- PDF-extracted word count: 33,386.
+- Undefined citations: 0.
+- Undefined cross-references: 0.
+- Residual warnings: three overfull boxes below 4 pt, one appendix box below
+  9 pt, and a Latin Modern
+  bold-small-caps substitution. These do not hide thesis text.
+- No language checker was installed. The manuscript was checked through the
+  TUM rule-led integration pass, compilation diagnostics, citation-key audit,
+  and claim--evidence audit.

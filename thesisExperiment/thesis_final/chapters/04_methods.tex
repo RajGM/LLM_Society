@@ -1,5 +1,6 @@
 \chapter{System, Data, and Methods}
 \label{chap:methods}
+\sloppy
 
 \section{Prior-work boundary}
 The co-authored LASS workshop paper introduced the auditor--node architecture, the Misinformation Index (MI), and the Misinformation Propagation Rate (MPR) \parencite{maurya2025simulating}. This thesis uses that system as an inherited instrument. Its individual research layer comprises the climate corpus, the Pfeffer mapping, the Phase~2 factorial design, the composition analysis, and the D-net boundary test. The exact division of implementation and writing among co-authors remains an administrative placeholder on the title pages.
@@ -770,22 +771,23 @@ All operational definitions and numerical counts in this chapter are traceable t
 following repository artefacts:
 \begin{itemize}
   \item IFD formulas, dual calls, absolute gap, and agreement:
-        \texttt{\detokenize{src/Auditor.js}};
+        \path{src/Auditor.js};
   \item event collection, cell means, node means, \(k^{*}\), and hatch policy:
-        \texttt{\detokenize{thesisExperiment/scripts/parse_phase2.js}};
+        \path{thesisExperiment/scripts/parse_phase2.js};
   \item harvested counts and the \(N=1\)/non-thesis-grade status:
-        \texttt{\detokenize{thesisExperiment/results_phase2/summary.json}};
+        \path{thesisExperiment/results_phase2/summary.json};
   \item C1--C5 joins, pooled summaries, and exploratory procedures:
-        \texttt{\detokenize{thesisExperiment/analysis_full/analyze_full.py}} and
-        \texttt{\detokenize{thesisExperiment/analysis_full/tables/}};
+        \path{thesisExperiment/analysis_full/analyze_full.py} and
+        \path{thesisExperiment/analysis_full/tables/};
   \item structural metric extraction:
-        \texttt{\detokenize{src/ValidationMetrics.js}};
+        \path{src/ValidationMetrics.js};
   \item KS, JS, structural similarity, and DTFS definitions:
-        \texttt{\detokenize{src/ValidationComparison.js}}; and
+        \path{src/ValidationComparison.js}; and
   \item D-net validation inputs and outputs:
-        \texttt{\detokenize{thesisExperiment/results_phase2/debnath_compare.json}}.
+        \path{thesisExperiment/results_phase2/debnath_compare.json}.
 \end{itemize}
 Phase~1 tables are not joined to these Phase~2 headlines because they use a different
 campaign and schema.  D-net rows are not concatenated into the 1,728-cell factorial
 grid.  These boundaries preserve the separation among instruments, campaigns, and
 graph objects throughout the analysis.
+\fussy

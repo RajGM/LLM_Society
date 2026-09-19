@@ -455,12 +455,14 @@ Field & Meaning\\
 \texttt{hatchStatus}, \texttt{hatchNote} & Live/dead rendering status and interpretation warning.\\
 \end{longtable}
 
-\texttt{dual\_gap.csv} is narrow:
-\texttt{experimentName, articleId, topology, meanDualGap, meanAgreement,
-meanDiscreteMI, meanContinuousMI}; join it to the wide dual table on
-\texttt{(experimentName, articleId)}.  Pair T2c with T2d on
-\texttt{(topology, rest, articleId)}, never by row number.  Dead cells remain
-in the ledger and are excluded from live means rather than imputed as zero.
+\texttt{dual\_gap.csv} is narrow. Its fields are
+\texttt{experimentName}, \texttt{articleId}, \texttt{topology},
+\texttt{meanDualGap}, \texttt{meanAgreement}, \texttt{meanDiscreteMI}, and
+\texttt{meanContinuousMI}. Join it to the wide dual table with experiment
+name and article identifier as the composite key. Pair T2c with T2d with
+topology, persona or mix, and article identifier as the composite key. Never
+join by row number. Dead cells remain in the ledger and are excluded from live
+means rather than imputed as zero.
 
 \section{D-net mapping}
 \label{app:dnet-mapping}

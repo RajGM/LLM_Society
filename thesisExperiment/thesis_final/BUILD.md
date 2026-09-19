@@ -31,10 +31,12 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 
 ```bash
 pdfinfo main.pdf | sed -n 's/^Pages:[[:space:]]*//p'
-texcount -inc -sum main.tex
+pdftotext main.pdf - | wc -w
 rg 'undefined references|undefined citations|Citation .* undefined' main.log
 rg 'Overfull \\\\hbox|Overfull \\\\vbox' main.log
 ```
 
-The final counts and residual warnings are recorded in `THESIS_LOG.md`.
+The word count is a PDF-text extraction count and therefore includes front
+matter, tables, captions, references, and appendices. The final counts and
+residual warnings are recorded in `THESIS_LOG.md`.
 Figures are local under `figures/`; the build does not depend on Phase 1.
