@@ -1,6 +1,6 @@
 # T2d_H status (dual homogeneous, all 8 topologies)
 
-**Updated:** 2026-09-19T05:03:16.790Z
+**Updated:** 2026-09-19T05:11:35.078Z
 **OPENAI_API_KEY present:** yes (length=164; value not logged)
 **Dry-run:** no
 **MI/MPR invented:** no
@@ -8,19 +8,19 @@
 **Concurrency:** 4
 **Isolation:** `thesisExperiment/runs_phase2` only (not Phase 1 `runs/` or `results/tables/`)
 
-**Phase:** grid END T2d_H_scale_free_climate_scientist status=0 done=true.
+**Phase:** finished. completed=96 failed=0 skipped=62 pending=0.
 
 ## Counts (configs; each seeds 6 core articles)
 
 | Count | n |
 | --- | ---: |
 | configs | 96 |
-| completed | 95 |
+| completed | 96 |
 | failed | 0 |
 | skipped (already complete dual) | 62 |
-| pending / not_started | 1 |
-| LLM calls (this slice + probe) | 38103 |
-| Est. USD | $4.0266 |
+| pending / not_started | 0 |
+| LLM calls (this slice + probe) | 40477 |
+| Est. USD | $4.2684 |
 
 ## By topology
 
@@ -32,7 +32,7 @@
 | polarized | 12 | 12 | 0 | 4 | 0 |
 | random_er | 12 | 12 | 0 | 12 | 0 |
 | ring | 12 | 12 | 0 | 12 | 0 |
-| scale_free | 12 | 11 | 0 | 10 | 1 |
+| scale_free | 12 | 12 | 0 | 10 | 0 |
 | small_world | 12 | 12 | 0 | 12 | 0 |
 
 ## Probe (dual)

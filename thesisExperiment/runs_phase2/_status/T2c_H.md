@@ -1,6 +1,6 @@
 # T2c_H status — continuous homogeneous, all 8 topologies
 
-**When.** 2026-09-19T05:09:56.558Z
+**When.** 2026-09-19T05:15:10.793Z
 **OPENAI_API_KEY found.** **yes** (length only; value not logged)
 **Dry-run.** no. **MI invented.** no.
 **Isolation.** `thesisExperiment/runs_phase2` + `thesisExperiment/results_phase2` only.
@@ -11,10 +11,10 @@
 
 | metric | n |
 |---|---:|
-| completed | 93 |
+| completed | 94 |
 | failed | 0 |
 | skipped (already complete+continuous+usage>0) | 0 |
-| remaining | 3 |
+| remaining | 2 |
 | configs | 96 |
 
 ## Per topology (keep going across all eight)
@@ -25,7 +25,7 @@
 | ring | 12 | 12 | 0 | 0 |
 | random_er | 12 | 12 | 0 | 0 |
 | small_world | 12 | 12 | 0 | 0 |
-| scale_free | 12 | 11 | 0 | 1 |
+| scale_free | 12 | 12 | 0 | 0 |
 | echo_chamber | 12 | 10 | 0 | 2 |
 | polarized | 12 | 12 | 0 | 0 |
 | hierarchical | 12 | 12 | 0 | 0 |

@@ -112,7 +112,10 @@ function rowFromRun(runDir, meta, articleId) {
 
   const ksDisc = kStar(events, discMI);
   const ksCont = kStar(events, contMI);
+  const llmCalls = (usage && usage.calls) || 0;
   const dead = scored.length <= 1;
+  const status = meta.status || null;
+  const slice = parsed.prefix && parsed.arm ? `${parsed.prefix}_${parsed.arm}` : null;
 
   const nodeMpr = {};
   for (const e of scored) {
@@ -121,14 +124,29 @@ function rowFromRun(runDir, meta, articleId) {
   }
   const meanNodeMPR = mean(Object.values(nodeMpr).map((xs) => mean(xs)));
 
+  let hatchStatus = "live";
+  let hatchNote = null;
+  if (dead) {
+    if (llmCalls > 0) {
+      hatchStatus = "hatched_dead_after_llm";
+      hatchNote = "nScored <= 1 but llmCalls>0; keep the row; do not drop; do not read as mix immunises";
+    } else {
+      hatchStatus = "hatched_api_fail_or_unscored";
+      hatchNote = "nScored <= 1 and no LLM usage; keep if present; not an empirical zero for still-running cells";
+    }
+  }
+
   return {
     runDir: path.basename(runDir),
     experimentName: meta.experimentName || (meta.config && meta.config.experimentName),
+    slice,
     arm: parsed.arm,
     topology: parsed.topology || (meta.config && meta.config.topology),
     rest: parsed.rest,
     miScoringMode: mode,
     articleId,
+    status,
+    llmCalls,
     nEvents: events.length,
     nScored: scored.length,
     dead,
@@ -142,14 +160,8 @@ function rowFromRun(runDir, meta, articleId) {
     kStarDiscrete: ksDisc.k,
     kStarContinuous: ksCont.k,
     kStarCensoredDiscrete: ksDisc.k != null && ksDisc.k === Math.max(...(events.map((e) => e.tick || e.hops || 0))),
-    hatchStatus: dead
-      ? usage && usage.calls > 0
-        ? "hatched_dead_after_llm"
-        : "hatched_api_fail_or_unscored"
-      : "live",
-    hatchNote: dead
-      ? "nScored <= 1; keep the row; do not read as mix immunises"
-      : null,
+    hatchStatus,
+    hatchNote,
   };
 }
 
@@ -172,13 +184,22 @@ function toCsv(rows) {
   return lines.join("\n") + "\n";
 }
 
-function main() {
-  const rows = [];
-  if (!fs.existsSync(RUNS)) {
-    console.warn("No runs_phase2 yet");
-    writeJSONEmpty();
-    return;
-  }
+function experimentNameOf(meta, dir) {
+  return (
+    meta.experimentName ||
+    (meta.config && meta.config.experimentName) ||
+    String(dir).replace(/_\d{4}-\d{2}-\d{2}_\d{2}-\d{2}-\d{2}$/, "")
+  );
+}
+
+function isCompletedMeta(meta) {
+  const st = String(meta.status || "").toLowerCase();
+  const calls = (meta.llmUsage && meta.llmUsage.calls) || 0;
+  return (st === "completed" || st === "complete") && calls > 0;
+}
+
+function selectCompletedRuns() {
+  const byExp = new Map();
   const dirs = fs.readdirSync(RUNS).filter((d) => fs.existsSync(path.join(RUNS, d, "metadata.json")));
   for (const d of dirs) {
     const runDir = path.join(RUNS, d);
@@ -188,6 +209,46 @@ function main() {
     } catch {
       continue;
     }
+    const name = experimentNameOf(meta, d);
+    const rec = {
+      d,
+      runDir,
+      meta,
+      name,
+      mtime: fs.statSync(runDir).mtimeMs,
+      complete: isCompletedMeta(meta),
+      running: String(meta.status || "").toLowerCase() === "running",
+      calls: (meta.llmUsage && meta.llmUsage.calls) || 0,
+    };
+    if (!byExp.has(name)) byExp.set(name, []);
+    byExp.get(name).push(rec);
+  }
+  const selected = [];
+  const inProgressNames = new Set();
+  for (const [name, recs] of byExp) {
+    recs.sort((a, b) => b.mtime - a.mtime);
+    const complete = recs.filter((r) => r.complete);
+    if (complete.length) {
+      selected.push(complete[0]);
+    } else if (recs.some((r) => r.running)) {
+      inProgressNames.add(name);
+    }
+  }
+  return { selected, inProgressNames };
+}
+
+function main() {
+  const rows = [];
+  let inProgressNames = new Set();
+  if (!fs.existsSync(RUNS)) {
+    console.warn("No runs_phase2 yet");
+    writeJSONEmpty();
+    return;
+  }
+  const picked = selectCompletedRuns();
+  inProgressNames = picked.inProgressNames;
+  for (const rec of picked.selected) {
+    const { runDir, meta } = rec;
     const articles = (meta.config && meta.config.seedArticles) || [];
     const resultFiles = fs.readdirSync(runDir).filter((f) => f.startsWith("results_") && f.endsWith(".json"));
     const articleIds = articles.length
@@ -209,20 +270,40 @@ function main() {
   const expected = expectedGridCells();
   const seen = new Set(thesisRows.map((r) => `${r.experimentName}::${r.articleId}`));
   const missing = expected.filter((e) => !seen.has(`${e.experimentName}::${e.articleId}`));
+  const missingRows = missing.map((e) => ({
+    ...e,
+    hatchStatus: inProgressNames.has(e.experimentName) ? "in_progress" : "not_attempted",
+    note: inProgressNames.has(e.experimentName)
+      ? "still-running H/He config; not an empirical zero"
+      : "no completed real-LLM run yet; not an empirical zero",
+  }));
   const sliceCounts = {};
   for (const s of ["T2c_H", "T2d_H", "T2c_He", "T2d_He"]) {
     const exp = expected.filter((e) => e.slice === s);
     const got = thesisRows.filter((r) => String(r.experimentName).startsWith(s + "_"));
     const complete = got.filter((r) => r.status === "completed" || r.status === "complete");
     const failed = got.filter((r) => r.status && r.status !== "completed" && r.status !== "complete");
+    const miss = missingRows.filter((e) => e.slice === s);
+    const inProg = miss.filter((e) => e.hatchStatus === "in_progress");
+    const expectedConfigs = new Set(exp.map((e) => e.experimentName)).size;
+    const completedConfigs = new Set(complete.map((r) => r.experimentName)).size;
     sliceCounts[s] = {
-      expectedConfigs: new Set(exp.map((e) => e.experimentName)).size,
+      expectedConfigs,
+      completedConfigs,
       expectedCells: exp.length,
       parsedCells: got.length,
       completedCells: complete.length,
       failedCells: failed.length,
       remainingCells: exp.length - got.length,
+      inProgressCells: inProg.length,
+      inProgressConfigs: new Set(inProg.map((e) => e.experimentName)).size,
       hatchedDead: got.filter((r) => r.dead).length,
+      harvestState:
+        got.length === exp.length && inProg.length === 0
+          ? "fully_harvested"
+          : inProg.length > 0
+            ? "in_progress"
+            : "partial",
     };
   }
 
@@ -241,11 +322,20 @@ function main() {
   }))));
   fs.writeFileSync(path.join(OUT, "tables", "dead_cells.csv"), toCsv(dead));
   fs.writeFileSync(path.join(OUT, "tables", "all_rows.csv"), toCsv(rows));
-  fs.writeFileSync(
-    path.join(OUT, "tables", "missing_cells.csv"),
-    toCsv(missing.map((e) => ({ ...e, hatchStatus: "not_attempted" })))
-  );
+  fs.writeFileSync(path.join(OUT, "tables", "missing_cells.csv"), toCsv(missingRows));
 
+  let simPending = null;
+  const comparePath = path.join(OUT, "debnath_compare.json");
+  if (fs.existsSync(comparePath)) {
+    try {
+      simPending = !!readJSON(comparePath).simPending;
+    } catch {
+      simPending = null;
+    }
+  }
+
+  const inProgressList = [...inProgressNames].sort();
+  const dnetRows = rows.filter((r) => String(r.experimentName || r.runDir).startsWith("Dnet_"));
   const summary = {
     generatedAt: new Date().toISOString(),
     nRows: rows.length,
@@ -257,17 +347,83 @@ function main() {
     nHatchedDeadAfterLlm: hatchedDeadAfterLlm.length,
     nExpectedCells: expected.length,
     nMissingCells: missing.length,
+    nInProgressCells: missingRows.filter((e) => e.hatchStatus === "in_progress").length,
+    nDnetRows: dnetRows.length,
+    inProgressConfigs: inProgressList,
     sliceCounts,
-    deadNote: "dead = nScored <= 1; hatch these; do not drop; do not read as mix immunises. missing cells are not empirical zeros.",
+    dnetSimPending: simPending,
+    deadNote: "dead = nScored <= 1; hatch these; do not drop; do not read as mix immunises. missing/in-progress cells are not empirical zeros.",
     meanMPR_TH_continuous: round4(mean(cont.filter((r) => r.arm === "H" && !r.dead).map((r) => r.meanMI).filter((x) => x != null))),
     meanMPR_TH_dualHeadline: round4(mean(dual.filter((r) => r.arm === "H" && !r.dead).map((r) => r.meanMI).filter((x) => x != null))),
     thesisGrade: false,
     isolation: "results_phase2 only",
+    harvestRule: "latest complete run with llmCalls>0 per experiment; still-running H configs left missing/in_progress",
   };
   fs.writeFileSync(path.join(OUT, "summary.json"), JSON.stringify(summary, null, 2));
+  const parseMd = renderParseMarkdown(summary, th, the, cont, dual, dead, hatchedDeadAfterLlm, missingRows);
+  fs.writeFileSync(path.join(OUT, "PARSE.md"), parseMd);
+  const statusDir = path.join(EXP, "runs_phase2", "_status");
+  fs.mkdirSync(statusDir, { recursive: true });
+  fs.writeFileSync(path.join(statusDir, "PARSE.md"), parseMd);
   console.log(
-    `Phase2 parse: ${rows.length} rows, thesis=${thesisRows.length}, dead=${dead.length} hatchedAfterLlm=${hatchedDeadAfterLlm.length} missing=${missing.length} → ${OUT}/tables`
+    `Phase2 parse: ${rows.length} rows, thesis=${thesisRows.length}, dead=${dead.length} hatchedAfterLlm=${hatchedDeadAfterLlm.length} missing=${missing.length} inProgress=${inProgressList.length} → ${OUT}/tables`
   );
+}
+
+function renderParseMarkdown(summary, th, the, cont, dual, dead, hatchedDeadAfterLlm, missingRows) {
+  const slices = ["T2c_H", "T2d_H", "T2c_He", "T2d_He"];
+  const sliceLines = slices.map((s) => {
+    const r = summary.sliceCounts[s];
+    return `| ${s} | ${r.completedConfigs}/${r.expectedConfigs} | ${r.completedCells}/${r.expectedCells} | ${r.inProgressConfigs} | ${r.inProgressCells} | ${r.hatchedDead} | ${r.harvestState} |`;
+  });
+  const fully = slices.filter((s) => summary.sliceCounts[s].harvestState === "fully_harvested");
+  const inProg = slices.filter((s) => summary.sliceCounts[s].harvestState === "in_progress");
+  const inProgNames = (summary.inProgressConfigs || []).map((n) => `- \`${n}\``).join("\n") || "- (none)";
+  return `# Phase 2 parse harvest
+
+**Updated.** ${summary.generatedAt}
+**Source.** completed real LLM runs in \`runs_phase2/\` (latest complete dir with \`llmCalls>0\` per experiment).
+**Dry-run.** no. **MI invented.** no.
+**Isolation.** \`results_phase2/\` tables + this note. Did not write Phase 1 \`runs/\` or \`results/tables/\`.
+**Dnet compare.** \`simPending\` = **${summary.dnetSimPending}** (not rewritten by parse).
+
+## Table row counts
+
+| table | rows |
+| --- | ---: |
+| TH_rows.csv | ${th.length} |
+| THe_rows.csv | ${the.length} |
+| continuous.csv | ${cont.length} |
+| dual_discrete.csv | ${dual.length} |
+| dual_gap.csv | ${dual.length} |
+| dead_cells.csv | ${dead.length} |
+| all_rows.csv | ${summary.nRows} |
+| missing_cells.csv | ${missingRows.length} |
+
+- hatched dead after LLM (\`nScored<=1\` and \`llmCalls>0\`): **${hatchedDeadAfterLlm.length}** (kept; not dropped)
+- expected grid cells: ${summary.nExpectedCells}
+- missing / not finished: ${summary.nMissingCells} (of which in-progress: ${summary.nInProgressCells})
+- Dnet rows in all_rows: ${summary.nDnetRows}
+
+## Slices
+
+| slice | configs complete | cells harvested | configs in progress | cells in progress | hatched dead | harvest |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+${sliceLines.join("\n")}
+
+**Fully harvested:** ${fully.length ? fully.join(", ") : "(none)"}
+**Still in progress:** ${inProg.length ? inProg.join(", ") : "(none)"}
+
+In-progress configs (left missing; not empirical zeros):
+
+${inProgNames}
+
+## Notes
+
+- Dead cells with real usage are hatched (\`hatched_dead_after_llm\`) and kept in TH/THe/dual/all_rows/dead_cells.
+- Still-running homogeneous configs are not scored as zeros.
+- This replaces the 2026-09-18 abort harvest (\`nMissingCells=1728\`, empty TH_rows).
+`;
 }
 
 function expectedGridCells() {
