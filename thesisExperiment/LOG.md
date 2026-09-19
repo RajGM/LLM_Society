@@ -8518,3 +8518,9 @@ T2d_H finished completed=96 failed=0 skipped=62 pending=0 llmCalls=40477 estUsd=
 END T2c_H_echo_chamber_biodiversity_food_security status=0 elapsedMs=1199429 runDir=T2c_H_echo_chamber_biodiversity_food_security_2026-09-19_04-55-16 usage=1005 calls, 439101 prompt / 88258 completion tokens ~$0.1188 killedFor=none done=true
 
 ---
+
+## 2026-09-19T12:25:00Z — Pfeffer Debnath vs D-net (no new LLM)
+
+Pfeffer observables applied to empirical hashtag STRUCTURE (63/228, not a retweet cascade) and to existing Dnet_c_H / Dnet_c_He / Dnet_d_H / Dnet_d_He raw runs. Mapping already in Dnet configs: conspiracy / climate action / environmental types seated on all 63 nodes; exact persona-id match 56/63. No new LLM sim. No Twitter MPR invented. Temporal not available empirically. Cross-media held. Wrote `thesisExperiment/analysis_full/PFEFFER_DEBNATH_VS_SIM.md` and `pfeffer_debnath_vs_sim.json`. Did not overwrite Phase 1 `runs/` or `results/tables/`. Did not print API keys.
+
+---
