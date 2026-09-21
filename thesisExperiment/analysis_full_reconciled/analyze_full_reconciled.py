@@ -36,7 +36,6 @@ HARVEST = ROOT / "results_phase2" / "summary.json"
 OUT = Path(os.environ.get("THESIS_ANALYSIS_OUTPUT_DIR", str(ROOT / "analysis_full_reconciled"))).resolve()
 FIG = OUT / "figures"
 DERIVED = OUT / "tables"
-NOTES = OUT / "notes"
 
 TOPOS = [
     "linear_chain",
@@ -180,11 +179,6 @@ def fmt_pct(x) -> str:
     return f"{100.0 * float(x):.1f}%"
 
 
-def md_table(headers: list[str], rows: list[list[str]]) -> str:
-    out = ["| " + " | ".join(headers) + " |", "| " + " | ".join("---" for _ in headers) + " |"]
-    for r in rows:
-        out.append("| " + " | ".join(str(c) for c in r) + " |")
-    return "\n".join(out)
 
 
 def live(df: pd.DataFrame) -> pd.DataFrame:
@@ -407,7 +401,6 @@ def main() -> None:
     OUT.mkdir(parents=True, exist_ok=True)
     FIG.mkdir(parents=True, exist_ok=True)
     DERIVED.mkdir(parents=True, exist_ok=True)
-    NOTES.mkdir(parents=True, exist_ok=True)
 
     th = load_csv("TH_rows.csv")
     the = load_csv("THe_rows.csv")
@@ -938,7 +931,6 @@ def main() -> None:
 
     key = {
         "source": "LIVE thesisExperiment/results_phase2/tables_reconciled",
-        "paper_folder": "/workspace/Paper/ was absent; style from Phase 1 plot_results.py + heatmap_spec.md + figure_plan.md (CIKM grammar, climate grid)",
         "n_hops": N_HOPS,
         "cikm_hops": CIKM_HOPS,
         "N_replicates": 1,
@@ -1372,74 +1364,13 @@ def main() -> None:
     )
     savefig(fig, "fig22_article_valence_he.png")
 
-    write_markdown(key, c1, c2, c3, c4, pooled, pooled_meta, topo_df, persona_df, mix_df, family_df, article_df, dnet, harvest, compare, tests)
-    print("Wrote README.md, COMPARISONS.md, notes/")
+    write_figure_captions()
+    print("Wrote tables, figures, numeric summaries, and figure captions")
 
 
-def _test_line(t: dict) -> str:
-    if not t:
-        return "—"
-    if t.get("skipped"):
-        return f"skipped ({t['skipped']})"
-    if t.get("test") == "wilcoxon_signed_rank":
-        return f"W={t.get('statistic'):.3g}, p={t.get('p'):.4g}, median Δ={fmt4(t.get('median_delta_b_minus_a'))}, n={t.get('n')} (n+={t.get('n_pos')}, n-={t.get('n_neg')})"
-    if t.get("test") == "spearmanr":
-        return f"ρ={t.get('rho'):.3f}, p={t.get('p'):.4g}, n={t.get('n')}"
-    if t.get("test") == "mannwhitneyu":
-        return f"U={t.get('statistic'):.3g}, p={t.get('p'):.4g}, median_a={fmt4(t.get('median_a'))}, median_b={fmt4(t.get('median_b'))}, n={t.get('n_a')}/{t.get('n_b')}"
-    return json.dumps({k: t[k] for k in t if k != "note"})
 
 
-def write_markdown(key, c1, c2, c3, c4, pooled, pooled_meta, topo_df, persona_df, mix_df, family_df, article_df, dnet, harvest, compare, tests):
-    fig_list = sorted(p.name for p in FIG.glob("*.png"))
-
-    readme = []
-    readme.append("# Phase 2 full analysis (`analysis_full_reconciled/`)")
-    readme.append("")
-    readme.append("Isolated folder for the **full Phase 2 harvest**. Does not overwrite Phase 1 `thesisExperiment/analysis/` or `analysis_phase2/`.")
-    readme.append("")
-    readme.append("## Source")
-    readme.append("")
-    readme.append("Live tables only: `thesisExperiment/results_phase2/tables_reconciled/`.")
-    readme.append("`/workspace/Paper/` was **not present** in this environment. Visual grammar follows the previous campaign’s CIKM-style pack:")
-    readme.append("`discovery/04_stats/heatmap_spec.md`, `discovery/08_figures/figure_plan.md`, `scripts/plot_results.py` (persona/mix × article heatmaps, k* as absence not zero, homo vs hetero, topology facets).")
-    readme.append("Structural D-net numbers (depth/breadth) come from `results_phase2/debnath_compare.json` when present; **all MI/MPR/k*/dead/IFD-adjacent numbers come from the CSVs.**")
-    readme.append("")
-    readme.append("## Hard rules (honoured)")
-    readme.append("")
-    readme.append("- Do not invent MI. Dead cells stay in the ledger; they are **excluded from means**, not coded as 0.")
-    readme.append("- Discrete (T2d headline) ≠ continuous (T2c headline). Never averaged into one headline MPR.")
-    readme.append("- Dual gap is **not** a third MPR.")
-    readme.append(f"- N=1 replicate. **{N_HOPS} hops** vs CIKM {CIKM_HOPS}.")
-    readme.append(f"- Hatched-dead kept. Live `dead_cells.csv` has **{key['nDead_live_tables']}** rows (brief said 290; TH+THe dead flags = {key['nDead_TH_plus_THe']}).")
-    readme.append("- Pooling concatenates article-cells across topologies. **Not** a physical super-graph.")
-    readme.append(f"- D-net is a **{DNET_N_NODES}-node** custom hashtag graph, reported separately. Auditor MI ≠ Twitter MPR.")
-    readme.append("- Never print `.env`.")
-    readme.append("- Exploratory SciPy tests treat topology means or pooled cells as vectors. They are **not** campaign-replicate inference.")
-    readme.append("")
-    readme.append("## Metrics present in live tables")
-    readme.append("")
-    readme.append("| metric | table field | notes |")
-    readme.append("| --- | --- | --- |")
-    readme.append("| meanMI (cell headline) | `meanMI` | parse_phase2.js scored-event mean |")
-    readme.append("| MPR | `meanNodeMPR` | mean-of-node-means; reported beside meanMI, not mixed into it |")
-    readme.append("| k* | `kStarContinuous` (T2c) / `kStarDiscrete` (T2d) | first irreversible mean MI>3; null = none |")
-    readme.append("| dead | `dead` / `hatchStatus` | nScored≤1 after LLM; hatched |")
-    readme.append("| IFD-adjacent | `meanAgreement`, `meanDualGap` | CR/MR/IR **not** in tables — not invented |")
-    readme.append("| hop-wise MI | — | **absent** from live tables; hop figures omitted |")
-    readme.append("")
-    readme.append("## How to regenerate")
-    readme.append("")
-    readme.append("```bash")
-    readme.append("python3 thesisExperiment/analysis_full_reconciled/analyze_full_reconciled.py")
-    readme.append("```")
-    readme.append("")
-    readme.append("Writes `tables/`, `figures/`, `COMPARISONS.md`, `key_numbers.json`, `notes/`.")
-    readme.append("")
-    readme.append("## Figure list")
-    readme.append("")
-    readme.append("| file | what |")
-    readme.append("| --- | --- |")
+def write_figure_captions():
     captions = {
         "fig00_methods.png": "Methods schematic (8 hops, two IFD instruments)",
         "fig01_c1_h_vs_he_same_mode.png": "C1 same-mode H vs He by topology",
@@ -1465,243 +1396,8 @@ def write_markdown(key, c1, c2, c3, c4, pooled, pooled_meta, topo_df, persona_df
         "fig21_article_valence_h.png": "H article valence",
         "fig22_article_valence_he.png": "He article valence",
     }
-    for f in fig_list:
-        readme.append(f"| `figures/{f}` | {captions.get(f, '')} |")
-    readme.append("")
-    readme.append("## Numbered findings")
-    readme.append("")
-    readme.append("See `COMPARISONS.md`.")
-    readme.append("")
-    (OUT / "README_analysis.md").write_text("\n".join(readme))
-    (FIG / "captions.md").write_text("\n".join(["# Figure captions", ""] + [f"### `{k}`\n\n{v}\n" for k, v in captions.items() if k in fig_list]))
-
-    # COMPARISONS.md
-    c = []
-    c.append("# Phase 2 full comparisons — numbered findings")
-    c.append("")
-    c.append("Live tables only. N=1. 8 hops vs CIKM 30. Discrete ≠ continuous. Dual gap ≠ MPR. Dead cells hatched and kept.")
-    c.append("Exploratory SciPy lines are **not** replicate inference.")
-    c.append("")
-    c.append("## Harvest snapshot")
-    c.append("")
-    c.append(
-        md_table(
-            ["slice", "n cells", "n live", "meanMI", "meanNodeMPR", "k* rate", "dead rate"],
-            [
-                ["T2c_H", "576", str(key["nLive_T2c_H"]), fmt4(key["meanMI_T2c_H"]), fmt4(key["meanNodeMPR_T2c_H"]), fmt_pct(key["kStar_T2c_H"]), fmt_pct(key["deadRate_T2c_H"])],
-                ["T2c_He", "288", str(key["nLive_T2c_He"]), fmt4(key["meanMI_T2c_He"]), fmt4(key["meanNodeMPR_T2c_He"]), fmt_pct(key["kStar_T2c_He"]), fmt_pct(key["deadRate_T2c_He"])],
-                ["T2d_H", "576", str(key["nLive_T2d_H"]), fmt4(key["meanMI_T2d_H"]), fmt4(key["meanNodeMPR_T2d_H"]), fmt_pct(key["kStar_T2d_H"]), fmt_pct(key["deadRate_T2d_H"])],
-                ["T2d_He", "288", str(key["nLive_T2d_He"]), fmt4(key["meanMI_T2d_He"]), fmt4(key["meanNodeMPR_T2d_He"]), fmt_pct(key["kStar_T2d_He"]), fmt_pct(key["deadRate_T2d_He"])],
-            ],
-        )
-    )
-    c.append("")
-    c.append(f"Hatched-dead rows in `dead_cells.csv`: **{key['nDead_live_tables']}** (brief 290). All kept.")
-    c.append("")
-
-    c.append("## 1. Same topology, homo vs hetero, SAME MPR mode")
-    c.append("")
-    c.append("Pairs: `T2c_H` vs `T2c_He`; `T2d_H` vs `T2d_He`. CSV: `tables/c1_same_mode_h_vs_he_by_topology.csv`.")
-    c.append("Figures: `fig01_c1_h_vs_he_same_mode.png`, `fig02_c1_delta_he_minus_h.png`.")
-    c.append("")
-    c.append(
-        md_table(
-            ["topology", "T2c H", "T2c He", "Δ He−H", "T2d H", "T2d He", "Δ He−H"],
-            [
-                [
-                    r.topology,
-                    fmt4(r.meanMI_T2c_H),
-                    fmt4(r.meanMI_T2c_He),
-                    fmt4(r.delta_He_minus_H_T2c),
-                    fmt4(r.meanMI_T2d_H),
-                    fmt4(r.meanMI_T2d_He),
-                    fmt4(r.delta_He_minus_H_T2d),
-                ]
-                for r in c1.itertuples()
-            ],
-        )
-    )
-    c.append("")
-    c.append(f"**1.1** Cell-pooled same-mode Δ(He−H): continuous **{fmt4(key['c1_T2c_He_minus_H_cell_pool'])}** (H {fmt4(key['meanMI_T2c_H'])} vs He {fmt4(key['meanMI_T2c_He'])}); dual-discrete **{fmt4(key['c1_T2d_He_minus_H_cell_pool'])}** (H {fmt4(key['meanMI_T2d_H'])} vs He {fmt4(key['meanMI_T2d_He'])}). Collapsed He is higher on both instruments.")
-    c1_t2c_he_gt = ", ".join(c1.loc[c1["delta_He_minus_H_T2c"] > 0, "topology"].tolist()) or "none"
-    c1_t2c_h_gt = ", ".join(c1.loc[c1["delta_He_minus_H_T2c"] < 0, "topology"].tolist()) or "none"
-    c.append(f"**1.2** Topology-mean Δ(He−H) averaged over 8 topologies: T2c **{fmt4(key['c1_T2c_mean_topo_delta'])}**; T2d **{fmt4(key['c1_T2d_mean_topo_delta'])}**. He>H on **{key['c1_T2c_n_topologies_He_gt_H']}/8** topologies (continuous) and **{key['c1_T2d_n_topologies_He_gt_H']}/8** (dual-discrete). Continuous He>H is **not uniform**: He higher on {c1_t2c_he_gt}; H higher on {c1_t2c_h_gt}. Dual-discrete He>H on every topology. Exploratory Wilcoxon median Δ on T2c is near 0 because the four negative path-graph deltas cancel the four large echo/polar/hier positives — cell-pooled and topo-equal means stay positive because the positive gaps are larger.")
-    c.append("**1.3** That is **not** “hetero buffers firestorms.” Collapsed H mixes conspiracy BPs with scientists; collapsed He mixes conspiracy-heavy `mix_00`/`mix_01` with conspiracy-free `mix_02`. See §5.")
-    c.append(f"**1.4** Exploratory Wilcoxon on 8 topology means: T2c {_test_line(tests['c1_wilcoxon_T2c_He_vs_H_topo8'])}; T2d {_test_line(tests['c1_wilcoxon_T2d_He_vs_H_topo8'])}. N=1 seed.")
-    c.append("**1.5** Dead He cells are hatched (`nScored≤1` after LLM), not evidence that mix immunises.")
-    c.append("")
-    (NOTES / "01_same_mode_h_vs_he.md").write_text("\n".join(c[-12:]) + "\n")
-
-    c.append("## 2. Same topology, homo vs homo, DIFFERENT MPR (`T2c_H` vs `T2d_H`)")
-    c.append("")
-    c.append("CSV: `tables/c2_homo_t2c_vs_t2d_by_topology.csv`, paired live cells `c2_homo_t2c_vs_t2d_paired_live_cells.csv`.")
-    c.append("")
-    c.append(
-        md_table(
-            ["topology", "T2c H cont", "T2d H disc", "Δ disc−cont", "n live T2c", "n live T2d", "dual gap"],
-            [
-                [r.topology, fmt4(r.meanMI_T2c_H_continuous), fmt4(r.meanMI_T2d_H_dualDiscrete), fmt4(r.delta_dual_minus_continuous), str(int(r.n_live_T2c_H)), str(int(r.n_live_T2d_H)), fmt4(r.meanDualGap_T2d)]
-                for r in c2.itertuples()
-            ],
-        )
-    )
-    c.append("")
-    c.append(f"**2.1** Dual-discrete sits above continuous on **{key['c2_n_topologies_discrete_gt_continuous']}/8** H topologies. Mean topology Δ(disc−cont) = **{fmt4(key['c2_mean_topo_delta_dual_minus_cont'])}**.")
-    c.append("**2.2** This is a **scoring-mode / instrument** difference, not evidence that the dual campaign “found more misinformation” in a shared unit. Dual ≠ continuous. Do not average the two headlines.")
-    c.append(f"**2.3** Paired live cells (same topology × persona × article, both live): n={key['c2_n_paired_live_cells']}; median Δ(T2d−T2c)={fmt4(key['c2_paired_median_delta'])}. Dead on one side only: T2c {key['c2_n_dead_continuous_only']}, T2d {key['c2_n_dead_dual_only']}; both dead {key['c2_n_dead_both']}. Dead cells were not filled with 0.")
-    c.append(f"**2.4** Dual gap on H live cells (discrete − sidecar continuous on the **same** dual events) = **{fmt4(key['meanDualGap_H'])}**. That sidecar is not the T2c headline. Dual gap is not a third MPR.")
-    c.append(f"**2.5** Exploratory Wilcoxon (8 topo means): {_test_line(tests['c2_wilcoxon_T2d_vs_T2c_H_topo8'])}. Spearman rank of topology means: {_test_line(tests['c2_spearman_H_topo_cont_vs_disc'])}.")
-    c.append("")
-
-    c.append("## 3. Same topology, hetero vs hetero, DIFFERENT MPR (`T2c_He` vs `T2d_He`)")
-    c.append("")
-    c.append("CSV: `tables/c3_hetero_t2c_vs_t2d_by_topology.csv`.")
-    c.append("")
-    c.append(
-        md_table(
-            ["topology", "T2c He cont", "T2d He disc", "Δ disc−cont", "n live T2c", "n live T2d", "dual gap"],
-            [
-                [r.topology, fmt4(r.meanMI_T2c_He_continuous), fmt4(r.meanMI_T2d_He_dualDiscrete), fmt4(r.delta_dual_minus_continuous), str(int(r.n_live_T2c_He)), str(int(r.n_live_T2d_He)), fmt4(r.meanDualGap_T2d)]
-                for r in c3.itertuples()
-            ],
-        )
-    )
-    c.append("")
-    c.append(f"**3.1** Dual-discrete sits above continuous on **{key['c3_n_topologies_discrete_gt_continuous']}/8** He topologies. Mean topology Δ(disc−cont) = **{fmt4(key['c3_mean_topo_delta_dual_minus_cont'])}**.")
-    c.append(f"**3.2** Paired live He cells n={key['c3_n_paired_live_cells']}; median Δ={fmt4(key['c3_paired_median_delta'])}. Same-instrument warning as §2: do not pool T2c and T2d.")
-    c.append(f"**3.3** Dual gap He live = **{fmt4(key['meanDualGap_He'])}**; agreement = **{fmt4(key['meanAgreement_He'])}**. IFD CR/MR/IR are not in the live tables.")
-    c.append(f"**3.4** Exploratory Wilcoxon (8 topo means): {_test_line(tests['c3_wilcoxon_T2d_vs_T2c_He_topo8'])}. Spearman: {_test_line(tests['c3_spearman_He_topo_cont_vs_disc'])}.")
-    c.append("")
-
-    c.append("## 4. Cross-mode: homo vs hetero AND different MPR")
-    c.append("")
-    c.append("Pairs: `T2c_H` vs `T2d_He`; `T2d_H` vs `T2c_He`. **Separate labelled table. Not a pooled mean. Not a third MPR.**")
-    c.append("CSV: `tables/c4_cross_mode_by_topology.csv`. Figure: `fig05_c4_cross_mode.png`.")
-    c.append("")
-    c.append(
-        md_table(
-            ["topology", "T2c_H", "T2d_He", "Δ T2d_He−T2c_H", "T2d_H", "T2c_He", "Δ T2c_He−T2d_H"],
-            [
-                [
-                    r.topology,
-                    fmt4(r.meanMI_T2c_H),
-                    fmt4(r.meanMI_T2d_He),
-                    fmt4(r.delta_T2d_He_minus_T2c_H),
-                    fmt4(r.meanMI_T2d_H),
-                    fmt4(r.meanMI_T2c_He),
-                    fmt4(r.delta_T2c_He_minus_T2d_H),
-                ]
-                for r in c4.itertuples()
-            ],
-        )
-    )
-    c.append("")
-    c.append(f"**4.1** Mean topology Δ(T2d_He − T2c_H) = **{fmt4(key['c4_mean_topo_delta_T2dHe_minus_T2cH'])}**. This mixes a higher-scoring instrument (dual-discrete) with the He composition mix. Do not read it as an identity effect.")
-    c.append(f"**4.2** Mean topology Δ(T2c_He − T2d_H) = **{fmt4(key['c4_mean_topo_delta_T2cHe_minus_T2dH'])}**. Signs can reverse because the scoring-mode gap is large. That reversal is why C4 must stay unpooled.")
-    c.append("**4.3** No C4 headline is formed by averaging the two cross-mode deltas or by averaging discrete with continuous.")
-    c.append("")
-
-    c.append("## 5. Pooled cells (concatenation) and D-net 63-node graph")
-    c.append("")
-    c.append("Pooling = concatenate live article-cells across the eight 8-node topologies. **This is not a physical super-graph.** D-net is a separate 63-node custom graph.")
-    c.append("CSV: `tables/c5_pooled_cells.csv`, `c5_pooled_vs_topology_equal.csv`, `c5_dnet_cells.csv`.")
-    c.append("")
-    c.append(
-        md_table(
-            ["pool", "n live", "meanMI", "meanNodeMPR", "k* rate"],
-            [
-                [r.pool, str(int(r.n_live)), fmt4(r.meanMI), fmt4(r.meanNodeMPR), fmt_pct(r.kStar_rate)]
-                for r in pooled.itertuples()
-            ],
-        )
-    )
-    c.append("")
-    c.append(
-        md_table(
-            ["contrast", "cell-pooled H", "cell-pooled He", "Δ He−H", "topo-equal H", "topo-equal He", "Δ He−H"],
-            [
-                [r.contrast, fmt4(r.cell_pooled_H), fmt4(r.cell_pooled_He), fmt4(r.cell_pooled_He_minus_H), fmt4(r.topo_equal_H), fmt4(r.topo_equal_He), fmt4(r.topo_equal_He_minus_H)]
-                for r in pooled_meta.itertuples()
-            ],
-        )
-    )
-    c.append("")
-    c.append(f"**5.1 H vs He on the pooled cell set.** Same pattern as C1: He > H on both instruments (continuous Δ={fmt4(key['c1_T2c_He_minus_H_cell_pool'])}; dual-discrete Δ={fmt4(key['c1_T2d_He_minus_H_cell_pool'])}). Topology-equal weighting does not flip the sign (see table). Exploratory MW: T2c {_test_line(tests['c5_mw_T2c_H_vs_He_cells'])}; T2d {_test_line(tests['c5_mw_T2d_H_vs_He_cells'])}.")
-    c.append(f"**5.2 Conspiracy-composition still holds on the pooled H cells.** T2c family meanMI: conspiracy **{fmt4(key['c5_T2c_conspiracy_MPR'])}**, climate_action **{fmt4(key['c5_T2c_climate_action_MPR'])}**, science_env **{fmt4(key['c5_T2c_science_MPR'])}**. T2d: conspiracy **{fmt4(key['c5_T2d_conspiracy_MPR'])}**, climate_action **{fmt4(key['c5_T2d_climate_action_MPR'])}**, science_env **{fmt4(key['c5_T2d_science_MPR'])}**. Conspiracy remains the high group on both instruments.")
-    c.append(f"**5.3 Mix composition still holds on pooled He cells.** mix_00 (4 conspiracy) T2c **{fmt4(key['mix00_only_T2c'])}** vs mix_02 (0 conspiracy) **{fmt4(key['mix02_only_T2c'])}**; T2d mix_00 **{fmt4(key['mix00_only_T2d'])}** vs mix_02 **{fmt4(key['mix02_only_T2d'])}**. mix_02 is lower on both instruments in these N=1 runs — not a law that “diversity always stops firestorms.”")
-    c.append("**5.4** Collapsed He>H is therefore **compatible** with conspiracy composition: the H mean is pulled down by scientist personas; the He mean is pulled up by conspiracy-heavy mixes. Restricting H to conspiracy family reverses the naive H/He story (conspiracy H >> overall He).")
-    c.append("")
-    c.append("### D-net (63-node custom graph) — not pooled into the eight topologies")
-    c.append("")
-    c.append("Auditor MI on the reconstructed hashtag graph. **Not empirical Twitter MPR.**")
-    c.append("")
-    dnet_rows = []
-    for r in dnet.itertuples():
-        if r.miScoringMode == "dual":
-            dnet_rows.append([r.experimentName, r.articleId, "dual-discrete", fmt4(r.meanMI), "—", fmt4(getattr(r, "meanContinuousMI", None)), "yes" if pd.notna(r.kStarDiscrete) else "none"])
-        else:
-            dnet_rows.append([r.experimentName, r.articleId, "continuous", "—", fmt4(r.meanMI), "—", "yes" if pd.notna(r.kStarContinuous) else "none"])
-    c.append(md_table(["run", "article", "mode", "discrete MPR", "continuous MPR", "dual sidecar cont (not headline)", "k*"], dnet_rows))
-    c.append("")
-    c.append(f"**5.5 D-net H vs He (conspiracy-homogeneous vs mixed), continuous:** SCoPEx H {fmt4(key['dnet_c_H_scopex'])} vs He {fmt4(key['dnet_c_He_scopex'])}; chemtrails H {fmt4(key['dnet_c_H_chemtrails'])} vs He {fmt4(key['dnet_c_He_chemtrails'])}. Dual-discrete: SCoPEx H {fmt4(key['dnet_d_H_scopex'])} vs He {fmt4(key['dnet_d_He_scopex'])}; chemtrails H {fmt4(key['dnet_d_H_chemtrails'])} vs He {fmt4(key['dnet_d_He_chemtrails'])}.")
-    c.append("**5.6** On D-net, **H (conspiracy) > He (mixed)** on both instruments and both seeds. That matches composition (D-net H is conspiracy-only) and **does not match** the naive 8-topology collapsed He>H, which mixed scientists into H. Composition holds; the H/He label does not travel unchanged onto the 63-node graph.")
-    if compare:
-        honesty = (compare.get("honesty") or {}).get("notes") or []
-        for note in honesty:
-            c.append(f"- {note}")
-        struct = compare.get("structuralComparison") or {}
-        dtfs = compare.get("dtfs") or {}
-        c.append(f"- Structural similarity (compare json, not MI): {struct.get('structuralSimilarity')}; DTFS={dtfs.get('dtfs')} isValidated={dtfs.get('isValidated')}.")
-    c.append("")
-
-    c.append("## Paper-style metric notes")
-    c.append("")
-    c.append(
-        md_table(
-            ["persona", "family", "discrete MPR", "continuous MPR", "k* dual", "k* cont"],
-            [
-                [r.persona, r.family, fmt4(r.discrete_MPR), fmt4(r.continuous_MPR), fmt_pct(r.kStar_rate_dual), fmt_pct(r.kStar_rate_continuous)]
-                for r in persona_df.itertuples()
-            ],
-        )
-    )
-    c.append("")
-    c.append(
-        md_table(
-            ["mix", "composition", "discrete MPR", "continuous MPR", "k* dual", "k* cont"],
-            [
-                [r.mix, r.mix_note, fmt4(r.discrete_MPR), fmt4(r.continuous_MPR), fmt_pct(r.kStar_rate_dual), fmt_pct(r.kStar_rate_continuous)]
-                for r in mix_df.itertuples()
-            ],
-        )
-    )
-    c.append("")
-    c.append("**P.1** Heatmaps use live-cell means; all-dead persona×article (or mix×article) cells are **—**, not 0.00.")
-    c.append("**P.2** k* heatmaps use grey **—** when the network never stayed above MI>3; that is not k*=0.")
-    c.append(f"**P.3** Dual agreement (IFD-adjacent) H={fmt4(key['meanAgreement_H'])}, He={fmt4(key['meanAgreement_He'])}. Hop-wise MI, CR, MR, IR are **not in live tables** and were not invented.")
-    c.append("")
-    c.append("## Limitations (required)")
-    c.append("")
-    c.append("- N=1 (`graphRandomSeed` 42). No error bars on heatmap cells.")
-    c.append("- 8 hops is logged cost compression vs CIKM 30, not a Debnath hop protocol.")
-    c.append(f"- {key['nDead_live_tables']} hatched-dead cells kept; live-only means drop them.")
-    c.append("- `thesisGrade` is false on the harvest.")
-    c.append("- gpt-4o-mini roleplay is not chemtrails communities in the wild.")
-    c.append("- D-net is a hashtag co-occurrence fallback, not a hydrated retweet cascade.")
-    c.append("")
-    (OUT / "COMPARISONS.md").write_text("\n".join(c))
-
-    (NOTES / "02_homo_different_mpr.md").write_text(
-        f"T2c_H vs T2d_H. Mean topo Δ(disc−cont)={fmt4(key['c2_mean_topo_delta_dual_minus_cont'])}; {key['c2_n_topologies_discrete_gt_continuous']}/8 topologies discrete>continuous. Dual gap H={fmt4(key['meanDualGap_H'])} is not MPR.\n"
-    )
-    (NOTES / "03_hetero_different_mpr.md").write_text(
-        f"T2c_He vs T2d_He. Mean topo Δ={fmt4(key['c3_mean_topo_delta_dual_minus_cont'])}; {key['c3_n_topologies_discrete_gt_continuous']}/8. Dual gap He={fmt4(key['meanDualGap_He'])}.\n"
-    )
-    (NOTES / "04_cross_mode.md").write_text(
-        f"CROSS-MODE table only. Mean Δ(T2d_He−T2c_H)={fmt4(key['c4_mean_topo_delta_T2dHe_minus_T2cH'])}; mean Δ(T2c_He−T2d_H)={fmt4(key['c4_mean_topo_delta_T2cHe_minus_T2dH'])}. Do not pool.\n"
-    )
-    (NOTES / "05_pooled_and_dnet.md").write_text(
-        f"Pooling concatenates cells, not a super-graph. Pooled He>H (T2c Δ={fmt4(key['c1_T2c_He_minus_H_cell_pool'])}; T2d Δ={fmt4(key['c1_T2d_He_minus_H_cell_pool'])}) but conspiracy family still high and mix_02 still low. D-net 63-node: H conspiracy > He mixed on both seeds/modes.\n"
+    (FIG / "captions.json").write_text(
+        json.dumps(captions, indent=2, ensure_ascii=False) + "\n", encoding="utf-8"
     )
 
 

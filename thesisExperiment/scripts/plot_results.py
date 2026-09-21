@@ -320,16 +320,9 @@ def main() -> None:
             "15_A_mi_trajectories.png",
             "Figure 15. Experiment A network-mean MI over ticks by cell×article. Dashed line: propaganda threshold MI>3 used for k*.",
         )
-    cap_path = OUT / "captions.md"
-    lines = ["# Figure captions (ready to paste)", ""]
-    for name, cap in CAPTIONS.items():
-        lines.append(f"### `{name}`")
-        lines.append("")
-        lines.append(cap)
-        lines.append("")
-    cap_path.write_text("\n".join(lines), encoding="utf-8")
-    (ROOT / "results" / "FIGURES.md").write_text("\n".join(lines), encoding="utf-8")
-    print(f"Wrote {cap_path} and results/FIGURES.md ({len(CAPTIONS)} figures)")
+    cap_path = OUT / "captions.json"
+    cap_path.write_text(json.dumps(CAPTIONS, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    print(f"Wrote {cap_path} ({len(CAPTIONS)} figures)")
 
 
 if __name__ == "__main__":
