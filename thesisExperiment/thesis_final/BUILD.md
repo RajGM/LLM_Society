@@ -1,3 +1,5 @@
+> Historical manuscript record. This snapshot is not the source of the signed final PDF. Editorial files referenced below were removed during submission cleanup; their committed versions remain in Git history. See the [current repository guide](../../README.md).
+
 # Build and verification
 
 The named template `6aaeb12d2d2eaea03e67a80b` was unavailable. The thesis

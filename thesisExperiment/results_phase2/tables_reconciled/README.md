@@ -1,3 +1,5 @@
+> For isolated regeneration that preserves the checked-in outputs, follow the [current reproduction instructions](../../../docs/REPRODUCIBILITY.md). Keep the manifest fixed; rebuilding it is not a routine reproduction step. The provenance and historical hashes below describe the 20 September reconciliation.
+
 # Reconciled Phase 2 table set (`tables_reconciled/`)
 
 **Status.** Derived, reproducible table set regenerated on 2026-09-20 from the retained raw node
@@ -19,11 +21,10 @@ version.
 Regenerate with, from the repository root:
 
 ```
-node thesisExperiment/results_phase2/tables_reconciled/build_manifest.js
 node thesisExperiment/results_phase2/tables_reconciled/regenerate_reconciled.js
 ```
 
-Repeating the two commands after copying or re-checking-out the archive selects the same 297 run IDs,
+Repeating regeneration with the retained manifest after copying or re-checking-out the archive selects the same 297 run IDs,
 because selection no longer depends on directory modification times. (On the current checkout the
 parser's own mtime rule would pick a different directory for 9 of the 297 experiment names; see
 `counts.entriesWhereMtimeSelectionTodayDiffers` and the per-entry `mtimeSelectionTodayWouldPick` field

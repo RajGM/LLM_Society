@@ -1,3 +1,5 @@
+> For this checkout, follow the [current reproduction instructions](../../docs/REPRODUCIBILITY.md). The final Overleaf `notes/` resources referenced below were removed before submission cleanup and are not currently available here. The following is the dated provenance record for the comparative analysis.
+
 # Phase 2 full analysis on the RECONCILED table set (`analysis_full_reconciled/`)
 
 **Status.** Primary analysis folder of the thesis since 2026-09-20 (decision A1,
@@ -98,7 +100,6 @@ same-event condition-mean Spearman 0.62 (was 0.67); six heatmap cells (see `reco
 ## Regenerate
 
 ```
-node   thesisExperiment/results_phase2/tables_reconciled/build_manifest.js
 node   thesisExperiment/results_phase2/tables_reconciled/regenerate_reconciled.js
 PYTHONUTF8=1 python thesisExperiment/analysis_full_reconciled/analyze_full_reconciled.py
 PYTHONUTF8=1 python 6aaeb12d2d2eaea03e67a80b/notes/make_figures.py
